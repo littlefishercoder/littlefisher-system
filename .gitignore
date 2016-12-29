@@ -1,0 +1,21 @@
+# Eclipse
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles/
+Servers/
+**/target/
+**/.settings
+**/.classpath
+**/.project
+**/.externalToolBuilders
+**/.pmd
+**/.checkstyle
+
+# idea
+.idea/
+**/*.iml
+
+# Others
+node_modules/
+**/logback.xml.runtime
+**/MANIFEST.MF
