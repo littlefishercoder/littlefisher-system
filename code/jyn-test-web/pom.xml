@@ -12,6 +12,7 @@
 		<jdk.version>1.7</jdk.version>
 		<!-- spring版本号 -->
 		<spring.version>4.3.2.RELEASE</spring.version>
+		<servlet.version>2.5</servlet.version>
 		<!-- mybatis版本号 -->
 		<mybatis.version>3.4.1</mybatis.version>
 		<!-- log4j日志文件管理包版本 -->
@@ -24,7 +25,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
+			<version>${servlet.version}</version>
 		</dependency>
 		<!-- spring mvc -->
 		<dependency>
