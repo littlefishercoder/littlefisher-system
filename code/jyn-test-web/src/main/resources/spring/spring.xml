@@ -10,8 +10,9 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 ">
 
 	<!-- 获取配置参数 -->
-	<context:property-placeholder location="classpath:properties/jdbc.properties" />
-
+	<context:property-placeholder location="classpath*:properties/jdbc.properties" />
+	
+	<import resource="classpath*:spring/spring-mybatis.xml"/>
 	<!-- 1.在Spring配置文件中的<beans>标签中配置 -->
 	<!-- <context:annotation-config /> -->
 	<!-- 通过这种配置方式可使整个项目中的Spring注解生效 -->
@@ -19,6 +20,6 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd
 	<!-- 2.在<beans>标签里配置扫描的包名 -->
 	<!-- <context:component-scan base-package=”com.veegn”> -->
 	<!-- 这样可使指定包目录下的Spring注解生效 -->
-	<context:component-scan base-package="com.yc.crm.jyn.service" />
+	<context:component-scan base-package="com.yc.**.service" />
 
 </beans>

@@ -14,7 +14,7 @@ import com.yc.crm.jyn.dto.UserDto;
 
 @RunWith(SpringJUnit4ClassRunner.class) // = extends SpringJUnit4ClassRunner
 @ContextConfiguration(locations = {
-    "classpath:spring/spring.xml", "classpath:spring/spring-mybatis.xml"
+    "classpath:spring/spring.xml"
 })
 public class UserServiceTest {
 

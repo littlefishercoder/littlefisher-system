@@ -9,7 +9,7 @@ import com.yc.crm.jyn.dao.UserDtoMapper;
 import com.yc.crm.jyn.dto.UserDto;
 
 @Service("muserService")
-public class IUserServiceImpl implements IUserService{
+public class UserServiceImpl implements IUserService{
 	
 	@Autowired
 	private UserDtoMapper userDtoMapper;

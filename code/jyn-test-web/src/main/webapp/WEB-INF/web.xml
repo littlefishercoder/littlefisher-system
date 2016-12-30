@@ -4,7 +4,7 @@
   
   	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/spring.xml,classpath:spring/spring-mybatis.xml</param-value>
+		<param-value>classpath:spring/spring.xml</param-value>
   	</context-param>
 	
 	<filter>
