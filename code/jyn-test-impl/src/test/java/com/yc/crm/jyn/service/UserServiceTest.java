@@ -15,7 +15,7 @@ import com.alibaba.fastjson.JSON;
 import com.yc.crm.jyn.dto.UserDto;
 
 @RunWith(SpringJUnit4ClassRunner.class) // = extends SpringJUnit4ClassRunner
-@ContextConfiguration("classpath*:spring/spring.xml")
+@ContextConfiguration("classpath*:spring/spring-core.xml")
 @Rollback
 @Transactional
 public class UserServiceTest {

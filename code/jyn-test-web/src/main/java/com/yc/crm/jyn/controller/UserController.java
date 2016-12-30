@@ -26,7 +26,7 @@ public class UserController {
 	 * 使用@RequestMapping说明是为了组装请求url，
 	 * 例如方法上是@RequestMapping(value="/listUser")，
 	 * 表明请求如果是以"/listUser"的形式的话，执行该方法
-	 * PS：由于类上也定义了该注解，所以如果想请求进入该方法，请求的url需要是"/muserController/listUser"
+	 * PS：由于类上也定义了该注解，所以如果想请求进入该方法，请求的url需要是"/user/listUser"
 	 */
 	@RequestMapping(value="/listUser")
 	public String listUser(HttpServletRequest request) {
