@@ -23,7 +23,11 @@
 			<artifactId>core-base</artifactId>
 			<version>${yc.version}</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.yc</groupId>
+			<artifactId>jyn-test-intf</artifactId>
+			<version>${yc.version}</version>
+		</dependency>
 	</dependencies>
 
 </project>

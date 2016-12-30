@@ -1,4 +1,4 @@
-package com.yc.crm.jyn.service;
+package com.yc.crm.jyn.service.impl;
 
 import java.util.List;
 
@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.yc.crm.jyn.dao.UserDtoMapper;
 import com.yc.crm.jyn.dto.UserDto;
+import com.yc.crm.jyn.service.IUserService;
 
-@Service("muserService")
+@Service("userService")
 public class UserServiceImpl implements IUserService{
 	
 	@Autowired

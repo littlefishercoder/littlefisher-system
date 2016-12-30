@@ -11,15 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.yc.crm.jyn.dto.UserDto;
 import com.yc.crm.jyn.service.IUserService;
 
-/**
- * 
- * 使用@Controller说明该类是一个控制器
- * 
- * 使用@RequestMapping说明是为了组装请求url，
- * 例如类上是@RequestMapping("/muserController")，
- * 表明请求如果是以"/muserController*"的形式的话，进入该类中
- *
- */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -28,7 +19,7 @@ public class UserController {
 	 * 使用@Autowired能完成自动装配，也就是省略了get/set方法
 	 */
 	@Autowired
-	private IUserService muserService;
+	private IUserService userService;
 
 	/**
 	 * 
@@ -40,7 +31,7 @@ public class UserController {
 	@RequestMapping(value="/listUser")
 	public String listUser(HttpServletRequest request) {
 		
-		List <UserDto> list = muserService.getAll();
+		List <UserDto> list = userService.getAll();
 		request.setAttribute("userlist", list);
 		return "listUser";
 	}
@@ -50,21 +41,21 @@ public class UserController {
 			
 //		String id = UUID.randomUUID().toString();
 //		muser.setId(id);
-		muserService.insert(muser);
+		userService.insert(muser);
 		return "redirect:/muserController/listUser.do";
 	}
 	
 	@RequestMapping(value="/deleteUser")
 	public String deleteUser(Long id) {
 		
-		muserService.delete(id);
+		userService.delete(id);
 		return "redirect:/muserController/listUser.do";
 	}
 	
 	@RequestMapping(value="/updateUserUI")
 	public String updateUserUI(Long id, HttpServletRequest request) {
 		
-		UserDto muser = muserService.selectByPrimaryKey(id);
+		UserDto muser = userService.selectByPrimaryKey(id);
 		request.setAttribute("user", muser);
 		return "updateUser";
 	}
@@ -72,7 +63,7 @@ public class UserController {
 	@RequestMapping(value="/updateUser")
 	public String updateUser(UserDto muser) {
 		
-		muserService.update(muser);
+		userService.update(muser);
 		return "redirect:/muserController/listUser.do";
 	}
 }
