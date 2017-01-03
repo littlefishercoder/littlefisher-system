@@ -1,7 +1,7 @@
 package com.yc.core.utils;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Logger;
 
@@ -20,7 +20,7 @@ public final class Room1000Logger {
     protected Logger logger;
     
     /** loggerCache 缓存 */
-    private static Map<Class<?>, Room1000Logger> loggerCache = new HashMap<Class<?>, Room1000Logger>();
+    private static Map<String, Room1000Logger> loggerCache = new ConcurrentHashMap<String, Room1000Logger>();
     
     /**
      * 私有构造函数
@@ -41,11 +41,11 @@ public final class Room1000Logger {
      * @return Room1000Logger
      */
     public static Room1000Logger getLogger(Class<?> clazz) {
-        if (loggerCache.get(clazz) != null) {
-            return loggerCache.get(clazz);
+        if (loggerCache.get(clazz.getName()) != null) {
+            return loggerCache.get(clazz.getName());
         }
         Room1000Logger room1000Logger = new Room1000Logger(Logger.getLogger(clazz));
-        loggerCache.put(clazz, room1000Logger);
+        loggerCache.put(clazz.getName(), room1000Logger);
         return room1000Logger;
     }
     
