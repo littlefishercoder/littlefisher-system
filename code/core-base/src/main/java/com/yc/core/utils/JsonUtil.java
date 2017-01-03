@@ -26,7 +26,7 @@ public final class JsonUtil {
      *
      * @return Object
      */
-    public Object json2Object() {
+    public static Object json2Object() {
         return null;
     }
     
@@ -38,7 +38,7 @@ public final class JsonUtil {
      *
      * @return String
      */
-    public String object2Json() {
+    public static String object2Json() {
         return null;
     }
 }
