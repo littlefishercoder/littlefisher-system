@@ -13,7 +13,7 @@ package com.yc.core.utils;
 public final class JsonUtil {
 
     /**
-     * 空构造器
+     * 禁止实例化
      */
     private JsonUtil() {
     }

@@ -13,6 +13,12 @@ package com.yc.core.utils;
 public final class StringUtil {
     
     /**
+     * 禁止实例化
+     */
+    private StringUtil() {
+    }
+    
+    /**
      * 
      * Description:  检查字符串是否为空，值为null或长度为0都为空
      * 

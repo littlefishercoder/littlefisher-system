@@ -1,10 +1,5 @@
 package com.yc.core.utils;
 
-import java.net.InetAddress;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -63,44 +58,37 @@ public final class Room1000Logger {
         }
     }
 
-    /**
-     * 
-     * Description:  该事件ID包含当前时间和主机IP,是标示日志时间的唯一符
-     * 
-     * @author jinyanan
-     *
-     * @return eventId
-     */
-    protected String eventId() {
-        // 获取当前时间
-        // 如果不需要格式,可直接用dt,dt就是当前系统时间
-        Date dt = new Date();
-        // 设置显示格式,24小时制
-        DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-        String nowTime = df.format(dt); // 用DateFormat的format()方法在dt中获取并以yyyy/MM/dd HH:mm:ss格式显示
-
-        String nowIp;
-        try {
-            InetAddress addr = InetAddress.getLocalHost();
-            nowIp = addr.getHostAddress();
-        }
-        catch (Exception ex) {
-            nowIp = "";
-        }
-        nowTime = nowTime.replaceAll("/", "");
-        nowTime = nowTime.replaceAll(" ", "");
-        nowTime = nowTime.replaceAll(":", "");
-        nowIp = nowIp.replace(".", "");
-        String nowId = nowTime + nowIp;
-        return nowId;
-    }
-
-    // public void debug(String KeyWord, String Content) {
-    // if (logger.isDebugEnabled()) {
-    // String message = " " + KeyWord + " " + Content;
-    // logger.debug(message);
-    // }
-    // }
+//    /**
+//     * 
+//     * Description:  该事件ID包含当前时间和主机IP,是标示日志时间的唯一符
+//     * 
+//     * @author jinyanan
+//     *
+//     * @return eventId
+//     */
+//    protected String eventId() {
+//        // 获取当前时间
+//        // 如果不需要格式,可直接用dt,dt就是当前系统时间
+//        Date dt = new Date();
+//        // 设置显示格式,24小时制
+//        DateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+//        String nowTime = df.format(dt); // 用DateFormat的format()方法在dt中获取并以yyyy/MM/dd HH:mm:ss格式显示
+//
+//        String nowIp;
+//        try {
+//            InetAddress addr = InetAddress.getLocalHost();
+//            nowIp = addr.getHostAddress();
+//        }
+//        catch (Exception ex) {
+//            nowIp = "";
+//        }
+//        nowTime = nowTime.replaceAll("/", "");
+//        nowTime = nowTime.replaceAll(" ", "");
+//        nowTime = nowTime.replaceAll(":", "");
+//        nowIp = nowIp.replace(".", "");
+//        String nowId = nowTime + nowIp;
+//        return nowId;
+//    }
 
     /**
      * 
@@ -115,11 +103,34 @@ public final class Room1000Logger {
             logger.debug(content);
         }
     }
-
-    // public void fatal(String KeyWord, String Content) {
-    // String message = " " + KeyWord + " " + Content;
-    // logger.fatal(message);
-    // }
+    
+    /**
+     * 
+     * Description: debug
+     * 
+     * @author jinyanan
+     *
+     * @param msg msg
+     */
+    public void debug(Object msg) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(msg);
+        }
+    }
+    
+    /**
+     * 
+     * Description: debug
+     * 
+     * @author jinyanan
+     *
+     * @param t t
+     */
+    public void debug(Throwable t) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(t.getMessage(), t);
+        }
+    }
 
     /**
      * 
@@ -132,13 +143,30 @@ public final class Room1000Logger {
     public void fatal(String content) {
         logger.fatal(content);
     }
-
-    // public void info(String KeyWord, String Content) {
-    // if (logger.isInfoEnabled()) {
-    // String message = KeyWord + " " + Content;
-    // logger.info(message);
-    // }
-    // }
+    
+    /**
+     * 
+     * Description: fatal
+     * 
+     * @author jinyanan
+     *
+     * @param msg msg
+     */
+    public void fatal(Object msg) {
+        logger.fatal(msg);
+    }
+    
+    /**
+     * 
+     * Description: fatal
+     * 
+     * @author jinyanan
+     *
+     * @param t t
+     */
+    public void fatal(Throwable t) {
+        logger.fatal(t.getMessage(), t);
+    }
 
     /**
      * 
@@ -153,11 +181,34 @@ public final class Room1000Logger {
             logger.info(content);
         }
     }
-
-    // public void warn(String KeyWord, String Content) {
-    // String message = KeyWord + " " + Content;
-    // logger.warn(message);
-    // }
+    
+    /**
+     * 
+     * Description: info
+     * 
+     * @author jinyanan
+     *
+     * @param msg msg
+     */
+    public void info(Object msg) {
+        if (logger.isInfoEnabled()) {
+            logger.info(msg);
+        }
+    }
+    
+    /**
+     * 
+     * Description: info
+     * 
+     * @author jinyanan
+     *
+     * @param t t
+     */
+    public void info(Throwable t) {
+        if (logger.isInfoEnabled()) {
+            logger.info(t.getMessage(), t);
+        }
+    }
 
     /**
      * 
@@ -170,11 +221,30 @@ public final class Room1000Logger {
     public void warn(String content) {
         logger.warn(content);
     }
-
-    // public void error(String KeyWord, String Content) {
-    // String message1 = KeyWord + " " + Content;
-    // logger.error(message1);
-    // }
+    
+    /**
+     * 
+     * Description: warn
+     * 
+     * @author jinyanan
+     *
+     * @param msg msg
+     */
+    public void warn(Object msg) {
+        logger.warn(msg);
+    }
+    
+    /**
+     * 
+     * Description: warn
+     * 
+     * @author jinyanan
+     *
+     * @param t t
+     */
+    public void warn(Throwable t) {
+        logger.warn(t.getMessage(), t);
+    }
 
     /**
      * 
@@ -186,6 +256,30 @@ public final class Room1000Logger {
      */
     public void error(String content) {
         logger.error(content);
+    }
+    
+    /**
+     * 
+     * Description: error
+     * 
+     * @author jinyanan
+     *
+     * @param msg msg
+     */
+    public void error(Object msg) {
+        logger.error(msg);
+    }
+    
+    /**
+     * 
+     * Description: error
+     * 
+     * @author jinyanan
+     *
+     * @param t t
+     */
+    public void error(Throwable t) {
+        logger.error(t.getMessage(), t);
     }
     
 }

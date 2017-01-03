@@ -16,7 +16,7 @@ import com.yc.core.exception.BaseAppException;
  * @version 1.0
  * @since v1.0
  */
-public class ExceptionUtil {
+public final class ExceptionUtil {
     
     /** SQLException_ORA */
     public static final int SQL_EXCEPTION_ORA = 1;
@@ -35,6 +35,12 @@ public class ExceptionUtil {
 
     /** SQLException_UNKNOWN */
     public static final int SQL_EXCEPTION_UNKNOWN = 1000;
+    
+    /**
+     * 构造函数
+     */
+    private ExceptionUtil() {
+    }
 
     /**
      * 

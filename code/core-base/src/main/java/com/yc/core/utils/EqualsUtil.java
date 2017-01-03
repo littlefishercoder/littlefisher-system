@@ -13,7 +13,7 @@ package com.yc.core.utils;
 public final class EqualsUtil {
 
     /**
-     * 构造器.
+     * 禁止实例化
      */
     private EqualsUtil() {
     }

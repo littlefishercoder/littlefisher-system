@@ -1,4 +1,4 @@
-package com.yc.core.exception.helper;
+package com.yc.core.utils;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -11,15 +11,12 @@ import com.yc.core.exception.BaseAppException;
  * @version 1.0
  * @since v1.0
  */
-public final class ExceptionHelper {
-
+public final class ExceptionUtil {
+    
     /**
-     * Description: 抛出异常
-     * 
-     * @author jinyanan
+     * 禁止实例化
      */
-    public static void publish() {
-
+    private ExceptionUtil() {
     }
 
     /**

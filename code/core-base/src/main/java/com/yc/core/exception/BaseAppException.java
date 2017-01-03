@@ -7,6 +7,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.yc.core.exception.log.utils.ExceptionUtil;
+import com.yc.core.utils.ListUtil;
+import com.yc.core.utils.Room1000Logger;
 
 /**
  * 
@@ -24,6 +26,9 @@ public class BaseAppException extends Exception {
      * serialVersionUID 
      */
     private static final long serialVersionUID = 3908474026331716374L;
+    
+    /** LOGGER */
+    private static final Room1000Logger LOGGER = Room1000Logger.getLogger(BaseAppException.class);
 
     /** id */
     private int id;
@@ -72,7 +77,7 @@ public class BaseAppException extends Exception {
         }
         String[] args = null;
 
-        if (list.size() > 0) {
+        if (ListUtil.isNotEmpty(list)) {
             args = new String[list.size()];
             int i = 0;
             for (String s : list) {
@@ -99,8 +104,8 @@ public class BaseAppException extends Exception {
             }
         }
         catch (Exception ex) {
+            LOGGER.error(ex.getLocalizedMessage());
 //            ex.printStackTrace();
-            // TODO: catch exception
         }
     }
     

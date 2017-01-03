@@ -16,7 +16,7 @@ import java.util.List;
 public final class ListUtil {
 
     /**
-     * 构造器
+     * 禁止实例化
      */
     private ListUtil() {
     }
