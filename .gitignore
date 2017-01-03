@@ -19,3 +19,6 @@ Servers/
 node_modules/
 **/logback.xml.runtime
 **/MANIFEST.MF
+
+# YC_HOME
+log/
