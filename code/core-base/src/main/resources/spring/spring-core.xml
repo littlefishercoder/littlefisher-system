@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:aop="http://www.springframework.org/schema/aop"
     xsi:schemaLocation="
 http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
@@ -13,8 +13,7 @@ http://www.springframework.org/schema/aop
 http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 ">
     <!-- 获取配置参数 -->
-    <bean id="configBean"
-        class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <bean id="configBean" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
                 <!-- <value>classpath*:properties/jdbc.properties</value> -->
@@ -23,8 +22,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         </property>
     </bean>
 
-    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-        init-method="init" destroy-method="close">
+    <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
         <!-- 基本属性 url、user、password -->
         <property name="url" value="${jdbc_url}" />
         <property name="username" value="${jdbc_username}" />
@@ -37,7 +35,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         <property name="maxActive" value="20" />
 
         <!-- 已经不再使用，配置了也没效果 -->
-        <property name="maxIdle" value="20" />
+        <!-- <property name="maxIdle" value="20" /> -->
 
         <!-- 最小连接池数量 -->
         <property name="minIdle" value="0" />
@@ -93,8 +91,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         <property name="mapperLocations" value="classpath*:com/yc/**/mapper/*.xml" />
     </bean>
 
-    <!-- 没有必要在 Spring 的 XML 配置文件中注册所有的映射器。相反,你可以使用一个 MapperScannerConfigurer 
-        , -->
+    <!-- 没有必要在 Spring 的 XML 配置文件中注册所有的映射器。相反,你可以使用一个 MapperScannerConfigurer , -->
     <!-- 它 将 会 查 找 类 路 径 下 的 映 射 器 并 自 动 将 它 们 创 建 成 MapperFactoryBean -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 
@@ -110,8 +107,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
     </bean>
 
     <!-- 事务控制 -->
-    <bean id="transactionManager"
-        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
     <tx:advice id="transactionAdvice" transaction-manager="transactionManager">
@@ -149,12 +145,10 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         <!-- rml.service..*Impl:代表你要拦截rml.service..*Impl类 -->
         <!-- .*(..)：这个代表任意方法，就是说上面那些类的任意方法，()里面的点，代表任意参数 -->
         <!-- pointcut代表切面在哪里 -->
-        <aop:pointcut id="transactionPointcut"
-            expression="execution(* com.yc.**.service..*Impl.*(..))" />
+        <aop:pointcut id="transactionPointcut" expression="execution(* com.yc.**.service..*Impl.*(..))" />
 
         <!-- advisor代表在切面上要如何操作，该项目中是按照上面配置的transactionAdvice执行操作 -->
-        <aop:advisor pointcut-ref="transactionPointcut"
-            advice-ref="transactionAdvice" />
+        <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
     </aop:config>
 
     <!-- 声明注解方式加载bean -->

@@ -11,8 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.alibaba.fastjson.JSON;
-
+import com.yc.core.exception.BaseAppException;
 import com.yc.crm.jyn.dto.UserDto;
 
 
@@ -26,7 +25,7 @@ import com.yc.crm.jyn.dto.UserDto;
  * @version 1.0
  * @since v1.0
  */
-@RunWith(SpringJUnit4ClassRunner.class) // = extends SpringJUnit4ClassRunner
+@RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:spring/spring-core.xml")
 @Rollback
 @Transactional
@@ -44,13 +43,13 @@ public class UserServiceTest {
      * Description: getAll 
      * 
      * @author jinyanan
+     * @throws BaseAppException BaseAppException
      *
      */
     @Test
-    public void getAll() {
+    public void getAll() throws BaseAppException {
 
-        List<UserDto> list = userService.getAll();
+        List<UserDto> list = userService.selectAllUser();
         LOGGER.debug(list);
-        LOGGER.info(JSON.toJSONStringWithDateFormat(list, "yyyy-MM-dd HH:mm:ss"));
     }
 }

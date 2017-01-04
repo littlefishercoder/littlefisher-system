@@ -13,11 +13,10 @@
 	<name>jyn-test-intf</name>
 
 	<dependencies>
-<!-- 		<dependency> -->
-<!-- 			<groupId>junit</groupId> -->
-<!-- 			<artifactId>junit</artifactId> -->
-<!-- 			<version>3.8.1</version> -->
-<!-- 			<scope>test</scope> -->
-<!-- 		</dependency> -->
+        <dependency>
+            <groupId>com.yc</groupId>
+            <artifactId>core-base</artifactId>
+            <version>${yc.version}</version>
+        </dependency>
 	</dependencies>
 </project>
