@@ -71,15 +71,14 @@ public final class PropResource {
      */
     private static List<File> findFileNameSuffix() {
         String ycHome = initHomePath();
-        LOGGER.debug("ycHome:" + ycHome);
         String resourceDir = ycHome + File.separator + I18nConstants.I18N_RESOURCE_PATH;
         List<File> allFileList = new ArrayList<File>();
         getAllFileName(resourceDir, allFileList);
         for (File file : allFileList) {
             String name = file.getName().substring(0, file.getName().length() - I18nConstants.PROPERTIES_LENGTH);
             int index = name.lastIndexOf(".");
-            String local = name.substring(index, name.length());
-            resourceMap.put(local, null);
+            String local = name.substring(index + 1, name.length());
+            resourceMap.put(local, new ConcurrentHashMap<String, String>());
         }
         return allFileList;
     }
@@ -141,7 +140,6 @@ public final class PropResource {
                 BufferedReader br = new BufferedReader(new InputStreamReader(inStream, "8859_1"));
                 String line;
                 while ((line = br.readLine()) != null) {
-                    LOGGER.debug("line:" + line);
 
                     if (line.indexOf(I18nConstants.YC_HOME) >= 0) {
                         int idx = line.indexOf('=');
