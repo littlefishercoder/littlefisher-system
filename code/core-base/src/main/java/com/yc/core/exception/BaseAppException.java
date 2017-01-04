@@ -1,14 +1,13 @@
 package com.yc.core.exception;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.yc.core.exception.log.utils.ExceptionUtil;
+import com.yc.core.i18n.PropertiesFileTextProvider;
+import com.yc.core.i18n.TextProvider;
 import com.yc.core.utils.ListUtil;
-import com.yc.core.utils.Room1000Logger;
 
 /**
  * 
@@ -27,40 +26,29 @@ public class BaseAppException extends Exception {
      */
     private static final long serialVersionUID = 3908474026331716374L;
     
-    /** LOGGER */
-    private static final Room1000Logger LOGGER = Room1000Logger.getLogger(BaseAppException.class);
+    /** textProvider */
+    private static TextProvider textProvider = new PropertiesFileTextProvider();
 
-    /** id */
-    private int id;
-
-    /** code */
+    /** 资源文件中的key值 */
     private String code;
 
-    /** desc */
+    /** 异常描述 */
     private String desc;
 
-    /** localeMessage */
+    /** 资源文件中的value值，如果有占位符，也已被替换 */
     private String localeMessage;
 
-    /** time */
-    private Date time;
-
-    /** type */
-    private int type;
-    
     /**
      * 为了可对异常信息进行参数替换，扩展了String arg0,String arg1,String arg2 三个参数
      * 
      * @param errorCode String
      * @param message String
-     * @param errorType int
      * @param cause Throwable
      * @param arg0 String
      * @param arg1 String
      * @param arg2 String
      */
-    public BaseAppException(String errorCode, String message, int errorType, Throwable cause, String arg0, String arg1,
-        String arg2) {
+    public BaseAppException(String errorCode, String message, Throwable cause, String arg0, String arg1, String arg2) {
         
         super(message, cause);
 
@@ -87,25 +75,11 @@ public class BaseAppException extends Exception {
 
         this.code = errorCode;
         this.desc = message;
-        BaseAppException beCause = ExceptionUtil.getFirstBaseAppException(cause);
-        if (beCause == null) {
-            this.type = errorType;
-        }
-        else {
-            this.type = beCause.getType();
-        }
 
-        try {
-            //this.localeMessage = (code == null ? "" : MessageSource.getText(code));
-            this.localeMessage = (code == null ? "" : code);
+        this.localeMessage = (code == null ? "" : textProvider.getText(code));
 
-            if (args != null && args.length > 0) {
-                this.localeMessage = this.replaceArgs(localeMessage, args);
-            }
-        }
-        catch (Exception ex) {
-            LOGGER.error(ex.getLocalizedMessage());
-//            ex.printStackTrace();
+        if (args != null && args.length > 0) {
+            this.localeMessage = this.replaceArgs(localeMessage, args);
         }
     }
     
@@ -131,15 +105,7 @@ public class BaseAppException extends Exception {
 
         return "";
     }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    
     public String getCode() {
         return code;
     }
@@ -163,21 +129,4 @@ public class BaseAppException extends Exception {
     public void setLocaleMessage(String localeMessage) {
         this.localeMessage = localeMessage;
     }
-
-    public Date getTime() {
-        return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
-    }
-
-    public int getType() {
-        return type;
-    }
-
-    public void setType(int type) {
-        this.type = type;
-    }
-    
 }

@@ -20,4 +20,7 @@ public class I18nConstants {
     
     /** YC_HOME */
     public static final String YC_HOME = "YC_HOME";
+    
+    /** 默认方言 */
+    public static final String DIALECT_DEFAULT = "zh";
 }

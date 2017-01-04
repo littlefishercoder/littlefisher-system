@@ -25,13 +25,13 @@ public interface TextProvider {
     
     /**
      * 
-     * Description: 根据key获取资源信息，如果获取不到，则使用传入默认值
+     * Description: 根据local方言和key获取资源信息
      * 
      * @author jinyanan
      *
+     * @param dialect 方言
      * @param key key
-     * @param defaultValue 默认信息
      * @return String
      */
-    String getText(String key, String defaultValue);
+    String getText(String dialect, String key);
 }

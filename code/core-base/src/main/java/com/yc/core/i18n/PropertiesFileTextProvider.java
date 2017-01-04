@@ -1,5 +1,7 @@
 package com.yc.core.i18n;
 
+import com.yc.core.i18n.utils.I18nConstants;
+
 /**
  * 
  * Description: 消息提供者实现类
@@ -14,14 +16,12 @@ public class PropertiesFileTextProvider implements TextProvider {
 
     @Override
     public String getText(String key) {
-        // TODO Auto-generated method stub
-        return null;
+        return this.getText(I18nConstants.DIALECT_DEFAULT, key);
     }
 
     @Override
-    public String getText(String key, String defaultValue) {
-        // TODO Auto-generated method stub
-        return null;
+    public String getText(String dialect, String key) {
+        return PropResource.getValue(dialect, key);
     }
 
 }

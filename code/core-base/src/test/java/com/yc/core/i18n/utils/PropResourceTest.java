@@ -23,7 +23,7 @@ public final class PropResourceTest {
     
     /**
      * 
-     * Description: 测试查询所有文件
+     * Description: 测试查询资源文件
      * 
      * @author jinyanan
      *

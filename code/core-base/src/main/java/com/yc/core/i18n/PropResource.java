@@ -228,15 +228,15 @@ public final class PropResource {
 
     /**
      * 
-     * Description: 根据语言和编码查询对应值
+     * Description: 根据方言和编码查询对应值
      * 
      * @author jinyanan
      *
-     * @param local 语言
-     * @param code 编码
+     * @param dialect 方言
+     * @param key 编码
      * @return String 值
      */
-    public static String getValue(String local, String code) {
-        return resourceMap.get(local).get(code);
+    public static String getValue(String dialect, String key) {
+        return resourceMap.get(dialect).get(key);
     }
 }
