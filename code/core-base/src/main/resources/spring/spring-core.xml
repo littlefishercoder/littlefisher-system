@@ -140,6 +140,9 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
             <tx:method name="*" propagation="SUPPORTS" />
         </tx:attributes>
     </tx:advice>
+
+    <bean id="logBean" class="com.yc.core.aop.LogAspect" />
+
     <aop:config>
         <!-- 第一个*代表任何返回值 -->
         <!-- rml.service..*Impl:代表你要拦截rml.service..*Impl类 -->
@@ -149,6 +152,14 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 
         <!-- advisor代表在切面上要如何操作，该项目中是按照上面配置的transactionAdvice执行操作 -->
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
+    </aop:config>
+
+    <aop:config>
+        <aop:aspect id="aspect" ref="logBean">
+            <aop:pointcut id="logService" expression="execution(* com.yc..service.impl.*Impl.*(..))" />
+            <aop:before pointcut-ref="logService" method="before" />
+            <aop:after-returning pointcut-ref="logService" method="afterReturning" returning="returnValue"/>
+        </aop:aspect>
     </aop:config>
 
     <!-- 声明注解方式加载bean -->

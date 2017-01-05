@@ -22,5 +22,29 @@ public interface IUserService {
      * @throws BaseAppException BaseAppException
      */
     List<UserDto> selectAllUser() throws BaseAppException;
+    
+    /**
+     * 
+     * Description: selectById
+     * 
+     * @author jinyanan
+     *
+     * @param id id
+     * @return UserDto
+     * @throws BaseAppException BaseAppException
+     */
+    UserDto selectById(Long id) throws BaseAppException;
+
+    /**
+     * 
+     * Description: selectUserByDto
+     * 
+     * @author jinyanan
+     *
+     * @param qryUser qryUser
+     * @return UserDto
+     * @throws BaseAppException BaseAppException
+     */
+    UserDto selectUserByDto(UserDto qryUser) throws BaseAppException;
 
 }

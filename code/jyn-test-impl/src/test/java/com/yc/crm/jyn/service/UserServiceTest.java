@@ -52,4 +52,35 @@ public class UserServiceTest {
         List<UserDto> list = userService.selectAllUser();
         LOGGER.debug(list);
     }
+    
+    /**
+     * 
+     * Description: getUserById
+     * 
+     * @author jinyanan
+     *
+     * @throws BaseAppException BaseAppException
+     */
+    @Test
+    public void getUserById() throws BaseAppException {
+        Long id = 1L;
+        UserDto user = userService.selectById(id);
+        LOGGER.debug(user);
+    }
+    
+    /**
+     * 
+     * Description: getUserByDto
+     * 
+     * @author jinyanan
+     *
+     * @throws BaseAppException BaseAppException
+     */
+    @Test
+    public void getUserByDto() throws BaseAppException {
+        UserDto qryUser = new UserDto();
+        qryUser.setId(1L);
+        UserDto user = userService.selectUserByDto(qryUser);
+        LOGGER.debug(user);
+    }
 }

@@ -28,8 +28,17 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<UserDto> selectAllUser() throws BaseAppException {
-
         return userDtoMapper.getAll();
+    }
+
+    @Override
+    public UserDto selectById(Long id) throws BaseAppException {
+        return userDtoMapper.selectByPrimaryKey(id);
+    }
+
+    @Override
+    public UserDto selectUserByDto(UserDto qryUser) throws BaseAppException {
+        return userDtoMapper.selectByPrimaryKey(qryUser.getId());
     }
 
 }
