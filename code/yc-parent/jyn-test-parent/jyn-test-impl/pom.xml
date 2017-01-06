@@ -3,26 +3,18 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.yc</groupId>
-		<artifactId>yc-parent</artifactId>
+		<artifactId>jyn-test-parent</artifactId>
 		<version>1.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
 	</parent>
-	<artifactId>jyn-test-web</artifactId>
+	<artifactId>jyn-test-impl</artifactId>
 	<version>${yc.version}</version>
-	<packaging>war</packaging>
-	<name>jyn-test-web</name>
+	<packaging>jar</packaging>
+
+	<name>jyn-test-impl</name>
+
 
 	<dependencies>
-		<!-- servlet相关包 -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>${servlet.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.yc</groupId>
-			<artifactId>core-base</artifactId>
-			<version>${yc.version}</version>
-		</dependency>
 		<dependency>
 			<groupId>com.yc</groupId>
 			<artifactId>jyn-test-intf</artifactId>
@@ -30,9 +22,8 @@
 		</dependency>
 		<dependency>
 			<groupId>com.yc</groupId>
-			<artifactId>jyn-test-impl</artifactId>
+			<artifactId>core-base</artifactId>
 			<version>${yc.version}</version>
 		</dependency>
 	</dependencies>
-
 </project>

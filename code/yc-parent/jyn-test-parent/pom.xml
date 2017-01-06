@@ -1,0 +1,20 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+		<groupId>com.yc</groupId>
+		<artifactId>yc-parent</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
+	</parent>
+    <artifactId>jyn-test-parent</artifactId>
+    <version>${yc.version}</version>
+    <packaging>pom</packaging>
+
+    <name>jyn-test-parent</name>
+
+    <modules>
+        <module>jyn-test-intf</module>
+        <module>jyn-test-impl</module>
+        <module>jyn-test-web</module>
+    </modules>
+</project>

@@ -3,8 +3,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.yc</groupId>
-		<artifactId>yc-parent</artifactId>
+		<artifactId>jyn-test-parent</artifactId>
 		<version>1.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>jyn-test-intf</artifactId>
 	<version>${yc.version}</version>
