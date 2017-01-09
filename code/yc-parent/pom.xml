@@ -75,7 +75,7 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <encoding>UTF-8</encoding>
+                        <encoding>${project.build.sourceEncoding}</encoding>
                     </configuration>
                 </plugin>
                 <!-- 生成sources源码包的插件 -->

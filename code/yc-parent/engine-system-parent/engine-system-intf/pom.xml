@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.yc</groupId>
-        <artifactId>engine-syste-parent</artifactId>
+        <artifactId>engine-system-parent</artifactId>
         <version>1.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>

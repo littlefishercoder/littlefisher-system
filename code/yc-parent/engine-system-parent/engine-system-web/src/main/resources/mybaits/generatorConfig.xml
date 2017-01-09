@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE generatorConfiguration 
+      PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+      "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 使用前，请修改classPathEntry指向的数据库连接jar包位置，修改jdbcConnection连接信息 -->
+    <!-- 生成的model mapper client如果不在此工程下，targetProject指向的源码路径前需带上指向工程名 -->
+    <!-- 这边引用了自定义的注释生成策略的实现类ZteCommentGenerator，可以修改其中的作者名，版本号，达到你所需求的注释要求 -->
+    <classPathEntry location="D:\Repository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar" />
+    <context id="InventoryTables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://112.124.222.165:3306/testroom"
+            userId="ycroom" password="ycqwj_1000">
+        </jdbcConnection>
+        <javaModelGenerator targetPackage="rml.model" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="rml.mapping" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="rml.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </javaClientGenerator>
+        <table tableName="yc_user_tab" domainObjectName="MUser" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>

@@ -7,10 +7,9 @@
         <version>1.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <groupId>com.yc</groupId>
     <artifactId>engine-system-web</artifactId>
     <version>${yc.version}</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>engine-system-web</name>
 
