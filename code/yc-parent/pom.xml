@@ -12,6 +12,7 @@
 
     <modules>
         <module>core-base</module>
+        <module>core-activiti</module>
         <module>jyn-test-parent</module>
         <module>engine-system-parent</module>
     </modules>
