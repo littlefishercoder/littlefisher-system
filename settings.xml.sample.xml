@@ -51,7 +51,7 @@ under the License.
    |
    | Default: ${user.home}/.m2/repository
    -->
-  <localRepository>/Users/littlefisher/Documents/Repository</localRepository>
+  <localRepository>D:/Repository</localRepository>
   
 
   <!-- interactiveMode
