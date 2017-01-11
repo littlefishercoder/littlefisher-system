@@ -18,5 +18,30 @@
             <artifactId>core-base</artifactId>
             <version>${yc.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-engine</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-spring</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <!-- <dependency>  
+            <groupId>org.activiti</groupId>  
+            <artifactId>activiti-bpmn-model</artifactId>  
+            <version>${activiti.version}</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.activiti</groupId>  
+            <artifactId>activiti-bpmn-converter</artifactId>  
+            <version>${activiti.version}</version>  
+        </dependency>  
+        <dependency>  
+            <groupId>org.activiti</groupId>  
+            <artifactId>activiti-process-validation</artifactId>  
+            <version>${activiti.version}</version>  
+        </dependency>  --> 
     </dependencies>
 </project>
