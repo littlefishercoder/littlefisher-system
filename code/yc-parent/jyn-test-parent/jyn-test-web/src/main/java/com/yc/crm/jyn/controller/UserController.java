@@ -36,7 +36,6 @@ public class UserController {
      * 
      * @author jinyanan
      *
-     * @param request request
      * @return String
      * @throws BaseAppException 
      */

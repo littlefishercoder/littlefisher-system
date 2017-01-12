@@ -1,7 +1,7 @@
 package com.yc.activiti.table;
 
 import org.activiti.engine.ProcessEngine;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.activiti.engine.ProcessEngines;
 
 import com.yc.core.utils.Room1000Logger;
 
@@ -20,8 +20,8 @@ public class Table {
     /** logger */
     private static Room1000Logger logger = Room1000Logger.getLogger(Table.class);
     
-    @Autowired
-    private ProcessEngine processEngine;
+    /** processEngine */
+    private ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
     
     /**
      * 

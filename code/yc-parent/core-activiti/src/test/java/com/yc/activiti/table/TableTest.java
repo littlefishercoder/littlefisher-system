@@ -38,6 +38,6 @@ public class TableTest {
     @Test
     public void testCreateTable() {
         logger.debug("createTable");
-        System.out.println("createTable");
+//        System.out.println("createTable");
     }
 }
