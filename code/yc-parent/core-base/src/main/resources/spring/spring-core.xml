@@ -80,6 +80,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         <!-- druid filters的别名保存在下面的地址中 -->
         <!-- druid-xxx.jar!/META-INF/druid-filter.properties -->
         <property name="filters" value="mergeStat" />
+        <!-- 配置log相关的信息 -->
         <property name="proxyFilters">
         <list>
             <ref bean="log-filter"/>
@@ -95,18 +96,11 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
     <!-- 在基本的 MyBatis 中,session 工厂可以使用 SqlSessionFactoryBuilder 来创建。 -->
     <!-- 而在 MyBatis-spring 中,则使用 SqlSessionFactoryBean 来替代。 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-<!--         <property name="configuration" ref="logConfiguration" /> -->
-        
         <property name="dataSource" ref="dataSource" />
         
         <!-- myBatis所需要配置的*Mapper.xml所在目录 -->
         <property name="mapperLocations" value="classpath*:com/yc/**/mapper/*.xml" />
     </bean>
-    
-    <!-- mybatis所使用的日志分析工具 -->
-<!--     <bean id="logConfiguration" class="org.apache.ibatis.session.Configuration"> -->
-<!--         <property name="logImpl" value="org.apache.ibatis.logging.log4j.Log4jImpl" /> -->
-<!--     </bean> -->
 
     <!-- 没有必要在 Spring 的 XML 配置文件中注册所有的映射器。相反,你可以使用一个 MapperScannerConfigurer , -->
     <!-- 它 将 会 查 找 类 路 径 下 的 映 射 器 并 自 动 将 它 们 创 建 成 MapperFactoryBean -->
@@ -169,6 +163,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
     </aop:config>
     
+    <!-- aop切面用来记录*Service中各个方法的出入参内容，如果出入参是Dto，需要有重写toString方法 -->
     <bean id="logBean" class="com.yc.core.aop.LogAspect" />
 
     <aop:config>
