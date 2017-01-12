@@ -28,7 +28,7 @@ public class Auto1Service implements JavaDelegate {
         
 //        System.out.println("------------AutoService-----------");
 //        System.out.println("variables: " + variables);
-        logger.debug("------------AutoService-----------");
+        logger.debug("------------Auto1Service-----------");
         logger.debug("variables: " + variables);
         
     }

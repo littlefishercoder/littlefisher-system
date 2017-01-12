@@ -28,7 +28,7 @@ public class Auto2Service implements JavaDelegate {
         
 //        System.out.println("------------AutoService-----------");
 //        System.out.println("variables: " + variables);
-        logger.debug("------------AutoService-----------");
+        logger.debug("------------Auto2Service-----------");
         logger.debug("variables: " + variables);
         
     }
