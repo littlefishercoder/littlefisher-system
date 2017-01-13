@@ -1,4 +1,4 @@
-package com.yc.activiti;
+package com.yc.core.activiti;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,8 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yc.activiti.impl.ProcessDeployImpl;
-import com.yc.activiti.impl.ProcessStartImpl;
+import com.yc.core.activiti.impl.ProcessDeployImpl;
+import com.yc.core.activiti.impl.ProcessStartImpl;
 
 /**
  * 

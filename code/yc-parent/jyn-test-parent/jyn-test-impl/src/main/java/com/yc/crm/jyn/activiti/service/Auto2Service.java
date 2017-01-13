@@ -5,7 +5,7 @@ import java.util.Map;
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.DelegateTask;
 
-import com.yc.activiti.IProcessAction;
+import com.yc.core.activiti.IProcessAction;
 import com.yc.core.utils.Room1000Logger;
 
 /**

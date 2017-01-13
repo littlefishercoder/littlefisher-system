@@ -1,10 +1,10 @@
-package com.yc.activiti.impl;
+package com.yc.core.activiti.impl;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.repository.Deployment;
 
-import com.yc.activiti.IProcessDeploy;
+import com.yc.core.activiti.IProcessDeploy;
 import com.yc.core.utils.Room1000Logger;
 import com.yc.core.utils.StringUtil;
 

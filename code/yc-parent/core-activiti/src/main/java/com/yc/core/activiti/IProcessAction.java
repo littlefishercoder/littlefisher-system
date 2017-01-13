@@ -1,4 +1,4 @@
-package com.yc.activiti;
+package com.yc.core.activiti;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.DelegateTask;

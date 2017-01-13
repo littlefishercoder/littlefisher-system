@@ -1,4 +1,4 @@
-package com.yc.activiti;
+package com.yc.core.activiti;
 
 import java.util.Map;
 

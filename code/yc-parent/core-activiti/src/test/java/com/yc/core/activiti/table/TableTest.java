@@ -1,4 +1,4 @@
-package com.yc.activiti.table;
+package com.yc.core.activiti.table;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

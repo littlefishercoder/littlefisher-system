@@ -1,4 +1,4 @@
-package com.yc.activiti.impl;
+package com.yc.core.activiti.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -8,8 +8,8 @@ import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
 
-import com.yc.activiti.IProcessDispatcher;
-import com.yc.activiti.ITaskServiceMatcher;
+import com.yc.core.activiti.IProcessDispatcher;
+import com.yc.core.activiti.ITaskServiceMatcher;
 import com.yc.core.utils.Room1000Logger;
 
 /**

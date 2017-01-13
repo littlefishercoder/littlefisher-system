@@ -6,5 +6,7 @@
 	<!-- checks="[a-zA-Z0-9]*" 忽略所有校验规则 -->
 	<suppress checks="[a-zA-Z0-9]*" files=".png"/>
 
+	<suppress checks="[a-zA-Z0-9]*" files=".DS_Store"/>
+
 	<!-- <suppress checks="[a-zA-Z0-9]*" files="[\\/]generated-sources[\\/]"/> -->
 </suppressions>

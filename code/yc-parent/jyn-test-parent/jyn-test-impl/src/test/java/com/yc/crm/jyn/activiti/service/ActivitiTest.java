@@ -7,10 +7,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yc.activiti.IProcessDeploy;
-import com.yc.activiti.IProcessStart;
-import com.yc.activiti.impl.ProcessDeployImpl;
-import com.yc.activiti.impl.ProcessStartImpl;
+import com.yc.core.activiti.IProcessDeploy;
+import com.yc.core.activiti.IProcessStart;
+import com.yc.core.activiti.impl.ProcessDeployImpl;
+import com.yc.core.activiti.impl.ProcessStartImpl;
 
 /**
  * 
