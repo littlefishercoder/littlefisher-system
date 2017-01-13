@@ -1,7 +1,4 @@
-package com.yc.activiti;
-
-import java.util.HashMap;
-import java.util.Map;
+package com.yc.crm.jyn.activiti.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,6 +7,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yc.activiti.IProcessDeploy;
+import com.yc.activiti.IProcessStart;
 import com.yc.activiti.impl.ProcessDeployImpl;
 import com.yc.activiti.impl.ProcessStartImpl;
 
@@ -17,7 +16,7 @@ import com.yc.activiti.impl.ProcessStartImpl;
  * 
  * Description: 
  *  
- * Created on 2017年1月12日 
+ * Created on 2017年1月13日 
  *
  * @author jinyanan
  * @version 1.0
@@ -28,10 +27,10 @@ import com.yc.activiti.impl.ProcessStartImpl;
 @Rollback
 @Transactional
 public class ActivitiTest {
-    
+
     /**
      * 
-     * Description: 测试流程发布
+     * Description: 测试流程编译
      * 
      * @author jinyanan
      *
@@ -40,7 +39,8 @@ public class ActivitiTest {
     public void testDeploy() {
         String processName = "HelloWorldProcess";
         String classPath = "diagrams/helloworld";
-        new ProcessDeployImpl().deployFlow(processName, classPath);
+        IProcessDeploy deploy = new ProcessDeployImpl();
+        deploy.deployFlow(processName, classPath);
     }
     
     /**
@@ -53,10 +53,7 @@ public class ActivitiTest {
     @Test
     public void testStart() {
         String processInstanceKey = "HelloWorldProcess";
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("variable1", "1111111111");
-        variables.put("variable2", "2222222222");
-        variables.put("variable3", "3333333333");
-        new ProcessStartImpl().flowStart(processInstanceKey, variables);
+        IProcessStart start = new ProcessStartImpl();
+        start.flowStart(processInstanceKey);
     }
 }
