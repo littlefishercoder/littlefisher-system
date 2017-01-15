@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!DOCTYPE generatorConfiguration 
+      PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+      "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!-- 使用前，请修改classPathEntry指向的数据库连接jar包位置，修改jdbcConnection连接信息 -->
+    <!-- 生成的model mapper client如果不在此工程下，targetProject指向的源码路径前需带上指向工程名 -->
+    <!-- 这边引用了自定义的注释生成策略的实现类YcCommentGenerator，可以修改其中的作者名，版本号，达到你所需求的注释要求 -->
+    <classPathEntry
+        location="/Users/littlefisher/Documents/Repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar" />
+    <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <commentGenerator type="com.yc.core.mybaits.YcCommentGenerator">
+            <!-- <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator"> -->
+            <property name="suppressAllComments" value="false" /><!-- 是否取消注释 -->
+            <!-- <property name="suppressDate" value="true" /> 是否生成注释带时间戳 -->
+            <property name="author" value="jinyanan" /> <!-- 生成作者的名字 -->
+        </commentGenerator>
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/engine"
+            userId="root" password="root">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <javaModelGenerator targetPackage="com.yc.core.attr.dto" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <sqlMapGenerator targetPackage="com.yc.core.attr.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yc.core.attr.dao" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false" />
+            <!-- <property name="rootInterface" value="com.ztesoft.zsmart.bss.crm.common.base.engine.mybatis.mapper.SuperMapper" 
+                /> -->
+        </javaClientGenerator>
+        <table tableName="EG_ATTR" domainObjectName="AttrDto" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+    </context>
+</generatorConfiguration>

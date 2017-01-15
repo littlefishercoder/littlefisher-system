@@ -1,22 +1,97 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.yc</groupId>
-		<artifactId>yc-parent</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
-	</parent>
-	<artifactId>core-attr</artifactId>
-	<version>${yc.version}</version>
-	<packaging>jar</packaging>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.yc</groupId>
+        <artifactId>yc-parent</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+    <artifactId>core-attr</artifactId>
+    <version>${yc.version}</version>
+    <packaging>jar</packaging>
 
-	<name>core-attr</name>
+    <name>core-attr</name>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.yc</groupId>
-			<artifactId>core-base</artifactId>
-			<version>${yc.version}</version>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>com.yc</groupId>
+            <artifactId>core-base</artifactId>
+            <version>${yc.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+<!--         <plugins> -->
+<!--             <plugin> -->
+<!--                 <groupId>org.mybatis.generator</groupId> -->
+<!--                 <artifactId>mybatis-generator-maven-plugin</artifactId> -->
+<!--                 <version>1.3.5</version> -->
+<!--                 <dependencies> -->
+<!--                     <dependency> -->
+<!--                         <groupId>com.yc</groupId> -->
+<!--                         <artifactId>core-base</artifactId> -->
+<!--                         <version>${yc.version}</version> -->
+<!--                     </dependency> -->
+<!--                 </dependencies> -->
+                
+<!--                 <configuration> -->
+<!--                     <verbose>true</verbose> -->
+<!--                     <overwrite>true</overwrite> -->
+<!--                 </configuration> -->
+<!--             </plugin> -->
+<!--             <plugin> -->
+<!--                 <groupId>org.apache.maven.plugins</groupId> -->
+<!--                 <artifactId>maven-jar-plugin</artifactId> -->
+<!--                 <version>2.4</version> -->
+<!--                 <configuration> -->
+<!--                     <archive> -->
+<!--                         <addMavenDescriptor>true</addMavenDescriptor> -->
+<!--                         <manifest> -->
+<!--                             <addClasspath>true</addClasspath> -->
+<!--                             <classpathPrefix>lib/</classpathPrefix> -->
+<!--                             <mainClass>ccom.xxg.Main</mainClass> -->
+<!--                         </manifest> -->
+<!--                     </archive> -->
+<!--                     <excludes> -->
+<!--                         <exclude>${project.basedir}/xml/*</exclude> -->
+<!--                     </excludes> -->
+<!--                 </configuration> -->
+<!--             </plugin> -->
+<!--             <plugin> -->
+<!--                 <groupId>org.apache.maven.plugins</groupId> -->
+<!--                 <artifactId>maven-dependency-plugin</artifactId> -->
+<!--                 <version>2.10</version> -->
+<!--                 <executions> -->
+<!--                     <execution> -->
+<!--                         <id>copy-dependencies</id> -->
+<!--                         <phase>package</phase> -->
+<!--                         <goals> -->
+<!--                             <goal>copy-dependencies</goal> -->
+<!--                         </goals> -->
+<!--                         <configuration> -->
+<!--                             <outputDirectory>${project.build.directory}/lib</outputDirectory> -->
+<!--                         </configuration> -->
+<!--                     </execution> -->
+<!--                 </executions> -->
+<!--             </plugin> -->
+<!--             <plugin> -->
+<!--                 <artifactId>maven-assembly-plugin</artifactId> -->
+<!--                 <version>2.5.2</version> -->
+<!--                 <configuration> -->
+<!--                     <descriptors> -->
+<!--                         <descriptor>src/main/resources/assembly/src.xml</descriptor> -->
+<!--                     </descriptors> -->
+<!--                 </configuration> -->
+<!--                 <executions> -->
+<!--                     <execution> -->
+<!--                         <id>make-assembly</id> this is used for inheritance merges -->
+<!--                         <phase>package</phase> bind to the packaging phase -->
+<!--                         <goals> -->
+<!--                             <goal>single</goal> -->
+<!--                         </goals> -->
+<!--                     </execution> -->
+<!--                 </executions> -->
+<!--             </plugin> -->
+<!--         </plugins> -->
+    </build>
 </project>
