@@ -1,6 +1,6 @@
 package com.yc.core.attr.dao;
 
-import com.yc.core.attr.dto.AttrDto;
+import com.yc.core.attr.dto.AttrTypeDto;
 import com.yc.core.mybaits.SuperMapper;
 
 /**
@@ -13,16 +13,16 @@ import com.yc.core.mybaits.SuperMapper;
  * @version 1.0
  * @since v1.0
  */
-public interface AttrDtoMapper extends SuperMapper {
+public interface AttrTypeDtoMapper extends SuperMapper {
     /**
      * Description: deleteByPrimaryKey<br>
      *
      * @author jinyanan <br>
-     * @param id id
+     * @param type type
      * @return int int<br>
      * @mbg.generated
      */
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String type);
 
     /**
      * Description: insert<br>
@@ -32,7 +32,7 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int insert(AttrDto record);
+    int insert(AttrTypeDto record);
 
     /**
      * Description: insertSelective<br>
@@ -42,17 +42,17 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int insertSelective(AttrDto record);
+    int insertSelective(AttrTypeDto record);
 
     /**
      * Description: selectByPrimaryKey<br>
      *
      * @author jinyanan <br>
-     * @param id id
-     * @return AttrDto AttrDto<br>
+     * @param type type
+     * @return AttrTypeDto AttrTypeDto<br>
      * @mbg.generated
      */
-    AttrDto selectByPrimaryKey(Long id);
+    AttrTypeDto selectByPrimaryKey(String type);
 
     /**
      * Description: updateByPrimaryKeySelective<br>
@@ -62,7 +62,7 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int updateByPrimaryKeySelective(AttrDto record);
+    int updateByPrimaryKeySelective(AttrTypeDto record);
 
     /**
      * Description: updateByPrimaryKey<br>
@@ -72,5 +72,5 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int updateByPrimaryKey(AttrDto record);
+    int updateByPrimaryKey(AttrTypeDto record);
 }

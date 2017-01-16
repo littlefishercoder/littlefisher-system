@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.core.attr.dao.AttrCatgChildrenStateDtoMapper">
+  <resultMap id="BaseResultMap" type="com.yc.core.attr.dto.AttrCatgChildrenStateDto">
+    <id column="STATE" jdbcType="CHAR" property="state" />
+    <result column="STATE_NAME" jdbcType="VARCHAR" property="stateName" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    STATE, STATE_NAME, COMMENTS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EG_ATTR_CATG_CHILDREN_STATE
+    where STATE = #{state,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from EG_ATTR_CATG_CHILDREN_STATE
+    where STATE = #{state,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yc.core.attr.dto.AttrCatgChildrenStateDto">
+    insert into EG_ATTR_CATG_CHILDREN_STATE (STATE, STATE_NAME, COMMENTS
+      )
+    values (#{state,jdbcType=CHAR}, #{stateName,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.core.attr.dto.AttrCatgChildrenStateDto">
+    insert into EG_ATTR_CATG_CHILDREN_STATE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="stateName != null">
+        STATE_NAME,
+      </if>
+      <if test="comments != null">
+        COMMENTS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="state != null">
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateName != null">
+        #{stateName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.core.attr.dto.AttrCatgChildrenStateDto">
+    update EG_ATTR_CATG_CHILDREN_STATE
+    <set>
+      <if test="stateName != null">
+        STATE_NAME = #{stateName,jdbcType=VARCHAR},
+      </if>
+      <if test="comments != null">
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where STATE = #{state,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.core.attr.dto.AttrCatgChildrenStateDto">
+    update EG_ATTR_CATG_CHILDREN_STATE
+    set STATE_NAME = #{stateName,jdbcType=VARCHAR},
+      COMMENTS = #{comments,jdbcType=VARCHAR}
+    where STATE = #{state,jdbcType=CHAR}
+  </update>
+</mapper>

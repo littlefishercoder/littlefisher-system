@@ -12,36 +12,18 @@ import java.io.Serializable;
  * @version 1.0
  * @since v1.0
  */
-public class AttrDto implements Serializable {
-    /**
-     * id 属性主键
-     * @mbg.generated
-     */
-    private Long id;
-
-    /**
-     * name 属性名
-     * @mbg.generated
-     */
-    private String name;
-
-    /**
-     * code 属性编码
-     * @mbg.generated
-     */
-    private String code;
-
-    /**
-     * unitId 单位
-     * @mbg.generated
-     */
-    private Long unitId;
-
+public class AttrTypeDto implements Serializable {
     /**
      * type 属性类型
      * @mbg.generated
      */
     private String type;
+
+    /**
+     * typeName 属性类型名称
+     * @mbg.generated
+     */
+    private String typeName;
 
     /**
      * comments 备注
@@ -54,44 +36,20 @@ public class AttrDto implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
-    }
-
-    public Long getUnitId() {
-        return unitId;
-    }
-
-    public void setUnitId(Long unitId) {
-        this.unitId = unitId;
-    }
-
     public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName == null ? null : typeName.trim();
     }
 
     public String getComments() {
@@ -116,11 +74,8 @@ public class AttrDto implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", code=").append(code);
-        sb.append(", unitId=").append(unitId);
         sb.append(", type=").append(type);
+        sb.append(", typeName=").append(typeName);
         sb.append(", comments=").append(comments);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

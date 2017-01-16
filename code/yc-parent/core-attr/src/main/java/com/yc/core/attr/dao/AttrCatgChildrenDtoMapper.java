@@ -1,6 +1,6 @@
 package com.yc.core.attr.dao;
 
-import com.yc.core.attr.dto.AttrDto;
+import com.yc.core.attr.dto.AttrCatgChildrenDto;
 import com.yc.core.mybaits.SuperMapper;
 
 /**
@@ -13,7 +13,7 @@ import com.yc.core.mybaits.SuperMapper;
  * @version 1.0
  * @since v1.0
  */
-public interface AttrDtoMapper extends SuperMapper {
+public interface AttrCatgChildrenDtoMapper extends SuperMapper {
     /**
      * Description: deleteByPrimaryKey<br>
      *
@@ -32,7 +32,7 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int insert(AttrDto record);
+    int insert(AttrCatgChildrenDto record);
 
     /**
      * Description: insertSelective<br>
@@ -42,17 +42,17 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int insertSelective(AttrDto record);
+    int insertSelective(AttrCatgChildrenDto record);
 
     /**
      * Description: selectByPrimaryKey<br>
      *
      * @author jinyanan <br>
      * @param id id
-     * @return AttrDto AttrDto<br>
+     * @return AttrCatgChildrenDto AttrCatgChildrenDto<br>
      * @mbg.generated
      */
-    AttrDto selectByPrimaryKey(Long id);
+    AttrCatgChildrenDto selectByPrimaryKey(Long id);
 
     /**
      * Description: updateByPrimaryKeySelective<br>
@@ -62,7 +62,7 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int updateByPrimaryKeySelective(AttrDto record);
+    int updateByPrimaryKeySelective(AttrCatgChildrenDto record);
 
     /**
      * Description: updateByPrimaryKey<br>
@@ -72,5 +72,5 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int updateByPrimaryKey(AttrDto record);
+    int updateByPrimaryKey(AttrCatgChildrenDto record);
 }

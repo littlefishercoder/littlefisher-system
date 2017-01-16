@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.core.attr.dao.AttrValueDtoMapper">
+  <resultMap id="BaseResultMap" type="com.yc.core.attr.dto.AttrValueDto">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ATTR_ID" jdbcType="INTEGER" property="attrId" />
+    <result column="VALUE" jdbcType="VARCHAR" property="value" />
+    <result column="VALUE_MASK" jdbcType="VARCHAR" property="valueMask" />
+    <result column="PRIORITY" jdbcType="INTEGER" property="priority" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ATTR_ID, VALUE, VALUE_MASK, PRIORITY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EG_ATTR_VALUE
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from EG_ATTR_VALUE
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.core.attr.dto.AttrValueDto">
+    insert into EG_ATTR_VALUE (ID, ATTR_ID, VALUE, 
+      VALUE_MASK, PRIORITY)
+    values (#{id,jdbcType=INTEGER}, #{attrId,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, 
+      #{valueMask,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.core.attr.dto.AttrValueDto">
+    insert into EG_ATTR_VALUE
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="attrId != null">
+        ATTR_ID,
+      </if>
+      <if test="value != null">
+        VALUE,
+      </if>
+      <if test="valueMask != null">
+        VALUE_MASK,
+      </if>
+      <if test="priority != null">
+        PRIORITY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="attrId != null">
+        #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="valueMask != null">
+        #{valueMask,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        #{priority,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.core.attr.dto.AttrValueDto">
+    update EG_ATTR_VALUE
+    <set>
+      <if test="attrId != null">
+        ATTR_ID = #{attrId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null">
+        VALUE = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="valueMask != null">
+        VALUE_MASK = #{valueMask,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null">
+        PRIORITY = #{priority,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.core.attr.dto.AttrValueDto">
+    update EG_ATTR_VALUE
+    set ATTR_ID = #{attrId,jdbcType=INTEGER},
+      VALUE = #{value,jdbcType=VARCHAR},
+      VALUE_MASK = #{valueMask,jdbcType=VARCHAR},
+      PRIORITY = #{priority,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

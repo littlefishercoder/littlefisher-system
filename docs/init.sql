@@ -2,6 +2,12 @@ drop table if exists EG_ATTR;
 
 drop table if exists EG_ATTR_CATG;
 
+drop table if exists EG_ATTR_CATG_CHILDREN;
+
+drop table if exists EG_ATTR_CATG_CHILDREN_STATE;
+
+drop table if exists EG_ATTR_CATG_TYPE;
+
 drop table if exists EG_ATTR_TYPE;
 
 drop table if exists EG_ATTR_VALUE;
@@ -84,10 +90,9 @@ create table EG_ATTR
    ID                   int(9) not null comment '属性主键',
    NAME                 varchar(30) not null comment '属性名',
    CODE                 varchar(30) not null comment '属性编码',
-   CATG_ID              int(9) not null comment '属性目录主键',
    UNIT_ID              int(9) not null comment '单位',
    TYPE                 char(1) not null comment '属性类型',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (ID)
 );
 
@@ -100,10 +105,55 @@ create table EG_ATTR_CATG
    CATG_NAME            varchar(30) not null comment '目录名',
    CATG_CODE            varchar(30) not null comment '目录编码',
    PARENT_CATG_ID       int(9) comment '父目录主键',
+   CATG_TYPE            char(1) not null comment '目录类型',
    primary key (ID)
 );
 
 alter table EG_ATTR_CATG comment '例如：基本信息，外观，价位等';
+
+/*==============================================================*/
+/* Table: EG_ATTR_CATG_CHILDREN                                 */
+/*==============================================================*/
+create table EG_ATTR_CATG_CHILDREN
+(
+   ID                   int(9) not null comment '主键',
+   CATG_ID              int(9) not null comment '当前目录主键',
+   CHILD_CATG_ID        int(9) comment '子目录主键',
+   CHILD_ATTR_ID        int(9) comment '子属性主键',
+   STATE                char(1) not null comment '状态',
+   STATE_DATE           datetime not null comment '状态变更时间',
+   primary key (ID)
+);
+
+alter table EG_ATTR_CATG_CHILDREN comment '该表用来记录当前目录下都有哪些子目录或者子属性，一般子目录主键和子属性主键不可同时存在。如果一个目录下既有子目录又有子属';
+
+/*==============================================================*/
+/* Table: EG_ATTR_CATG_CHILDREN_STATE                           */
+/*==============================================================*/
+create table EG_ATTR_CATG_CHILDREN_STATE
+(
+   STATE                char(1) not null comment '状态',
+   STATE_NAME           varchar(30) not null comment '状态名',
+   COMMENTS             varchar(255) comment '备注',
+   primary key (STATE)
+);
+
+alter table EG_ATTR_CATG_CHILDREN_STATE comment '暂时只有A：有效，B：失效
+';
+
+/*==============================================================*/
+/* Table: EG_ATTR_CATG_TYPE                                     */
+/*==============================================================*/
+create table EG_ATTR_CATG_TYPE
+(
+   TYPE                 char(1) not null comment '类型',
+   TYPE_NAME            varchar(30) not null comment '类型名',
+   COMMENTS             varchar(255) comment '备注',
+   primary key (TYPE)
+);
+
+alter table EG_ATTR_CATG_TYPE comment '目录类型暂时分为A：Root Catg 根目录和B：General Catg 普通目录
+所有的Attr和At';
 
 /*==============================================================*/
 /* Table: EG_ATTR_TYPE                                          */
@@ -119,7 +169,7 @@ create table EG_ATTR_TYPE
 (
    TYPE                 char(1) not null comment '属性类型',
    TYPE_NAME            varchar(20) not null comment '属性类型名称',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (TYPE)
 );
 
@@ -158,7 +208,7 @@ create table EG_CERT_TYPE
 (
    TYPE                 char not null comment '主键',
    TYPE_NAME            varchar(30) not null comment '证件名称',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (TYPE)
 );
 
@@ -177,7 +227,7 @@ create table EG_CONFIG_ITEM
    CODE                 varchar(60) not null comment '编码',
    VALUE                varchar(60) comment '值',
    DEFAULT_VALUE        varchar(60) not null comment '默认值',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (ID),
    key AK_UQ_CODE (CODE)
 );
@@ -239,7 +289,7 @@ create table EG_DECORATION_ORDER_STATE
 (
    STATE                char(1) not null comment '状态',
    STATE_NAME           varchar(30) not null comment '状态名',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (STATE)
 );
 
@@ -266,7 +316,7 @@ create table EG_DECORATION_STYLE
 (
    STYLE                char(1) not null comment '风格',
    STYLE_NAME           varchar(20) comment '风格名称',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (STYLE)
 );
 
@@ -281,7 +331,7 @@ create table EG_DECORATION_TYPE
 (
    TYPE                 char(1) not null comment '分类',
    TYPE_NAME            varchar(30) not null comment '分类名',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (TYPE)
 );
 
@@ -329,7 +379,7 @@ create table EG_MODEL
    CODE                 varchar(30) not null comment '类型编码',
    TYPE                 char(1) not null comment '类型种类',
    UNIT_ID              int(9) not null comment '单位',
-   COMMENTS             text comment '评论',
+   COMMENTS             varchar(255) comment '评论',
    primary key (ID)
 );
 
@@ -515,7 +565,7 @@ create table EG_SUPPLIER_PRICE_STATE
 (
    STATE                char(1) not null comment '状态',
    STATE_NAME           varchar(30) not null comment '状态名',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (STATE)
 );
 
@@ -532,7 +582,7 @@ create table EG_SUPPLIER_STATE
 (
    STATE                char(1) not null comment '状态',
    STATE_NAME           varchar(30) not null comment '状态名',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (STATE)
 );
 
@@ -613,7 +663,7 @@ create table EG_TEMPLATE_STATE
 (
    STATE                char(1) not null comment '状态',
    STATE_NAME           varchar(30) not null comment '状态名',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (STATE)
 );
 
@@ -629,20 +679,32 @@ create table EG_UNIT
 (
    UNIT                 int(9) not null comment '单位',
    UNIT_NAME            varchar(30) not null comment '单位名称',
-   COMMENTS             text comment '备注',
+   COMMENTS             varchar(255) comment '备注',
    primary key (UNIT)
 );
 
 alter table EG_UNIT comment '例如：1代表“个”，2代表“元”等';
-
-alter table EG_ATTR add constraint FK_FK_EG_ATTR_CATG_ID foreign key (CATG_ID)
-      references EG_ATTR_CATG (ID) on delete restrict on update restrict;
 
 alter table EG_ATTR add constraint FK_FK_EG_ATTR_TYPE foreign key (TYPE)
       references EG_ATTR_TYPE (TYPE) on delete restrict on update restrict;
 
 alter table EG_ATTR add constraint FK_FK_EG_ATTR_UNIT_ID foreign key (UNIT_ID)
       references EG_UNIT (UNIT) on delete restrict on update restrict;
+
+alter table EG_ATTR_CATG add constraint FK_FK_EG_ATTR_CATG_TYPE foreign key (CATG_TYPE)
+      references EG_ATTR_CATG_TYPE (TYPE) on delete restrict on update restrict;
+
+alter table EG_ATTR_CATG_CHILDREN add constraint FK_FK_EG_ATTR_CATG_CHILDREN_ATTR_ID foreign key (CHILD_ATTR_ID)
+      references EG_ATTR (ID) on delete restrict on update restrict;
+
+alter table EG_ATTR_CATG_CHILDREN add constraint FK_FK_EG_ATTR_CATG_CHILDREN_CATG_ID foreign key (CATG_ID)
+      references EG_ATTR_CATG (ID) on delete restrict on update restrict;
+
+alter table EG_ATTR_CATG_CHILDREN add constraint FK_FK_EG_ATTR_CATG_CHILDREN_CHILD_CATG_ID foreign key (CHILD_CATG_ID)
+      references EG_ATTR_CATG (ID) on delete restrict on update restrict;
+
+alter table EG_ATTR_CATG_CHILDREN add constraint FK_FK_EG_ATTR_CATG_CHILDREN_STATE foreign key (STATE)
+      references EG_ATTR_CATG_CHILDREN_STATE (STATE) on delete restrict on update restrict;
 
 alter table EG_ATTR_VALUE add constraint FK_FK_EG_ATTR_VALUE_ATTR_ID foreign key (ATTR_ID)
       references EG_ATTR (ID) on delete restrict on update restrict;

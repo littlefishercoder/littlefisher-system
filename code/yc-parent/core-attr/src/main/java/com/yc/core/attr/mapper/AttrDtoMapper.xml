@@ -5,38 +5,30 @@
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="CODE" jdbcType="VARCHAR" property="code" />
-    <result column="CATG_ID" jdbcType="INTEGER" property="catgId" />
     <result column="UNIT_ID" jdbcType="INTEGER" property="unitId" />
     <result column="TYPE" jdbcType="CHAR" property="type" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yc.core.attr.dto.AttrDto">
-    <result column="COMMENTS" jdbcType="LONGVARCHAR" property="comments" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
   </resultMap>
   <sql id="Base_Column_List">
-    ID, NAME, CODE, CATG_ID, UNIT_ID, TYPE
+    ID, NAME, CODE, UNIT_ID, TYPE, COMMENTS
   </sql>
-  <sql id="Blob_Column_List">
-    COMMENTS
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from EG_ATTR
     where ID = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from EG_ATTR
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yc.core.attr.dto.AttrDto">
     insert into EG_ATTR (ID, NAME, CODE, 
-      CATG_ID, UNIT_ID, TYPE, 
-      COMMENTS)
+      UNIT_ID, TYPE, COMMENTS
+      )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{catgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
-      #{comments,jdbcType=LONGVARCHAR})
+      #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{comments,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.yc.core.attr.dto.AttrDto">
     insert into EG_ATTR
@@ -49,9 +41,6 @@
       </if>
       <if test="code != null">
         CODE,
-      </if>
-      <if test="catgId != null">
-        CATG_ID,
       </if>
       <if test="unitId != null">
         UNIT_ID,
@@ -73,9 +62,6 @@
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>
-      <if test="catgId != null">
-        #{catgId,jdbcType=INTEGER},
-      </if>
       <if test="unitId != null">
         #{unitId,jdbcType=INTEGER},
       </if>
@@ -83,7 +69,7 @@
         #{type,jdbcType=CHAR},
       </if>
       <if test="comments != null">
-        #{comments,jdbcType=LONGVARCHAR},
+        #{comments,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -96,9 +82,6 @@
       <if test="code != null">
         CODE = #{code,jdbcType=VARCHAR},
       </if>
-      <if test="catgId != null">
-        CATG_ID = #{catgId,jdbcType=INTEGER},
-      </if>
       <if test="unitId != null">
         UNIT_ID = #{unitId,jdbcType=INTEGER},
       </if>
@@ -106,673 +89,18 @@
         TYPE = #{type,jdbcType=CHAR},
       </if>
       <if test="comments != null">
-        COMMENTS = #{comments,jdbcType=LONGVARCHAR},
+        COMMENTS = #{comments,jdbcType=VARCHAR},
       </if>
     </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR},
-      COMMENTS = #{comments,jdbcType=LONGVARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yc.core.attr.dto.AttrDto">
     update EG_ATTR
     set NAME = #{name,jdbcType=VARCHAR},
       CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.yc.core.attr.dto.AttrDto">
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="CODE" jdbcType="VARCHAR" property="code" />
-    <result column="CATG_ID" jdbcType="INTEGER" property="catgId" />
-    <result column="UNIT_ID" jdbcType="INTEGER" property="unitId" />
-    <result column="TYPE" jdbcType="CHAR" property="type" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yc.core.attr.dto.AttrDto">
-    <result column="COMMENTS" jdbcType="LONGVARCHAR" property="comments" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ID, NAME, CODE, CATG_ID, UNIT_ID, TYPE
-  </sql>
-  <sql id="Blob_Column_List">
-    COMMENTS
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR (ID, NAME, CODE, 
-      CATG_ID, UNIT_ID, TYPE, 
-      COMMENTS)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{catgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
-      #{comments,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="name != null">
-        NAME,
-      </if>
-      <if test="code != null">
-        CODE,
-      </if>
-      <if test="catgId != null">
-        CATG_ID,
-      </if>
-      <if test="unitId != null">
-        UNIT_ID,
-      </if>
-      <if test="type != null">
-        TYPE,
-      </if>
-      <if test="comments != null">
-        COMMENTS,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    <set>
-      <if test="name != null">
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        CODE = #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        CATG_ID = #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        UNIT_ID = #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        TYPE = #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        COMMENTS = #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
       UNIT_ID = #{unitId,jdbcType=INTEGER},
       TYPE = #{type,jdbcType=CHAR},
-      COMMENTS = #{comments,jdbcType=LONGVARCHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.yc.core.attr.dto.AttrDto">
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="CODE" jdbcType="VARCHAR" property="code" />
-    <result column="CATG_ID" jdbcType="INTEGER" property="catgId" />
-    <result column="UNIT_ID" jdbcType="INTEGER" property="unitId" />
-    <result column="TYPE" jdbcType="CHAR" property="type" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yc.core.attr.dto.AttrDto">
-    <result column="COMMENTS" jdbcType="LONGVARCHAR" property="comments" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ID, NAME, CODE, CATG_ID, UNIT_ID, TYPE
-  </sql>
-  <sql id="Blob_Column_List">
-    COMMENTS
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR (ID, NAME, CODE, 
-      CATG_ID, UNIT_ID, TYPE, 
-      COMMENTS)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{catgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
-      #{comments,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="name != null">
-        NAME,
-      </if>
-      <if test="code != null">
-        CODE,
-      </if>
-      <if test="catgId != null">
-        CATG_ID,
-      </if>
-      <if test="unitId != null">
-        UNIT_ID,
-      </if>
-      <if test="type != null">
-        TYPE,
-      </if>
-      <if test="comments != null">
-        COMMENTS,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    <set>
-      <if test="name != null">
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        CODE = #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        CATG_ID = #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        UNIT_ID = #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        TYPE = #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        COMMENTS = #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR},
-      COMMENTS = #{comments,jdbcType=LONGVARCHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.yc.core.attr.dto.AttrDto">
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="CODE" jdbcType="VARCHAR" property="code" />
-    <result column="CATG_ID" jdbcType="INTEGER" property="catgId" />
-    <result column="UNIT_ID" jdbcType="INTEGER" property="unitId" />
-    <result column="TYPE" jdbcType="CHAR" property="type" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yc.core.attr.dto.AttrDto">
-    <result column="COMMENTS" jdbcType="LONGVARCHAR" property="comments" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ID, NAME, CODE, CATG_ID, UNIT_ID, TYPE
-  </sql>
-  <sql id="Blob_Column_List">
-    COMMENTS
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR (ID, NAME, CODE, 
-      CATG_ID, UNIT_ID, TYPE, 
-      COMMENTS)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{catgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
-      #{comments,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="name != null">
-        NAME,
-      </if>
-      <if test="code != null">
-        CODE,
-      </if>
-      <if test="catgId != null">
-        CATG_ID,
-      </if>
-      <if test="unitId != null">
-        UNIT_ID,
-      </if>
-      <if test="type != null">
-        TYPE,
-      </if>
-      <if test="comments != null">
-        COMMENTS,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    <set>
-      <if test="name != null">
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        CODE = #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        CATG_ID = #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        UNIT_ID = #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        TYPE = #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        COMMENTS = #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR},
-      COMMENTS = #{comments,jdbcType=LONGVARCHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.yc.core.attr.dto.AttrDto">
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="CODE" jdbcType="VARCHAR" property="code" />
-    <result column="CATG_ID" jdbcType="INTEGER" property="catgId" />
-    <result column="UNIT_ID" jdbcType="INTEGER" property="unitId" />
-    <result column="TYPE" jdbcType="CHAR" property="type" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yc.core.attr.dto.AttrDto">
-    <result column="COMMENTS" jdbcType="LONGVARCHAR" property="comments" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ID, NAME, CODE, CATG_ID, UNIT_ID, TYPE
-  </sql>
-  <sql id="Blob_Column_List">
-    COMMENTS
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR (ID, NAME, CODE, 
-      CATG_ID, UNIT_ID, TYPE, 
-      COMMENTS)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{catgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
-      #{comments,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="name != null">
-        NAME,
-      </if>
-      <if test="code != null">
-        CODE,
-      </if>
-      <if test="catgId != null">
-        CATG_ID,
-      </if>
-      <if test="unitId != null">
-        UNIT_ID,
-      </if>
-      <if test="type != null">
-        TYPE,
-      </if>
-      <if test="comments != null">
-        COMMENTS,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    <set>
-      <if test="name != null">
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        CODE = #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        CATG_ID = #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        UNIT_ID = #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        TYPE = #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        COMMENTS = #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR},
-      COMMENTS = #{comments,jdbcType=LONGVARCHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.yc.core.attr.dto.AttrDto">
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="NAME" jdbcType="VARCHAR" property="name" />
-    <result column="CODE" jdbcType="VARCHAR" property="code" />
-    <result column="CATG_ID" jdbcType="INTEGER" property="catgId" />
-    <result column="UNIT_ID" jdbcType="INTEGER" property="unitId" />
-    <result column="TYPE" jdbcType="CHAR" property="type" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yc.core.attr.dto.AttrDto">
-    <result column="COMMENTS" jdbcType="LONGVARCHAR" property="comments" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    ID, NAME, CODE, CATG_ID, UNIT_ID, TYPE
-  </sql>
-  <sql id="Blob_Column_List">
-    COMMENTS
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from EG_ATTR
-    where ID = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR (ID, NAME, CODE, 
-      CATG_ID, UNIT_ID, TYPE, 
-      COMMENTS)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{catgId,jdbcType=INTEGER}, #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, 
-      #{comments,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    insert into EG_ATTR
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
-      <if test="name != null">
-        NAME,
-      </if>
-      <if test="code != null">
-        CODE,
-      </if>
-      <if test="catgId != null">
-        CATG_ID,
-      </if>
-      <if test="unitId != null">
-        UNIT_ID,
-      </if>
-      <if test="type != null">
-        TYPE,
-      </if>
-      <if test="comments != null">
-        COMMENTS,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    <set>
-      <if test="name != null">
-        NAME = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        CODE = #{code,jdbcType=VARCHAR},
-      </if>
-      <if test="catgId != null">
-        CATG_ID = #{catgId,jdbcType=INTEGER},
-      </if>
-      <if test="unitId != null">
-        UNIT_ID = #{unitId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null">
-        TYPE = #{type,jdbcType=CHAR},
-      </if>
-      <if test="comments != null">
-        COMMENTS = #{comments,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR},
-      COMMENTS = #{comments,jdbcType=LONGVARCHAR}
-    where ID = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.yc.core.attr.dto.AttrDto">
-    update EG_ATTR
-    set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      CATG_ID = #{catgId,jdbcType=INTEGER},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR}
+      COMMENTS = #{comments,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

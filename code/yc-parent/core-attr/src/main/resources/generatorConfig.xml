@@ -10,6 +10,7 @@
         location="/Users/littlefisher/Documents/Repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar" />
     <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
         <commentGenerator type="com.yc.core.mybaits.YcCommentGenerator">
             <!-- <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator"> -->
             <property name="suppressAllComments" value="false" /><!-- 是否取消注释 -->
@@ -19,7 +20,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/engine"
             userId="root" password="root">
         </jdbcConnection>
-        <javaTypeResolver>
+        <javaTypeResolver type="com.yc.core.mybaits.YcJavaTypeResolver">
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <javaModelGenerator targetPackage="com.yc.core.attr.dto" targetProject="src/main/java">
@@ -28,13 +29,32 @@
         </javaModelGenerator>
         <sqlMapGenerator targetPackage="com.yc.core.attr.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
+            <property name="trimStrings" value="true" />
         </sqlMapGenerator>
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.yc.core.attr.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
-            <!-- <property name="rootInterface" value="com.ztesoft.zsmart.bss.crm.common.base.engine.mybatis.mapper.SuperMapper" 
-                /> -->
+            <property name="rootInterface" value="com.yc.core.mybaits.SuperMapper" 
+                />
         </javaClientGenerator>
         <table tableName="EG_ATTR" domainObjectName="AttrDto" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="EG_ATTR_CATG" domainObjectName="AttrCatgDto" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="EG_ATTR_CATG_CHILDREN" domainObjectName="AttrCatgChildrenDto" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="EG_ATTR_CATG_CHILDREN_STATE" domainObjectName="AttrCatgChildrenStateDto" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="EG_ATTR_CATG_TYPE" domainObjectName="AttrCatgTypeDto" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="EG_ATTR_TYPE" domainObjectName="AttrTypeDto" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        </table>
+        <table tableName="EG_ATTR_VALUE" domainObjectName="AttrValueDto" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
     </context>
