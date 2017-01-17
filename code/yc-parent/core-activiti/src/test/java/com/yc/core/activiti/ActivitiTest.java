@@ -10,8 +10,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yc.core.activiti.impl.ProcessDeployImpl;
-import com.yc.core.activiti.impl.ProcessStartImpl;
+import com.yc.room1000.core.activiti.impl.ProcessDeployImpl;
+import com.yc.room1000.core.activiti.impl.ProcessStartImpl;
 
 /**
  * 

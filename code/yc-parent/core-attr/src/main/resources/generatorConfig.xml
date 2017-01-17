@@ -20,35 +20,26 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/engine"
             userId="root" password="root">
         </jdbcConnection>
-        <javaTypeResolver type="com.yc.core.mybaits.YcJavaTypeResolver">
+        <javaTypeResolver type="com.yc.room1000.core.mybaits.YcJavaTypeResolver">
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
-        <javaModelGenerator targetPackage="com.yc.core.attr.dto" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.yc.room1000.core.attr.dto" targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="com.yc.core.attr.mapper" targetProject="src/main/java">
+        <sqlMapGenerator targetPackage="com.yc.room1000.core.attr.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="true" />
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yc.core.attr.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yc.room1000.core.attr.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
-            <property name="rootInterface" value="com.yc.core.mybaits.SuperMapper" 
+            <property name="rootInterface" value="com.yc.room1000.core.mybaits.SuperMapper" 
                 />
         </javaClientGenerator>
-        <table tableName="EG_ATTR" domainObjectName="AttrDto" enableCountByExample="false" enableUpdateByExample="false"
-            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-        </table>
         <table tableName="EG_ATTR_CATG" domainObjectName="AttrCatgDto" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
-        <table tableName="EG_ATTR_CATG_CHILDREN" domainObjectName="AttrCatgChildrenDto" enableCountByExample="false" enableUpdateByExample="false"
-            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-        </table>
-        <table tableName="EG_ATTR_CATG_CHILDREN_STATE" domainObjectName="AttrCatgChildrenStateDto" enableCountByExample="false" enableUpdateByExample="false"
-            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
-        </table>
-        <table tableName="EG_ATTR_CATG_TYPE" domainObjectName="AttrCatgTypeDto" enableCountByExample="false" enableUpdateByExample="false"
+        <table tableName="EG_ATTR" domainObjectName="AttrDto" enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
         </table>
         <table tableName="EG_ATTR_TYPE" domainObjectName="AttrTypeDto" enableCountByExample="false" enableUpdateByExample="false"

@@ -4,9 +4,11 @@ drop table if exists EG_ATTR_CATG;
 
 drop table if exists EG_ATTR_CATG_CHILDREN;
 
-drop table if exists EG_ATTR_CATG_CHILDREN_STATE;
+drop table if exists EG_ATTR_CATG_STATE;
 
 drop table if exists EG_ATTR_CATG_TYPE;
+
+drop table if exists EG_ATTR_STATE;
 
 drop table if exists EG_ATTR_TYPE;
 
@@ -87,11 +89,13 @@ drop table if exists EG_UNIT;
 /*==============================================================*/
 create table EG_ATTR
 (
-   ID                   int(9) not null comment '属性主键',
+   ID                   int(9) not null auto_increment comment '属性主键',
    NAME                 varchar(30) not null comment '属性名',
    CODE                 varchar(30) not null comment '属性编码',
    UNIT_ID              int(9) not null comment '单位',
    TYPE                 char(1) not null comment '属性类型',
+   STATE                char(1) not null comment '状态',
+   STATE_DATE           datetime comment '状态变更时间',
    COMMENTS             varchar(255) comment '备注',
    primary key (ID)
 );
@@ -101,11 +105,12 @@ create table EG_ATTR
 /*==============================================================*/
 create table EG_ATTR_CATG
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    CATG_NAME            varchar(30) not null comment '目录名',
    CATG_CODE            varchar(30) not null comment '目录编码',
-   PARENT_CATG_ID       int(9) comment '父目录主键',
    CATG_TYPE            char(1) not null comment '目录类型',
+   STATE                char(1) not null comment '状态',
+   STATE_DATE           datetime comment '状态变更时间',
    primary key (ID)
 );
 
@@ -116,30 +121,25 @@ alter table EG_ATTR_CATG comment '例如：基本信息，外观，价位等';
 /*==============================================================*/
 create table EG_ATTR_CATG_CHILDREN
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    CATG_ID              int(9) not null comment '当前目录主键',
    CHILD_CATG_ID        int(9) comment '子目录主键',
    CHILD_ATTR_ID        int(9) comment '子属性主键',
-   STATE                char(1) not null comment '状态',
-   STATE_DATE           datetime not null comment '状态变更时间',
    primary key (ID)
 );
 
 alter table EG_ATTR_CATG_CHILDREN comment '该表用来记录当前目录下都有哪些子目录或者子属性，一般子目录主键和子属性主键不可同时存在。如果一个目录下既有子目录又有子属';
 
 /*==============================================================*/
-/* Table: EG_ATTR_CATG_CHILDREN_STATE                           */
+/* Table: EG_ATTR_CATG_STATE                                    */
 /*==============================================================*/
-create table EG_ATTR_CATG_CHILDREN_STATE
+create table EG_ATTR_CATG_STATE
 (
    STATE                char(1) not null comment '状态',
    STATE_NAME           varchar(30) not null comment '状态名',
-   COMMENTS             varchar(255) comment '备注',
+   COMMENTS             text comment '备注',
    primary key (STATE)
 );
-
-alter table EG_ATTR_CATG_CHILDREN_STATE comment '暂时只有A：有效，B：失效
-';
 
 /*==============================================================*/
 /* Table: EG_ATTR_CATG_TYPE                                     */
@@ -156,15 +156,19 @@ alter table EG_ATTR_CATG_TYPE comment '目录类型暂时分为A：Root Catg 根
 所有的Attr和At';
 
 /*==============================================================*/
+/* Table: EG_ATTR_STATE                                         */
+/*==============================================================*/
+create table EG_ATTR_STATE
+(
+   STATE                char(1) not null comment '状态',
+   STATE_NAME           varchar(30) not null comment '状态名称',
+   COMMENTS             text comment '备注',
+   primary key (STATE)
+);
+
+/*==============================================================*/
 /* Table: EG_ATTR_TYPE                                          */
 /*==============================================================*/
-INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('A', 'Input', '文本输入框');
-INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('B', 'RadioBox', '单选框');
-INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('C', 'Checkbox', '多选框');
-INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('D', 'DatetimePicker', '时间选择框');
-INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('F', 'PrecisionInput', '金额输入框');
-INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('G', 'Dropdown', '单选下拉框');
-INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('H', 'MultiSelect', '多选下拉框');
 create table EG_ATTR_TYPE
 (
    TYPE                 char(1) not null comment '属性类型',
@@ -175,12 +179,20 @@ create table EG_ATTR_TYPE
 
 alter table EG_ATTR_TYPE comment '例如：A：文本输入框，B：单选框，C：多选框，D：时间选择框 等';
 
+INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('A', 'Input', '文本输入框');
+INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('B', 'RadioBox', '单选框');
+INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('C', 'Checkbox', '多选框');
+INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('D', 'DatetimePicker', '时间选择框');
+INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('F', 'PrecisionInput', '金额输入框');
+INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('G', 'Dropdown', '单选下拉框');
+INSERT INTO EG_ATTR_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('H', 'MultiSelect', '多选下拉框');
+
 /*==============================================================*/
 /* Table: EG_ATTR_VALUE                                         */
 /*==============================================================*/
 create table EG_ATTR_VALUE
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    ATTR_ID              int(9) not null comment '属性主键',
    VALUE                varchar(30) comment '属性可选项',
    VALUE_MASK           varchar(30) comment '可选项展示内容',
@@ -195,7 +207,7 @@ alter table EG_ATTR_VALUE comment '如果属性类型是单选、多选等，需
 /*==============================================================*/
 create table EG_CERT
 (
-   CERT_ID              int(9) not null comment '证件主键',
+   CERT_ID              int(9) not null auto_increment comment '证件主键',
    CERT_TYPE            char(1) not null comment '证件类型',
    CERT_NBR             varchar(30) not null comment '证件号码',
    primary key (CERT_ID)
@@ -220,10 +232,9 @@ INSERT INTO EG_CERT_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('D', 'Taiwan pass pr
 /*==============================================================*/
 /* Table: EG_CONFIG_ITEM                                        */
 /*==============================================================*/
-INSERT INTO EG_CONFIG_ITEM(CODE, VALUE, DEFAULT_VALUE, COMMENTS) VALUES ('', '', '2', '货币金额精度');
 create table EG_CONFIG_ITEM
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    CODE                 varchar(60) not null comment '编码',
    VALUE                varchar(60) comment '值',
    DEFAULT_VALUE        varchar(60) not null comment '默认值',
@@ -232,12 +243,14 @@ create table EG_CONFIG_ITEM
    key AK_UQ_CODE (CODE)
 );
 
+INSERT INTO EG_CONFIG_ITEM(CODE, VALUE, DEFAULT_VALUE, COMMENTS) VALUES ('', '', '2', '货币金额精度');
+
 /*==============================================================*/
 /* Table: EG_CONTACT_MAN                                        */
 /*==============================================================*/
 create table EG_CONTACT_MAN
 (
-   ID                   int(9) not null comment '联系人主键',
+   ID                   int(9) not null auto_increment comment '联系人主键',
    SUPPLIER_ID          int(9) comment '供应商主键',
    HOUSE_ID             int(9) comment '房屋主键',
    NAME                 varchar(30) not null comment '联系人姓名',
@@ -254,7 +267,7 @@ alter table EG_CONTACT_MAN comment '供应商联系人';
 /*==============================================================*/
 create table EG_DECORATION_ORDER
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    HOUSE_ID             int(9) not null comment '房屋主键',
    TEMPLATE_ID          int(9) comment '模板主键',
    STATE                char(1) not null comment '状态',
@@ -270,7 +283,7 @@ create table EG_DECORATION_ORDER
 /*==============================================================*/
 create table EG_DECORATION_ORDER_HIS
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    PRIORITY             int(9) not null comment '优先级',
    HOUSE_ID             int(9) not null comment '房屋主键',
    TEMPLATE_ID          int(9) comment '模板主键',
@@ -302,7 +315,7 @@ INSERT INTO EG_DECORATION_ORDER_STATE(STATE, STATE_NAME, COMMENTS) VALUES ('C', 
 /*==============================================================*/
 create table EG_DECORATION_ORDER_TEMPLATE
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    DECORATION_ORDER_ID  int(9) not null comment '装修单主键',
    TEMPLATE_MODEL_ID    int(9) not null comment '模板使用商服类型主键',
    COUNT                int not null comment '数量',
@@ -347,7 +360,7 @@ INSERT INTO EG_DECORATION_TYPE(TYPE, TYPE_NAME, COMMENTS) VALUES ('D','Cleaning'
 /*==============================================================*/
 create table EG_GARDEN
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    GARDEN_NAME          varchar(30) not null comment '小区名',
    STANDARD_ADDR_ID     int(9) comment '标准地址主键',
    SPECIFIC_ADDR        varchar(60) not null comment '详细地址',
@@ -360,7 +373,7 @@ create table EG_GARDEN
 /*==============================================================*/
 create table EG_HOUSE
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    GARDEN_ID            int(9) not null comment '小区主键',
    AREA                 int(9) not null comment '不使用浮点型数据类型以防计算时出现不可预测的问题',
    FLOOR                int(9) not null comment '楼层',
@@ -374,7 +387,7 @@ create table EG_HOUSE
 /*==============================================================*/
 create table EG_MODEL
 (
-   ID                   int(9) not null comment '类型主键',
+   ID                   int(9) not null auto_increment comment '类型主键',
    NAME                 varchar(30) not null comment '类型名称',
    CODE                 varchar(30) not null comment '类型编码',
    TYPE                 char(1) not null comment '类型种类',
@@ -388,7 +401,7 @@ create table EG_MODEL
 /*==============================================================*/
 create table EG_PROPERTY
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    NAME                 varchar(30) not null comment '物业名',
    primary key (ID)
 );
@@ -398,7 +411,7 @@ create table EG_PROPERTY
 /*==============================================================*/
 create table EG_REQUIRE_ORDER
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    DECORATION_ORDER_ID  int(9) not null comment '装修单主键',
    DELIVER_DATE         datetime not null comment '送货时间',
    primary key (ID)
@@ -409,7 +422,7 @@ create table EG_REQUIRE_ORDER
 /*==============================================================*/
 create table EG_REQUIRE_ORDER_MODEL
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    REQUIRE_ORDER_ID     int(9) not null comment '货品需求单主键',
    MODEL_ID             int(9) not null comment '商服类型主键',
    STATE                char(1) not null comment '状态',
@@ -422,7 +435,7 @@ create table EG_REQUIRE_ORDER_MODEL
 /*==============================================================*/
 create table EG_REQUIRE_ORDER_MODEL_ATTR_CATG
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    REQUIRE_ORDER_MODEL_ID int(9) comment '货品需求单要求的商服类型主键',
    ATTR_CATG_ID         int(9) comment '属性目录主键',
    primary key (ID)
@@ -433,7 +446,7 @@ create table EG_REQUIRE_ORDER_MODEL_ATTR_CATG
 /*==============================================================*/
 create table EG_REQUIRE_ORDER_MODEL_VALUE
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    ATTR_ID              int(9) not null comment '属性主键',
    REQUIRE_ORDER_MODEL_ID int(9) not null comment '货品需求单要求的商服类型主键',
    INPUT_TEXT           varchar(255) comment '界面录入项和属性可选项两者二选一，不能同时存在',
@@ -446,7 +459,7 @@ create table EG_REQUIRE_ORDER_MODEL_VALUE
 /*==============================================================*/
 create table EG_STAFF
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    NAME                 varchar(30) not null comment '员工名',
    primary key (ID)
 );
@@ -458,7 +471,7 @@ alter table EG_STAFF comment '用户中心应该有这些表，具体字段不�
 /*==============================================================*/
 create table EG_STANDARD_ADDR
 (
-   ID                   int(9) not null comment '标准地址主键',
+   ID                   int(9) not null auto_increment comment '标准地址主键',
    COUNTRY_ID           int(9) not null comment '国家',
    PROVINCE_ID          int(9) not null comment '省份',
    CITY_ID              int(9) not null comment '城市',
@@ -471,7 +484,7 @@ create table EG_STANDARD_ADDR
 /*==============================================================*/
 create table EG_SUPPLIER
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    NAME                 varchar(30) not null comment '供应商名',
    STANDARD_ADDR_ID     int(9) not null comment '供应商标准地址',
    SPECIFIC_ADDR        varchar(60) not null comment '供应商详细地址',
@@ -493,7 +506,7 @@ alter table EG_SUPPLIER comment '供应商信息';
 /*==============================================================*/
 create table EG_SUPPLIER_MODEL
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    SUPPLIER_ID          int(9) not null comment '供应商主键',
    MODEL_ID             int(9) not null comment '商服类型主键',
    STATE                char(1) not null comment '状态',
@@ -506,7 +519,7 @@ create table EG_SUPPLIER_MODEL
 /*==============================================================*/
 create table EG_SUPPLIER_MODEL_ATTR_CATG
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    SUPPLIER_MODEL_ID    int(9) comment '供应商提供的商服类型主键',
    ATTR_CATG_ID         int(9) comment '属性目录主键',
    primary key (ID)
@@ -517,7 +530,7 @@ create table EG_SUPPLIER_MODEL_ATTR_CATG
 /*==============================================================*/
 create table EG_SUPPLIER_MODEL_VALUE
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    ATTR_ID              int(9) not null comment '属性主键',
    SUPPLIER_MODEL_ID    int(9) not null comment '供应商提供的商服类型主键',
    INPUT_TEXT           varchar(255) comment '界面录入项和属性可选项两者二选一，不能同时存在',
@@ -530,7 +543,7 @@ create table EG_SUPPLIER_MODEL_VALUE
 /*==============================================================*/
 create table EG_SUPPLIER_MODEL_VALUE_HIS
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    ATTR_ID              int(9) not null comment '属性主键',
    SUPPLIER_MODEL_ID    int(9) not null comment '供应商提供的商服类型主键',
    INPUT_TEXT           varchar(255) comment '界面录入项和属性可选项两者二选一，不能同时存在',
@@ -544,7 +557,7 @@ create table EG_SUPPLIER_MODEL_VALUE_HIS
 /*==============================================================*/
 create table EG_SUPPLIER_PRICE
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    HOUSE_ID             int(9) not null comment '房屋主键',
    SUPPLIER_MODEL_ID    int(9) not null comment '供应商提供的商服类型主键',
    DECORATION_ORDER_TEMPLATE_ID int(9) not null comment '装修单所需商服数量主键',
@@ -596,7 +609,7 @@ INSERT INTO EG_SUPPLIER_STATE(STATE, STATE_NAME, COMMENTS) VALUES ('D','Invalid'
 /*==============================================================*/
 create table EG_SUPPLIER_TYPE
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    SUPPLIER_ID          int(9) not null comment '供应商主键',
    DECORATION_TYPE      char(1) not null comment '装修分类',
    primary key (ID)
@@ -609,7 +622,7 @@ alter table EG_SUPPLIER_TYPE comment '一个供应商可能会有多个分类，
 /*==============================================================*/
 create table EG_TEMPLATE
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    NAME                 varchar(30) not null comment '模板名',
    STAFF_ID             int(9) not null comment '创建人',
    DECORATION_STYLE     char(1) comment '装修风格',
@@ -623,7 +636,7 @@ create table EG_TEMPLATE
 /*==============================================================*/
 create table EG_TEMPLATE_MODEL
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    TEMPLATE_ID          int(9) not null comment '模板主键',
    MODEL_ID             int(9) not null comment '商服类型主键',
    STATE                char(1) not null comment '状态',
@@ -637,7 +650,7 @@ create table EG_TEMPLATE_MODEL
 /*==============================================================*/
 create table EG_TEMPLATE_MODEL_ATTR_CATG
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    TEMPLATE_MODEL_ID    int(9) comment '模板使用商服类型主键',
    ATTR_CATG_ID         int(9) comment '属性目录主键',
    primary key (ID)
@@ -648,7 +661,7 @@ create table EG_TEMPLATE_MODEL_ATTR_CATG
 /*==============================================================*/
 create table EG_TEMPLATE_MODEL_VALUE
 (
-   ID                   int(9) not null comment '主键',
+   ID                   int(9) not null auto_increment comment '主键',
    ATTR_ID              int(9) not null comment '属性主键',
    TEMPLATE_MODEL_ID    int(9) not null comment '模板使用商服类型主键',
    INPUT_TEXT           varchar(255) comment '界面录入项和属性可选项两者二选一，不能同时存在',
@@ -677,7 +690,7 @@ INSERT INTO EG_TEMPLATE_STATE(STATE, STATE_NAME, COMMENTS) VALUES ('B', 'Unpubli
 /*==============================================================*/
 create table EG_UNIT
 (
-   UNIT                 int(9) not null comment '单位',
+   UNIT                 int(9) not null auto_increment comment '单位',
    UNIT_NAME            varchar(30) not null comment '单位名称',
    COMMENTS             varchar(255) comment '备注',
    primary key (UNIT)
@@ -691,6 +704,12 @@ alter table EG_ATTR add constraint FK_FK_EG_ATTR_TYPE foreign key (TYPE)
 alter table EG_ATTR add constraint FK_FK_EG_ATTR_UNIT_ID foreign key (UNIT_ID)
       references EG_UNIT (UNIT) on delete restrict on update restrict;
 
+alter table EG_ATTR add constraint FK_Reference_56 foreign key (STATE)
+      references EG_ATTR_STATE (STATE) on delete restrict on update restrict;
+
+alter table EG_ATTR_CATG add constraint FK_FK_EG_ATTR_CATG_STATE foreign key (STATE)
+      references EG_ATTR_CATG_STATE (STATE) on delete restrict on update restrict;
+
 alter table EG_ATTR_CATG add constraint FK_FK_EG_ATTR_CATG_TYPE foreign key (CATG_TYPE)
       references EG_ATTR_CATG_TYPE (TYPE) on delete restrict on update restrict;
 
@@ -702,9 +721,6 @@ alter table EG_ATTR_CATG_CHILDREN add constraint FK_FK_EG_ATTR_CATG_CHILDREN_CAT
 
 alter table EG_ATTR_CATG_CHILDREN add constraint FK_FK_EG_ATTR_CATG_CHILDREN_CHILD_CATG_ID foreign key (CHILD_CATG_ID)
       references EG_ATTR_CATG (ID) on delete restrict on update restrict;
-
-alter table EG_ATTR_CATG_CHILDREN add constraint FK_FK_EG_ATTR_CATG_CHILDREN_STATE foreign key (STATE)
-      references EG_ATTR_CATG_CHILDREN_STATE (STATE) on delete restrict on update restrict;
 
 alter table EG_ATTR_VALUE add constraint FK_FK_EG_ATTR_VALUE_ATTR_ID foreign key (ATTR_ID)
       references EG_ATTR (ID) on delete restrict on update restrict;

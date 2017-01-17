@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yc.core.utils.Room1000Logger;
+import com.yc.room1000.core.utils.Room1000Logger;
 
 /**
  * 

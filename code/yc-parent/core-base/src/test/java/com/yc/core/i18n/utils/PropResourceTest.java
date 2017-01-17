@@ -3,8 +3,8 @@ package com.yc.core.i18n.utils;
 
 import org.junit.Test;
 
-import com.yc.core.i18n.PropResource;
-import com.yc.core.utils.Room1000Logger;
+import com.yc.room1000.core.i18n.PropResource;
+import com.yc.room1000.core.utils.Room1000Logger;
 
 /**
  * 

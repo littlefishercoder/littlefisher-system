@@ -2,9 +2,9 @@ package com.yc.core.i18n.utils;
 
 import org.junit.Test;
 
-import com.yc.core.exception.BaseAppException;
-import com.yc.core.utils.ExceptionUtil;
-import com.yc.core.utils.StringUtil;
+import com.yc.room1000.core.exception.BaseAppException;
+import com.yc.room1000.core.utils.ExceptionUtil;
+import com.yc.room1000.core.utils.StringUtil;
 
 /**
  * Description: ExceptionUtilTest Created on 2017年1月4日

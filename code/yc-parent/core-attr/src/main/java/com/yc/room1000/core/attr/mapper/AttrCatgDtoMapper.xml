@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.room1000.core.attr.dao.AttrCatgDtoMapper">
+  <resultMap id="BaseResultMap" type="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CATG_NAME" jdbcType="VARCHAR" property="catgName" />
+    <result column="CATG_CODE" jdbcType="VARCHAR" property="catgCode" />
+    <result column="CATG_TYPE" jdbcType="CHAR" property="catgType" />
+    <result column="STATE" jdbcType="CHAR" property="state" />
+    <result column="STATE_DATE" jdbcType="TIMESTAMP" property="stateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CATG_NAME, CATG_CODE, CATG_TYPE, STATE, STATE_DATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EG_ATTR_CATG
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from EG_ATTR_CATG
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    insert into EG_ATTR_CATG (ID, CATG_NAME, CATG_CODE, 
+      CATG_TYPE, STATE, STATE_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{catgName,jdbcType=VARCHAR}, #{catgCode,jdbcType=VARCHAR}, 
+      #{catgType,jdbcType=CHAR}, #{state,jdbcType=CHAR}, #{stateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    insert into EG_ATTR_CATG
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        ID,
+      </if>
+      <if test="catgName != null">
+        CATG_NAME,
+      </if>
+      <if test="catgCode != null">
+        CATG_CODE,
+      </if>
+      <if test="catgType != null">
+        CATG_TYPE,
+      </if>
+      <if test="state != null">
+        STATE,
+      </if>
+      <if test="stateDate != null">
+        STATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="catgName != null">
+        #{catgName,jdbcType=VARCHAR},
+      </if>
+      <if test="catgCode != null">
+        #{catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="catgType != null">
+        #{catgType,jdbcType=CHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateDate != null">
+        #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    update EG_ATTR_CATG
+    <set>
+      <if test="catgName != null">
+        CATG_NAME = #{catgName,jdbcType=VARCHAR},
+      </if>
+      <if test="catgCode != null">
+        CATG_CODE = #{catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="catgType != null">
+        CATG_TYPE = #{catgType,jdbcType=CHAR},
+      </if>
+      <if test="state != null">
+        STATE = #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateDate != null">
+        STATE_DATE = #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    update EG_ATTR_CATG
+    set CATG_NAME = #{catgName,jdbcType=VARCHAR},
+      CATG_CODE = #{catgCode,jdbcType=VARCHAR},
+      CATG_TYPE = #{catgType,jdbcType=CHAR},
+      STATE = #{state,jdbcType=CHAR},
+      STATE_DATE = #{stateDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

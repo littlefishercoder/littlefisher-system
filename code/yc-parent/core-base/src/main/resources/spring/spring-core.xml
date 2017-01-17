@@ -99,7 +99,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         <property name="dataSource" ref="dataSource" />
         
         <!-- myBatis所需要配置的*Mapper.xml所在目录 -->
-        <property name="mapperLocations" value="classpath*:com/yc/**/mapper/*.xml" />
+        <property name="mapperLocations" value="classpath*:com/yc/room1000/**/mapper/*.xml" />
     </bean>
 
     <!-- 没有必要在 Spring 的 XML 配置文件中注册所有的映射器。相反,你可以使用一个 MapperScannerConfigurer , -->
@@ -107,7 +107,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 
         <!-- basePackage 属性是让你为映射器接口文件设置基本的包路径 -->
-        <property name="basePackage" value="com.yc.**.dao" />
+        <property name="basePackage" value="com.yc.room1000.**.dao" />
 
         <!-- 没 有 必 要 去 指 定 SqlSessionFactory 或 SqlSessionTemplate , -->
         <!-- 因 为 MapperScannerConfigurer 将会创建 MapperFactoryBean,之后自动装配。 -->
@@ -157,18 +157,18 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         <!-- rml.service..*Impl:代表你要拦截rml.service..*Impl类 -->
         <!-- .*(..)：这个代表任意方法，就是说上面那些类的任意方法，()里面的点，代表任意参数 -->
         <!-- pointcut代表切面在哪里 -->
-        <aop:pointcut id="transactionPointcut" expression="execution(* com.yc.**.service..*Impl.*(..))" />
+        <aop:pointcut id="transactionPointcut" expression="execution(* com.yc.room1000.**.service..*Impl.*(..))" />
 
         <!-- advisor代表在切面上要如何操作，该项目中是按照上面配置的transactionAdvice执行操作 -->
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
     </aop:config>
     
     <!-- aop切面用来记录*Service中各个方法的出入参内容，如果出入参是Dto，需要有重写toString方法 -->
-    <bean id="logBean" class="com.yc.core.aop.LogAspect" />
+    <bean id="logBean" class="com.yc.room1000.core.aop.LogAspect" />
 
     <aop:config>
         <aop:aspect id="aspect" ref="logBean">
-            <aop:pointcut id="logService" expression="execution(* com.yc..service.impl.*Impl.*(..))" />
+            <aop:pointcut id="logService" expression="execution(* com.yc.room1000..service.impl.*Impl.*(..))" />
             <aop:before pointcut-ref="logService" method="before" />
             <aop:after-returning pointcut-ref="logService" method="afterReturning" returning="returnValue" />
         </aop:aspect>
@@ -177,6 +177,6 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
     <!-- 声明注解方式加载bean -->
     <context:annotation-config />
 
-    <context:component-scan base-package="com.yc.**.service.impl" />
+    <context:component-scan base-package="com.yc.room1000.**.service.impl" />
 
 </beans>
