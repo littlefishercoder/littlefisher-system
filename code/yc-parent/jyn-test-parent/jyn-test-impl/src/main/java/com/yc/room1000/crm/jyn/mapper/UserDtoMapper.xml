@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.yc.crm.jyn.dao.UserDtoMapper">
-  <resultMap id="BaseResultMap" type="com.yc.crm.jyn.dto.UserDto">
+<mapper namespace="com.yc.room1000.crm.jyn.dao.UserDtoMapper">
+  <resultMap id="BaseResultMap" type="com.yc.room1000.crm.jyn.dto.UserDto">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -25,13 +25,13 @@
     delete from yc_user_tab
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.yc.crm.jyn.dto.UserDto">
+  <insert id="insert" parameterType="com.yc.room1000.crm.jyn.dto.UserDto">
     insert into yc_user_tab (id, mobile, password, 
       type)
     values (#{id,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{type,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.yc.crm.jyn.dto.UserDto">
+  <insert id="insertSelective" parameterType="com.yc.room1000.crm.jyn.dto.UserDto">
     insert into yc_user_tab
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -62,7 +62,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.yc.crm.jyn.dto.UserDto">
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.room1000.crm.jyn.dto.UserDto">
     update yc_user_tab
     <set>
       <if test="mobile != null">
@@ -77,7 +77,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.yc.crm.jyn.dto.UserDto">
+  <update id="updateByPrimaryKey" parameterType="com.yc.room1000.crm.jyn.dto.UserDto">
     update yc_user_tab
     set mobile = #{mobile,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},

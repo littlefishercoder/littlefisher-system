@@ -23,7 +23,7 @@ import com.yc.room1000.core.activiti.impl.ProcessStartImpl;
  * @since v1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath*:activiti.cfg.xml")
+@ContextConfiguration("classpath*:spring/spring-core.xml")
 @Rollback
 @Transactional
 public class ActivitiTest {

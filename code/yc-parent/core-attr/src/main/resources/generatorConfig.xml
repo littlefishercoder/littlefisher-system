@@ -12,10 +12,10 @@
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
         <commentGenerator type="com.yc.core.mybaits.YcCommentGenerator">
-            <!-- <commentGenerator type="org.mybatis.generator.internal.DefaultCommentGenerator"> -->
-            <property name="suppressAllComments" value="false" /><!-- 是否取消注释 -->
-            <!-- <property name="suppressDate" value="true" /> 是否生成注释带时间戳 -->
-            <property name="author" value="jinyanan" /> <!-- 生成作者的名字 -->
+            <!-- 是否取消注释 -->
+            <property name="suppressAllComments" value="false" />
+            <!-- 生成作者的名字 -->
+            <property name="author" value="jinyanan" /> 
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/engine"
             userId="root" password="root">

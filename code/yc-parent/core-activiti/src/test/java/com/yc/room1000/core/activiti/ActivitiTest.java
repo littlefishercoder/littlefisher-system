@@ -1,4 +1,4 @@
-package com.yc.core.activiti;
+package com.yc.room1000.core.activiti;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -25,7 +25,7 @@ public interface IProcessQuery {
      * @param instanceId instanceId
      * @return List<HistoricActivityInstance>
      */
-    List<HistoricActivityInstance> getFinishedActivityByInstanceId(Long instanceId);
+    List<HistoricActivityInstance> getFinishedActivityByInstanceId(String instanceId);
     
     /**
      * 
@@ -36,5 +36,5 @@ public interface IProcessQuery {
      * @param instanceId instanceId
      * @return List<HistoricActivityInstance>
      */
-    List<HistoricActivityInstance> getUnfinishedActivityByInstanceId(Long instanceId);
+    List<HistoricActivityInstance> getUnfinishedActivityByInstanceId(String instanceId);
 }
