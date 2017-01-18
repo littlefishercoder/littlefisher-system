@@ -11,16 +11,16 @@
     <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-        <commentGenerator type="com.yc.core.mybaits.YcCommentGenerator">
+        <commentGenerator type="com.yc.room1000.core.mybatis.YcCommentGenerator">
             <!-- 是否取消注释 -->
             <property name="suppressAllComments" value="false" />
             <!-- 生成作者的名字 -->
-            <property name="author" value="jinyanan" /> 
+            <property name="author" value="jinyanan" />
         </commentGenerator>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/engine"
             userId="root" password="root">
         </jdbcConnection>
-        <javaTypeResolver type="com.yc.room1000.core.mybaits.YcJavaTypeResolver">
+        <javaTypeResolver type="com.yc.room1000.core.mybatis.YcJavaTypeResolver">
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <javaModelGenerator targetPackage="com.yc.room1000.core.attr.dto" targetProject="src/main/java">
@@ -31,22 +31,35 @@
             <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="true" />
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yc.room1000.core.attr.dao" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yc.room1000.core.attr.dao"
+            targetProject="src/main/java">
             <property name="enableSubPackages" value="false" />
-            <property name="rootInterface" value="com.yc.room1000.core.mybaits.SuperMapper" 
-                />
+            <property name="rootInterface" value="com.yc.room1000.core.mybatis.SuperMapper" />
         </javaClientGenerator>
-        <table tableName="EG_ATTR_CATG" domainObjectName="AttrCatgDto" enableCountByExample="false" enableUpdateByExample="false"
-            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="EG_ATTR" domainObjectName="AttrDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" />
         </table>
-        <table tableName="EG_ATTR" domainObjectName="AttrDto" enableCountByExample="false" enableUpdateByExample="false"
-            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="EG_ATTR_CATG" domainObjectName="AttrCatgDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" />
         </table>
-        <table tableName="EG_ATTR_TYPE" domainObjectName="AttrTypeDto" enableCountByExample="false" enableUpdateByExample="false"
-            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="EG_ATTR_VALUE" domainObjectName="AttrValueDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" />
         </table>
-        <table tableName="EG_ATTR_VALUE" domainObjectName="AttrValueDto" enableCountByExample="false" enableUpdateByExample="false"
-            enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="EG_ATTR_TYPE" domainObjectName="AttrTypeDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" />
+        </table>
+        <table tableName="EG_ATTR_CATG_CHILDREN" domainObjectName="AttrCatgChildrenDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+            <generatedKey column="id" sqlStatement="Mysql" />
         </table>
     </context>
 </generatorConfiguration>

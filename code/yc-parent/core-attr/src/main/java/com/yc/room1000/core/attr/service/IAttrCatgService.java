@@ -36,7 +36,7 @@ public interface IAttrCatgService {
      * @param catgCode catgCode
      * @return AttrCatgDto
      */
-    AttrCatgDto getSingleAttrCatgDtoByCode(Long catgCode);
+    AttrCatgDto getSingleAttrCatgDtoByCode(String catgCode);
 
     /**
      * 

@@ -1,4 +1,4 @@
-package com.yc.room1000.core.mybaits;
+package com.yc.room1000.core.mybatis;
 
 import java.sql.Types;
 

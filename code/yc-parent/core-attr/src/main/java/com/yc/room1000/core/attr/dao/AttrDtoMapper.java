@@ -1,13 +1,13 @@
 package com.yc.room1000.core.attr.dao;
 
 import com.yc.room1000.core.attr.dto.AttrDto;
-import com.yc.room1000.core.mybaits.SuperMapper;
+import com.yc.room1000.core.mybatis.SuperMapper;
 
 /**
  * 
  * Description: 
  *  
- * Created on 2017年1月16日 
+ * Created on 2017年1月17日 
  *
  * @author jinyanan
  * @version 1.0

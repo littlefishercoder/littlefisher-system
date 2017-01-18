@@ -1,4 +1,4 @@
-package com.yc.room1000.core.mybaits;
+package com.yc.room1000.core.mybatis;
 
 import java.util.List;
 import java.util.Properties;
@@ -16,6 +16,7 @@ import org.mybatis.generator.api.dom.java.JavaElement;
 import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
+import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.MergeConstants;
 import org.mybatis.generator.config.PropertyRegistry;
@@ -148,6 +149,17 @@ public class YcCommentGenerator implements CommentGenerator {
 
     @Override
     public void addComment(XmlElement xmlElement) {
+        if (suppressAllComments) {
+            return;
+        }
+
+        xmlElement.addElement(new TextElement("<!--")); 
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(MergeConstants.NEW_ELEMENT_TAG);
+        xmlElement.addElement(new TextElement(sb.toString()));
+
+        xmlElement.addElement(new TextElement("-->")); 
     }
 
     @Override

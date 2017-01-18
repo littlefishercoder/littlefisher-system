@@ -1,28 +1,28 @@
 package com.yc.room1000.core.attr.dao;
 
-import com.yc.room1000.core.attr.dto.AttrTypeDto;
-import com.yc.room1000.core.mybaits.SuperMapper;
+import com.yc.room1000.core.attr.dto.AttrCatgChildrenDto;
+import com.yc.room1000.core.mybatis.SuperMapper;
 
 /**
  * 
  * Description: 
  *  
- * Created on 2017年1月16日 
+ * Created on 2017年1月17日 
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-public interface AttrTypeDtoMapper extends SuperMapper {
+public interface AttrCatgChildrenDtoMapper extends SuperMapper {
     /**
      * Description: deleteByPrimaryKey<br>
      *
      * @author jinyanan <br>
-     * @param type type
+     * @param id id
      * @return int int<br>
      * @mbg.generated
      */
-    int deleteByPrimaryKey(String type);
+    int deleteByPrimaryKey(Long id);
 
     /**
      * Description: insert<br>
@@ -32,7 +32,7 @@ public interface AttrTypeDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int insert(AttrTypeDto record);
+    int insert(AttrCatgChildrenDto record);
 
     /**
      * Description: insertSelective<br>
@@ -42,17 +42,28 @@ public interface AttrTypeDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int insertSelective(AttrTypeDto record);
+    int insertSelective(AttrCatgChildrenDto record);
 
     /**
      * Description: selectByPrimaryKey<br>
      *
      * @author jinyanan <br>
-     * @param type type
-     * @return AttrTypeDto AttrTypeDto<br>
+     * @param id id
+     * @return AttrCatgChildrenDto AttrCatgChildrenDto<br>
      * @mbg.generated
      */
-    AttrTypeDto selectByPrimaryKey(String type);
+    AttrCatgChildrenDto selectByPrimaryKey(Long id);
+    
+    /**
+     * 
+     * Description: selectSelective
+     * 
+     * @author jinyanan
+     *
+     * @param attrCatgChildrenDto attrCatgChildrenDto
+     * @return AttrCatgChildrenDto
+     */
+    AttrCatgChildrenDto selectSelective(AttrCatgChildrenDto attrCatgChildrenDto);
 
     /**
      * Description: updateByPrimaryKeySelective<br>
@@ -62,7 +73,7 @@ public interface AttrTypeDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int updateByPrimaryKeySelective(AttrTypeDto record);
+    int updateByPrimaryKeySelective(AttrCatgChildrenDto record);
 
     /**
      * Description: updateByPrimaryKey<br>
@@ -72,5 +83,5 @@ public interface AttrTypeDtoMapper extends SuperMapper {
      * @return int int<br>
      * @mbg.generated
      */
-    int updateByPrimaryKey(AttrTypeDto record);
+    int updateByPrimaryKey(AttrCatgChildrenDto record);
 }

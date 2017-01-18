@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.room1000.core.attr.dao.AttrValueDtoMapper">
   <resultMap id="BaseResultMap" type="com.yc.room1000.core.attr.dto.AttrValueDto">
+    <!--
+    @mbg.generated
+    -->
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="ATTR_ID" jdbcType="INTEGER" property="attrId" />
     <result column="VALUE" jdbcType="VARCHAR" property="value" />
@@ -9,30 +12,55 @@
     <result column="PRIORITY" jdbcType="INTEGER" property="priority" />
   </resultMap>
   <sql id="Base_Column_List">
+    <!--
+    @mbg.generated
+    -->
     ID, ATTR_ID, VALUE, VALUE_MASK, PRIORITY
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
     select 
     <include refid="Base_Column_List" />
     from EG_ATTR_VALUE
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectAttrValueListByAttrId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from EG_ATTR_VALUE
+    where ATTR_ID = #{attrId,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
     delete from EG_ATTR_VALUE
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yc.room1000.core.attr.dto.AttrValueDto">
+    <!--
+    @mbg.generated
+    -->
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into EG_ATTR_VALUE (ID, ATTR_ID, VALUE, 
       VALUE_MASK, PRIORITY)
     values (#{id,jdbcType=INTEGER}, #{attrId,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, 
       #{valueMask,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.yc.room1000.core.attr.dto.AttrValueDto">
+    <!--
+    @mbg.generated
+    -->
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into EG_ATTR_VALUE
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
+      ID,
       <if test="attrId != null">
         ATTR_ID,
       </if>
@@ -47,9 +75,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
+      #{id,jdbcType=INTEGER},
       <if test="attrId != null">
         #{attrId,jdbcType=INTEGER},
       </if>
@@ -65,6 +91,9 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yc.room1000.core.attr.dto.AttrValueDto">
+    <!--
+    @mbg.generated
+    -->
     update EG_ATTR_VALUE
     <set>
       <if test="attrId != null">
@@ -83,6 +112,9 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yc.room1000.core.attr.dto.AttrValueDto">
+    <!--
+    @mbg.generated
+    -->
     update EG_ATTR_VALUE
     set ATTR_ID = #{attrId,jdbcType=INTEGER},
       VALUE = #{value,jdbcType=VARCHAR},

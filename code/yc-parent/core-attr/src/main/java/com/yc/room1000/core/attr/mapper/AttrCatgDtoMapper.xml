@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.room1000.core.attr.dao.AttrCatgDtoMapper">
   <resultMap id="BaseResultMap" type="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    <!--
+    @mbg.generated
+    -->
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="CATG_NAME" jdbcType="VARCHAR" property="catgName" />
     <result column="CATG_CODE" jdbcType="VARCHAR" property="catgCode" />
@@ -10,19 +13,34 @@
     <result column="STATE_DATE" jdbcType="TIMESTAMP" property="stateDate" />
   </resultMap>
   <sql id="Base_Column_List">
+    <!--
+    @mbg.generated
+    -->
     ID, CATG_NAME, CATG_CODE, CATG_TYPE, STATE, STATE_DATE
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
     select 
     <include refid="Base_Column_List" />
     from EG_ATTR_CATG
     where ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
     delete from EG_ATTR_CATG
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    <!--
+    @mbg.generated
+    -->
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into EG_ATTR_CATG (ID, CATG_NAME, CATG_CODE, 
       CATG_TYPE, STATE, STATE_DATE
       )
@@ -31,11 +49,15 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    <!--
+    @mbg.generated
+    -->
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into EG_ATTR_CATG
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        ID,
-      </if>
+      ID,
       <if test="catgName != null">
         CATG_NAME,
       </if>
@@ -53,9 +75,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
+      #{id,jdbcType=INTEGER},
       <if test="catgName != null">
         #{catgName,jdbcType=VARCHAR},
       </if>
@@ -74,6 +94,9 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    <!--
+    @mbg.generated
+    -->
     update EG_ATTR_CATG
     <set>
       <if test="catgName != null">
@@ -95,6 +118,9 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yc.room1000.core.attr.dto.AttrCatgDto">
+    <!--
+    @mbg.generated
+    -->
     update EG_ATTR_CATG
     set CATG_NAME = #{catgName,jdbcType=VARCHAR},
       CATG_CODE = #{catgCode,jdbcType=VARCHAR},

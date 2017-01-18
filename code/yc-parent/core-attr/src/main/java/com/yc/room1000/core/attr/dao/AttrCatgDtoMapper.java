@@ -1,13 +1,15 @@
 package com.yc.room1000.core.attr.dao;
 
+import java.util.List;
+
 import com.yc.room1000.core.attr.dto.AttrCatgDto;
-import com.yc.room1000.core.mybaits.SuperMapper;
+import com.yc.room1000.core.mybatis.SuperMapper;
 
 /**
  * 
  * Description: 
  *  
- * Created on 2017年1月16日 
+ * Created on 2017年1月17日 
  *
  * @author jinyanan
  * @version 1.0
@@ -53,7 +55,18 @@ public interface AttrCatgDtoMapper extends SuperMapper {
      * @mbg.generated
      */
     AttrCatgDto selectByPrimaryKey(Long id);
-
+    
+    /**
+     * 
+     * Description: selectSelective
+     * 
+     * @author jinyanan
+     *
+     * @param record record
+     * @return List<AttrCatgDto>
+     */
+    List<AttrCatgDto> selectSelective(AttrCatgDto record);
+    
     /**
      * Description: updateByPrimaryKeySelective<br>
      *

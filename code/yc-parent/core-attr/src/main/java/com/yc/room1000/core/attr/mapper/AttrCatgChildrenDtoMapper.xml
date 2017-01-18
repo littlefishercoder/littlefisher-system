@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.room1000.core.attr.dao.AttrCatgChildrenDtoMapper">
+    <resultMap id="BaseResultMap" type="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto">
+        <!-- @mbg.generated -->
+        <id column="ID" jdbcType="INTEGER" property="id" />
+        <result column="CATG_ID" jdbcType="INTEGER" property="catgId" />
+        <result column="CHILD_CATG_ID" jdbcType="INTEGER" property="childCatgId" />
+        <result column="CHILD_ATTR_ID" jdbcType="INTEGER" property="childAttrId" />
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!-- @mbg.generated -->
+        ID, CATG_ID, CHILD_CATG_ID, CHILD_ATTR_ID
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!-- @mbg.generated -->
+        select
+        <include refid="Base_Column_List" />
+        from EG_ATTR_CATG_CHILDREN
+        where ID = #{id,jdbcType=INTEGER}
+    </select>
+    <select id="selectSelective" parameterType="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from EG_ATTR_CATG_CHILDREN
+        where CATG_ID = #{catgId,jdbcType=INTEGER}
+        <trim suffixOverrides=",">
+            <if test="childCatgId != null">
+                and CHILD_CATG_ID = #{childCatgId,jdbcType=INTEGER},
+            </if>
+            <if test="childAttrId != null">
+                and CHILD_ATTR_ID = #{childAttrId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!-- @mbg.generated -->
+        delete from EG_ATTR_CATG_CHILDREN
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto">
+        <!-- @mbg.generated -->
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into EG_ATTR_CATG_CHILDREN (ID, CATG_ID, CHILD_CATG_ID,
+        CHILD_ATTR_ID)
+        values (#{id,jdbcType=INTEGER},
+        #{catgId,jdbcType=INTEGER}, #{childCatgId,jdbcType=INTEGER},
+        #{childAttrId,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" parameterType="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto">
+        <!-- @mbg.generated -->
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into EG_ATTR_CATG_CHILDREN
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            ID,
+            <if test="catgId != null">
+                CATG_ID,
+            </if>
+            <if test="childCatgId != null">
+                CHILD_CATG_ID,
+            </if>
+            <if test="childAttrId != null">
+                CHILD_ATTR_ID,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{id,jdbcType=INTEGER},
+            <if test="catgId != null">
+                #{catgId,jdbcType=INTEGER},
+            </if>
+            <if test="childCatgId != null">
+                #{childCatgId,jdbcType=INTEGER},
+            </if>
+            <if test="childAttrId != null">
+                #{childAttrId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto">
+        <!-- @mbg.generated -->
+        update EG_ATTR_CATG_CHILDREN
+        <set>
+            <if test="catgId != null">
+                CATG_ID = #{catgId,jdbcType=INTEGER},
+            </if>
+            <if test="childCatgId != null">
+                CHILD_CATG_ID = #{childCatgId,jdbcType=INTEGER},
+            </if>
+            <if test="childAttrId != null">
+                CHILD_ATTR_ID = #{childAttrId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto">
+        <!-- @mbg.generated -->
+        update EG_ATTR_CATG_CHILDREN
+        set CATG_ID = #{catgId,jdbcType=INTEGER},
+        CHILD_CATG_ID =
+        #{childCatgId,jdbcType=INTEGER},
+        CHILD_ATTR_ID = #{childAttrId,jdbcType=INTEGER}
+        where ID = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

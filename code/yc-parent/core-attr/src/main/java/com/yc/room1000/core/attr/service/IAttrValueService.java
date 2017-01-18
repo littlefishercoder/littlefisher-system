@@ -3,6 +3,7 @@ package com.yc.room1000.core.attr.service;
 import java.util.List;
 
 import com.yc.room1000.core.attr.dto.AttrValueDto;
+import com.yc.room1000.core.exception.BaseAppException;
 
 /**
  * 
@@ -24,8 +25,21 @@ public interface IAttrValueService {
      *
      * @param attrId attrId
      * @return List<AttrValueDto>
+     * @throws BaseAppException <br>
      */
-    List<AttrValueDto> getAttrValueDtoByAttrId(Long attrId);
+    List<AttrValueDto> getAttrValueDtoListByAttrId(Long attrId) throws BaseAppException;
+    
+    /**
+     * 
+     * Description: 根据attrValueId查询可选项
+     * 
+     * @author jinyanan
+     *
+     * @param attrValueId attrValueId
+     * @return AttrValueDto
+     * @throws BaseAppException <br>
+     */
+    AttrValueDto getAttrValueDtoById(Long attrValueId) throws BaseAppException;
 
     /**
      * 
@@ -35,19 +49,21 @@ public interface IAttrValueService {
      *
      * @param attrCode attrCode
      * @return List<AttrValueDto>
+     * @throws BaseAppException <br>
      */
-    List<AttrValueDto> getAttrValueDtoByAttrCode(String attrCode);
+    List<AttrValueDto> getAttrValueDtoListByAttrCode(String attrCode) throws BaseAppException;
 
     /**
      * 
-     * Description: 增加可选项，如果优先级为null，默认在最后
+     * Description: 增加可选项，如果优先级为null，默认在最后（前台无需管优先级，后台直接处理）
      * 
      * @author jinyanan
      *
      * @param attrValueDto attrValueDto
      * @return int
+     * @throws BaseAppException <br>
      */
-    int addAttrValueDto(AttrValueDto attrValueDto);
+    int addAttrValueDto(AttrValueDto attrValueDto) throws BaseAppException;
 
     /**
      * 
@@ -57,8 +73,9 @@ public interface IAttrValueService {
      *
      * @param attrValueDto attrValueDto
      * @return int
+     * @throws BaseAppException <br>
      */
-    int updateAttrValueDto(AttrValueDto attrValueDto);
+    int updateAttrValueDto(AttrValueDto attrValueDto) throws BaseAppException;
 
     /**
      * 
@@ -68,8 +85,9 @@ public interface IAttrValueService {
      *
      * @param attrValueId attrValueId
      * @return int
+     * @throws BaseAppException <br>
      */
-    int deleteAttrValueDto(Long attrValueId);
+    int deleteAttrValueDto(Long attrValueId) throws BaseAppException;
 
     /**
      * 
@@ -78,8 +96,9 @@ public interface IAttrValueService {
      * @author jinyanan
      *
      * @param attrValueId attrValueId
+     * @throws BaseAppException <br>
      */
-    void increasePriority(Long attrValueId);
+    void increasePriority(Long attrValueId) throws BaseAppException;
 
     /**
      * 
@@ -88,6 +107,7 @@ public interface IAttrValueService {
      * @author jinyanan
      *
      * @param attrValueId attrValueId
+     * @throws BaseAppException <br>
      */
-    void decreasePriority(Long attrValueId);
+    void decreasePriority(Long attrValueId) throws BaseAppException;
 }

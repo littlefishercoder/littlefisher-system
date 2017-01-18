@@ -12,7 +12,7 @@ import java.io.Serializable;
  * @version 1.0
  * @since v1.0
  */
-public class AttrValueDto implements Serializable {
+public class AttrCatgChildrenDto implements Serializable {
     /**
      * id 主键
      * @mbg.generated
@@ -20,28 +20,22 @@ public class AttrValueDto implements Serializable {
     private Long id;
 
     /**
-     * attrId 属性主键
+     * catgId 当前目录主键
      * @mbg.generated
      */
-    private Long attrId;
+    private Long catgId;
 
     /**
-     * value 属性可选项
+     * childCatgId 子目录主键
      * @mbg.generated
      */
-    private String value;
+    private Long childCatgId;
 
     /**
-     * valueMask 可选项展示内容
+     * childAttrId 子属性主键
      * @mbg.generated
      */
-    private String valueMask;
-
-    /**
-     * priority 优先级
-     * @mbg.generated
-     */
-    private Long priority;
+    private Long childAttrId;
 
     /**
      * serialVersionUID
@@ -56,36 +50,28 @@ public class AttrValueDto implements Serializable {
         this.id = id;
     }
 
-    public Long getAttrId() {
-        return attrId;
+    public Long getCatgId() {
+        return catgId;
     }
 
-    public void setAttrId(Long attrId) {
-        this.attrId = attrId;
+    public void setCatgId(Long catgId) {
+        this.catgId = catgId;
     }
 
-    public String getValue() {
-        return value;
+    public Long getChildCatgId() {
+        return childCatgId;
     }
 
-    public void setValue(String value) {
-        this.value = value == null ? null : value.trim();
+    public void setChildCatgId(Long childCatgId) {
+        this.childCatgId = childCatgId;
     }
 
-    public String getValueMask() {
-        return valueMask;
+    public Long getChildAttrId() {
+        return childAttrId;
     }
 
-    public void setValueMask(String valueMask) {
-        this.valueMask = valueMask == null ? null : valueMask.trim();
-    }
-
-    public Long getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Long priority) {
-        this.priority = priority;
+    public void setChildAttrId(Long childAttrId) {
+        this.childAttrId = childAttrId;
     }
 
     /**
@@ -103,10 +89,9 @@ public class AttrValueDto implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", attrId=").append(attrId);
-        sb.append(", value=").append(value);
-        sb.append(", valueMask=").append(valueMask);
-        sb.append(", priority=").append(priority);
+        sb.append(", catgId=").append(catgId);
+        sb.append(", childCatgId=").append(childCatgId);
+        sb.append(", childAttrId=").append(childAttrId);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
