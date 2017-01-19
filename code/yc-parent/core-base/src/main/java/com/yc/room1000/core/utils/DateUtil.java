@@ -756,28 +756,15 @@ public final class DateUtil {
      * @return java.sql.Date
      */
     public static java.sql.Date getDBDateTime() {
-        return getDBDateTime(false);
-    }
-
-    /**
-     * 
-     * Description: 获取数据库时间。基于本地时间和数据库时间的差值进行获取,超过20min，则自动跟数据库时间进行校准。该方法没有考虑线程同步，可能会有一点点影响，但没什么关系
-     * 
-     * @author jinyanan
-     *
-     * @param retainMillSecond  是否保留毫秒
-     * @return java.sql.Date
-     */
-    public static java.sql.Date getDBDateTime(boolean retainMillSecond) {
         java.sql.Date retDate = null;
         long begin = System.currentTimeMillis();
         if (latestQueryTimeMillis == 0 || (begin - latestQueryTimeMillis > 1000L * 60 * 20)) { // 定为20分钟
             // 是首次查询，或者是查询超过了指定的间隔时间 <br>
-            retDate = retainMillSecond ? getDBCurrentTimeWithMSecond() : getDBCurrentTime();
+            retDate = getDBCurrentTime();
             long end = System.currentTimeMillis();
             if (end - begin <= 50) {
                 // 查询小于50毫秒 <br>
-                intervalsOfDBandSysdate = (retainMillSecond ? begin : (begin / 1000 * 1000)) - retDate.getTime();
+                intervalsOfDBandSysdate = (begin / 1000 * 1000) - retDate.getTime();
                 latestQueryTimeMillis = begin;
             }
             else {
@@ -787,23 +774,9 @@ public final class DateUtil {
         }
         else {
             // 两次查询在许可的时间间隔之内，不需要重新从数据库查询 <br>
-            // System.out.println("get db date time by local cache");
-            retDate = new java.sql.Date((retainMillSecond ? begin : (begin / 1000 * 1000)) - intervalsOfDBandSysdate);
+            retDate = new java.sql.Date((begin / 1000 * 1000) - intervalsOfDBandSysdate);
         }
         return retDate;
-    }
-    
-    /**
-     * 
-     * Description: 返回数据库当前时间，带毫秒
-     * 
-     * @author jinyanan
-     *
-     * @return java.sql.Date
-     */
-    private static java.sql.Date getDBCurrentTime() {
-        // TODO: 后续再处理获取数据库时间的代码
-        return dateToSqlDate(new Date());
     }
 
     /**
@@ -814,7 +787,7 @@ public final class DateUtil {
      *
      * @return java.sql.Date
      */
-    private static java.sql.Date getDBCurrentTimeWithMSecond() {
+    private static java.sql.Date getDBCurrentTime() {
         // TODO: 后续再处理获取数据库时间的代码
         return dateToSqlDate(new Date());
     }

@@ -26,14 +26,14 @@
     -->
     select 
     <include refid="Base_Column_List" />
-    from EG_ATTR
+    from ATTR
     where ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
     @mbg.generated
     -->
-    delete from EG_ATTR
+    delete from ATTR
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yc.room1000.core.attr.dto.AttrDto">
@@ -43,7 +43,7 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into EG_ATTR (ID, NAME, CODE, 
+    insert into ATTR (ID, NAME, CODE, 
       UNIT_ID, TYPE, STATE, STATE_DATE, 
       COMMENTS)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
@@ -57,7 +57,7 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into EG_ATTR
+    insert into ATTR
     <trim prefix="(" suffix=")" suffixOverrides=",">
       ID,
       <if test="name != null">
@@ -111,7 +111,7 @@
     <!--
     @mbg.generated
     -->
-    update EG_ATTR
+    update ATTR
     <set>
       <if test="name != null">
         NAME = #{name,jdbcType=VARCHAR},
@@ -141,7 +141,7 @@
     <!--
     @mbg.generated
     -->
-    update EG_ATTR
+    update ATTR
     set NAME = #{name,jdbcType=VARCHAR},
       CODE = #{code,jdbcType=VARCHAR},
       UNIT_ID = #{unitId,jdbcType=INTEGER},

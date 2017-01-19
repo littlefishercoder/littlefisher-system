@@ -16,13 +16,13 @@
         <!-- @mbg.generated -->
         select
         <include refid="Base_Column_List" />
-        from EG_ATTR_CATG_CHILDREN
+        from ATTR_CATG_CHILDREN
         where ID = #{id,jdbcType=INTEGER}
     </select>
     <select id="selectSelective" parameterType="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from EG_ATTR_CATG_CHILDREN
+        from ATTR_CATG_CHILDREN
         where CATG_ID = #{catgId,jdbcType=INTEGER}
         <trim suffixOverrides=",">
             <if test="childCatgId != null">
@@ -35,7 +35,7 @@
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         <!-- @mbg.generated -->
-        delete from EG_ATTR_CATG_CHILDREN
+        delete from ATTR_CATG_CHILDREN
         where ID = #{id,jdbcType=INTEGER}
     </delete>
     <insert id="insert" parameterType="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto">
@@ -43,7 +43,7 @@
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into EG_ATTR_CATG_CHILDREN (ID, CATG_ID, CHILD_CATG_ID,
+        insert into ATTR_CATG_CHILDREN (ID, CATG_ID, CHILD_CATG_ID,
         CHILD_ATTR_ID)
         values (#{id,jdbcType=INTEGER},
         #{catgId,jdbcType=INTEGER}, #{childCatgId,jdbcType=INTEGER},
@@ -54,7 +54,7 @@
         <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into EG_ATTR_CATG_CHILDREN
+        insert into ATTR_CATG_CHILDREN
         <trim prefix="(" suffix=")" suffixOverrides=",">
             ID,
             <if test="catgId != null">
@@ -82,7 +82,7 @@
     </insert>
     <update id="updateByPrimaryKeySelective" parameterType="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto">
         <!-- @mbg.generated -->
-        update EG_ATTR_CATG_CHILDREN
+        update ATTR_CATG_CHILDREN
         <set>
             <if test="catgId != null">
                 CATG_ID = #{catgId,jdbcType=INTEGER},
@@ -98,7 +98,7 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="com.yc.room1000.core.attr.dto.AttrCatgChildrenDto">
         <!-- @mbg.generated -->
-        update EG_ATTR_CATG_CHILDREN
+        update ATTR_CATG_CHILDREN
         set CATG_ID = #{catgId,jdbcType=INTEGER},
         CHILD_CATG_ID =
         #{childCatgId,jdbcType=INTEGER},

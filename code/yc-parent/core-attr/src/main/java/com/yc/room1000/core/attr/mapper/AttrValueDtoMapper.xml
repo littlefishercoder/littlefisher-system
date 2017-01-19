@@ -23,20 +23,20 @@
     -->
     select 
     <include refid="Base_Column_List" />
-    from EG_ATTR_VALUE
+    from ATTR_VALUE
     where ID = #{id,jdbcType=INTEGER}
   </select>
   <select id="selectAttrValueListByAttrId" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from EG_ATTR_VALUE
+    from ATTR_VALUE
     where ATTR_ID = #{attrId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
     @mbg.generated
     -->
-    delete from EG_ATTR_VALUE
+    delete from ATTR_VALUE
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yc.room1000.core.attr.dto.AttrValueDto">
@@ -46,7 +46,7 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into EG_ATTR_VALUE (ID, ATTR_ID, VALUE, 
+    insert into ATTR_VALUE (ID, ATTR_ID, VALUE, 
       VALUE_MASK, PRIORITY)
     values (#{id,jdbcType=INTEGER}, #{attrId,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}, 
       #{valueMask,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER})
@@ -58,7 +58,7 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into EG_ATTR_VALUE
+    insert into ATTR_VALUE
     <trim prefix="(" suffix=")" suffixOverrides=",">
       ID,
       <if test="attrId != null">
@@ -94,7 +94,7 @@
     <!--
     @mbg.generated
     -->
-    update EG_ATTR_VALUE
+    update ATTR_VALUE
     <set>
       <if test="attrId != null">
         ATTR_ID = #{attrId,jdbcType=INTEGER},
@@ -115,7 +115,7 @@
     <!--
     @mbg.generated
     -->
-    update EG_ATTR_VALUE
+    update ATTR_VALUE
     set ATTR_ID = #{attrId,jdbcType=INTEGER},
       VALUE = #{value,jdbcType=VARCHAR},
       VALUE_MASK = #{valueMask,jdbcType=VARCHAR},

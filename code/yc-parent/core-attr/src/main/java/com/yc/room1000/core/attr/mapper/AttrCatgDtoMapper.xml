@@ -24,14 +24,14 @@
     -->
     select 
     <include refid="Base_Column_List" />
-    from EG_ATTR_CATG
+    from ATTR_CATG
     where ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
     @mbg.generated
     -->
-    delete from EG_ATTR_CATG
+    delete from ATTR_CATG
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yc.room1000.core.attr.dto.AttrCatgDto">
@@ -41,7 +41,7 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into EG_ATTR_CATG (ID, CATG_NAME, CATG_CODE, 
+    insert into ATTR_CATG (ID, CATG_NAME, CATG_CODE, 
       CATG_TYPE, STATE, STATE_DATE
       )
     values (#{id,jdbcType=INTEGER}, #{catgName,jdbcType=VARCHAR}, #{catgCode,jdbcType=VARCHAR}, 
@@ -55,7 +55,7 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into EG_ATTR_CATG
+    insert into ATTR_CATG
     <trim prefix="(" suffix=")" suffixOverrides=",">
       ID,
       <if test="catgName != null">
@@ -97,7 +97,7 @@
     <!--
     @mbg.generated
     -->
-    update EG_ATTR_CATG
+    update ATTR_CATG
     <set>
       <if test="catgName != null">
         CATG_NAME = #{catgName,jdbcType=VARCHAR},
@@ -121,7 +121,7 @@
     <!--
     @mbg.generated
     -->
-    update EG_ATTR_CATG
+    update ATTR_CATG
     set CATG_NAME = #{catgName,jdbcType=VARCHAR},
       CATG_CODE = #{catgCode,jdbcType=VARCHAR},
       CATG_TYPE = #{catgType,jdbcType=CHAR},
