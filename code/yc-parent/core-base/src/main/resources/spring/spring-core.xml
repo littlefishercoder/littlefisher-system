@@ -2,16 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
     xmlns:aop="http://www.springframework.org/schema/aop"
-    xsi:schemaLocation="
-http://www.springframework.org/schema/beans 
-http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
-http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-4.3.xsd
-http://www.springframework.org/schema/tx 
-http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
-http://www.springframework.org/schema/aop 
-http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-">
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+                        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+                        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
     <!-- 获取配置参数 -->
     <bean id="configBean" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
@@ -82,22 +76,22 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         <property name="filters" value="mergeStat" />
         <!-- 配置log相关的信息 -->
         <property name="proxyFilters">
-        <list>
-            <ref bean="log-filter"/>
-        </list>
-    </property>
+            <list>
+                <ref bean="log-filter" />
+            </list>
+        </property>
     </bean>
-    
+
     <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter">
         <!-- 打印可执行sql -->
         <property name="statementExecutableSqlLogEnable" value="true" />
-  </bean>
+    </bean>
 
     <!-- 在基本的 MyBatis 中,session 工厂可以使用 SqlSessionFactoryBuilder 来创建。 -->
     <!-- 而在 MyBatis-spring 中,则使用 SqlSessionFactoryBean 来替代。 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        
+
         <!-- myBatis所需要配置的*Mapper.xml所在目录 -->
         <property name="mapperLocations" value="classpath*:com/yc/room1000/**/mapper/*.xml" />
     </bean>
@@ -162,7 +156,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         <!-- advisor代表在切面上要如何操作，该项目中是按照上面配置的transactionAdvice执行操作 -->
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
     </aop:config>
-    
+
     <!-- aop切面用来记录*Service中各个方法的出入参内容，如果出入参是Dto，需要有重写toString方法 -->
     <bean id="logBean" class="com.yc.room1000.core.aop.LogAspect" />
 
@@ -176,9 +170,9 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 
     <!-- 声明注解方式加载bean -->
     <context:annotation-config />
-
-    <context:component-scan base-package="com.yc.room1000.**.service.impl" />
     
-    <import resource="classpath*:activiti.cfg.xml" />
+    <context:component-scan base-package="com.yc.room1000.**.service.impl" />
+
+<!--     <import resource="classpath*:activiti.cfg.xml" /> -->
 
 </beans>

@@ -30,8 +30,8 @@ import com.yc.room1000.core.utils.StringUtil;
  */
 public final class PropResource {
     
-    /** LOGGER */
-    private static final Room1000Logger LOGGER = Room1000Logger.getLogger(PropResource.class);
+    /** logger */
+    private static Room1000Logger logger = Room1000Logger.getLogger(PropResource.class);
     
     /**
      * 缓存资源文件
@@ -149,7 +149,7 @@ public final class PropResource {
                 }
             }
             catch (IOException e) {
-                LOGGER.error("env loader error", e);
+                logger.error("env loader error", e);
             }
         }
         
@@ -200,10 +200,10 @@ public final class PropResource {
             }
         }
         catch (FileNotFoundException e) {
-            LOGGER.error("FileNotFoundException", e);
+            logger.error("FileNotFoundException", e);
         }
         catch (IOException e) {
-            LOGGER.error("IOException", e);
+            logger.error("IOException", e);
         }
         finally {
             try {
@@ -212,7 +212,7 @@ public final class PropResource {
                 }
             }
             catch (IOException e) {
-                LOGGER.error("IOException", e);
+                logger.error("IOException", e);
             }
             try {
                 if (fr != null) {
@@ -220,7 +220,7 @@ public final class PropResource {
                 }
             }
             catch (IOException e) {
-                LOGGER.error("IOException", e);
+                logger.error("IOException", e);
             }
         }
         

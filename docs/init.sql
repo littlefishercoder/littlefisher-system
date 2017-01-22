@@ -252,7 +252,7 @@ create table CONFIG_ITEM
    key AK_UQ_CODE (CODE)
 );
 
-INSERT INTO EG_CONFIG_ITEM(CODE, VALUE, DEFAULT_VALUE, COMMENTS) VALUES ('MONEY_PRECISION', '', '2', '货币金额精度');
+INSERT INTO CONFIG_ITEM(CODE, VALUE, DEFAULT_VALUE, COMMENTS) VALUES ('MONEY_PRECISION', '', '2', '货币金额精度');
 
 /*==============================================================*/
 /* Table: CONTACT_MAN                                           */
@@ -691,9 +691,9 @@ create table TEMPLATE_STATE
 
 alter table TEMPLATE_STATE comment 'A：未发布 B：已发布';
 
-INSERT INTO EG_TEMPLATE_STATE(STATE, STATE_NAME, COMMENTS) VALUES ('A', 'Published', '发布');
-INSERT INTO EG_TEMPLATE_STATE(STATE, STATE_NAME, COMMENTS) VALUES ('B', 'Unpublished', '未发布');
-INSERT INTO EG_TEMPLATE_STATE(STATE, STATE_NAME, COMMENTS) VALUES ('C', 'Deleted', '删除');
+INSERT INTO TEMPLATE_STATE(STATE, STATE_NAME, COMMENTS) VALUES ('A', 'Published', '发布');
+INSERT INTO TEMPLATE_STATE(STATE, STATE_NAME, COMMENTS) VALUES ('B', 'Unpublished', '未发布');
+INSERT INTO TEMPLATE_STATE(STATE, STATE_NAME, COMMENTS) VALUES ('C', 'Deleted', '删除');
 
 /*==============================================================*/
 /* Table: UNIT                                                  */

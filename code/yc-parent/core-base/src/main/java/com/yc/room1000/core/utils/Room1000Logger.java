@@ -4,6 +4,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Logger;
+import org.slf4j.helpers.FormattingTuple;
+import org.slf4j.helpers.MessageFormatter;
 
 /**
  * Description: 日志管理类 
@@ -77,6 +79,22 @@ public final class Room1000Logger {
             logger.debug(msg, t);
         }
     }
+    
+    /**
+     * 
+     * Description: debug
+     * 
+     * @author jinyanan
+     *
+     * @param format format
+     * @param arguments arguments
+     */
+    public void debug(String format, Object... arguments) {
+        if (logger.isDebugEnabled()) {
+            FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
+            logger.debug(ft.getMessage(), ft.getThrowable());
+        }
+    }
 
     /**
      * 
@@ -101,6 +119,20 @@ public final class Room1000Logger {
      */
     public void fatal(Object msg, Throwable t) {
         logger.fatal(msg, t);
+    }
+    
+    /**
+     * 
+     * Description: fatal
+     * 
+     * @author jinyanan
+     *
+     * @param format format
+     * @param arguments arguments
+     */
+    public void fatal(String format, Object... arguments) {
+        FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
+        logger.fatal(ft.getMessage(), ft.getThrowable());
     }
 
     /**
@@ -134,6 +166,22 @@ public final class Room1000Logger {
     
     /**
      * 
+     * Description: info
+     * 
+     * @author jinyanan
+     *
+     * @param format format
+     * @param arguments arguments
+     */
+    public void info(String format, Object... arguments) {
+        if (logger.isInfoEnabled()) {
+            FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
+            logger.info(ft.getMessage(), ft.getThrowable());
+        }
+    }
+    
+    /**
+     * 
      * Description: warn
      * 
      * @author jinyanan
@@ -155,6 +203,20 @@ public final class Room1000Logger {
      */
     public void warn(Object msg, Throwable t) {
         logger.warn(msg, t);
+    }
+    
+    /**
+     * 
+     * Description: warn
+     * 
+     * @author jinyanan
+     *
+     * @param format format
+     * @param arguments arguments
+     */
+    public void warn(String format, Object... arguments) {
+        FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
+        logger.warn(ft.getMessage(), ft.getThrowable());
     }
 
     /**
@@ -180,6 +242,20 @@ public final class Room1000Logger {
      */
     public void error(Object msg, Throwable t) {
         logger.error(msg, t);
+    }
+    
+    /**
+     * 
+     * Description: error
+     * 
+     * @author jinyanan
+     *
+     * @param format format
+     * @param arguments arguments
+     */
+    public void error(String format, Object... arguments) {
+        FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
+        logger.error(ft.getMessage(), ft.getThrowable());
     }
     
 }

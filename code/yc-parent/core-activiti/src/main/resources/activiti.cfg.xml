@@ -14,13 +14,15 @@ http://www.springframework.org/schema/jee/spring-jee-4.3.xsd
 http://www.springframework.org/schema/aop 
 http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
 ">
-<!--     <import resource="classpath*:spring/spring-core.xml" /> -->
+    <import resource="classpath*:spring/spring-core.xml" />
 
     <bean id="processEngineConfiguration" class="org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration">
         <property name="dataSource" ref="dataSource" />
         <property name="databaseType" value="mysql" />
         <property name="databaseSchemaUpdate" value="true" />
         <property name="jobExecutorActivate" value="false" />
+        <!-- 用于更改流程节点的执行行为 -->
+        <property name="activityBehaviorFactory" ref="activityBehaviorFactoryExt" />
     </bean>
 
     <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
@@ -33,5 +35,10 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
     <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
     <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
 
+    <bean id="activityBehaviorFactoryExt" class="com.yc.room1000.core.activiti.ext.ActivityBehaviorFactoryExt">
+        <property name="exclusiveGatewayActivityBehaviorExt" ref="exclusiveGatewayActivityBehaviorExt" />
+    </bean>
+
+    <bean id="exclusiveGatewayActivityBehaviorExt" class="com.yc.room1000.core.activiti.ext.ExclusiveGatewayActivityBehaviorExt" />
 
 </beans>
