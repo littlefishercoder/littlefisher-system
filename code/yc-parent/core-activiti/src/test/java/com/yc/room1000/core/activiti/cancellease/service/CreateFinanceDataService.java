@@ -1,5 +1,4 @@
-package com.yc.room1000.core.activiti.service;
-
+package com.yc.room1000.core.activiti.cancellease.service;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.DelegateTask;
@@ -17,7 +16,7 @@ import com.yc.room1000.core.utils.Room1000Logger;
  * @version 1.0
  * @since v1.0
  */
-public class TakeOrderService implements IProcessAction {
+public class CreateFinanceDataService implements IProcessAction {
     
     /**
      * logger
@@ -37,12 +36,13 @@ public class TakeOrderService implements IProcessAction {
 
     @Override
     public void notify(DelegateTask delegateTask) {
-        logger.debug("接单");
+        // TODO Auto-generated method stub
+
     }
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        // TODO Auto-generated method stub
+        logger.debug("生成财务数据");
 
     }
 

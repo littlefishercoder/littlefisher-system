@@ -1,4 +1,4 @@
-package com.yc.room1000.core.activiti.service;
+package com.yc.room1000.core.activiti.cancellease.service;
 
 
 import org.activiti.engine.delegate.DelegateExecution;
@@ -17,7 +17,7 @@ import com.yc.room1000.core.utils.Room1000Logger;
  * @version 1.0
  * @since v1.0
  */
-public class ButlerGetHomeService implements IProcessAction {
+public class AssignOrderService implements IProcessAction {
     
     /**
      * logger
@@ -37,7 +37,7 @@ public class ButlerGetHomeService implements IProcessAction {
 
     @Override
     public void notify(DelegateTask delegateTask) {
-        logger.debug("管家上门");
+        logger.debug("指派订单");
     }
 
     @Override

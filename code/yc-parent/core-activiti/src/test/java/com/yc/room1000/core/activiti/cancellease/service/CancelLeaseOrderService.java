@@ -1,4 +1,4 @@
-package com.yc.room1000.core.activiti.service;
+package com.yc.room1000.core.activiti.cancellease.service;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.DelegateTask;
@@ -16,7 +16,7 @@ import com.yc.room1000.core.utils.Room1000Logger;
  * @version 1.0
  * @since v1.0
  */
-public class FinanceAuditService implements IProcessAction {
+public class CancelLeaseOrderService implements IProcessAction {
     
     /**
      * logger
@@ -31,19 +31,19 @@ public class FinanceAuditService implements IProcessAction {
     @Override
     public void notify(DelegateExecution execution) throws Exception {
         // TODO Auto-generated method stub
-
+        
     }
 
     @Override
     public void notify(DelegateTask delegateTask) {
-        logger.debug("财务审核");
-
+        // TODO Auto-generated method stub
+        
     }
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        // TODO Auto-generated method stub
-
+        logger.debug("生成退租订单");
+        execution.setVariable("ORDER_ID", "1");
     }
 
 }

@@ -109,7 +109,7 @@ public class ExclusiveGatewayActivityBehaviorExt extends ExclusiveGatewayActivit
             return expression.getResult(variables);
         }
         catch (InstantiationException | IllegalAccessException | ClassNotFoundException | NoSuchFieldException | SecurityException e) {
-            logger.error("cannot instance!", e);
+            logger.debug("cannot instance! The expression is not url.");
             return false;
         }
         

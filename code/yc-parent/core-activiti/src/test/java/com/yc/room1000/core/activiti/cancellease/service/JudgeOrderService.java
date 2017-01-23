@@ -1,4 +1,4 @@
-package com.yc.room1000.core.activiti.service;
+package com.yc.room1000.core.activiti.cancellease.service;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.DelegateTask;
@@ -16,13 +16,12 @@ import com.yc.room1000.core.utils.Room1000Logger;
  * @version 1.0
  * @since v1.0
  */
-public class ApplyToPayService implements IProcessAction {
+public class JudgeOrderService implements IProcessAction {
     
     /**
      * logger
      */
     private static Room1000Logger logger = Room1000Logger.getLogger(ApplyToPayService.class);
-        
 
     /**
      * serialVersionUID 
@@ -31,8 +30,8 @@ public class ApplyToPayService implements IProcessAction {
 
     @Override
     public void notify(DelegateExecution execution) throws Exception {
-        // TODO Auto-generated method stub
-
+        logger.debug("分支判断，校验受理渠道");
+        execution.getVariables().put("channel", "1");
     }
 
     @Override
@@ -43,7 +42,7 @@ public class ApplyToPayService implements IProcessAction {
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-        logger.debug("请求支付");
+        // TODO Auto-generated method stub
 
     }
 

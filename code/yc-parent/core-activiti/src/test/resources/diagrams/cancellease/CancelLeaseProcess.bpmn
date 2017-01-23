@@ -2,10 +2,10 @@
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.room1000.com/">
   <process id="CancelLeaseProcess" name="CancelLeaseProcess" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
-    <serviceTask id="servicetask1" name="生成退租订单" activiti:class="com.yc.room1000.core.activiti.service.CancelLeaseOrderService"></serviceTask>
+    <serviceTask id="servicetask1" name="生成退租订单" activiti:class="com.yc.room1000.core.activiti.cancellease.service.CancelLeaseOrderService"></serviceTask>
     <userTask id="usertask1" name="指派订单" activiti:assignee="assignOrder">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.service.AssignOrderService"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.cancellease.service.AssignOrderService"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow2" name="微信、UP、客服" sourceRef="exclusivegateway1" targetRef="usertask1">
@@ -13,42 +13,42 @@
     </sequenceFlow>
     <userTask id="usertask2" name="接单" activiti:assignee="takeOrder">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.service.TakeOrderService"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.cancellease.service.TakeOrderService"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <userTask id="usertask3" name="管家上门" activiti:assignee="butlerGetHome">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.service.ButlerGetHomeService"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.cancellease.service.ButlerGetHomeService"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <userTask id="usertask5" name="市场部高管审批" activiti:assignee="marketingExecutiveAudit">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.service.MarketingExecutiveAuditService"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.cancellease.service.MarketingExecutiveAuditService"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <endEvent id="endevent2" name="End"></endEvent>
     <sequenceFlow id="flow11" sourceRef="servicetask5" targetRef="endevent2"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway1" name="Exclusive Gateway">
       <extensionElements>
-        <activiti:executionListener event="start" class="com.yc.room1000.core.activiti.service.JudgeOrderService"></activiti:executionListener>
+        <activiti:executionListener event="start" class="com.yc.room1000.core.activiti.cancellease.service.JudgeOrderService"></activiti:executionListener>
       </extensionElements>
     </exclusiveGateway>
     <sequenceFlow id="flow12" sourceRef="startevent1" targetRef="servicetask1"></sequenceFlow>
     <sequenceFlow id="flow14" name="管家" sourceRef="exclusivegateway1" targetRef="usertask3">
       <conditionExpression xsi:type="tFormalExpression"><![CDATA[${channel == 1}]]></conditionExpression>
     </sequenceFlow>
-    <serviceTask id="servicetask3" name="生成财务数据" activiti:class="com.yc.room1000.core.activiti.service.CreateFinanceDataService"></serviceTask>
-    <serviceTask id="servicetask4" name="请求支付" activiti:class="com.yc.room1000.core.activiti.service.ApplyToPayService"></serviceTask>
-    <serviceTask id="servicetask5" name="关闭订单" activiti:class="com.yc.room1000.core.activiti.service.CompleteOrderService"></serviceTask>
+    <serviceTask id="servicetask3" name="生成财务数据" activiti:class="com.yc.room1000.core.activiti.cancellease.service.CreateFinanceDataService"></serviceTask>
+    <serviceTask id="servicetask4" name="请求支付" activiti:class="com.yc.room1000.core.activiti.cancellease.service.ApplyToPayService"></serviceTask>
+    <serviceTask id="servicetask5" name="关闭订单" activiti:class="com.yc.room1000.core.activiti.cancellease.service.CompleteOrderService"></serviceTask>
     <userTask id="usertask6" name="租务核算" activiti:assignee="rentalAccount">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.service.RentalAccountService"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.cancellease.service.RentalAccountService"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow16" sourceRef="usertask3" targetRef="usertask6"></sequenceFlow>
     <userTask id="usertask7" name="待支付完成" activiti:assignee="wait2Pay">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.service.Wait2PayService"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.cancellease.service.Wait2PayService"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow20" sourceRef="servicetask4" targetRef="usertask7"></sequenceFlow>
@@ -58,7 +58,7 @@
     <sequenceFlow id="flow23" sourceRef="usertask1" targetRef="exclusivegateway2"></sequenceFlow>
     <endEvent id="endevent4" name="End"></endEvent>
     <sequenceFlow id="flow24" name="订单关闭" sourceRef="exclusivegateway2" targetRef="endevent4">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[com.yc.room1000.core.activiti.service.CheckNeedClose]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[com.yc.room1000.core.activiti.cancellease.service.CheckNeedClose]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow25" sourceRef="exclusivegateway2" targetRef="usertask2"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway5" name="Exclusive Gateway" default="flow34"></exclusiveGateway>
@@ -68,7 +68,7 @@
     </sequenceFlow>
     <userTask id="usertask8" name="财务审批" activiti:assignee="financeAudit">
       <extensionElements>
-        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.service.FinanceAuditService"></activiti:taskListener>
+        <activiti:taskListener event="create" class="com.yc.room1000.core.activiti.cancellease.service.FinanceAuditService"></activiti:taskListener>
       </extensionElements>
     </userTask>
     <sequenceFlow id="flow34" sourceRef="exclusivegateway5" targetRef="usertask8"></sequenceFlow>

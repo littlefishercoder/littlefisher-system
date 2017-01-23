@@ -1,5 +1,4 @@
-package com.yc.room1000.core.activiti.service;
-
+package com.yc.room1000.core.activiti.cancellease.service;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.DelegateTask;
@@ -17,7 +16,7 @@ import com.yc.room1000.core.utils.Room1000Logger;
  * @version 1.0
  * @since v1.0
  */
-public class AssignOrderService implements IProcessAction {
+public class FinanceAuditService implements IProcessAction {
     
     /**
      * logger
@@ -37,7 +36,8 @@ public class AssignOrderService implements IProcessAction {
 
     @Override
     public void notify(DelegateTask delegateTask) {
-        logger.debug("指派订单");
+        logger.debug("财务审核");
+
     }
 
     @Override

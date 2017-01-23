@@ -1,4 +1,4 @@
-package com.yc.room1000.core.activiti.service;
+package com.yc.room1000.core.activiti.cancellease.service;
 
 
 import org.activiti.engine.delegate.DelegateExecution;
@@ -17,13 +17,13 @@ import com.yc.room1000.core.utils.Room1000Logger;
  * @version 1.0
  * @since v1.0
  */
-public class MarketingExecutiveAuditService implements IProcessAction {
-
+public class ButlerGetHomeService implements IProcessAction {
+    
     /**
      * logger
      */
     private static Room1000Logger logger = Room1000Logger.getLogger(ApplyToPayService.class);
-    
+
     /**
      * serialVersionUID 
      */
@@ -37,7 +37,7 @@ public class MarketingExecutiveAuditService implements IProcessAction {
 
     @Override
     public void notify(DelegateTask delegateTask) {
-        logger.debug("市场部高管审批");
+        logger.debug("管家上门");
     }
 
     @Override
