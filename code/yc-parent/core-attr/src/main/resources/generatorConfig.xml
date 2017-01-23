@@ -17,7 +17,7 @@
             <!-- 生成作者的名字 -->
             <property name="author" value="jinyanan" />
         </commentGenerator>
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/engine"
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/room1000"
             userId="root" password="root">
         </jdbcConnection>
         <javaTypeResolver type="com.yc.room1000.core.mybatis.YcJavaTypeResolver">
@@ -36,27 +36,12 @@
             <property name="enableSubPackages" value="false" />
             <property name="rootInterface" value="com.yc.room1000.core.mybatis.SuperMapper" />
         </javaClientGenerator>
-        <table tableName="EG_ATTR" domainObjectName="AttrDto" enableCountByExample="false"
+        <table tableName="CANCEL_LEASE_ORDER" domainObjectName="CancelLeaseOrderDto" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="Mysql" />
         </table>
-        <table tableName="EG_ATTR_CATG" domainObjectName="AttrCatgDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql" />
-        </table>
-        <table tableName="EG_ATTR_VALUE" domainObjectName="AttrValueDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql" />
-        </table>
-        <table tableName="EG_ATTR_TYPE" domainObjectName="AttrTypeDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql" />
-        </table>
-        <table tableName="EG_ATTR_CATG_CHILDREN" domainObjectName="AttrCatgChildrenDto" enableCountByExample="false"
+        <table tableName="WORK_ORDER" domainObjectName="WorkOrderDto" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
             <generatedKey column="id" sqlStatement="Mysql" />

@@ -6,8 +6,8 @@
     <sequenceFlow id="flow2" sourceRef="servicetask2" targetRef="endevent1"></sequenceFlow>
     <endEvent id="endevent1" name="End"></endEvent>
     <sequenceFlow id="flow3" sourceRef="servicetask1" targetRef="servicetask2"></sequenceFlow>
-    <serviceTask id="servicetask1" name="自动环节1" activiti:class="com.yc.crm.jyn.activiti.service.Auto1Service"></serviceTask>
-    <serviceTask id="servicetask2" name="自动环节2" activiti:class="com.yc.crm.jyn.activiti.service.Auto2Service"></serviceTask>
+    <serviceTask id="servicetask1" name="自动环节1" activiti:class="com.yc.room1000.jyn.helloworld.service.impl.Auto1ServiceImpl"></serviceTask>
+    <serviceTask id="servicetask2" name="自动环节2" activiti:class="com.yc.room1000.jyn.helloworld.service.impl.Auto2ServiceImpl"></serviceTask>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_HelloWorldProcess">
     <bpmndi:BPMNPlane bpmnElement="HelloWorldProcess" id="BPMNPlane_HelloWorldProcess">

@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.yc.room1000.core.exception.BaseAppException;
-import com.yc.room1000.crm.jyn.dto.UserDto;
-import com.yc.room1000.crm.jyn.service.IUserService;
+import com.yc.room1000.jyn.user.dto.UserDto;
+import com.yc.room1000.jyn.user.service.IUserService;
 
 /**
  * 
