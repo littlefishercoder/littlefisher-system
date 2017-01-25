@@ -1,5 +1,7 @@
 package com.yc.room1000.core.attr.dao;
 
+import java.util.List;
+
 import com.yc.room1000.core.attr.dto.AttrDto;
 import com.yc.room1000.core.mybatis.SuperMapper;
 
@@ -84,4 +86,14 @@ public interface AttrDtoMapper extends SuperMapper {
      * @mbg.generated
      */
     int updateByPrimaryKey(AttrDto record);
+
+    /**
+     * 
+     * Description: selectAllAttr
+     * 
+     * @author jinyanan
+     *
+     * @return List<AttrDto>
+     */
+    List<AttrDto> selectAllAttr();
 }

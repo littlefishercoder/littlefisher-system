@@ -1,9 +1,20 @@
-{
-  "id": 1,
-  "name": "attrName1",
-  "code": "attrCode1",
-  "unitId": "1",
-  "type": "1",
-  "state": "A",
-  "comments": "attrComments1"
-}
+[
+  {
+    "id": 1,
+    "name": "attrName1",
+    "code": "attrCode1",
+    "unitId": "1",
+    "type": "1",
+    "state": "A",
+    "comments": "attrComments1"
+  },
+  {
+    "id": 2,
+    "name": "attrName2",
+    "code": "attrCode2",
+    "unitId": "2",
+    "type": "2",
+    "state": "B",
+    "comments": "attrComments2"
+  }
+]

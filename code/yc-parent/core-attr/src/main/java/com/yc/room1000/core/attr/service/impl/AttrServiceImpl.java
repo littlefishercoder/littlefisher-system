@@ -1,5 +1,7 @@
 package com.yc.room1000.core.attr.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -110,6 +112,11 @@ public class AttrServiceImpl implements IAttrService {
         if (attrCatgChildrenTempDto != null) {
             attrCatgChildrenDtoMapper.deleteByPrimaryKey(attrCatgChildrenTempDto.getId());
         }
+    }
+
+    @Override
+    public List<AttrDto> getAttrList() {
+        return attrDtoMapper.selectAllAttr();
     }
 
 }

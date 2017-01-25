@@ -29,6 +29,11 @@
     from ATTR
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectAllAttr" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ATTR
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
     @mbg.generated

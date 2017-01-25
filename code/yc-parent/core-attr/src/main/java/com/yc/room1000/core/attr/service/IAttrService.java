@@ -1,5 +1,7 @@
 package com.yc.room1000.core.attr.service;
 
+import java.util.List;
+
 import com.yc.room1000.core.attr.dto.AttrDto;
 
 /**
@@ -101,4 +103,14 @@ public interface IAttrService {
      * @param attrCatgId attrCatgId
      */
     void unbindAttrCatg(Long attrId, Long attrCatgId);
+
+    /**
+     * 
+     * Description: 查询所有的AttrDto
+     * 
+     * @author jinyanan
+     *
+     * @return List<AttrDto>
+     */
+    List<AttrDto> getAttrList();
 }
