@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -23,6 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     Spring + Spring MVC + MyBatis <br>
     
-    <a href="<%=path %>/user/listUser.do">User List</a>
+    <a href="<%=path %>/api/v1/jyn/attr/1">User List</a>
   </body>
 </html>

@@ -145,17 +145,57 @@
             <version>${slf4j.version}</version>
         </dependency>
         <!-- log end -->
+        <!-- Jackson fasterxml和codehaus的区别： -->
+        <!-- 他们是Jackson的两大分支、也是两个版本的不同包名。Jackson从2.0开始改用新的包名fasterxml；1.x版本的包名是codehaus。除了包名不同，他们的Maven artifact id也不同。1.x版本现在只提供bug-fix，而2.x版本还在不断开发和发布中。如果是新项目，建议直接用2x，即fasterxml 
+            jackson。 -->
         <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
-        <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-core-asl</artifactId>
-            <version>1.9.13</version>
-        </dependency>
+        <!-- <dependency> -->
+        <!-- <groupId>org.codehaus.jackson</groupId> -->
+        <!-- <artifactId>jackson-core-asl</artifactId> -->
+        <!-- <version>1.9.13</version> -->
+        <!-- </dependency> -->
         <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+        <!-- <dependency> -->
+        <!-- <groupId>org.codehaus.jackson</groupId> -->
+        <!-- <artifactId>jackson-mapper-asl</artifactId> -->
+        <!-- <version>1.9.13</version> -->
+        <!-- </dependency> -->
+        <!-- swagger-springmvc -->
         <dependency>
-            <groupId>org.codehaus.jackson</groupId>
-            <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.13</version>
+            <groupId>com.mangofactory</groupId>
+            <artifactId>swagger-springmvc</artifactId>
+            <version>${swagger-springmvc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mangofactory</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>${swagger-springmvc.version}</version>
+        </dependency>
+        <!-- swagger-springmvc dependencies -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guava.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml</groupId>
+            <artifactId>classmate</artifactId>
+            <version>${classmate.version}</version>
         </dependency>
     </dependencies>
 
