@@ -66,4 +66,20 @@ public class ProcessTaskImpl implements IProcessTask {
         }
     }
 
+    @Override
+    public Map<String, Object> getTaskVariables(String linkName, Map<String, Object> variables, ITaskServiceMatcher matcher) {
+        TaskService taskService = processEngine.getTaskService();
+        List<Task> taskList = processEngine.getTaskService()
+            .createTaskQuery()
+            .taskAssignee(linkName)
+            .list();
+        
+        for (Task task : taskList) {
+            if (matcher.matchTask(variables, taskService.getVariables(task.getId()))) {
+                return taskService.getVariables(task.getId());
+            }
+        }
+        return null;
+    }
+
 }

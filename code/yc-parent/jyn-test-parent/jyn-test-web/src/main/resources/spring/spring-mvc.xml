@@ -18,13 +18,14 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
     <!-- 所有swagger目录的访问，直接访问location指定的目录 -->
     <mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/" />
-
+    
     <!-- swagger配置 -->
     <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
-    
-    <mvc:annotation-driven />
-    
+
     <bean class="com.yc.room1000.core.swagger.SwaggerConfig" />
+    
+    <!--注解驱动，使spring的controller全部生效 -->
+    <mvc:annotation-driven />
 
     <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
@@ -41,8 +42,6 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
             </list>
         </property>
     </bean>
-
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:prefix="/" p:suffix=".jsp" />
 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding">

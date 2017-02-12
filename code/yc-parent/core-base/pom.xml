@@ -13,6 +13,11 @@
     <name>core-base</name>
 
     <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>3.0-alpha-1</version>
+        </dependency>
         <!-- spring mvc -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -160,6 +165,7 @@
         <!-- <artifactId>jackson-mapper-asl</artifactId> -->
         <!-- <version>1.9.13</version> -->
         <!-- </dependency> -->
+
         <!-- swagger-springmvc -->
         <dependency>
             <groupId>com.mangofactory</groupId>

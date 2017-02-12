@@ -1,0 +1,946 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.room1000.jyn.test.dao.RentalLeaseOrderDtoMapper">
+  <resultMap id="BaseResultMap" type="com.yc.room1000.jyn.test.dto.RentalLeaseOrderDto">
+    <!--
+    @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="user_mobile" jdbcType="VARCHAR" property="userMobile" />
+    <result column="begin_time" jdbcType="VARCHAR" property="beginTime" />
+    <result column="end_time" jdbcType="VARCHAR" property="endTime" />
+    <result column="father_id" jdbcType="BIGINT" property="fatherId" />
+    <result column="house_id" jdbcType="BIGINT" property="houseId" />
+    <result column="file_path" jdbcType="VARCHAR" property="filePath" />
+    <result column="desc_text" jdbcType="VARCHAR" property="descText" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="cost" jdbcType="REAL" property="cost" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="isdelete" jdbcType="INTEGER" property="isdelete" />
+    <result column="agents" jdbcType="BIGINT" property="agents" />
+    <result column="bankcard" jdbcType="VARCHAR" property="bankcard" />
+    <result column="cardbank" jdbcType="VARCHAR" property="cardbank" />
+    <result column="cardowen" jdbcType="VARCHAR" property="cardowen" />
+    <result column="watercard" jdbcType="VARCHAR" property="watercard" />
+    <result column="electriccard" jdbcType="VARCHAR" property="electriccard" />
+    <result column="gascard" jdbcType="VARCHAR" property="gascard" />
+    <result column="pay_type" jdbcType="INTEGER" property="payType" />
+    <result column="sbcode" jdbcType="VARCHAR" property="sbcode" />
+    <result column="cost_a" jdbcType="VARCHAR" property="costA" />
+    <result column="pay_time" jdbcType="VARCHAR" property="payTime" />
+    <result column="free_period" jdbcType="INTEGER" property="freePeriod" />
+    <result column="water_meter" jdbcType="VARCHAR" property="waterMeter" />
+    <result column="gas_meter" jdbcType="VARCHAR" property="gasMeter" />
+    <result column="electricity_meter_h" jdbcType="VARCHAR" property="electricityMeterH" />
+    <result column="electricity_meter_l" jdbcType="VARCHAR" property="electricityMeterL" />
+    <result column="electricity_meter" jdbcType="VARCHAR" property="electricityMeter" />
+    <result column="sms" jdbcType="INTEGER" property="sms" />
+    <result column="is_cubicle" jdbcType="INTEGER" property="isCubicle" />
+    <result column="keys_count" jdbcType="VARCHAR" property="keysCount" />
+    <result column="areaid" jdbcType="VARCHAR" property="areaid" />
+    <result column="operid" jdbcType="VARCHAR" property="operid" />
+    <result column="bankid" jdbcType="VARCHAR" property="bankid" />
+    <result column="propertyPath" jdbcType="VARCHAR" property="propertypath" />
+    <result column="agentPath" jdbcType="VARCHAR" property="agentpath" />
+    <result column="serviceMonery" jdbcType="VARCHAR" property="servicemonery" />
+    <result column="propertyMonery" jdbcType="VARCHAR" property="propertymonery" />
+    <result column="notaryid" jdbcType="VARCHAR" property="notaryid" />
+    <result column="payway" jdbcType="VARCHAR" property="payway" />
+    <result column="checkouttime" jdbcType="TIMESTAMP" property="checkouttime" />
+    <result column="deposit" jdbcType="VARCHAR" property="deposit" />
+    <result column="new_old_matched" jdbcType="VARCHAR" property="newOldMatched" />
+    <result column="freeRankType" jdbcType="VARCHAR" property="freeranktype" />
+    <result column="propertyType" jdbcType="VARCHAR" property="propertytype" />
+    <result column="mortgage" jdbcType="VARCHAR" property="mortgage" />
+    <result column="propertyCode" jdbcType="VARCHAR" property="propertycode" />
+    <result column="propertyPerson" jdbcType="VARCHAR" property="propertyperson" />
+    <result column="co_owner" jdbcType="VARCHAR" property="coOwner" />
+    <result column="wtuserid" jdbcType="VARCHAR" property="wtuserid" />
+    <result column="dluserid" jdbcType="VARCHAR" property="dluserid" />
+    <result column="wtmobile" jdbcType="VARCHAR" property="wtmobile" />
+    <result column="wtAddress" jdbcType="VARCHAR" property="wtaddress" />
+    <result column="wtIDCard" jdbcType="VARCHAR" property="wtidcard" />
+    <result column="wtname" jdbcType="VARCHAR" property="wtname" />
+    <result column="wtemail" jdbcType="VARCHAR" property="wtemail" />
+    <result column="wtrealAddress" jdbcType="VARCHAR" property="wtrealaddress" />
+    <result column="dlmobile" jdbcType="VARCHAR" property="dlmobile" />
+    <result column="dlAddress" jdbcType="VARCHAR" property="dladdress" />
+    <result column="dlIDCard" jdbcType="VARCHAR" property="dlidcard" />
+    <result column="dlname" jdbcType="VARCHAR" property="dlname" />
+    <result column="dlemail" jdbcType="VARCHAR" property="dlemail" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.yc.room1000.jyn.test.dto.RentalLeaseOrderDto">
+    <!--
+    @mbg.generated
+    -->
+    <result column="old_matched" jdbcType="LONGVARCHAR" property="oldMatched" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+    @mbg.generated
+    -->
+    id, code, name, type, user_id, user_mobile, begin_time, end_time, father_id, house_id, 
+    file_path, desc_text, status, cost, create_time, isdelete, agents, bankcard, cardbank, 
+    cardowen, watercard, electriccard, gascard, pay_type, sbcode, cost_a, pay_time, free_period, 
+    water_meter, gas_meter, electricity_meter_h, electricity_meter_l, electricity_meter, 
+    sms, is_cubicle, keys_count, areaid, operid, bankid, propertyPath, agentPath, serviceMonery, 
+    propertyMonery, notaryid, payway, checkouttime, deposit, new_old_matched, freeRankType, 
+    propertyType, mortgage, propertyCode, propertyPerson, co_owner, wtuserid, dluserid, 
+    wtmobile, wtAddress, wtIDCard, wtname, wtemail, wtrealAddress, dlmobile, dlAddress, 
+    dlIDCard, dlname, dlemail
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--
+    @mbg.generated
+    -->
+    old_matched
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
+    <!--
+    @mbg.generated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from yc_agreement_tab
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
+    delete from yc_agreement_tab
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yc.room1000.jyn.test.dto.RentalLeaseOrderDto">
+    <!--
+    @mbg.generated
+    -->
+    insert into yc_agreement_tab (id, code, name, 
+      type, user_id, user_mobile, 
+      begin_time, end_time, father_id, 
+      house_id, file_path, desc_text, 
+      status, cost, create_time, 
+      isdelete, agents, bankcard, 
+      cardbank, cardowen, watercard, 
+      electriccard, gascard, pay_type, 
+      sbcode, cost_a, pay_time, 
+      free_period, water_meter, gas_meter, 
+      electricity_meter_h, electricity_meter_l, electricity_meter, 
+      sms, is_cubicle, keys_count, 
+      areaid, operid, bankid, 
+      propertyPath, agentPath, serviceMonery, 
+      propertyMonery, notaryid, payway, 
+      checkouttime, deposit, new_old_matched, 
+      freeRankType, propertyType, mortgage, 
+      propertyCode, propertyPerson, co_owner, 
+      wtuserid, dluserid, wtmobile, 
+      wtAddress, wtIDCard, wtname, 
+      wtemail, wtrealAddress, dlmobile, 
+      dlAddress, dlIDCard, dlname, 
+      dlemail, old_matched)
+    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{userMobile,jdbcType=VARCHAR}, 
+      #{beginTime,jdbcType=VARCHAR}, #{endTime,jdbcType=VARCHAR}, #{fatherId,jdbcType=BIGINT}, 
+      #{houseId,jdbcType=BIGINT}, #{filePath,jdbcType=VARCHAR}, #{descText,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{cost,jdbcType=REAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{isdelete,jdbcType=INTEGER}, #{agents,jdbcType=BIGINT}, #{bankcard,jdbcType=VARCHAR}, 
+      #{cardbank,jdbcType=VARCHAR}, #{cardowen,jdbcType=VARCHAR}, #{watercard,jdbcType=VARCHAR}, 
+      #{electriccard,jdbcType=VARCHAR}, #{gascard,jdbcType=VARCHAR}, #{payType,jdbcType=INTEGER}, 
+      #{sbcode,jdbcType=VARCHAR}, #{costA,jdbcType=VARCHAR}, #{payTime,jdbcType=VARCHAR}, 
+      #{freePeriod,jdbcType=INTEGER}, #{waterMeter,jdbcType=VARCHAR}, #{gasMeter,jdbcType=VARCHAR}, 
+      #{electricityMeterH,jdbcType=VARCHAR}, #{electricityMeterL,jdbcType=VARCHAR}, #{electricityMeter,jdbcType=VARCHAR}, 
+      #{sms,jdbcType=INTEGER}, #{isCubicle,jdbcType=INTEGER}, #{keysCount,jdbcType=VARCHAR}, 
+      #{areaid,jdbcType=VARCHAR}, #{operid,jdbcType=VARCHAR}, #{bankid,jdbcType=VARCHAR}, 
+      #{propertypath,jdbcType=VARCHAR}, #{agentpath,jdbcType=VARCHAR}, #{servicemonery,jdbcType=VARCHAR}, 
+      #{propertymonery,jdbcType=VARCHAR}, #{notaryid,jdbcType=VARCHAR}, #{payway,jdbcType=VARCHAR}, 
+      #{checkouttime,jdbcType=TIMESTAMP}, #{deposit,jdbcType=VARCHAR}, #{newOldMatched,jdbcType=VARCHAR}, 
+      #{freeranktype,jdbcType=VARCHAR}, #{propertytype,jdbcType=VARCHAR}, #{mortgage,jdbcType=VARCHAR}, 
+      #{propertycode,jdbcType=VARCHAR}, #{propertyperson,jdbcType=VARCHAR}, #{coOwner,jdbcType=VARCHAR}, 
+      #{wtuserid,jdbcType=VARCHAR}, #{dluserid,jdbcType=VARCHAR}, #{wtmobile,jdbcType=VARCHAR}, 
+      #{wtaddress,jdbcType=VARCHAR}, #{wtidcard,jdbcType=VARCHAR}, #{wtname,jdbcType=VARCHAR}, 
+      #{wtemail,jdbcType=VARCHAR}, #{wtrealaddress,jdbcType=VARCHAR}, #{dlmobile,jdbcType=VARCHAR}, 
+      #{dladdress,jdbcType=VARCHAR}, #{dlidcard,jdbcType=VARCHAR}, #{dlname,jdbcType=VARCHAR}, 
+      #{dlemail,jdbcType=VARCHAR}, #{oldMatched,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.room1000.jyn.test.dto.RentalLeaseOrderDto">
+    <!--
+    @mbg.generated
+    -->
+    insert into yc_agreement_tab
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userMobile != null">
+        user_mobile,
+      </if>
+      <if test="beginTime != null">
+        begin_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="fatherId != null">
+        father_id,
+      </if>
+      <if test="houseId != null">
+        house_id,
+      </if>
+      <if test="filePath != null">
+        file_path,
+      </if>
+      <if test="descText != null">
+        desc_text,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="cost != null">
+        cost,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="isdelete != null">
+        isdelete,
+      </if>
+      <if test="agents != null">
+        agents,
+      </if>
+      <if test="bankcard != null">
+        bankcard,
+      </if>
+      <if test="cardbank != null">
+        cardbank,
+      </if>
+      <if test="cardowen != null">
+        cardowen,
+      </if>
+      <if test="watercard != null">
+        watercard,
+      </if>
+      <if test="electriccard != null">
+        electriccard,
+      </if>
+      <if test="gascard != null">
+        gascard,
+      </if>
+      <if test="payType != null">
+        pay_type,
+      </if>
+      <if test="sbcode != null">
+        sbcode,
+      </if>
+      <if test="costA != null">
+        cost_a,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="freePeriod != null">
+        free_period,
+      </if>
+      <if test="waterMeter != null">
+        water_meter,
+      </if>
+      <if test="gasMeter != null">
+        gas_meter,
+      </if>
+      <if test="electricityMeterH != null">
+        electricity_meter_h,
+      </if>
+      <if test="electricityMeterL != null">
+        electricity_meter_l,
+      </if>
+      <if test="electricityMeter != null">
+        electricity_meter,
+      </if>
+      <if test="sms != null">
+        sms,
+      </if>
+      <if test="isCubicle != null">
+        is_cubicle,
+      </if>
+      <if test="keysCount != null">
+        keys_count,
+      </if>
+      <if test="areaid != null">
+        areaid,
+      </if>
+      <if test="operid != null">
+        operid,
+      </if>
+      <if test="bankid != null">
+        bankid,
+      </if>
+      <if test="propertypath != null">
+        propertyPath,
+      </if>
+      <if test="agentpath != null">
+        agentPath,
+      </if>
+      <if test="servicemonery != null">
+        serviceMonery,
+      </if>
+      <if test="propertymonery != null">
+        propertyMonery,
+      </if>
+      <if test="notaryid != null">
+        notaryid,
+      </if>
+      <if test="payway != null">
+        payway,
+      </if>
+      <if test="checkouttime != null">
+        checkouttime,
+      </if>
+      <if test="deposit != null">
+        deposit,
+      </if>
+      <if test="newOldMatched != null">
+        new_old_matched,
+      </if>
+      <if test="freeranktype != null">
+        freeRankType,
+      </if>
+      <if test="propertytype != null">
+        propertyType,
+      </if>
+      <if test="mortgage != null">
+        mortgage,
+      </if>
+      <if test="propertycode != null">
+        propertyCode,
+      </if>
+      <if test="propertyperson != null">
+        propertyPerson,
+      </if>
+      <if test="coOwner != null">
+        co_owner,
+      </if>
+      <if test="wtuserid != null">
+        wtuserid,
+      </if>
+      <if test="dluserid != null">
+        dluserid,
+      </if>
+      <if test="wtmobile != null">
+        wtmobile,
+      </if>
+      <if test="wtaddress != null">
+        wtAddress,
+      </if>
+      <if test="wtidcard != null">
+        wtIDCard,
+      </if>
+      <if test="wtname != null">
+        wtname,
+      </if>
+      <if test="wtemail != null">
+        wtemail,
+      </if>
+      <if test="wtrealaddress != null">
+        wtrealAddress,
+      </if>
+      <if test="dlmobile != null">
+        dlmobile,
+      </if>
+      <if test="dladdress != null">
+        dlAddress,
+      </if>
+      <if test="dlidcard != null">
+        dlIDCard,
+      </if>
+      <if test="dlname != null">
+        dlname,
+      </if>
+      <if test="dlemail != null">
+        dlemail,
+      </if>
+      <if test="oldMatched != null">
+        old_matched,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userMobile != null">
+        #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherId != null">
+        #{fatherId,jdbcType=BIGINT},
+      </if>
+      <if test="houseId != null">
+        #{houseId,jdbcType=BIGINT},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="descText != null">
+        #{descText,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null">
+        #{cost,jdbcType=REAL},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="agents != null">
+        #{agents,jdbcType=BIGINT},
+      </if>
+      <if test="bankcard != null">
+        #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="cardbank != null">
+        #{cardbank,jdbcType=VARCHAR},
+      </if>
+      <if test="cardowen != null">
+        #{cardowen,jdbcType=VARCHAR},
+      </if>
+      <if test="watercard != null">
+        #{watercard,jdbcType=VARCHAR},
+      </if>
+      <if test="electriccard != null">
+        #{electriccard,jdbcType=VARCHAR},
+      </if>
+      <if test="gascard != null">
+        #{gascard,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="sbcode != null">
+        #{sbcode,jdbcType=VARCHAR},
+      </if>
+      <if test="costA != null">
+        #{costA,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="freePeriod != null">
+        #{freePeriod,jdbcType=INTEGER},
+      </if>
+      <if test="waterMeter != null">
+        #{waterMeter,jdbcType=VARCHAR},
+      </if>
+      <if test="gasMeter != null">
+        #{gasMeter,jdbcType=VARCHAR},
+      </if>
+      <if test="electricityMeterH != null">
+        #{electricityMeterH,jdbcType=VARCHAR},
+      </if>
+      <if test="electricityMeterL != null">
+        #{electricityMeterL,jdbcType=VARCHAR},
+      </if>
+      <if test="electricityMeter != null">
+        #{electricityMeter,jdbcType=VARCHAR},
+      </if>
+      <if test="sms != null">
+        #{sms,jdbcType=INTEGER},
+      </if>
+      <if test="isCubicle != null">
+        #{isCubicle,jdbcType=INTEGER},
+      </if>
+      <if test="keysCount != null">
+        #{keysCount,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        #{areaid,jdbcType=VARCHAR},
+      </if>
+      <if test="operid != null">
+        #{operid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="propertypath != null">
+        #{propertypath,jdbcType=VARCHAR},
+      </if>
+      <if test="agentpath != null">
+        #{agentpath,jdbcType=VARCHAR},
+      </if>
+      <if test="servicemonery != null">
+        #{servicemonery,jdbcType=VARCHAR},
+      </if>
+      <if test="propertymonery != null">
+        #{propertymonery,jdbcType=VARCHAR},
+      </if>
+      <if test="notaryid != null">
+        #{notaryid,jdbcType=VARCHAR},
+      </if>
+      <if test="payway != null">
+        #{payway,jdbcType=VARCHAR},
+      </if>
+      <if test="checkouttime != null">
+        #{checkouttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deposit != null">
+        #{deposit,jdbcType=VARCHAR},
+      </if>
+      <if test="newOldMatched != null">
+        #{newOldMatched,jdbcType=VARCHAR},
+      </if>
+      <if test="freeranktype != null">
+        #{freeranktype,jdbcType=VARCHAR},
+      </if>
+      <if test="propertytype != null">
+        #{propertytype,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgage != null">
+        #{mortgage,jdbcType=VARCHAR},
+      </if>
+      <if test="propertycode != null">
+        #{propertycode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyperson != null">
+        #{propertyperson,jdbcType=VARCHAR},
+      </if>
+      <if test="coOwner != null">
+        #{coOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="wtuserid != null">
+        #{wtuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="dluserid != null">
+        #{dluserid,jdbcType=VARCHAR},
+      </if>
+      <if test="wtmobile != null">
+        #{wtmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="wtaddress != null">
+        #{wtaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="wtidcard != null">
+        #{wtidcard,jdbcType=VARCHAR},
+      </if>
+      <if test="wtname != null">
+        #{wtname,jdbcType=VARCHAR},
+      </if>
+      <if test="wtemail != null">
+        #{wtemail,jdbcType=VARCHAR},
+      </if>
+      <if test="wtrealaddress != null">
+        #{wtrealaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dlmobile != null">
+        #{dlmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="dladdress != null">
+        #{dladdress,jdbcType=VARCHAR},
+      </if>
+      <if test="dlidcard != null">
+        #{dlidcard,jdbcType=VARCHAR},
+      </if>
+      <if test="dlname != null">
+        #{dlname,jdbcType=VARCHAR},
+      </if>
+      <if test="dlemail != null">
+        #{dlemail,jdbcType=VARCHAR},
+      </if>
+      <if test="oldMatched != null">
+        #{oldMatched,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.room1000.jyn.test.dto.RentalLeaseOrderDto">
+    <!--
+    @mbg.generated
+    -->
+    update yc_agreement_tab
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="userMobile != null">
+        user_mobile = #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="beginTime != null">
+        begin_time = #{beginTime,jdbcType=VARCHAR},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=VARCHAR},
+      </if>
+      <if test="fatherId != null">
+        father_id = #{fatherId,jdbcType=BIGINT},
+      </if>
+      <if test="houseId != null">
+        house_id = #{houseId,jdbcType=BIGINT},
+      </if>
+      <if test="filePath != null">
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="descText != null">
+        desc_text = #{descText,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null">
+        cost = #{cost,jdbcType=REAL},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null">
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="agents != null">
+        agents = #{agents,jdbcType=BIGINT},
+      </if>
+      <if test="bankcard != null">
+        bankcard = #{bankcard,jdbcType=VARCHAR},
+      </if>
+      <if test="cardbank != null">
+        cardbank = #{cardbank,jdbcType=VARCHAR},
+      </if>
+      <if test="cardowen != null">
+        cardowen = #{cardowen,jdbcType=VARCHAR},
+      </if>
+      <if test="watercard != null">
+        watercard = #{watercard,jdbcType=VARCHAR},
+      </if>
+      <if test="electriccard != null">
+        electriccard = #{electriccard,jdbcType=VARCHAR},
+      </if>
+      <if test="gascard != null">
+        gascard = #{gascard,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null">
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="sbcode != null">
+        sbcode = #{sbcode,jdbcType=VARCHAR},
+      </if>
+      <if test="costA != null">
+        cost_a = #{costA,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=VARCHAR},
+      </if>
+      <if test="freePeriod != null">
+        free_period = #{freePeriod,jdbcType=INTEGER},
+      </if>
+      <if test="waterMeter != null">
+        water_meter = #{waterMeter,jdbcType=VARCHAR},
+      </if>
+      <if test="gasMeter != null">
+        gas_meter = #{gasMeter,jdbcType=VARCHAR},
+      </if>
+      <if test="electricityMeterH != null">
+        electricity_meter_h = #{electricityMeterH,jdbcType=VARCHAR},
+      </if>
+      <if test="electricityMeterL != null">
+        electricity_meter_l = #{electricityMeterL,jdbcType=VARCHAR},
+      </if>
+      <if test="electricityMeter != null">
+        electricity_meter = #{electricityMeter,jdbcType=VARCHAR},
+      </if>
+      <if test="sms != null">
+        sms = #{sms,jdbcType=INTEGER},
+      </if>
+      <if test="isCubicle != null">
+        is_cubicle = #{isCubicle,jdbcType=INTEGER},
+      </if>
+      <if test="keysCount != null">
+        keys_count = #{keysCount,jdbcType=VARCHAR},
+      </if>
+      <if test="areaid != null">
+        areaid = #{areaid,jdbcType=VARCHAR},
+      </if>
+      <if test="operid != null">
+        operid = #{operid,jdbcType=VARCHAR},
+      </if>
+      <if test="bankid != null">
+        bankid = #{bankid,jdbcType=VARCHAR},
+      </if>
+      <if test="propertypath != null">
+        propertyPath = #{propertypath,jdbcType=VARCHAR},
+      </if>
+      <if test="agentpath != null">
+        agentPath = #{agentpath,jdbcType=VARCHAR},
+      </if>
+      <if test="servicemonery != null">
+        serviceMonery = #{servicemonery,jdbcType=VARCHAR},
+      </if>
+      <if test="propertymonery != null">
+        propertyMonery = #{propertymonery,jdbcType=VARCHAR},
+      </if>
+      <if test="notaryid != null">
+        notaryid = #{notaryid,jdbcType=VARCHAR},
+      </if>
+      <if test="payway != null">
+        payway = #{payway,jdbcType=VARCHAR},
+      </if>
+      <if test="checkouttime != null">
+        checkouttime = #{checkouttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deposit != null">
+        deposit = #{deposit,jdbcType=VARCHAR},
+      </if>
+      <if test="newOldMatched != null">
+        new_old_matched = #{newOldMatched,jdbcType=VARCHAR},
+      </if>
+      <if test="freeranktype != null">
+        freeRankType = #{freeranktype,jdbcType=VARCHAR},
+      </if>
+      <if test="propertytype != null">
+        propertyType = #{propertytype,jdbcType=VARCHAR},
+      </if>
+      <if test="mortgage != null">
+        mortgage = #{mortgage,jdbcType=VARCHAR},
+      </if>
+      <if test="propertycode != null">
+        propertyCode = #{propertycode,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyperson != null">
+        propertyPerson = #{propertyperson,jdbcType=VARCHAR},
+      </if>
+      <if test="coOwner != null">
+        co_owner = #{coOwner,jdbcType=VARCHAR},
+      </if>
+      <if test="wtuserid != null">
+        wtuserid = #{wtuserid,jdbcType=VARCHAR},
+      </if>
+      <if test="dluserid != null">
+        dluserid = #{dluserid,jdbcType=VARCHAR},
+      </if>
+      <if test="wtmobile != null">
+        wtmobile = #{wtmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="wtaddress != null">
+        wtAddress = #{wtaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="wtidcard != null">
+        wtIDCard = #{wtidcard,jdbcType=VARCHAR},
+      </if>
+      <if test="wtname != null">
+        wtname = #{wtname,jdbcType=VARCHAR},
+      </if>
+      <if test="wtemail != null">
+        wtemail = #{wtemail,jdbcType=VARCHAR},
+      </if>
+      <if test="wtrealaddress != null">
+        wtrealAddress = #{wtrealaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="dlmobile != null">
+        dlmobile = #{dlmobile,jdbcType=VARCHAR},
+      </if>
+      <if test="dladdress != null">
+        dlAddress = #{dladdress,jdbcType=VARCHAR},
+      </if>
+      <if test="dlidcard != null">
+        dlIDCard = #{dlidcard,jdbcType=VARCHAR},
+      </if>
+      <if test="dlname != null">
+        dlname = #{dlname,jdbcType=VARCHAR},
+      </if>
+      <if test="dlemail != null">
+        dlemail = #{dlemail,jdbcType=VARCHAR},
+      </if>
+      <if test="oldMatched != null">
+        old_matched = #{oldMatched,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yc.room1000.jyn.test.dto.RentalLeaseOrderDto">
+    <!--
+    @mbg.generated
+    -->
+    update yc_agreement_tab
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT},
+      user_mobile = #{userMobile,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      father_id = #{fatherId,jdbcType=BIGINT},
+      house_id = #{houseId,jdbcType=BIGINT},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      desc_text = #{descText,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=REAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      agents = #{agents,jdbcType=BIGINT},
+      bankcard = #{bankcard,jdbcType=VARCHAR},
+      cardbank = #{cardbank,jdbcType=VARCHAR},
+      cardowen = #{cardowen,jdbcType=VARCHAR},
+      watercard = #{watercard,jdbcType=VARCHAR},
+      electriccard = #{electriccard,jdbcType=VARCHAR},
+      gascard = #{gascard,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=INTEGER},
+      sbcode = #{sbcode,jdbcType=VARCHAR},
+      cost_a = #{costA,jdbcType=VARCHAR},
+      pay_time = #{payTime,jdbcType=VARCHAR},
+      free_period = #{freePeriod,jdbcType=INTEGER},
+      water_meter = #{waterMeter,jdbcType=VARCHAR},
+      gas_meter = #{gasMeter,jdbcType=VARCHAR},
+      electricity_meter_h = #{electricityMeterH,jdbcType=VARCHAR},
+      electricity_meter_l = #{electricityMeterL,jdbcType=VARCHAR},
+      electricity_meter = #{electricityMeter,jdbcType=VARCHAR},
+      sms = #{sms,jdbcType=INTEGER},
+      is_cubicle = #{isCubicle,jdbcType=INTEGER},
+      keys_count = #{keysCount,jdbcType=VARCHAR},
+      areaid = #{areaid,jdbcType=VARCHAR},
+      operid = #{operid,jdbcType=VARCHAR},
+      bankid = #{bankid,jdbcType=VARCHAR},
+      propertyPath = #{propertypath,jdbcType=VARCHAR},
+      agentPath = #{agentpath,jdbcType=VARCHAR},
+      serviceMonery = #{servicemonery,jdbcType=VARCHAR},
+      propertyMonery = #{propertymonery,jdbcType=VARCHAR},
+      notaryid = #{notaryid,jdbcType=VARCHAR},
+      payway = #{payway,jdbcType=VARCHAR},
+      checkouttime = #{checkouttime,jdbcType=TIMESTAMP},
+      deposit = #{deposit,jdbcType=VARCHAR},
+      new_old_matched = #{newOldMatched,jdbcType=VARCHAR},
+      freeRankType = #{freeranktype,jdbcType=VARCHAR},
+      propertyType = #{propertytype,jdbcType=VARCHAR},
+      mortgage = #{mortgage,jdbcType=VARCHAR},
+      propertyCode = #{propertycode,jdbcType=VARCHAR},
+      propertyPerson = #{propertyperson,jdbcType=VARCHAR},
+      co_owner = #{coOwner,jdbcType=VARCHAR},
+      wtuserid = #{wtuserid,jdbcType=VARCHAR},
+      dluserid = #{dluserid,jdbcType=VARCHAR},
+      wtmobile = #{wtmobile,jdbcType=VARCHAR},
+      wtAddress = #{wtaddress,jdbcType=VARCHAR},
+      wtIDCard = #{wtidcard,jdbcType=VARCHAR},
+      wtname = #{wtname,jdbcType=VARCHAR},
+      wtemail = #{wtemail,jdbcType=VARCHAR},
+      wtrealAddress = #{wtrealaddress,jdbcType=VARCHAR},
+      dlmobile = #{dlmobile,jdbcType=VARCHAR},
+      dlAddress = #{dladdress,jdbcType=VARCHAR},
+      dlIDCard = #{dlidcard,jdbcType=VARCHAR},
+      dlname = #{dlname,jdbcType=VARCHAR},
+      dlemail = #{dlemail,jdbcType=VARCHAR},
+      old_matched = #{oldMatched,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.room1000.jyn.test.dto.RentalLeaseOrderDto">
+    <!--
+    @mbg.generated
+    -->
+    update yc_agreement_tab
+    set code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT},
+      user_mobile = #{userMobile,jdbcType=VARCHAR},
+      begin_time = #{beginTime,jdbcType=VARCHAR},
+      end_time = #{endTime,jdbcType=VARCHAR},
+      father_id = #{fatherId,jdbcType=BIGINT},
+      house_id = #{houseId,jdbcType=BIGINT},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      desc_text = #{descText,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=REAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      isdelete = #{isdelete,jdbcType=INTEGER},
+      agents = #{agents,jdbcType=BIGINT},
+      bankcard = #{bankcard,jdbcType=VARCHAR},
+      cardbank = #{cardbank,jdbcType=VARCHAR},
+      cardowen = #{cardowen,jdbcType=VARCHAR},
+      watercard = #{watercard,jdbcType=VARCHAR},
+      electriccard = #{electriccard,jdbcType=VARCHAR},
+      gascard = #{gascard,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=INTEGER},
+      sbcode = #{sbcode,jdbcType=VARCHAR},
+      cost_a = #{costA,jdbcType=VARCHAR},
+      pay_time = #{payTime,jdbcType=VARCHAR},
+      free_period = #{freePeriod,jdbcType=INTEGER},
+      water_meter = #{waterMeter,jdbcType=VARCHAR},
+      gas_meter = #{gasMeter,jdbcType=VARCHAR},
+      electricity_meter_h = #{electricityMeterH,jdbcType=VARCHAR},
+      electricity_meter_l = #{electricityMeterL,jdbcType=VARCHAR},
+      electricity_meter = #{electricityMeter,jdbcType=VARCHAR},
+      sms = #{sms,jdbcType=INTEGER},
+      is_cubicle = #{isCubicle,jdbcType=INTEGER},
+      keys_count = #{keysCount,jdbcType=VARCHAR},
+      areaid = #{areaid,jdbcType=VARCHAR},
+      operid = #{operid,jdbcType=VARCHAR},
+      bankid = #{bankid,jdbcType=VARCHAR},
+      propertyPath = #{propertypath,jdbcType=VARCHAR},
+      agentPath = #{agentpath,jdbcType=VARCHAR},
+      serviceMonery = #{servicemonery,jdbcType=VARCHAR},
+      propertyMonery = #{propertymonery,jdbcType=VARCHAR},
+      notaryid = #{notaryid,jdbcType=VARCHAR},
+      payway = #{payway,jdbcType=VARCHAR},
+      checkouttime = #{checkouttime,jdbcType=TIMESTAMP},
+      deposit = #{deposit,jdbcType=VARCHAR},
+      new_old_matched = #{newOldMatched,jdbcType=VARCHAR},
+      freeRankType = #{freeranktype,jdbcType=VARCHAR},
+      propertyType = #{propertytype,jdbcType=VARCHAR},
+      mortgage = #{mortgage,jdbcType=VARCHAR},
+      propertyCode = #{propertycode,jdbcType=VARCHAR},
+      propertyPerson = #{propertyperson,jdbcType=VARCHAR},
+      co_owner = #{coOwner,jdbcType=VARCHAR},
+      wtuserid = #{wtuserid,jdbcType=VARCHAR},
+      dluserid = #{dluserid,jdbcType=VARCHAR},
+      wtmobile = #{wtmobile,jdbcType=VARCHAR},
+      wtAddress = #{wtaddress,jdbcType=VARCHAR},
+      wtIDCard = #{wtidcard,jdbcType=VARCHAR},
+      wtname = #{wtname,jdbcType=VARCHAR},
+      wtemail = #{wtemail,jdbcType=VARCHAR},
+      wtrealAddress = #{wtrealaddress,jdbcType=VARCHAR},
+      dlmobile = #{dlmobile,jdbcType=VARCHAR},
+      dlAddress = #{dladdress,jdbcType=VARCHAR},
+      dlIDCard = #{dlidcard,jdbcType=VARCHAR},
+      dlname = #{dlname,jdbcType=VARCHAR},
+      dlemail = #{dlemail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

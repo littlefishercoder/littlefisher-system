@@ -38,4 +38,17 @@ public interface IProcessTask {
      * @param executer 人工环节的执行器
      */
     void executeWork(String linkName, Map<String, Object> variables, ITaskServiceMatcher matcher, ITaskServiceExecuter executer);
+    
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param linkName 当前人工环节的assignee
+     * @param variables 用来匹配流程实例的参数列表
+     * @param matcher 人工环节的匹配器
+     * @return Map<String, Object> 
+     */
+    Map<String, Object> getTaskVariables(String linkName, Map<String, Object> variables, ITaskServiceMatcher matcher);
 }

@@ -36,67 +36,7 @@
             <property name="enableSubPackages" value="false" />
             <property name="rootInterface" value="com.yc.room1000.core.mybatis.SuperMapper" />
         </javaClientGenerator>
-        <table tableName="ATTR" domainObjectName="AttrDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql" />
-        </table>
-        <table tableName="ATTR_CATG" domainObjectName="AttrCatgDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql" />
-        </table>
-        <table tableName="ATTR_CATG_CHILDREN" domainObjectName="AttrCatgChildrenDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql" />
-        </table>
-        <table tableName="ATTR_CATG_STATE" domainObjectName="AttrCatgStateDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-<!--             <generatedKey column="id" sqlStatement="Mysql" /> -->
-        </table>
-        <table tableName="ATTR_CATG_TYPE" domainObjectName="AttrCatgTypeDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-<!--             <generatedKey column="id" sqlStatement="Mysql" /> -->
-        </table>
-        <table tableName="ATTR_STATE" domainObjectName="AttrStateDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-<!--             <generatedKey column="id" sqlStatement="Mysql" /> -->
-        </table>
-        <table tableName="ATTR_TYPE" domainObjectName="AttrTypeDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-<!--             <generatedKey column="id" sqlStatement="Mysql" /> -->
-        </table>
-        <table tableName="ATTR_VALUE" domainObjectName="AttrValueDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql" />
-        </table>
-        <table tableName="CANCEL_LEASE_ORDER" domainObjectName="CancelLeaseOrderDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-            <generatedKey column="id" sqlStatement="Mysql" />
-        </table>
-        <table tableName="CANCEL_LEASE_ORDER_HIS" domainObjectName="CancelLeaseOrderHisDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-<!--             <generatedKey column="id" sqlStatement="Mysql" /> -->
-        </table>
-        <table tableName="CANCEL_LEASE_ORDER_STATE" domainObjectName="CancelLeaseOrderStateDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-<!--             <generatedKey column="id" sqlStatement="Mysql" /> -->
-        </table>
-        <table tableName="CANCEL_LEASE_ORDER_TYPE" domainObjectName="CancelLeaseOrderTypeDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-<!--             <generatedKey column="id" sqlStatement="Mysql" /> -->
-        </table>
-        <table tableName="CHANNEL" domainObjectName="ChannelDto" enableCountByExample="false"
+        <table tableName="yc_agreement_tab" domainObjectName="RentalLeaseOrderDto" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
 <!--             <generatedKey column="id" sqlStatement="Mysql" /> -->

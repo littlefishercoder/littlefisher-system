@@ -24,7 +24,7 @@
 		<description>spring listener</description>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
+    
 	<servlet>
 		<description>spring mvc servlet</description>
 		<servlet-name>springmvc</servlet-name>
