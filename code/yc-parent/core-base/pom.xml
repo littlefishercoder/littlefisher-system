@@ -13,6 +13,11 @@
     <name>core-base</name>
 
     <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>3.0-alpha-1</version>
+        </dependency>
         <!-- spring mvc -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -144,6 +149,31 @@
             <artifactId>slf4j-log4j12</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
+        
+        <!-- 分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jsqlparser</groupId>
+            <artifactId>jsqlparser</artifactId>
+            <version>0.9</version>
+        </dependency>
+        
+        <!-- 其他第三方 -->
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.10</version>
+        </dependency>
         <!-- log end -->
         <!-- Jackson fasterxml和codehaus的区别： -->
         <!-- 他们是Jackson的两大分支、也是两个版本的不同包名。Jackson从2.0开始改用新的包名fasterxml；1.x版本的包名是codehaus。除了包名不同，他们的Maven artifact id也不同。1.x版本现在只提供bug-fix，而2.x版本还在不断开发和发布中。如果是新项目，建议直接用2x，即fasterxml 
@@ -160,6 +190,7 @@
         <!-- <artifactId>jackson-mapper-asl</artifactId> -->
         <!-- <version>1.9.13</version> -->
         <!-- </dependency> -->
+
         <!-- swagger-springmvc -->
         <dependency>
             <groupId>com.mangofactory</groupId>

@@ -7,12 +7,12 @@ import {Attr} from "./attr-model";
 
 @Injectable()
 export class AttrService {
-  public attrJsonUrl: string = 'app/attr/attr.json';
+  public attrUrl: string = 'http://127.0.0.1:80/jyn-test-web/api/v1/jyn/attr';
 
   constructor(public http:Http){}
 
   public getAttrList():Observable<Attr[]> {
-    return this.http.get(this.attrJsonUrl).map((res: Response) => res.json());
+    return this.http.get(this.attrUrl).map((res: Response) => res.json());
   }
 
 }

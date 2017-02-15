@@ -15,7 +15,6 @@ import com.yc.room1000.core.attr.dto.AttrDto;
  * @since v1.0
  */
 public interface IAttrService {
-
     /**
      * 
      * Description: 根据attrId查询AttrDto
@@ -103,7 +102,6 @@ public interface IAttrService {
      * @param attrCatgId attrCatgId
      */
     void unbindAttrCatg(Long attrId, Long attrCatgId);
-
     /**
      * 
      * Description: 查询所有的AttrDto

@@ -19,8 +19,8 @@ public final class ExceptionUtil {
     private ExceptionUtil() {
     }
 
-    /** LOGGER */
-    private static final Room1000Logger LOGGER = Room1000Logger.getLogger(ExceptionUtil.class);
+    /** logger */
+    private static Room1000Logger logger = Room1000Logger.getLogger(ExceptionUtil.class);
 
     /**
      * 
@@ -211,6 +211,6 @@ public final class ExceptionUtil {
             }
         }
 
-        LOGGER.error(sb.toString());
+        logger.error(sb.toString());
     }
 }

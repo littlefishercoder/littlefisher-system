@@ -1,8 +1,6 @@
 package com.yc.room1000.jyn.attr.controller;
 
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,8 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 
-import com.yc.room1000.core.attr.dto.AttrDto;
-import com.yc.room1000.core.attr.service.IAttrService;
+import com.yc.room1000.core.exception.BaseAppException;
+import com.yc.room1000.jyn.attr.model.AttrDto;
+import com.yc.room1000.jyn.attr.service.IAttrService;
+
 
 /**
  * 
@@ -44,26 +44,13 @@ public class AttrController {
      *
      * @param attrId attrId
      * @return AttrDto
+     * @throws BaseAppException 
      */
     @RequestMapping(value = "/{attrId}", method = RequestMethod.GET)
     @ApiOperation(value = "根据attrId获取Attr")
-    public AttrDto getAttrById(@PathVariable("attrId") Long attrId) {
-        AttrDto attr = attrService.getAttrDtoById(attrId);
+    public AttrDto getAttrById(@PathVariable("attrId") Long attrId) throws BaseAppException {
+        AttrDto attr = attrService.qryAttrById(attrId);
         return attr;
     }
     
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @return List<AttrDto>
-     */
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    @ApiOperation(value = "获取所有的Attr")
-    public List<AttrDto> getAttrList() {
-        List<AttrDto> attrList = attrService.getAttrList();
-        return attrList;
-    }
 }

@@ -1,0 +1,91 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="navbar-brand dropdown">
+        <a class="dropdown-toggle" id="dropdown-menu-a" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+          菜单
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdown-menu-a">
+          <li><a href="#">菜单1</a></li>
+          <li><a href="#">菜单2</a></li>
+          <li><a href="#">菜单3</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a href="#">Link
+          <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a>时间：2017年2月1日</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" id="dropdown-user" data-toggle="dropdown" role="button"
+             aria-haspopup="true" aria-expanded="false">
+            用户名 <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdown-user">
+            <li><a href="#">详细信息</a></li>
+            <li><a href="#">登出</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active">
+          <a href="#">菜单1</a>
+        </li>
+        <li>
+          <a href="#">菜单2</a>
+        </li>
+        <li>
+          <a href="#">菜单3</a>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-10 col-md-offset-2">
+      <!-- 主体内容区域 -->
+      <div class="main-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 主体内容区域 -->
+<!--<div class="main-container">-->
+  <!--<router-outlet></router-outlet>-->
+<!--</div>-->
+<!--<div class="footer bs-footer">-->
+  <!--<div class="container">-->
+    <!--<div class="row">-->
+      <!--<p>-->
+        <!--Powered by <a href="http://git.oschina.net/mumu-osc/NiceFish" target="_blank">NiceFish</a>-->
+      <!--</p>-->
+      <!--<p>-->
+        <!--湘ICP备12011607号-->
+      <!--</p>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->

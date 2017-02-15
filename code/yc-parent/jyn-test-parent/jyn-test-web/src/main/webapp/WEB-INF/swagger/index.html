@@ -38,7 +38,10 @@
       if (url && url.length > 1) {
         url = decodeURIComponent(url[1]);
       } else {
-        url = "http://127.0.0.1:8080/jyn-test-web/api-docs";
+        url = window.location.protocol + "//" +
+		  	  window.location.host + 
+		  	  window.document.location.pathname.substring(0, window.document.location.pathname.substr(1).indexOf('/') + 1) +
+  	  		  "/api-docs";
       }
 
       hljs.configure({

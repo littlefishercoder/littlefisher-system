@@ -84,6 +84,27 @@ public class BaseAppException extends Exception {
     }
     
     /**
+     * 
+     * BaseAppException
+     * 
+     * @param errorCode errorCode
+     */
+    public BaseAppException(String errorCode) {
+        this(errorCode, null, null, null, null, null);  
+    }
+
+    /**
+     * 
+     * BaseAppException
+     * 
+     * @param errorCode errorCode
+     * @param ex ex
+     */
+    public BaseAppException(String errorCode, Exception ex) {
+        this(errorCode, null, ex, null, null, null);
+    }
+
+    /**
      * 占位符替换
      * 
      * @param s s
