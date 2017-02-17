@@ -1,5 +1,7 @@
 package com.yc.room1000.jyn.attr.service;
 
+import java.util.List;
+
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.jyn.attr.model.AttrDto;
 
@@ -26,4 +28,15 @@ public interface IAttrService {
      * @throws BaseAppException 
      */
     AttrDto qryAttrById(Long attrId) throws BaseAppException;
+
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @return List<AttrDto>
+     * @throws BaseAppException 
+     */
+    List<AttrDto> qryAllAttr() throws BaseAppException;
 }

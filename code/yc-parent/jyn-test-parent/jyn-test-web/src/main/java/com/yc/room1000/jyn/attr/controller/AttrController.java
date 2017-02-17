@@ -1,6 +1,8 @@
 package com.yc.room1000.jyn.attr.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +53,21 @@ public class AttrController {
     public AttrDto getAttrById(@PathVariable("attrId") Long attrId) throws BaseAppException {
         AttrDto attr = attrService.qryAttrById(attrId);
         return attr;
+    }
+    
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @return List<AttrDto>
+     * @throws BaseAppException 
+     */
+    @RequestMapping(value = "", method = RequestMethod.GET)
+    @ApiOperation(value = "查询所有Attr")
+    public List<AttrDto> getAllAttr() throws BaseAppException {
+        return attrService.qryAllAttr();
     }
     
 }

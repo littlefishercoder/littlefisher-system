@@ -26,7 +26,7 @@ public class LogAspect {
     public void before(JoinPoint joinPoint) {
         Room1000Logger logger = Room1000Logger.getLogger(joinPoint.getTarget().getClass());
         String method = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
-        logger.debug(method + " begin------------------------");
+        logger.debug(method + " begin------------------------------------------------------------------------");
         logger.debug("args: " + Arrays.toString(joinPoint.getArgs()));
     }
 
@@ -43,7 +43,7 @@ public class LogAspect {
         Room1000Logger logger = Room1000Logger.getLogger(joinPoint.getTarget().getClass());
         String method = joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName();
         logger.debug("return args: " + returnValue);
-        logger.debug(method + " end-------------------------");
+        logger.debug(method + " end--------------------------------------------------------------------------");
     }
 
 }

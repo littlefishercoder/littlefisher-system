@@ -1,6 +1,6 @@
 package com.yc.room1000.core.i18n.utils;
 
-import java.sql.Date;
+import java.util.Date;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.utils.DateUtil;
 import com.yc.room1000.core.utils.Room1000Logger;
 
@@ -23,7 +24,7 @@ import com.yc.room1000.core.utils.Room1000Logger;
  * @since v1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath*:spring/spring-core.xml")
+@ContextConfiguration("classpath*:spring/EngineConfig.xml")
 @Rollback(true)
 @Transactional
 public class DateUtilTest {
@@ -38,10 +39,11 @@ public class DateUtilTest {
      * Description: 
      * 
      * @author jinyanan
+     * @throws BaseAppException 
      *
      */
     @Test
-    public void testGetDBCurrentTime() {
+    public void testGetDBCurrentTime() throws BaseAppException {
         Date date = DateUtil.getDBDateTime();
         logger.debug("date:" + date);
     }

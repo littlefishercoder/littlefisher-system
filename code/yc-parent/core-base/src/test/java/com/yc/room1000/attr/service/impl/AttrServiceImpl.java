@@ -9,7 +9,6 @@ import com.yc.room1000.attr.dto.AttrDto;
 import com.yc.room1000.attr.service.IAttrService;
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.service.ServiceImpl;
-import com.yc.room1000.core.utils.Room1000Logger;
 
 /**
  * 
@@ -24,11 +23,6 @@ import com.yc.room1000.core.utils.Room1000Logger;
 @Service("AttrService")
 public class AttrServiceImpl extends ServiceImpl implements IAttrService {
     
-    /**
-     * logger
-     */
-    private static Room1000Logger logger = Room1000Logger.getLogger(AttrServiceImpl.class);
-
     @Override
     public List<AttrDto> selectAll() {
         return null;

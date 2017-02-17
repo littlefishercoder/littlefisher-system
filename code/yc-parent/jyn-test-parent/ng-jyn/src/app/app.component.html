@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <th>#</th>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Type</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let attr of attrList">
+              <td>{{attr.id}}</td>
+              <td>{{attr.name}}</td>
+              <td>{{attr.code}}</td>
+              <td>{{attr.type}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

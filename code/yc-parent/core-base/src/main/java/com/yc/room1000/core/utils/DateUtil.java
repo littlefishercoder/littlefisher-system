@@ -5,7 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.yc.room1000.core.engine.BeanFactory;
+import com.yc.room1000.core.engine.SystemEngine;
 import com.yc.room1000.core.exception.BaseAppException;
+import com.yc.room1000.core.utils.db.service.impl.DBServiceImpl;
 
 /**
  * Description: 时间工具类 Created on 2017年1月17日
@@ -203,6 +206,19 @@ public final class DateUtil {
         else {
             return new java.sql.Date(date.getTime());
         }
+    }
+    
+    /**
+     * 
+     * Description: 把java.sql.Date转为java.util.Date
+     * 
+     * @author jinyanan
+     *
+     * @param date java.sql.Date 
+     * @return java.util.Date
+     */
+    public static java.util.Date sqlDate2Date(java.sql.Date date) {
+        return new java.util.Date(date.getTime());
     }
 
     /**
@@ -754,13 +770,14 @@ public final class DateUtil {
      * @author jinyanan
      *
      * @return java.sql.Date
+     * @throws BaseAppException 
      */
-    public static java.sql.Date getDBDateTime() {
+    public static java.sql.Date getSqlDBDateTime() throws BaseAppException {
         java.sql.Date retDate = null;
         long begin = System.currentTimeMillis();
         if (latestQueryTimeMillis == 0 || (begin - latestQueryTimeMillis > 1000L * 60 * 20)) { // 定为20分钟
             // 是首次查询，或者是查询超过了指定的间隔时间 <br>
-            retDate = getDBCurrentTime();
+            retDate = new java.sql.Date(getDBCurrentTime().getTime());
             long end = System.currentTimeMillis();
             if (end - begin <= 50) {
                 // 查询小于50毫秒 <br>
@@ -778,6 +795,19 @@ public final class DateUtil {
         }
         return retDate;
     }
+    
+    /**
+     * 
+     * Description: 获取java.util.Date型的数据库时间
+     * 
+     * @author jinyanan
+     *
+     * @return java.util.Date
+     * @throws BaseAppException <br>
+     */
+    public static java.util.Date getDBDateTime() throws BaseAppException {
+        return sqlDate2Date(getSqlDBDateTime());
+    }
 
     /**
      * 
@@ -786,10 +816,12 @@ public final class DateUtil {
      * @author jinyanan
      *
      * @return java.sql.Date
+     * @throws BaseAppException 
      */
-    private static java.sql.Date getDBCurrentTime() {
-        // TODO: 后续再处理获取数据库时间的代码
-        return dateToSqlDate(new Date());
+    private static Date getDBCurrentTime() throws BaseAppException {
+        SystemEngine crmEngine = (SystemEngine) BeanFactory.getBean("systemEngine");
+        DBServiceImpl dbServiceImpl = (DBServiceImpl) crmEngine.getService("CORE.DBService");
+        return dbServiceImpl.getDBDateTime();
     }
 
     /**
