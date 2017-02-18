@@ -20,35 +20,41 @@ public interface IProcessTask {
      * 
      * @author jinyanan
      *
-     * @param linkName 当前人工环节的assignee
-     * @param variables 用来匹配流程实例的参数列表
-     * @param matcher 人工环节的匹配器
+     * @param workOrderId workOrderId
      */
-    void dispatcherOrder(String linkName, Map<String, Object> variables, ITaskServiceMatcher matcher);
+    void dispatcherOrder(Long workOrderId);
     
     /**
      * 
-     * Description: 人工环节执行逻辑
+     * Description: 获取workOrderId对应流程的参数
      * 
      * @author jinyanan
      *
-     * @param linkName 当前人工环节的assignee
-     * @param variables 用来匹配流程实例的参数列表
-     * @param matcher 人工环节的匹配器
-     * @param executer 人工环节的执行器
+     * @param workOrderId workOrderId
+     * @return Map<String, Object>
      */
-    void executeWork(String linkName, Map<String, Object> variables, ITaskServiceMatcher matcher, ITaskServiceExecuter executer);
+    Map<String, Object> getInstanceVariables(Long workOrderId);
     
     /**
      * 
-     * Description: 
+     * Description: 向workOrderId对应流程的参数替换为variables
      * 
      * @author jinyanan
      *
-     * @param linkName 当前人工环节的assignee
-     * @param variables 用来匹配流程实例的参数列表
-     * @param matcher 人工环节的匹配器
-     * @return Map<String, Object> 
+     * @param workOrderId workOrderId
+     * @param variables variables
      */
-    Map<String, Object> getTaskVariables(String linkName, Map<String, Object> variables, ITaskServiceMatcher matcher);
+    void putInstanceVariables(Long workOrderId, Map<String, Object> variables);
+    
+    /**
+     * 
+     * Description: 向workOrderId对应流程的参数新增<variableName,variableValue>
+     * 
+     * @author jinyanan
+     *
+     * @param workOrderId workOrderId
+     * @param variableName variableName
+     * @param variableValue variableValue
+     */
+    void putInstanceVariable(Long workOrderId, String variableName, Object variableValue);
 }

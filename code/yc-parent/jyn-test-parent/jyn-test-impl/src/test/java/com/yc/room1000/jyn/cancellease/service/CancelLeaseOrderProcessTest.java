@@ -12,8 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yc.room1000.core.activiti.IProcessDeploy;
 import com.yc.room1000.core.activiti.IProcessStart;
 import com.yc.room1000.core.activiti.IProcessTask;
-import com.yc.room1000.core.activiti.ITaskServiceExecuter;
-import com.yc.room1000.core.activiti.ITaskServiceMatcher;
 import com.yc.room1000.core.activiti.impl.ProcessDeployImpl;
 import com.yc.room1000.core.activiti.impl.ProcessStartImpl;
 import com.yc.room1000.core.activiti.impl.ProcessTaskImpl;
@@ -74,17 +72,7 @@ public class CancelLeaseOrderProcessTest {
     @Test
     public void testAssignOrder() {
         IProcessTask task = new ProcessTaskImpl();
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("ORDER_ID", "1");
-        task.executeWork("assignOrder", variables, new TaskServiceMatcher(), new ITaskServiceExecuter() {
-            
-            @Override
-            public Map<String, Object> execute(Map<String, Object> variables) {
-                variables.put("needClose", "N");
-                return variables;
-            }
-        });
-        task.dispatcherOrder("assignOrder", variables, new TaskServiceMatcher());
+        task.dispatcherOrder(1L);
     }
 
     /**
@@ -97,17 +85,7 @@ public class CancelLeaseOrderProcessTest {
     @Test
     public void testTakeOrder() {
         IProcessTask task = new ProcessTaskImpl();
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("ORDER_ID", "1");
-        task.executeWork("takeOrder", variables, new TaskServiceMatcher(), new ITaskServiceExecuter() {
-
-            @Override
-            public Map<String, Object> execute(Map<String, Object> variables) {
-                return variables;
-            }
-            
-        });
-        task.dispatcherOrder("takeOrder", variables, new TaskServiceMatcher());
+        task.dispatcherOrder(1L);
     }
 
     /**
@@ -120,16 +98,7 @@ public class CancelLeaseOrderProcessTest {
     @Test
     public void testButlerGetHome() {
         IProcessTask task = new ProcessTaskImpl();
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("ORDER_ID", "1");
-        task.executeWork("butlerGetHome", variables, new TaskServiceMatcher(), new ITaskServiceExecuter() {
-            
-            @Override
-            public Map<String, Object> execute(Map<String, Object> variables) {
-                return variables;
-            }
-        });
-        task.dispatcherOrder("butlerGetHome", variables, new TaskServiceMatcher());
+        task.dispatcherOrder(1L);
     }
 
     /**
@@ -142,17 +111,7 @@ public class CancelLeaseOrderProcessTest {
     @Test
     public void testRentalAccount() {
         IProcessTask task = new ProcessTaskImpl();
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("ORDER_ID", "1");
-        task.executeWork("rentalAccount", variables, new TaskServiceMatcher(), new ITaskServiceExecuter() {
-            
-            @Override
-            public Map<String, Object> execute(Map<String, Object> variables) {
-                variables.put("needRegetHome", "N");
-                return variables;
-            }
-        });
-        task.dispatcherOrder("rentalAccount", variables, new TaskServiceMatcher());
+        task.dispatcherOrder(1L);
     }
 
     /**
@@ -165,17 +124,7 @@ public class CancelLeaseOrderProcessTest {
     @Test
     public void testMarketingExecutiveAudit() {
         IProcessTask task = new ProcessTaskImpl();
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("ORDER_ID", "1");
-        task.executeWork("marketingExecutiveAudit", variables, new TaskServiceMatcher(), new ITaskServiceExecuter() {
-            
-            @Override
-            public Map<String, Object> execute(Map<String, Object> variables) {
-                variables.put("needReadjust", "N");
-                return variables;
-            }
-        });
-        task.dispatcherOrder("marketingExecutiveAudit", variables, new TaskServiceMatcher());
+        task.dispatcherOrder(1L);
     }
 
     /**
@@ -188,17 +137,7 @@ public class CancelLeaseOrderProcessTest {
     @Test
     public void testFinanceAudit() {
         IProcessTask task = new ProcessTaskImpl();
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("ORDER_ID", "1");
-        task.executeWork("financeAudit", variables, new TaskServiceMatcher(), new ITaskServiceExecuter() {
-            
-            @Override
-            public Map<String, Object> execute(Map<String, Object> variables) {
-                variables.put("financeAuditNotPass", "N");
-                return variables;
-            }
-        });
-        task.dispatcherOrder("financeAudit", variables, new TaskServiceMatcher());
+        task.dispatcherOrder(1L);
     }
     
     /**
@@ -211,38 +150,7 @@ public class CancelLeaseOrderProcessTest {
     @Test
     public void testWait2Pay() {
         IProcessTask task = new ProcessTaskImpl();
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("ORDER_ID", "1");
-        task.executeWork("wait2Pay", variables, new TaskServiceMatcher(), new ITaskServiceExecuter() {
-            
-            @Override
-            public Map<String, Object> execute(Map<String, Object> variables) {
-                return variables;
-            }
-        });
-        task.dispatcherOrder("wait2Pay", variables, new TaskServiceMatcher());
-    }
-    
-}
-
-/**
- * 
- * Description: 
- *  
- * Created on 2017年1月23日 
- *
- * @author jinyanan
- * @version 1.0
- * @since v1.0
- */
-class TaskServiceMatcher implements ITaskServiceMatcher {
-
-    @Override
-    public boolean matchTask(Map<String, Object> variables, Map<String, Object> processVariables) {
-        if (variables.get("ORDER_ID").equals(processVariables.get("ORDER_ID"))) {
-            return true;
-        }
-        return false;
+        task.dispatcherOrder(1L);
     }
     
 }

@@ -51,13 +51,6 @@ public class ExclusiveGatewayActivityBehaviorExt extends ExclusiveGatewayActivit
                 if (getInstanceResult(condition, execution.getVariables())) {
                     outgoingSeqFlow = seqFlow;
                 } 
-//                else {
-//                    if ((condition == null && (defaultSequenceFlow == null || !defaultSequenceFlow.equals(seqFlow.getId())))
-//                        || (condition != null && condition.evaluate(seqFlow.getId(), execution))) {
-//                        logger.debug("Sequence flow '{}'selected as outgoing sequence flow.", seqFlow.getId());
-//                        outgoingSeqFlow = seqFlow;
-//                    }
-//                }
             }
             else if (SkipExpressionUtil.shouldSkipFlowElement(execution, skipExpression)) {
                 outgoingSeqFlow = seqFlow;

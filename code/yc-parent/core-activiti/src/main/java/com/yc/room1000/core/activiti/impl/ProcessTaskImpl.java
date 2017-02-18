@@ -1,6 +1,5 @@
 package com.yc.room1000.core.activiti.impl;
 
-import java.util.List;
 import java.util.Map;
 
 import org.activiti.engine.ProcessEngine;
@@ -9,8 +8,6 @@ import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
 
 import com.yc.room1000.core.activiti.IProcessTask;
-import com.yc.room1000.core.activiti.ITaskServiceExecuter;
-import com.yc.room1000.core.activiti.ITaskServiceMatcher;
 import com.yc.room1000.core.utils.Room1000Logger;
 
 /**
@@ -32,54 +29,43 @@ public class ProcessTaskImpl implements IProcessTask {
     private static ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
 
     @Override
-    public void dispatcherOrder(String linkName, Map<String, Object> variables, ITaskServiceMatcher matcher) {
-        logger.debug("linkName: " + linkName);
+    public void dispatcherOrder(Long workOrderId) {
+        logger.debug("workOrderId: " + workOrderId);
         TaskService taskService = processEngine.getTaskService();
-        List<Task> taskList = processEngine.getTaskService()
-            .createTaskQuery()
-            .taskAssignee(linkName)
-            .list();
-        
-        for (Task task : taskList) {
-            if (matcher.matchTask(variables, taskService.getVariables(task.getId()))) {
-                taskService.complete(task.getId());
-            }
+
+        Task task = processEngine.getTaskService().createTaskQuery().processVariableValueEquals("workOrderId", workOrderId).singleResult();
+        if (task != null) {
+            taskService.complete(task.getId());
         }
     }
 
     @Override
-    public void executeWork(String linkName, Map<String, Object> variables, ITaskServiceMatcher matcher,
-        ITaskServiceExecuter executer) {
-        logger.debug("linkName: " + linkName);
-        TaskService taskService = processEngine.getTaskService();
-        List<Task> taskList = processEngine.getTaskService().createTaskQuery().taskAssignee(linkName).list();
-
-        for (Task task : taskList) {
-            if (matcher.matchTask(variables, taskService.getVariables(task.getId()))) {
-                Map<String, Object> variablesBefore = taskService.getVariables(task.getId());
-                logger.debug("before execute variables: " + variablesBefore);
-                Map<String, Object> variablesAfter = executer.execute(taskService.getVariables(task.getId()));
-                taskService.setVariables(task.getId(), variablesAfter);
-                // taskService.getVariables(task.getId()).putAll(variablesAfter);
-                logger.debug("after execute variables: " + variablesBefore);
-            }
-        }
+    public Map<String, Object> getInstanceVariables(Long workOrderId) {
+        Task task = processEngine.getTaskService()
+            .createTaskQuery()
+            .processVariableValueEquals("workOrderId", workOrderId)
+            .singleResult();
+        return processEngine.getRuntimeService().getVariables(task.getProcessInstanceId());
     }
 
     @Override
-    public Map<String, Object> getTaskVariables(String linkName, Map<String, Object> variables, ITaskServiceMatcher matcher) {
-        TaskService taskService = processEngine.getTaskService();
-        List<Task> taskList = processEngine.getTaskService()
+    public void putInstanceVariables(Long workOrderId, Map<String, Object> variables) {
+        Task task = processEngine.getTaskService()
             .createTaskQuery()
-            .taskAssignee(linkName)
-            .list();
+            .processVariableValueEquals("workOrderId", workOrderId)
+            .singleResult();
+        processEngine.getRuntimeService().setVariables(task.getProcessInstanceId(), variables);
         
-        for (Task task : taskList) {
-            if (matcher.matchTask(variables, taskService.getVariables(task.getId()))) {
-                return taskService.getVariables(task.getId());
-            }
-        }
-        return null;
+    }
+
+    @Override
+    public void putInstanceVariable(Long workOrderId, String variableName, Object variableValue) {
+        Task task = processEngine.getTaskService()
+            .createTaskQuery()
+            .processVariableValueEquals("workOrderId", workOrderId)
+            .singleResult();
+        processEngine.getRuntimeService().setVariable(task.getProcessInstanceId(), variableName, variableValue);
+        
     }
 
 }
