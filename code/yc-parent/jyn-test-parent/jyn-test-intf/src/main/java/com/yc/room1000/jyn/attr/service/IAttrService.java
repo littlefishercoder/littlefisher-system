@@ -39,4 +39,16 @@ public interface IAttrService {
      * @throws BaseAppException 
      */
     List<AttrDto> qryAllAttr() throws BaseAppException;
+    
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param attrIds attrIds
+     * @return List<AttrDto>
+     * @throws BaseAppException <br>
+     */
+    List<AttrDto> qryAttrByIds(String attrIds) throws BaseAppException;
 }

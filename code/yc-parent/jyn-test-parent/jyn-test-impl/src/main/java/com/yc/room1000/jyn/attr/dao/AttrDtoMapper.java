@@ -85,4 +85,15 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return List<AttrDto>
      */
     List<AttrDto> selectAllAttr();
+
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param attrIds attrIds
+     * @return List<AttrDto>
+     */
+    List<AttrDto> selectByIds(String[] attrIds);
 }

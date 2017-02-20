@@ -34,6 +34,19 @@
     <include refid="Base_Column_List" />
     from ATTR
   </select>
+   <select id="selectByIds" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ATTR
+    <where>
+        ID in 
+        <if test="array != null">
+            <foreach collection="array" item="attrId" open="(" separator="," close=")">
+                #{attrId}
+            </foreach>
+        </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
     @mbg.generated

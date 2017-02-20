@@ -203,6 +203,9 @@
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 
+    <!-- core下bean加入管理 -->
+    <context:component-scan base-package="com.yc.room1000.core.utils" />
+
     <import resource="classpath*:activiti.cfg.xml" />
 
 </beans>

@@ -1,5 +1,7 @@
 package com.yc.room1000.jyn.attr.service;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,5 +54,20 @@ public class AttrServiceTest {
         Long attrId = 1L;
         AttrDto attr = attrService.qryAttrById(attrId);
         logger.debug("attr : " + attr);
+    }
+    
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @throws BaseAppException <br>
+     */
+    @Test
+    public void testQryAttrByIds() throws BaseAppException {
+        String attrIds = "1,2";
+        List<AttrDto> attrList = attrService.qryAttrByIds(attrIds);
+        logger.debug("attrList : " + attrList);
     }
 }

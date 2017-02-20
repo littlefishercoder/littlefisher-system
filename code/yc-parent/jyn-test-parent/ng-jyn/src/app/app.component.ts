@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {AttrService} from "./attr/attr.service";
-import {Attr} from "./attr/model/attr-model";
+import {AttrService} from './attr/attr.service';
+import {Attr} from './attr/model/attr-model';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.attrService.getAttrList().subscribe(
-      data => this.attrList = data
+      data => {
+        this.attrList = data;
+      },
+      error => {
+        console.log(error);
+      }
     );
   }
 }

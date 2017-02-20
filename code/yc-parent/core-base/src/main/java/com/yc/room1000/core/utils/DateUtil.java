@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.yc.room1000.core.engine.BeanFactory;
 import com.yc.room1000.core.engine.SystemEngine;
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.utils.db.service.impl.DBServiceImpl;
@@ -819,7 +818,7 @@ public final class DateUtil {
      * @throws BaseAppException 
      */
     private static Date getDBCurrentTime() throws BaseAppException {
-        SystemEngine crmEngine = (SystemEngine) BeanFactory.getBean("systemEngine");
+        SystemEngine crmEngine = SpringContextUtil.getBean("systemEngine");
         DBServiceImpl dbServiceImpl = (DBServiceImpl) crmEngine.getService("CORE.DBService");
         return dbServiceImpl.getDBDateTime();
     }
