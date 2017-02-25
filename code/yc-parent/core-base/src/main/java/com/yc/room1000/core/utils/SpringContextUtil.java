@@ -51,7 +51,7 @@ public final class SpringContextUtil implements ApplicationContextAware {
             new FileSystemXmlApplicationContext(filePaths);
         }
         catch (BeansException e) {
-            throw ExceptionUtil.publish("", e);
+            throw ExceptionHandler.publish("", e);
         }
     }
     
@@ -70,7 +70,7 @@ public final class SpringContextUtil implements ApplicationContextAware {
             new ClassPathXmlApplicationContext(classpaths);
         }
         catch (BeansException e) {
-            throw ExceptionUtil.publish("S-CRMCOM-037", e);
+            throw ExceptionHandler.publish("S-CRMCOM-037", e);
         }     
     }
     

@@ -31,7 +31,7 @@ import com.yc.room1000.jyn.attr.service.IAttrService;
 @RestController
 @RequestMapping("/api/v1/jyn/attr")
 public class AttrController {
-
+    
     /**
      * attrService
      */
@@ -67,7 +67,8 @@ public class AttrController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     @ApiOperation(value = "查询所有Attr")
     public List<AttrDto> getAllAttr() throws BaseAppException {
-        return attrService.qryAllAttr();
+        List<AttrDto> attrList = attrService.qryAllAttr();
+        return attrList;
     }
     
 }

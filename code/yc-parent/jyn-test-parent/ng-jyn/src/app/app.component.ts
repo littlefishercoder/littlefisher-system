@@ -10,6 +10,7 @@ import {Attr} from './attr/model/attr-model';
 export class AppComponent implements OnInit {
 
   public attrList: Array<Attr>;
+  public errorMsg: string;
 
   constructor(public attrService: AttrService) {}
 
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit {
         this.attrList = data;
       },
       error => {
+        this.errorMsg = error;
         console.log(error);
       }
     );

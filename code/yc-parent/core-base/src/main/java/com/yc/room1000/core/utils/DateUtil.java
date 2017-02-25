@@ -672,13 +672,13 @@ public final class DateUtil {
      */
     public static boolean isInRange(String date, String beginDate, String endDate) throws BaseAppException {
         if (StringUtil.isEmpty(date) || StringUtil.isEmpty(beginDate) || StringUtil.isEmpty(endDate)) {
-            ExceptionUtil.publish("");
+            ExceptionHandler.publish("");
         }
         int dateLen = date.length();
         int beginDateLen = date.length();
         int endDateLen = date.length();
         if (!EqualsUtil.equals(beginDateLen, dateLen) || EqualsUtil.equals(dateLen, endDateLen)) {
-            ExceptionUtil.publish("");
+            ExceptionHandler.publish("");
         }
         boolean asc = isAsc(beginDate, endDate);
         if (asc) {

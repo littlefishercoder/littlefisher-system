@@ -137,7 +137,7 @@
     <bean id="systemEngine" class="com.yc.room1000.core.engine.SystemEngineFactoryBean">
         <property name="systemEngineConfig" ref="systemEngineConfig"/> 
     </bean> 
-
+    
     <!-- 事务控制 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
@@ -199,13 +199,12 @@
     <context:annotation-config />
     
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->   
-    <context:component-scan base-package="com.yc.room1000.core.aop,com.yc.room1000.core.interceptor.service,com.yc.room1000.**.service.impl" >
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-    </context:component-scan>
+    <context:component-scan base-package="com.yc.room1000.core.aop,com.yc.room1000.core.interceptor.service,com.yc.room1000.**.service.impl" />
 
     <!-- core下bean加入管理 -->
-    <context:component-scan base-package="com.yc.room1000.core.utils" />
+    <context:component-scan base-package="com.yc.room1000.core.utils, com.yc.room1000.core.exception" >
+        <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>  
+    </context:component-scan>
 
-    <import resource="classpath*:activiti.cfg.xml" />
 
 </beans>

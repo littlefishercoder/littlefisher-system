@@ -11,16 +11,16 @@ import com.yc.room1000.core.exception.BaseAppException;
  * @version 1.0
  * @since v1.0
  */
-public final class ExceptionUtil {
+public final class ExceptionHandler {
 
     /**
      * 禁止实例化
      */
-    private ExceptionUtil() {
+    private ExceptionHandler() {
     }
 
     /** logger */
-    private static Room1000Logger logger = Room1000Logger.getLogger(ExceptionUtil.class);
+    private static Room1000Logger logger = Room1000Logger.getLogger(ExceptionHandler.class);
 
     /**
      * 

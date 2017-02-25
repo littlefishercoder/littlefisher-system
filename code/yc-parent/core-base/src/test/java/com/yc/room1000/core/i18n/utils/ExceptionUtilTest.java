@@ -3,7 +3,7 @@ package com.yc.room1000.core.i18n.utils;
 import org.junit.Test;
 
 import com.yc.room1000.core.exception.BaseAppException;
-import com.yc.room1000.core.utils.ExceptionUtil;
+import com.yc.room1000.core.utils.ExceptionHandler;
 import com.yc.room1000.core.utils.StringUtil;
 
 /**
@@ -25,7 +25,7 @@ public class ExceptionUtilTest {
     public void testExceptionUtil() throws BaseAppException {
         String str = "";
         if (StringUtil.isEmpty(str)) {
-            ExceptionUtil.publish("COMMON_JYN_00001", "COMMON_JYN_00001测试", null, "ExceptionUtil测试", "jyn",
+            ExceptionHandler.publish("COMMON_JYN_00001", "COMMON_JYN_00001测试", null, "ExceptionUtil测试", "jyn",
                 "2017-01-04");
         }
     }

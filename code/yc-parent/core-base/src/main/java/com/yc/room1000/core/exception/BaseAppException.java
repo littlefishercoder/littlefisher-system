@@ -92,6 +92,16 @@ public class BaseAppException extends Exception {
     public BaseAppException(String errorCode) {
         this(errorCode, null, null, null, null, null);  
     }
+    
+    /**
+     * BaseAppException
+     * 
+     * @param errorCode errorCode
+     * @param message message
+     */
+    public BaseAppException(String errorCode, String message) {
+        this(errorCode, message, null, null, null, null);
+    }
 
     /**
      * 

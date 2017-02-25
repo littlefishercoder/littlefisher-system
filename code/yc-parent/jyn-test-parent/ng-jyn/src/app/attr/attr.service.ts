@@ -4,15 +4,18 @@
 
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {Attr} from './model/attr-model';
 
 import 'rxjs/Rx';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import {rootUrl} from '../share/root-url';
 
 @Injectable()
 export class AttrService {
 
-  public attrListUrl = 'http://127.0.0.1:80/jyn-test-web/api/v1/jyn/attr';
+  public attrListUrl = rootUrl + 'api/v1/jyn/attr';
 
   constructor(public http: Http) {
 
@@ -21,17 +24,14 @@ export class AttrService {
   public getAttrList(): Observable<Attr[]> {
     return this.http.get(this.attrListUrl)
       .map(
-        (res: Response) => {
-          return res.json();
-        },
-        (error: any) => {
-          console.log(error);
-        }
+        res => res.json()
       )
       .catch(
-        (error: any) => {
-          console.log(error);
-          return Observable.throw(error || 'Server error');
+        error => {
+          debugger;
+          const errMsg = error.message;
+          console.log(errMsg);
+          return Observable.throw(error);
         }
       );
   }

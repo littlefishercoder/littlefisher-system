@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.service.ServiceImpl;
+import com.yc.room1000.core.utils.ExceptionHandler;
 import com.yc.room1000.jyn.attr.cmd.QryAllAttrCmd;
 import com.yc.room1000.jyn.attr.cmd.QryAttrByIdCmd;
 import com.yc.room1000.jyn.attr.cmd.QryAttrByIdsCmd;
@@ -33,7 +34,11 @@ public class AttrServiceImpl extends ServiceImpl implements IAttrService {
     @SuppressWarnings("unchecked")
     @Override
     public List<AttrDto> qryAllAttr() throws BaseAppException {
-        return (List<AttrDto>) this.execute(new QryAllAttrCmd());
+        List<AttrDto> attrList =  (List<AttrDto>) this.execute(new QryAllAttrCmd());
+        if (attrList.size() == 4) {
+            ExceptionHandler.publish("COMMON-0001");
+        }
+        return attrList;
     }
 
     @SuppressWarnings("unchecked")
