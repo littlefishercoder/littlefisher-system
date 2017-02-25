@@ -31,12 +31,12 @@ public class ApplicationControllerExceptionHandler {
     
     /**
      * 
-     * Description: 
+     * Description: 针对BaseAppException类型的异常，该异常一般为业务抛出的异常，主要用于向前台传输异常信息
      * 
      * @author jinyanan
      *
-     * @param ex ex
-     * @return Map<String, Object>
+     * @param ex 抛出的异常
+     * @return Map<String, Object> 向前台返回的参数，会以JSON的形式返回
      */
     @ExceptionHandler(value = BaseAppException.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
@@ -51,12 +51,12 @@ public class ApplicationControllerExceptionHandler {
     
     /**
      * 
-     * Description: 
+     * Description: 除了BaseAppException类型之外的异常，该异常一般为内部实现出错时会抛出的异常，例如NummPointerException、SQLException等等，非业务逻辑异常
      * 
      * @author jinyanan
      *
-     * @param ex ex
-     * @return Map<String, Object>
+     * @param ex 抛出的异常
+     * @return Map<String, Object> 向前台返回的参数，会以JSON的形式返回
      */
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
