@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.jyn.attr.model.AttrDto;
+import com.yc.room1000.jyn.attr.model.QryAttrListRequest;
 
 /**
  * 
@@ -51,4 +52,16 @@ public interface IAttrService {
      * @throws BaseAppException <br>
      */
     List<AttrDto> qryAttrByIds(String attrIds) throws BaseAppException;
+
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param qryAttrListRequest qryAttrListRequest
+     * @return List<AttrDto>
+     * @throws BaseAppException <br>
+     */
+    List<AttrDto> getAttrByConf(QryAttrListRequest qryAttrListRequest) throws BaseAppException;
 }

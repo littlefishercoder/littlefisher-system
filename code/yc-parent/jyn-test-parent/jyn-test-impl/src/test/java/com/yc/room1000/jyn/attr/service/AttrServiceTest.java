@@ -10,9 +10,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageInfo;
+
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.utils.Room1000Logger;
 import com.yc.room1000.jyn.attr.model.AttrDto;
+import com.yc.room1000.jyn.attr.model.QryAttrListRequest;
 
 /**
  * 
@@ -69,5 +72,23 @@ public class AttrServiceTest {
         String attrIds = "1,2";
         List<AttrDto> attrList = attrService.qryAttrByIds(attrIds);
         logger.debug("attrList : " + attrList);
+    }
+    
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @throws BaseAppException <br>
+     */
+    @Test
+    public void testQryAttrByConf() throws BaseAppException {
+        QryAttrListRequest request = new QryAttrListRequest();
+        request.setPageNum(1);
+        request.setPageSize(20);
+        List<AttrDto> attrPageList = attrService.getAttrByConf(request);
+        PageInfo<AttrDto> pageInfo = new PageInfo<AttrDto>(attrPageList);
+        logger.debug("attr pageInfo: " + pageInfo);
     }
 }

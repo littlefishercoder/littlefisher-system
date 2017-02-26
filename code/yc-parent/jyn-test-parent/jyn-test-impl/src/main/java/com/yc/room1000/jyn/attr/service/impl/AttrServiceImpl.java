@@ -8,9 +8,11 @@ import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.service.ServiceImpl;
 import com.yc.room1000.core.utils.ExceptionHandler;
 import com.yc.room1000.jyn.attr.cmd.QryAllAttrCmd;
+import com.yc.room1000.jyn.attr.cmd.QryAttrByConfCmd;
 import com.yc.room1000.jyn.attr.cmd.QryAttrByIdCmd;
 import com.yc.room1000.jyn.attr.cmd.QryAttrByIdsCmd;
 import com.yc.room1000.jyn.attr.model.AttrDto;
+import com.yc.room1000.jyn.attr.model.QryAttrListRequest;
 import com.yc.room1000.jyn.attr.service.IAttrService;
 
 /**
@@ -45,6 +47,16 @@ public class AttrServiceImpl extends ServiceImpl implements IAttrService {
     @Override
     public List<AttrDto> qryAttrByIds(String attrIds) throws BaseAppException {
         return (List<AttrDto>) this.execute(new QryAttrByIdsCmd(attrIds));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<AttrDto> getAttrByConf(QryAttrListRequest qryAttrListRequest) throws BaseAppException {
+        List<AttrDto> attrList = (List<AttrDto>) this.execute(new QryAttrByConfCmd(qryAttrListRequest));
+        if (4 == attrList.size()) {
+            ExceptionHandler.publish("ATTR_COMMON_00001");
+        }
+        return attrList;
     }
 
 }
