@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import com.yc.room1000.core.i18n.PropertiesFileTextProvider;
 import com.yc.room1000.core.i18n.TextProvider;
 import com.yc.room1000.core.utils.ListUtil;
+import com.yc.room1000.core.utils.StringUtil;
 
 /**
  * 
@@ -77,6 +78,8 @@ public class BaseAppException extends Exception {
         this.desc = message;
 
         this.localeMessage = (code == null ? "" : textProvider.getText(code));
+        
+        this.localeMessage = StringUtil.isEmpty(this.localeMessage) ? message : this.localeMessage;
 
         if (args != null && args.length > 0) {
             this.localeMessage = this.replaceArgs(localeMessage, args);

@@ -16,13 +16,25 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
  * @version 1.0
  * @since v1.0
  */
-@ApiModel(value = "查询Attr列表的请求参数")
-public class QryAttrListRequest implements Serializable {
+@ApiModel(value = "查询Attr分页列表的请求参数")
+public class QryAttrPagerListRequest extends QryAttrListRequest implements Serializable {
 
     /**
      * serialVersionUID 
      */
     private static final long serialVersionUID = 1L;
+    
+    /**
+     * pageNum 页码
+     */
+    @ApiModelProperty(value = "页码")
+    private int pageNum;
+    
+    /**
+     * pageSize 每页行数
+     */
+    @ApiModelProperty(value = "每页行数")
+    private int pageSize;
     
     /**
      * attrIds attrId的集合
@@ -41,6 +53,22 @@ public class QryAttrListRequest implements Serializable {
      */
     @ApiModelProperty(value = "属性编码")
     private String attrCode;
+
+    public int getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(int pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public int getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
 
     public List<String> getAttrIds() {
         return attrIds;
@@ -69,7 +97,11 @@ public class QryAttrListRequest implements Serializable {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("QryAttrListRequest [attrIds=");
+        builder.append("QryAttrPagerListRequest [pageNum=");
+        builder.append(pageNum);
+        builder.append(", pageSize=");
+        builder.append(pageSize);
+        builder.append(", attrIds=");
         builder.append(attrIds);
         builder.append(", attrName=");
         builder.append(attrName);

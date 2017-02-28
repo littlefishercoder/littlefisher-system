@@ -1,11 +1,9 @@
 package com.yc.room1000.jyn.attr.cmd;
 
-import java.io.Serializable;
 import java.util.List;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
-import com.yc.room1000.core.interceptor.Command;
 import com.yc.room1000.jyn.attr.dao.AttrDtoMapper;
 import com.yc.room1000.jyn.attr.model.AttrDto;
 
@@ -19,12 +17,7 @@ import com.yc.room1000.jyn.attr.model.AttrDto;
  * @version 1.0
  * @since v1.0
  */
-public class QryAllAttrCmd extends AbstractCommand implements Command, Serializable {
-
-    /**
-     * serialVersionUID 
-     */
-    private static final long serialVersionUID = 1L;
+public class QryAllAttrCmd extends AbstractCommand {
 
     @Override
     public List<Object> getInputArgs() {

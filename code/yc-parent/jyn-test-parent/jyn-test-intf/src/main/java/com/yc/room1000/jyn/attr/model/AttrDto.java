@@ -3,6 +3,9 @@ package com.yc.room1000.jyn.attr.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
 /**
  * 
  * Description: 
@@ -13,53 +16,62 @@ import java.util.Date;
  * @version 1.0
  * @since v1.0
  */
+@ApiModel(value = "请求参数实体")
 public class AttrDto implements Serializable {
     /**
      * id 属性主键
      * @mbg.generated
      */
+    @ApiModelProperty(value = "属性主键")
     private Long id;
 
     /**
      * name 属性名
      * @mbg.generated
      */
+    @ApiModelProperty(value = "属性名")
     private String name;
 
     /**
      * code 属性编码
      * @mbg.generated
      */
+    @ApiModelProperty(value = "属性编码")
     private String code;
 
     /**
      * unitId 单位
      * @mbg.generated
      */
+    @ApiModelProperty(value = "单位")
     private Long unitId;
 
     /**
      * type 属性类型
      * @mbg.generated
      */
+    @ApiModelProperty(value = "属性类型")
     private String type;
 
     /**
      * state 状态
      * @mbg.generated
      */
+    @ApiModelProperty(value = "状态")
     private String state;
 
     /**
      * stateDate 状态变更时间
      * @mbg.generated
      */
+    @ApiModelProperty(value = "状态变更时间")
     private Date stateDate;
 
     /**
      * comments 备注
      * @mbg.generated
      */
+    @ApiModelProperty(value = "备注")
     private String comments;
 
     /**

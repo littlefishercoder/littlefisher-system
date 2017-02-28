@@ -12,39 +12,40 @@ import com.yc.room1000.jyn.attr.model.AttrDto;
  * 
  * Description: 
  *  
- * Created on 2017年2月12日 
+ * Created on 2017年2月26日 
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-public class QryAttrByIdsCmd extends AbstractCommand {
-    
-    /**
-     * attrId
-     */
-    private String attrIds;
-    
-    /**
-     * 构造函数
-     * @param attrIds attrIds
-     */
-    public QryAttrByIdsCmd(String attrIds) {
-        this.attrIds = attrIds;
-    }
+public class InsertAttrCmd extends AbstractCommand {
 
+    /**
+     * attrDto
+     */
+    private AttrDto attrDto;
+    
+    /**
+     * InsertAttrCmd
+     * 
+     * @param attrDto attrDto
+     */
+    public InsertAttrCmd(AttrDto attrDto) {
+        this.attrDto = attrDto;
+    }
+    
     @Override
     public List<Object> getInputArgs() {
-        List<Object> args = new ArrayList<Object>();
-        args.add(attrIds);
+        List<Object> args =  new ArrayList<Object>();
+        args.add(attrDto);
         return args;
     }
 
     @Override
-    public List<AttrDto> execute() throws BaseAppException {
+    public AttrDto execute() throws BaseAppException {
         AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
-        String[] attrIdsArray = attrIds.split(",");
-        return attrDtoMapper.selectByIds(attrIdsArray);
+        attrDtoMapper.insert(attrDto);
+        return attrDto;
     }
 
 }

@@ -51,6 +51,33 @@ public class ApplicationControllerExceptionHandler {
     
     /**
      * 
+     * Description: 针对BaseRuntimeException类型的异常，该异常一般为业务抛出的异常，主要是业务回滚时抛出该异常，需要向前台抛基层的BaseAppException内容
+     * 
+     * @author jinyanan
+     *
+     * @param ex 抛出的异常
+     * @return Map<String, Object> 向前台返回的参数，会以JSON的形式返回
+     */
+    @ExceptionHandler(value = BaseRuntimeException.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseBody
+    public Map<String, Object> handlerError(BaseRuntimeException ex) {
+        logger.error(ex.getMessage(), ex);
+        Map<String, Object> map = new HashMap<String, Object>();
+        if (ex.getCause() instanceof BaseAppException) {
+            BaseAppException baseAppException = (BaseAppException) ex.getCause();
+            map.put("errorCode", baseAppException.getCode());
+            map.put("errorMsg", baseAppException.getLocaleMessage());
+        }
+        else {
+            map.put("errorMsg", ex.getMessage());
+        }
+        
+        return map;
+    }
+    
+    /**
+     * 
      * Description: 除了BaseAppException类型之外的异常，该异常一般为内部实现出错时会抛出的异常，例如NummPointerException、SQLException等等，非业务逻辑异常
      * 
      * @author jinyanan

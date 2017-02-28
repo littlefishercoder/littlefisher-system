@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yc.room1000.core.mybatis.SuperMapper;
 import com.yc.room1000.jyn.attr.model.AttrDto;
+import com.yc.room1000.jyn.attr.model.QryAttrListRequest;
 
 /**
  * 
@@ -85,6 +86,17 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return List<AttrDto>
      */
     List<AttrDto> selectAllAttr();
+    
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param qryAttrListRequest qryAttrListRequest
+     * @return List<AttrDto
+     */
+    List<AttrDto> selectAttrByCond(QryAttrListRequest qryAttrListRequest);
 
     /**
      * 
@@ -96,4 +108,15 @@ public interface AttrDtoMapper extends SuperMapper {
      * @return List<AttrDto>
      */
     List<AttrDto> selectByIds(String[] attrIds);
+
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param attrName attrName
+     * @return AttrDto
+     */
+    AttrDto selectByName(String attrName);
 }

@@ -2,9 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yc.room1000.jyn.attr.dao.AttrDtoMapper">
   <resultMap id="BaseResultMap" type="com.yc.room1000.jyn.attr.model.AttrDto">
-    <!--
-    @mbg.generated
-    -->
+    <!-- @mbg.generated -->
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="NAME" jdbcType="VARCHAR" property="name" />
     <result column="CODE" jdbcType="VARCHAR" property="code" />
@@ -15,60 +13,80 @@
     <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
   </resultMap>
   <sql id="Base_Column_List">
-    <!--
-    @mbg.generated
-    -->
+    <!-- @mbg.generated -->
     ID, NAME, CODE, UNIT_ID, TYPE, STATE, STATE_DATE, COMMENTS
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--
-    @mbg.generated
-    -->
-    select 
+    <!-- @mbg.generated -->
+    select
     <include refid="Base_Column_List" />
     from ATTR
     where ID = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ATTR
+    where NAME = #{attrName,jdbcType=VARCHAR}
+  </select>
   <select id="selectAllAttr" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from ATTR
   </select>
-   <select id="selectByIds" resultMap="BaseResultMap">
-    select 
+  <select id="selectAttrByCond" parameterType="com.yc.room1000.jyn.attr.model.QryAttrListRequest" resultMap="BaseResultMap">
+    select
     <include refid="Base_Column_List" />
     from ATTR
     <where>
-        ID in 
-        <if test="array != null">
-            <foreach collection="array" item="attrId" open="(" separator="," close=")">
-                #{attrId}
-            </foreach>
-        </if>
+      <if test="attrIds != null">
+        ID in
+        <foreach collection="attrIds" item="attrId" open="(" separator="," close=")">
+          #{attrId}
+        </foreach>
+      </if>
+      <if test="attrName != null">
+        NAME = #{attrName,jdbcType=VARCHAR}
+      </if>
+      <if test="attrCode != null">
+        CODE = #{attrCode,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <select id="selectByIds" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ATTR
+    <where>
+      ID in
+      <if test="array != null">
+        <foreach collection="array" item="attrId" open="(" separator="," close=")">
+          #{attrId}
+        </foreach>
+      </if>
     </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--
-    @mbg.generated
-    -->
+    <!-- @mbg.generated -->
     delete from ATTR
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.yc.room1000.jyn.attr.model.AttrDto">
-    <!--
-    @mbg.generated
-    -->
-    insert into ATTR (ID, NAME, CODE, 
-      UNIT_ID, TYPE, STATE, STATE_DATE, 
-      COMMENTS)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{state,jdbcType=CHAR}, #{stateDate,jdbcType=TIMESTAMP}, 
-      #{comments,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.yc.room1000.jyn.attr.model.AttrDto" useGeneratedKeys="true" keyProperty="id">
+    <!-- @mbg.generated -->
+    insert into ATTR (ID, NAME, CODE,
+    UNIT_ID, TYPE, STATE, STATE_DATE,
+    COMMENTS)
+    values (#{id,jdbcType=INTEGER},
+    #{name,jdbcType=VARCHAR},
+    #{code,jdbcType=VARCHAR},
+    #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR},
+    #{state,jdbcType=CHAR},
+    #{stateDate,jdbcType=TIMESTAMP},
+    #{comments,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.yc.room1000.jyn.attr.model.AttrDto">
-    <!--
-    @mbg.generated
-    -->
+  <insert id="insertSelective" parameterType="com.yc.room1000.jyn.attr.model.AttrDto" useGeneratedKeys="true"
+    keyProperty="id">
+    <!-- @mbg.generated -->
     insert into ATTR
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -124,9 +142,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yc.room1000.jyn.attr.model.AttrDto">
-    <!--
-    @mbg.generated
-    -->
+    <!-- @mbg.generated -->
     update ATTR
     <set>
       <if test="name != null">
@@ -154,17 +170,16 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yc.room1000.jyn.attr.model.AttrDto">
-    <!--
-    @mbg.generated
-    -->
+    <!-- @mbg.generated -->
     update ATTR
     set NAME = #{name,jdbcType=VARCHAR},
-      CODE = #{code,jdbcType=VARCHAR},
-      UNIT_ID = #{unitId,jdbcType=INTEGER},
-      TYPE = #{type,jdbcType=CHAR},
-      STATE = #{state,jdbcType=CHAR},
-      STATE_DATE = #{stateDate,jdbcType=TIMESTAMP},
-      COMMENTS = #{comments,jdbcType=VARCHAR}
+    CODE = #{code,jdbcType=VARCHAR},
+    UNIT_ID = #{unitId,jdbcType=INTEGER},
+    TYPE = #{type,jdbcType=CHAR},
+    STATE = #{state,jdbcType=CHAR},
+    STATE_DATE = #{stateDate,jdbcType=TIMESTAMP},
+    COMMENTS =
+    #{comments,jdbcType=VARCHAR}
     where ID = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
