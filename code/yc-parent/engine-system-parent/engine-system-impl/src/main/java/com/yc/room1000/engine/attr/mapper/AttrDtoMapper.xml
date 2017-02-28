@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.room1000.engine.attr.dao.AttrDtoMapper">
+  <resultMap id="BaseResultMap" type="com.yc.room1000.engine.attr.model.AttrDto">
+    <!--
+    @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="mandatory" jdbcType="CHAR" property="mandatory" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+    @mbg.generated
+    -->
+    id, name, code, unit_id, type, state, state_date, comments, mandatory
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--
+    @mbg.generated
+    -->
+    select 
+    <include refid="Base_Column_List" />
+    from attr
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from attr
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--
+    @mbg.generated
+    -->
+    delete from attr
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yc.room1000.engine.attr.model.AttrDto">
+    <!--
+    @mbg.generated
+    -->
+    insert into attr (id, name, code, 
+      unit_id, type, state, state_date, 
+      comments, mandatory)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{state,jdbcType=CHAR}, #{stateDate,jdbcType=TIMESTAMP}, 
+      #{comments,jdbcType=VARCHAR}, #{mandatory,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.room1000.engine.attr.model.AttrDto">
+    <!--
+    @mbg.generated
+    -->
+    insert into attr
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="unitId != null">
+        unit_id,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="state != null">
+        state,
+      </if>
+      <if test="stateDate != null">
+        state_date,
+      </if>
+      <if test="comments != null">
+        comments,
+      </if>
+      <if test="mandatory != null">
+        mandatory,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null">
+        #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=CHAR},
+      </if>
+      <if test="state != null">
+        #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateDate != null">
+        #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="mandatory != null">
+        #{mandatory,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.room1000.engine.attr.model.AttrDto">
+    <!--
+    @mbg.generated
+    -->
+    update attr
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null">
+        unit_id = #{unitId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=CHAR},
+      </if>
+      <if test="state != null">
+        state = #{state,jdbcType=CHAR},
+      </if>
+      <if test="stateDate != null">
+        state_date = #{stateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null">
+        comments = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="mandatory != null">
+        mandatory = #{mandatory,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.room1000.engine.attr.model.AttrDto">
+    <!--
+    @mbg.generated
+    -->
+    update attr
+    set name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      unit_id = #{unitId,jdbcType=INTEGER},
+      type = #{type,jdbcType=CHAR},
+      state = #{state,jdbcType=CHAR},
+      state_date = #{stateDate,jdbcType=TIMESTAMP},
+      comments = #{comments,jdbcType=VARCHAR},
+      mandatory = #{mandatory,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

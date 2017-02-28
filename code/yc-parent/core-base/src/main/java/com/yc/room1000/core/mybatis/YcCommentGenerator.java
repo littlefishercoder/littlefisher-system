@@ -87,10 +87,6 @@ public class YcCommentGenerator implements CommentGenerator {
      * @param markAsDoNotDelete markAsDoNotDelete
      */
     protected void addJavadocTag(JavaElement javaElement, boolean markAsDoNotDelete) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" * "); 
-        sb.append(MergeConstants.NEW_ELEMENT_TAG);
-        javaElement.addJavaDocLine(sb.toString());
     }
     
     @Override

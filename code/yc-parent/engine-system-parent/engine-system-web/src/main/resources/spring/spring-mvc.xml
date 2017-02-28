@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:context="http://www.springframework.org/schema/context"
     xsi:schemaLocation="http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
 http://www.springframework.org/schema/context 
@@ -9,15 +9,27 @@ http://www.springframework.org/schema/context/spring-context-4.3.xsd
 http://www.springframework.org/schema/mvc 
 http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
-    <context:component-scan base-package="com.yc.**.controller" />
+    <context:component-scan base-package="com.yc.room1000.**.controller" >
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
     
     <!-- 声明注解方式加载bean -->
     <context:annotation-config />
-    
+
     <mvc:default-servlet-handler />
 
-    <bean id="mappingJacksonHttpMessageConverter"
-        class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    <!-- 所有swagger目录的访问，直接访问location指定的目录 -->
+    <mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger/" />
+    
+    <!-- swagger配置 -->
+    <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
+
+    <bean class="com.yc.room1000.core.swagger.SwaggerConfig" />
+    
+    <!--注解驱动，使spring的controller全部生效 -->
+    <mvc:annotation-driven />
+
+    <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>text/html;charset=UTF-8</value>
@@ -25,8 +37,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
         </property>
     </bean>
 
-    <bean
-        class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
             <list>
                 <ref bean="mappingJacksonHttpMessageConverter" />
@@ -34,12 +45,7 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
         </property>
     </bean>
 
-    <bean
-        class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-        p:prefix="/" p:suffix=".jsp" />
-
-    <bean id="multipartResolver"
-        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="defaultEncoding">
             <value>UTF-8</value>
         </property>

@@ -21,12 +21,12 @@
 		</dependency>
 		<dependency>
 			<groupId>com.yc</groupId>
-			<artifactId>jyn-test-intf</artifactId>
+			<artifactId>engine-system-intf</artifactId>
 			<version>${yc.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.yc</groupId>
-			<artifactId>jyn-test-impl</artifactId>
+			<artifactId>engine-system-impl</artifactId>
 			<version>${yc.version}</version>
 		</dependency>
 	</dependencies>

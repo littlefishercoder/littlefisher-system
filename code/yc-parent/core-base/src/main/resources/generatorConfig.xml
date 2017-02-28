@@ -17,29 +17,40 @@
             <!-- 生成作者的名字 -->
             <property name="author" value="jinyanan" />
         </commentGenerator>
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/room1000"
-            userId="root" password="root">
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://112.124.222.165:3306/testroom"
+            userId="ycroom" password="ycqwj_1000">
         </jdbcConnection>
         <javaTypeResolver type="com.yc.room1000.core.mybatis.YcJavaTypeResolver">
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
-        <javaModelGenerator targetPackage="com.yc.attr.dto" targetProject="src/test/java">
+        <javaModelGenerator targetPackage="com.yc.cancellease.dto" targetProject="src/test/java">
             <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
-        <sqlMapGenerator targetPackage="com.yc.attr.mapper" targetProject="src/test/java">
+        <sqlMapGenerator targetPackage="com.yc.cancellease.mapper" targetProject="src/test/java">
             <property name="enableSubPackages" value="false" />
             <property name="trimStrings" value="true" />
         </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yc.attr.dao"
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yc.cancellease.dao"
             targetProject="src/test/java">
             <property name="enableSubPackages" value="false" />
             <property name="rootInterface" value="com.yc.room1000.core.mybatis.SuperMapper" />
         </javaClientGenerator>
-        <table tableName="ATTR" domainObjectName="AttrDto" enableCountByExample="false"
+        <table tableName="work_order" domainObjectName="WorkOrderDto" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
-<!--             <generatedKey column="id" sqlStatement="Mysql" /> -->
+        </table>
+        <table tableName="work_order_state" domainObjectName="WorkOrderStateDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+        <table tableName="work_order_his" domainObjectName="WorkOrderHisDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+        <table tableName="order_commentary" domainObjectName="OrderCommentaryDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
         </table>
     </context>
 </generatorConfiguration>
