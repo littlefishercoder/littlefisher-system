@@ -125,7 +125,7 @@ public class AttrController {
     @RequestMapping(method = RequestMethod.PATCH)
     @ApiOperation(value = "修改Attr")
     public AttrDto updateAttr(@RequestBody AttrDto attrDto) throws BaseAppException {
-        return null;
+        return attrService.updateAttr(attrDto);
     }
     
     /**
@@ -142,6 +142,6 @@ public class AttrController {
     @ApiOperation(value = "删除Attr")
     public int deleteAttr(
         @ApiParam(required = true, value = "属性主键") @PathVariable("attrId") Long attrId) throws BaseAppException {
-        return 0;
+        return attrService.deleteAttr(attrId);
     }
 }

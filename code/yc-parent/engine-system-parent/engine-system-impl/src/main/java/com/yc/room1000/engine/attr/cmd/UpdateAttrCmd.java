@@ -15,7 +15,7 @@ import com.yc.room1000.engine.attr.model.AttrDto;
  * @version 1.0
  * @since v1.0
  */
-public class InsertAttrCmd extends AbstractCommand {
+public class UpdateAttrCmd extends AbstractCommand {
     
     /**
      * attrDto
@@ -23,25 +23,19 @@ public class InsertAttrCmd extends AbstractCommand {
     private AttrDto attrDto;
 
     /**
-     * 
-     * InsertAttrCmd
+     * UpdateAttrCmd
      * 
      * @param attrDto attrDto
      */
-    public InsertAttrCmd(AttrDto attrDto) {
+    public UpdateAttrCmd(AttrDto attrDto) {
         this.attrDto = attrDto;
     }
-
-//    @Override
-//    public List<Object> getInputArgs() {
-//        return null;
-//    }
 
     @Override
     public AttrDto execute() throws BaseAppException {
         AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
-        attrDtoMapper.insert(attrDto);
-        return attrDto;
+        attrDtoMapper.updateByPrimaryKeySelective(attrDto);
+        return attrDtoMapper.selectByPrimaryKey(attrDto.getId());
     }
 
 }

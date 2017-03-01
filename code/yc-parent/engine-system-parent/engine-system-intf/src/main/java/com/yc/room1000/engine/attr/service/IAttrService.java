@@ -77,4 +77,28 @@ public interface IAttrService {
      * @throws BaseAppException <br>
      */
     AttrDto addAttr(AttrDto attrDto) throws BaseAppException;
+
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param attrDto attrDto
+     * @return AttrDto
+     * @throws BaseAppException <br>
+     */
+    AttrDto updateAttr(AttrDto attrDto) throws BaseAppException;
+
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param attrId attrId
+     * @return int
+     * @throws BaseAppException <br>
+     */
+    int deleteAttr(Long attrId)throws BaseAppException;
 }

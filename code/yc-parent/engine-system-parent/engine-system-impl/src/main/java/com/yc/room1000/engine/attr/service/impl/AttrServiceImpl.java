@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.service.ServiceImpl;
+import com.yc.room1000.engine.attr.cmd.DeleteAttrCmd;
 import com.yc.room1000.engine.attr.cmd.InsertAttrCmd;
 import com.yc.room1000.engine.attr.cmd.QryAllAttrCmd;
 import com.yc.room1000.engine.attr.cmd.QryAttrByIdCmd;
 import com.yc.room1000.engine.attr.cmd.QryAttrListByCondCmd;
 import com.yc.room1000.engine.attr.cmd.QryAttrPagerListByCondCmd;
+import com.yc.room1000.engine.attr.cmd.UpdateAttrCmd;
 import com.yc.room1000.engine.attr.model.AttrDto;
 import com.yc.room1000.engine.attr.model.QryAttrListRequest;
 import com.yc.room1000.engine.attr.model.QryAttrPagerListRequest;
@@ -56,6 +58,16 @@ public class AttrServiceImpl extends ServiceImpl implements IAttrService {
     @Override
     public AttrDto addAttr(AttrDto attrDto) throws BaseAppException {
         return (AttrDto) this.execute(new InsertAttrCmd(attrDto));
+    }
+
+    @Override
+    public AttrDto updateAttr(AttrDto attrDto) throws BaseAppException {
+        return (AttrDto) this.execute(new UpdateAttrCmd(attrDto));
+    }
+
+    @Override
+    public int deleteAttr(Long attrId) throws BaseAppException {
+        return (int) this.execute(new DeleteAttrCmd(attrId));
     }
 
 }
