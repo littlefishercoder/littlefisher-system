@@ -2,35 +2,42 @@ package com.yc.room1000.engine.attr.model;
 
 import java.io.Serializable;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月28日 
  *
+ * Description: attr_type实体
+ *
+ * Created on 2017年03月01日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
+@ApiModel(value = "attr_type实体")
 public class AttrTypeDto implements Serializable {
     /**
      * type 属性类型
      */
+    @ApiModelProperty(value = "属性类型")
     private String type;
 
     /**
      * typeName 属性类型名称
      */
+    @ApiModelProperty(value = "属性类型名称")
     private String typeName;
 
     /**
      * typeNameEn 属性类型名称 英文
      */
+    @ApiModelProperty(value = "属性类型名称 英文")
     private String typeNameEn;
 
     /**
      * comments 备注
      */
+    @ApiModelProperty(value = "备注")
     private String comments;
 
     /**

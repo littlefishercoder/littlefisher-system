@@ -7,7 +7,7 @@ import com.yc.room1000.engine.attr.model.AttrTypeDto;
  * 
  * Description: 
  *  
- * Created on 2017年2月28日 
+ * Created on 2017年3月1日 
  *
  * @author jinyanan
  * @version 1.0

@@ -2,40 +2,48 @@ package com.yc.room1000.engine.attr.model;
 
 import java.io.Serializable;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月28日 
  *
+ * Description: attr_value实体
+ *
+ * Created on 2017年03月01日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
+@ApiModel(value = "attr_value实体")
 public class AttrValueDto implements Serializable {
     /**
      * id 主键
      */
+    @ApiModelProperty(value = "主键")
     private Long id;
 
     /**
      * attrId 属性主键
      */
+    @ApiModelProperty(value = "属性主键")
     private Long attrId;
 
     /**
      * value 属性可选项
      */
+    @ApiModelProperty(value = "属性可选项")
     private String value;
 
     /**
      * valueMask 可选项展示内容
      */
+    @ApiModelProperty(value = "可选项展示内容")
     private String valueMask;
 
     /**
      * priority 优先级
      */
+    @ApiModelProperty(value = "优先级")
     private Long priority;
 
     /**

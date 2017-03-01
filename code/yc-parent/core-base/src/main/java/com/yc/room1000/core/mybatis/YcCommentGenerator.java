@@ -1,5 +1,7 @@
 package com.yc.room1000.core.mybatis;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -10,6 +12,7 @@ import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.Field;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.InnerClass;
 import org.mybatis.generator.api.dom.java.InnerEnum;
 import org.mybatis.generator.api.dom.java.JavaElement;
@@ -43,6 +46,15 @@ public class YcCommentGenerator implements CommentGenerator {
     /** author */
     private String author;
     
+    /** apiModelProperty */
+    private FullyQualifiedJavaType apiModelProperty;
+    
+    /** apiModel */
+    private FullyQualifiedJavaType apiModel;
+    
+    /** currentDateStr */
+    private String currentDateStr;
+    
     /**
      * YcCommentsGenerator
      */
@@ -51,6 +63,9 @@ public class YcCommentGenerator implements CommentGenerator {
         properties = new Properties();
         suppressAllComments = false;
         author = "autoCreated";
+        apiModelProperty = new FullyQualifiedJavaType("com.wordnik.swagger.annotations.ApiModelProperty");
+        apiModel = new FullyQualifiedJavaType("com.wordnik.swagger.annotations.ApiModel");
+        currentDateStr = new SimpleDateFormat("yyyy年MM月dd日").format(new Date());
     }
 
     @Override
@@ -98,6 +113,8 @@ public class YcCommentGenerator implements CommentGenerator {
         field.addJavaDocLine(" * " + field.getName() + " " + introspectedColumn.getRemarks());
         addJavadocTag(field, false);
         field.addJavaDocLine(" */"); 
+        
+        field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() +  "\")");
         
     }
 
@@ -164,6 +181,18 @@ public class YcCommentGenerator implements CommentGenerator {
 
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        topLevelClass.addImportedType(apiModelProperty);
+        topLevelClass.addImportedType(apiModel);
+        topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
+        topLevelClass.addJavaDocLine("/**");
+        topLevelClass.addJavaDocLine(" *");
+        topLevelClass.addJavaDocLine(" * Description: " + introspectedTable.getFullyQualifiedTable() + "实体");
+        topLevelClass.addJavaDocLine(" *");
+        topLevelClass.addJavaDocLine(" * Created on " + currentDateStr);
+        topLevelClass.addJavaDocLine(" * @author " + author);
+        topLevelClass.addJavaDocLine(" * @version 1.0");
+        topLevelClass.addJavaDocLine(" * @since v1.0");
+        topLevelClass.addJavaDocLine(" */");
     }
 
 }

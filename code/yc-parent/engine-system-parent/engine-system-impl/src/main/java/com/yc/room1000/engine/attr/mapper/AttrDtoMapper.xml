@@ -30,11 +30,6 @@
     from attr
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectAll" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from attr
-  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--
     @mbg.generated
@@ -42,7 +37,7 @@
     delete from attr
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.yc.room1000.engine.attr.model.AttrDto">
+  <insert id="insert" parameterType="com.yc.room1000.engine.attr.model.AttrDto" useGeneratedKeys="true" keyProperty="id">
     <!--
     @mbg.generated
     -->
@@ -53,7 +48,7 @@
       #{unitId,jdbcType=INTEGER}, #{type,jdbcType=CHAR}, #{state,jdbcType=CHAR}, #{stateDate,jdbcType=TIMESTAMP}, 
       #{comments,jdbcType=VARCHAR}, #{mandatory,jdbcType=CHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.yc.room1000.engine.attr.model.AttrDto">
+  <insert id="insertSelective" parameterType="com.yc.room1000.engine.attr.model.AttrDto" useGeneratedKeys="true" keyProperty="id">
     <!--
     @mbg.generated
     -->
@@ -165,4 +160,29 @@
       mandatory = #{mandatory,jdbcType=CHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from attr
+  </select>
+  
+  <select id="selectByCond" parameterType="com.yc.room1000.engine.attr.model.QryAttrListRequest" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from ATTR
+    <where>
+      <if test="attrIds != null">
+        id in
+        <foreach collection="attrIds" item="attrId" open="(" separator="," close=")">
+          #{attrId}
+        </foreach>
+      </if>
+      <if test="attrName != null">
+        name = #{attrName,jdbcType=VARCHAR}
+      </if>
+      <if test="attrCode != null">
+        code = #{attrCode,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
 </mapper>

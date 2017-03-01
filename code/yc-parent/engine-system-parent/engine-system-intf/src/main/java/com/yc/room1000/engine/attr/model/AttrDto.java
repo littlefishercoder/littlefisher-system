@@ -3,60 +3,72 @@ package com.yc.room1000.engine.attr.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月28日 
  *
+ * Description: attr实体
+ *
+ * Created on 2017年03月01日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
+@ApiModel(value = "attr实体")
 public class AttrDto implements Serializable {
     /**
      * id 属性主键
      */
+    @ApiModelProperty(value = "属性主键")
     private Long id;
 
     /**
      * name 属性名
      */
+    @ApiModelProperty(value = "属性名")
     private String name;
 
     /**
      * code 属性编码
      */
+    @ApiModelProperty(value = "属性编码")
     private String code;
 
     /**
      * unitId 单位
      */
+    @ApiModelProperty(value = "单位")
     private Long unitId;
 
     /**
      * type 属性类型
      */
+    @ApiModelProperty(value = "属性类型")
     private String type;
 
     /**
      * state 状态
      */
+    @ApiModelProperty(value = "状态")
     private String state;
 
     /**
      * stateDate 状态变更时间
      */
+    @ApiModelProperty(value = "状态变更时间")
     private Date stateDate;
 
     /**
      * comments 备注
      */
+    @ApiModelProperty(value = "备注")
     private String comments;
 
     /**
      * mandatory Y ——必填，N——非必填。default N
      */
+    @ApiModelProperty(value = "Y ——必填，N——非必填。default N")
     private String mandatory;
 
     /**

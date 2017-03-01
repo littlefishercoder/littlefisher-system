@@ -3,45 +3,55 @@ package com.yc.room1000.engine.attr.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
+
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月28日 
  *
+ * Description: attr_catg实体
+ *
+ * Created on 2017年03月01日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
+@ApiModel(value = "attr_catg实体")
 public class AttrCatgDto implements Serializable {
     /**
      * id 主键
      */
+    @ApiModelProperty(value = "主键")
     private Long id;
 
     /**
      * name 目录名
      */
+    @ApiModelProperty(value = "目录名")
     private String name;
 
     /**
      * code 目录编码
      */
+    @ApiModelProperty(value = "目录编码")
     private String code;
 
     /**
      * type 目录类型
      */
+    @ApiModelProperty(value = "目录类型")
     private String type;
 
     /**
      * state 状态
      */
+    @ApiModelProperty(value = "状态")
     private String state;
 
     /**
      * stateDate 状态变更时间
      */
+    @ApiModelProperty(value = "状态变更时间")
     private Date stateDate;
 
     /**

@@ -2,35 +2,42 @@ package com.yc.room1000.engine.attr.model;
 
 import java.io.Serializable;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月28日 
  *
+ * Description: attr_catg_state实体
+ *
+ * Created on 2017年03月01日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
+@ApiModel(value = "attr_catg_state实体")
 public class AttrCatgStateDto implements Serializable {
     /**
      * state 状态
      */
+    @ApiModelProperty(value = "状态")
     private String state;
 
     /**
      * stateName 状态名
      */
+    @ApiModelProperty(value = "状态名")
     private String stateName;
 
     /**
      * stateNameEn 英文状态名称
      */
+    @ApiModelProperty(value = "英文状态名称")
     private String stateNameEn;
 
     /**
      * comments 备注
      */
+    @ApiModelProperty(value = "备注")
     private String comments;
 
     /**

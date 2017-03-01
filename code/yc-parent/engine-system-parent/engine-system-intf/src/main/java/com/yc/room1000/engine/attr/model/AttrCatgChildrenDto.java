@@ -2,35 +2,42 @@ package com.yc.room1000.engine.attr.model;
 
 import java.io.Serializable;
 
+import com.wordnik.swagger.annotations.ApiModel;
+import com.wordnik.swagger.annotations.ApiModelProperty;
+
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月28日 
  *
+ * Description: attr_catg_children实体
+ *
+ * Created on 2017年03月01日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
+@ApiModel(value = "attr_catg_children实体")
 public class AttrCatgChildrenDto implements Serializable {
     /**
      * id 主键
      */
+    @ApiModelProperty(value = "主键")
     private Long id;
 
     /**
      * catgId 当前目录主键
      */
+    @ApiModelProperty(value = "当前目录主键")
     private Long catgId;
 
     /**
      * childCatgId 子目录主键
      */
+    @ApiModelProperty(value = "子目录主键")
     private Long childCatgId;
 
     /**
      * childAttrId 子属性主键
      */
+    @ApiModelProperty(value = "子属性主键")
     private Long childAttrId;
 
     /**
