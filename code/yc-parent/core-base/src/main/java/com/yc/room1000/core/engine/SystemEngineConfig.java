@@ -24,7 +24,6 @@ import com.yc.room1000.core.interceptor.CommandExecutor;
 import com.yc.room1000.core.interceptor.CommandExecutorImpl;
 import com.yc.room1000.core.interceptor.CommandInterceptor;
 import com.yc.room1000.core.interceptor.CommandInvoker;
-import com.yc.room1000.core.interceptor.LogInterceptor;
 import com.yc.room1000.core.interceptor.SpringTransactionInterceptor;
 import com.yc.room1000.core.interceptor.service.ServiceImpl;
 import com.yc.room1000.core.utils.Room1000Logger;
@@ -502,7 +501,7 @@ public class SystemEngineConfig {
         List<CommandInterceptor> interceptors = new ArrayList<CommandInterceptor>();
         interceptors.add(new CommandContextInterceptor(commandContextFactory, this));
 
-        interceptors.add(new LogInterceptor());
+//        interceptors.add(new LogInterceptor());
 
         CommandInterceptor transactionInterceptor = createTransactionInterceptor();
         if (transactionInterceptor != null) {

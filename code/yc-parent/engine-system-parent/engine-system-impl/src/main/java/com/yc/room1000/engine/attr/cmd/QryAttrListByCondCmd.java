@@ -1,6 +1,5 @@
 package com.yc.room1000.engine.attr.cmd;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.yc.room1000.core.exception.BaseAppException;
@@ -35,12 +34,12 @@ public class QryAttrListByCondCmd extends AbstractCommand {
         this.qryAttrListRequest = qryAttrListRequest;
     }
 
-    @Override
-    public List<Object> getInputArgs() {
-        List<Object> args = new ArrayList<>();
-        args.add(qryAttrListRequest);
-        return args;
-    }
+//    @Override
+//    public List<Object> getInputArgs() {
+//        List<Object> args = new ArrayList<>();
+//        args.add(qryAttrListRequest);
+//        return args;
+//    }
 
     @Override
     public List<AttrDto> execute() throws BaseAppException {

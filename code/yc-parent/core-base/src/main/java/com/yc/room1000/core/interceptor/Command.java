@@ -1,7 +1,5 @@
 package com.yc.room1000.core.interceptor;
 
-import java.util.List;
-
 import com.yc.room1000.core.exception.BaseAppException;
 
 /**
@@ -36,5 +34,5 @@ public interface Command {
      * @taskId <br>
      * @return <br>
      */
-    List<Object> getInputArgs();
+//    List<Object> getInputArgs();
 }

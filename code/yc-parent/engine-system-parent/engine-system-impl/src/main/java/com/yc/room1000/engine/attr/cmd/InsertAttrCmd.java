@@ -1,7 +1,5 @@
 package com.yc.room1000.engine.attr.cmd;
 
-import java.util.List;
-
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
 import com.yc.room1000.engine.attr.dao.AttrDtoMapper;
@@ -34,10 +32,10 @@ public class InsertAttrCmd extends AbstractCommand {
         this.attrDto = attrDto;
     }
 
-    @Override
-    public List<Object> getInputArgs() {
-        return null;
-    }
+//    @Override
+//    public List<Object> getInputArgs() {
+//        return null;
+//    }
 
     @Override
     public AttrDto execute() throws BaseAppException {

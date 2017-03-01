@@ -1,6 +1,5 @@
 package com.yc.room1000.engine.attr.cmd;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.github.pagehelper.PageHelper;
@@ -37,12 +36,12 @@ public class QryAttrPagerListByCondCmd extends AbstractCommand {
         this.qryAttrPagerListRequest = qryAttrPagerListRequest;
     }
 
-    @Override
-    public List<Object> getInputArgs() {
-        List<Object> args = new ArrayList<>();
-        args.add(qryAttrPagerListRequest);
-        return args;
-    }
+//    @Override
+//    public List<Object> getInputArgs() {
+//        List<Object> args = new ArrayList<>();
+//        args.add(qryAttrPagerListRequest);
+//        return args;
+//    }
 
     @Override
     public List<AttrDto> execute() throws BaseAppException {
