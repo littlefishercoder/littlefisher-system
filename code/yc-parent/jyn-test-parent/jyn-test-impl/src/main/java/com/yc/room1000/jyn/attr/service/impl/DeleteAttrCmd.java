@@ -1,8 +1,5 @@
 package com.yc.room1000.jyn.attr.service.impl;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
 import com.yc.room1000.core.interceptor.Command;
@@ -25,13 +22,6 @@ public class DeleteAttrCmd extends AbstractCommand implements Command {
      */
     private Long attrId;
 
-    @Override
-    public List<Object> getInputArgs() {
-        List<Object> args = new ArrayList<Object>();
-        args.add(attrId);
-        return args;
-    }
-    
     /**
      * DeleteAttrCmd
      * 

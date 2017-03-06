@@ -1,8 +1,5 @@
 package com.yc.room1000.jyn.attr.cmd;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
 import com.yc.room1000.jyn.attr.dao.AttrDtoMapper;
@@ -32,13 +29,6 @@ public class QryAttrByNameCmd extends AbstractCommand {
      */
     public QryAttrByNameCmd(String attrName) {
         this.attrName = attrName;
-    }
-
-    @Override
-    public List<Object> getInputArgs() {
-        List<Object> args = new ArrayList<Object>();
-        args.add(attrName);
-        return args;
     }
 
     @Override

@@ -20,11 +20,6 @@ import com.yc.room1000.jyn.attr.model.AttrDto;
 public class QryAllAttrCmd extends AbstractCommand {
 
     @Override
-    public List<Object> getInputArgs() {
-        return null;
-    }
-
-    @Override
     public List<AttrDto> execute() throws BaseAppException {
         AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
         return attrDtoMapper.selectAllAttr();

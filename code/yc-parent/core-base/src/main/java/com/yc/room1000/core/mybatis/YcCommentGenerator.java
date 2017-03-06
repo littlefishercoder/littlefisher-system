@@ -114,7 +114,7 @@ public class YcCommentGenerator implements CommentGenerator {
         addJavadocTag(field, false);
         field.addJavaDocLine(" */"); 
         
-        field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() +  "\")");
+//        field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() +  "\")");
         
     }
 
@@ -181,9 +181,9 @@ public class YcCommentGenerator implements CommentGenerator {
 
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        topLevelClass.addImportedType(apiModelProperty);
-        topLevelClass.addImportedType(apiModel);
-        topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
+//        topLevelClass.addImportedType(apiModelProperty);
+//        topLevelClass.addImportedType(apiModel);
+//        topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
         topLevelClass.addJavaDocLine("/**");
         topLevelClass.addJavaDocLine(" *");
         topLevelClass.addJavaDocLine(" * Description: " + introspectedTable.getFullyQualifiedTable() + "实体");

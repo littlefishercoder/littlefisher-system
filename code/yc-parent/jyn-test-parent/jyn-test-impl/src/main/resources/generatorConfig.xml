@@ -36,10 +36,9 @@
             <property name="enableSubPackages" value="false" />
             <property name="rootInterface" value="com.yc.room1000.core.mybatis.SuperMapper" />
         </javaClientGenerator>
-        <table tableName="yc_agreement_tab" domainObjectName="RentalLeaseOrderDto" enableCountByExample="false"
+        <table tableName="house_looking_order_his" domainObjectName="HouseLookingOrderHisDto" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
-<!--             <generatedKey column="id" sqlStatement="Mysql" /> -->
         </table>
     </context>
 </generatorConfiguration>
