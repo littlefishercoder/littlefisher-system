@@ -1,20 +1,10 @@
 package com.yc.room1000.jyn.cancellease.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yc.room1000.core.activiti.IProcessDeploy;
-import com.yc.room1000.core.activiti.IProcessStart;
-import com.yc.room1000.core.activiti.IProcessTask;
-import com.yc.room1000.core.activiti.impl.ProcessDeployImpl;
-import com.yc.room1000.core.activiti.impl.ProcessStartImpl;
-import com.yc.room1000.core.activiti.impl.ProcessTaskImpl;
 
 /**
  * 
@@ -38,13 +28,13 @@ public class CancelLeaseOrderProcessTest {
      * @author jinyanan
      *
      */
-    @Test
-    public void testDeploy() {
-        String processName = "CancelLeaseProcess";
-        String classPath = "diagrams/cancellease";
-        IProcessDeploy deploy = new ProcessDeployImpl();
-        deploy.deployFlow(processName, classPath);
-    }
+//    @Test
+//    public void testDeploy() {
+//        String processName = "CancelLeaseProcess";
+//        String classPath = "diagrams/cancellease";
+//        IProcessDeploy deploy = new ProcessDeployImpl();
+//        deploy.deployFlow(processName, classPath);
+//    }
 
     /**
      * 
@@ -53,14 +43,14 @@ public class CancelLeaseOrderProcessTest {
      * @author jinyanan
      *
      */
-    @Test
-    public void testStart() {
-        String processInstanceKey = "CancelLeaseProcess";
-        Map<String, Object> variables = new HashMap<String, Object>();
-        variables.put("channel", "2");
-        IProcessStart start = new ProcessStartImpl();
-        start.flowStart(processInstanceKey, variables);
-    }
+//    @Test
+//    public void testStart() {
+//        String processInstanceKey = "CancelLeaseProcess";
+//        Map<String, Object> variables = new HashMap<String, Object>();
+//        variables.put("channel", "2");
+//        IProcessStart start = new ProcessStartImpl();
+//        start.flowStart(processInstanceKey, variables);
+//    }
 
     /**
      * 
@@ -69,11 +59,11 @@ public class CancelLeaseOrderProcessTest {
      * @author jinyanan
      *
      */
-    @Test
-    public void testAssignOrder() {
-        IProcessTask task = new ProcessTaskImpl();
-        task.dispatcherOrder(1L);
-    }
+//    @Test
+//    public void testAssignOrder() {
+//        IProcessTask task = new ProcessTaskImpl();
+//        task.dispatcherOrder(1L);
+//    }
 
     /**
      * 
@@ -82,11 +72,11 @@ public class CancelLeaseOrderProcessTest {
      * @author jinyanan
      *
      */
-    @Test
-    public void testTakeOrder() {
-        IProcessTask task = new ProcessTaskImpl();
-        task.dispatcherOrder(1L);
-    }
+//    @Test
+//    public void testTakeOrder() {
+//        IProcessTask task = new ProcessTaskImpl();
+//        task.dispatcherOrder(1L);
+//    }
 
     /**
      * 
@@ -95,11 +85,11 @@ public class CancelLeaseOrderProcessTest {
      * @author jinyanan
      *
      */
-    @Test
-    public void testButlerGetHome() {
-        IProcessTask task = new ProcessTaskImpl();
-        task.dispatcherOrder(1L);
-    }
+//    @Test
+//    public void testButlerGetHome() {
+//        IProcessTask task = new ProcessTaskImpl();
+//        task.dispatcherOrder(1L);
+//    }
 
     /**
      * 
@@ -108,11 +98,11 @@ public class CancelLeaseOrderProcessTest {
      * @author jinyanan
      *
      */
-    @Test
-    public void testRentalAccount() {
-        IProcessTask task = new ProcessTaskImpl();
-        task.dispatcherOrder(1L);
-    }
+//    @Test
+//    public void testRentalAccount() {
+//        IProcessTask task = new ProcessTaskImpl();
+//        task.dispatcherOrder(1L);
+//    }
 
     /**
      * 
@@ -121,11 +111,11 @@ public class CancelLeaseOrderProcessTest {
      * @author jinyanan
      *
      */
-    @Test
-    public void testMarketingExecutiveAudit() {
-        IProcessTask task = new ProcessTaskImpl();
-        task.dispatcherOrder(1L);
-    }
+//    @Test
+//    public void testMarketingExecutiveAudit() {
+//        IProcessTask task = new ProcessTaskImpl();
+//        task.dispatcherOrder(1L);
+//    }
 
     /**
      * 
@@ -134,11 +124,11 @@ public class CancelLeaseOrderProcessTest {
      * @author jinyanan
      *
      */
-    @Test
-    public void testFinanceAudit() {
-        IProcessTask task = new ProcessTaskImpl();
-        task.dispatcherOrder(1L);
-    }
+//    @Test
+//    public void testFinanceAudit() {
+//        IProcessTask task = new ProcessTaskImpl();
+//        task.dispatcherOrder(1L);
+//    }
     
     /**
      * 
@@ -147,10 +137,10 @@ public class CancelLeaseOrderProcessTest {
      * @author jinyanan
      *
      */
-    @Test
-    public void testWait2Pay() {
-        IProcessTask task = new ProcessTaskImpl();
-        task.dispatcherOrder(1L);
-    }
+//    @Test
+//    public void testWait2Pay() {
+//        IProcessTask task = new ProcessTaskImpl();
+//        task.dispatcherOrder(1L);
+//    }
     
 }

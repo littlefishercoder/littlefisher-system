@@ -12,8 +12,6 @@
     <plugin type="com.yc.room1000.core.mybatis.SerializablePlugin" />
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
     <commentGenerator type="com.yc.room1000.core.mybatis.YcCommentGenerator">
-      <!-- 是否取消注释 -->
-      <property name="suppressAllComments" value="false" />
       <!-- 生成作者的名字 -->
       <property name="author" value="jinyanan" />
     </commentGenerator>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yc.room1000.attr.dao.AttrDtoMapper">
+  <resultMap id="BaseResultMap" type="com.yc.room1000.attr.model.AttrDto">
+    <!--
+      WARNING - 
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="mandatory" jdbcType="CHAR" property="mandatory" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.yc.room1000.attr.model.AttrDto">
+    <!--
+      WARNING - 
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="mandatory" jdbcType="CHAR" property="mandatory" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.yc.room1000.attr.model.AttrDto">
+    <!--
+      WARNING - 
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="mandatory" jdbcType="CHAR" property="mandatory" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.yc.room1000.attr.model.AttrDto">
+    <!--
+      WARNING - 
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="mandatory" jdbcType="CHAR" property="mandatory" />
+  </resultMap>
+  <resultMap id="BaseResultMap" type="com.yc.room1000.attr.model.AttrDto">
+    <!--
+      WARNING - 
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="unit_id" jdbcType="INTEGER" property="unitId" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+    <result column="mandatory" jdbcType="CHAR" property="mandatory" />
+  </resultMap>
+</mapper>

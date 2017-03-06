@@ -1,56 +1,40 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-    <!DOCTYPE generatorConfiguration 
-      PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-      "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
 <generatorConfiguration>
-    <!-- 使用前，请修改classPathEntry指向的数据库连接jar包位置，修改jdbcConnection连接信息 -->
-    <!-- 生成的model mapper client如果不在此工程下，targetProject指向的源码路径前需带上指向工程名 -->
-    <!-- 这边引用了自定义的注释生成策略的实现类YcCommentGenerator，可以修改其中的作者名，版本号，达到你所需求的注释要求 -->
-    <classPathEntry
-        location="/Users/littlefisher/Documents/Repository/mysql/mysql-connector-java/5.1.38/mysql-connector-java-5.1.38.jar" />
-    <context id="DB2Tables" targetRuntime="MyBatis3" defaultModelType="flat">
-        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
-        <commentGenerator type="com.yc.room1000.core.mybatis.YcCommentGenerator">
-            <!-- 是否取消注释 -->
-            <property name="suppressAllComments" value="false" />
-            <!-- 生成作者的名字 -->
-            <property name="author" value="jinyanan" />
-        </commentGenerator>
-        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://112.124.222.165:3306/testroom"
-            userId="ycroom" password="ycqwj_1000">
-        </jdbcConnection>
-        <javaTypeResolver type="com.yc.room1000.core.mybatis.YcJavaTypeResolver">
-            <property name="forceBigDecimals" value="false" />
-        </javaTypeResolver>
-        <javaModelGenerator targetPackage="com.yc.cancellease.dto" targetProject="src/test/java">
-            <property name="enableSubPackages" value="false" />
-            <property name="trimStrings" value="true" />
-        </javaModelGenerator>
-        <sqlMapGenerator targetPackage="com.yc.cancellease.mapper" targetProject="src/test/java">
-            <property name="enableSubPackages" value="false" />
-            <property name="trimStrings" value="true" />
-        </sqlMapGenerator>
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yc.cancellease.dao"
-            targetProject="src/test/java">
-            <property name="enableSubPackages" value="false" />
-            <property name="rootInterface" value="com.yc.room1000.core.mybatis.SuperMapper" />
-        </javaClientGenerator>
-        <table tableName="work_order" domainObjectName="WorkOrderDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-        </table>
-        <table tableName="work_order_state" domainObjectName="WorkOrderStateDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-        </table>
-        <table tableName="work_order_his" domainObjectName="WorkOrderHisDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-        </table>
-        <table tableName="order_commentary" domainObjectName="OrderCommentaryDto" enableCountByExample="false"
-            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
-            selectByExampleQueryId="false">
-        </table>
-    </context>
+
+  <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+    <property name="beginningDelimiter" value="`" />
+    <property name="endingDelimiter" value="`" />
+    <property name="author" value="jinyanan" />
+
+    <plugin type="com.yc.room1000.core.mybatis.plugins.MapperPlugin">
+      <property name="mappers" value="tk.mybatis.mapper.common.Mapper" />
+    </plugin>
+    
+    <plugin type="com.yc.room1000.core.mybatis.plugins.SerializablePlugin" />
+    <plugin type="com.yc.room1000.core.mybatis.plugins.ImportsPlugin" />
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/engine" userId="root"
+      password="root">
+    </jdbcConnection>
+    
+    <javaTypeResolver type="com.yc.room1000.core.mybatis.ChangeColType2LongJavaTypeResolver">
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.yc.room1000.attr.model" targetProject="src/main/java" />
+
+    <sqlMapGenerator targetPackage="com.yc.room1000.attr.mapper" targetProject="src/main/resources" />
+
+    <javaClientGenerator targetPackage="com.yc.room1000.attr.dao" targetProject="src/main/java"
+      type="XMLMAPPER" />
+
+    <table tableName="attr" domainObjectName="AttrDto">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+    </table>
+  </context>
 </generatorConfiguration>

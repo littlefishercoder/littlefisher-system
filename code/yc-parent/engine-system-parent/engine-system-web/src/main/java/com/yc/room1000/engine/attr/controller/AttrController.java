@@ -1,24 +1,12 @@
 package com.yc.room1000.engine.attr.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.pagehelper.PageInfo;
 import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
 
-import com.yc.room1000.core.exception.BaseAppException;
-import com.yc.room1000.engine.attr.model.AttrDto;
-import com.yc.room1000.engine.attr.model.QryAttrListRequest;
-import com.yc.room1000.engine.attr.model.QryAttrPagerListRequest;
 import com.yc.room1000.engine.attr.service.IAttrService;
 
 /**
@@ -52,12 +40,12 @@ public class AttrController {
      * @return AttrDto
      * @throws BaseAppException <br>
      */
-    @RequestMapping(value = "/{attrId}", method = RequestMethod.GET)
-    @ApiOperation(value = "根据attrId查询对应Attr")
-    public AttrDto getAttrById(
-        @ApiParam(required = true, value = "属性主键") @PathVariable(value = "attrId") Long attrId) throws BaseAppException {
-        return attrService.getAttrById(attrId);
-    }
+//    @RequestMapping(value = "/{attrId}", method = RequestMethod.GET)
+//    @ApiOperation(value = "根据attrId查询对应Attr")
+//    public AttrDto getAttrById(
+//        @ApiParam(required = true, value = "属性主键") @PathVariable(value = "attrId") Long attrId) throws BaseAppException {
+//        return attrService.getAttrById(attrId);
+//    }
     
     /**
      * 
@@ -69,12 +57,12 @@ public class AttrController {
      * @return List<AttrDto>
      * @throws BaseAppException <br>
      */
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "根据传入条件查询Attr列表")
-    public List<AttrDto> getAttrListByCond(
-        @ApiParam(required = true, value = "查询Attr列表的条件") @ModelAttribute QryAttrListRequest qryAttrListRequest) throws BaseAppException {
-        return attrService.getAttrListByCond(qryAttrListRequest);
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    @ApiOperation(value = "根据传入条件查询Attr列表")
+//    public List<AttrDto> getAttrListByCond(
+//        @ApiParam(required = true, value = "查询Attr列表的条件") @ModelAttribute QryAttrListRequest qryAttrListRequest) throws BaseAppException {
+//        return attrService.getAttrListByCond(qryAttrListRequest);
+//    }
     
     /**
      * 
@@ -86,15 +74,15 @@ public class AttrController {
      * @return PageInfo<AttrDto>
      * @throws BaseAppException <br>
      */
-    @RequestMapping(value = "/pager", method = RequestMethod.GET)
-    @ApiOperation(value = "根据传入条件查询Attr列表，分页用")
-    public PageInfo<AttrDto> getAttrPagerListByCond(
-        @ApiParam(required = true, value = "查询Attr列表的条件, 分页用") 
-        @ModelAttribute QryAttrPagerListRequest qryAttrPagerListRequest) throws BaseAppException {
-        List<AttrDto> attrList = attrService.getAttrPagerListByCond(qryAttrPagerListRequest);
-        PageInfo<AttrDto> pageInfo = new PageInfo<>(attrList);
-        return pageInfo;
-    }
+//    @RequestMapping(value = "/pager", method = RequestMethod.GET)
+//    @ApiOperation(value = "根据传入条件查询Attr列表，分页用")
+//    public PageInfo<AttrDto> getAttrPagerListByCond(
+//        @ApiParam(required = true, value = "查询Attr列表的条件, 分页用") 
+//        @ModelAttribute QryAttrPagerListRequest qryAttrPagerListRequest) throws BaseAppException {
+//        List<AttrDto> attrList = attrService.getAttrPagerListByCond(qryAttrPagerListRequest);
+//        PageInfo<AttrDto> pageInfo = new PageInfo<>(attrList);
+//        return pageInfo;
+//    }
     
     /**
      * 
@@ -106,11 +94,11 @@ public class AttrController {
      * @return AttrDto
      * @throws BaseAppException <br>
      */
-    @RequestMapping(method = RequestMethod.POST)
-    @ApiOperation(value = "新增Attr")
-    public AttrDto addAttr(@RequestBody AttrDto attrDto) throws BaseAppException {
-        return attrService.addAttr(attrDto);
-    }
+//    @RequestMapping(method = RequestMethod.POST)
+//    @ApiOperation(value = "新增Attr")
+//    public AttrDto addAttr(@RequestBody AttrDto attrDto) throws BaseAppException {
+//        return attrService.addAttr(attrDto);
+//    }
     
     /**
      * 
@@ -122,11 +110,11 @@ public class AttrController {
      * @return AttrDto
      * @throws BaseAppException <br>
      */
-    @RequestMapping(method = RequestMethod.PATCH)
-    @ApiOperation(value = "修改Attr")
-    public AttrDto updateAttr(@RequestBody AttrDto attrDto) throws BaseAppException {
-        return attrService.updateAttr(attrDto);
-    }
+//    @RequestMapping(method = RequestMethod.PATCH)
+//    @ApiOperation(value = "修改Attr")
+//    public AttrDto updateAttr(@RequestBody AttrDto attrDto) throws BaseAppException {
+//        return attrService.updateAttr(attrDto);
+//    }
     
     /**
      * 
@@ -138,10 +126,10 @@ public class AttrController {
      * @return int
      * @throws BaseAppException <br>
      */
-    @RequestMapping(value = "/{attrId}", method = RequestMethod.DELETE)
-    @ApiOperation(value = "删除Attr")
-    public int deleteAttr(
-        @ApiParam(required = true, value = "属性主键") @PathVariable("attrId") Long attrId) throws BaseAppException {
-        return attrService.deleteAttr(attrId);
-    }
+//    @RequestMapping(value = "/{attrId}", method = RequestMethod.DELETE)
+//    @ApiOperation(value = "删除Attr")
+//    public int deleteAttr(
+//        @ApiParam(required = true, value = "属性主键") @PathVariable("attrId") Long attrId) throws BaseAppException {
+//        return attrService.deleteAttr(attrId);
+//    }
 }
