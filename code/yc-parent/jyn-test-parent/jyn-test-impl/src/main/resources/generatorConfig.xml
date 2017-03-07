@@ -36,7 +36,19 @@
             <property name="enableSubPackages" value="false" />
             <property name="rootInterface" value="com.yc.room1000.core.mybatis.SuperMapper" />
         </javaClientGenerator>
-        <table tableName="house_looking_order_his" domainObjectName="HouseLookingOrderHisDto" enableCountByExample="false"
+        <table tableName="complaint_order" domainObjectName="ComplaintOrderDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+        <table tableName="complaint_order_his" domainObjectName="ComplaintOrderHisDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+        <table tableName="complaint_order_state" domainObjectName="ComplaintOrderStateDto" enableCountByExample="false"
+            enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+        </table>
+        <table tableName="complaint_order_value" domainObjectName="ComplaintOrderValueDto" enableCountByExample="false"
             enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
         </table>
