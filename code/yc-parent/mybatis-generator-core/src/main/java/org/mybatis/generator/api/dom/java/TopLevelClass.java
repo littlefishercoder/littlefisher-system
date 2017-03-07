@@ -128,16 +128,16 @@ public class TopLevelClass extends InnerClass implements CompilationUnit {
         }
         
         Set<String> importStrings = calculateImports(importedTypes);
-//        for (String importString : importStrings) {
-//            sb.append(importString);
-//            newLine(sb);
-//        }
+        for (String importString : importStrings) {
+            sb.append(importString);
+            newLine(sb);
+        }
         
         this.sortImportsType(importStrings, sb);
 
-//        if (importStrings.size() > 0) {
-//            newLine(sb);
-//        }
+        if (importStrings.size() > 0) {
+            newLine(sb);
+        }
 
         sb.append(super.getFormattedContent(0, this));
 
