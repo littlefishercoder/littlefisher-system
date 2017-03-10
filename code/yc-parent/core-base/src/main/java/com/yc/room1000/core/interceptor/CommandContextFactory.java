@@ -27,7 +27,7 @@ public class CommandContextFactory {
      * @param cmd <br>
      * @return <br>
      */
-    public CommandContext createCommandContext(Command cmd) {
+    public CommandContext createCommandContext(Command<?> cmd) {
         return new CommandContext(cmd, systemEngineConfig);
     }
     

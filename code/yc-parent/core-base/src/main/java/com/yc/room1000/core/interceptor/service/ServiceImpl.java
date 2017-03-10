@@ -94,10 +94,11 @@ public class ServiceImpl implements InitializingBean {
      * @author zeng.ligeng<br>
      * @taskId <br>
      * @param command <br>
+     * @param <U> <U>
      * @return  <br>
      * @throws BaseAppException <br>
      */
-    protected Object execute(Command command) throws BaseAppException {
+    protected <U> U  execute(Command<U> command) throws BaseAppException {
         return commandExecutor.execute(command);
     }
     
@@ -112,10 +113,11 @@ public class ServiceImpl implements InitializingBean {
      * CommandConfig.transactionRequiresNew()  新起事务
      * 缺省是 TransactionPropagation.REQUIRED
      * @param command <br>
+     * @param <U> <U>
      * @return <br>
      * @throws BaseAppException <br>
      */
-    protected Object execute(CommandConfig config, Command command) throws BaseAppException {
+    protected <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
         
         return commandExecutor.execute(config, command);
     }

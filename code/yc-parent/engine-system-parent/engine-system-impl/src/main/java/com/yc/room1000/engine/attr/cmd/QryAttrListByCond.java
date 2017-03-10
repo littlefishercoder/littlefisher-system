@@ -18,7 +18,7 @@ import com.yc.room1000.engine.attr.model.QryAttrListRequest;
  * @version 1.0
  * @since v1.0
  */
-public class QryAttrListByCond extends AbstractCommand {
+public class QryAttrListByCond extends AbstractCommand<List<AttrDto>> {
     
     /**
      * qryAttrListRequest

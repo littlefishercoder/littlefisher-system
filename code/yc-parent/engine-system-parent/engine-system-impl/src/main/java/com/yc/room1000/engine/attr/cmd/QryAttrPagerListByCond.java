@@ -20,7 +20,7 @@ import com.yc.room1000.engine.attr.model.QryAttrPagerListRequest;
  * @version 1.0
  * @since v1.0
  */
-public class QryAttrPagerListByCond extends AbstractCommand {
+public class QryAttrPagerListByCond extends AbstractCommand<List<AttrDto>> {
     
     /**
      * qryAttrPagerListRequest

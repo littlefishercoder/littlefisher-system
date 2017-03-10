@@ -31,43 +31,40 @@ import com.yc.room1000.engine.attr.service.IAttrService;
 @Service("EG.AttrService")
 public class AttrServiceImpl extends ServiceImpl implements IAttrService {
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<AttrDto> getAllAttr() throws BaseAppException {
-        return (List<AttrDto>) this.execute(new QryAllAttrCmd());
+        return this.execute(new QryAllAttrCmd());
     }
 
     @Override
     public AttrDto getAttrById(Long attrId) throws BaseAppException {
-        return (AttrDto) this.execute(new QryAttrByIdCmd(attrId));
+        return this.execute(new QryAttrByIdCmd(attrId));
     }
 
     @Override
     public AttrDto addAttr(AttrDto attrDto) throws BaseAppException {
-        return (AttrDto) this.execute(new InsertAttrCmd(attrDto));
+        return this.execute(new InsertAttrCmd(attrDto));
     }
 
     @Override
     public AttrDto updateAttr(AttrDto attrDto) throws BaseAppException {
-        return (AttrDto) this.execute(new UpdateAttrCmd(attrDto));
+        return this.execute(new UpdateAttrCmd(attrDto));
     }
 
     @Override
     public int deleteAttr(Long attrId) throws BaseAppException {
-        return (int) this.execute(new DeleteAttrCmd(attrId));
+        return this.execute(new DeleteAttrCmd(attrId));
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<AttrDto> getAttrListByCond(QryAttrListRequest qryAttrListRequest) throws BaseAppException {
-        return (List<AttrDto>) this.execute(new QryAttrListByCond(qryAttrListRequest));
+        return this.execute(new QryAttrListByCond(qryAttrListRequest));
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public List<AttrDto> getAttrPagerListByCond(QryAttrPagerListRequest qryAttrPagerListRequest)
         throws BaseAppException {
-        return (List<AttrDto>) this.execute(new QryAttrPagerListByCond(qryAttrPagerListRequest));
+        return this.execute(new QryAttrPagerListByCond(qryAttrPagerListRequest));
     }
 
 }

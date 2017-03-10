@@ -24,7 +24,7 @@ public class CommandContext {
     /**
      * command
      */
-    protected Command command;
+    protected Command<?> command;
 
     /**
      * systemEngineConfig
@@ -51,7 +51,7 @@ public class CommandContext {
      * @param command <br>
      * @param systemEngineConfig <br>
      */
-    public CommandContext(Command command, SystemEngineConfig systemEngineConfig) {
+    public CommandContext(Command<?> command, SystemEngineConfig systemEngineConfig) {
         this.command = command;
         this.systemEngineConfig = systemEngineConfig;
         this.sessionFactories = systemEngineConfig.getSessionFactories();

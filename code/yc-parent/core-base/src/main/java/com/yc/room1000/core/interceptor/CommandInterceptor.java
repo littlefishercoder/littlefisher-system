@@ -22,10 +22,11 @@ public interface CommandInterceptor {
      * @taskId <br>
      * @param config <br>
      * @param command <br>
+     * @param <U> <U>
      * @return <br>
      * @throws BaseAppException <br>
      */
-    Object execute(CommandConfig config, Command command) throws BaseAppException;
+    <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException;
     
     /**
      * 

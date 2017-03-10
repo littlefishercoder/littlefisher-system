@@ -15,7 +15,7 @@ import com.yc.room1000.engine.attr.model.AttrDto;
  * @version 1.0
  * @since v1.0
  */
-public class QryAttrByIdCmd extends AbstractCommand {
+public class QryAttrByIdCmd extends AbstractCommand<AttrDto> {
     
     /**
      * attrId

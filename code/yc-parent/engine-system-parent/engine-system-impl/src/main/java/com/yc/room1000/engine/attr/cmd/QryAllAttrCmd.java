@@ -17,7 +17,7 @@ import com.yc.room1000.engine.attr.model.AttrDto;
  * @version 1.0
  * @since v1.0
  */
-public class QryAllAttrCmd extends AbstractCommand {
+public class QryAllAttrCmd extends AbstractCommand<List<AttrDto>> {
 
 //    @Override
 //    public List<Object> getInputArgs() {

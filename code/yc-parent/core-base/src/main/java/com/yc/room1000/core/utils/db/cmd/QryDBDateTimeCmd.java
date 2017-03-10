@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
-import com.yc.room1000.core.interceptor.Command;
 import com.yc.room1000.core.utils.db.dao.DBMapper;
 
 /**
@@ -17,7 +16,7 @@ import com.yc.room1000.core.utils.db.dao.DBMapper;
  * @version 1.0
  * @since v1.0
  */
-public class QryDBDateTimeCmd extends AbstractCommand implements Command {
+public class QryDBDateTimeCmd extends AbstractCommand<Date> {
 
 //    @Override
 //    public List<Object> getInputArgs() {

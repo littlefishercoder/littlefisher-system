@@ -56,10 +56,11 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
      * @taskId <br>
      * @param config <br>
      * @param command <br>
+     * @param <U> <U>
      * @return <br>
      * @throws BaseAppException <br>
      */
-    public Object execute(CommandConfig config, Command command) throws BaseAppException {
+    public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
         CommandContext context = Context.getCommandContext();
 
         boolean contextReused = false;

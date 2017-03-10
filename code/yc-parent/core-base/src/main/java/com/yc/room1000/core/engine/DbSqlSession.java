@@ -39,11 +39,11 @@ public class DbSqlSession implements Session {
      *  
      * @author zeng.ligeng<br>
      * @taskId <br>
-     * @param <T> 
+     * @param <K> 
      * @param type   
      * @return <br>
      */
-    public <T> T getMapper(Class<T> type) {
+    public <K> K getMapper(Class<K> type) {
         return getSqlSession().getMapper(type);
     }
     

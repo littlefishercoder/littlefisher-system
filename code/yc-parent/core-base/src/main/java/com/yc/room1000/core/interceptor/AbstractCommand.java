@@ -12,8 +12,9 @@ import com.yc.room1000.core.interceptor.service.ServiceImpl;
  * @author jinyanan
  * @version 1.0
  * @since v1.0
+ * @param <U> <U>
  */
-public abstract class AbstractCommand implements Command {
+public abstract class AbstractCommand<U> implements Command<U> {
 
     /**
      * commandContext
@@ -113,7 +114,7 @@ public abstract class AbstractCommand implements Command {
      * @return Object <br>
      * @throws BaseAppException <br>
      */
-    public Object execute(CommandContext commandContext) throws BaseAppException {
+    public U execute(CommandContext commandContext) throws BaseAppException {
         this.commandContext = commandContext;
         return execute();
     }
@@ -126,5 +127,5 @@ public abstract class AbstractCommand implements Command {
      * @return Object <br>
      * @throws BaseAppException <br>
      */
-    public abstract Object execute() throws BaseAppException;
+    public abstract U execute() throws BaseAppException;
 }

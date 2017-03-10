@@ -32,10 +32,11 @@ public interface CommandExecutor {
      *
      * @param config config
      * @param command command
+     * @param <U> <U>
      * @return Object
      * @throws BaseAppException BaseAppException
      */
-    Object execute(CommandConfig config, Command command) throws BaseAppException;
+    <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException;
 
     /**
      * 
@@ -44,8 +45,9 @@ public interface CommandExecutor {
      * @author jinyanan
      *
      * @param command command
+     * @param <U> <U>
      * @return Object
      * @throws BaseAppException BaseAppException
      */
-    Object execute(Command command) throws BaseAppException;
+    <U> U execute(Command<U> command) throws BaseAppException;
 }

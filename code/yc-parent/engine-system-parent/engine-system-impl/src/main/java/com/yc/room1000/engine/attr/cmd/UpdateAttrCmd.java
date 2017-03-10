@@ -15,7 +15,7 @@ import com.yc.room1000.engine.attr.model.AttrDto;
  * @version 1.0
  * @since v1.0
  */
-public class UpdateAttrCmd extends AbstractCommand {
+public class UpdateAttrCmd extends AbstractCommand<AttrDto> {
     
     /**
      * attrDto
@@ -34,7 +34,7 @@ public class UpdateAttrCmd extends AbstractCommand {
     @Override
     public AttrDto execute() throws BaseAppException {
         AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
-        attrDtoMapper.updateByPrimaryKeySelective(attrDto);
+        attrDtoMapper.updateByPrimaryKey(attrDto);
         return attrDtoMapper.selectByPrimaryKey(attrDto.getId());
     }
 
