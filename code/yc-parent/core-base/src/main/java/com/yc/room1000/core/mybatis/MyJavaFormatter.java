@@ -11,6 +11,7 @@ import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 import org.mybatis.generator.api.JavaFormatter;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.InnerClass;
+import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.config.Context;
 
@@ -41,8 +42,8 @@ public class MyJavaFormatter implements JavaFormatter {
      * @return String
      */
     public String getFormattedContent(CompilationUnit compilationUnit) {
-//        return this.getMyFormattedContent(compilationUnit);
-        return compilationUnit.getFormattedContent();
+        return this.getMyFormattedContent(compilationUnit);
+//        return compilationUnit.getFormattedContent();
     }
 
     public void setContext(Context context) {
@@ -61,7 +62,14 @@ public class MyJavaFormatter implements JavaFormatter {
     public String getMyFormattedContent(CompilationUnit compilationUnit) {
         StringBuilder sb = new StringBuilder();
         
-        TopLevelClass topLevelClass = (TopLevelClass) compilationUnit;
+        TopLevelClass topLevelClass = null;
+        
+        if (compilationUnit instanceof TopLevelClass) {
+            topLevelClass = (TopLevelClass) compilationUnit;
+        }
+        else if (compilationUnit instanceof Interface) {
+            return compilationUnit.getFormattedContent();
+        }
 
         for (String fileCommentLine : topLevelClass.getFileCommentLines()) {
             sb.append(fileCommentLine);
@@ -99,24 +107,24 @@ public class MyJavaFormatter implements JavaFormatter {
         
 //        InnerClass innerClass = (InnerClass) compilationUnit;
         
-//        Method[] methods = topLevelClass.getClass().getMethods();
-//        Method formattedContentMethod = null;
-//        for (Method method : methods) {
-//            if ("getFormattedContent".equals(method.getName()) && method.getParameterTypes().length > 0) {
-//                formattedContentMethod = method;
-//                break;
-//            }
-//        }
-//        String sbStr = null;
-//        if (formattedContentMethod != null) {
-//            try {
-//                sbStr = (String) formattedContentMethod.invoke(topLevelClass, 0);
-//            }
-//            catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        String sbStr = topLevelClass.getFormattedContent(0, compilationUnit);
+        Method[] methods = topLevelClass.getClass().getMethods();
+        Method formattedContentMethod = null;
+        for (Method method : methods) {
+            if ("getFormattedContent".equals(method.getName()) && method.getParameterTypes().length > 0) {
+                formattedContentMethod = method;
+                break;
+            }
+        }
+        String sbStr = null;
+        if (formattedContentMethod != null) {
+            try {
+                sbStr = (String) formattedContentMethod.invoke(topLevelClass, 0);
+            }
+            catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+                e.printStackTrace();
+            }
+        }
+//        String sbStr = topLevelClass.getFormattedContent(0, compilationUnit);
         
         sb.append(sbStr);
 
