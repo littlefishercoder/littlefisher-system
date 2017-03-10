@@ -15,12 +15,12 @@
 
     <dependencies>
 		<dependency>
-			<groupId>com.yc</groupId>
+			<groupId>com.yc.room1000</groupId>
 			<artifactId>engine-system-intf</artifactId>
 			<version>${yc.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.yc</groupId>
+			<groupId>com.yc.room1000</groupId>
 			<artifactId>core-base</artifactId>
 			<version>${yc.version}</version>
 		</dependency>

@@ -15,4 +15,26 @@
     <result column="comments" jdbcType="VARCHAR" property="comments" />
     <result column="mandatory" jdbcType="CHAR" property="mandatory" />
   </resultMap>
+  <sql id="Base_Column_List">
+    id, name, code, unit_id, type, state, state_date, comments, mandatory
+  </sql>
+  <select id="selectByCond" parameterType="com.yc.room1000.engine.attr.model.QryAttrListRequest" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from attr
+    <where>
+      <if test="attrName != null">
+        and name like concat('%', #{attrName, jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="attrCode != null">
+        and code = #{attrCode, jdbcType=VARCHAR}
+      </if>
+      <if test="attrIds != null">
+        and id in 
+        <foreach collection="attrIds" item="attrId" open="(" separator="," close=")">
+          #{attrId}
+        </foreach>
+      </if>
+    </where>
+  </select>
 </mapper>

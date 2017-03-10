@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.engine.attr.model.AttrDto;
+import com.yc.room1000.engine.attr.model.QryAttrListRequest;
+import com.yc.room1000.engine.attr.model.QryAttrPagerListRequest;
 
 /**
  * 
@@ -50,7 +52,7 @@ public interface IAttrService {
      * @return List<AttrDto
      * @throws BaseAppException <br>
      */
-//    List<AttrDto> getAttrListByCond(QryAttrListRequest qryAttrListRequest) throws BaseAppException;
+    List<AttrDto> getAttrListByCond(QryAttrListRequest qryAttrListRequest) throws BaseAppException;
 
     /**
      * 
@@ -62,7 +64,7 @@ public interface IAttrService {
      * @return List<AttrDto>
      * @throws BaseAppException <br>
      */
-//    List<AttrDto> getAttrPagerListByCond(QryAttrPagerListRequest qryAttrPagerListRequest) throws BaseAppException;
+    List<AttrDto> getAttrPagerListByCond(QryAttrPagerListRequest qryAttrPagerListRequest) throws BaseAppException;
 
     /**
      * 
@@ -86,7 +88,7 @@ public interface IAttrService {
      * @return AttrDto
      * @throws BaseAppException <br>
      */
-//    AttrDto updateAttr(AttrDto attrDto) throws BaseAppException;
+    AttrDto updateAttr(AttrDto attrDto) throws BaseAppException;
 
     /**
      * 
@@ -98,5 +100,5 @@ public interface IAttrService {
      * @return int
      * @throws BaseAppException <br>
      */
-//    int deleteAttr(Long attrId)throws BaseAppException;
+    int deleteAttr(Long attrId)throws BaseAppException;
 }

@@ -3,77 +3,82 @@ package com.yc.room1000.engine.attr.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
+
 /**
  *
- * Description: attr实体
+ * Description: attr 实体
  *
- * Created on 2017年03月01日
+ * Created on 2017年03月10日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-@ApiModel(value = "attr实体")
 @Table(name = "attr")
+@ApiModel(value = "attr实体")
 public class AttrDto implements Serializable {
     /**
-     * id 属性主键
+     * 属性主键
      */
-    @Id
-    @GeneratedValue(generator = "JDBC")
     @ApiModelProperty(value = "属性主键")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     /**
-     * name 属性名
+     * 属性名
      */
     @ApiModelProperty(value = "属性名")
     private String name;
 
     /**
-     * code 属性编码
+     * 属性编码
      */
     @ApiModelProperty(value = "属性编码")
     private String code;
 
     /**
-     * unitId 单位
+     * 单位
      */
     @ApiModelProperty(value = "单位")
+    @Column(name = "unit_id")
     private Long unitId;
 
     /**
-     * type 属性类型
+     * 属性类型
      */
     @ApiModelProperty(value = "属性类型")
     private String type;
 
     /**
-     * state 状态
+     * 状态
      */
     @ApiModelProperty(value = "状态")
     private String state;
 
     /**
-     * stateDate 状态变更时间
+     * 状态变更时间
      */
     @ApiModelProperty(value = "状态变更时间")
+    @Column(name = "state_date")
     private Date stateDate;
 
     /**
-     * comments 备注
+     * 备注
      */
     @ApiModelProperty(value = "备注")
     private String comments;
 
     /**
-     * mandatory Y ——必填，N——非必填。default N
+     * Y ——必填，N——非必填。default N
      */
     @ApiModelProperty(value = "Y ——必填，N——非必填。default N")
     private String mandatory;
@@ -96,7 +101,7 @@ public class AttrDto implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+        this.name = name;
     }
 
     public String getCode() {
@@ -104,7 +109,7 @@ public class AttrDto implements Serializable {
     }
 
     public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
+        this.code = code;
     }
 
     public Long getUnitId() {
@@ -120,7 +125,7 @@ public class AttrDto implements Serializable {
     }
 
     public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+        this.type = type;
     }
 
     public String getState() {
@@ -128,7 +133,7 @@ public class AttrDto implements Serializable {
     }
 
     public void setState(String state) {
-        this.state = state == null ? null : state.trim();
+        this.state = state;
     }
 
     public Date getStateDate() {
@@ -144,7 +149,7 @@ public class AttrDto implements Serializable {
     }
 
     public void setComments(String comments) {
-        this.comments = comments == null ? null : comments.trim();
+        this.comments = comments;
     }
 
     public String getMandatory() {
@@ -152,15 +157,16 @@ public class AttrDto implements Serializable {
     }
 
     public void setMandatory(String mandatory) {
-        this.mandatory = mandatory == null ? null : mandatory.trim();
+        this.mandatory = mandatory;
     }
 
     /**
      * Description: toString<br>
      *
-     * @author jinyanan <br>
+     * @author autoCreated <br>
     
      * @return String String<br>
+     * @mbg.generated
      */
     @Override
     public String toString() {
