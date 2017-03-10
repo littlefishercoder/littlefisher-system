@@ -10,7 +10,7 @@
     <property name="beginningDelimiter" value="`" />
     <property name="endingDelimiter" value="`" />
     <property name="author" value="jinyanan" />
-    <property name="javaFormatter" value="com.yc.room1000.core.mybatis.MyJavaFormatter" />
+    <property name="javaFormatter" value="com.yc.room1000.core.mybatis.SortImportTypesJavaFormatter" />
 
     <plugin type="com.yc.room1000.core.mybatis.plugins.MapperPlugin">
       <property name="mappers" value="tk.mybatis.mapper.common.Mapper" />

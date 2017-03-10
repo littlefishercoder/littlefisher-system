@@ -1,7 +1,5 @@
 package com.yc.room1000.core.mybatis;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Set;
 
 import static org.mybatis.generator.api.dom.OutputUtilities.calculateImports;
@@ -10,7 +8,6 @@ import static org.mybatis.generator.internal.util.StringUtility.stringHasValue;
 
 import org.mybatis.generator.api.JavaFormatter;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
-import org.mybatis.generator.api.dom.java.InnerClass;
 import org.mybatis.generator.api.dom.java.Interface;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.config.Context;
@@ -25,7 +22,7 @@ import org.mybatis.generator.config.Context;
  * @version 1.0
  * @since v1.0
  */
-public class MyJavaFormatter implements JavaFormatter {
+public class SortImportTypesJavaFormatter implements JavaFormatter {
 
     /**
      * context
@@ -105,28 +102,7 @@ public class MyJavaFormatter implements JavaFormatter {
             newLine(sb);
         }
         
-//        InnerClass innerClass = (InnerClass) compilationUnit;
-        
-        Method[] methods = topLevelClass.getClass().getMethods();
-        Method formattedContentMethod = null;
-        for (Method method : methods) {
-            if ("getFormattedContent".equals(method.getName()) && method.getParameterTypes().length > 0) {
-                formattedContentMethod = method;
-                break;
-            }
-        }
-        String sbStr = null;
-        if (formattedContentMethod != null) {
-            try {
-                sbStr = (String) formattedContentMethod.invoke(topLevelClass, 0);
-            }
-            catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
-//        String sbStr = topLevelClass.getFormattedContent(0, compilationUnit);
-        
-        sb.append(sbStr);
+        sb.append(topLevelClass.getFormattedContent(0, compilationUnit));
 
         return sb.toString();
     }
