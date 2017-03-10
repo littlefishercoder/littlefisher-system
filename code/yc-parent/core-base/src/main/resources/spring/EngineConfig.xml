@@ -110,7 +110,7 @@
 
     <!-- 没有必要在 Spring 的 XML 配置文件中注册所有的映射器。相反,你可以使用一个 MapperScannerConfigurer , -->
     <!-- 它 将 会 查 找 类 路 径 下 的 映 射 器 并 自 动 将 它 们 创 建 成 MapperFactoryBean -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 
         <!-- basePackage 属性是让你为映射器接口文件设置基本的包路径 -->
         <property name="basePackage" value="com.yc.room1000.**.dao" />

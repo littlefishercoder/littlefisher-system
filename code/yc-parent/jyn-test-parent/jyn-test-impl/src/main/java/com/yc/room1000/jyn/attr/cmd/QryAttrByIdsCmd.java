@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
-import com.yc.room1000.jyn.attr.dao.AttrDtoMapper;
 import com.yc.room1000.jyn.attr.model.AttrDto;
 
 /**
@@ -34,9 +33,10 @@ public class QryAttrByIdsCmd extends AbstractCommand {
 
     @Override
     public List<AttrDto> execute() throws BaseAppException {
-        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
-        String[] attrIdsArray = attrIds.split(",");
-        return attrDtoMapper.selectByIds(attrIdsArray);
+//        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
+//        String[] attrIdsArray = attrIds.split(",");
+//        return attrDtoMapper.selectByIds(attrIdsArray);
+        return null;
     }
 
 }

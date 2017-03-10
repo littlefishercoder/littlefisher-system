@@ -2,7 +2,6 @@ package com.yc.room1000.jyn.attr.cmd;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
-import com.yc.room1000.jyn.attr.dao.AttrDtoMapper;
 import com.yc.room1000.jyn.attr.model.AttrDto;
 
 /**
@@ -33,9 +32,10 @@ public class InsertAttrCmd extends AbstractCommand {
     
     @Override
     public AttrDto execute() throws BaseAppException {
-        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
-        attrDtoMapper.insert(attrDto);
-        return attrDto;
+//        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
+//        attrDtoMapper.insert(attrDto);
+//        return attrDto;
+        return null;
     }
 
 }

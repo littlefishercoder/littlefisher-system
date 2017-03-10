@@ -16,7 +16,7 @@ import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
  * @version 1.0
  * @since v1.0
  */
-public class YcJavaTypeResolver extends JavaTypeResolverDefaultImpl {
+public class ChangeColType2LongJavaTypeResolver extends JavaTypeResolverDefaultImpl {
 
     /**
      * 

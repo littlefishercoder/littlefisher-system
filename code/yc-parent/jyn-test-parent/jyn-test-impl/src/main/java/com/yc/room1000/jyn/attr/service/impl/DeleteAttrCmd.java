@@ -3,7 +3,6 @@ package com.yc.room1000.jyn.attr.service.impl;
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
 import com.yc.room1000.core.interceptor.Command;
-import com.yc.room1000.jyn.attr.dao.AttrDtoMapper;
 
 /**
  * 
@@ -33,8 +32,9 @@ public class DeleteAttrCmd extends AbstractCommand implements Command {
 
     @Override
     public Integer execute() throws BaseAppException {
-        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
-        return attrDtoMapper.deleteByPrimaryKey(attrId);
+//        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
+//        return attrDtoMapper.deleteByPrimaryKey(attrId);
+        return null;
     }
 
 }

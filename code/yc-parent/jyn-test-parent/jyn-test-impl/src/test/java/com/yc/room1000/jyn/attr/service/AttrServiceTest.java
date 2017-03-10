@@ -1,7 +1,5 @@
 package com.yc.room1000.jyn.attr.service;
 
-import java.util.Arrays;
-import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,12 +9,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.github.pagehelper.PageInfo;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.utils.Room1000Logger;
 import com.yc.room1000.jyn.attr.model.AttrDto;
-import com.yc.room1000.jyn.attr.model.QryAttrPagerListRequest;
 
 /**
  * 
@@ -68,12 +64,12 @@ public class AttrServiceTest {
      *
      * @throws BaseAppException <br>
      */
-    @Test
-    public void testQryAttrByIds() throws BaseAppException {
-        String attrIds = "1,2";
-        List<AttrDto> attrList = attrService.qryAttrByIds(attrIds);
-        logger.debug("attrList : " + attrList);
-    }
+//    @Test
+//    public void testQryAttrByIds() throws BaseAppException {
+//        String attrIds = "1,2";
+//        List<AttrDto> attrList = attrService.qryAttrByIds(attrIds);
+//        logger.debug("attrList : " + attrList);
+//    }
     
     /**
      * 
@@ -83,18 +79,18 @@ public class AttrServiceTest {
      *
      * @throws BaseAppException <br>
      */
-    @Test
-    public void testQryAttrByConf() throws BaseAppException {
-        QryAttrPagerListRequest request = new QryAttrPagerListRequest();
-//        request.setPageNum(1);
-//        request.setPageSize(20);
-//        request.setAttrName("name2");
-//        request.setAttrCode("code2");
-        request.setAttrIds(Arrays.asList("1,2".split(",")));
-        List<AttrDto> attrPageList = attrService.getAttrPagerByConf(request);
-        PageInfo<AttrDto> pageInfo = new PageInfo<AttrDto>(attrPageList);
-        logger.debug("attr pageInfo: " + pageInfo);
-    }
+//    @Test
+//    public void testQryAttrByConf() throws BaseAppException {
+//        QryAttrPagerListRequest request = new QryAttrPagerListRequest();
+////        request.setPageNum(1);
+////        request.setPageSize(20);
+////        request.setAttrName("name2");
+////        request.setAttrCode("code2");
+//        request.setAttrIds(Arrays.asList("1,2".split(",")));
+//        List<AttrDto> attrPageList = attrService.getAttrPagerByConf(request);
+//        PageInfo<AttrDto> pageInfo = new PageInfo<AttrDto>(attrPageList);
+//        logger.debug("attr pageInfo: " + pageInfo);
+//    }
     
     /**
      * 
@@ -104,10 +100,10 @@ public class AttrServiceTest {
      *
      * @throws BaseAppException <br>
      */
-    @Test
-    public void testQryAttrByName() throws BaseAppException {
-        String attrName = "name1";
-        AttrDto attr = attrService.getAttrByName(attrName);
-        logger.debug("attr: " + attr);
-    }
+//    @Test
+//    public void testQryAttrByName() throws BaseAppException {
+//        String attrName = "name1";
+//        AttrDto attr = attrService.getAttrByName(attrName);
+//        logger.debug("attr: " + attr);
+//    }
 }

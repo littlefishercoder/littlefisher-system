@@ -2,11 +2,8 @@ package com.yc.room1000.jyn.attr.cmd;
 
 import java.util.List;
 
-import com.github.pagehelper.PageHelper;
-
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
-import com.yc.room1000.jyn.attr.dao.AttrDtoMapper;
 import com.yc.room1000.jyn.attr.model.AttrDto;
 import com.yc.room1000.jyn.attr.model.QryAttrPagerListRequest;
 
@@ -38,9 +35,10 @@ public class QryAttrPagerByCondCmd extends AbstractCommand {
 
     @Override
     public List<AttrDto> execute() throws BaseAppException {
-        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
-        PageHelper.startPage(qryAttrPagerListRequest.getPageNum(), qryAttrPagerListRequest.getPageSize());
-        return attrDtoMapper.selectAttrByCond(qryAttrPagerListRequest);
+//        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
+//        PageHelper.startPage(qryAttrPagerListRequest.getPageNum(), qryAttrPagerListRequest.getPageSize());
+//        return attrDtoMapper.selectAttrByCond(qryAttrPagerListRequest);
+        return null;
     }
 
 }

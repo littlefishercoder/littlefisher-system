@@ -2,7 +2,6 @@ package com.yc.room1000.jyn.attr.cmd;
 
 import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.core.interceptor.AbstractCommand;
-import com.yc.room1000.jyn.attr.dao.AttrDtoMapper;
 import com.yc.room1000.jyn.attr.model.AttrDto;
 
 /**
@@ -33,8 +32,9 @@ public class QryAttrByNameCmd extends AbstractCommand {
 
     @Override
     public AttrDto execute() throws BaseAppException {
-        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
-        return attrDtoMapper.selectByName(attrName);
+//        AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);
+//        return attrDtoMapper.selectByName(attrName);
+        return null;
     }
 
 }

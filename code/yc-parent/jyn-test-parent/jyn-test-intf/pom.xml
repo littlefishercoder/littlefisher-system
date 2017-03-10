@@ -2,7 +2,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.yc</groupId>
+		<groupId>com.yc.room1000</groupId>
 		<artifactId>jyn-test-parent</artifactId>
 		<version>1.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -15,7 +15,7 @@
 
 	<dependencies>
         <dependency>
-            <groupId>com.yc</groupId>
+            <groupId>com.yc.room1000</groupId>
             <artifactId>core-base</artifactId>
             <version>${yc.version}</version>
         </dependency>

@@ -3,6 +3,10 @@ package com.yc.room1000.engine.attr.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
@@ -16,10 +20,13 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
  * @since v1.0
  */
 @ApiModel(value = "attr实体")
+@Table(name = "attr")
 public class AttrDto implements Serializable {
     /**
      * id 属性主键
      */
+    @Id
+    @GeneratedValue(generator = "JDBC")
     @ApiModelProperty(value = "属性主键")
     private Long id;
 

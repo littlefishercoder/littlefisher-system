@@ -80,9 +80,10 @@ public class AttrController {
     public PageInfo<AttrDto> getAttrPagerListByConf(
         @ApiParam(required = true, value = "qryAttrPagerListRequest") 
         @ModelAttribute QryAttrPagerListRequest qryAttrPagerListRequest) throws BaseAppException {
-        List<AttrDto> attrList =  attrService.getAttrPagerByConf(qryAttrPagerListRequest);
-        PageInfo<AttrDto> pageInfo = new PageInfo<AttrDto>(attrList);
-        return pageInfo;
+//        List<AttrDto> attrList =  attrService.getAttrPagerByConf(qryAttrPagerListRequest);
+//        PageInfo<AttrDto> pageInfo = new PageInfo<AttrDto>(attrList);
+//        return pageInfo;
+        return null;
     }
     
     /**
@@ -99,7 +100,8 @@ public class AttrController {
     @ApiOperation(value = "根据条件查询Attr列表")
     public List<AttrDto> getAttrListByConf(
         @ApiParam(required = true, value = "qryAttrListRequest") @ModelAttribute QryAttrListRequest qryAttrListRequest) throws BaseAppException {
-        return attrService.getAttrByConf(qryAttrListRequest);
+//        return attrService.getAttrByConf(qryAttrListRequest);
+        return null;
     }
     
     /**
@@ -115,7 +117,8 @@ public class AttrController {
     @ApiOperation(value = "新增Attr")
     @RequestMapping(method = RequestMethod.POST)
     public AttrDto addAttr(@RequestBody AttrDto attrDto) throws BaseAppException {
-        return attrService.addAttr(attrDto);
+//        return attrService.addAttr(attrDto);
+        return null;
     }
     
     /**
@@ -131,7 +134,8 @@ public class AttrController {
     @ApiOperation(value = "修改Attr")
     @RequestMapping(method = RequestMethod.PATCH)
     public AttrDto updateAttr(@RequestBody AttrDto attrDto) throws BaseAppException {
-        return attrService.updateAttr(attrDto);
+//        return attrService.updateAttr(attrDto);
+        return null;
     }
     
     /**
@@ -148,7 +152,8 @@ public class AttrController {
     @RequestMapping(value = "/{attrId}", method = RequestMethod.DELETE)
     public int deleteAttr(
         @ApiParam(required = true, value = "attrId") @PathVariable("attrId") Long attrId) throws BaseAppException {
-        return attrService.deleteAttrById(attrId);
+//        return attrService.deleteAttrById(attrId);
+        return 0;
     }
     
     

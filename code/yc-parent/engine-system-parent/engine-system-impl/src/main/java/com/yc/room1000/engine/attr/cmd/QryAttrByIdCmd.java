@@ -31,13 +31,6 @@ public class QryAttrByIdCmd extends AbstractCommand {
         this.attrId = attrId;
     }
 
-//    @Override
-//    public List<Object> getInputArgs() {
-//        List<Object> args = new ArrayList<>();
-//        args.add(attrId);
-//        return args;
-//    }
-
     @Override
     public AttrDto execute() throws BaseAppException {
         AttrDtoMapper attrDtoMapper = this.getMapper(AttrDtoMapper.class);

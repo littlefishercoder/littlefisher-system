@@ -1,4 +1,4 @@
-package com.yc.room1000.core.mybatis;
+package com.yc.room1000.core.mybatis.plugins;
 
 import java.util.List;
 import java.util.Properties;

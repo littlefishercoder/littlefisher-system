@@ -1,18 +1,15 @@
 package com.yc.room1000.core.mybatis;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.text.MessageFormat;
 import java.util.List;
 import java.util.Properties;
 
-import static org.mybatis.generator.internal.util.StringUtility.isTrue;
 
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.InnerClass;
 import org.mybatis.generator.api.dom.java.InnerEnum;
 import org.mybatis.generator.api.dom.java.JavaElement;
@@ -22,7 +19,6 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.api.dom.xml.TextElement;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.MergeConstants;
-import org.mybatis.generator.config.PropertyRegistry;
 import org.mybatis.generator.internal.util.StringUtility;
 
 /**
@@ -40,20 +36,18 @@ public class YcCommentGenerator implements CommentGenerator {
     /** The properties. */
     private Properties properties;
     
-    /** suppressAllComments */
-    private boolean suppressAllComments;
+    /**
+     * 开始的分隔符，例如mysql为`，sqlserver为[
+     */
+    private String beginningDelimiter = "";
+    
+    /**
+     * 结束的分隔符，例如mysql为`，sqlserver为]
+     */
+    private String endingDelimiter = "";
     
     /** author */
     private String author;
-    
-    /** apiModelProperty */
-    private FullyQualifiedJavaType apiModelProperty;
-    
-    /** apiModel */
-    private FullyQualifiedJavaType apiModel;
-    
-    /** currentDateStr */
-    private String currentDateStr;
     
     /**
      * YcCommentsGenerator
@@ -61,18 +55,28 @@ public class YcCommentGenerator implements CommentGenerator {
     public YcCommentGenerator() {
         super();
         properties = new Properties();
-        suppressAllComments = false;
         author = "autoCreated";
-        apiModelProperty = new FullyQualifiedJavaType("com.wordnik.swagger.annotations.ApiModelProperty");
-        apiModel = new FullyQualifiedJavaType("com.wordnik.swagger.annotations.ApiModel");
-        currentDateStr = new SimpleDateFormat("yyyy年MM月dd日").format(new Date());
+    }
+    
+    /**
+     * 
+     * Description: getDelimiterName
+     * 
+     * @author jinyanan
+     *
+     * @param name name
+     * @return String<br>
+     */
+    public String getDelimiterName(String name) {
+        StringBuilder nameBuilder = new StringBuilder();
+        nameBuilder.append(beginningDelimiter);
+        nameBuilder.append(name);
+        nameBuilder.append(endingDelimiter);
+        return nameBuilder.toString();
     }
 
     @Override
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {
-        if (suppressAllComments) {
-            return;
-        }
         StringBuilder sb = new StringBuilder();
         method.addJavaDocLine("/**"); 
         method.addJavaDocLine(" * Description: " + method.getName() + "<br>"); 
@@ -102,19 +106,68 @@ public class YcCommentGenerator implements CommentGenerator {
      * @param markAsDoNotDelete markAsDoNotDelete
      */
     protected void addJavadocTag(JavaElement javaElement, boolean markAsDoNotDelete) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(" * ");
+        sb.append(MergeConstants.NEW_ELEMENT_TAG);
+        if (markAsDoNotDelete) {
+            sb.append(" do_not_delete_during_merge");
+        }
+        javaElement.addJavaDocLine(sb.toString());
     }
     
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
-        if (suppressAllComments) {
-            return;
-        }
-        field.addJavaDocLine("/**"); 
-        field.addJavaDocLine(" * " + field.getName() + " " + introspectedColumn.getRemarks());
-        addJavadocTag(field, false);
-        field.addJavaDocLine(" */"); 
+        // 添加@ApiModelProperty注解，用于swaggerUI展示用
+        field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() +  "\")");
         
-//        field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() +  "\")");
+        if (StringUtility.stringHasValue(introspectedColumn.getRemarks())) {
+            field.addJavaDocLine("/**");
+            StringBuilder sb = new StringBuilder();
+            sb.append(" * ");
+            sb.append(introspectedColumn.getRemarks());
+            field.addJavaDocLine(sb.toString());
+            field.addJavaDocLine(" */");
+        }
+        
+        //添加注解
+        if (field.isTransient()) {
+            //@Column
+            field.addAnnotation("@Transient");
+        }
+        for (IntrospectedColumn column : introspectedTable.getPrimaryKeyColumns()) {
+            if (introspectedColumn == column) {
+                field.addAnnotation("@Id");
+                break;
+            }
+        }
+        String column = introspectedColumn.getActualColumnName();
+        if (StringUtility.stringContainsSpace(column) || introspectedTable.getTableConfiguration().isAllColumnDelimitingEnabled()) {
+            column = introspectedColumn.getContext().getBeginningDelimiter()
+                    + column
+                    + introspectedColumn.getContext().getEndingDelimiter();
+        }
+        if (!column.equals(introspectedColumn.getJavaProperty())) {
+            //@Column
+            field.addAnnotation("@Column(name = \"" + getDelimiterName(column) + "\")");
+        } 
+        else if (StringUtility.stringHasValue(beginningDelimiter) || StringUtility.stringHasValue(endingDelimiter)) {
+            field.addAnnotation("@Column(name = \"" + getDelimiterName(column) + "\")");
+        }
+        if (introspectedColumn.isIdentity()) {
+            if ("JDBC".equals(introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement())) {
+                field.addAnnotation("@GeneratedValue(generator = \"JDBC\")");
+            } 
+            else {
+                field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY)");
+            }
+        } 
+        else if (introspectedColumn.isSequenceColumn()) {
+            //在 Oracle 中，如果需要是 SEQ_TABLENAME，那么可以配置为 select SEQ_{1} from dual
+            String tableName = introspectedTable.getFullyQualifiedTableNameAtRuntime();
+            String sql = MessageFormat.format(introspectedTable.getTableConfiguration().
+                getGeneratedKey().getRuntimeSqlStatement(), tableName, tableName.toUpperCase());
+            field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY, generator = \"" + sql + "\")");
+        }
         
     }
 
@@ -122,14 +175,30 @@ public class YcCommentGenerator implements CommentGenerator {
     public void addConfigurationProperties(Properties properties) {
         this.properties.putAll(properties);
 
-        suppressAllComments = isTrue(properties.getProperty(PropertyRegistry.COMMENT_GENERATOR_SUPPRESS_ALL_COMMENTS));
-
         String authorString = properties.getProperty("author");
         if (StringUtility.stringHasValue(authorString)) {
             author = authorString;
         }
+        
+        String beginningDelimiter = properties.getProperty("beginningDelimiter");
+        if (StringUtility.stringHasValue(beginningDelimiter)) {
+            this.beginningDelimiter = beginningDelimiter;
+        }
+        String endingDelimiter = properties.getProperty("endingDelimiter");
+        if (StringUtility.stringHasValue(endingDelimiter)) {
+            this.endingDelimiter = endingDelimiter;
+        }
     }
 
+    /**
+     * 
+     * Description: Example使用
+     * 
+     * @author jinyanan
+     *
+     * @param field field
+     * @param introspectedTable introspectedTable
+     */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
     }
@@ -160,11 +229,13 @@ public class YcCommentGenerator implements CommentGenerator {
     public void addJavaFileComment(CompilationUnit compilationUnit) {
     }
 
+    /**
+     * xml中的注释
+     *
+     * @param xmlElement xmlElement
+     */
     @Override
     public void addComment(XmlElement xmlElement) {
-        if (suppressAllComments) {
-            return;
-        }
 
         xmlElement.addElement(new TextElement("<!--")); 
 
@@ -173,6 +244,14 @@ public class YcCommentGenerator implements CommentGenerator {
         xmlElement.addElement(new TextElement(sb.toString()));
 
         xmlElement.addElement(new TextElement("-->")); 
+        
+        
+//        xmlElement.addElement(new TextElement("<!--"));
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("  WARNING - ");
+//        sb.append(MergeConstants.NEW_ELEMENT_TAG);
+//        xmlElement.addElement(new TextElement(sb.toString()));
+//        xmlElement.addElement(new TextElement("-->"));
     }
 
     @Override
@@ -181,18 +260,6 @@ public class YcCommentGenerator implements CommentGenerator {
 
     @Override
     public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-//        topLevelClass.addImportedType(apiModelProperty);
-//        topLevelClass.addImportedType(apiModel);
-//        topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
-        topLevelClass.addJavaDocLine("/**");
-        topLevelClass.addJavaDocLine(" *");
-        topLevelClass.addJavaDocLine(" * Description: " + introspectedTable.getFullyQualifiedTable() + "实体");
-        topLevelClass.addJavaDocLine(" *");
-        topLevelClass.addJavaDocLine(" * Created on " + currentDateStr);
-        topLevelClass.addJavaDocLine(" * @author " + author);
-        topLevelClass.addJavaDocLine(" * @version 1.0");
-        topLevelClass.addJavaDocLine(" * @since v1.0");
-        topLevelClass.addJavaDocLine(" */");
     }
 
 }
