@@ -1,6 +1,21 @@
 ### 银城千万间 工程系统
 **代码是给人看的，并不是给机器看的，请编写代码时注意代码编写规范，不要一段时间后自己都看不懂自己的代码**
 
+#### 技术选型
+
+ - Maven
+ - Spring
+ - SpringMVC
+ - MyBatis
+ - MyBatis Generator
+ - MyBatis 通用Mapper
+ - Swagger
+ - Log4j
+ - MySQL
+ - Druid
+ - PageHelper
+ - 部分功能的二次封装
+
 1、 环境搭建
   - 配置`Maven`中央仓库：项目目录下有`Maven`的配置文件`settings.xml`文件，修改该文件中的本地仓库目录`localRepository`为自己系统下目录即可
   - IDE导入项目，需要 **JDK1.7, Tomcat7+**
