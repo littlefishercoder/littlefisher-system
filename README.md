@@ -13,6 +13,7 @@
  - Log4j
  - MySQL
  - Druid
+ - Nginx
  - PageHelper
  - 部分功能的二次封装
 
