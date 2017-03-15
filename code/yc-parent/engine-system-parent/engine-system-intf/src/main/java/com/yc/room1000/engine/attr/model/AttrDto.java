@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
@@ -69,6 +70,7 @@ public class AttrDto implements Serializable {
      */
     @ApiModelProperty(value = "状态变更时间")
     @Column(name = "state_date")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date stateDate;
 
     /**
