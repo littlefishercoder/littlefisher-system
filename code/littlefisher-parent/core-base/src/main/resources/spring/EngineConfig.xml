@@ -11,7 +11,7 @@
         <property name="locations">
             <list>
                 <!-- <value>classpath*:properties/jdbc.properties</value> -->
-                <value>file:${SYSTEM_HOME}/etc/properties/engineConfig.properties</value>
+                <value>file:${SYSTEM_HOME}/etc/properties/jdbc.properties</value>
             </list>
         </property>
     </bean>
@@ -93,10 +93,15 @@
         <property name="dataSource" ref="dataSource" />
 
         <!-- myBatis所需要配置的*Mapper.xml所在目录 -->
-        <property name="mapperLocations" value="${mapperLocations}" />
+        <property name="mapperLocations" >
+          <list>
+            <value>classpath*:com/littlefisher/**/mapper/*.xml</value>
+            <value>classpath*:com/yc/room1000/**/mapper/*.xml</value>
+          </list>
+        </property>
         
         <property name="plugins">
-            <array>
+            <list>
                 <bean class="com.github.pagehelper.PageInterceptor">
                     <property name="properties">
                         <value>
@@ -104,7 +109,7 @@
                         </value>
                     </property>
                 </bean>
-            </array>
+            </list>
         </property>
     </bean>
 
@@ -178,7 +183,7 @@
         <!-- rml.service..*Impl:代表你要拦截rml.service..*Impl类 -->
         <!-- .*(..)：这个代表任意方法，就是说上面那些类的任意方法，()里面的点，代表任意参数 -->
         <!-- pointcut代表切面在哪里 -->
-        <aop:pointcut id="transactionPointcut" expression="${transactionPointcut}" />
+        <aop:pointcut id="transactionPointcut" expression="execution(* com.littlefisher..service..*Impl.*(..)) and execution(* com.yc.room1000..service..*Impl.*(..))" />
 
         <!-- advisor代表在切面上要如何操作，该项目中是按照上面配置的transactionAdvice执行操作 -->
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
@@ -189,7 +194,7 @@
 
     <aop:config>
         <aop:aspect id="aspect" ref="logBean">
-            <aop:pointcut id="logServicePointcut" expression="${logServicePointcut}" />
+            <aop:pointcut id="logServicePointcut" expression="execution(* com.littlefisher..service.impl.*Impl.*(..)) and execution(* com.yc.room1000..service..*Impl.*(..))" />
             <aop:before pointcut-ref="logServicePointcut" method="before" />
             <aop:after-returning pointcut-ref="logServicePointcut" method="afterReturning" returning="returnValue" />
         </aop:aspect>

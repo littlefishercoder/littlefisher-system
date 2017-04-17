@@ -10,8 +10,8 @@ import com.yc.room1000.engine.attr.cmd.DeleteAttrCmd;
 import com.yc.room1000.engine.attr.cmd.InsertAttrCmd;
 import com.yc.room1000.engine.attr.cmd.QryAllAttrCmd;
 import com.yc.room1000.engine.attr.cmd.QryAttrByIdCmd;
-import com.yc.room1000.engine.attr.cmd.QryAttrListByCond;
-import com.yc.room1000.engine.attr.cmd.QryAttrPagerListByCond;
+import com.yc.room1000.engine.attr.cmd.QryAttrListByCondCmd;
+import com.yc.room1000.engine.attr.cmd.QryAttrPagerListByCondCmd;
 import com.yc.room1000.engine.attr.cmd.UpdateAttrCmd;
 import com.yc.room1000.engine.attr.model.AttrDto;
 import com.yc.room1000.engine.attr.model.QryAttrListRequest;
@@ -58,13 +58,13 @@ public class AttrServiceImpl extends ServiceImpl implements IAttrService {
 
     @Override
     public List<AttrDto> getAttrListByCond(QryAttrListRequest qryAttrListRequest) throws BaseAppException {
-        return this.execute(new QryAttrListByCond(qryAttrListRequest));
+        return this.execute(new QryAttrListByCondCmd(qryAttrListRequest));
     }
 
     @Override
     public List<AttrDto> getAttrPagerListByCond(QryAttrPagerListRequest qryAttrPagerListRequest)
         throws BaseAppException {
-        return this.execute(new QryAttrPagerListByCond(qryAttrPagerListRequest));
+        return this.execute(new QryAttrPagerListByCondCmd(qryAttrPagerListRequest));
     }
 
 }

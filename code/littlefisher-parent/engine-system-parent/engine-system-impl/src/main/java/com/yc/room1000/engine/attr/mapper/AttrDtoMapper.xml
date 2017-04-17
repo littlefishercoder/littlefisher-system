@@ -19,9 +19,9 @@
     id, name, code, unit_id, type, state, state_date, comments, mandatory
   </sql>
   <select id="selectByCond" parameterType="com.yc.room1000.engine.attr.model.QryAttrListRequest" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
-    from attr
+    from attr 
     <where>
       <if test="attrName != null">
         and name like concat('%', #{attrName, jdbcType=VARCHAR}, '%')
