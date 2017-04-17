@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:mvc="http://www.springframework.org/schema/mvc"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:aop="http://www.springframework.org/schema/aop"
   xsi:schemaLocation="http://www.springframework.org/schema/beans 
 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
 http://www.springframework.org/schema/context 
 http://www.springframework.org/schema/context/spring-context-4.3.xsd 
 http://www.springframework.org/schema/mvc 
-http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
   <context:component-scan base-package="com.yc.room1000.**.controller">
     <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
   </context:component-scan>
+
+  <bean id="logger4ControllerBean" class="com.littlefisher.core.aop.LoggerAspect4Controller" />
+  <aop:config>
+    <aop:aspect ref="logger4ControllerBean">
+      <aop:pointcut id="loggerPointcut4Controller" expression="execution(* com.yc.room1000.engine.attr.controller..*(..))" />
+      <aop:around pointcut-ref="loggerPointcut4Controller" method="doInMethod" />
+    </aop:aspect>
+  </aop:config>
 
   <!-- 声明注解方式加载bean -->
   <context:annotation-config />

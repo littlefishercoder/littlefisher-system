@@ -189,14 +189,14 @@
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
     </aop:config>
 
-    <!-- aop切面用来记录*Service中各个方法的出入参内容，如果出入参是Dto，需要有重写toString方法 -->
-    <bean id="logBean" class="com.littlefisher.core.aop.LogAspect" />
 
+    <!-- aop切面用来记录*Service中各个方法的出入参内容，如果出入参是Dto，需要有重写toString方法 -->
+    <bean id="logger4ServiceBean" class="com.littlefisher.core.aop.LoggerAspect4Service" />
+    
     <aop:config>
-        <aop:aspect id="aspect" ref="logBean">
-            <aop:pointcut id="logServicePointcut" expression="execution(* com.littlefisher..service.impl.*Impl.*(..)) and execution(* com.yc.room1000..service..*Impl.*(..))" />
-            <aop:before pointcut-ref="logServicePointcut" method="before" />
-            <aop:after-returning pointcut-ref="logServicePointcut" method="afterReturning" returning="returnValue" />
+        <aop:aspect ref="logger4ServiceBean">
+          <aop:pointcut id="loggerPointcut4Service" expression="execution(* com.yc.room1000..service.impl.*Impl.*(..))" />
+            <aop:around pointcut-ref="loggerPointcut4Service" method="doInMethod"/>
         </aop:aspect>
     </aop:config>
 
