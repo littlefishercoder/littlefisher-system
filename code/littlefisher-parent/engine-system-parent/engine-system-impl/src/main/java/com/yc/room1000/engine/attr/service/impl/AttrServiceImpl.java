@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.yc.room1000.core.exception.BaseAppException;
-import com.yc.room1000.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.exception.BaseAppException;
+import com.littlefisher.core.interceptor.service.ServiceImpl;
 import com.yc.room1000.engine.attr.cmd.DeleteAttrCmd;
 import com.yc.room1000.engine.attr.cmd.InsertAttrCmd;
 import com.yc.room1000.engine.attr.cmd.QryAllAttrCmd;

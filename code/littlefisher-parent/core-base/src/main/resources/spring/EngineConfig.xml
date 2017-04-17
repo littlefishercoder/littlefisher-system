@@ -11,7 +11,7 @@
         <property name="locations">
             <list>
                 <!-- <value>classpath*:properties/jdbc.properties</value> -->
-                <value>file:${SYSTEM_HOME}/etc/properties/jdbc.properties</value>
+                <value>file:${SYSTEM_HOME}/etc/properties/engineConfig.properties</value>
             </list>
         </property>
     </bean>
@@ -93,7 +93,7 @@
         <property name="dataSource" ref="dataSource" />
 
         <!-- myBatis所需要配置的*Mapper.xml所在目录 -->
-        <property name="mapperLocations" value="classpath*:com/littlefisher/**/mapper/*.xml" />
+        <property name="mapperLocations" value="${mapperLocations}" />
         
         <property name="plugins">
             <array>
@@ -113,7 +113,7 @@
     <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 
         <!-- basePackage 属性是让你为映射器接口文件设置基本的包路径 -->
-        <property name="basePackage" value="com.littlefisher.**.dao" />
+        <property name="basePackage" value="com.littlefisher.**.dao, com.yc.room1000.**.dao" />
 
         <!-- 没 有 必 要 去 指 定 SqlSessionFactory 或 SqlSessionTemplate , -->
         <!-- 因 为 MapperScannerConfigurer 将会创建 MapperFactoryBean,之后自动装配。 -->
@@ -178,7 +178,7 @@
         <!-- rml.service..*Impl:代表你要拦截rml.service..*Impl类 -->
         <!-- .*(..)：这个代表任意方法，就是说上面那些类的任意方法，()里面的点，代表任意参数 -->
         <!-- pointcut代表切面在哪里 -->
-        <aop:pointcut id="transactionPointcut" expression="execution(* com.littlefisher.**.service..*Impl.*(..))" />
+        <aop:pointcut id="transactionPointcut" expression="${transactionPointcut}" />
 
         <!-- advisor代表在切面上要如何操作，该项目中是按照上面配置的transactionAdvice执行操作 -->
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
@@ -189,9 +189,9 @@
 
     <aop:config>
         <aop:aspect id="aspect" ref="logBean">
-            <aop:pointcut id="logService" expression="execution(* com.littlefisher..service.impl.*Impl.*(..))" />
-            <aop:before pointcut-ref="logService" method="before" />
-            <aop:after-returning pointcut-ref="logService" method="afterReturning" returning="returnValue" />
+            <aop:pointcut id="logServicePointcut" expression="${logServicePointcut}" />
+            <aop:before pointcut-ref="logServicePointcut" method="before" />
+            <aop:after-returning pointcut-ref="logServicePointcut" method="afterReturning" returning="returnValue" />
         </aop:aspect>
     </aop:config>
 
@@ -199,7 +199,7 @@
     <context:annotation-config />
     
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->   
-    <context:component-scan base-package="com.littlefisher.core.aop,com.littlefisher.core.interceptor.service,com.littlefisher.**.service.impl" />
+    <context:component-scan base-package="com.littlefisher.core.aop,com.littlefisher.core.interceptor.service,com.littlefisher.**.service.impl,com.yc.room1000.**.service.impl" />
 
     <!-- core下bean加入管理 -->
     <context:component-scan base-package="com.littlefisher.core.utils, com.littlefisher.core.exception" >

@@ -10,29 +10,29 @@
     <property name="beginningDelimiter" value="`" />
     <property name="endingDelimiter" value="`" />
     <property name="author" value="jinyanan" />
-    <property name="javaFormatter" value="com.yc.room1000.core.mybatis.SortImportTypesJavaFormatter" />
+    <property name="javaFormatter" value="com.littlefisher.core.mybatis.SortImportTypesJavaFormatter" />
 
-    <plugin type="com.yc.room1000.core.mybatis.plugins.MapperPlugin">
+    <plugin type="com.littlefisher.core.mybatis.plugins.MapperPlugin">
       <property name="mappers" value="tk.mybatis.mapper.common.Mapper" />
     </plugin>
     
-    <plugin type="com.yc.room1000.core.mybatis.plugins.SerializablePlugin" />
-    <plugin type="com.yc.room1000.core.mybatis.plugins.ImportsPlugin" />
+    <plugin type="com.littlefisher.core.mybatis.plugins.SerializablePlugin" />
+    <plugin type="com.littlefisher.core.mybatis.plugins.ImportsPlugin" />
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
 
     <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://127.0.0.1:3306/engine" userId="root"
       password="root">
     </jdbcConnection>
     
-    <javaTypeResolver type="com.yc.room1000.core.mybatis.ChangeColType2LongJavaTypeResolver">
+    <javaTypeResolver type="com.littlefisher.core.mybatis.ChangeColType2LongJavaTypeResolver">
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
 
-    <javaModelGenerator targetPackage="com.yc.room1000.attr.model" targetProject="src/main/java" />
+    <javaModelGenerator targetPackage="com.littlefisher.attr.model" targetProject="src/main/java" />
 
-    <sqlMapGenerator targetPackage="com.yc.room1000.attr.mapper" targetProject="src/main/resources" />
+    <sqlMapGenerator targetPackage="com.littlefisher.attr.mapper" targetProject="src/main/resources" />
 
-    <javaClientGenerator targetPackage="com.yc.room1000.attr.dao" targetProject="src/main/java"
+    <javaClientGenerator targetPackage="com.littlefisher.attr.dao" targetProject="src/main/java"
       type="XMLMAPPER" />
 
     <table tableName="attr" domainObjectName="AttrDto">

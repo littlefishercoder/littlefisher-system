@@ -16,7 +16,7 @@ import org.mybatis.generator.config.CommentGeneratorConfiguration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.util.StringUtility;
 
-import com.littlefisher.core.mybatis.YcCommentGenerator;
+import com.littlefisher.core.mybatis.LittleFisherCommentGenerator;
 
 import tk.mybatis.mapper.MapperException;
 
@@ -68,7 +68,7 @@ public class MapperPlugin extends PluginAdapter {
         super.setContext(context);
         //设置默认的注释生成器
         commentCfg = new CommentGeneratorConfiguration();
-        commentCfg.setConfigurationType(YcCommentGenerator.class.getCanonicalName());
+        commentCfg.setConfigurationType(LittleFisherCommentGenerator.class.getCanonicalName());
         context.setCommentGeneratorConfiguration(commentCfg);
         //支持oracle获取注释#114
         context.getJdbcConnectionConfiguration().addProperty("remarksReporting", "true");

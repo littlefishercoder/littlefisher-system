@@ -2,7 +2,7 @@ package com.yc.room1000.engine.attr.service;
 
 import java.util.List;
 
-import com.yc.room1000.core.exception.BaseAppException;
+import com.littlefisher.core.exception.BaseAppException;
 import com.yc.room1000.engine.attr.model.AttrDto;
 import com.yc.room1000.engine.attr.model.QryAttrListRequest;
 import com.yc.room1000.engine.attr.model.QryAttrPagerListRequest;

@@ -6,7 +6,7 @@
 package com.littlefisher.core.mybatis;
 
 /** 
- * Description: 
+ * Description: 暂时是一个空Mapper
  *  
  * Created on 2017年1月14日 
  *

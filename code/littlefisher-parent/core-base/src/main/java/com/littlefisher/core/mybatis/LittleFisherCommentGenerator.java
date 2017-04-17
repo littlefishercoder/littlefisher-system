@@ -31,7 +31,7 @@ import org.mybatis.generator.internal.util.StringUtility;
  * @version 1.0
  * @since v1.0
  */
-public class YcCommentGenerator implements CommentGenerator {
+public class LittleFisherCommentGenerator implements CommentGenerator {
     
     /** The properties. */
     private Properties properties;
@@ -52,7 +52,7 @@ public class YcCommentGenerator implements CommentGenerator {
     /**
      * YcCommentsGenerator
      */
-    public YcCommentGenerator() {
+    public LittleFisherCommentGenerator() {
         super();
         properties = new Properties();
         author = "autoCreated";

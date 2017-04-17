@@ -8,7 +8,7 @@ import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
 
 /**
  * 
- * Description: 
+ * Description: mybatis数据类型转换时，遇到数值型的，都转为Long
  *  
  * Created on 2017年1月16日 
  *

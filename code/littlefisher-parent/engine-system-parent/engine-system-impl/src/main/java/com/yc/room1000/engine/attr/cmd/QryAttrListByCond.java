@@ -2,8 +2,8 @@ package com.yc.room1000.engine.attr.cmd;
 
 import java.util.List;
 
-import com.yc.room1000.core.exception.BaseAppException;
-import com.yc.room1000.core.interceptor.AbstractCommand;
+import com.littlefisher.core.exception.BaseAppException;
+import com.littlefisher.core.interceptor.AbstractCommand;
 import com.yc.room1000.engine.attr.dao.AttrDtoMapper;
 import com.yc.room1000.engine.attr.model.AttrDto;
 import com.yc.room1000.engine.attr.model.QryAttrListRequest;

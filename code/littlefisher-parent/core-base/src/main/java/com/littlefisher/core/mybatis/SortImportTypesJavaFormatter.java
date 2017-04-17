@@ -20,7 +20,7 @@ import org.mybatis.generator.config.Context;
 
 /**
  * 
- * Description: 
+ * Description: 对import导入的包进行排序
  *  
  * Created on 2017年3月9日 
  *

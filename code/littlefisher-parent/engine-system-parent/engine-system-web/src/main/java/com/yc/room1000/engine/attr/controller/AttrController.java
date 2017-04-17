@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.littlefisher.core.exception.BaseAppException;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
-import com.yc.room1000.core.exception.BaseAppException;
 import com.yc.room1000.engine.attr.model.AttrDto;
 import com.yc.room1000.engine.attr.model.QryAttrListRequest;
 import com.yc.room1000.engine.attr.model.QryAttrPagerListRequest;
