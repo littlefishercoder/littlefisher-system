@@ -195,7 +195,7 @@
     
     <aop:config>
         <aop:aspect ref="logger4ServiceBean">
-          <aop:pointcut id="loggerPointcut4Service" expression="execution(* com.yc.room1000..service.impl.*Impl.*(..))" />
+          <aop:pointcut id="loggerPointcut4Service" expression="@within(org.springframework.stereotype.Service)" />
             <aop:around pointcut-ref="loggerPointcut4Service" method="doInMethod"/>
         </aop:aspect>
     </aop:config>

@@ -18,7 +18,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
   <bean id="logger4ControllerBean" class="com.littlefisher.core.aop.LoggerAspect4Controller" />
   <aop:config>
     <aop:aspect ref="logger4ControllerBean">
-      <aop:pointcut id="loggerPointcut4Controller" expression="execution(* com.yc.room1000..controller..*(..))" />
+      <aop:pointcut id="loggerPointcut4Controller" expression="@within(org.springframework.web.bind.annotation.RestController)" />
       <aop:around pointcut-ref="loggerPointcut4Controller" method="doInMethod" />
     </aop:aspect>
   </aop:config>
