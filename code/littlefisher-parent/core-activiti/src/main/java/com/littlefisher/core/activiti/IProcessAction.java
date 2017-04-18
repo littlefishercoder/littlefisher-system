@@ -2,7 +2,6 @@ package com.littlefisher.core.activiti;
 
 import org.activiti.engine.delegate.DelegateExecution;
 import org.activiti.engine.delegate.DelegateTask;
-import org.activiti.engine.delegate.ExecutionListener;
 import org.activiti.engine.delegate.JavaDelegate;
 import org.activiti.engine.delegate.TaskListener;
 
@@ -16,18 +15,7 @@ import org.activiti.engine.delegate.TaskListener;
  * @version 1.0
  * @since v1.0
  */
-public interface IProcessAction extends ExecutionListener, TaskListener, JavaDelegate {
-    
-    /**
-     * 
-     * Description: 分支判断环节需要实现方法
-     * 
-     * @author jinyanan
-     *
-     * @param execution execution
-     * @throws Exception <br>
-     */
-    void notify(DelegateExecution execution) throws Exception;
+public interface IProcessAction extends TaskListener, JavaDelegate {
     
     /**
      * 
