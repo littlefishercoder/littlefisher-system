@@ -22,6 +22,6 @@ settings.xml
 node_modules/
 **/MANIFEST.MF
 
-# YC_HOME
+# SYSTEM_HOME
 log/
 **/jdbc.properties
