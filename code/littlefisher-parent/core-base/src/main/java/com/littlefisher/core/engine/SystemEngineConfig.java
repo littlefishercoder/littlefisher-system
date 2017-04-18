@@ -31,7 +31,7 @@ import com.littlefisher.core.utils.StringUtil;
 
 /**
  * 
- * Description: 
+ * Description: 所有的系统参数配置都可以在该类中找到
  *  
  * Created on 2017年2月10日 
  *

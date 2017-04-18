@@ -34,7 +34,6 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
      */
     protected Map<String, ServiceImpl> registerServices;
 
-   
 
     public SystemEngineConfig getSystemEngineConfig() {
         return systemEngineConfig;

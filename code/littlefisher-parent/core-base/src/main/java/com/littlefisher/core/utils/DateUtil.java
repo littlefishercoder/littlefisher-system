@@ -818,8 +818,8 @@ public final class DateUtil {
      * @throws BaseAppException 
      */
     private static Date getDBCurrentTime() throws BaseAppException {
-        SystemEngine crmEngine = SpringContextUtil.getBean("systemEngine");
-        DBServiceImpl dbServiceImpl = (DBServiceImpl) crmEngine.getService("CORE.DBService");
+        SystemEngine systemEngine = SpringContextUtil.getBean("systemEngine");
+        DBServiceImpl dbServiceImpl = (DBServiceImpl) systemEngine.getService("CORE.DBService");
         return dbServiceImpl.getDBDateTime();
     }
 
