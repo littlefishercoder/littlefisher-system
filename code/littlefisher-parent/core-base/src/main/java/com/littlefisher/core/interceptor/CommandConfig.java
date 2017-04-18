@@ -15,12 +15,12 @@ import com.littlefisher.core.interceptor.cfg.TransactionPropagation;
 public class CommandConfig {
 
     /**
-     * contextReusePossible
+     * contextReusePossible 是否可被多次使用
      */
     private boolean contextReusePossible;
 
     /**
-     * propagation
+     * propagation 事务类型
      */
     private TransactionPropagation propagation;
     
@@ -54,7 +54,7 @@ public class CommandConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param contextReusePossible <br>
      * @return <br>
@@ -69,7 +69,7 @@ public class CommandConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -83,7 +83,7 @@ public class CommandConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -98,7 +98,7 @@ public class CommandConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */

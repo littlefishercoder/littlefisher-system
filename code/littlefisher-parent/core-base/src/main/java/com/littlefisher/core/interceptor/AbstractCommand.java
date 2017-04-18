@@ -25,7 +25,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -37,7 +37,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
      * Description: <br>
      * 此方法只会在command execute 方法内部使用
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param <T> <br>
      * @param typeClass <br>
@@ -52,7 +52,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
      * Description: <br>
      * 此方法只会在command execute 方法内部使用
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return EventDispatcher <br>
      * @throws BaseAppException <br>
@@ -64,7 +64,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param event <br>
      * @throws BaseAppException <br>
@@ -79,7 +79,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param type <br>
      * @param entity <br>
@@ -95,7 +95,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
      * Description: <br>
      * 此方法只会在command execute 方法内部使用
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param serviceName <br>
      * @return ServiceImpl <br>
@@ -108,7 +108,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param commandContext <br>
      * @return Object <br>
@@ -122,7 +122,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return Object <br>
      * @throws BaseAppException <br>

@@ -19,7 +19,7 @@ public class CommandInvoker extends AbstractCommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param config <br>
      * @param command <br>
@@ -29,6 +29,9 @@ public class CommandInvoker extends AbstractCommandInterceptor {
      */
     @Override
     public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
+        // Context.getCommandContext()是为了能让业务的command中，调用工具方法
+        // 例如commandContext.getSystemEngineConfig().getService()获取其他Service
+        // 例如commandContext.getDbSqlSession().getMapper()获取Mapper
         return command.execute(Context.getCommandContext());
     }
 
@@ -36,7 +39,7 @@ public class CommandInvoker extends AbstractCommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -49,7 +52,7 @@ public class CommandInvoker extends AbstractCommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param next <br>
      */

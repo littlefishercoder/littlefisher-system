@@ -162,7 +162,7 @@ public class SystemEngineConfig {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -173,7 +173,7 @@ public class SystemEngineConfig {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param sqlSessionFactory <br>
      */
@@ -184,7 +184,7 @@ public class SystemEngineConfig {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -195,7 +195,7 @@ public class SystemEngineConfig {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param systemEngineName <br>
      */
@@ -206,7 +206,7 @@ public class SystemEngineConfig {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -217,7 +217,7 @@ public class SystemEngineConfig {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param dataSource <br>
      */
@@ -228,7 +228,7 @@ public class SystemEngineConfig {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -239,7 +239,7 @@ public class SystemEngineConfig {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param transactionManager <br>
      */
@@ -251,7 +251,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return systemEngine
      * @throws BaseAppException <br>
@@ -264,23 +264,29 @@ public class SystemEngineConfig {
 
     /**
      * 
-     * Description: <br> 
+     * Description: 初始化方法<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @throws BaseAppException <br>
      */
     protected void init() throws BaseAppException {
+        // 初始化默认Command配置
         initDefaultCommandConfig();
-
+        // 初始化Command上下文工厂
         initCommandContextFactory();
+        // 初始化自定义的sqlSession工厂
         initDbSqlSessionFactory();
+        // 初始化session工厂
         initSessionFactories();
-
+        // 初始化命令调用工具
         initCommandInvoker();
+        // 初始化命令的拦截器
         initCommandInterceptors();
+        // 初始化命令的执行器
         initCommandExecutor();
 
+        // 初始化EventDispatcher，暂不具体关注
         initEventDispatcher();
 
     }
@@ -289,7 +295,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param registerServices <br>
      */
@@ -308,7 +314,7 @@ public class SystemEngineConfig {
      * initService
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param serviceName <br>
      * @param registerService <br>
@@ -316,6 +322,7 @@ public class SystemEngineConfig {
     public void initService(String serviceName, ServiceImpl registerService) {
         if (registerService != null && StringUtil.isNotEmpty(serviceName)) {
             initService(registerService);
+            // 对ServiceImpl进行缓存
             services.put(serviceName, registerService);
         }
 
@@ -325,11 +332,12 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param service <br>
      */
     protected void initService(Object service) {
+        // 每一个ServiceImpl准备执行时，赋值commandExecutor，让ServiceImpl有开始执行的地方
         if (service instanceof ServiceImpl) {
             ((ServiceImpl) service).setCommandExecutor(commandExecutor);
         }
@@ -337,9 +345,9 @@ public class SystemEngineConfig {
 
     /**
      * 
-     * Description: <br> 
+     * Description: 初始化默认Command配置<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     protected void initDefaultCommandConfig() {
@@ -350,9 +358,9 @@ public class SystemEngineConfig {
 
     /**
      * 
-     * Description: <br> 
+     * Description: 初始化自定义的sqlSession工厂<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     protected void initDbSqlSessionFactory() {
@@ -364,14 +372,15 @@ public class SystemEngineConfig {
 
     /**
      * 
-     * Description: <br> 
+     * Description: 初始化session工厂<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     protected void initSessionFactories() {
         if (sessionFactories == null) {
             sessionFactories = new HashMap<Class<?>, SessionFactory>();
+            // 由于dbSqlSessionFactory在此次步骤之前进行了初始化，所以把dbSqlSessionFactory添加到sessionFactories中，用于缓存
             addSessionFactory(dbSqlSessionFactory);
         }
     }
@@ -380,7 +389,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param sessionFactory <br>
      */
@@ -390,9 +399,9 @@ public class SystemEngineConfig {
 
     /**
      * 
-     * Description: <br> 
+     * Description: 初始化Command上下文工厂<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     protected void initCommandContextFactory() {
@@ -404,36 +413,45 @@ public class SystemEngineConfig {
 
     /**
      * 
-     * Description: <br> 
+     * Description: 初始化命令调用工具<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     protected void initCommandInvoker() {
         if (commandInvoker == null) {
+            // CommandInvoker继承自AbstractCommandInterceptor，也是拦截器的一种
             commandInvoker = new CommandInvoker();
         }
     }
 
     /**
      * 
-     * Description: <br> 
+     * Description: 初始化命令的拦截器<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @throws BaseAppException <br>
      */
     protected void initCommandInterceptors() throws BaseAppException {
         if (commandInterceptors == null) {
             commandInterceptors = new ArrayList<CommandInterceptor>();
+            // 自定义的前置拦截器
             if (customPreCommandInterceptors != null) {
                 commandInterceptors.addAll(customPreCommandInterceptors);
             }
             commandInterceptors.addAll(getDefaultCommandInterceptors());
+            // 自定义的后置拦截器
             if (customPostCommandInterceptors != null) {
                 commandInterceptors.addAll(customPostCommandInterceptors);
             }
+            // 命令调用工具也属于拦截器
             commandInterceptors.add(commandInvoker);
+            
+            // 当前commandInterceptors顺序为：
+            // CommandContextInterceptor 1. 渲染容器上下文环境
+            // SpringTransactionInterceptor 2. 为下步操作添加事务环绕
+            // CommandInvoker 3. 执行具体的业务命令，该拦截器必须为最后一个，后续不可再增加其他拦截器
         }
     }
 
@@ -441,7 +459,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @throws BaseAppException 
      * @taskId <br> <br>
      */
@@ -474,7 +492,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param types <br>
      * @return <br>
@@ -492,7 +510,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return interceptors
      * @throws BaseAppException <br>
@@ -515,7 +533,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return SpringTransactionInterceptor
      * @throws BaseAppException <br>
@@ -531,15 +549,17 @@ public class SystemEngineConfig {
 
     /**
      * 
-     * Description: <br> 
+     * Description: 初始化命令的执行器，之前只定义了拦截器执行链，需要有一个执行器，让执行链能开始执行<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @throws BaseAppException <br>
      */
     protected void initCommandExecutor() throws BaseAppException {
         if (commandExecutor == null) {
+            // 初始化拦截器调用链，并返回第一个拦截器
             CommandInterceptor first = initInterceptorChain(commandInterceptors);
+            // 执行器默认从第一个拦截器开始执行
             commandExecutor = new CommandExecutorImpl(getDefaultCommandConfig(), first);
         }
     }
@@ -548,7 +568,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -560,7 +580,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param commandInvoker <br>
      */
@@ -572,7 +592,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -584,7 +604,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param customPreCommandInterceptors <br>
      */
@@ -596,7 +616,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -608,7 +628,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param customPostCommandInterceptors <br>
      */
@@ -620,7 +640,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -632,7 +652,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param commandInterceptors <br>
      */
@@ -644,7 +664,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -656,7 +676,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param commandExecutor <br>
      */
@@ -668,7 +688,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -680,7 +700,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param defaultCommandConfig <br>
      */
@@ -690,9 +710,9 @@ public class SystemEngineConfig {
 
     /**
      * 
-     * Description: <br> 
+     * Description: 初始化拦截器调用链，并返回第一个拦截器<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param chain 
      * @return CommandInterceptor
@@ -713,7 +733,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -725,7 +745,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param sessionFactories 
      * @return <br>
@@ -763,7 +783,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param serviceName 
      * @return <br>
@@ -777,7 +797,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param serviceName <br>
      * @param service <br>
@@ -793,7 +813,7 @@ public class SystemEngineConfig {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     public void destory() {

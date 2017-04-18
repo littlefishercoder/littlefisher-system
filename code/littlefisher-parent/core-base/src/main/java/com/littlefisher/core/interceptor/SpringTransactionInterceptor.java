@@ -44,7 +44,7 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param config <br>
      * @return <br>
@@ -67,7 +67,7 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param config <br>
      * @param command <br>

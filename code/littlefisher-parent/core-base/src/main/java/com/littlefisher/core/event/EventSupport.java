@@ -47,7 +47,7 @@ public class EventSupport {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param listenerToAdd <br>
      */
@@ -64,7 +64,7 @@ public class EventSupport {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param listenerToAdd <br>
      * @param types <br>
@@ -89,7 +89,7 @@ public class EventSupport {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param listenerToRemove <br>
      */
@@ -105,7 +105,7 @@ public class EventSupport {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param event <br>
      * @throws BaseAppException 
@@ -139,7 +139,7 @@ public class EventSupport {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param event <br>
      * @param listener <br>
@@ -167,7 +167,7 @@ public class EventSupport {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param listener <br>
      * @param type <br>

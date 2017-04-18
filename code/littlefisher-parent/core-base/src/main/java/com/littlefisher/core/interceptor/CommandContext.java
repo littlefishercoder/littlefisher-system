@@ -61,7 +61,7 @@ public class CommandContext {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param exception <br>
      */
@@ -75,7 +75,7 @@ public class CommandContext {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     public void close() {
@@ -86,7 +86,7 @@ public class CommandContext {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param <T> <br>
      * @param sessionClass <br>
@@ -112,7 +112,7 @@ public class CommandContext {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      * @throws BaseAppException 

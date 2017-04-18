@@ -7,7 +7,7 @@ import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
  * 
- * Description: 
+ * Description: Command上下文拦截器
  *  
  * Created on 2017年2月10日 
  *
@@ -52,7 +52,7 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
     /**
      * Description: <br>
      * 
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param config <br>
      * @param command <br>
@@ -95,7 +95,7 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
             finally {
                 // Pop from stack
                 Context.removeCommandContext();
-                Context.removeEshopEngineConfig();
+                Context.removeSystemEngineConfig();
             }
         }
 

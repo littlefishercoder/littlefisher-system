@@ -19,7 +19,7 @@ public interface Command<U> {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param commandContext <br>
      * @return <br>
@@ -31,7 +31,7 @@ public interface Command<U> {
      * object 实现toString()方法，将相应的属性值输出
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */

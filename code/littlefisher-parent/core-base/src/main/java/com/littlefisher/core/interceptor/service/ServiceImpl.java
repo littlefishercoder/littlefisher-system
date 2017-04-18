@@ -31,14 +31,11 @@ public class ServiceImpl implements InitializingBean {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
-    @SuppressWarnings({
-        "unchecked", "rawtypes"
-    })
     private void init() { 
-        Class mClass = this.getClass();
+        Class<? extends ServiceImpl> mClass = this.getClass();
         Service service = (Service) mClass.getAnnotation(Service.class);
         String value = service.value();
         initService(value, this);
@@ -48,7 +45,7 @@ public class ServiceImpl implements InitializingBean {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -60,7 +57,7 @@ public class ServiceImpl implements InitializingBean {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param commandExecutor <br>
      */
@@ -78,7 +75,7 @@ public class ServiceImpl implements InitializingBean {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param serviceName <br>
      * @param serviceInstance <br>
@@ -91,14 +88,14 @@ public class ServiceImpl implements InitializingBean {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param command <br>
      * @param <U> <U>
      * @return  <br>
      * @throws BaseAppException <br>
      */
-    protected <U> U  execute(Command<U> command) throws BaseAppException {
+    protected <U> U execute(Command<U> command) throws BaseAppException {
         return commandExecutor.execute(command);
     }
     
@@ -106,7 +103,7 @@ public class ServiceImpl implements InitializingBean {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param config <br>
      * CommandConfig.transactionNotSupported() 不带事务
@@ -122,6 +119,13 @@ public class ServiceImpl implements InitializingBean {
         return commandExecutor.execute(config, command);
     }
 
+    /**
+     * 
+     * Description: 当产生ServiceImpl实例化类时，会调用该方法，然后进行ServiceImpl的初始化操作
+     * 
+     * @author jinyanan
+     *
+     */
     @Override
     public void afterPropertiesSet() {
         init();

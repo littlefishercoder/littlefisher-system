@@ -18,7 +18,7 @@ public class EventBuilder {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param type <br>
      * @return <br>
@@ -32,7 +32,7 @@ public class EventBuilder {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param type <br>
      * @param entity <br>

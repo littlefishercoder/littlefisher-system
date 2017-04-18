@@ -19,7 +19,7 @@ public interface SystemEngine {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -29,7 +29,7 @@ public interface SystemEngine {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     void close();
@@ -38,7 +38,7 @@ public interface SystemEngine {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -48,7 +48,7 @@ public interface SystemEngine {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param serviceName 
      * @return <br>
@@ -59,7 +59,7 @@ public interface SystemEngine {
      * initService
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param serviceName <br>
      * @param registerService <br>

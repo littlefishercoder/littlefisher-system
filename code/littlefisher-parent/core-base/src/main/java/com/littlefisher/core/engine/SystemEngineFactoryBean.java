@@ -11,7 +11,7 @@ import com.littlefisher.core.interceptor.service.ServiceImpl;
  * 
  * <Description> <br> 
  *  
- * @author zeng.ligeng<br>
+ * @author jinyanan<br>
  * @version 1.0<br>
  * @taskId <br>
  * @CreateDate 2016年2月25日 <br>
@@ -54,9 +54,9 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
     
     /**
      * 
-     * Description: <br> 
+     * Description: 通过实现FactoryBean<SystemEngine>接口，实现方法启动时的调用<br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return SystemEngine
      * @throws BaseAppException <br>
@@ -73,7 +73,7 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -85,7 +85,7 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param registerServices <br>
      */

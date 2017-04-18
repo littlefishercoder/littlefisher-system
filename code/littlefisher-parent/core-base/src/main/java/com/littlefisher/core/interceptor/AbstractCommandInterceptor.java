@@ -21,7 +21,7 @@ public abstract class AbstractCommandInterceptor implements CommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -34,7 +34,7 @@ public abstract class AbstractCommandInterceptor implements CommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param next <br>
      */

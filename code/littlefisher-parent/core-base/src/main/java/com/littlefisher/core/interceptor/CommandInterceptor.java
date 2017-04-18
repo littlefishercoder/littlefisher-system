@@ -18,7 +18,7 @@ public interface CommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param config <br>
      * @param command <br>
@@ -32,7 +32,7 @@ public interface CommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -42,7 +42,7 @@ public interface CommandInterceptor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param next <br>
      */

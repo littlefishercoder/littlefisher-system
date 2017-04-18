@@ -16,7 +16,7 @@ public interface Session {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     void flush();
@@ -25,7 +25,7 @@ public interface Session {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     void close();

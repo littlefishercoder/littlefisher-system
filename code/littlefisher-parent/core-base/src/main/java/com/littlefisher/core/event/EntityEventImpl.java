@@ -38,7 +38,7 @@ public class EntityEventImpl extends EventImpl implements EntityEvent {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */

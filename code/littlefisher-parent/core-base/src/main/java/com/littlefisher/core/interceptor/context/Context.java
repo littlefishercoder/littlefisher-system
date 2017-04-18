@@ -18,12 +18,12 @@ import com.littlefisher.core.interceptor.CommandContext;
 public class Context {
 
     /**
-     * commandContextThreadLocal
+     * commandContextThreadLocal 分线程存储命令上下文
      */
     protected static ThreadLocal<Stack<CommandContext>> commandContextThreadLocal = new ThreadLocal<Stack<CommandContext>>();
     
     /**
-     * systemEngineConfigStackThreadLocal
+     * systemEngineConfigStackThreadLocal 分线程存储引擎配置
      */
     protected static ThreadLocal<Stack<SystemEngineConfig>> systemEngineConfigStackThreadLocal = new ThreadLocal<Stack<SystemEngineConfig>>();
     
@@ -31,11 +31,12 @@ public class Context {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
     public static CommandContext getCommandContext() {
+        // 栈 特点是后进先出
         Stack<CommandContext> stack = getStack(commandContextThreadLocal);
         if (stack.isEmpty()) {
             return null;
@@ -47,7 +48,7 @@ public class Context {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param commandContext <br>
      */
@@ -59,7 +60,7 @@ public class Context {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -72,7 +73,7 @@ public class Context {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     public static void removeCommandContext() {
@@ -83,7 +84,7 @@ public class Context {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -100,7 +101,7 @@ public class Context {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param systemEngineConfig <br>
      */
@@ -112,10 +113,10 @@ public class Context {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
-    public static void removeEshopEngineConfig() {
+    public static void removeSystemEngineConfig() {
         getStack(systemEngineConfigStackThreadLocal).pop();        
     }
 
@@ -123,7 +124,7 @@ public class Context {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param <T> <br>
      * @param threadLocal <br>

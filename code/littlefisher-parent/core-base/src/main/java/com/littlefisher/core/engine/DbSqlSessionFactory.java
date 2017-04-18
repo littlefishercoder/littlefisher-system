@@ -32,7 +32,7 @@ public class DbSqlSessionFactory implements SessionFactory {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -44,7 +44,7 @@ public class DbSqlSessionFactory implements SessionFactory {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param sqlSessionFactory <br>
      */
@@ -56,7 +56,7 @@ public class DbSqlSessionFactory implements SessionFactory {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -68,7 +68,7 @@ public class DbSqlSessionFactory implements SessionFactory {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */

@@ -50,7 +50,7 @@ public interface EventDispatcher {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param type <br>
      * @param entity <br>

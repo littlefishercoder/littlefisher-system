@@ -133,10 +133,6 @@
         <property name="databaseType" value="mysql"/>
         <property name="transactionManager" ref="transactionManager"/>
         <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-    <!-- <property name="customPreCommandInterceptors"> <list> <bean class="com.ztesoft.zsmart.bss.eshop.common.base.interceptor.LogInterceptor"/> 
-        </list> </property> <property name="customPostCommandInterceptors"> <list> 
-        <bean class="com.ztesoft.zsmart.bss.eshop.common.base.interceptor.LogInterceptor"/> 
-        </list> </property> -->
     </bean>
     
     <bean id="systemEngine" class="com.littlefisher.core.engine.SystemEngineFactoryBean">

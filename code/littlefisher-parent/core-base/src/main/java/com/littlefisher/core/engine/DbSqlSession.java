@@ -37,7 +37,7 @@ public class DbSqlSession implements Session {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param <K> 
      * @param type   
@@ -51,7 +51,7 @@ public class DbSqlSession implements Session {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     public void flush() {
@@ -62,7 +62,7 @@ public class DbSqlSession implements Session {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     public void close() {
@@ -73,7 +73,7 @@ public class DbSqlSession implements Session {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     public void commit() {
@@ -84,7 +84,7 @@ public class DbSqlSession implements Session {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br> <br>
      */
     public void rollback() {

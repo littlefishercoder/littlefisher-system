@@ -38,7 +38,7 @@ public class CommandExecutorImpl implements CommandExecutor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -50,7 +50,7 @@ public class CommandExecutorImpl implements CommandExecutor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -63,7 +63,7 @@ public class CommandExecutorImpl implements CommandExecutor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param command <br>
      * @param <U> <U>
@@ -79,7 +79,7 @@ public class CommandExecutorImpl implements CommandExecutor {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param config <br>
      * @param command <br>

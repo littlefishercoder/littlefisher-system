@@ -35,7 +35,7 @@ public class EventDispatcherImpl implements EventDispatcher {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param enabled <br>
      */
@@ -47,7 +47,7 @@ public class EventDispatcherImpl implements EventDispatcher {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @return <br>
      */
@@ -59,7 +59,7 @@ public class EventDispatcherImpl implements EventDispatcher {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param listenerToAdd <br>
      */
@@ -72,7 +72,7 @@ public class EventDispatcherImpl implements EventDispatcher {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param listenerToAdd <br>
      * @param types <br>
@@ -86,7 +86,7 @@ public class EventDispatcherImpl implements EventDispatcher {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param listenerToRemove <br>
      */
@@ -99,7 +99,7 @@ public class EventDispatcherImpl implements EventDispatcher {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param event <br>
      * @throws BaseAppException 
@@ -116,7 +116,7 @@ public class EventDispatcherImpl implements EventDispatcher {
      * 
      * Description: <br> 
      *  
-     * @author zeng.ligeng<br>
+     * @author jinyanan<br>
      * @taskId <br>
      * @param type <br>
      * @param entity <br>
