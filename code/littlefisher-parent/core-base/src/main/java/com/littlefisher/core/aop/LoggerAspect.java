@@ -5,7 +5,6 @@ import java.util.Arrays;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.springframework.stereotype.Component;
 
 import com.littlefisher.core.utils.LittleFisherLogger;
 
@@ -17,7 +16,6 @@ import com.littlefisher.core.utils.LittleFisherLogger;
  * @since v1.0
  */
 @Aspect
-@Component
 public class LoggerAspect {
     
     /**
