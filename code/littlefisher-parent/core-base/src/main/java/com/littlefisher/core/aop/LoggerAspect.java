@@ -18,10 +18,10 @@ import com.littlefisher.core.utils.LittleFisherLogger;
  */
 @Aspect
 @Component
-public class LoggerAspect4Service {
+public class LoggerAspect {
     
     /**
-     * Description: 环绕通知
+     * Description: 环绕Service通知
      * 
      * @author jinyanan
      * @param jp jp
@@ -29,7 +29,7 @@ public class LoggerAspect4Service {
      * @throws Throwable Throwable
      */
     @Around("@within(org.springframework.stereotype.Service)")
-    public Object doInMethod(ProceedingJoinPoint jp) throws Throwable {
+    public Object aroundService(ProceedingJoinPoint jp) throws Throwable {
         LittleFisherLogger logger = LittleFisherLogger.getLogger(jp.getTarget().getClass());
         String methodName = jp.getSignature().getDeclaringTypeName() + "." + jp.getSignature().getName();
         try {
@@ -51,6 +51,43 @@ public class LoggerAspect4Service {
         catch (Throwable e) {
             logger.info(
                 methodName + " service throw an exception-----------------------------------------------------------");
+            throw e;
+        }
+    }
+    
+    /**
+     * 
+     * Description: 环绕Controller通知
+     * 
+     * @author jinyanan
+     *
+     * @param jp jp
+     * @return Object
+     * @throws Throwable Throwable
+     */
+    @Around("@within(org.springframework.web.bind.annotation.RestController)")
+    public Object aroundController(ProceedingJoinPoint jp) throws Throwable {
+        LittleFisherLogger logger = LittleFisherLogger.getLogger(jp.getTarget().getClass());
+        String methodName = jp.getSignature().getDeclaringTypeName() + "." + jp.getSignature().getName();
+        try {
+            logger.info(methodName
+                + " controller begin------------------------------------------------------------------------");
+            if (jp.getArgs().length > 0) {
+                logger.debug("Parameters: " + Arrays.toString(jp.getArgs()));
+            }
+
+            Object returnValue = jp.proceed();
+
+            if (returnValue != null) {
+                logger.debug("return agrs: " + returnValue);
+            }
+            logger.info(methodName
+                + " controller end--------------------------------------------------------------------------");
+            return returnValue;
+        }
+        catch (Throwable e) {
+            logger.info(methodName
+                + " controller throw an exception-----------------------------------------------------------");
             throw e;
         }
     }
