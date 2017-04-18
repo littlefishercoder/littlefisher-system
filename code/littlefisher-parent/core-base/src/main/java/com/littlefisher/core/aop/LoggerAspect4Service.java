@@ -3,6 +3,9 @@ package com.littlefisher.core.aop;
 import java.util.Arrays;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
 
 import com.littlefisher.core.utils.LittleFisherLogger;
 
@@ -13,8 +16,10 @@ import com.littlefisher.core.utils.LittleFisherLogger;
  * @version 1.0
  * @since v1.0
  */
+@Aspect
+@Component
 public class LoggerAspect4Service {
-
+    
     /**
      * Description: 环绕通知
      * 
@@ -23,6 +28,7 @@ public class LoggerAspect4Service {
      * @return Object
      * @throws Throwable Throwable
      */
+    @Around("@within(org.springframework.stereotype.Service)")
     public Object doInMethod(ProceedingJoinPoint jp) throws Throwable {
         LittleFisherLogger logger = LittleFisherLogger.getLogger(jp.getTarget().getClass());
         String methodName = jp.getSignature().getDeclaringTypeName() + "." + jp.getSignature().getName();

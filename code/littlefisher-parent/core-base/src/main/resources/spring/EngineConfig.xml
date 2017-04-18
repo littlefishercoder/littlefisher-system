@@ -106,6 +106,7 @@
                     <property name="properties">
                         <value>
                             helperDialect=mysql
+                            pageSizeZero=true
                         </value>
                     </property>
                 </bean>
@@ -185,19 +186,10 @@
         <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" />
     </aop:config>
 
-
-    <!-- aop切面用来记录*Service中各个方法的出入参内容，如果出入参是Dto，需要有重写toString方法 -->
-    <bean id="logger4ServiceBean" class="com.littlefisher.core.aop.LoggerAspect4Service" />
-    
-    <aop:config>
-        <aop:aspect ref="logger4ServiceBean">
-          <aop:pointcut id="loggerPointcut4Service" expression="@within(org.springframework.stereotype.Service)" />
-            <aop:around pointcut-ref="loggerPointcut4Service" method="doInMethod"/>
-        </aop:aspect>
-    </aop:config>
-
     <!-- 声明注解方式加载bean -->
     <context:annotation-config />
+    
+    <aop:aspectj-autoproxy />
     
     <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->   
     <context:component-scan base-package="com.littlefisher.core.aop,com.littlefisher.core.interceptor.service,com.littlefisher.**.service.impl,com.yc.room1000.**.service.impl" />

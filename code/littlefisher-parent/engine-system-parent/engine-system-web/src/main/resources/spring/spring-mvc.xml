@@ -15,13 +15,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
     <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
   </context:component-scan>
 
-  <bean id="logger4ControllerBean" class="com.littlefisher.core.aop.LoggerAspect4Controller" />
-  <aop:config>
-    <aop:aspect ref="logger4ControllerBean">
-      <aop:pointcut id="loggerPointcut4Controller" expression="@within(org.springframework.web.bind.annotation.RestController)" />
-      <aop:around pointcut-ref="loggerPointcut4Controller" method="doInMethod" />
-    </aop:aspect>
-  </aop:config>
+  <aop:aspectj-autoproxy />
 
   <!-- 声明注解方式加载bean -->
   <context:annotation-config />
