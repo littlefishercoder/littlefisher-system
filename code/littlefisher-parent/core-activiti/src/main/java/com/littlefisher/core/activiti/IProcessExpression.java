@@ -1,4 +1,4 @@
-package com.yc.room1000.core.activiti;
+package com.littlefisher.core.activiti;
 
 import java.util.Map;
 

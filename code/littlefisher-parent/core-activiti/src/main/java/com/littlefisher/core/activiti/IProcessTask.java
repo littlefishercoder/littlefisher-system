@@ -1,6 +1,9 @@
-package com.yc.room1000.core.activiti;
+package com.littlefisher.core.activiti;
 
+import java.util.List;
 import java.util.Map;
+
+import com.littlefisher.core.activiti.model.ActivitiStepDto;
 
 /**
  * 
@@ -57,4 +60,39 @@ public interface IProcessTask {
      * @param variableValue variableValue
      */
     void putInstanceVariable(Long workOrderId, String variableName, Object variableValue);
+    
+    /**
+     * 
+     * Description: 直接结束流程
+     * 
+     * @author jinyanan
+     *
+     * @param workOrderId workOrderId
+     * @throws Exception <br>
+     */
+    void endProcess(Long workOrderId) throws Exception;
+    
+    /**
+     * 
+     * Description: 直接到达activityId对应的节点
+     * 
+     * @author jinyanan
+     *
+     * @param workOrderId workOrderId
+     * @param activityId activityId
+     * @throws Exception <br>
+     */
+    void direct2Activity(Long workOrderId, String activityId) throws Exception;
+    
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param workOrderId workOrderId
+     * @return List<ActivitiStepDto>
+     * @throws Exception <br>
+     */
+    List<ActivitiStepDto> getAllTaskActiviti(Long workOrderId) throws Exception;
 }

@@ -1,4 +1,4 @@
-package com.yc.room1000.core.activiti.impl;
+package com.littlefisher.core.activiti.impl;
 
 import java.util.Map;
 
@@ -7,8 +7,8 @@ import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
 
-import com.yc.room1000.core.activiti.IProcessStart;
-import com.yc.room1000.core.utils.Room1000Logger;
+import com.littlefisher.core.activiti.IProcessStart;
+import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
  * 
@@ -23,7 +23,7 @@ import com.yc.room1000.core.utils.Room1000Logger;
 public class ProcessStartImpl implements IProcessStart {
 
     /** logger */
-    private static Room1000Logger logger = Room1000Logger.getLogger(ProcessStartImpl.class);
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(ProcessStartImpl.class);
         
     /** processEngine */
     private static ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();

@@ -1,4 +1,4 @@
-package com.yc.room1000.core.activiti.ext;
+package com.littlefisher.core.activiti.ext;
 
 import java.lang.reflect.Field;
 import java.util.Iterator;
@@ -13,9 +13,9 @@ import org.activiti.engine.impl.bpmn.parser.BpmnParse;
 import org.activiti.engine.impl.pvm.PvmTransition;
 import org.activiti.engine.impl.pvm.delegate.ActivityExecution;
 
-import com.yc.room1000.core.activiti.IProcessExpression;
-import com.yc.room1000.core.utils.Room1000Logger;
-import com.yc.room1000.core.utils.StringUtil;
+import com.littlefisher.core.activiti.IProcessExpression;
+import com.littlefisher.core.utils.LittleFisherLogger;
+import com.littlefisher.core.utils.StringUtil;
 
 /**
  * Description: 重写分支判断环节 Created on 2017年1月22日
@@ -27,7 +27,7 @@ import com.yc.room1000.core.utils.StringUtil;
 public class ExclusiveGatewayActivityBehaviorExt extends ExclusiveGatewayActivityBehavior {
 
     /** logger */
-    private static Room1000Logger logger = Room1000Logger.getLogger(ExclusiveGatewayActivityBehaviorExt.class);
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(ExclusiveGatewayActivityBehaviorExt.class);
 
     /**
      * serialVersionUID

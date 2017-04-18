@@ -1,4 +1,4 @@
-package com.yc.room1000.core.activiti.ext;
+package com.littlefisher.core.activiti.ext;
 
 import org.activiti.bpmn.model.ExclusiveGateway;
 import org.activiti.engine.impl.bpmn.behavior.ExclusiveGatewayActivityBehavior;

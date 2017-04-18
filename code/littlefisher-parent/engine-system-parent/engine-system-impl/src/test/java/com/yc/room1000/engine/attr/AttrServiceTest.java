@@ -11,36 +11,60 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.utils.LittleFisherLogger;
+
 import com.yc.room1000.engine.attr.model.AttrDto;
 import com.yc.room1000.engine.attr.model.QryAttrListRequest;
 import com.yc.room1000.engine.attr.service.IAttrService;
 
+/**
+ * Description: Created on 2017年4月18日
+ *
+ * @author jinyanan
+ * @version 1.0
+ * @since v1.0
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath*:spring/EngineConfig.xml")
 @Transactional
 public class AttrServiceTest {
-	
-	/**
-	 * logger
-	 */
-	private static LittleFisherLogger logger = LittleFisherLogger.getLogger(AttrServiceTest.class);
-	
-	/**
-	 * attrService
-	 */
-	@Autowired
-	private IAttrService attrService;
 
-	@Test
-	public void testGetAttrListByCond() throws BaseAppException {
-		QryAttrListRequest req = new QryAttrListRequest();
-		List<AttrDto> attrList = attrService.getAttrListByCond(req);
-		logger.debug("attrList: " + attrList);
-	}
-	
-	@Test
-	public void testGetAttrAll() throws BaseAppException {
-		List<AttrDto> attrList = attrService.getAllAttr();
-		logger.debug("attrList: " + attrList);
-	}
+    /**
+     * logger
+     */
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(AttrServiceTest.class);
+
+    /**
+     * attrService
+     */
+    @Autowired
+    private IAttrService attrService;
+
+    /**
+     * 
+     * Description: testGetAttrListByCond
+     * 
+     * @author jinyanan
+     *
+     * @throws BaseAppException <br>
+     */
+    @Test
+    public void testGetAttrListByCond() throws BaseAppException {
+        QryAttrListRequest req = new QryAttrListRequest();
+        List<AttrDto> attrList = attrService.getAttrListByCond(req);
+        logger.debug("attrList: " + attrList);
+    }
+
+    /**
+     * 
+     * Description: testGetAttrAll
+     * 
+     * @author jinyanan
+     *
+     * @throws BaseAppException <br>
+     */
+    @Test
+    public void testGetAttrAll() throws BaseAppException {
+        List<AttrDto> attrList = attrService.getAllAttr();
+        logger.debug("attrList: " + attrList);
+    }
 }

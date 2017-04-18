@@ -1,12 +1,12 @@
-package com.yc.room1000.core.activiti.impl;
+package com.littlefisher.core.activiti.impl;
 
 import org.activiti.engine.ProcessEngine;
 import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.repository.Deployment;
 
-import com.yc.room1000.core.activiti.IProcessDeploy;
-import com.yc.room1000.core.utils.Room1000Logger;
-import com.yc.room1000.core.utils.StringUtil;
+import com.littlefisher.core.activiti.IProcessDeploy;
+import com.littlefisher.core.utils.LittleFisherLogger;
+import com.littlefisher.core.utils.StringUtil;
 
 /**
  * 
@@ -21,7 +21,7 @@ import com.yc.room1000.core.utils.StringUtil;
 public class ProcessDeployImpl implements IProcessDeploy {
     
     /** logger */
-    private static Room1000Logger logger = Room1000Logger.getLogger(ProcessDeployImpl.class);
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(ProcessDeployImpl.class);
     
     /** processEngine */
     private static ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
