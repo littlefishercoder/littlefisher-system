@@ -3,6 +3,7 @@ package com.littlefisher.core.spring.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 /**
@@ -16,7 +17,9 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
  * @since v1.0
  */
 @Configuration
-@PropertySource(value = "file:${SYSTEM_HOME}/etc/properties/jdbc.properties")
+@PropertySources(value = {
+        @PropertySource("file:${SYSTEM_HOME}/etc/properties/jdbc.properties")
+        })
 public class PropertySourceConfig {
 
     /**

@@ -97,6 +97,7 @@ public class WebSpringMVCConfig extends WebMvcConfigurerAdapter {
     
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+        // 所有swagger目录的访问，直接访问location指定的目录
         registry.addResourceHandler("/swagger/**").addResourceLocations("/WEB-INF/swagger/");
     }
     
@@ -110,6 +111,7 @@ public class WebSpringMVCConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        // 类似于使用<mvc:default-servlet-handler />
         configurer.enable();
     }
     
@@ -124,8 +126,11 @@ public class WebSpringMVCConfig extends WebMvcConfigurerAdapter {
     @Bean
     public CommonsMultipartResolver commonsMultipartResolver() {
         CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        // 默认编码格式 默认ISO-8859-1
         commonsMultipartResolver.setDefaultEncoding("UTF-8");
+        // 设置允许上传的最大文件大小，以字节为单位计算。当设为-1时表示无限制，默认是-1
         commonsMultipartResolver.setMaxUploadSize(10485760);
+        // 设置在文件上传时允许写到内存中的最大值，以字节为单位计算，默认是10240
         commonsMultipartResolver.setMaxInMemorySize(4096);
         return commonsMultipartResolver;
     }
