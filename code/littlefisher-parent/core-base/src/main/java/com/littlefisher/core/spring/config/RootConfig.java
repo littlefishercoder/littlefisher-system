@@ -14,15 +14,18 @@ import org.springframework.context.annotation.Import;
  * @since v1.0
  */
 @Configuration
+@ComponentScan(basePackages = {
+        "com.littlefisher.core.aop", 
+        "com.littlefisher.core.interceptor.service",
+        "com.littlefisher.**.service.impl",
+        "com.yc.room1000.**.service.impl",
+        "com.littlefisher.core.utils",
+        "com.littlefisher.core.exception" })
 @Import(value = {
         PropertySourceConfig.class, DataSourceConfig.class,
         SqlSessionFactoryBeanConfig.class, MapperScannerConfigurerConfig.class, 
         SystemEngineConfig.class, AopConfig.class,
         TransactionManagerConfig.class })
-@ComponentScan(basePackages = {"com.littlefisher.core.aop", 
-        "com.littlefisher.core.interceptor.service",
-        "com.littlefisher.**.service.impl",
-        "com.yc.room1000.**.service.impl" })
 public class RootConfig {
 
 }

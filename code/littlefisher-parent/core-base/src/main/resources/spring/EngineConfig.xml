@@ -7,7 +7,7 @@
                         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
                         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
                         
-  <bean class="com.littlefisher.core.spring.config.RootConfig" />
+<!--   <bean class="com.littlefisher.core.spring.config.RootConfig" /> -->
 <!--   <bean class="com.littlefisher.core.spring.config.PropertySourceConfig" /> -->
 <!--   <bean class="com.littlefisher.core.spring.config.DataSourceConfig" /> -->
 <!--   <bean class="com.littlefisher.core.spring.config.SqlSessionFactoryBeanConfig" /> -->
@@ -203,13 +203,18 @@
 <!--   <aop:aspectj-autoproxy /> -->
 
   <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-  <!-- <context:component-scan base-package="com.littlefisher.core.aop,com.littlefisher.core.interceptor.service,com.littlefisher.**.service.impl,com.yc.room1000.**.service.impl" 
-    /> -->
+  <!--<context:component-scan base-package="com.littlefisher.core.aop,
+                                        com.littlefisher.core.interceptor.service,
+                                        com.littlefisher.**.service.impl,
+                                        com.yc.room1000.**.service.impl,
+                                        com.littlefisher.core.utils,
+                                        com.littlefisher.core.exception"/>
+    -->
 
   <!-- core下bean加入管理 -->
-  <context:component-scan base-package="com.littlefisher.core.utils, com.littlefisher.core.exception">
-    <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"  />
-  </context:component-scan>
+<!--   <context:component-scan base-package="com.littlefisher.core.utils, com.littlefisher.core.exception"> -->
+<!--     <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"  /> -->
+<!--   </context:component-scan> -->
 
 
 </beans>

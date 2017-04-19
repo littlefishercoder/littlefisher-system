@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-import com.littlefisher.core.aop.LoggerAspect;
+import com.littlefisher.core.spring.config.aop.LoggerAspect;
 
 /**
  * 
@@ -22,7 +22,7 @@ public class AopConfig {
 
     /**
      * 
-     * Description: LoggerAspect
+     * Description: 日志打印切面
      * 
      * @author jinyanan
      *

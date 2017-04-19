@@ -3,9 +3,7 @@ package com.littlefisher.core.spring.config;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -77,10 +75,8 @@ public class SqlSessionFactoryBeanConfig {
     public PageInterceptor pageInterceptor() {
         PageInterceptor pageInterceptor = new PageInterceptor();
         Properties properties = new Properties();
-        Map<String, Object> propertiesMap = new HashMap<>();
-        propertiesMap.put("helperDialect", "mysql");
-        propertiesMap.put("pageSizeZero", true);
-        properties.putAll(propertiesMap);
+        properties.put("helperDialect", "mysql");
+        properties.put("pageSizeZero", true);
         pageInterceptor.setProperties(properties);
         return pageInterceptor;
     }

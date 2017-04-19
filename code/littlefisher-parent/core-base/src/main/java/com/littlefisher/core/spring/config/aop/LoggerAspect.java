@@ -1,4 +1,4 @@
-package com.littlefisher.core.aop;
+package com.littlefisher.core.spring.config.aop;
 
 import java.util.Arrays;
 
