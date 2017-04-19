@@ -41,19 +41,6 @@ public class SwaggerConfig {
     }
     
     /**
-     * 
-     * Description: 设置SpringSwaggerConfig的bean
-     * 
-     * @author jinyanan
-     *
-     * @return SpringSwaggerConfig
-     */
-//    @Bean
-//    public SpringSwaggerConfig springSwaggerConfig() {
-//        return new SpringSwaggerConfig();
-//    }
-
-    /**
      * Description:
      * 
      * @author jinyanan

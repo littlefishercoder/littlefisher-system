@@ -10,7 +10,7 @@
       org.springframework.web.context.support.AnnotationConfigWebApplicationContext
     </param-value>
   </context-param>
-  
+
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <!-- <param-value>classpath:spring/applicationContext.xml</param-value> -->
@@ -45,9 +45,15 @@
     <servlet-name>springmvc</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
     <init-param>
+      <param-name>contextClass</param-name>
+      <param-value>
+      org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+    </param-value>
+    </init-param>
+    <init-param>
       <description>springmvc config</description>
       <param-name>contextConfigLocation</param-name>
-      <param-value>classpath:spring/spring-mvc.xml</param-value>
+      <param-value>com.yc.room1000.engine.config.WebSpringMVCConfig</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

@@ -17,7 +17,8 @@ import com.littlefisher.core.spring.config.RootConfig;
  */
 @Configuration
 @Import({
-    RootConfig.class
+    RootConfig.class,
+//    ActivitiConfig.class
 })
 public class WebSpringConfig {
 

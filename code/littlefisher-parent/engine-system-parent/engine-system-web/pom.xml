@@ -19,6 +19,11 @@
       <artifactId>core-base</artifactId>
       <version>${littlefisher.version}</version>
     </dependency>
+<!--     <dependency> -->
+<!--       <groupId>com.littlefisher</groupId> -->
+<!--       <artifactId>core-activiti</artifactId> -->
+<!--       <version>${littlefisher.version}</version> -->
+<!--     </dependency> -->
     <dependency>
       <groupId>com.yc.room1000</groupId>
       <artifactId>engine-system-intf</artifactId>
