@@ -28,7 +28,7 @@ http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
   <!-- swagger配置 -->
   <bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
 
-  <bean class="com.littlefisher.core.swagger.SwaggerConfig" />
+  <bean class="com.littlefisher.core.spring.config.swagger.SwaggerConfig" />
 
   <!--注解驱动，使spring的controller全部生效 -->
   <mvc:annotation-driven />

@@ -1,4 +1,4 @@
-package com.littlefisher.core.swagger;
+package com.littlefisher.core.spring.config.swagger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,9 @@ import com.mangofactory.swagger.plugin.EnableSwagger;
 import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 
 /**
- * Description: Created on 2017年1月25日
+ * Description: 
+ * 
+ * Created on 2017年1月25日
  *
  * @author jinyanan
  * @version 1.0
@@ -23,18 +25,8 @@ public class SwaggerConfig {
     /**
      * springSwaggerConfig
      */
-    private SpringSwaggerConfig springSwaggerConfig;
-
-    /**
-     * Description: Required to autowire SpringSwaggerConfig
-     * 
-     * @author jinyanan
-     * @param springSwaggerConfig springSwaggerConfig
-     */
     @Autowired
-    public void setSpringSwaggerConfig(SpringSwaggerConfig springSwaggerConfig) {
-        this.springSwaggerConfig = springSwaggerConfig;
-    }
+    private SpringSwaggerConfig springSwaggerConfig;
 
     /**
      * Description: Every SwaggerSpringMvcPlugin bean is picked up by the swagger-mvc framework - allowing for multiple
@@ -45,8 +37,21 @@ public class SwaggerConfig {
      */
     @Bean
     public SwaggerSpringMvcPlugin customImplementation() {
-        return new SwaggerSpringMvcPlugin(this.springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?");
+        return new SwaggerSpringMvcPlugin(springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?");
     }
+    
+    /**
+     * 
+     * Description: 设置SpringSwaggerConfig的bean
+     * 
+     * @author jinyanan
+     *
+     * @return SpringSwaggerConfig
+     */
+//    @Bean
+//    public SpringSwaggerConfig springSwaggerConfig() {
+//        return new SpringSwaggerConfig();
+//    }
 
     /**
      * Description:
@@ -55,7 +60,7 @@ public class SwaggerConfig {
      * @return ApiInfo
      */
     private ApiInfo apiInfo() {
-        return new ApiInfo("Room1000 REST API", "API Description", "API terms of service", "jinyanan@room1000.com",
+        return new ApiInfo("Littlefisher REST API", "API Description", "API terms of service", "jinyanan@room1000.com",
             "Version 1.0", "No License URL");
     }
 }
