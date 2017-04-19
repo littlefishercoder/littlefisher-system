@@ -71,8 +71,8 @@ public class WebSpringMVCConfig extends WebMvcConfigurerAdapter {
         om.setTimeZone(TimeZone.getTimeZone("GMT+8"));
 
         List<MediaType> mediaTypeList = new ArrayList<>();
-        mediaTypeList.add(new MediaType("text", "html", charset));
         mediaTypeList.add(new MediaType("application", "json", charset));
+        mediaTypeList.add(new MediaType("text", "html", charset));
         jacksonConverter.setSupportedMediaTypes(mediaTypeList);
         
         StringHttpMessageConverter stringConverter = new StringHttpMessageConverter(charset);

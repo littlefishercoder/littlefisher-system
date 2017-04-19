@@ -37,7 +37,11 @@ public class SwaggerConfig {
      */
     @Bean
     public SwaggerSpringMvcPlugin customImplementation() {
-        return new SwaggerSpringMvcPlugin(springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?");
+        return new SwaggerSpringMvcPlugin(springSwaggerConfig)
+            .apiInfo(apiInfo())
+            .includePatterns(".*?")
+            // 是否展示通用的HTTP 返回码的含义
+            .useDefaultResponseMessages(false);
     }
     
     /**
