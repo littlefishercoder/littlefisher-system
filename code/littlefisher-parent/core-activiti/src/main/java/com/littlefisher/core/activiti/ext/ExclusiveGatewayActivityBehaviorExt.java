@@ -18,7 +18,9 @@ import com.littlefisher.core.utils.LittleFisherLogger;
 import com.littlefisher.core.utils.StringUtil;
 
 /**
- * Description: 重写分支判断环节 Created on 2017年1月22日
+ * Description: 重写分支判断环节 
+ * 
+ * Created on 2017年1月22日
  *
  * @author jinyanan
  * @version 1.0

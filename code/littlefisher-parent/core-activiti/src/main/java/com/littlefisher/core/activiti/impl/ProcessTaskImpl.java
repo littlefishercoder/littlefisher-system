@@ -21,7 +21,9 @@ import org.activiti.engine.task.Task;
 import org.apache.commons.lang3.StringUtils;
 
 import com.littlefisher.core.activiti.IProcessTask;
+import com.littlefisher.core.activiti.define.ActivitiDef;
 import com.littlefisher.core.activiti.model.ActivitiStepDto;
+import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
@@ -47,57 +49,60 @@ public class ProcessTaskImpl implements IProcessTask {
         logger.debug("workOrderId: " + workOrderId);
         TaskService taskService = processEngine.getTaskService();
 
-        Task task = processEngine.getTaskService().createTaskQuery().processVariableValueEquals("workOrderId", workOrderId).singleResult();
+        Task task = getTaskByWorkOrderId(workOrderId);
         if (task != null) {
             taskService.complete(task.getId());
         }
     }
+    
+    /**
+     * 
+     * Description: 根据workOrderId查询Task
+     * 
+     * @author jinyanan
+     *
+     * @param workOrderId workOrderId
+     * @return Task
+     */
+    private Task getTaskByWorkOrderId(Long workOrderId) {
+        return processEngine.getTaskService().createTaskQuery()
+            .processVariableValueEquals(ActivitiDef.WORK_ORDER_ID, workOrderId).singleResult();
+    }
 
     @Override
     public Map<String, Object> getInstanceVariables(Long workOrderId) {
-        Task task = processEngine.getTaskService()
-            .createTaskQuery()
-            .processVariableValueEquals("workOrderId", workOrderId)
-            .singleResult();
+        Task task = getTaskByWorkOrderId(workOrderId);
         return processEngine.getRuntimeService().getVariables(task.getProcessInstanceId());
     }
 
     @Override
     public void putInstanceVariables(Long workOrderId, Map<String, Object> variables) {
-        Task task = processEngine.getTaskService()
-            .createTaskQuery()
-            .processVariableValueEquals("workOrderId", workOrderId)
-            .singleResult();
+        Task task = getTaskByWorkOrderId(workOrderId);
         processEngine.getRuntimeService().setVariables(task.getProcessInstanceId(), variables);
         
     }
 
     @Override
     public void putInstanceVariable(Long workOrderId, String variableName, Object variableValue) {
-        Task task = processEngine.getTaskService()
-            .createTaskQuery()
-            .processVariableValueEquals("workOrderId", workOrderId)
-            .singleResult();
+        Task task = getTaskByWorkOrderId(workOrderId);
         processEngine.getRuntimeService().setVariable(task.getProcessInstanceId(), variableName, variableValue);
         
     }
     
     @Override
-    public void endProcess(Long workOrderId) throws Exception {
-        Task task = processEngine.getTaskService().createTaskQuery()
-            .processVariableValueEquals("workOrderId", workOrderId).singleResult();
+    public void endProcess(Long workOrderId) throws BaseAppException {
+        Task task = getTaskByWorkOrderId(workOrderId);
         if (task == null) {
             return;
         }
 
-        ActivityImpl endActivity = findActivitiImpl(task.getId(), "end");
+        ActivityImpl endActivity = findActivitiImpl(task.getId(), ActivitiDef.END_NODE);
         commitProcess(task.getId(), null, endActivity.getId());
     }
 
     @Override
-    public void direct2Activity(Long workOrderId, String activityId) throws Exception {
-        Task task = processEngine.getTaskService().createTaskQuery()
-            .processVariableValueEquals("workOrderId", workOrderId).singleResult();
+    public void direct2Activity(Long workOrderId, String activityId) throws BaseAppException {
+        Task task = getTaskByWorkOrderId(workOrderId);
         if (task == null) {
             return;
         }
@@ -110,9 +115,8 @@ public class ProcessTaskImpl implements IProcessTask {
     }
 
     @Override
-    public List<ActivitiStepDto> getAllTaskActiviti(Long workOrderId) throws Exception {
-        Task task = processEngine.getTaskService().createTaskQuery()
-            .processVariableValueEquals("workOrderId", workOrderId).singleResult();
+    public List<ActivitiStepDto> getAllTaskActiviti(Long workOrderId) throws BaseAppException {
+        Task task = getTaskByWorkOrderId(workOrderId);
         if (task == null) {
             return null;
         }
@@ -122,15 +126,15 @@ public class ProcessTaskImpl implements IProcessTask {
         ProcessDefinitionEntity processDefinition = findProcessDefinitionEntityByTaskId(task.getId());
         for (ActivityImpl activity : processDefinition.getActivities()) {
             ActivitiStepDto step = new ActivitiStepDto();
-            if ("userTask".equals(activity.getProperty("type"))) {
-                String name = (String) activity.getProperty("name");
+            if (ActivitiDef.USER_NODE.equals(activity.getProperty(ActivitiDef.PROPERTY_TYPE))) {
+                String name = (String) activity.getProperty(ActivitiDef.PROPERTY_NAME);
                 String orderState = name.split(",")[0];
                 Long orderNbr = Long.valueOf(name.split(",")[1]);
                 String taskName = name.split(",")[2];
                 step.setOrderState(orderState);
                 step.setTaskName(taskName);
                 step.setOrderNbr(orderNbr);
-                step.setTaskType("userTask");
+                step.setTaskType(ActivitiDef.USER_NODE);
                 stepList.add(step);
             }
             
@@ -150,10 +154,9 @@ public class ProcessTaskImpl implements IProcessTask {
      * @param taskId 当前任务ID 
      * @param variables 流程变量 
      * @param activityId 流程转向执行任务节点ID<br>此参数为空，默认为提交操作 
-     * @throws Exception <br>
+     * @throws BaseAppException <br>
      */
-    private void commitProcess(String taskId, Map<String, Object> variables,  
-            String activityId) throws Exception {  
+    private void commitProcess(String taskId, Map<String, Object> variables, String activityId) throws BaseAppException {  
         if (variables == null) {  
             variables = new HashMap<String, Object>();  
         }  
@@ -172,10 +175,9 @@ public class ProcessTaskImpl implements IProcessTask {
      * @param taskId 当前任务ID 
      * @param activityId 目标节点任务ID 
      * @param variables 流程变量 
-     * @throws Exception <br>
+     * @throws BaseAppException <br>
      */  
-    private void turnTransition(String taskId, String activityId,  
-            Map<String, Object> variables) throws Exception {  
+    private void turnTransition(String taskId, String activityId, Map<String, Object> variables) throws BaseAppException {  
         // 当前节点  
         ActivityImpl currActivity = findActivitiImpl(taskId, null);  
         // 清空当前流向  
@@ -203,8 +205,7 @@ public class ProcessTaskImpl implements IProcessTask {
      * @param activityImpl 活动节点 
      * @param oriPvmTransitionList 原有节点流向集合 
      */  
-    private void restoreTransition(ActivityImpl activityImpl,  
-            List<PvmTransition> oriPvmTransitionList) {  
+    private void restoreTransition(ActivityImpl activityImpl, List<PvmTransition> oriPvmTransitionList) {  
         // 清空现有流向  
         List<PvmTransition> pvmTransitionList = activityImpl  
                 .getOutgoingTransitions();  
@@ -244,9 +245,9 @@ public class ProcessTaskImpl implements IProcessTask {
      * @param taskId 任务Id
      * @param activityId 环节id
      * @return 环节实例
-     * @throws Exception <br>
+     * @throws BaseAppException <br>
      */
-    private ActivityImpl findActivitiImpl(String taskId, String activityId) throws Exception {
+    private ActivityImpl findActivitiImpl(String taskId, String activityId) throws BaseAppException {
         // 取得流程定义
         ProcessDefinitionEntity processDefinition = findProcessDefinitionEntityByTaskId(taskId);
 
@@ -256,7 +257,7 @@ public class ProcessTaskImpl implements IProcessTask {
         }
 
         // 根据流程定义，获取该流程实例的结束节点
-        if ("END".equalsIgnoreCase(activityId)) {
+        if (ActivitiDef.END_NODE.equalsIgnoreCase(activityId)) {
             for (ActivityImpl activityImpl : processDefinition.getActivities()) {
                 List<PvmTransition> pvmTransitionList = activityImpl.getOutgoingTransitions();
                 if (pvmTransitionList.isEmpty()) {
@@ -288,7 +289,7 @@ public class ProcessTaskImpl implements IProcessTask {
     private ActivityImpl findActivityByName(ProcessDefinitionEntity processDefinition, String activityId) {
         List<ActivityImpl> activities = ((ProcessDefinitionImpl) processDefinition).getActivities();
         for (ActivityImpl activityImpl : activities) {
-            String name = (String) activityImpl.getProperty("name");
+            String name = (String) activityImpl.getProperty(ActivitiDef.PROPERTY_NAME);
             String orderState = name.split(",")[0];
             if (activityId.equals(orderState)) {
                 return activityImpl;
@@ -305,16 +306,16 @@ public class ProcessTaskImpl implements IProcessTask {
      *
      * @param taskId 任务ID
      * @return ProcessDefinitionEntity
-     * @throws Exception <br>
+     * @throws BaseAppException <br>
      */
-    private ProcessDefinitionEntity findProcessDefinitionEntityByTaskId(String taskId) throws Exception {
+    private ProcessDefinitionEntity findProcessDefinitionEntityByTaskId(String taskId) throws BaseAppException {
         RepositoryService repositoryService = processEngine.getRepositoryService();
         // 取得流程定义
         ProcessDefinitionEntity processDefinition = (ProcessDefinitionEntity) ((RepositoryServiceImpl) repositoryService)
             .getDeployedProcessDefinition(findTaskById(taskId).getProcessDefinitionId());
 
         if (processDefinition == null) {
-            throw new Exception("流程定义未找到!");
+            throw new BaseAppException("", "流程定义未找到!");
         }
 
         return processDefinition;
@@ -328,13 +329,13 @@ public class ProcessTaskImpl implements IProcessTask {
      *
      * @param taskId 任务ID 
      * @return TaskEntity
-     * @throws Exception <br>
+     * @throws BaseAppException <br>
      */
-    private TaskEntity findTaskById(String taskId) throws Exception {  
+    private TaskEntity findTaskById(String taskId) throws BaseAppException {  
         TaskEntity task = (TaskEntity) processEngine.getTaskService().createTaskQuery().taskId(
                 taskId).singleResult();  
         if (task == null) {  
-            throw new Exception("任务实例未找到!");  
+            throw new BaseAppException("", "任务实例未找到!");  
         }  
         return task;  
     }

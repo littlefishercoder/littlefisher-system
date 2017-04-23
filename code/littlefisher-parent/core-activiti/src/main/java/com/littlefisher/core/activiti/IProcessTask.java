@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.littlefisher.core.activiti.model.ActivitiStepDto;
+import com.littlefisher.core.exception.BaseAppException;
 
 /**
  * 
@@ -68,9 +69,9 @@ public interface IProcessTask {
      * @author jinyanan
      *
      * @param workOrderId workOrderId
-     * @throws Exception <br>
+     * @throws BaseAppException <br>
      */
-    void endProcess(Long workOrderId) throws Exception;
+    void endProcess(Long workOrderId) throws BaseAppException;
     
     /**
      * 
@@ -80,9 +81,9 @@ public interface IProcessTask {
      *
      * @param workOrderId workOrderId
      * @param activityId activityId
-     * @throws Exception <br>
+     * @throws BaseAppException <br>
      */
-    void direct2Activity(Long workOrderId, String activityId) throws Exception;
+    void direct2Activity(Long workOrderId, String activityId) throws BaseAppException;
     
     /**
      * 
@@ -92,7 +93,7 @@ public interface IProcessTask {
      *
      * @param workOrderId workOrderId
      * @return List<ActivitiStepDto>
-     * @throws Exception <br>
+     * @throws BaseAppException <br>
      */
-    List<ActivitiStepDto> getAllTaskActiviti(Long workOrderId) throws Exception;
+    List<ActivitiStepDto> getAllTaskActiviti(Long workOrderId) throws BaseAppException;
 }

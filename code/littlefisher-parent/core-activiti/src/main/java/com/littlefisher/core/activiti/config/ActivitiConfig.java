@@ -8,11 +8,13 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.impl.bpmn.parser.factory.ActivityBehaviorFactory;
-import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
+import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.activiti.spring.ProcessEngineFactoryBean;
+import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import com.littlefisher.core.activiti.ext.ActivityBehaviorFactoryExt;
 import com.littlefisher.core.activiti.ext.ExclusiveGatewayActivityBehaviorExt;
@@ -35,6 +37,12 @@ public class ActivitiConfig {
      */
     @Autowired
     private DataSource dataSource;
+    
+    /**
+     * transactionManager
+     */
+    @Autowired
+    private DataSourceTransactionManager transactionManager;
     
     /**
      * 
@@ -60,14 +68,23 @@ public class ActivitiConfig {
      * @return StandaloneProcessEngineConfiguration
      */
     @Bean
-    public StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration() {
-        StandaloneProcessEngineConfiguration standaloneProcessEngineConfiguration = new StandaloneProcessEngineConfiguration();
-        standaloneProcessEngineConfiguration.setDataSource(dataSource);
-        standaloneProcessEngineConfiguration.setDatabaseType("mysql");
-        standaloneProcessEngineConfiguration.setDatabaseSchemaUpdate("true");
-        standaloneProcessEngineConfiguration.setJobExecutorActivate(false);
-        standaloneProcessEngineConfiguration.setActivityBehaviorFactory(activityBehaviorFactory());
-        return standaloneProcessEngineConfiguration;
+    public ProcessEngineConfigurationImpl standaloneProcessEngineConfiguration() {
+        SpringProcessEngineConfiguration springProcessEngineConfiguration = new SpringProcessEngineConfiguration();
+        // 设置数据源
+        springProcessEngineConfiguration.setDataSource(dataSource);
+        // 设置数据库类型
+        springProcessEngineConfiguration.setDatabaseType("mysql");
+        // 设置Activiti启动关闭所做操作
+        // false(默认)：如果启动时数据库和配置不匹配，则抛异常
+        // true：启动时检查数据库，如果不匹配，则创建
+        // create-drop：启动时创建，关闭时删除数据库
+        springProcessEngineConfiguration.setDatabaseSchemaUpdate("true");
+        // 设置Job扫描功能关闭
+        springProcessEngineConfiguration.setJobExecutorActivate(false);
+        // 设置事务处理功能
+        springProcessEngineConfiguration.setTransactionManager(transactionManager);
+        springProcessEngineConfiguration.setActivityBehaviorFactory(activityBehaviorFactory());
+        return springProcessEngineConfiguration;
     }
     
     /**
@@ -80,6 +97,7 @@ public class ActivitiConfig {
      */
     @Bean
     public ActivityBehaviorFactory activityBehaviorFactory() {
+        // 重置部分Activiti行为
         ActivityBehaviorFactoryExt activityBehaviorFactory = new ActivityBehaviorFactoryExt();
         activityBehaviorFactory.setExclusiveGatewayActivityBehaviorExt(exclusiveGatewayActivityBehaviorExt());
         return activityBehaviorFactory;
@@ -95,6 +113,7 @@ public class ActivitiConfig {
      */
     @Bean
     public ExclusiveGatewayActivityBehaviorExt exclusiveGatewayActivityBehaviorExt() {
+        // 重置分支Activiti行为，能够识别自定义行为
         return new ExclusiveGatewayActivityBehaviorExt();
     }
     
