@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.littlefisher.core.exception.BaseAppException;
+import com.littlefisher.core.spring.config.RootConfig;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 import com.yc.room1000.engine.attr.model.AttrDto;
@@ -24,7 +25,7 @@ import com.yc.room1000.engine.attr.service.IAttrService;
  * @since v1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath*:spring/EngineConfig.xml")
+@ContextConfiguration(classes = RootConfig.class)
 @Transactional
 public class AttrServiceTest {
 
