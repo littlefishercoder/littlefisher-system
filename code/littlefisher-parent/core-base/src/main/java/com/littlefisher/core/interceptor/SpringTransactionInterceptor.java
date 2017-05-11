@@ -11,7 +11,7 @@ import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
  * 
- * Description: 
+ * Description: Spring事务拦截器
  *  
  * Created on 2017年2月10日 
  *

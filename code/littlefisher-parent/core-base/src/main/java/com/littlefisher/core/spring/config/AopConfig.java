@@ -1,14 +1,10 @@
 package com.littlefisher.core.spring.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-
-import com.littlefisher.core.spring.config.aop.LoggerAspect;
 
 /**
  * 
  * Description: AopConfig
+ * 使用拦截器来做日志打印
  *  
  * Created on 2017年4月18日 
  *
@@ -16,8 +12,9 @@ import com.littlefisher.core.spring.config.aop.LoggerAspect;
  * @version 1.0
  * @since v1.0
  */
-@Configuration
-@EnableAspectJAutoProxy
+//@Configuration
+//@EnableAspectJAutoProxy
+@Deprecated
 public class AopConfig {
 
     /**
@@ -28,8 +25,9 @@ public class AopConfig {
      *
      * @return LoggerAspect
      */
-    @Bean
-    public LoggerAspect loggerAspect() {
-        return new LoggerAspect();
-    }
+//    @Bean
+//    public LoggerAspect loggerAspect() {
+////        return new LoggerAspect();
+//        return null;
+//    }
 }

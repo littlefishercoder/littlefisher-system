@@ -28,7 +28,6 @@ import org.springframework.context.annotation.Import;
         SqlSessionFactoryBeanConfig.class,
         MapperScannerConfigurerConfig.class, 
         SystemEngineConfig.class, 
-        AopConfig.class, 
         TransactionManagerConfig.class
         })
 public class RootConfig {

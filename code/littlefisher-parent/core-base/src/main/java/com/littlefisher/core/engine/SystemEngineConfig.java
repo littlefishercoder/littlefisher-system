@@ -24,6 +24,7 @@ import com.littlefisher.core.interceptor.CommandExecutor;
 import com.littlefisher.core.interceptor.CommandExecutorImpl;
 import com.littlefisher.core.interceptor.CommandInterceptor;
 import com.littlefisher.core.interceptor.CommandInvoker;
+import com.littlefisher.core.interceptor.LoggerInterceptor;
 import com.littlefisher.core.interceptor.SpringTransactionInterceptor;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 import com.littlefisher.core.utils.LittleFisherLogger;
@@ -525,6 +526,10 @@ public class SystemEngineConfig {
         if (transactionInterceptor != null) {
             interceptors.add(transactionInterceptor);
         }
+        CommandInterceptor loggerInterceptor = createLoggerInterceptor();
+        if (loggerInterceptor != null) {
+            interceptors.add(loggerInterceptor);
+        }
 
         return interceptors;
     }
@@ -545,6 +550,19 @@ public class SystemEngineConfig {
         }
 
         return new SpringTransactionInterceptor(transactionManager);
+    }
+    
+    /**
+     * 
+     * Description: 创建日志拦截器
+     * 
+     * @author jinyanan
+     *
+     * @return LoggerInterceptor
+     * @throws BaseAppException <br>
+     */
+    protected CommandInterceptor createLoggerInterceptor()  throws BaseAppException {
+        return new LoggerInterceptor();
     }
 
     /**

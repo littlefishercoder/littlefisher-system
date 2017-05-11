@@ -4,18 +4,21 @@ import java.util.Arrays;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
- * Description: 对Service日志拦截 Created on 2017年1月4日
+ * Description: 对Service日志拦截 
+ * 使用拦截器来做日志打印
+ * 
+ * Created on 2017年1月4日
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-@Aspect
+//@Aspect
+@Deprecated
 public class LoggerAspect {
     
     /**
