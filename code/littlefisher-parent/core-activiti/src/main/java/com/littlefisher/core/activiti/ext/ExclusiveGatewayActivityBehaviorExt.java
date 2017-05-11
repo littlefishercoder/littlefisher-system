@@ -19,6 +19,7 @@ import com.littlefisher.core.utils.StringUtil;
 
 /**
  * Description: 重写分支判断环节 
+ * 发现可以使用UelExpression来执行复杂校验
  * 
  * Created on 2017年1月22日
  *
@@ -26,6 +27,7 @@ import com.littlefisher.core.utils.StringUtil;
  * @version 1.0
  * @since v1.0
  */
+@Deprecated
 public class ExclusiveGatewayActivityBehaviorExt extends ExclusiveGatewayActivityBehavior {
 
     /** logger */

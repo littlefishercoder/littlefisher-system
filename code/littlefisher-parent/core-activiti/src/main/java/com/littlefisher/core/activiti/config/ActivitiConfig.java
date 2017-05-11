@@ -7,7 +7,6 @@ import org.activiti.engine.ManagementService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
-import org.activiti.engine.impl.bpmn.parser.factory.ActivityBehaviorFactory;
 import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
 import org.activiti.spring.ProcessEngineFactoryBean;
 import org.activiti.spring.SpringProcessEngineConfiguration;
@@ -15,9 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-
-import com.littlefisher.core.activiti.ext.ActivityBehaviorFactoryExt;
-import com.littlefisher.core.activiti.ext.ExclusiveGatewayActivityBehaviorExt;
 
 /**
  * 
@@ -83,7 +79,7 @@ public class ActivitiConfig {
         springProcessEngineConfiguration.setJobExecutorActivate(false);
         // 设置事务处理功能
         springProcessEngineConfiguration.setTransactionManager(transactionManager);
-        springProcessEngineConfiguration.setActivityBehaviorFactory(activityBehaviorFactory());
+//        springProcessEngineConfiguration.setActivityBehaviorFactory(activityBehaviorFactory());
         return springProcessEngineConfiguration;
     }
     
@@ -95,13 +91,13 @@ public class ActivitiConfig {
      *
      * @return ActivityBehaviorFactory
      */
-    @Bean
-    public ActivityBehaviorFactory activityBehaviorFactory() {
-        // 重置部分Activiti行为
-        ActivityBehaviorFactoryExt activityBehaviorFactory = new ActivityBehaviorFactoryExt();
-        activityBehaviorFactory.setExclusiveGatewayActivityBehaviorExt(exclusiveGatewayActivityBehaviorExt());
-        return activityBehaviorFactory;
-    }
+//    @Bean
+//    public ActivityBehaviorFactory activityBehaviorFactory() {
+//        // 重置部分Activiti行为
+//        ActivityBehaviorFactoryExt activityBehaviorFactory = new ActivityBehaviorFactoryExt();
+//        activityBehaviorFactory.setExclusiveGatewayActivityBehaviorExt(exclusiveGatewayActivityBehaviorExt());
+//        return activityBehaviorFactory;
+//    }
     
     /**
      * 
@@ -111,11 +107,11 @@ public class ActivitiConfig {
      *
      * @return ExclusiveGatewayActivityBehaviorExt
      */
-    @Bean
-    public ExclusiveGatewayActivityBehaviorExt exclusiveGatewayActivityBehaviorExt() {
-        // 重置分支Activiti行为，能够识别自定义行为
-        return new ExclusiveGatewayActivityBehaviorExt();
-    }
+//    @Bean
+//    public ExclusiveGatewayActivityBehaviorExt exclusiveGatewayActivityBehaviorExt() {
+//        // 重置分支Activiti行为，能够识别自定义行为
+//        return new ExclusiveGatewayActivityBehaviorExt();
+//    }
     
     /**
      * 

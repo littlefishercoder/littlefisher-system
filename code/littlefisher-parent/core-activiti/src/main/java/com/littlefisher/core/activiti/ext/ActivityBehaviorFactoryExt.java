@@ -7,6 +7,7 @@ import org.activiti.engine.impl.bpmn.parser.factory.DefaultActivityBehaviorFacto
 /**
  * 
  * Description: 
+ * 发现可以使用UelExpression来执行复杂校验
  *  
  * Created on 2017年1月22日 
  *
@@ -14,6 +15,7 @@ import org.activiti.engine.impl.bpmn.parser.factory.DefaultActivityBehaviorFacto
  * @version 1.0
  * @since v1.0
  */
+@Deprecated
 public class ActivityBehaviorFactoryExt extends DefaultActivityBehaviorFactory {
     
     /**

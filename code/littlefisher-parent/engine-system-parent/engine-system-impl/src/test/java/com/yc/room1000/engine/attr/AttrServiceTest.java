@@ -51,6 +51,7 @@ public class AttrServiceTest {
     @Test
     public void testGetAttrListByCond() throws BaseAppException {
         QryAttrListRequest req = new QryAttrListRequest();
+        req.setAttrCode("code");
         List<AttrDto> attrList = attrService.getAttrListByCond(req);
         logger.debug("attrList: " + attrList);
     }
