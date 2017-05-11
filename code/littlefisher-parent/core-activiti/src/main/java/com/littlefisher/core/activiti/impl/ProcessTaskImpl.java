@@ -11,12 +11,16 @@ import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.impl.RepositoryServiceImpl;
+import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
+import org.activiti.engine.impl.cmd.SetProcessDefinitionVersionCmd;
+import org.activiti.engine.impl.interceptor.CommandExecutor;
 import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
 import org.activiti.engine.impl.persistence.entity.TaskEntity;
 import org.activiti.engine.impl.pvm.PvmTransition;
 import org.activiti.engine.impl.pvm.process.ActivityImpl;
 import org.activiti.engine.impl.pvm.process.ProcessDefinitionImpl;
 import org.activiti.engine.impl.pvm.process.TransitionImpl;
+import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Task;
 import org.apache.commons.lang3.StringUtils;
 
@@ -48,10 +52,43 @@ public class ProcessTaskImpl implements IProcessTask {
     public void dispatcherOrder(Long workOrderId) {
         logger.debug("workOrderId: " + workOrderId);
         TaskService taskService = processEngine.getTaskService();
-
+        
         Task task = getTaskByWorkOrderId(workOrderId);
+        
+        // 执行SetProcessDefinitionVersionCmd命令有风险
+        changeProcessVersion2Lastest(task);
+        
         if (task != null) {
             taskService.complete(task.getId());
+        }
+    }
+
+    /**
+     * 
+     * Description: 变更task对应流程定义的版本为最新版本
+     * 
+     * @author jinyanan
+     *
+     * @param task task
+     */
+    private void changeProcessVersion2Lastest(Task task) {
+        // 查询当前task对应流程定义
+        ProcessDefinition currentProcessDefinition = processEngine.getRepositoryService().createProcessDefinitionQuery()
+            .processDefinitionId(task.getProcessDefinitionId()).singleResult();
+        // 当前流程定义的版本
+        int currentVersion = currentProcessDefinition.getVersion();
+        // 查询该流程定义的最新版本
+        int lastestVersion = processEngine.getRepositoryService().createProcessDefinitionQuery()
+            .processDefinitionKey(currentProcessDefinition.getKey()).latestVersion().singleResult().getVersion();
+        
+        // 如果当前流程未使用最新版本的流程定义，则切换为最新版本
+        if (currentVersion < lastestVersion) {
+            ProcessEngineConfigurationImpl processEngineConfigurationImpl = (ProcessEngineConfigurationImpl) processEngine
+            .getProcessEngineConfiguration();
+            CommandExecutor commandExecutor = processEngineConfigurationImpl.getCommandExecutor();
+            // 该SetProcessDefinitionVersionCmd有一些不可使用的情况，暂时不知道具体有哪些
+            commandExecutor
+                .execute(new SetProcessDefinitionVersionCmd(task.getProcessInstanceId(), lastestVersion));
         }
     }
     
