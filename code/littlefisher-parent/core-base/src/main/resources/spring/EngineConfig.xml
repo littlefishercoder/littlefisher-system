@@ -6,215 +6,237 @@
                         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
                         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
                         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-                        
-<!--   <bean class="com.littlefisher.core.spring.config.RootConfig" /> -->
-<!--   <bean class="com.littlefisher.core.spring.config.PropertySourceConfig" /> -->
-<!--   <bean class="com.littlefisher.core.spring.config.DataSourceConfig" /> -->
-<!--   <bean class="com.littlefisher.core.spring.config.SqlSessionFactoryBeanConfig" /> -->
-<!--   <bean class="com.littlefisher.core.spring.config.MapperScannerConfigurerConfig" /> -->
-<!--   <bean class="com.littlefisher.core.spring.config.SystemEngineConfig" /> -->
-<!--   <bean class="com.littlefisher.core.spring.config.AopConfig" /> -->
-<!--   <bean class="com.littlefisher.core.spring.config.TransactionManagerConfig" /> -->
-  
+
+  <!-- <bean class="com.littlefisher.core.spring.config.RootConfig" /> -->
+  <!-- <bean class="com.littlefisher.core.spring.config.PropertySourceConfig" /> -->
+  <!-- <bean class="com.littlefisher.core.spring.config.DataSourceConfig" /> -->
+  <!-- <bean class="com.littlefisher.core.spring.config.SqlSessionFactoryBeanConfig" /> -->
+  <!-- <bean class="com.littlefisher.core.spring.config.MapperScannerConfigurerConfig" /> -->
+  <!-- <bean class="com.littlefisher.core.spring.config.SystemEngineConfig" /> -->
+  <!-- <bean class="com.littlefisher.core.spring.config.AopConfig" /> -->
+  <!-- <bean class="com.littlefisher.core.spring.config.TransactionManagerConfig" /> -->
+
   <!-- 获取配置参数 -->
-<!--   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
-<!--     <property name="locations"> -->
-<!--       <list> -->
-<!--         <value>classpath*:properties/jdbc.properties</value> -->
-<!--         <value>file:${SYSTEM_HOME}/etc/properties/jdbc.properties</value> -->
-<!--       </list> -->
-<!--     </property> -->
-<!--   </bean> -->
+  <!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+  <!-- <property name="locations"> -->
+  <!-- <list> -->
+  <!-- <value>classpath*:properties/jdbc.properties</value> -->
+  <!-- <value>file:${SYSTEM_HOME}/etc/properties/jdbc.properties</value> -->
+  <!-- </list> -->
+  <!-- </property> -->
+  <!-- </bean> -->
 
-<!--   <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"> -->
-<!--     基本属性 url、user、password -->
-<!--     <property name="url" value="${jdbc_url}" /> -->
-<!--     <property name="username" value="${jdbc_username}" /> -->
-<!--     <property name="password" value="${jdbc_password}" /> -->
+  <!-- <bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"> -->
+  <!-- 基本属性 url、user、password -->
+  <!-- <property name="url" value="${jdbc_url}" /> -->
+  <!-- <property name="username" value="${jdbc_username}" /> -->
+  <!-- <property name="password" value="${jdbc_password}" /> -->
 
-<!--     配置初始化大小、最小、最大 -->
-<!--     <property name="initialSize" value="0" /> -->
+  <!-- 配置初始化大小、最小、最大 -->
+  <!-- <property name="initialSize" value="0" /> -->
 
-<!--     maxActive -->
-<!--     <property name="maxActive" value="20" /> -->
+  <!-- maxActive -->
+  <!-- <property name="maxActive" value="20" /> -->
 
-<!--     已经不再使用，配置了也没效果 -->
-<!--     <property name="maxIdle" value="20" /> -->
+  <!-- 已经不再使用，配置了也没效果 -->
+  <!-- <property name="maxIdle" value="20" /> -->
 
-<!--     最小连接池数量 -->
-<!--     <property name="minIdle" value="0" /> -->
+  <!-- 最小连接池数量 -->
+  <!-- <property name="minIdle" value="0" /> -->
 
-<!--     配置获取连接等待超时的时间 -->
-<!--     <property name="maxWait" value="60000" /> -->
+  <!-- 配置获取连接等待超时的时间 -->
+  <!-- <property name="maxWait" value="60000" /> -->
 
-<!--     用来检测连接是否有效的sql，要求是一个查询语句。 -->
-<!--     如果validationQuery为null，testOnBorrow、testOnReturn、 -->
-<!--     testWhileIdle都不会其作用。 -->
-<!--     <property name="validationQuery" value="${validationQuery}" /> -->
+  <!-- 用来检测连接是否有效的sql，要求是一个查询语句。 -->
+  <!-- 如果validationQuery为null，testOnBorrow、testOnReturn、 -->
+  <!-- testWhileIdle都不会其作用。 -->
+  <!-- <property name="validationQuery" value="${validationQuery}" /> -->
 
-<!--     申请连接时执行validationQuery检测连接是否有效， -->
-<!--     做了这个配置会降低性能。 -->
-<!--     <property name="testOnBorrow" value="false" /> -->
+  <!-- 申请连接时执行validationQuery检测连接是否有效， -->
+  <!-- 做了这个配置会降低性能。 -->
+  <!-- <property name="testOnBorrow" value="false" /> -->
 
-<!--     归还连接时执行validationQuery检测连接是否有效， -->
-<!--     做了这个配置会降低性能 -->
-<!--     <property name="testOnReturn" value="false" /> -->
+  <!-- 归还连接时执行validationQuery检测连接是否有效， -->
+  <!-- 做了这个配置会降低性能 -->
+  <!-- <property name="testOnReturn" value="false" /> -->
 
-<!--     建议配置为true，不影响性能，并且保证安全性。 -->
-<!--     申请连接的时候检测，如果空闲时间大于 -->
-<!--     timeBetweenEvictionRunsMillis， -->
-<!--     执行validationQuery检测连接是否有效。 -->
-<!--     <property name="testWhileIdle" value="true" /> -->
+  <!-- 建议配置为true，不影响性能，并且保证安全性。 -->
+  <!-- 申请连接的时候检测，如果空闲时间大于 -->
+  <!-- timeBetweenEvictionRunsMillis， -->
+  <!-- 执行validationQuery检测连接是否有效。 -->
+  <!-- <property name="testWhileIdle" value="true" /> -->
 
-<!--     配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
-<!--     <property name="timeBetweenEvictionRunsMillis" value="60000" /> -->
+  <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+  <!-- <property name="timeBetweenEvictionRunsMillis" value="60000" /> -->
 
-<!--     配置一个连接在池中最小生存的时间，单位是毫秒 -->
-<!--     <property name="minEvictableIdleTimeMillis" value="25200000" /> -->
+  <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+  <!-- <property name="minEvictableIdleTimeMillis" value="25200000" /> -->
 
-<!--     对于长时间不使用的连接强制关闭 -->
-<!--     <property name="removeAbandoned" value="true" /> -->
+  <!-- 对于长时间不使用的连接强制关闭 -->
+  <!-- <property name="removeAbandoned" value="true" /> -->
 
-<!--     超过30分钟开始关闭空闲连接 -->
-<!--     <property name="removeAbandonedTimeout" value="1800" /> -->
+  <!-- 超过30分钟开始关闭空闲连接 -->
+  <!-- <property name="removeAbandonedTimeout" value="1800" /> -->
 
-<!--     将当前关闭动作记录到日志 -->
-<!--     <property name="logAbandoned" value="true" /> -->
+  <!-- 将当前关闭动作记录到日志 -->
+  <!-- <property name="logAbandoned" value="true" /> -->
 
-<!--     druid filters的别名保存在下面的地址中 -->
-<!--     druid-xxx.jar!/META-INF/druid-filter.properties -->
-<!--     <property name="filters" value="mergeStat" /> -->
-<!--     配置log相关的信息 -->
-<!--     <property name="proxyFilters"> -->
-<!--       <list> -->
-<!--         <ref bean="log-filter" /> -->
-<!--       </list> -->
-<!--     </property> -->
-<!--   </bean> -->
+  <!-- druid filters的别名保存在下面的地址中 -->
+  <!-- druid-xxx.jar!/META-INF/druid-filter.properties -->
+  <!-- <property name="filters" value="mergeStat" /> -->
+  <!-- 配置log相关的信息 -->
+  <!-- <property name="proxyFilters"> -->
+  <!-- <list> -->
+  <!-- <ref bean="log-filter" /> -->
+  <!-- </list> -->
+  <!-- </property> -->
+  <!-- </bean> -->
 
-<!--   <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter"> -->
-<!--     打印可执行sql -->
-<!--     <property name="statementExecutableSqlLogEnable" value="true" /> -->
-<!--   </bean> -->
+  <!-- <bean id="log-filter" class="com.alibaba.druid.filter.logging.Log4jFilter"> -->
+  <!-- 打印可执行sql -->
+  <!-- <property name="statementExecutableSqlLogEnable" value="true" /> -->
+  <!-- </bean> -->
 
   <!-- 在基本的 MyBatis 中,session 工厂可以使用 SqlSessionFactoryBuilder 来创建。 -->
   <!-- 而在 MyBatis-spring 中,则使用 SqlSessionFactoryBean 来替代。 -->
-<!--   <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
-<!--     <property name="dataSource" ref="dataSource" /> -->
+  <!-- <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
+  <!-- <property name="dataSource" ref="dataSource" /> -->
 
-<!--     myBatis所需要配置的*Mapper.xml所在目录 -->
-<!--     <property name="mapperLocations"> -->
-<!--       <list> -->
-<!--         <value>classpath*:com/littlefisher/**/mapper/*.xml</value> -->
-<!--         <value>classpath*:com/yc/room1000/**/mapper/*.xml</value> -->
-<!--       </list> -->
-<!--     </property> -->
+  <!-- myBatis所需要配置的*Mapper.xml所在目录 -->
+  <!-- <property name="mapperLocations"> -->
+  <!-- <list> -->
+  <!-- <value>classpath*:com/littlefisher/**/mapper/*.xml</value> -->
+  <!-- <value>classpath*:com/yc/room1000/**/mapper/*.xml</value> -->
+  <!-- </list> -->
+  <!-- </property> -->
 
-<!--     <property name="plugins"> -->
-<!--       <list> -->
-<!--         <bean class="com.github.pagehelper.PageInterceptor"> -->
-<!--           <property name="properties"> -->
-<!--             <value> -->
-<!--               helperDialect=mysql -->
-<!--               pageSizeZero=true -->
-<!--             </value> -->
-<!--           </property> -->
-<!--         </bean> -->
-<!--       </list> -->
-<!--     </property> -->
-<!--   </bean> -->
+  <!-- <property name="plugins"> -->
+  <!-- <list> -->
+  <!-- <bean class="com.github.pagehelper.PageInterceptor"> -->
+  <!-- <property name="properties"> -->
+  <!-- <value> -->
+  <!-- helperDialect=mysql -->
+  <!-- pageSizeZero=true -->
+  <!-- </value> -->
+  <!-- </property> -->
+  <!-- </bean> -->
+  <!-- </list> -->
+  <!-- </property> -->
+  <!-- </bean> -->
 
   <!-- 没有必要在 Spring 的 XML 配置文件中注册所有的映射器。相反,你可以使用一个 MapperScannerConfigurer , -->
   <!-- 它 将 会 查 找 类 路 径 下 的 映 射 器 并 自 动 将 它 们 创 建 成 MapperFactoryBean -->
-<!--   <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer"> -->
+  <!-- <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer"> -->
 
-<!--     basePackage 属性是让你为映射器接口文件设置基本的包路径 -->
-<!--     <property name="basePackage" value="com.littlefisher.**.dao, com.yc.room1000.**.dao" /> -->
+  <!-- basePackage 属性是让你为映射器接口文件设置基本的包路径 -->
+  <!-- <property name="basePackage" value="com.littlefisher.**.dao, com.yc.room1000.**.dao" /> -->
 
-<!--     没 有 必 要 去 指 定 SqlSessionFactory 或 SqlSessionTemplate , -->
-<!--     因 为 MapperScannerConfigurer 将会创建 MapperFactoryBean,之后自动装配。 -->
-<!--     但是,如果你使 用了一个 以上的 DataSource ,那 么自动 装配可 能会失效 。 -->
-<!--     这种 情况下 ,你可 以使用 sqlSessionFactoryBeanName 或 sqlSessionTemplateBeanName -->
-<!--     属性来设置正确的 bean 名 称来使用 -->
-<!--     <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" /> -->
-<!--   </bean> -->
+  <!-- 没 有 必 要 去 指 定 SqlSessionFactory 或 SqlSessionTemplate , -->
+  <!-- 因 为 MapperScannerConfigurer 将会创建 MapperFactoryBean,之后自动装配。 -->
+  <!-- 但是,如果你使 用了一个 以上的 DataSource ,那 么自动 装配可 能会失效 。 -->
+  <!-- 这种 情况下 ,你可 以使用 sqlSessionFactoryBeanName 或 sqlSessionTemplateBeanName -->
+  <!-- 属性来设置正确的 bean 名 称来使用 -->
+  <!-- <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" /> -->
+  <!-- </bean> -->
 
-<!--   <bean id="systemEngineConfig" class="com.littlefisher.core.engine.SystemEngineConfig" destroy-method="destory"> -->
-<!--     <property name="dataSource" ref="dataSource" /> -->
-<!--     <property name="databaseType" value="mysql" /> -->
-<!--     <property name="transactionManager" ref="transactionManager" /> -->
-<!--     <property name="sqlSessionFactory" ref="sqlSessionFactory" /> -->
-<!--   </bean> -->
+  <!-- <bean id="systemEngineConfig" class="com.littlefisher.core.engine.SystemEngineConfig" destroy-method="destory"> -->
+  <!-- <property name="dataSource" ref="dataSource" /> -->
+  <!-- <property name="databaseType" value="mysql" /> -->
+  <!-- <property name="transactionManager" ref="transactionManager" /> -->
+  <!-- <property name="sqlSessionFactory" ref="sqlSessionFactory" /> -->
+  <!-- </bean> -->
 
-<!--   <bean id="systemEngine" class="com.littlefisher.core.engine.SystemEngineFactoryBean"> -->
-<!--     <property name="systemEngineConfig" ref="systemEngineConfig" /> -->
-<!--   </bean> -->
+  <!-- <bean id="systemEngine" class="com.littlefisher.core.engine.SystemEngineFactoryBean"> -->
+  <!-- <property name="systemEngineConfig" ref="systemEngineConfig" /> -->
+  <!-- </bean> -->
 
   <!-- 事务控制 -->
-<!--   <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
-<!--     <property name="dataSource" ref="dataSource" /> -->
-<!--   </bean> -->
-<!--   <tx:advice id="transactionAdvice" transaction-manager="transactionManager"> -->
-<!--     <tx:attributes> -->
-<!--       1、PROPAGATION_REQUIRED:如果存在一个事务，则支持当前事务。如果没有事务则开启。 -->
-<!--       2、PROPAGATION_SUPPORTS:如果存在一个事务，支持当前事务。如果没有事务，则非事务的执行。 -->
-<!--       3、PROPAGATION_MANDATORY:如果已经存在一个事务，支持当前事务。如果没有一个活动的事务，则抛出异常。 -->
-<!--       4、PROPAGATION_REQUIRES_NEW:总是开启一个新的事务。如果一个事务存在，则将这个存在的事务挂起。 -->
-<!--       5、PROPAGATION_NOT_SUPPORTED:总是非事务地执行，并挂起任何存在的事务。 -->
-<!--       6、PROPAGATION_NEVER:总是非事务地执行，如果存在一个活动事务，则抛出异常。 -->
-<!--       7、PROPAGATION_NESTED:如果一个活动的事务存在，则运行在一个嵌套的事务中，如果没有活动事务，则按TransactionDefinition.PROPAGATION_REQUIRED属性执行 -->
-<!--       <tx:method name="add*" propagation="REQUIRED" /> -->
-<!--       <tx:method name="append*" propagation="REQUIRED" /> -->
-<!--       <tx:method name="insert*" propagation="REQUIRED" /> -->
-<!--       <tx:method name="save*" propagation="REQUIRED" /> -->
-<!--       <tx:method name="update*" propagation="REQUIRED" /> -->
-<!--       <tx:method name="modify*" propagation="REQUIRED" /> -->
-<!--       <tx:method name="edit*" propagation="REQUIRED" /> -->
-<!--       <tx:method name="delete*" propagation="REQUIRED" /> -->
-<!--       <tx:method name="remove*" propagation="REQUIRED" /> -->
-<!--       <tx:method name="repair" propagation="REQUIRED" /> -->
-<!--       <tx:method name="delAndRepair" propagation="REQUIRED" /> -->
+  <!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
+  <!-- <property name="dataSource" ref="dataSource" /> -->
+  <!-- </bean> -->
+  <!-- <tx:advice id="transactionAdvice" transaction-manager="transactionManager"> -->
+  <!-- <tx:attributes> -->
+  <!-- 1、PROPAGATION_REQUIRED:如果存在一个事务，则支持当前事务。如果没有事务则开启。 -->
+  <!-- 2、PROPAGATION_SUPPORTS:如果存在一个事务，支持当前事务。如果没有事务，则非事务的执行。 -->
+  <!-- 3、PROPAGATION_MANDATORY:如果已经存在一个事务，支持当前事务。如果没有一个活动的事务，则抛出异常。 -->
+  <!-- 4、PROPAGATION_REQUIRES_NEW:总是开启一个新的事务。如果一个事务存在，则将这个存在的事务挂起。 -->
+  <!-- 5、PROPAGATION_NOT_SUPPORTED:总是非事务地执行，并挂起任何存在的事务。 -->
+  <!-- 6、PROPAGATION_NEVER:总是非事务地执行，如果存在一个活动事务，则抛出异常。 -->
+  <!-- 7、PROPAGATION_NESTED:如果一个活动的事务存在，则运行在一个嵌套的事务中，如果没有活动事务，则按TransactionDefinition.PROPAGATION_REQUIRED属性执行 -->
+  <!-- <tx:method name="add*" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="append*" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="insert*" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="save*" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="update*" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="modify*" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="edit*" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="delete*" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="remove*" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="repair" propagation="REQUIRED" /> -->
+  <!-- <tx:method name="delAndRepair" propagation="REQUIRED" /> -->
 
-<!--       <tx:method name="get*" propagation="SUPPORTS" /> -->
-<!--       <tx:method name="find*" propagation="SUPPORTS" /> -->
-<!--       <tx:method name="load*" propagation="SUPPORTS" /> -->
-<!--       <tx:method name="search*" propagation="SUPPORTS" /> -->
-<!--       <tx:method name="datagrid*" propagation="SUPPORTS" /> -->
+  <!-- <tx:method name="get*" propagation="SUPPORTS" /> -->
+  <!-- <tx:method name="find*" propagation="SUPPORTS" /> -->
+  <!-- <tx:method name="load*" propagation="SUPPORTS" /> -->
+  <!-- <tx:method name="search*" propagation="SUPPORTS" /> -->
+  <!-- <tx:method name="datagrid*" propagation="SUPPORTS" /> -->
 
-<!--       <tx:method name="*" propagation="SUPPORTS" /> -->
-<!--     </tx:attributes> -->
-<!--   </tx:advice> -->
+  <!-- <tx:method name="*" propagation="SUPPORTS" /> -->
+  <!-- </tx:attributes> -->
+  <!-- </tx:advice> -->
 
-<!--   <aop:config> -->
-<!--     第一个*代表任何返回值 -->
-<!--     rml.service..*Impl:代表你要拦截rml.service..*Impl类 -->
-<!--     .*(..)：这个代表任意方法，就是说上面那些类的任意方法，()里面的点，代表任意参数 -->
-<!--     pointcut代表切面在哪里 -->
-<!--     <aop:pointcut id="transactionPointcut" -->
-<!--       expression="execution(* com.littlefisher..service..*Impl.*(..)) and execution(* com.yc.room1000..service..*Impl.*(..))" /> -->
+  <!-- <aop:config> -->
+  <!-- 第一个*代表任何返回值 -->
+  <!-- rml.service..*Impl:代表你要拦截rml.service..*Impl类 -->
+  <!-- .*(..)：这个代表任意方法，就是说上面那些类的任意方法，()里面的点，代表任意参数 -->
+  <!-- pointcut代表切面在哪里 -->
+  <!-- <aop:pointcut id="transactionPointcut" -->
+  <!-- expression="execution(* com.littlefisher..service..*Impl.*(..)) and execution(* com.yc.room1000..service..*Impl.*(..))" 
+    /> -->
 
-<!--     advisor代表在切面上要如何操作，该项目中是按照上面配置的transactionAdvice执行操作 -->
-<!--     <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" /> -->
-<!--   </aop:config> -->
+  <!-- advisor代表在切面上要如何操作，该项目中是按照上面配置的transactionAdvice执行操作 -->
+  <!-- <aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionAdvice" /> -->
+  <!-- </aop:config> -->
 
   <!-- 声明注解方式加载bean -->
-<!--   <context:annotation-config /> -->
+  <!-- <context:annotation-config /> -->
 
-<!--   <aop:aspectj-autoproxy /> -->
+  <!-- <aop:aspectj-autoproxy /> -->
 
   <!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
-  <!--<context:component-scan base-package="com.littlefisher.core.aop,
-                                        com.littlefisher.core.interceptor.service,
-                                        com.littlefisher.**.service.impl,
-                                        com.yc.room1000.**.service.impl,
-                                        com.littlefisher.core.utils,
-                                        com.littlefisher.core.exception"/>
-    -->
+  <!--<context:component-scan base-package="com.littlefisher.core.aop, com.littlefisher.core.interceptor.service, com.littlefisher.**.service.impl, 
+    com.yc.room1000.**.service.impl, com.littlefisher.core.utils, com.littlefisher.core.exception"/> -->
 
   <!-- core下bean加入管理 -->
-<!--   <context:component-scan base-package="com.littlefisher.core.utils, com.littlefisher.core.exception"> -->
-<!--     <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"  /> -->
-<!--   </context:component-scan> -->
+  <!-- <context:component-scan base-package="com.littlefisher.core.utils, com.littlefisher.core.exception"> -->
+  <!-- <context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice" /> -->
+  <!-- </context:component-scan> -->
+<!--   <bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor" /> -->
 
+<!--   <bean id="druid-type-proxyCreator" class="com.alibaba.druid.support.spring.stat.BeanTypeAutoProxyCreator"> -->
+<!--     所有ABCInterface的派生类被拦截监控 -->
+<!--     <property name="targetBeanType" value="com.littlefisher.core.interceptor.service.ServiceImpl" /> -->
+<!--     <property name="interceptorNames"> -->
+<!--       <list> -->
+<!--         <value>druid-stat-interceptor</value> -->
+<!--       </list> -->
+<!--     </property> -->
+<!--   </bean> -->
+
+<!--   <bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor"> -->
+<!--   </bean> -->
+
+<!--   <bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype"> -->
+<!--     <property name="patterns"> -->
+<!--       <list> -->
+<!--         <value>com.yc.room1000.engine.attr.dao.*</value> -->
+<!--         <value>com.mycompany.dao.*</value> -->
+<!--       </list> -->
+<!--     </property> -->
+<!--   </bean> -->
+
+<!--   <aop:config> -->
+<!--     <aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" /> -->
+<!--   </aop:config> -->
 
 </beans>

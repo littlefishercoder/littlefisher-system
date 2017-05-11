@@ -28,8 +28,10 @@ import org.springframework.context.annotation.Import;
         SqlSessionFactoryBeanConfig.class,
         MapperScannerConfigurerConfig.class, 
         SystemEngineConfig.class, 
-        TransactionManagerConfig.class
+        TransactionManagerConfig.class,
+        DruidConfig.class
         })
+//@ImportResource("classpath:spring/EngineConfig.xml")
 public class RootConfig {
 
 }
