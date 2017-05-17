@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.littlefisher.blog.user.dao.UserDtoMapper">
+  <resultMap id="BaseResultMap" type="com.littlefisher.blog.user.model.UserDto">
+    <!--
+    @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ACC_NBR" jdbcType="VARCHAR" property="accNbr" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
+    <result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
+    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+    <result column="E_NAME" jdbcType="VARCHAR" property="eName" />
+    <result column="QQ" jdbcType="VARCHAR" property="qq" />
+    <result column="WECHAT" jdbcType="VARCHAR" property="wechat" />
+    <result column="PHONE_NBR" jdbcType="VARCHAR" property="phoneNbr" />
+    <result column="USER_DESC" jdbcType="VARCHAR" property="userDesc" />
+    <result column="STATUS" jdbcType="CHAR" property="status" />
+    <result column="REG_DATE" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="LAST_LOGIN_DATE" jdbcType="TIMESTAMP" property="lastLoginDate" />
+  </resultMap>
+</mapper>

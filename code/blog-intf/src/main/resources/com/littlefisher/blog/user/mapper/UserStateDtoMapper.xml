@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.littlefisher.blog.user.dao.UserStateDtoMapper">
+  <resultMap id="BaseResultMap" type="com.littlefisher.blog.user.model.UserStateDto">
+    <!--
+    @mbg.generated
+    -->
+    <id column="STATE" jdbcType="CHAR" property="state" />
+    <result column="STATE_NAME" jdbcType="VARCHAR" property="stateName" />
+    <result column="COMMENTS" jdbcType="VARCHAR" property="comments" />
+  </resultMap>
+</mapper>

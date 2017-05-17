@@ -11,8 +11,9 @@
   <description>littlefisher-parent</description>
 
   <modules>
-    <module>core-base</module>
-    <module>core-activiti</module>
+    <module>../core-base</module>
+    <module>../core-activiti</module>
+    <module>../blog-parent</module>
     <!-- <module>core-attr</module> -->
     <!-- <module>jyn-test-parent</module> -->
     <!-- <module>engine-system-parent</module> -->
@@ -48,15 +49,17 @@
   <!-- 定义可继承的插件信息 -->
   <build>
 
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
     <resources>
-      <resource>
-        <directory>src/main/java</directory>
-        <includes>
-          <include>**/*.properties</include>
-          <include>**/*.xml</include>
-        </includes>
-        <filtering>false</filtering>
-      </resource>
+<!--       <resource> -->
+<!--         <directory>src/main/java</directory> -->
+<!--         <includes> -->
+<!--           <include>**/*.properties</include> -->
+<!--           <include>**/*.xml</include> -->
+<!--         </includes> -->
+<!--         <filtering>false</filtering> -->
+<!--       </resource> -->
       <resource>
         <directory>src/main/resources</directory>
         <filtering>true</filtering>
@@ -145,7 +148,7 @@
             <dependency>
               <groupId>com.littlefisher</groupId>
               <artifactId>core-base</artifactId>
-              <version>${yc.version}</version>
+              <version>${littlefisher.version}</version>
             </dependency>
             <dependency>
               <groupId>tk.mybatis</groupId>
