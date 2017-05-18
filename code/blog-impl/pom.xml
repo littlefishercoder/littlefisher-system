@@ -11,7 +11,7 @@
   <version>${littlefisher.version}</version>
   <packaging>jar</packaging>
 
-  <name>engine-system-impl</name>
+  <name>blog-impl</name>
 
   <dependencies>
     <dependency>
