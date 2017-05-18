@@ -35,7 +35,7 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
         LittleFisherLogger clazzLlogger = LittleFisherLogger.getLogger(clazz);
         U result = null;
         try {
-            clazzLlogger.info("--- starting { " + methodName + " } --------------------------------------------------------");
+            clazzLlogger.info("--- starting {} --------------------------------------------------------", methodName);
             if (StringUtil.isNotEmpty(parameters)) {
                 clazzLlogger.info("Parameters:" + parameters);
             }
@@ -50,7 +50,7 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
             throw new BaseRuntimeException("inerror", e);
         }
         finally {
-            clazzLlogger.info("--- { " + methodName + " } finished --------------------------------------------------------");
+            clazzLlogger.info("--- {} finished --------------------------------------------------------", methodName);
         }
     }
     
