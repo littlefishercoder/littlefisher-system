@@ -47,7 +47,7 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
         }
         catch (Exception e) {
             clazzLogger.error("inerror", e);
-            throw new BaseRuntimeException("inerror", e);
+            throw new BaseRuntimeException("inerror", e); 
         }
         finally {
             clazzLogger.info("--- {} finished --------------------------------------------------------", methodName);
