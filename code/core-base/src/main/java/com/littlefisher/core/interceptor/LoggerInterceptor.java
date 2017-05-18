@@ -32,25 +32,25 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
         Class<?> clazz = command.getClass();
         String parameters = this.getCommandParameters(command);
         String methodName = clazz.getSimpleName();
-        LittleFisherLogger clazzLlogger = LittleFisherLogger.getLogger(clazz);
+        LittleFisherLogger clazzLogger = LittleFisherLogger.getLogger(clazz);
         U result = null;
         try {
-            clazzLlogger.info("--- starting {} --------------------------------------------------------", methodName);
+            clazzLogger.info("--- starting {} --------------------------------------------------------", methodName);
             if (StringUtil.isNotEmpty(parameters)) {
-                clazzLlogger.info("Parameters:" + parameters);
+                clazzLogger.info("Parameters:" + parameters);
             }
             result = next.execute(config, command);
             if (result != null) {
-                clazzLlogger.debug("return agrs:" + result);
+                clazzLogger.debug("return agrs:" + result);
             }
             return result;
         }
         catch (Exception e) {
-            clazzLlogger.error("inerror", e);
+            clazzLogger.error("inerror", e);
             throw new BaseRuntimeException("inerror", e);
         }
         finally {
-            clazzLlogger.info("--- {} finished --------------------------------------------------------", methodName);
+            clazzLogger.info("--- {} finished --------------------------------------------------------", methodName);
         }
     }
     
