@@ -5,6 +5,7 @@
     <groupId>com.littlefisher</groupId>
     <artifactId>littlefisher-parent</artifactId>
     <version>1.0.1-SNAPSHOT</version>
+    <relativePath>../littlefisher-parent/pom.xml</relativePath>
   </parent>
   <artifactId>blog-parent</artifactId>
   <version>${littlefisher.version}</version>
