@@ -6,7 +6,7 @@
 <generatorConfiguration>
 
   <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
-  
+
     <property name="beginningDelimiter" value="`" />
     <property name="endingDelimiter" value="`" />
     <property name="author" value="jinyanan" />
@@ -15,31 +15,28 @@
     <plugin type="com.littlefisher.core.mybatis.plugins.MapperPlugin">
       <property name="mappers" value="tk.mybatis.mapper.common.Mapper" />
     </plugin>
-    
+
     <plugin type="com.littlefisher.core.mybatis.plugins.SerializablePlugin" />
     <plugin type="com.littlefisher.core.mybatis.plugins.ImportsPlugin" />
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
 
-    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://106.14.156.120:3306/blog" userId="root"
-      password="root">
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://106.14.156.120:3306/blog"
+      userId="root" password="root">
     </jdbcConnection>
-    
+
     <javaTypeResolver type="com.littlefisher.core.mybatis.ChangeColType2LongJavaTypeResolver">
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
 
-    <javaModelGenerator targetPackage="com.littlefisher.blog.user.model" targetProject="src/main/java" />
+    <javaModelGenerator targetPackage="com.littlefisher.blog.system.model" targetProject="src/main/java" />
 
-    <sqlMapGenerator targetPackage="com.littlefisher.blog.user.mapper" targetProject="src/main/resources" />
+    <sqlMapGenerator targetPackage="com.littlefisher.blog.system.mapper" targetProject="src/main/resources" />
 
-    <javaClientGenerator targetPackage="com.littlefisher.blog.user.dao" targetProject="src/main/java"
+    <javaClientGenerator targetPackage="com.littlefisher.blog.system.dao" targetProject="src/main/java"
       type="XMLMAPPER" />
 
-    <table tableName="USER" domainObjectName="UserDto">
+    <table tableName="system_param" domainObjectName="SystemParamDto">
       <generatedKey column="id" sqlStatement="Mysql" identity="true" />
-    </table>
-    <table tableName="USER_STATE" domainObjectName="UserStateDto">
-<!--       <generatedKey column="id" sqlStatement="Mysql" identity="true" /> -->
     </table>
   </context>
 </generatorConfiguration>

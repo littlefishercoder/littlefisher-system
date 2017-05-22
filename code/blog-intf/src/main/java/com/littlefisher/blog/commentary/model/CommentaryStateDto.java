@@ -1,4 +1,4 @@
-package com.littlefisher.blog.user.model;
+package com.littlefisher.blog.commentary.model;
 
 import java.io.Serializable;
 
@@ -12,16 +12,16 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
 
 /**
  *
- * Description: user_state 实体
+ * Description: commentary_state 实体
  *
  * Created on 2017年05月22日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-@Table(name = "user_state")
-@ApiModel(value = "user_state实体")
-public class UserStateDto implements Serializable {
+@Table(name = "commentary_state")
+@ApiModel(value = "commentary_state实体")
+public class CommentaryStateDto implements Serializable {
     /**
      * 状态
      */

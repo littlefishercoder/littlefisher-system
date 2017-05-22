@@ -12,29 +12,29 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
 
 /**
  *
- * Description: user_state 实体
+ * Description: role_type 实体
  *
  * Created on 2017年05月22日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-@Table(name = "user_state")
-@ApiModel(value = "user_state实体")
-public class UserStateDto implements Serializable {
+@Table(name = "role_type")
+@ApiModel(value = "role_type实体")
+public class RoleTypeDto implements Serializable {
     /**
-     * 状态
+     * 类型
      */
-    @ApiModelProperty(value = "状态")
+    @ApiModelProperty(value = "类型")
     @Id
-    private String state;
+    private String type;
 
     /**
-     * 状态名
+     * 类型名
      */
-    @ApiModelProperty(value = "状态名")
-    @Column(name = "state_name")
-    private String stateName;
+    @ApiModelProperty(value = "类型名")
+    @Column(name = "type_name")
+    private String typeName;
 
     /**
      * 备注
@@ -47,20 +47,20 @@ public class UserStateDto implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
-    public String getState() {
-        return state;
+    public String getType() {
+        return type;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getStateName() {
-        return stateName;
+    public String getTypeName() {
+        return typeName;
     }
 
-    public void setStateName(String stateName) {
-        this.stateName = stateName;
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 
     public String getComments() {
@@ -85,8 +85,8 @@ public class UserStateDto implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", state=").append(state);
-        sb.append(", stateName=").append(stateName);
+        sb.append(", type=").append(type);
+        sb.append(", typeName=").append(typeName);
         sb.append(", comments=").append(comments);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

@@ -19,7 +19,7 @@ public interface IUserService {
 
     /**
      * 
-     * Description: 
+     * Description: 查询所有用户
      * 
      * @author jinyanan
      *
@@ -30,7 +30,7 @@ public interface IUserService {
     
     /**
      * 
-     * Description: 
+     * Description: 根据id查询用户
      * 
      * @author jinyanan
      *
@@ -42,7 +42,7 @@ public interface IUserService {
     
     /**
      * 
-     * Description: 
+     * Description: 新增用户
      * 
      * @author jinyanan
      *
@@ -54,7 +54,7 @@ public interface IUserService {
     
     /**
      * 
-     * Description: 
+     * Description: 修改用户
      * 
      * @author jinyanan
      *
@@ -66,7 +66,7 @@ public interface IUserService {
     
     /**
      * 
-     * Description: 
+     * Description: 删除用户
      * 
      * @author jinyanan
      *

@@ -5,19 +5,19 @@
     <!--
     @mbg.generated
     -->
-    <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="ACC_NBR" jdbcType="VARCHAR" property="accNbr" />
-    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
-    <result column="EMAIL" jdbcType="VARCHAR" property="email" />
-    <result column="REAL_NAME" jdbcType="VARCHAR" property="realName" />
-    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
-    <result column="E_NAME" jdbcType="VARCHAR" property="eName" />
-    <result column="QQ" jdbcType="VARCHAR" property="qq" />
-    <result column="WECHAT" jdbcType="VARCHAR" property="wechat" />
-    <result column="PHONE_NBR" jdbcType="VARCHAR" property="phoneNbr" />
-    <result column="USER_DESC" jdbcType="VARCHAR" property="userDesc" />
-    <result column="STATUS" jdbcType="CHAR" property="status" />
-    <result column="REG_DATE" jdbcType="TIMESTAMP" property="regDate" />
-    <result column="LAST_LOGIN_DATE" jdbcType="TIMESTAMP" property="lastLoginDate" />
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="acc_nbr" jdbcType="VARCHAR" property="accNbr" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="e_name" jdbcType="VARCHAR" property="eName" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="phone_nbr" jdbcType="VARCHAR" property="phoneNbr" />
+    <result column="user_desc" jdbcType="VARCHAR" property="userDesc" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
   </resultMap>
 </mapper>

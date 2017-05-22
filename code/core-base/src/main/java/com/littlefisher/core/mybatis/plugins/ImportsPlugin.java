@@ -102,8 +102,23 @@ public class ImportsPlugin extends PluginAdapter {
         
         // 引入JPA注解
         topLevelClass.addImportedType("javax.persistence.Column");
-        topLevelClass.addImportedType("javax.persistence.GeneratedValue");
-        topLevelClass.addImportedType("javax.persistence.GenerationType");
+        
+        Field generatedValueField = null;
+        for (Field field : topLevelClass.getFields()) {
+            List<String> annotations = field.getAnnotations();
+            for (String annotation : annotations) {
+                if (annotation.startsWith("@GeneratedValue")) {
+                    generatedValueField = field;
+                    break;
+                }
+            }
+        }
+        
+        if (generatedValueField != null) {
+
+            topLevelClass.addImportedType("javax.persistence.GeneratedValue");
+            topLevelClass.addImportedType("javax.persistence.GenerationType");
+        }
         topLevelClass.addImportedType("javax.persistence.Id");
         
         // 判断field是否是Transient，如果是则导入对应包

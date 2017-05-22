@@ -272,21 +272,21 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
             newLine(sb);
         }
         
-        for (String importType : otherTypes) {
-            sb.append(importType);
-            newLine(sb);
-        }
-        
-        if (otherTypes.size() > 0) {
-            newLine(sb);
-        }
-        
         for (String importType : comTypes) {
             sb.append(importType);
             newLine(sb);
         }
         
         if (comTypes.size() > 0) {
+            newLine(sb);
+        }
+        
+        for (String importType : otherTypes) {
+            sb.append(importType);
+            newLine(sb);
+        }
+        
+        if (otherTypes.size() > 0) {
             newLine(sb);
         }
     }
