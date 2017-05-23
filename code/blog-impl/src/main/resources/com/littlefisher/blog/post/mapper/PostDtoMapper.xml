@@ -2,9 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.littlefisher.blog.post.dao.PostDtoMapper">
   <resultMap id="BaseResultMap" type="com.littlefisher.blog.post.model.PostDto">
-    <!--
-    @mbg.generated
-    -->
+    <!-- @mbg.generated -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
@@ -20,4 +18,30 @@
     <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
+  <sql id="postColumns">
+    ${alias}.id, ${alias}.title, ${alias}.created_date, ${alias}.original_url, ${alias}.type, 
+    ${alias}.last_modify_date, ${alias}.read_times, ${alias}.liked_times, ${alias}.comment_times, ${alias}.user_id, 
+    ${alias}.enable_comment, ${alias}.state, ${alias}.state_date, ${alias}.content
+  </sql>
+  <select id="selectByCond" parameterType="com.littlefisher.blog.post.model.request.GetPostList4PagerByCondRequest" resultMap="BaseResultMap">
+    select
+    <include refid="postColumns">
+      <property name="alias" value="a"/>
+    </include>
+    from post
+    <where>
+      <if test="title != null">
+        and a.title like concat('%', #{title,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="keyword != null">
+        and a.content like concat('%', #{keyword,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="createdDateStart != null">
+        and a.created_date &gt;= #{createdDateStart, jdbcType=TIMESTAMP}
+      </if>
+      <if test="createdDateEnd != null">
+        and a.created_date &lt;= #{createdDateEnd, jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
 </mapper>

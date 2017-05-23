@@ -1,6 +1,9 @@
 package com.littlefisher.blog.post.dao;
 
+import java.util.List;
+
 import com.littlefisher.blog.post.model.PostDto;
+import com.littlefisher.blog.post.model.request.GetPostList4PagerByCondRequest;
 
 import tk.mybatis.mapper.common.Mapper;
 
@@ -15,4 +18,15 @@ import tk.mybatis.mapper.common.Mapper;
  * @since v1.0
  */
 public interface PostDtoMapper extends Mapper<PostDto> {
+
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param req req
+     * @return List<PostDto>
+     */
+    List<PostDto> selectByCond(GetPostList4PagerByCondRequest req);
 }

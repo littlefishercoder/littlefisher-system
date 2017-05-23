@@ -1,5 +1,8 @@
 package com.littlefisher.blog.post.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
 import com.littlefisher.blog.post.model.PostDto;
 import com.littlefisher.blog.post.model.request.GetPostList4PagerByCondRequest;
+import com.littlefisher.blog.post.service.IPostService;
 import com.littlefisher.core.exception.BaseAppException;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -31,6 +35,12 @@ import com.wordnik.swagger.annotations.ApiParam;
 public class PostController {
     
     /**
+     * postService
+     */
+    @Autowired
+    private IPostService postService;
+    
+    /**
      * 
      * Description: 根据条件查询博文列表
      * 
@@ -44,7 +54,8 @@ public class PostController {
     @ApiOperation("根据条件查询博文列表")
     public PageInfo<PostDto> getPostList4PagerByCond(
         @ApiParam(required = true, value = "查询博文列表的条件") @ModelAttribute GetPostList4PagerByCondRequest req) throws BaseAppException {
-        return null;
+        List<PostDto> postList = postService.getPostList4PagerByCond(req);
+        return new PageInfo<>(postList);
     }
     
     /**
@@ -61,7 +72,7 @@ public class PostController {
     @ApiOperation("根据博文主键查询具体博文")
     public PostDto getPostById(
         @ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) throws BaseAppException {
-        return null;
+        return postService.getPostById(postId);
     }
     
     /**
@@ -78,7 +89,7 @@ public class PostController {
     @ApiOperation("新增博文")
     public PostDto addPost(
         @ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) throws BaseAppException {
-        return null;
+        return postService.addPost(postDto);
     }
     
     /**
@@ -95,7 +106,7 @@ public class PostController {
     @ApiOperation("修改博文")
     public PostDto updatePost(
         @ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) throws BaseAppException {
-        return null;
+        return postService.updatePost(postDto);
     }
     
     /**
@@ -112,7 +123,7 @@ public class PostController {
     @ApiOperation("删除博文")
     public int deletePost(
         @ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) throws BaseAppException {
-        return 0;
+        return postService.deletePostById(postId);
     }
 
 }
