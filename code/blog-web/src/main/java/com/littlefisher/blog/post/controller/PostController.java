@@ -1,9 +1,19 @@
 package com.littlefisher.blog.post.controller;
 
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.github.pagehelper.PageInfo;
+import com.littlefisher.blog.post.model.PostDto;
+import com.littlefisher.blog.post.model.request.GetPostList4PagerByCondRequest;
+import com.littlefisher.core.exception.BaseAppException;
 import com.wordnik.swagger.annotations.Api;
+import com.wordnik.swagger.annotations.ApiOperation;
+import com.wordnik.swagger.annotations.ApiParam;
 
 /**
  * 
@@ -19,5 +29,90 @@ import com.wordnik.swagger.annotations.Api;
 @RequestMapping("/api/blog/v1/posts")
 @Api(value = "post", description = "post 接口API")
 public class PostController {
+    
+    /**
+     * 
+     * Description: 根据条件查询博文列表
+     * 
+     * @author jinyanan
+     *
+     * @param req req
+     * @return PageInfo<PostDto>
+     * @throws BaseAppException <br>
+     */
+    @RequestMapping(value = "/pager", method = RequestMethod.GET)
+    @ApiOperation("根据条件查询博文列表")
+    public PageInfo<PostDto> getPostList4PagerByCond(
+        @ApiParam(required = true, value = "查询博文列表的条件") @ModelAttribute GetPostList4PagerByCondRequest req) throws BaseAppException {
+        return null;
+    }
+    
+    /**
+     * 
+     * Description: 根据博文主键查询具体博文
+     * 
+     * @author jinyanan
+     *
+     * @param postId postId
+     * @return PostDto
+     * @throws BaseAppException <br>
+     */
+    @RequestMapping(value = "/{postId}", method = RequestMethod.GET)
+    @ApiOperation("根据博文主键查询具体博文")
+    public PostDto getPostById(
+        @ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) throws BaseAppException {
+        return null;
+    }
+    
+    /**
+     * 
+     * Description: 新增博文
+     * 
+     * @author jinyanan
+     *
+     * @param postDto 博文实体
+     * @return PostDto
+     * @throws BaseAppException <br>
+     */
+    @RequestMapping(method = RequestMethod.POST)
+    @ApiOperation("新增博文")
+    public PostDto addPost(
+        @ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) throws BaseAppException {
+        return null;
+    }
+    
+    /**
+     * 
+     * Description: 修改博文
+     * 
+     * @author jinyanan
+     *
+     * @param postDto 博文实体
+     * @return PostDto
+     * @throws BaseAppException <br>
+     */
+    @RequestMapping(method = RequestMethod.PATCH)
+    @ApiOperation("修改博文")
+    public PostDto updatePost(
+        @ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) throws BaseAppException {
+        return null;
+    }
+    
+    /**
+     * 
+     * Description: 删除博文
+     * 
+     * @author jinyanan
+     *
+     * @param postId postId
+     * @return int
+     * @throws BaseAppException <br>
+     */
+    @RequestMapping(value = "/{postId}", method = RequestMethod.DELETE)
+    @ApiOperation("删除博文")
+    public int deletePost(
+        @ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) throws BaseAppException {
+        return 0;
+    }
 
 }

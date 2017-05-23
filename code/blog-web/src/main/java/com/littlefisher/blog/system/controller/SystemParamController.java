@@ -1,6 +1,6 @@
 package com.littlefisher.blog.system.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
 import com.littlefisher.blog.system.model.SystemParamDto;
 import com.littlefisher.blog.system.model.request.GetSystemParamList4PagerByCondRequest;
-import com.littlefisher.blog.system.service.ISystemParamService;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
@@ -33,8 +32,8 @@ public class SystemParamController {
     /**
      * systemParamService
      */
-    @Autowired
-    private ISystemParamService systemParamService;
+//    @Autowired
+//    private ISystemParamService systemParamService;
     
     /**
      * 
@@ -48,7 +47,7 @@ public class SystemParamController {
     @RequestMapping(value = "/pager", method = RequestMethod.GET)
     @ApiOperation(value = "根据条件查询分页列表")
     public PageInfo<SystemParamDto> getSystemParamList4PagerByCond(
-        @ApiParam(value = "查询系统参数列表条件") @RequestBody GetSystemParamList4PagerByCondRequest req) {
+        @ApiParam(value = "查询系统参数列表条件") @ModelAttribute GetSystemParamList4PagerByCondRequest req) {
         return null;
     }
     
@@ -109,7 +108,7 @@ public class SystemParamController {
      * @param systemParamDto systemParamDto
      * @return SystemParamDto
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.PATCH)
     @ApiOperation(value = "修改系统参数")
     public SystemParamDto updateSystemParam(
         @ApiParam(required = true, value = "系统参数信息") @RequestBody SystemParamDto systemParamDto) {
