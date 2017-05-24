@@ -1,6 +1,9 @@
 package com.littlefisher.blog.system.dao;
 
+import java.util.List;
+
 import com.littlefisher.blog.system.model.SystemParamDto;
+import com.littlefisher.blog.system.model.request.GetSystemParamList4PagerByCondRequest;
 
 import tk.mybatis.mapper.common.Mapper;
 
@@ -15,4 +18,37 @@ import tk.mybatis.mapper.common.Mapper;
  * @since v1.0
  */
 public interface SystemParamDtoMapper extends Mapper<SystemParamDto> {
+
+    /**
+     * 
+     * Description: 根据paramKey删除系统参数
+     * 
+     * @author jinyanan
+     *
+     * @param paramKey paramKey
+     * @return int
+     */
+    int deleteByParamKey(String paramKey);
+
+    /**
+     * 
+     * Description: 根据paramKey查询系统参数
+     * 
+     * @author jinyanan
+     *
+     * @param paramKey paramKey
+     * @return SystemParamDto
+     */
+    SystemParamDto selectByParamKey(String paramKey);
+
+    /**
+     * 
+     * Description: 根据条件查询系统参数
+     * 
+     * @author jinyanan
+     *
+     * @param req req
+     * @return List<SystemParamDto>
+     */
+    List<SystemParamDto> selectByCond(GetSystemParamList4PagerByCondRequest req);
 }

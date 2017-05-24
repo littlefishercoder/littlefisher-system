@@ -24,7 +24,7 @@ public class UpdatePostCmd extends AbstractCommand<PostDto> {
 
     /**
      * 
-     * Description: 
+     * Description: 构造函数
      *
      * @author jinyanan
      *

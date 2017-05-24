@@ -11,4 +11,40 @@
     <result column="default_value" jdbcType="VARCHAR" property="defaultValue" />
     <result column="param_desc" jdbcType="VARCHAR" property="paramDesc" />
   </resultMap>
+  <sql id="systemParamColumns">
+    ${alias}.id, ${alias}.param_key, ${alias}.param_value, ${alias}.default_value, ${alias}.param_desc 
+  </sql>
+  <select id="selectByCond" parameterType="com.littlefisher.blog.system.model.request.GetSystemParamList4PagerByCondRequest" resultMap="BaseResultMap">
+    select 
+    <include refid="systemParamColumns">
+      <property name="alias" value="a"/>
+    </include>
+    from system_param a
+    <where>
+      <if test="id != null">
+        and a.id = #{id, jdbcType=INTEGER}
+      </if>
+      <if test="paramKey != null">
+        and a.param_key = #{paramKey, jdbcType=VARCHAR}
+      </if>
+      <if test="paramValue != null">
+        and a.param_value = #{paramValue, jdbcType=VARCHAR}
+      </if>
+      <if test="defaultValue != null">
+        and a.default_value = #{defaultValue, jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+  <select id="selectByParamKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="systemParamColumns">
+      <property name="alias" value="a"/>
+    </include>
+    from system_param a
+    where a.param_key = #{paramKey, jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByParamKey" parameterType="java.lang.String">
+    delete from system_param
+    where param_key = #{paramKey, jdbcType=VARCHAR}
+  </delete>
 </mapper>

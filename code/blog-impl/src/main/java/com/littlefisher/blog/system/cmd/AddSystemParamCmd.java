@@ -24,7 +24,7 @@ public class AddSystemParamCmd extends AbstractCommand<SystemParamDto> {
 
     /**
      * 
-     * Description: 
+     * Description: 构造函数
      *
      * @author jinyanan
      *

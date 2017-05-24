@@ -5,6 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.littlefisher.blog.system.cmd.AddSystemParamCmd;
+import com.littlefisher.blog.system.cmd.DeleteSystemParamByIdCmd;
+import com.littlefisher.blog.system.cmd.DeleteSystemParamByKeyCmd;
+import com.littlefisher.blog.system.cmd.GetSystemParamByIdCmd;
+import com.littlefisher.blog.system.cmd.GetSystemParamByKeyCmd;
+import com.littlefisher.blog.system.cmd.GetSystemParamList4PagerByCondCmd;
+import com.littlefisher.blog.system.cmd.UpdateSystemParamCmd;
 import com.littlefisher.blog.system.model.SystemParamDto;
 import com.littlefisher.blog.system.model.request.GetSystemParamList4PagerByCondRequest;
 import com.littlefisher.blog.system.service.ISystemParamService;
@@ -27,20 +33,17 @@ public class SystemParamServiceImpl extends ServiceImpl implements ISystemParamS
     @Override
     public List<SystemParamDto> getSystemParamList4PagerByCond(GetSystemParamList4PagerByCondRequest req)
         throws BaseAppException {
-        // TODO Auto-generated method stub
-        return null;
+        return this.execute(new GetSystemParamList4PagerByCondCmd(req));
     }
 
     @Override
     public SystemParamDto getSystemParamByKey(String paramKey) throws BaseAppException {
-        // TODO Auto-generated method stub
-        return null;
+        return this.execute(new GetSystemParamByKeyCmd(paramKey));
     }
 
     @Override
     public SystemParamDto getSystemParamById(Long systemParamId) throws BaseAppException {
-        // TODO Auto-generated method stub
-        return null;
+        return this.execute(new GetSystemParamByIdCmd(systemParamId));
     }
 
     @Override
@@ -50,20 +53,17 @@ public class SystemParamServiceImpl extends ServiceImpl implements ISystemParamS
 
     @Override
     public int deleteSystemParamByKey(String paramKey) throws BaseAppException {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.execute(new DeleteSystemParamByKeyCmd(paramKey));
     }
 
     @Override
     public int deleteSystemParamById(Long systemParamId) throws BaseAppException {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.execute(new DeleteSystemParamByIdCmd(systemParamId));
     }
 
     @Override
     public SystemParamDto updateSystemParam(SystemParamDto systemParamDto) throws BaseAppException {
-        // TODO Auto-generated method stub
-        return null;
+        return this.execute(new UpdateSystemParamCmd(systemParamDto));
     }
 
 }

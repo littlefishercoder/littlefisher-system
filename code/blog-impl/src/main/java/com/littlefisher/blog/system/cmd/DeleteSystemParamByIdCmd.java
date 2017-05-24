@@ -1,5 +1,6 @@
 package com.littlefisher.blog.system.cmd;
 
+import com.littlefisher.blog.system.dao.SystemParamDtoMapper;
 import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
@@ -21,7 +22,7 @@ public class DeleteSystemParamByIdCmd extends AbstractCommand<Integer> {
     private Long systemParamId;
     
     /** 
-     * Description: 
+     * Description: 构造函数
      *
      * @author jinyanan
      *
@@ -32,12 +33,10 @@ public class DeleteSystemParamByIdCmd extends AbstractCommand<Integer> {
         this.systemParamId = systemParamId;
     }
 
-
-
     @Override
     public Integer execute() throws BaseAppException {
-        // TODO Auto-generated method stub
-        return null;
+        SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class); 
+        return systemParamDtoMapper.deleteByPrimaryKey(systemParamId);
     }
 
 }

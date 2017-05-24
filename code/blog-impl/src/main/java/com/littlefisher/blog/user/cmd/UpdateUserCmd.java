@@ -24,7 +24,7 @@ public class UpdateUserCmd extends AbstractCommand<UserDto> {
 
     /**
      * 
-     * Description: 
+     * Description: 构造函数
      *
      * @author jinyanan
      *

@@ -24,7 +24,7 @@ public class AddUserCmd extends AbstractCommand<UserDto> {
 
     /**
      * 
-     * Description: 
+     * Description: 构造函数
      *
      * @author jinyanan
      *
@@ -34,8 +34,6 @@ public class AddUserCmd extends AbstractCommand<UserDto> {
         super();
         this.userDto = userDto;
     }
-
-
 
     @Override
     public UserDto execute() throws BaseAppException {

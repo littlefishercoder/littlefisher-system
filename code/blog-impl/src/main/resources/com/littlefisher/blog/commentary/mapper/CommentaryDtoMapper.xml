@@ -16,4 +16,29 @@
     <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
+  <sql id="commentaryColumns">
+    ${alias}.id, ${alias}.parent_commentary_id, ${alias}.user_id, ${alias}.nick_name, ${alias}.commentary_ip, 
+    ${alias}.created_date, ${alias}.post_id, ${alias}.state, ${alias}.state_date, ${alias}.content
+  </sql>
+  <select id="selectByCond" parameterType="com.littlefisher.blog.commentary.model.request.GetCommentaryList4PagerByCondRequest" resultMap="BaseResultMap">
+    select
+    <include refid="commentaryColumns">
+      <property name="alias" value="a"/>
+    </include>
+    from commentary a
+    <where>
+      <if test="postId != null">
+        and a.post_id = #{postId, jdbcType=INTEGER}
+      </if>
+      <if test="keyword != null">
+        and a.content like concat('%', #{keyword,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="createdDateStart != null">
+        and a.created_date &gt;= #{createdDateStart, jdbcType=TIMESTAMP}
+      </if>
+      <if test="createdDateEnd != null">
+        and a.created_date &lt;= #{createdDateEnd, jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
 </mapper>

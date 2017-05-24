@@ -1,5 +1,6 @@
 package com.littlefisher.blog.system.cmd;
 
+import com.littlefisher.blog.system.dao.SystemParamDtoMapper;
 import com.littlefisher.blog.system.model.SystemParamDto;
 import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
@@ -22,7 +23,7 @@ public class UpdateSystemParamCmd extends AbstractCommand<SystemParamDto> {
     private SystemParamDto systemParamDto;
 
     /** 
-     * Description: 
+     * Description: 构造函数
      *
      * @author jinyanan
      *
@@ -35,8 +36,9 @@ public class UpdateSystemParamCmd extends AbstractCommand<SystemParamDto> {
 
     @Override
     public SystemParamDto execute() throws BaseAppException {
-        // TODO Auto-generated method stub
-        return null;
+        SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
+        systemParamDtoMapper.updateByPrimaryKey(systemParamDto);
+        return systemParamDto;
     }
 
 }

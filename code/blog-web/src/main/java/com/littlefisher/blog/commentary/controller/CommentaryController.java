@@ -1,5 +1,8 @@
 package com.littlefisher.blog.commentary.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
 import com.littlefisher.blog.commentary.model.CommentaryDto;
 import com.littlefisher.blog.commentary.model.request.GetCommentaryList4PagerByCondRequest;
+import com.littlefisher.blog.commentary.service.ICommentaryService;
 import com.littlefisher.core.exception.BaseAppException;
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -29,6 +33,12 @@ import com.wordnik.swagger.annotations.ApiParam;
 @RequestMapping("api/blog/v1/commentaries")
 @Api(value = "commentary", description = "commentary 接口API")
 public class CommentaryController {
+    
+    /**
+     * commentaryService
+     */
+    @Autowired
+    private ICommentaryService commentaryService;
 
     /**
      * 
@@ -44,7 +54,8 @@ public class CommentaryController {
     @ApiOperation("查询评价列表，分页用")
     public PageInfo<CommentaryDto> getCommentaryList4PagerByCond(
         @ApiParam(required = true, value = "查询评价列表条件") @ModelAttribute GetCommentaryList4PagerByCondRequest req) throws BaseAppException {
-        return null;
+        List<CommentaryDto> commentaryList = commentaryService.getCommentaryList4PagerByCond(req);
+        return new PageInfo<>(commentaryList);
     }
     
     /**
@@ -59,7 +70,7 @@ public class CommentaryController {
      */
     public CommentaryDto getCommentaryById(
         @ApiParam(required = true, value = "评价主键") @PathVariable("commentaryId") Long commentaryId) throws BaseAppException {
-        return null;
+        return commentaryService.getCommentaryById(commentaryId);
     }
     
     /**
@@ -76,7 +87,7 @@ public class CommentaryController {
     @ApiOperation("新增评价")
     public CommentaryDto addCommentary(
         @ApiParam(required = true, value = "评价实体") @RequestBody CommentaryDto commentaryDto) throws BaseAppException {
-        return null;
+        return commentaryService.addCommentary(commentaryDto);
     }
     
     /**
@@ -93,7 +104,7 @@ public class CommentaryController {
     @ApiOperation("修改评价")
     public CommentaryDto updateCommentary(
         @ApiParam(required = true, value = "评价实体") @RequestBody CommentaryDto commentaryDto) throws BaseAppException {
-        return null;
+        return commentaryService.updateCommentary(commentaryDto);
     }
     
     /**
@@ -110,6 +121,6 @@ public class CommentaryController {
     @ApiOperation("删除评价")
     public int deleteCommentary(
         @ApiParam(required = true, value = "评价主键") @PathVariable("commentaryId") Long commentaryId) throws BaseAppException {
-        return 0;
+        return commentaryService.deleteCommentary(commentaryId);
     }
 }

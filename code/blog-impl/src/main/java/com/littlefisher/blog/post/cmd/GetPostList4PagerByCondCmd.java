@@ -28,7 +28,7 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostDto>> {
     
     /**
      * 
-     * Description: 
+     * Description: 构造函数
      *
      * @author jinyanan
      *

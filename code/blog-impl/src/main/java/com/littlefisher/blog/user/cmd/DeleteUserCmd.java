@@ -23,7 +23,7 @@ public class DeleteUserCmd extends AbstractCommand<Integer> {
 
     /**
      * 
-     * Description: 
+     * Description: 构造函数
      *
      * @author jinyanan
      *
