@@ -82,4 +82,30 @@ public final class StringUtil {
     public static String trim(String str) {
         return (str == null) ? str : str.trim();
     }
+    
+    /**
+     * 
+     * Description: 首字母小写
+     * 
+     * @author jinyanan
+     *
+     * @param str 字符串
+     * @return String String
+     */
+    public static String uncapitalize(String str) {
+        return str.substring(0, 1).toLowerCase() + str.substring(1);
+    }
+    
+    /**
+     * 
+     * Description: 首字母大写
+     * 
+     * @author jinyanan
+     *
+     * @param str 字符串
+     * @return String
+     */
+    public static String capitalize(String str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1);
+    }
 }

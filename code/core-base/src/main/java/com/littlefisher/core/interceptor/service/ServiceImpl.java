@@ -9,6 +9,7 @@ import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.Command;
 import com.littlefisher.core.interceptor.CommandConfig;
 import com.littlefisher.core.interceptor.CommandExecutor;
+import com.littlefisher.core.utils.StringUtil;
 
 /**
  * 
@@ -38,6 +39,9 @@ public class ServiceImpl implements InitializingBean {
         Class<? extends ServiceImpl> mClass = this.getClass();
         Service service = (Service) mClass.getAnnotation(Service.class);
         String value = service.value();
+        if (StringUtil.isEmpty(value)) {
+            value = StringUtil.uncapitalize(mClass.getSimpleName());
+        }
         initService(value, this);
     }
 
