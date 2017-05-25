@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.littlefisher.blog.post.dao.PostTypeDtoMapper">
+  <resultMap id="BaseResultMap" type="com.littlefisher.blog.post.model.PostTypeDto">
+    <!--
+    @mbg.generated
+    -->
+    <id column="type" jdbcType="CHAR" property="type" />
+    <result column="type_name" jdbcType="VARCHAR" property="typeName" />
+    <result column="comments" jdbcType="VARCHAR" property="comments" />
+  </resultMap>
+</mapper>

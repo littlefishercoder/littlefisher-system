@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
@@ -70,8 +71,8 @@ public class UserDto implements Serializable {
      * 英文名
      */
     @ApiModelProperty(value = "英文名")
-    @Column(name = "e_name")
-    private String eName;
+    @Column(name = "en_name")
+    private String enName;
 
     /**
      * QQ
@@ -119,6 +120,13 @@ public class UserDto implements Serializable {
     @Column(name = "last_login_date")
     private Date lastLoginDate;
 
+    /**
+     * userState 用户状态
+     */
+    @ApiModelProperty(value = "用户状态")
+    @Transient
+    private UserStateDto userState;
+    
     /**
      * serialVersionUID
      */
@@ -172,12 +180,12 @@ public class UserDto implements Serializable {
         this.nickName = nickName;
     }
 
-    public String getEName() {
-        return eName;
+    public String getEnName() {
+        return enName;
     }
 
-    public void setEName(String eName) {
-        this.eName = eName;
+    public void setEnName(String enName) {
+        this.enName = enName;
     }
 
     public String getQq() {
@@ -236,36 +244,48 @@ public class UserDto implements Serializable {
         this.lastLoginDate = lastLoginDate;
     }
 
-    /**
-     * Description: toString<br>
-     *
-     * @author autoCreated <br>
-    
-     * @return String String<br>
-     * @mbg.generated
-     */
+    public UserStateDto getUserState() {
+        return userState;
+    }
+
+    public void setUserState(UserStateDto userState) {
+        this.userState = userState;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", accNbr=").append(accNbr);
-        sb.append(", password=").append(password);
-        sb.append(", email=").append(email);
-        sb.append(", realName=").append(realName);
-        sb.append(", nickName=").append(nickName);
-        sb.append(", eName=").append(eName);
-        sb.append(", qq=").append(qq);
-        sb.append(", wechat=").append(wechat);
-        sb.append(", phoneNbr=").append(phoneNbr);
-        sb.append(", userDesc=").append(userDesc);
-        sb.append(", state=").append(state);
-        sb.append(", regDate=").append(regDate);
-        sb.append(", lastLoginDate=").append(lastLoginDate);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        StringBuilder builder = new StringBuilder();
+        builder.append("UserDto [id=");
+        builder.append(id);
+        builder.append(", accNbr=");
+        builder.append(accNbr);
+        builder.append(", password=");
+        builder.append(password);
+        builder.append(", email=");
+        builder.append(email);
+        builder.append(", realName=");
+        builder.append(realName);
+        builder.append(", nickName=");
+        builder.append(nickName);
+        builder.append(", enName=");
+        builder.append(enName);
+        builder.append(", qq=");
+        builder.append(qq);
+        builder.append(", wechat=");
+        builder.append(wechat);
+        builder.append(", phoneNbr=");
+        builder.append(phoneNbr);
+        builder.append(", userDesc=");
+        builder.append(userDesc);
+        builder.append(", state=");
+        builder.append(state);
+        builder.append(", regDate=");
+        builder.append(regDate);
+        builder.append(", lastLoginDate=");
+        builder.append(lastLoginDate);
+        builder.append(", userState=");
+        builder.append(userState);
+        builder.append("]");
+        return builder.toString();
     }
 }

@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.littlefisher.blog.user.model.UserDto;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
@@ -93,6 +95,20 @@ public class CommentaryDto implements Serializable {
      */
     @ApiModelProperty(value = "评论内容")
     private String content;
+    
+    /**
+     * author 作者
+     */
+    @ApiModelProperty(value = "作者")
+    @Transient
+    private UserDto author;
+    
+    /**
+     * commentaryState 评价状态
+     */
+    @ApiModelProperty(value = "评价状态")
+    @Transient
+    private CommentaryStateDto commentaryState;
 
     /**
      * serialVersionUID
@@ -179,32 +195,50 @@ public class CommentaryDto implements Serializable {
         this.content = content;
     }
 
-    /**
-     * Description: toString<br>
-     *
-     * @author autoCreated <br>
-    
-     * @return String String<br>
-     * @mbg.generated
-     */
+    public UserDto getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserDto author) {
+        this.author = author;
+    }
+
+    public CommentaryStateDto getCommentaryState() {
+        return commentaryState;
+    }
+
+    public void setCommentaryState(CommentaryStateDto commentaryState) {
+        this.commentaryState = commentaryState;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", parentCommentaryId=").append(parentCommentaryId);
-        sb.append(", userId=").append(userId);
-        sb.append(", nickName=").append(nickName);
-        sb.append(", commentaryIp=").append(commentaryIp);
-        sb.append(", createdDate=").append(createdDate);
-        sb.append(", postId=").append(postId);
-        sb.append(", state=").append(state);
-        sb.append(", stateDate=").append(stateDate);
-        sb.append(", content=").append(content);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        StringBuilder builder = new StringBuilder();
+        builder.append("CommentaryDto [id=");
+        builder.append(id);
+        builder.append(", parentCommentaryId=");
+        builder.append(parentCommentaryId);
+        builder.append(", userId=");
+        builder.append(userId);
+        builder.append(", nickName=");
+        builder.append(nickName);
+        builder.append(", commentaryIp=");
+        builder.append(commentaryIp);
+        builder.append(", createdDate=");
+        builder.append(createdDate);
+        builder.append(", postId=");
+        builder.append(postId);
+        builder.append(", state=");
+        builder.append(state);
+        builder.append(", stateDate=");
+        builder.append(stateDate);
+        builder.append(", content=");
+        builder.append(content);
+        builder.append(", author=");
+        builder.append(author);
+        builder.append(", commentaryState=");
+        builder.append(commentaryState);
+        builder.append("]");
+        return builder.toString();
     }
 }

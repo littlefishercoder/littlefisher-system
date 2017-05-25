@@ -8,7 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
+import com.littlefisher.blog.user.model.UserDto;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
@@ -119,6 +121,27 @@ public class PostDto implements Serializable {
      */
     @ApiModelProperty(value = "博文")
     private String content;
+    
+    /**
+     * author 作者
+     */
+    @ApiModelProperty(value = "作者")
+    @Transient
+    private UserDto author;
+    
+    /**
+     * postType 博文类型 
+     */
+    @ApiModelProperty(value = "博文类型 ")
+    @Transient
+    private PostTypeDto postType;
+    
+    /**
+     * postState 博文状态
+     */
+    @ApiModelProperty(value = "博文状态")
+    @Transient
+    private PostStateDto postState;
 
     /**
      * serialVersionUID
@@ -237,36 +260,68 @@ public class PostDto implements Serializable {
         this.content = content;
     }
 
-    /**
-     * Description: toString<br>
-     *
-     * @author autoCreated <br>
-    
-     * @return String String<br>
-     * @mbg.generated
-     */
+    public UserDto getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserDto author) {
+        this.author = author;
+    }
+
+    public PostTypeDto getPostType() {
+        return postType;
+    }
+
+    public void setPostType(PostTypeDto postType) {
+        this.postType = postType;
+    }
+
+    public PostStateDto getPostState() {
+        return postState;
+    }
+
+    public void setPostState(PostStateDto postState) {
+        this.postState = postState;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", title=").append(title);
-        sb.append(", createdDate=").append(createdDate);
-        sb.append(", originalUrl=").append(originalUrl);
-        sb.append(", type=").append(type);
-        sb.append(", lastModifyDate=").append(lastModifyDate);
-        sb.append(", readTimes=").append(readTimes);
-        sb.append(", likedTimes=").append(likedTimes);
-        sb.append(", commentTimes=").append(commentTimes);
-        sb.append(", userId=").append(userId);
-        sb.append(", enableComment=").append(enableComment);
-        sb.append(", state=").append(state);
-        sb.append(", stateDate=").append(stateDate);
-        sb.append(", content=").append(content);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        StringBuilder builder = new StringBuilder();
+        builder.append("PostDto [id=");
+        builder.append(id);
+        builder.append(", title=");
+        builder.append(title);
+        builder.append(", createdDate=");
+        builder.append(createdDate);
+        builder.append(", originalUrl=");
+        builder.append(originalUrl);
+        builder.append(", type=");
+        builder.append(type);
+        builder.append(", lastModifyDate=");
+        builder.append(lastModifyDate);
+        builder.append(", readTimes=");
+        builder.append(readTimes);
+        builder.append(", likedTimes=");
+        builder.append(likedTimes);
+        builder.append(", commentTimes=");
+        builder.append(commentTimes);
+        builder.append(", userId=");
+        builder.append(userId);
+        builder.append(", enableComment=");
+        builder.append(enableComment);
+        builder.append(", state=");
+        builder.append(state);
+        builder.append(", stateDate=");
+        builder.append(stateDate);
+        builder.append(", content=");
+        builder.append(content);
+        builder.append(", author=");
+        builder.append(author);
+        builder.append(", postType=");
+        builder.append(postType);
+        builder.append(", postState=");
+        builder.append(postState);
+        builder.append("]");
+        return builder.toString();
     }
 }

@@ -50,7 +50,7 @@ public class CommentaryController {
      * @return PageInfo<CommentaryDto>
      * @throws BaseAppException <br>
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(value = "/pager", method = RequestMethod.GET)
     @ApiOperation("查询评价列表，分页用")
     public PageInfo<CommentaryDto> getCommentaryList4PagerByCond(
         @ApiParam(required = true, value = "查询评价列表条件") @ModelAttribute GetCommentaryList4PagerByCondRequest req) throws BaseAppException {
