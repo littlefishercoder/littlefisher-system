@@ -111,6 +111,11 @@ public class SystemEngineConfig {
      * services
      */
     protected Map<String, ServiceImpl> services = new HashMap<String, ServiceImpl>();
+    
+    /**
+     * clazzServices 缓存
+     */
+    protected Map<Class<? extends ServiceImpl>, ServiceImpl> clazzServices = new HashMap<Class<? extends ServiceImpl>, ServiceImpl>();
 
     /**
      * systemEngineName
@@ -799,21 +804,36 @@ public class SystemEngineConfig {
 
     /**
      * 
-     * Description: <br> 
+     * Description: 从缓存中获取Service<br> 
      *  
      * @author jinyanan<br>
      * @taskId <br>
-     * @param serviceName 
+     * @param serviceName service的bean名，如果未设置bean名，默认首字母小写的类名
      * @return <br>
      */
     public ServiceImpl getService(String serviceName) {
         ServiceImpl serv = services.get(serviceName);
         return serv;
     }
+    
+    /**
+     * 
+     * Description: 
+     * 
+     * @author jinyanan
+     *
+     * @param <T> <T>
+     * @param clazzService Serivice的Clazz
+     * @return ServiceImpl的实现类
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getService(Class<T> clazzService) {
+        return (T) clazzServices.get(clazzService);
+    }
 
     /**
      * 
-     * Description: <br> 
+     * Description: 把ServiceImpl添加缓存<br> 
      *  
      * @author jinyanan<br>
      * @taskId <br>
@@ -824,6 +844,10 @@ public class SystemEngineConfig {
         ServiceImpl serv = services.get(serviceName);
         if (serv == null) {
             services.put(serviceName, service);
+        }
+        ServiceImpl clazzServ = clazzServices.get(service.getClass());
+        if (clazzServ == null) {
+            clazzServices.put(service.getClass(), service);
         }
     }
     

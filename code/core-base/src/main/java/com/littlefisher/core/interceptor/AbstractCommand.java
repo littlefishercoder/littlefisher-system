@@ -104,6 +104,21 @@ public abstract class AbstractCommand<U> implements Command<U> {
     protected ServiceImpl getService(String serviceName) throws BaseAppException {
         return commandContext.getSystemEngineConfig().getService(serviceName);
     }
+    
+    /**
+     * 
+     * Description: 获取Service
+     * 
+     * @author jinyanan
+     *
+     * @param <T> <T>
+     * @param clazzService clazzService
+     * @return ServiceImpl的具体实现类
+     * @throws BaseAppException <br>
+     */
+    protected <T> T getService(Class<T> clazzService) throws BaseAppException {
+        return commandContext.getSystemEngineConfig().getService(clazzService);
+    }
 
     /**
      * Description: <br>

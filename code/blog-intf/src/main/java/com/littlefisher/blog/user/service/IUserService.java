@@ -3,6 +3,7 @@ package com.littlefisher.blog.user.service;
 import java.util.List;
 
 import com.littlefisher.blog.user.model.UserDto;
+import com.littlefisher.blog.user.model.request.GetUserList4PagerByCondRequest;
 import com.littlefisher.core.exception.BaseAppException;
 
 /**
@@ -16,6 +17,7 @@ import com.littlefisher.core.exception.BaseAppException;
  * @since v1.0
  */
 public interface IUserService {
+    
 
     /**
      * 
@@ -27,6 +29,18 @@ public interface IUserService {
      * @throws BaseAppException <br>
      */
     List<UserDto> getAllUser() throws BaseAppException;
+    
+    /**
+     * 
+     * Description: 根据条件查询用户列表
+     * 
+     * @author jinyanan
+     *
+     * @param req req
+     * @return List<UserDto>
+     * @throws BaseAppException <br>
+     */
+    List<UserDto> getUserListByCond(GetUserList4PagerByCondRequest req) throws BaseAppException;
     
     /**
      * 

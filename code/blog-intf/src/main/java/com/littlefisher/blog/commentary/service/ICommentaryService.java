@@ -3,6 +3,7 @@ package com.littlefisher.blog.commentary.service;
 import java.util.List;
 
 import com.littlefisher.blog.commentary.model.CommentaryDto;
+import com.littlefisher.blog.commentary.model.CommentaryStateDto;
 import com.littlefisher.blog.commentary.model.request.GetCommentaryList4PagerByCondRequest;
 import com.littlefisher.core.exception.BaseAppException;
 
@@ -77,4 +78,15 @@ public interface ICommentaryService {
      * @throws BaseAppException <br>
      */
     int deleteCommentary(Long commentaryId) throws BaseAppException;
+    
+    /**
+     * 
+     * Description: 查询所有的评论状态
+     * 
+     * @author jinyanan
+     *
+     * @return List<CommentaryStateDto>
+     * @throws BaseAppException <br>
+     */
+    List<CommentaryStateDto> getAllCommentaryState() throws BaseAppException;
 }

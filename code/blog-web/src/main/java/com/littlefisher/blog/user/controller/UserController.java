@@ -1,5 +1,6 @@
 package com.littlefisher.blog.user.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.github.pagehelper.PageInfo;
 import com.littlefisher.blog.user.model.UserDto;
 import com.littlefisher.blog.user.model.request.GetUserList4PagerByCondRequest;
-import com.littlefisher.blog.user.model.request.GetUserListByCondRequest;
 import com.littlefisher.blog.user.service.IUserService;
 import com.littlefisher.core.exception.BaseAppException;
 import com.wordnik.swagger.annotations.Api;
@@ -21,7 +21,9 @@ import com.wordnik.swagger.annotations.ApiOperation;
 import com.wordnik.swagger.annotations.ApiParam;
 
 /**
- * Description: Created on 2017年5月17日
+ * Description: 用户Controller
+ * 
+ * Created on 2017年5月17日
  *
  * @author jinyanan
  * @version 1.0
@@ -39,22 +41,6 @@ public class UserController {
     private IUserService userService;
 
     /**
-     * Description: 根据条件查询User
-     * 
-     * @author jinyanan
-     * @param req req
-     * @return List<UserDto>
-     * @throws BaseAppException <br>
-     */
-    @RequestMapping(method = RequestMethod.GET)
-    @ApiOperation(value = "根据条件查询User")
-    public List<UserDto> getUserListByCond(
-        @ApiParam(required = true, value = "根据条件查询User入参") @ModelAttribute GetUserListByCondRequest req)
-        throws BaseAppException {
-        return null;
-    }
-
-    /**
      * Description: 根据条件查询User，分页用
      * 
      * @author jinyanan
@@ -67,7 +53,8 @@ public class UserController {
     public PageInfo<UserDto> getUserList4PagerByCond(
         @ApiParam(required = true, value = "根据条件查询User入参，分页用") @ModelAttribute GetUserList4PagerByCondRequest req)
         throws BaseAppException {
-        return null;
+        List<UserDto> userList = userService.getUserListByCond(req);
+        return new PageInfo<>(userList);
     }
 
     /**

@@ -2,9 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.littlefisher.blog.commentary.dao.CommentaryDtoMapper">
   <resultMap id="BaseResultMap" type="com.littlefisher.blog.commentary.model.CommentaryDto">
-    <!--
-    @mbg.generated
-    -->
+    <!-- @mbg.generated -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="parent_commentary_id" jdbcType="INTEGER" property="parentCommentaryId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
@@ -15,17 +13,63 @@
     <result column="state" jdbcType="CHAR" property="state" />
     <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <association property="author" javaType="com.littlefisher.blog.user.model.UserDto">
+      <id column="author_id" jdbcType="INTEGER" property="id" />
+      <result column="a_acc_nbr" jdbcType="VARCHAR" property="accNbr" />
+      <result column="a_password" jdbcType="VARCHAR" property="password" />
+      <result column="a_email" jdbcType="VARCHAR" property="email" />
+      <result column="a_real_name" jdbcType="VARCHAR" property="realName" />
+      <result column="a_nick_name" jdbcType="VARCHAR" property="nickName" />
+      <result column="a_en_name" jdbcType="VARCHAR" property="eName" />
+      <result column="a_qq" jdbcType="VARCHAR" property="qq" />
+      <result column="a_wechat" jdbcType="VARCHAR" property="wechat" />
+      <result column="a_phone_nbr" jdbcType="VARCHAR" property="phoneNbr" />
+      <result column="a_user_desc" jdbcType="VARCHAR" property="userDesc" />
+      <result column="a_state" jdbcType="CHAR" property="state" />
+      <result column="a_reg_date" jdbcType="TIMESTAMP" property="regDate" />
+      <result column="a_last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
+    </association>
+    <association property="commentaryState" javaType="com.littlefisher.blog.commentary.model.CommentaryStateDto">
+      <id column="cs_state" jdbcType="CHAR" property="state" />
+      <result column="cs_state_name" jdbcType="VARCHAR" property="stateName" />
+      <result column="cs_comments" jdbcType="VARCHAR" property="comments" />
+    </association>
   </resultMap>
   <sql id="commentaryColumns">
-    ${alias}.id, ${alias}.parent_commentary_id, ${alias}.user_id, ${alias}.nick_name, ${alias}.commentary_ip, 
+    ${alias}.id, ${alias}.parent_commentary_id, ${alias}.user_id, ${alias}.nick_name, ${alias}.commentary_ip,
     ${alias}.created_date, ${alias}.post_id, ${alias}.state, ${alias}.state_date, ${alias}.content
   </sql>
-  <select id="selectByCond" parameterType="com.littlefisher.blog.commentary.model.request.GetCommentaryList4PagerByCondRequest" resultMap="BaseResultMap">
+  <sql id="authorColumns">
+    ${alias}.id ${prefix}id, ${alias}.acc_nbr ${prefix}acc_nbr, ${alias}.password ${prefix}password,
+    ${alias}.email ${prefix}email, ${alias}.real_name ${prefix}real_name,
+    ${alias}.nick_name ${prefix}nick_name, ${alias}.en_name ${prefix}en_name, 
+    ${alias}.qq ${prefix}qq, ${alias}.wechat ${prefix}wechat,
+    ${alias}.phone_nbr ${prefix}phone_nbr, ${alias}.user_desc ${prefix}user_desc, 
+    ${alias}.state ${prefix}state, ${alias}.reg_date ${prefix}reg_date, 
+    ${alias}.last_login_date ${prefix}last_login_date
+  </sql>
+  <sql id="commentaryStateColumns">
+    ${alias}.state ${prefix}state, ${alias}.state_name ${prefix}state_name, ${alias}.comments ${prefix}comments
+  </sql>
+  <select id="selectByCond" parameterType="com.littlefisher.blog.commentary.model.request.GetCommentaryList4PagerByCondRequest"
+    resultMap="BaseResultMap">
     select
     <include refid="commentaryColumns">
-      <property name="alias" value="a"/>
+      <property name="alias" value="a" />
+    </include>
+    ,
+    <include refid="authorColumns">
+      <property name="alias" value="b" />
+      <property name="prefix" value="a_" />
+    </include>
+    ,
+    <include refid="commentaryStateColumns">
+      <property name="alias" value="c"/>
+      <property name="prefix" value="cs_"/>
     </include>
     from commentary a
+    left join user b on a.user_id = b.id
+    left join commentary_state c on a.state = c.state
     <where>
       <if test="postId != null">
         and a.post_id = #{postId, jdbcType=INTEGER}

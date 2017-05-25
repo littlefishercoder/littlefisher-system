@@ -28,15 +28,15 @@
       <property name="forceBigDecimals" value="false" />
     </javaTypeResolver>
 
-    <javaModelGenerator targetPackage="com.littlefisher.blog.system.model" targetProject="src/main/java" />
+    <javaModelGenerator targetPackage="com.littlefisher.blog.post.model" targetProject="src/main/java" />
 
-    <sqlMapGenerator targetPackage="com.littlefisher.blog.system.mapper" targetProject="src/main/resources" />
+    <sqlMapGenerator targetPackage="com.littlefisher.blog.post.mapper" targetProject="src/main/resources" />
 
-    <javaClientGenerator targetPackage="com.littlefisher.blog.system.dao" targetProject="src/main/java"
+    <javaClientGenerator targetPackage="com.littlefisher.blog.post.dao" targetProject="src/main/java"
       type="XMLMAPPER" />
 
-    <table tableName="system_param" domainObjectName="SystemParamDto">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true" />
+    <table tableName="post_type" domainObjectName="PostTypeDto">
+<!--       <generatedKey column="id" sqlStatement="Mysql" identity="true" /> -->
     </table>
   </context>
 </generatorConfiguration>

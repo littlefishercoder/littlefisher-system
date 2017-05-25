@@ -77,4 +77,5 @@ public interface IPostService {
      * @throws BaseAppException <br>
      */
     int deletePostById(Long postId) throws BaseAppException;
+    
 }
