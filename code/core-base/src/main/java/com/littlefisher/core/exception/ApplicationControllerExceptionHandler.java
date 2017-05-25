@@ -1,8 +1,5 @@
 package com.littlefisher.core.exception;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -39,14 +36,11 @@ public class ApplicationControllerExceptionHandler {
      * @return Map<String, Object> 向前台返回的参数，会以JSON的形式返回
      */
     @ExceptionHandler(value = BaseAppException.class)
-    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public Map<String, Object> handlerError(BaseAppException ex) {
+    public ExceptionHandlerModel handlerError(BaseAppException ex) {
         logger.error(ex.getMessage(), ex);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("errorCode", ex.getCode());
-        map.put("errorMsg", ex.getLocaleMessage());
-        return map;
+        return new ExceptionHandlerModel(ex.getCode(), ex.getLocaleMessage());
     }
     
     /**
@@ -61,19 +55,10 @@ public class ApplicationControllerExceptionHandler {
     @ExceptionHandler(value = BaseRuntimeException.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public Map<String, Object> handlerError(BaseRuntimeException ex) {
+    public ExceptionHandlerModel handlerError(BaseRuntimeException ex) {
         logger.error(ex.getMessage(), ex);
-        Map<String, Object> map = new HashMap<String, Object>();
-        if (ex.getCause() instanceof BaseAppException) {
-            BaseAppException baseAppException = (BaseAppException) ex.getCause();
-            map.put("errorCode", baseAppException.getCode());
-            map.put("errorMsg", baseAppException.getLocaleMessage());
-        }
-        else {
-            map.put("errorMsg", ex.getMessage());
-        }
         
-        return map;
+        return new ExceptionHandlerModel(null, ex.getMessage());
     }
     
     /**
@@ -88,11 +73,9 @@ public class ApplicationControllerExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
-    public Map<String, Object> handlerError(Exception ex) {
+    public ExceptionHandlerModel handlerError(Exception ex) {
         logger.error(ex.getMessage(), ex);
-        Map<String, Object> map = new HashMap<String, Object>();
-        map.put("errorMsg", ex.getMessage());
-        return map;
+        return new ExceptionHandlerModel(null, ex.getMessage());
     }
     
 }
