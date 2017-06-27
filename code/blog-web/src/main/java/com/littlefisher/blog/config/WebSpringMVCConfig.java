@@ -52,9 +52,9 @@ import com.littlefisher.core.spring.config.swagger.SwaggerConfig;
 public class WebSpringMVCConfig extends WebMvcConfigurerAdapter {
 
     /**
-     * 
+     *
      * Description: 消息转换器配置
-     * 
+     *
      * @author jinyanan
      *
      * @param converters converters
