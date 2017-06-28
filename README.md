@@ -56,8 +56,10 @@
   - `Mybatis generator`使用。在`core-base`项目下，有一个`generatorConfig.xml`文件，针对该文件做部分修改，然后执行`mybatis generator`生成`Mapper`的命令即可。生成的`model`已经附带`Swagger UI`所需注解，同时针对于`import`信息也进行了优化，可以通过`checkstype`的检查。生成的`Mapper`接口，集成了通用的`CRUD`操作，个性化的接口`SQL`操作再另外定义即可。具体通用`Mapper`可参考[github-Mapper][6]![通用Mapper][7]
 
 #### 后续技术扩展
-前端使用`Angular`框架搭建
-后端使用`Apache Shiro`进行权限控制（暂时还不知道`Apache Shiro`和`Spring Security`到底哪个好）
+
+ 1. 前端使用`Angular`框架搭建
+ 2. 后端使用`Apache Shiro`进行权限控制（暂时还不知道`Apache Shiro`和`Spring Security`到底哪个好）
+
   
 
   [1]: http://wx1.sinaimg.cn/large/7dde05d2gy1ffhi4mdb04j21kw0zmk4h.jpg
