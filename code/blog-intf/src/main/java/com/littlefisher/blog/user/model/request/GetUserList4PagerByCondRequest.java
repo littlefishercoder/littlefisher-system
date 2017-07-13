@@ -2,15 +2,13 @@ package com.littlefisher.blog.user.model.request;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年5月18日 
+ * Description:
+ * <p>
+ * Created on 2017年5月18日
  *
  * @author jinyanan
  * @version 1.0
@@ -24,75 +22,73 @@ public class GetUserList4PagerByCondRequest {
      */
     @ApiModelProperty(value = "页码")
     private int pageNum;
-    
+
     /**
      * pageSize 每页行数
      */
     @ApiModelProperty(value = "每页行数")
     private int pageSize;
-    
+
     /**
      * accNbr 账号
      */
     @ApiModelProperty(value = "账号")
     private String accNbr;
-    
+
     /**
      * email 邮箱，模糊查询
      */
     @ApiModelProperty(value = "邮箱，模糊查询")
     private String email;
-    
+
     /**
      * realName 真实姓名，模糊查询
      */
     @ApiModelProperty(value = "真实姓名，模糊查询")
     private String realName;
-    
+
     /**
      * nickName 昵称，模糊查询
      */
     @ApiModelProperty(value = "昵称，模糊查询")
     private String nickName;
-    
+
     /**
      * eName 英文名，模糊查询
      */
     @ApiModelProperty(value = "英文名，模糊查询")
     private String enName;
-    
+
     /**
      * qq qq,模糊查询
      */
     @ApiModelProperty(value = "qq,模糊查询")
     private String qq;
-    
+
     /**
      * phoneNbr 手机号，模糊查询
      */
     @ApiModelProperty(value = "手机号，模糊查询")
     private String phoneNbr;
-    
+
     /**
      * state 状态
      */
     @ApiModelProperty(value = "状态")
     private String state;
-    
+
     /**
      * regDateStart 注册时间，时间范围 开始
      */
     @ApiModelProperty(value = "注册时间，时间范围 开始")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date regDateStart;
-    
+
     /**
      * regDateEnd 注册时间，时间范围 截止
      */
     @ApiModelProperty(value = "注册时间，时间范围 截止")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date regDateEnd;
-    
+
 
     public int getPageNum() {
         return pageNum;
@@ -220,6 +216,6 @@ public class GetUserList4PagerByCondRequest {
         builder.append("]");
         return builder.toString();
     }
-    
-    
+
+
 }

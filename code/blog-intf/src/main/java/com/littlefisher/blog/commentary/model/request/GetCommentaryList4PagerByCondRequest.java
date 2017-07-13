@@ -2,15 +2,13 @@ package com.littlefisher.blog.commentary.model.request;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
 /**
- * 
  * Description: 查询评价列表条件
- *  
- * Created on 2017年5月23日 
+ * <p>
+ * Created on 2017年5月23日
  *
  * @author jinyanan
  * @version 1.0
@@ -24,13 +22,13 @@ public class GetCommentaryList4PagerByCondRequest {
      */
     @ApiModelProperty(value = "页码")
     private int pageNum;
-    
+
     /**
      * pageSize 每页行数
      */
     @ApiModelProperty(value = "每页行数")
     private int pageSize;
-    
+
     /**
      * postId 博文主键
      */
@@ -47,14 +45,12 @@ public class GetCommentaryList4PagerByCondRequest {
      * createdDateStart 创建时间，时间范围开始
      */
     @ApiModelProperty(value = "创建时间，时间范围开始")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdDateStart;
 
     /**
      * createdDateEnd 创建时间，时间范围结束
      */
     @ApiModelProperty(value = "创建时间，时间范围结束")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdDateEnd;
 
     public int getPageNum() {
@@ -123,6 +119,6 @@ public class GetCommentaryList4PagerByCondRequest {
         builder.append("]");
         return builder.toString();
     }
-    
-    
+
+
 }

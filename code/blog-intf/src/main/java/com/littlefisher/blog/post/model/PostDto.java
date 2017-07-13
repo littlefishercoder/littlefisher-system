@@ -121,21 +121,21 @@ public class PostDto implements Serializable {
      */
     @ApiModelProperty(value = "博文")
     private String content;
-    
+
     /**
      * author 作者
      */
     @ApiModelProperty(value = "作者")
     @Transient
     private UserDto author;
-    
+
     /**
-     * postType 博文类型 
+     * postType 博文类型
      */
     @ApiModelProperty(value = "博文类型 ")
     @Transient
     private PostTypeDto postType;
-    
+
     /**
      * postState 博文状态
      */

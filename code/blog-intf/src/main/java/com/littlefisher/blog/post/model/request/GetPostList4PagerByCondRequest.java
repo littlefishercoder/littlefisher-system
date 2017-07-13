@@ -2,15 +2,13 @@ package com.littlefisher.blog.post.model.request;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年5月23日 
+ * Description:
+ * <p>
+ * Created on 2017年5月23日
  *
  * @author jinyanan
  * @version 1.0
@@ -24,37 +22,35 @@ public class GetPostList4PagerByCondRequest {
      */
     @ApiModelProperty(value = "页码")
     private int pageNum;
-    
+
     /**
      * pageSize 每页行数
      */
     @ApiModelProperty(value = "每页行数")
     private int pageSize;
-    
+
     /**
      * title 标题，模糊查询
      */
     @ApiModelProperty(value = "标题，模糊查询")
     private String title;
-    
+
     /**
      * keyword 关键字，针对于博文，模糊查询
      */
     @ApiModelProperty(value = "关键字，针对于博文，模糊查询")
     private String keyword;
-    
+
     /**
      * createdDateStart 创建时间，时间范围的开始时间
      */
     @ApiModelProperty(value = "创建时间，时间范围的开始时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdDateStart;
-    
+
     /**
      * createdDateEnd 创建时间，时间范围的结束时间
      */
     @ApiModelProperty(value = "创建时间，时间范围的结束时间")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createdDateEnd;
 
     public int getPageNum() {
@@ -123,6 +119,6 @@ public class GetPostList4PagerByCondRequest {
         builder.append("]");
         return builder.toString();
     }
-    
-    
+
+
 }
