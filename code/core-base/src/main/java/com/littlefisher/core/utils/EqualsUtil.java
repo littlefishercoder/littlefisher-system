@@ -102,10 +102,7 @@ public final class EqualsUtil {
         if (a == b) {
             return true;
         }
-        if (a == null || b == null) {
-            return false;
-        }
-        return (a.trim().equals(b.trim()));
+        return a != null && b != null && (a.trim().equals(b.trim()));
     }
 
     /**
@@ -122,10 +119,7 @@ public final class EqualsUtil {
         if (a == b) {
             return true;
         }
-        if (a == null || b == null) {
-            return false;
-        }
-        return (a.equalsIgnoreCase(b));
+        return a != null && b != null && (a.equalsIgnoreCase(b));
     }
 
     /**
@@ -170,10 +164,7 @@ public final class EqualsUtil {
         if (a == b) {
             return true;
         }
-        if (a == null || b == null) {
-            return false;
-        }
-        return a.equals(b);
+        return a != null && b != null && a.equals(b);
     }
 
 }

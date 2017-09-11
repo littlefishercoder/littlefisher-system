@@ -17,27 +17,11 @@ public abstract class AbstractCommandInterceptor implements CommandInterceptor {
      */
     protected CommandInterceptor next;
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     @Override
     public CommandInterceptor getNext() {
         return next;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param next <br>
-     */
     @Override
     public void setNext(CommandInterceptor next) {
         this.next = next;

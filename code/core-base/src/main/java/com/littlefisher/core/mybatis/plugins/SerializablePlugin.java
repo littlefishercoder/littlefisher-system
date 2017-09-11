@@ -11,10 +11,9 @@ import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月28日 
+ * Description:
+ *
+ * Created on 2017年2月28日
  *
  * @author jinyanan
  * @version 1.0
@@ -26,17 +25,17 @@ public class SerializablePlugin extends PluginAdapter {
      * serializable
      */
     private FullyQualifiedJavaType serializable;
-    
+
     /**
      * gwtSerializable
      */
     private FullyQualifiedJavaType gwtSerializable;
-    
+
     /**
      * addGWTInterface
      */
     private boolean addGWTInterface;
-    
+
     /**
      * suppressJavaInterface
      */
@@ -51,15 +50,6 @@ public class SerializablePlugin extends PluginAdapter {
         gwtSerializable = new FullyQualifiedJavaType("com.google.gwt.user.client.rpc.IsSerializable"); //$NON-NLS-1$
     }
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param warnings warnings
-     * @return boolean
-     */
     public boolean validate(List<String> warnings) {
         // this plugin is always valid
         return true;
@@ -71,44 +61,31 @@ public class SerializablePlugin extends PluginAdapter {
         addGWTInterface = Boolean.valueOf(properties.getProperty("addGWTInterface")); //$NON-NLS-1$
         suppressJavaInterface = Boolean.valueOf(properties.getProperty("suppressJavaInterface")); //$NON-NLS-1$
     }
-    
+
     @Override
-    public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         makeSerializable(topLevelClass, introspectedTable);
         return true;
     }
 
     @Override
-    public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         makeSerializable(topLevelClass, introspectedTable);
         return true;
     }
 
     @Override
-    public boolean modelRecordWithBLOBsClassGenerated(
-            TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean modelRecordWithBLOBsClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         makeSerializable(topLevelClass, introspectedTable);
         return true;
     }
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable <br>
-     */
-    protected void makeSerializable(TopLevelClass topLevelClass,
-            IntrospectedTable introspectedTable) {
+    protected void makeSerializable(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         if (addGWTInterface) {
             topLevelClass.addImportedType(gwtSerializable);
             topLevelClass.addSuperInterface(gwtSerializable);
         }
-        
+
         if (!suppressJavaInterface) {
             topLevelClass.addImportedType(serializable);
             topLevelClass.addSuperInterface(serializable);
@@ -120,7 +97,7 @@ public class SerializablePlugin extends PluginAdapter {
             field.setStatic(true);
             field.setType(new FullyQualifiedJavaType("long")); //$NON-NLS-1$
             field.setVisibility(JavaVisibility.PRIVATE);
-            field.addJavaDocLine("/**"); 
+            field.addJavaDocLine("/**");
             field.addJavaDocLine(" * serialVersionUID");
             field.addJavaDocLine(" */");
             context.getCommentGenerator().addFieldComment(field, introspectedTable);

@@ -15,18 +15,6 @@ import com.littlefisher.core.interceptor.context.Context;
  */
 public class CommandInvoker extends AbstractCommandInterceptor {
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param config <br>
-     * @param command <br>
-     * @param <U> <U>
-     * @return <br>
-     * @throws BaseAppException <br>
-     */
     @Override
     public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
         // Context.getCommandContext()是为了能让业务的command中，调用工具方法
@@ -35,27 +23,11 @@ public class CommandInvoker extends AbstractCommandInterceptor {
         return command.execute(Context.getCommandContext());
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     @Override
     public CommandInterceptor getNext() {
         return null;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param next <br>
-     */
     @Override
     public void setNext(CommandInterceptor next) {
         throw new UnsupportedOperationException("CommandInvoker must be the last interceptor in the chain");

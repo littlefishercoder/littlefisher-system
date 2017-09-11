@@ -141,7 +141,7 @@ public final class DateUtil {
      */
     public static String date2String(Date date, String format) {
         if (date == null) {
-            return "";
+            return StringUtil.EMPTY;
         }
         SimpleDateFormat sdf = getDateFormat(format);
         return sdf.format(date);
@@ -231,8 +231,8 @@ public final class DateUtil {
      */
     public static java.sql.Date string2SQLDate(String date) {
         java.sql.Date ret = null;
-        if (date == null || date.length() == 0) {
-            return ret;
+        if (StringUtil.isEmpty(date)) {
+            return null;
         }
         if (date.length() > 11) {
             if (date.indexOf('-') > 0) {
@@ -282,11 +282,11 @@ public final class DateUtil {
             operateException = new IllegalArgumentException("the date format string is null!");
         }
         SimpleDateFormat sdf = getDateFormat(format);
-        if (sdf == null) {
-            isSucc = false;
-            operateException = new IllegalArgumentException(
-                "the date format string is not matching available format object");
-        }
+//        if (sdf == null) {
+//            isSucc = false;
+//            operateException = new IllegalArgumentException(
+//                "the date format string is not matching available format object");
+//        }
         java.util.Date tmpDate = null;
         try {
             if (isSucc) {
@@ -328,9 +328,9 @@ public final class DateUtil {
      * @return Date
      */
     public static Date string2Date(String date) {
-        Date ret = null;
-        if (date == null || date.length() == 0) {
-            return ret;
+        Date ret;
+        if (StringUtil.isEmpty(date)) {
+            return null;
         }
         if (date.length() > 11) {
             if (date.indexOf('-') > 0) {
@@ -377,9 +377,9 @@ public final class DateUtil {
             throw new IllegalArgumentException("the date format string is null!");
         }
         SimpleDateFormat sdf = getDateFormat(format);
-        if (sdf == null) {
-            throw new IllegalArgumentException("the date format string is not matching available format object");
-        }
+//        if (sdf == null) {
+//            throw new IllegalArgumentException("the date format string is not matching available format object");
+//        }
         try {
             return sdf.parse(date);
         }
@@ -668,9 +668,8 @@ public final class DateUtil {
      * @param beginDate beginDate
      * @param endDate endDate
      * @return true-在范围之内；false-不在范围内
-     * @exception BaseAppException <br>
      */
-    public static boolean isInRange(String date, String beginDate, String endDate) throws BaseAppException {
+    public static boolean isInRange(String date, String beginDate, String endDate) {
         if (StringUtil.isEmpty(date) || StringUtil.isEmpty(beginDate) || StringUtil.isEmpty(endDate)) {
             ExceptionHandler.publish("");
         }
@@ -772,7 +771,7 @@ public final class DateUtil {
      * @throws BaseAppException 
      */
     public static java.sql.Date getSqlDBDateTime() throws BaseAppException {
-        java.sql.Date retDate = null;
+        java.sql.Date retDate;
         long begin = System.currentTimeMillis();
         if (latestQueryTimeMillis == 0 || (begin - latestQueryTimeMillis > 1000L * 60 * 20)) { // 定为20分钟
             // 是首次查询，或者是查询超过了指定的间隔时间 <br>
@@ -802,9 +801,8 @@ public final class DateUtil {
      * @author jinyanan
      *
      * @return java.util.Date
-     * @throws BaseAppException <br>
      */
-    public static java.util.Date getDBDateTime() throws BaseAppException {
+    public static java.util.Date getDBDateTime() {
         return sqlDate2Date(getSqlDBDateTime());
     }
 
@@ -815,11 +813,10 @@ public final class DateUtil {
      * @author jinyanan
      *
      * @return java.sql.Date
-     * @throws BaseAppException 
      */
-    private static Date getDBCurrentTime() throws BaseAppException {
-        SystemEngine systemEngine = SpringContextUtil.getBean("systemEngine");
-        DBServiceImpl dbServiceImpl = (DBServiceImpl) systemEngine.getService("CORE.DBService");
+    private static Date getDBCurrentTime() {
+        SystemEngine systemEngine = SpringContextUtil.getBean(SystemEngine.class);
+        DBServiceImpl dbServiceImpl = (DBServiceImpl) systemEngine.getService("core.dbService");
         return dbServiceImpl.getDBDateTime();
     }
 
@@ -836,13 +833,7 @@ public final class DateUtil {
      */
     public static Date dateOffsetCalc(int offset, String dateTimeStr, int intout) {
         Date ret = string2Date(dateTimeStr);
-        boolean hasTimeStr = false;
-        if (dateTimeStr.length() > 11) {
-            hasTimeStr = true;
-        }
-        else {
-            hasTimeStr = false;
-        }
+        boolean hasTimeStr = dateTimeStr.length() > 11;
         if (ret != null) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(ret);

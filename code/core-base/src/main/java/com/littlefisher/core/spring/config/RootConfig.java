@@ -15,11 +15,10 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @ComponentScan(basePackages = {
-        "com.littlefisher.core.aop", 
+        "com.littlefisher.core.spring.config.aop",
         "com.littlefisher.core.interceptor.service", 
         "com.littlefisher.**.service.impl",
-        "com.yc.room1000.**.service.impl", 
-        "com.littlefisher.core.utils", 
+        "com.littlefisher.core.utils",
         "com.littlefisher.core.exception"
         })
 @Import(value = {

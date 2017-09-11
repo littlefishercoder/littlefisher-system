@@ -7,6 +7,8 @@ import com.littlefisher.blog.system.model.request.GetSystemParamList4PagerByCond
 
 import tk.mybatis.mapper.common.Mapper;
 
+import org.apache.ibatis.session.RowBounds;
+
 
 /**
  *
@@ -51,4 +53,12 @@ public interface SystemParamDtoMapper extends Mapper<SystemParamDto> {
      * @return List<SystemParamDto>
      */
     List<SystemParamDto> selectByCond(GetSystemParamList4PagerByCondRequest req);
+
+    /**
+     * 使用Mybatis原生分页进行测试
+     * @param req req
+     * @param rowBounds 分页参数
+     * @return List<SystemParamDto>
+     */
+    List<SystemParamDto> selectByCond(GetSystemParamList4PagerByCondRequest req, RowBounds rowBounds);
 }

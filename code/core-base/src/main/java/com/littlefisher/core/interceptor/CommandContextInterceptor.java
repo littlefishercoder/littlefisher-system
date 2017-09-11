@@ -6,10 +6,9 @@ import com.littlefisher.core.interceptor.context.Context;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
- * 
  * Description: Command上下文拦截器
- *  
- * Created on 2017年2月10日 
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -32,44 +31,22 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
      */
     protected SystemEngineConfig systemEngineConfig;
 
-    /**
-     * CommandContextInterceptor
-     */
     public CommandContextInterceptor() {
     }
 
-    /**
-     * CommandContextInterceptor
-     * 
-     * @param commandContextFactory <br>
-     * @param systemEngineConfig <br>
-     */
     public CommandContextInterceptor(CommandContextFactory commandContextFactory, SystemEngineConfig systemEngineConfig) {
         this.commandContextFactory = commandContextFactory;
         this.systemEngineConfig = systemEngineConfig;
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param config <br>
-     * @param command <br>
-     * @param <U> <U>
-     * @return <br>
-     * @throws BaseAppException <br>
-     */
     public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
         CommandContext context = Context.getCommandContext();
 
         boolean contextReused = false;
         if (!config.isContextReusePossible() || context == null || context.getException() != null) {
             context = commandContextFactory.createCommandContext(command);
-        }
-        else {
-            logger.debug("Valid context found. Reusing it for the current command '{}'", command.getClass()
-                .getCanonicalName());
+        } else {
+            logger.debug("Valid context found. Reusing it for the current command '{}'", command.getClass().getCanonicalName());
             contextReused = true;
         }
         try {
@@ -79,20 +56,17 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
 
             return next.execute(config, command);
 
-        }
-        catch (BaseAppException e) {
+        } catch (BaseAppException e) {
 
             context.exception(e);
             throw e;
 
-        }
-        finally {
+        } finally {
             try {
                 if (!contextReused) {
                     context.close();
                 }
-            }
-            finally {
+            } finally {
                 // Pop from stack
                 Context.removeCommandContext();
                 Context.removeSystemEngineConfig();

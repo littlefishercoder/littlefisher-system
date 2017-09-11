@@ -22,131 +22,36 @@ public final class ExceptionHandler {
     /** logger */
     private static LittleFisherLogger logger = LittleFisherLogger.getLogger(ExceptionHandler.class);
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param errorCode errorCode
-     * @param t t
-     * @return BaseAppException
-     * @throws BaseAppException BaseAppException
-     */
     public static BaseAppException publish(String errorCode, Throwable t) throws BaseAppException {
         return publish(errorCode, null, t, null, null, null);
     }
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param errorCode errorCode
-     * @return BaseAppException
-     * @throws BaseAppException BaseAppException
-     */
     public static BaseAppException publish(String errorCode) throws BaseAppException {
         return publish(errorCode, null, null, null, null, null);
     }
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param errorCode errorCode
-     * @param msg msg
-     * @return BaseAppException
-     * @throws BaseAppException BaseAppException
-     */
     public static BaseAppException publish(String errorCode, String msg) throws BaseAppException {
         return publish(errorCode, msg, null, null, null, null);
     }
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param errorCode errorCode
-     * @param msg msg
-     * @param t t
-     * @return BaseAppException
-     * @throws BaseAppException BaseAppException
-     */
     public static BaseAppException publish(String errorCode, String msg, Throwable t) throws BaseAppException {
         return publish(errorCode, msg, t, null, null, null);
     }
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param errorCode errorCode
-     * @param msg msg
-     * @param t t
-     * @param param param
-     * @return BaseAppException
-     * @throws BaseAppException BaseAppException
-     */
     public static BaseAppException publish(String errorCode, String msg, Throwable t, String param)
         throws BaseAppException {
         return publish(errorCode, msg, t, param, null, null);
     }
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param errorCode errorCode
-     * @param msg msg
-     * @param param1 param1
-     * @return BaseAppException
-     * @throws BaseAppException BaseAppException
-     */
     public static BaseAppException publish(String errorCode, String msg, String param1) throws BaseAppException {
         return publish(errorCode, msg, null, param1, null, null);
     }
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param errorCode errorCode
-     * @param msg msg
-     * @param param1 param1
-     * @param param2 param2
-     * @return BaseAppException
-     * @throws BaseAppException BaseAppException
-     */
     public static BaseAppException publish(String errorCode, String msg, String param1, String param2)
         throws BaseAppException {
         return publish(errorCode, msg, null, param1, param2, null);
     }
 
-    /**
-     * Description:
-     * 
-     * @author jinyanan
-     * @param errorCode errorCode
-     * @param msg msg
-     * @param t t
-     * @param param1 param1
-     * @param param2 param2
-     * @param param3 param3
-     * @return BaseAppException
-     * @throws BaseAppException BaseAppException
-     */
     public static BaseAppException publish(String errorCode, String msg, Throwable t, String param1, String param2,
         String param3) throws BaseAppException {
 
@@ -188,9 +93,9 @@ public final class ExceptionHandler {
 //        }
         
         StackTraceElement[] trace = baseAppException.getStackTrace();
-        for (int i = 0; i < trace.length; i++) {
+        for (StackTraceElement aTrace : trace) {
             sb.append("\r\n\tat ");
-            sb.append(trace[i]);
+            sb.append(aTrace);
         }
         Throwable cause = baseAppException.getCause();
 

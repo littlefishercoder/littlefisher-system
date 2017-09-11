@@ -14,33 +14,11 @@ import com.littlefisher.core.exception.BaseAppException;
  */
 public class EventBuilder {
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param type <br>
-     * @return <br>
-     */
     public static Event createGlobalEvent(String type) {
-        EventImpl newEvent = new EventImpl(type);
-        return newEvent;
+        return new EventImpl(type);
     }
     
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param type <br>
-     * @param entity <br>
-     * @return <br>
-     * @throws BaseAppException 
-     */
     public static EntityEvent createEntityEvent(String type, Object entity) throws BaseAppException {
-        EntityEventImpl newEvent = new EntityEventImpl(entity, type);
-        return newEvent;
+        return new EntityEventImpl(entity, type);
     }
 }

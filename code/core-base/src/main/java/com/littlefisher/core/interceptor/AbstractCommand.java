@@ -4,15 +4,14 @@ import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月11日 
+ * Description:
  *
+ * Created on 2017年2月11日
+ *
+ * @param <U> <U>
  * @author jinyanan
  * @version 1.0
  * @since v1.0
- * @param <U> <U>
  */
 public abstract class AbstractCommand<U> implements Command<U> {
 
@@ -21,14 +20,6 @@ public abstract class AbstractCommand<U> implements Command<U> {
      */
     private CommandContext commandContext;
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public CommandContext getCommandContext() {
         return commandContext;
     }
@@ -36,95 +27,58 @@ public abstract class AbstractCommand<U> implements Command<U> {
     /**
      * Description: <br>
      * 此方法只会在command execute 方法内部使用
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param <T> <br>
-     * @param typeClass <br>
-     * @return <T> <br>
-     * @throws BaseAppException <br>
      */
-    protected <T> T getMapper(Class<T> typeClass) throws BaseAppException {
+    protected <T> T getMapper(Class<T> typeClass) {
         return commandContext.getDbSqlSession().getMapper(typeClass);
     }
 
-    /**
-     * Description: <br>
-     * 此方法只会在command execute 方法内部使用
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return EventDispatcher <br>
-     * @throws BaseAppException <br>
-     */
-//    protected EventDispatcher getEventDispatcher() throws BaseAppException {
-//        return commandContext.getSystemEngineConfig().getEventDispatcher();
-//    }
+    //    /**
+    //     * Description: <br>
+    //     * 此方法只会在command execute 方法内部使用
+    //     */
+    //    protected EventDispatcher getEventDispatcher() throws BaseAppException {
+    //        return commandContext.getSystemEngineConfig().getEventDispatcher();
+    //    }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param event <br>
-     * @throws BaseAppException <br>
-     */
-//    public void dispatchEvent(Event event) throws BaseAppException {
-//        if (getEventDispatcher().isEnabled()) {
-//            getEventDispatcher().dispatchEvent(event);
-//        }   
-//    }
-    
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param type <br>
-     * @param entity <br>
-     * @throws BaseAppException <br>
-     */
-//    public void dispatchEntityEvent(String type, Object entity) throws BaseAppException {
-//        if (getEventDispatcher().isEnabled()) {
-//            getEventDispatcher().dispatchEntityEvent(type, entity);
-//        }
-//    }
+    //    /**
+    //     * Description: <br>
+    //     *
+    //     */
+    //    public void dispatchEvent(Event event) throws BaseAppException {
+    //        if (getEventDispatcher().isEnabled()) {
+    //            getEventDispatcher().dispatchEvent(event);
+    //        }
+    //    }
+
+    //    public void dispatchEntityEvent(String type, Object entity) throws BaseAppException {
+    //        if (getEventDispatcher().isEnabled()) {
+    //            getEventDispatcher().dispatchEntityEvent(type, entity);
+    //        }
+    //    }
 
     /**
      * Description: <br>
      * 此方法只会在command execute 方法内部使用
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param serviceName <br>
-     * @return ServiceImpl <br>
-     * @throws BaseAppException <br>
      */
     protected ServiceImpl getService(String serviceName) throws BaseAppException {
         return commandContext.getSystemEngineConfig().getService(serviceName);
     }
-    
+
     /**
-     * 
      * Description: 获取Service
-     * 
-     * @author jinyanan
      *
      * @param <T> <T>
      * @param clazzService clazzService
      * @return ServiceImpl的具体实现类
      * @throws BaseAppException <br>
      */
-    protected <T> T getService(Class<T> clazzService) throws BaseAppException {
+    protected <T> T getService(Class<? extends ServiceImpl> clazzService) throws BaseAppException {
         return commandContext.getSystemEngineConfig().getService(clazzService);
     }
 
     /**
      * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
+     *
      * @param commandContext <br>
      * @return Object <br>
      * @throws BaseAppException <br>
@@ -134,13 +88,5 @@ public abstract class AbstractCommand<U> implements Command<U> {
         return execute();
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return Object <br>
-     * @throws BaseAppException <br>
-     */
     public abstract U execute() throws BaseAppException;
 }

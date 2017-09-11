@@ -25,14 +25,6 @@ public class EventImpl implements Event {
         this.type = type;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     @Override
     public String getType() {
         return type;

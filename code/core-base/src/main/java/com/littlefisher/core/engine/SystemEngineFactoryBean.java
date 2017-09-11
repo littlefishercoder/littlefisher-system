@@ -68,26 +68,10 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
         return systemEngine;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public Map<String, ServiceImpl> getRegisterServices() {
         return registerServices;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param registerServices <br>
-     */
     public void setRegisterServices(Map<String, ServiceImpl> registerServices) {
         this.registerServices = registerServices;
     }

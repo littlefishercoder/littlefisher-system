@@ -11,8 +11,7 @@ import com.littlefisher.core.utils.StringUtil;
 
 /**
  * Description: 自定义日期转换类
- * <p>
- * <p>
+ *
  * Created on 2017年07月13日
  *
  * @author jinyanan

@@ -24,69 +24,25 @@ public class CommandExecutorImpl implements CommandExecutor {
      */
     private final CommandInterceptor first;
     
-    /**
-     * CommandExecutorImpl
-     * @param defaultConfig <br>
-     * @param first <br>
-     */
     public CommandExecutorImpl(CommandConfig defaultConfig, CommandInterceptor first) {
         this.defaultConfig = defaultConfig;
         this.first = first;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public CommandInterceptor getFirst() {
         return first;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     @Override
     public CommandConfig getDefaultConfig() {
         return defaultConfig;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param command <br>
-     * @param <U> <U>
-     * @return <br>
-     * @throws BaseAppException <br>
-     */
     @Override
     public <U> U execute(Command<U> command) throws BaseAppException {
         return execute(defaultConfig, command);
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param config <br>
-     * @param command <br>
-     * @param <U> <U>
-     * @return <br>
-     * @throws BaseAppException <br>
-     */
     @Override
     public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
         return first.execute(config, command);

@@ -1,7 +1,5 @@
 package com.littlefisher.core.interceptor;
 
-import com.littlefisher.core.exception.BaseAppException;
-
 /**
  * 
  * Description: 
@@ -15,25 +13,15 @@ import com.littlefisher.core.exception.BaseAppException;
  */
 public interface Command<U> {
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param commandContext <br>
-     * @return <br>
-     * @throws BaseAppException <br>
-     */
-    U execute(CommandContext commandContext) throws BaseAppException;
+    U execute(CommandContext commandContext);
     
-    /**
-     * object 实现toString()方法，将相应的属性值输出
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
+//    /**
+//     * object 实现toString()方法，将相应的属性值输出
+//     * Description: <br>
+//     *
+//     * @author jinyanan<br>
+//     * @taskId <br>
+//     * @return <br>
+//     */
 //    List<Object> getInputArgs();
 }

@@ -19,12 +19,6 @@ public class EntityEventImpl extends EventImpl implements EntityEvent {
      */
     protected Object entity;
     
-    /**
-     * <Description> <br>
-     * @param entity <br>
-     * @param type <br>
-     * @throws BaseAppException 
-     */
     public EntityEventImpl(Object entity, String type) throws BaseAppException {
         super(type);
         if (entity == null) {
@@ -34,14 +28,6 @@ public class EntityEventImpl extends EventImpl implements EntityEvent {
         this.entity = entity;
     }
     
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     @Override
     public Object getEntity() {
         return entity;

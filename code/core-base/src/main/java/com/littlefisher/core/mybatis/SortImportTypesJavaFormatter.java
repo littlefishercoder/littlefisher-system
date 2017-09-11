@@ -18,11 +18,12 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.config.Context;
 
+import com.littlefisher.core.utils.CollectionUtil;
+
 /**
- * 
  * Description: 对import导入的包进行排序
- *  
- * Created on 2017年3月9日 
+ *
+ * Created on 2017年3月9日
  *
  * @author jinyanan
  * @version 1.0
@@ -34,24 +35,13 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
      * context
      */
     protected Context context;
-    
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param compilationUnit compilationUnit
-     * @return String
-     */
+
     public String getFormattedContent(CompilationUnit compilationUnit) {
         if (compilationUnit instanceof TopLevelClass) {
             return this.getClassFormattedContent(compilationUnit);
-        }
-        else if (compilationUnit instanceof Interface) {
+        } else if (compilationUnit instanceof Interface) {
             return this.getInterfaceFormattedContent(compilationUnit);
-        }
-        else {
+        } else {
             return compilationUnit.getFormattedContent();
         }
     }
@@ -59,19 +49,13 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
     public void setContext(Context context) {
         this.context = context;
     }
-    
+
     /**
-     * 
      * Description: 接口format
-     * 
-     * @author jinyanan
-     *
-     * @param compilationUnit compilationUnit
-     * @return <br>
      */
     private String getInterfaceFormattedContent(CompilationUnit compilationUnit) {
         StringBuilder sb = new StringBuilder();
-        
+
         Interface interfaceClazz = (Interface) compilationUnit;
 
         for (String commentLine : interfaceClazz.getFileCommentLines()) {
@@ -79,29 +63,18 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
             newLine(sb);
         }
 
-        if (stringHasValue(interfaceClazz.getType().getPackageName())) {
-            sb.append("package "); //$NON-NLS-1$
-            sb.append(interfaceClazz.getType().getPackageName());
-            sb.append(';');
-            newLine(sb);
-            newLine(sb);
-        }
+        formatPackage(sb, interfaceClazz.getType().getPackageName());
 
-        for (String staticImport : interfaceClazz.getStaticImports()) {
-            sb.append("import static "); //$NON-NLS-1$
-            sb.append(staticImport);
-            sb.append(';');
-            newLine(sb);
-        }
-        
+        formatStaticImports(sb, interfaceClazz.getStaticImports());
+
         if (interfaceClazz.getStaticImports().size() > 0) {
             newLine(sb);
         }
-        
+
         Set<String> importStrings = calculateImports(interfaceClazz.getImportedTypes());
         this.sortImportTypes(sb, importStrings);
 
-        if (importStrings.size() > 0) {
+        if (CollectionUtil.isNotEmpty(importStrings)) {
             newLine(sb);
         }
 
@@ -130,8 +103,7 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
             for (FullyQualifiedJavaType fqjt : interfaceClazz.getSuperInterfaceTypes()) {
                 if (comma) {
                     sb.append(", "); //$NON-NLS-1$
-                } 
-                else {
+                } else {
                     comma = true;
                 }
 
@@ -159,19 +131,22 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
 
         return sb.toString();
     }
-    
+
+    private void formatStaticImports(StringBuilder sb, Set<String> staticImports) {
+        for (String staticImport : staticImports) {
+            sb.append("import static "); //$NON-NLS-1$
+            sb.append(staticImport);
+            sb.append(';');
+            newLine(sb);
+        }
+    }
+
     /**
-     * 
      * Description: 类format
-     * 
-     * @author jinyanan
-     *
-     * @param compilationUnit compilationUnit
-     * @return <br>
      */
     private String getClassFormattedContent(CompilationUnit compilationUnit) {
         StringBuilder sb = new StringBuilder();
-        
+
         TopLevelClass topLevelClass = (TopLevelClass) compilationUnit;
 
         for (String fileCommentLine : topLevelClass.getFileCommentLines()) {
@@ -179,43 +154,39 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
             newLine(sb);
         }
 
-        if (stringHasValue(topLevelClass.getType().getPackageName())) {
-            sb.append("package "); //$NON-NLS-1$
-            sb.append(topLevelClass.getType().getPackageName());
-            sb.append(';');
-            newLine(sb);
-            newLine(sb);
-        }
+        formatPackage(sb, topLevelClass.getType().getPackageName());
 
-        for (String staticImport : topLevelClass.getStaticImports()) {
-            sb.append("import static "); //$NON-NLS-1$
-            sb.append(staticImport);
-            sb.append(';');
-            newLine(sb);
-        }
-        
+        formatStaticImports(sb, topLevelClass.getStaticImports());
+
         if (topLevelClass.getStaticImports().size() > 0) {
             newLine(sb);
         }
-        
+
         Set<String> importStrings = calculateImports(topLevelClass.getImportedTypes());
-        
+
         sortImportTypes(sb, importStrings);
 
         if (importStrings.size() > 0) {
             newLine(sb);
         }
-        
+
         sb.append(topLevelClass.getFormattedContent(0, compilationUnit));
 
         return sb.toString();
     }
 
+    private void formatPackage(StringBuilder sb, String packageName) {
+        if (stringHasValue(packageName)) {
+            sb.append("package "); //$NON-NLS-1$
+            sb.append(packageName);
+            sb.append(';');
+            newLine(sb);
+            newLine(sb);
+        }
+    }
+
     /**
-     * 
      * Description: 格式化import
-     * 
-     * @author jinyanan
      *
      * @param sb sb
      * @param importStrings <br>
@@ -226,69 +197,65 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
         Set<String> orgTypes = new TreeSet<>();
         Set<String> otherTypes = new TreeSet<>();
         Set<String> comTypes = new TreeSet<>();
-        
+
         for (String importType : importStrings) {
             if (importType.startsWith("import javax")) {
                 javaxTypes.add(importType);
-            }
-            else if (importType.startsWith("import java")) {
+            } else if (importType.startsWith("import java")) {
                 javaTypes.add(importType);
-            }
-            else if (importType.startsWith("import org")) {
+            } else if (importType.startsWith("import org")) {
                 orgTypes.add(importType);
-            }
-            else if (importType.startsWith("import com")) {
+            } else if (importType.startsWith("import com")) {
                 comTypes.add(importType);
-            }
-            else {
+            } else {
                 otherTypes.add(importType);
             }
         }
-        
+
         for (String importType : javaTypes) {
             sb.append(importType);
             newLine(sb);
         }
-        
+
         if (javaTypes.size() > 0) {
             newLine(sb);
         }
-        
+
         for (String importType : javaxTypes) {
             sb.append(importType);
             newLine(sb);
         }
-        
+
         if (javaxTypes.size() > 0) {
             newLine(sb);
         }
-        
+
         for (String importType : orgTypes) {
             sb.append(importType);
             newLine(sb);
         }
-        
+
         if (orgTypes.size() > 0) {
             newLine(sb);
         }
-        
+
         for (String importType : comTypes) {
             sb.append(importType);
             newLine(sb);
         }
-        
+
         if (comTypes.size() > 0) {
             newLine(sb);
         }
-        
+
         for (String importType : otherTypes) {
             sb.append(importType);
             newLine(sb);
         }
-        
+
         if (otherTypes.size() > 0) {
             newLine(sb);
         }
     }
-    
+
 }

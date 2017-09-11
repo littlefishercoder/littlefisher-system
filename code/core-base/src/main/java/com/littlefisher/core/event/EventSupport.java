@@ -1,18 +1,20 @@
 package com.littlefisher.core.event;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.ArrayUtils;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.littlefisher.core.exception.BaseAppException;
+import com.littlefisher.core.utils.CollectionUtil;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月10日 
+ * Description:
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -39,18 +41,10 @@ public class EventSupport {
      * EventSupport
      */
     public EventSupport() {
-        eventListeners = new ArrayList<EventListener>();
-        typedListeners = new HashMap<String, List<EventListener>>();
+        eventListeners = Lists.newArrayList();
+        typedListeners = Maps.newHashMap();
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param listenerToAdd <br>
-     */
     public synchronized void addEventListener(EventListener listenerToAdd) {
         if (listenerToAdd == null) {
             throw new IllegalArgumentException("Listener cannot be null.");
@@ -60,39 +54,21 @@ public class EventSupport {
         }
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param listenerToAdd <br>
-     * @param types <br>
-     */
     public synchronized void addEventListener(EventListener listenerToAdd, String... types) {
         if (listenerToAdd == null) {
             throw new IllegalArgumentException("Listener cannot be null.");
         }
 
-        if (types == null || types.length == 0) {
+        if (ArrayUtils.isEmpty(types)) {
             addEventListener(listenerToAdd);
 
-        }
-        else {
+        } else {
             for (String type : types) {
                 addTypedEventListener(listenerToAdd, type);
             }
         }
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param listenerToRemove <br>
-     */
     public void removeEventListener(EventListener listenerToRemove) {
         eventListeners.remove(listenerToRemove);
 
@@ -101,15 +77,6 @@ public class EventSupport {
         }
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param event <br>
-     * @throws BaseAppException 
-     */
     public void dispatchEvent(Event event) throws BaseAppException {
         if (event == null) {
             throw new IllegalArgumentException("Event cannot be null.");
@@ -128,33 +95,21 @@ public class EventSupport {
 
         // Call typed listeners, if any
         List<EventListener> typed = typedListeners.get(event.getType());
-        if (typed != null && !typed.isEmpty()) {
+        if (CollectionUtil.isNotEmpty(typed)) {
             for (EventListener listener : typed) {
                 dispatchEvent(event, listener);
             }
         }
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param event <br>
-     * @param listener <br>
-     * @throws BaseAppException 
-     */
     protected void dispatchEvent(Event event, EventListener listener) throws BaseAppException {
         try {
             listener.onEvent(event);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             if (listener.isFailOnException()) {
                 logger.error(ex.getMessage());
                 throw new BaseAppException("S-SYSTEMCOM-004", ex);
-            }
-            else {
+            } else {
                 // Ignore the exception and continue notifying remaining listeners. The
                 // listener
                 // explicitly states that the exception should not bubble up
@@ -163,22 +118,9 @@ public class EventSupport {
         }
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param listener <br>
-     * @param type <br>
-     */
     protected synchronized void addTypedEventListener(EventListener listener, String type) {
-        List<EventListener> listeners = typedListeners.get(type);
-        if (listeners == null) {
-            // Add an empty list of listeners for this type
-            listeners = new ArrayList<EventListener>();
-            typedListeners.put(type, listeners);
-        }
+        List<EventListener> listeners = typedListeners.computeIfAbsent(type, k -> Lists.newArrayList());
+        // Add an empty list of listeners for this type
 
         if (!listeners.contains(listener)) {
             listeners.add(listener);

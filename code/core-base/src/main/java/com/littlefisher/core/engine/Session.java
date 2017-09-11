@@ -12,21 +12,7 @@ package com.littlefisher.core.engine;
  */
 public interface Session {
     
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
-     */
     void flush();
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
-     */
     void close();
 }

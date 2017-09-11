@@ -13,34 +13,32 @@ import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.util.StringUtility;
 
-
 /**
- * 
  * Description: 处理dao接口和model实体类注释和导入
- *  
- * Created on 2017年3月4日 
+ *
+ * Created on 2017年3月4日
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
 public class ImportsPlugin extends PluginAdapter {
-    
+
     /**
      * properties
      */
     private Properties properties;
-    
+
     /**
      * author
      */
     private String author;
-    
+
     /**
      * currentDateStr
      */
     private String currentDateStr;
-    
+
     @Override
     public void setContext(Context context) {
         super.setContext(context);
@@ -51,26 +49,21 @@ public class ImportsPlugin extends PluginAdapter {
     public boolean validate(List<String> warnings) {
         return true;
     }
-    
+
     @Override
     public void setProperties(Properties properties) {
         super.setProperties(properties);
-        
+
         String authorString = this.properties.getProperty("author");
         if (StringUtility.stringHasValue(authorString)) {
             author = authorString;
         }
-        
+
         currentDateStr = new SimpleDateFormat("yyyy年MM月dd日").format(new Date());
     }
-    
+
     /**
      * 生成的Mapper接口
-     *
-     * @param interfaze interfaze
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
-     * @return boolean
      */
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -85,24 +78,21 @@ public class ImportsPlugin extends PluginAdapter {
         interfaze.addJavaDocLine(" */");
         return true;
     }
-    
+
     /**
      * 处理实体类的包和@Table注解
-     *
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
      */
     private void processEntityClass(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-        
+
         // 导入ApiModel和ApiModelProperty包，用于swaggerUI
         topLevelClass.addImportedType("com.wordnik.swagger.annotations.ApiModel");
         topLevelClass.addImportedType("com.wordnik.swagger.annotations.ApiModelProperty");
-        
+
         topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
-        
+
         // 引入JPA注解
         topLevelClass.addImportedType("javax.persistence.Column");
-        
+
         Field generatedValueField = null;
         for (Field field : topLevelClass.getFields()) {
             List<String> annotations = field.getAnnotations();
@@ -113,14 +103,14 @@ public class ImportsPlugin extends PluginAdapter {
                 }
             }
         }
-        
+
         if (generatedValueField != null) {
 
             topLevelClass.addImportedType("javax.persistence.GeneratedValue");
             topLevelClass.addImportedType("javax.persistence.GenerationType");
         }
         topLevelClass.addImportedType("javax.persistence.Id");
-        
+
         // 判断field是否是Transient，如果是则导入对应包
         for (Field field : topLevelClass.getFields()) {
             if (field.isTransient()) {
@@ -128,7 +118,7 @@ public class ImportsPlugin extends PluginAdapter {
                 break;
             }
         }
-        
+
         // 实体类注释
         topLevelClass.addJavaDocLine("/**");
         topLevelClass.addJavaDocLine(" *");
@@ -140,13 +130,9 @@ public class ImportsPlugin extends PluginAdapter {
         topLevelClass.addJavaDocLine(" * @since v1.0");
         topLevelClass.addJavaDocLine(" */");
     }
-    
+
     /**
      * 生成基础实体类
-     *
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
-     * @return boolean
      */
     @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -156,10 +142,6 @@ public class ImportsPlugin extends PluginAdapter {
 
     /**
      * 生成实体类注解KEY对象
-     *
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
-     * @return boolean
      */
     @Override
     public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -169,10 +151,6 @@ public class ImportsPlugin extends PluginAdapter {
 
     /**
      * 生成带BLOB字段的对象
-     *
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
-     * @return boolean
      */
     @Override
     public boolean modelRecordWithBLOBsClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {

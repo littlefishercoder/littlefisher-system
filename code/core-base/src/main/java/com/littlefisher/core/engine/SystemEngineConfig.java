@@ -1,18 +1,17 @@
 package com.littlefisher.core.engine;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.sql.DataSource;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.littlefisher.core.event.EventDispatcher;
 import com.littlefisher.core.event.EventDispatcherImpl;
 import com.littlefisher.core.event.EventListener;
@@ -27,14 +26,14 @@ import com.littlefisher.core.interceptor.CommandInvoker;
 import com.littlefisher.core.interceptor.LoggerInterceptor;
 import com.littlefisher.core.interceptor.SpringTransactionInterceptor;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.utils.CollectionUtil;
 import com.littlefisher.core.utils.LittleFisherLogger;
 import com.littlefisher.core.utils.StringUtil;
 
 /**
- * 
  * Description: 所有的系统参数配置都可以在该类中找到
- *  
- * Created on 2017年2月10日 
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -46,22 +45,22 @@ public class SystemEngineConfig {
      * logger
      */
     private static LittleFisherLogger logger = LittleFisherLogger.getLogger(SystemEngineConfig.class);
-    
+
     /**
      * DB_SCHEMA_UPDATE_FALSE
      */
     public static final String DB_SCHEMA_UPDATE_FALSE = "false";
-    
+
     /**
      * DB_SCHEMA_UPDATE_TRUE
      */
     public static final String DB_SCHEMA_UPDATE_TRUE = "true";
-    
+
     /**
      * dataSource
      */
     protected DataSource dataSource;
-    
+
     /**
      * transactionManager
      */
@@ -110,12 +109,12 @@ public class SystemEngineConfig {
     /**
      * services
      */
-    protected Map<String, ServiceImpl> services = new HashMap<String, ServiceImpl>();
-    
+    protected Map<String, ServiceImpl> services = Maps.newHashMap();
+
     /**
      * clazzServices 缓存
      */
-    protected Map<Class<? extends ServiceImpl>, ServiceImpl> clazzServices = new HashMap<Class<? extends ServiceImpl>, ServiceImpl>();
+    protected Map<Class<? extends ServiceImpl>, ServiceImpl> clazzServices = Maps.newHashMap();
 
     /**
      * systemEngineName
@@ -151,12 +150,12 @@ public class SystemEngineConfig {
      * defaultCommandConfig
      */
     protected CommandConfig defaultCommandConfig;
-    
+
     /**
      * databaseType
      */
     protected String databaseType;
-    
+
     public String getDatabaseType() {
         return databaseType;
     }
@@ -165,115 +164,46 @@ public class SystemEngineConfig {
         this.databaseType = databaseType;
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public SqlSessionFactory getSqlSessionFactory() {
         return sqlSessionFactory;
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param sqlSessionFactory <br>
-     */
     public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
         this.sqlSessionFactory = sqlSessionFactory;
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public String getSystemEngineName() {
         return systemEngineName;
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param systemEngineName <br>
-     */
     public void setSystemEngineName(String systemEngineName) {
         this.systemEngineName = systemEngineName;
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public DataSource getDataSource() {
         return dataSource;
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param dataSource <br>
-     */
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public PlatformTransactionManager getTransactionManager() {
         return transactionManager;
     }
 
-    /**
-     * Description: <br>
-     * 
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param transactionManager <br>
-     */
     public void setTransactionManager(PlatformTransactionManager transactionManager) {
         this.transactionManager = transactionManager;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return systemEngine
-     * @throws BaseAppException <br>
-     */
-    public SystemEngine buildSystemEngine() throws BaseAppException {
+    public SystemEngine buildSystemEngine() {
         init();
-        SystemEngine systemEngine = new SystemEngineImpl(this);
-        return systemEngine;
+        return new SystemEngineImpl(this);
     }
 
     /**
-     * 
-     * Description: 初始化方法<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
+     * Description: 初始化方法<br>
+     *
      * @throws BaseAppException <br>
      */
     protected void init() throws BaseAppException {
@@ -297,14 +227,6 @@ public class SystemEngineConfig {
 
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param registerServices <br>
-     */
     public void initServices(Map<String, ServiceImpl> registerServices) {
         if (registerServices != null) {
             for (Entry<String, ServiceImpl> entry : registerServices.entrySet()) {
@@ -315,16 +237,7 @@ public class SystemEngineConfig {
         }
 
     }
-    
-    /**
-     * initService
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param serviceName <br>
-     * @param registerService <br>
-     */
+
     public void initService(String serviceName, ServiceImpl registerService) {
         if (registerService != null && StringUtil.isNotEmpty(serviceName)) {
             initService(registerService);
@@ -334,14 +247,6 @@ public class SystemEngineConfig {
 
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param service <br>
-     */
     protected void initService(Object service) {
         // 每一个ServiceImpl准备执行时，赋值commandExecutor，让ServiceImpl有开始执行的地方
         if (service instanceof ServiceImpl) {
@@ -350,11 +255,7 @@ public class SystemEngineConfig {
     }
 
     /**
-     * 
-     * Description: 初始化默认Command配置<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
+     * Description: 初始化默认Command配置<br>
      */
     protected void initDefaultCommandConfig() {
         if (defaultCommandConfig == null) {
@@ -363,11 +264,7 @@ public class SystemEngineConfig {
     }
 
     /**
-     * 
-     * Description: 初始化自定义的sqlSession工厂<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
+     * Description: 初始化自定义的sqlSession工厂<br>
      */
     protected void initDbSqlSessionFactory() {
         if (dbSqlSessionFactory == null) {
@@ -377,38 +274,22 @@ public class SystemEngineConfig {
     }
 
     /**
-     * 
-     * Description: 初始化session工厂<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
+     * Description: 初始化session工厂<br>
      */
     protected void initSessionFactories() {
         if (sessionFactories == null) {
-            sessionFactories = new HashMap<Class<?>, SessionFactory>();
+            sessionFactories = Maps.newHashMap();
             // 由于dbSqlSessionFactory在此次步骤之前进行了初始化，所以把dbSqlSessionFactory添加到sessionFactories中，用于缓存
             addSessionFactory(dbSqlSessionFactory);
         }
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param sessionFactory <br>
-     */
     protected void addSessionFactory(SessionFactory sessionFactory) {
         sessionFactories.put(sessionFactory.getSessionType(), sessionFactory);
     }
 
     /**
-     * 
-     * Description: 初始化Command上下文工厂<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
+     * Description: 初始化Command上下文工厂<br>
      */
     protected void initCommandContextFactory() {
         if (commandContextFactory == null) {
@@ -418,11 +299,7 @@ public class SystemEngineConfig {
     }
 
     /**
-     * 
-     * Description: 初始化命令调用工具<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
+     * Description: 初始化命令调用工具<br>
      */
     protected void initCommandInvoker() {
         if (commandInvoker == null) {
@@ -432,16 +309,11 @@ public class SystemEngineConfig {
     }
 
     /**
-     * 
-     * Description: 初始化命令的拦截器<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @throws BaseAppException <br>
+     * Description: 初始化命令的拦截器<br>
      */
-    protected void initCommandInterceptors() throws BaseAppException {
+    protected void initCommandInterceptors() {
         if (commandInterceptors == null) {
-            commandInterceptors = new ArrayList<CommandInterceptor>();
+            commandInterceptors = Lists.newArrayList();
             // 自定义的前置拦截器
             if (customPreCommandInterceptors != null) {
                 commandInterceptors.addAll(customPreCommandInterceptors);
@@ -453,7 +325,7 @@ public class SystemEngineConfig {
             }
             // 命令调用工具也属于拦截器
             commandInterceptors.add(commandInvoker);
-            
+
             // 当前commandInterceptors顺序为：
             // CommandContextInterceptor 1. 渲染容器上下文环境
             // SpringTransactionInterceptor 2. 为下步操作添加事务环绕
@@ -461,14 +333,6 @@ public class SystemEngineConfig {
         }
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @throws BaseAppException 
-     * @taskId <br> <br>
-     */
     private void initEventDispatcher() throws BaseAppException {
         if (this.eventDispatcher == null) {
             this.eventDispatcher = new EventDispatcherImpl();
@@ -493,39 +357,20 @@ public class SystemEngineConfig {
             }
         }
     }
-    
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param types <br>
-     * @return <br>
-     */
+
     private String[] getEventTypeListFromString(String types) {
         String[] emptyArray = new String[] {};
         if (types == null || types.isEmpty()) {
             return emptyArray;
         }
-        String[] split = StringUtils.split(types, ",");
-        return split;
+        return StringUtil.split(types, ",");
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return interceptors
-     * @throws BaseAppException <br>
-     */
     protected Collection<? extends CommandInterceptor> getDefaultCommandInterceptors() throws BaseAppException {
-        List<CommandInterceptor> interceptors = new ArrayList<CommandInterceptor>();
+        List<CommandInterceptor> interceptors = Lists.newArrayList();
         interceptors.add(new CommandContextInterceptor(commandContextFactory, this));
 
-//        interceptors.add(new LogInterceptor());
+        //        interceptors.add(new LogInterceptor());
 
         CommandInterceptor transactionInterceptor = createTransactionInterceptor();
         if (transactionInterceptor != null) {
@@ -539,16 +384,7 @@ public class SystemEngineConfig {
         return interceptors;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return SpringTransactionInterceptor
-     * @throws BaseAppException <br>
-     */
-    protected CommandInterceptor createTransactionInterceptor() throws BaseAppException {
+    protected CommandInterceptor createTransactionInterceptor() {
         if (transactionManager == null) {
             //transactionManager is required property for SpringProcessEngineConfiguration
             throw new BaseAppException("S-SYSTEMCOM-001");
@@ -556,29 +392,21 @@ public class SystemEngineConfig {
 
         return new SpringTransactionInterceptor(transactionManager);
     }
-    
+
     /**
-     * 
      * Description: 创建日志拦截器
-     * 
-     * @author jinyanan
      *
      * @return LoggerInterceptor
      * @throws BaseAppException <br>
      */
-    protected CommandInterceptor createLoggerInterceptor()  throws BaseAppException {
+    protected CommandInterceptor createLoggerInterceptor() throws BaseAppException {
         return new LoggerInterceptor();
     }
 
     /**
-     * 
-     * Description: 初始化命令的执行器，之前只定义了拦截器执行链，需要有一个执行器，让执行链能开始执行<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @throws BaseAppException <br>
+     * Description: 初始化命令的执行器，之前只定义了拦截器执行链，需要有一个执行器，让执行链能开始执行<br>
      */
-    protected void initCommandExecutor() throws BaseAppException {
+    protected void initCommandExecutor() {
         if (commandExecutor == null) {
             // 初始化拦截器调用链，并返回第一个拦截器
             CommandInterceptor first = initInterceptorChain(commandInterceptors);
@@ -587,162 +415,62 @@ public class SystemEngineConfig {
         }
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public CommandInterceptor getCommandInvoker() {
         return commandInvoker;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param commandInvoker <br>
-     */
     public void setCommandInvoker(CommandInterceptor commandInvoker) {
         this.commandInvoker = commandInvoker;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public List<CommandInterceptor> getCustomPreCommandInterceptors() {
         return customPreCommandInterceptors;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param customPreCommandInterceptors <br>
-     */
     public void setCustomPreCommandInterceptors(List<CommandInterceptor> customPreCommandInterceptors) {
         this.customPreCommandInterceptors = customPreCommandInterceptors;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public List<CommandInterceptor> getCustomPostCommandInterceptors() {
         return customPostCommandInterceptors;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param customPostCommandInterceptors <br>
-     */
     public void setCustomPostCommandInterceptors(List<CommandInterceptor> customPostCommandInterceptors) {
         this.customPostCommandInterceptors = customPostCommandInterceptors;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public List<CommandInterceptor> getCommandInterceptors() {
         return commandInterceptors;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param commandInterceptors <br>
-     */
     public void setCommandInterceptors(List<CommandInterceptor> commandInterceptors) {
         this.commandInterceptors = commandInterceptors;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public CommandExecutor getCommandExecutor() {
         return commandExecutor;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param commandExecutor <br>
-     */
     public void setCommandExecutor(CommandExecutor commandExecutor) {
         this.commandExecutor = commandExecutor;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public CommandConfig getDefaultCommandConfig() {
         return defaultCommandConfig;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param defaultCommandConfig <br>
-     */
     public void setDefaultCommandConfig(CommandConfig defaultCommandConfig) {
         this.defaultCommandConfig = defaultCommandConfig;
     }
 
     /**
-     * 
-     * Description: 初始化拦截器调用链，并返回第一个拦截器<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param chain 
+     * Description: 初始化拦截器调用链，并返回第一个拦截器<br>
+     *
      * @return CommandInterceptor
      * @throws BaseAppException <br>
      */
     protected CommandInterceptor initInterceptorChain(List<CommandInterceptor> chain) throws BaseAppException {
-        if (chain == null || chain.isEmpty()) {
+        if (CollectionUtil.isEmpty(chain)) {
             logger.error("invalid command interceptor chain configuration: " + chain);
             throw new BaseAppException("S-SYSTEMCOM-002");
         }
@@ -753,26 +481,51 @@ public class SystemEngineConfig {
     }
 
     /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
+     * Description: 从缓存中获取Service<br>
+     *
+     * @param serviceName service的bean名，如果未设置bean名，默认首字母小写的类名
      * @return <br>
      */
+    public ServiceImpl getService(String serviceName) {
+        return services.get(serviceName);
+    }
+
+    /**
+     * Description:
+     *
+     * @param clazzService Serivice的Clazz
+     * @return ServiceImpl的实现类
+     */
+    @SuppressWarnings("unchecked")
+    public <T> T getService(Class<? extends ServiceImpl> clazzService) {
+        return (T) clazzServices.get(clazzService);
+    }
+
+    /**
+     * Description: 把ServiceImpl添加缓存<br>
+     */
+    public void putService(String serviceName, ServiceImpl service) {
+        services.putIfAbsent(serviceName, service);
+        clazzServices.putIfAbsent(service.getClass(), service);
+    }
+
+    public void destory() {
+        //
+        //        logger.debug("do systemEngineConfig destory");
+        //        try {
+        //            ZcacheClient.getInstance().destory();
+        //        }
+        //        catch (BaseAppException e) {
+        //            //
+        //            logger.error("systemEngineConfig destory error", e);
+        //        }
+
+    }
+
     public Map<Class<?>, SessionFactory> getSessionFactories() {
         return sessionFactories;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param sessionFactories 
-     * @return <br>
-     */
     public SystemEngineConfig setSessionFactories(Map<Class<?>, SessionFactory> sessionFactories) {
         this.sessionFactories = sessionFactories;
         return this;
@@ -800,74 +553,5 @@ public class SystemEngineConfig {
 
     public boolean isEnableEventDispatcher() {
         return enableEventDispatcher;
-    }
-
-    /**
-     * 
-     * Description: 从缓存中获取Service<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param serviceName service的bean名，如果未设置bean名，默认首字母小写的类名
-     * @return <br>
-     */
-    public ServiceImpl getService(String serviceName) {
-        ServiceImpl serv = services.get(serviceName);
-        return serv;
-    }
-    
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param <T> <T>
-     * @param clazzService Serivice的Clazz
-     * @return ServiceImpl的实现类
-     */
-    @SuppressWarnings("unchecked")
-    public <T> T getService(Class<T> clazzService) {
-        return (T) clazzServices.get(clazzService);
-    }
-
-    /**
-     * 
-     * Description: 把ServiceImpl添加缓存<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param serviceName <br>
-     * @param service <br>
-     */
-    public void putService(String serviceName, ServiceImpl service) {
-        ServiceImpl serv = services.get(serviceName);
-        if (serv == null) {
-            services.put(serviceName, service);
-        }
-        ServiceImpl clazzServ = clazzServices.get(service.getClass());
-        if (clazzServ == null) {
-            clazzServices.put(service.getClass(), service);
-        }
-    }
-    
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
-     */
-    public void destory() {
-        // TODO Auto-generated catch block
-//        logger.debug("do systemEngineConfig destory");
-//        try {
-//            ZcacheClient.getInstance().destory();
-//        }
-//        catch (BaseAppException e) {
-//            // TODO Auto-generated catch block
-//            logger.error("systemEngineConfig destory error", e);
-//        }
-        
     }
 }

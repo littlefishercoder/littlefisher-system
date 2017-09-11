@@ -12,23 +12,7 @@ package com.littlefisher.core.engine;
  */
 public interface SessionFactory {
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     Class<?> getSessionType();
     
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     Session openSession();
 }

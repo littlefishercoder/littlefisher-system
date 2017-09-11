@@ -1,13 +1,15 @@
 package com.littlefisher.core.exception;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.ArrayUtils;
+
+import com.google.common.collect.Lists;
 import com.littlefisher.core.i18n.PropertiesFileTextProvider;
 import com.littlefisher.core.i18n.TextProvider;
-import com.littlefisher.core.utils.ListUtil;
+import com.littlefisher.core.utils.CollectionUtil;
 import com.littlefisher.core.utils.StringUtil;
 
 /**
@@ -20,7 +22,7 @@ import com.littlefisher.core.utils.StringUtil;
  * @version 1.0
  * @since v1.0
  */
-public class BaseAppException extends Exception {
+public class BaseAppException extends RuntimeException {
 
     /**
      * serialVersionUID 
@@ -53,20 +55,20 @@ public class BaseAppException extends Exception {
         
         super(message, cause);
 
-        List<String> list = new ArrayList<String>(3);
+        List<String> list = Lists.newArrayListWithCapacity(3);
         
-        if (arg0 != null) {
+        if (StringUtil.isNotEmpty(arg0)) {
             list.add(arg0);
         }
-        if (arg1 != null) {
+        if (StringUtil.isNotEmpty(arg1)) {
             list.add(arg1);
         }
-        if (arg2 != null) {
+        if (StringUtil.isNotEmpty(arg2)) {
             list.add(arg2);
         }
         String[] args = null;
 
-        if (ListUtil.isNotEmpty(list)) {
+        if (CollectionUtil.isNotEmpty(list)) {
             args = new String[list.size()];
             int i = 0;
             for (String s : list) {
@@ -77,11 +79,11 @@ public class BaseAppException extends Exception {
         this.code = errorCode;
         this.desc = message;
 
-        this.localeMessage = (code == null ? "" : textProvider.getText(code));
+        this.localeMessage = (code == null ? StringUtil.EMPTY : textProvider.getText(code));
         
         this.localeMessage = StringUtil.isEmpty(this.localeMessage) ? message : this.localeMessage;
 
-        if (args != null && args.length > 0) {
+        if (ArrayUtils.isNotEmpty(args)) {
             this.localeMessage = this.replaceArgs(localeMessage, args);
         }
     }
@@ -126,7 +128,7 @@ public class BaseAppException extends Exception {
      */
     private String replaceArgs(String s, String args[]) {
         int i = 0;
-        if (s != null && args != null && args.length > 0) {
+        if (s != null && ArrayUtils.isNotEmpty(args)) {
             StringBuilder sb = new StringBuilder();
             Pattern p = Pattern.compile("\\{(.*?)\\}");
             Matcher m = p.matcher(s);
@@ -137,7 +139,7 @@ public class BaseAppException extends Exception {
             return sb.toString();
         }
 
-        return "";
+        return StringUtil.EMPTY;
     }
     
     public String getCode() {

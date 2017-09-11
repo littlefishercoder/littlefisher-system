@@ -2,6 +2,8 @@ package com.littlefisher.blog.system.cmd;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.system.dao.SystemParamDtoMapper;
 import com.littlefisher.blog.system.model.SystemParamDto;
@@ -43,6 +45,8 @@ public class GetSystemParamList4PagerByCondCmd extends AbstractCommand<List<Syst
         SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
         return systemParamDtoMapper.selectByCond(req);
+//        RowBounds rowBounds = new RowBounds(req.getPageNum() - 1, req.getPageSize());
+//        return systemParamDtoMapper.selectByCond(req, rowBounds);
     }
 
 }

@@ -1,11 +1,12 @@
 package com.littlefisher.core.utils;
 
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Logger;
 import org.slf4j.helpers.FormattingTuple;
 import org.slf4j.helpers.MessageFormatter;
+
+import com.google.common.collect.Maps;
 
 /**
  * Description: 日志管理类 
@@ -22,7 +23,7 @@ public final class LittleFisherLogger {
     protected Logger logger;
     
     /** loggerCache 缓存 */
-    private static Map<String, LittleFisherLogger> loggerCache = new ConcurrentHashMap<String, LittleFisherLogger>();
+    private static Map<String, LittleFisherLogger> loggerCache = Maps.newConcurrentMap();
     
     /**
      * 私有构造函数
@@ -51,44 +52,18 @@ public final class LittleFisherLogger {
         return room1000Logger;
     }
     
-    /**
-     * 
-     * Description: debug
-     * 
-     * @author jinyanan
-     *
-     * @param msg msg
-     */
     public void debug(Object msg) {
         if (logger.isDebugEnabled()) {
             logger.debug(msg);
         }
     }
     
-    /**
-     * 
-     * Description: debug
-     * 
-     * @author jinyanan
-     *
-     * @param msg msg
-     * @param t t
-     */
     public void debug(Object msg, Throwable t) {
         if (logger.isDebugEnabled()) {
             logger.debug(msg, t);
         }
     }
     
-    /**
-     * 
-     * Description: debug
-     * 
-     * @author jinyanan
-     *
-     * @param format format
-     * @param arguments arguments
-     */
     public void debug(String format, Object... arguments) {
         if (logger.isDebugEnabled()) {
             FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
@@ -96,83 +71,31 @@ public final class LittleFisherLogger {
         }
     }
 
-    /**
-     * 
-     * Description: fatal
-     * 
-     * @author jinyanan
-     *
-     * @param msg msg
-     */
     public void fatal(Object msg) {
         logger.fatal(msg);
     }
     
-    /**
-     * 
-     * Description: fatal
-     * 
-     * @author jinyanan
-     * 
-     * @param msg msg
-     * @param t t
-     */
     public void fatal(Object msg, Throwable t) {
         logger.fatal(msg, t);
     }
     
-    /**
-     * 
-     * Description: fatal
-     * 
-     * @author jinyanan
-     *
-     * @param format format
-     * @param arguments arguments
-     */
     public void fatal(String format, Object... arguments) {
         FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
         logger.fatal(ft.getMessage(), ft.getThrowable());
     }
 
-    /**
-     * 
-     * Description: info
-     * 
-     * @author jinyanan
-     *
-     * @param msg msg
-     */
     public void info(Object msg) {
         if (logger.isInfoEnabled()) {
             logger.info(msg);
         }
     }
     
-    /**
-     * 
-     * Description: info
-     * 
-     * @author jinyanan
-     *
-     * @param msg msg
-     * @param t t
-     */
     public void info(Object msg, Throwable t) {
         if (logger.isInfoEnabled()) {
             logger.info(msg, t);
         }
     }
     
-    /**
-     * 
-     * Description: info
-     * 
-     * @author jinyanan
-     *
-     * @param format format
-     * @param arguments arguments
-     */
     public void info(String format, Object... arguments) {
         if (logger.isInfoEnabled()) {
             FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
@@ -180,79 +103,27 @@ public final class LittleFisherLogger {
         }
     }
     
-    /**
-     * 
-     * Description: warn
-     * 
-     * @author jinyanan
-     *
-     * @param msg msg
-     */
     public void warn(Object msg) {
         logger.warn(msg);
     }
     
-    /**
-     * 
-     * Description: warn
-     * 
-     * @author jinyanan
-     *
-     * @param msg msg
-     * @param t t
-     */
     public void warn(Object msg, Throwable t) {
         logger.warn(msg, t);
     }
     
-    /**
-     * 
-     * Description: warn
-     * 
-     * @author jinyanan
-     *
-     * @param format format
-     * @param arguments arguments
-     */
     public void warn(String format, Object... arguments) {
         FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
         logger.warn(ft.getMessage(), ft.getThrowable());
     }
 
-    /**
-     * 
-     * Description: error
-     * 
-     * @author jinyanan
-     *
-     * @param msg msg
-     */
     public void error(Object msg) {
         logger.error(msg);
     }
     
-    /**
-     * 
-     * Description: error
-     * 
-     * @author jinyanan
-     *
-     * @param msg msg
-     * @param t t
-     */
     public void error(Object msg, Throwable t) {
         logger.error(msg, t);
     }
     
-    /**
-     * 
-     * Description: error
-     * 
-     * @author jinyanan
-     *
-     * @param format format
-     * @param arguments arguments
-     */
     public void error(String format, Object... arguments) {
         FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
         logger.error(ft.getMessage(), ft.getThrowable());

@@ -4,10 +4,9 @@ import com.littlefisher.core.interceptor.CommandExecutor;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月10日 
+ * Description:
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -30,111 +29,42 @@ public class SystemEngineImpl implements SystemEngine {
      */
     protected CommandExecutor commandExecutor;
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public SystemEngineConfig getSystemEngineConfig() {
         return systemEngineConfig;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param systemEngineConfig <br>
-     */
     public void setSystemEngineConfig(SystemEngineConfig systemEngineConfig) {
         this.systemEngineConfig = systemEngineConfig;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public CommandExecutor getCommandExecutor() {
         return commandExecutor;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param commandExecutor <br>
-     */
     public void setCommandExecutor(CommandExecutor commandExecutor) {
         this.commandExecutor = commandExecutor;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param name <br>
-     */
     public void setName(String name) {
         this.name = name;
     }
 
-    /**
-     * Description: <br> 
-     * @param systemEngineConfig <br>
-     */
     public SystemEngineImpl(SystemEngineConfig systemEngineConfig) {
         this.systemEngineConfig = systemEngineConfig;
         this.name = systemEngineConfig.getSystemEngineName();
         this.commandExecutor = systemEngineConfig.getCommandExecutor();
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     @Override
     public String getName() {
         return name;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
-     */
     @Override
     public void close() {
-        
 
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param serviceName <br>
-     * @return <br>
-     */
     @Override
     public ServiceImpl getService(String serviceName) {
         return systemEngineConfig.getService(serviceName);
@@ -143,6 +73,6 @@ public class SystemEngineImpl implements SystemEngine {
     @Override
     public void initService(String serviceName, ServiceImpl registerService) {
         systemEngineConfig.initService(serviceName, registerService);
-        
+
     }
 }

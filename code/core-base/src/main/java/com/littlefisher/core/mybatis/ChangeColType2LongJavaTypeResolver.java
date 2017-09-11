@@ -7,10 +7,9 @@ import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
 
 /**
- * 
  * Description: mybatis数据类型转换时，遇到数值型的，都转为Long
- *  
- * Created on 2017年1月16日 
+ *
+ * Created on 2017年1月16日
  *
  * @author jinyanan
  * @version 1.0
@@ -18,15 +17,6 @@ import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
  */
 public class ChangeColType2LongJavaTypeResolver extends JavaTypeResolverDefaultImpl {
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @param introspectedColumn introspectedColumn
-     * @return FullyQualifiedJavaType FullyQualifiedJavaType
-     */
     public FullyQualifiedJavaType calculateJavaType(IntrospectedColumn introspectedColumn) {
         FullyQualifiedJavaType answer;
         JdbcTypeInformation jdbcTypeInformation = typeMap.get(introspectedColumn.getJdbcType());
@@ -43,8 +33,7 @@ public class ChangeColType2LongJavaTypeResolver extends JavaTypeResolverDefaultI
                     answer = null;
                     break;
             }
-        }
-        else {
+        } else {
             answer = jdbcTypeInformation.getFullyQualifiedJavaType();
         }
         return answer;

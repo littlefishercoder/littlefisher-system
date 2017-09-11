@@ -1,5 +1,7 @@
 package com.littlefisher.core.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * 
  * Description: 字符串帮助类
@@ -10,7 +12,7 @@ package com.littlefisher.core.utils;
  * @version 1.0
  * @since v1.0
  */
-public final class StringUtil {
+public final class StringUtil extends StringUtils {
     
     /**
      * 禁止实例化
@@ -28,10 +30,7 @@ public final class StringUtil {
      * @return boolean true-为空，false-不为空
      */
     public static boolean isEmpty(String val) {
-        if (val == null || val.length() == 0) {
-            return true;
-        }
-        return false;
+        return val == null || val.length() == 0;
     }
 
     /**
@@ -44,11 +43,7 @@ public final class StringUtil {
      * @return boolean true-为空, false-不为空
      */
     public static boolean isNotEmpty(String val) {
-        if (val == null || val.length() == 0) {
-            return false;
-        }
-
-        return true;
+        return val != null && val.length() != 0;
     }
     
     /**
@@ -80,7 +75,7 @@ public final class StringUtil {
      * @return String 去掉空格后的字符串
      */
     public static String trim(String str) {
-        return (str == null) ? str : str.trim();
+        return (str == null) ? null : str.trim();
     }
     
     /**

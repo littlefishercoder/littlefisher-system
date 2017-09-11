@@ -1,6 +1,6 @@
 package com.littlefisher.core.mybatis.plugins;
 
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -16,48 +16,48 @@ import org.mybatis.generator.config.CommentGeneratorConfiguration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.util.StringUtility;
 
+import com.google.common.collect.Sets;
+import com.littlefisher.core.enums.EnumBool;
 import com.littlefisher.core.mybatis.LittleFisherCommentGenerator;
 
 import tk.mybatis.mapper.MapperException;
 
-
 /**
- * 
- * Description: 
- *  
- * Created on 2017年3月4日 
+ * Description:
+ *
+ * Created on 2017年3月4日
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
 public class MapperPlugin extends PluginAdapter {
-    
+
     /**
      * mappers
      */
-    private Set<String> mappers = new HashSet<String>();
-    
+    private Set<String> mappers = Sets.newHashSet();
+
     /**
      * caseSensitive
      */
     private boolean caseSensitive = false;
-    
+
     /**
      * 开始的分隔符，例如mysql为`，sqlserver为[
      */
     private String beginningDelimiter = "";
-    
+
     /**
      * 结束的分隔符，例如mysql为`，sqlserver为]
      */
     private String endingDelimiter = "";
-    
+
     /**
      * 数据库模式
      */
     private String schema;
-    
+
     /**
      * 注释生成器
      */
@@ -79,16 +79,13 @@ public class MapperPlugin extends PluginAdapter {
         super.setProperties(properties);
         String mappers = this.properties.getProperty("mappers");
         if (StringUtility.stringHasValue(mappers)) {
-            for (String mapper : mappers.split(",")) {
-                this.mappers.add(mapper);
-            }
-        } 
-        else {
+            Collections.addAll(this.mappers, mappers.split(","));
+        } else {
             throw new MapperException("Mapper插件缺少必要的mappers属性!");
         }
         String caseSensitive = this.properties.getProperty("caseSensitive");
         if (StringUtility.stringHasValue(caseSensitive)) {
-            this.caseSensitive = "TRUE".equalsIgnoreCase(caseSensitive);
+            this.caseSensitive = EnumBool.TRUE.getCode().equalsIgnoreCase(caseSensitive);
         }
         String beginningDelimiter = this.properties.getProperty("beginningDelimiter");
         if (StringUtility.stringHasValue(beginningDelimiter)) {
@@ -106,15 +103,6 @@ public class MapperPlugin extends PluginAdapter {
         }
     }
 
-    /**
-     * 
-     * Description: getDelimiterName
-     * 
-     * @author jinyanan
-     *
-     * @param name name
-     * @return String <br>
-     */
     public String getDelimiterName(String name) {
         StringBuilder nameBuilder = new StringBuilder();
         if (StringUtility.stringHasValue(schema)) {
@@ -134,11 +122,6 @@ public class MapperPlugin extends PluginAdapter {
 
     /**
      * 生成的Mapper接口
-     *
-     * @param interfaze interfaze
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
-     * @return boolean
      */
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -156,9 +139,6 @@ public class MapperPlugin extends PluginAdapter {
 
     /**
      * 处理实体类的包和@Table注解
-     *
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
      */
     private void processEntityClass(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         //引入JPA注解
@@ -166,30 +146,20 @@ public class MapperPlugin extends PluginAdapter {
         String tableName = introspectedTable.getFullyQualifiedTableNameAtRuntime();
         //如果包含空格，或者需要分隔符，需要完善
         if (StringUtility.stringContainsSpace(tableName)) {
-            tableName = context.getBeginningDelimiter()
-                    + tableName
-                    + context.getEndingDelimiter();
+            tableName = context.getBeginningDelimiter() + tableName + context.getEndingDelimiter();
         }
         //是否忽略大小写，对于区分大小写的数据库，会有用
         if (caseSensitive && !topLevelClass.getType().getShortName().equals(tableName)) {
             topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
-        } 
-        else if (!topLevelClass.getType().getShortName().equalsIgnoreCase(tableName)) {
+        } else if (!topLevelClass.getType().getShortName().equalsIgnoreCase(tableName)) {
             topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
-        } 
-        else if (StringUtility.stringHasValue(schema)
-                || StringUtility.stringHasValue(beginningDelimiter)
-                || StringUtility.stringHasValue(endingDelimiter)) {
+        } else if (StringUtility.stringHasValue(schema) || StringUtility.stringHasValue(beginningDelimiter) || StringUtility.stringHasValue(endingDelimiter)) {
             topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
         }
     }
 
     /**
      * 生成基础实体类
-     *
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
-     * @return boolean
      */
     @Override
     public boolean modelBaseRecordClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -199,10 +169,6 @@ public class MapperPlugin extends PluginAdapter {
 
     /**
      * 生成实体类注解KEY对象
-     *
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
-     * @return boolean
      */
     @Override
     public boolean modelPrimaryKeyClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -212,10 +178,6 @@ public class MapperPlugin extends PluginAdapter {
 
     /**
      * 生成带BLOB字段的对象
-     *
-     * @param topLevelClass topLevelClass
-     * @param introspectedTable introspectedTable
-     * @return boolean
      */
     @Override
     public boolean modelRecordWithBLOBsClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
@@ -255,8 +217,7 @@ public class MapperPlugin extends PluginAdapter {
     }
 
     @Override
-    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(Method method, 
-        TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         return false;
     }
 
@@ -361,8 +322,7 @@ public class MapperPlugin extends PluginAdapter {
     }
 
     @Override
-    public boolean providerUpdateByPrimaryKeySelectiveMethodGenerated(Method method, 
-        TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean providerUpdateByPrimaryKeySelectiveMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         return false;
     }
 }

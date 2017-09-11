@@ -12,13 +12,5 @@ package com.littlefisher.core.event;
  */
 public interface EntityEvent extends Event {
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     Object getEntity();
 }

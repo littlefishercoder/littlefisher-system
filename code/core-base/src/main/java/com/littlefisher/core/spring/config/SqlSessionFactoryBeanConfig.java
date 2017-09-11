@@ -44,7 +44,7 @@ public class SqlSessionFactoryBeanConfig {
      * @author jinyanan
      *
      * @return SqlSessionFactoryBean
-     * @throws IOException 
+     * @throws IOException IOException
      */
     @Bean(name = "sqlSessionFactory")
     public SqlSessionFactoryBean sqlSessionFactoryBean() throws IOException {

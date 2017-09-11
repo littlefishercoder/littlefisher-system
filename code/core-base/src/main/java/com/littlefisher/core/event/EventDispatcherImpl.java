@@ -31,79 +31,29 @@ public class EventDispatcherImpl implements EventDispatcher {
         eventSupport = new EventSupport();
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param enabled <br>
-     */
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     public boolean isEnabled() {
         return enabled;
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param listenerToAdd <br>
-     */
     @Override
     public void addEventListener(EventListener listenerToAdd) {
         eventSupport.addEventListener(listenerToAdd);
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param listenerToAdd <br>
-     * @param types <br>
-     */
     @Override
     public void addEventListener(EventListener listenerToAdd, String... types) {
         eventSupport.addEventListener(listenerToAdd, types);
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param listenerToRemove <br>
-     */
     @Override
     public void removeEventListener(EventListener listenerToRemove) {
         eventSupport.removeEventListener(listenerToRemove);
     }
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param event <br>
-     * @throws BaseAppException 
-     */
     @Override
     public void dispatchEvent(Event event) throws BaseAppException {
         if (enabled) {
@@ -112,16 +62,6 @@ public class EventDispatcherImpl implements EventDispatcher {
 
     }
     
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param type <br>
-     * @param entity <br>
-     * @throws BaseAppException <br>
-     */
     @Override
     public void dispatchEntityEvent(String type, Object entity) throws BaseAppException {
         EntityEvent event = EventBuilder.createEntityEvent(type, entity);

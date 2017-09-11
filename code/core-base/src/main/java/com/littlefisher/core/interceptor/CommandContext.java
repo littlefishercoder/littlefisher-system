@@ -1,8 +1,8 @@
 package com.littlefisher.core.interceptor;
 
-import java.util.HashMap;
 import java.util.Map;
 
+import com.google.common.collect.Maps;
 import com.littlefisher.core.engine.DbSqlSession;
 import com.littlefisher.core.engine.Session;
 import com.littlefisher.core.engine.SessionFactory;
@@ -10,10 +10,9 @@ import com.littlefisher.core.engine.SystemEngineConfig;
 import com.littlefisher.core.exception.BaseAppException;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月10日 
+ * Description:
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -35,7 +34,7 @@ public class CommandContext {
      * exception
      */
     protected Throwable myException = null;
-    
+
     /**
      * sessionFactories
      */
@@ -44,55 +43,24 @@ public class CommandContext {
     /**
      * sessions
      */
-    protected Map<Class<?>, Session> sessions = new HashMap<Class<?>, Session>();
-    
-    /**
-     * CommandContext
-     * @param command <br>
-     * @param systemEngineConfig <br>
-     */
+    protected Map<Class<?>, Session> sessions = Maps.newHashMap();
+
     public CommandContext(Command<?> command, SystemEngineConfig systemEngineConfig) {
         this.command = command;
         this.systemEngineConfig = systemEngineConfig;
         this.sessionFactories = systemEngineConfig.getSessionFactories();
     }
-    
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param exception <br>
-     */
+
     public void exception(Throwable exception) {
         if (this.myException == null) {
             this.myException = exception;
         }
     }
-    
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
-     */
+
     public void close() {
 
     }
-    
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param <T> <br>
-     * @param sessionClass <br>
-     * @return <br>
-     * @throws BaseAppException 
-     */
+
     @SuppressWarnings("unchecked")
     public <T> T getSession(Class<T> sessionClass) throws BaseAppException {
         Session session = sessions.get(sessionClass);
@@ -107,32 +75,23 @@ public class CommandContext {
 
         return (T) session;
     }
-    
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     * @throws BaseAppException 
-     */
+
     public DbSqlSession getDbSqlSession() throws BaseAppException {
         return getSession(DbSqlSession.class);
     }
-    
+
     public Throwable getException() {
         return myException;
     }
-    
+
     public void setException(Throwable exception) {
         this.myException = exception;
     }
-    
+
     public SystemEngineConfig getSystemEngineConfig() {
         return this.systemEngineConfig;
     }
-    
+
     public Map<Class<?>, SessionFactory> getSessionFactories() {
         return sessionFactories;
     }

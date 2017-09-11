@@ -15,54 +15,13 @@ import com.littlefisher.core.interceptor.service.ServiceImpl;
  */
 public interface SystemEngine {
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     String getName();
     
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br> <br>
-     */
     void close();
     
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
     CommandExecutor getCommandExecutor();
     
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param serviceName 
-     * @return <br>
-     */
     ServiceImpl getService(String serviceName);
     
-    /**
-     * initService
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param serviceName <br>
-     * @param registerService <br>
-     */
     void initService(String serviceName, ServiceImpl registerService);
 }

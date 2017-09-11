@@ -3,10 +3,9 @@ package com.littlefisher.core.interceptor;
 import com.littlefisher.core.exception.BaseAppException;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月10日 
+ * Description:
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -14,37 +13,9 @@ import com.littlefisher.core.exception.BaseAppException;
  */
 public interface CommandInterceptor {
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param config <br>
-     * @param command <br>
-     * @param <U> <U>
-     * @return <br>
-     * @throws BaseAppException <br>
-     */
     <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException;
-    
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @return <br>
-     */
+
     CommandInterceptor getNext();
 
-    /**
-     * 
-     * Description: <br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
-     * @param next <br>
-     */
     void setNext(CommandInterceptor next);
 }

@@ -18,7 +18,7 @@ import com.littlefisher.core.utils.db.cmd.QryDBDateTimeCmd;
  * @version 1.0
  * @since v1.0
  */
-@Service("CORE.DBService")
+@Service("core.dbService")
 public class DBServiceImpl extends ServiceImpl {
 
     /**
@@ -31,7 +31,7 @@ public class DBServiceImpl extends ServiceImpl {
      * @throws BaseAppException <br>
      */
     public Date getDBDateTime() throws BaseAppException {
-        return (Date) this.execute(new QryDBDateTimeCmd());
+        return this.execute(new QryDBDateTimeCmd());
 
     }
 }

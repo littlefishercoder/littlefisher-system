@@ -24,11 +24,6 @@ public class BaseRuntimeException extends RuntimeException {
         super();
     }
     
-    /**
-     * BaseRuntimeException
-     * @param message <br>
-     * @param cause <br>
-     */
     public BaseRuntimeException(String message, Throwable cause) {
         super(message, cause);
     }
