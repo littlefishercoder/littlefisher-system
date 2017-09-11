@@ -30,7 +30,7 @@ import com.wordnik.swagger.annotations.ApiParam;
  * @since v1.0
  */
 @RestController
-@RequestMapping("api/blog/v1/commentaries")
+@RequestMapping("/api/blog/v1/commentaries")
 @Api(value = "commentary", description = "commentary 接口API")
 public class CommentaryController {
     
@@ -68,6 +68,8 @@ public class CommentaryController {
      * @return CommentaryDto
      * @throws BaseAppException <br>
      */
+    @RequestMapping(value = "/{commentaryId}", method = RequestMethod.GET)
+    @ApiOperation("根据主键查询评价")
     public CommentaryDto getCommentaryById(
         @ApiParam(required = true, value = "评价主键") @PathVariable("commentaryId") Long commentaryId) throws BaseAppException {
         return commentaryService.getCommentaryById(commentaryId);

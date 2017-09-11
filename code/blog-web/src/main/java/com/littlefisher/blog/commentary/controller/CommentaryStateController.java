@@ -27,7 +27,7 @@ import com.wordnik.swagger.annotations.ApiParam;
  * @since v1.0
  */
 @RestController
-@RequestMapping("api/blog/v1/commentary/commentaryStates")
+@RequestMapping("/api/blog/v1/commentary/commentaryStates")
 @Api(value = "commentaryStates", description = "commentaryStates 接口API")
 public class CommentaryStateController {
     
