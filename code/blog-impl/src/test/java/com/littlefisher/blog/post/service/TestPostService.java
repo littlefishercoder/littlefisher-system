@@ -1,5 +1,5 @@
 /**
- * hsjry.com Inc.
+ * littlefisher.site Inc.
  * Copyright (c) 2014-2017 All Rights Reserved.
  */
 package com.littlefisher.blog.post.service;
@@ -20,8 +20,14 @@ import com.littlefisher.core.spring.config.RootConfig;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
- * @author jinyn22648
- * @version $Id: TestPostService.java, v 1.0 2017-09-07 20:18 jinyn22648 Exp $
+ *
+ * Description:
+ *
+ * Created on 2017年09月11日
+ *
+ * @author jinyanan
+ * @version 1.0
+ * @since v1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { RootConfig.class })
