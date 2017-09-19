@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.littlefisher</groupId>
@@ -30,4 +30,26 @@
       <version>${littlefisher.version}</version>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.jetty</groupId>
+        <artifactId>jetty-maven-plugin</artifactId>
+        <version>${jetty.version}</version>
+        <configuration>
+          <!--项目请求路径-->
+          <webApp>
+            <contextPath>/blog-web</contextPath>
+          </webApp>
+          <!--扫描webapp变化的间隔，单位秒，当扫描到变化后，将执行自动热重部署。默认是0，表示停止热部署扫描。配置值大于0激活它。-->
+          <scanIntervalSeconds>10</scanIntervalSeconds>
+          <httpConnector>
+            <!--监听端口-->
+            <port>8080</port>
+          </httpConnector>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
