@@ -18,6 +18,7 @@
  - `Nginx`
  - `PageHelper`
  - `Jetty`
+ - `Guava`
  - 部分功能的二次封装
 
 1. 环境搭建
