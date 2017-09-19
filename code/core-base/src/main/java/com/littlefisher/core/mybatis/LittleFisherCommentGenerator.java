@@ -45,36 +45,30 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
     private String endingDelimiter = "";
 
     /** author */
-    private String author;
+    private String author = "LittleFisher";
 
     public LittleFisherCommentGenerator() {
         super();
         properties = new Properties();
-        author = "LittleFisher";
     }
 
-    /**
-     * Description: getDelimiterName
-     *
-     * @param name name
-     * @return String<br>
-     */
     public String getDelimiterName(String name) {
         return beginningDelimiter + name + endingDelimiter;
     }
 
+    /**
+     * 对Mapper.java接口中的各个方法定义注释
+     */
     @Override
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {
-        StringBuilder sb = new StringBuilder();
         method.addJavaDocLine("/**");
         method.addJavaDocLine(" * Description: " + method.getName() + "<br>");
         method.addJavaDocLine(" *");
         method.addJavaDocLine(" * @author " + author + " <br>");
         List<Parameter> paramList = method.getParameters();
         for (Parameter p : paramList) {
-            sb.append(" * @param ").append(p.getName()).append(" ").append(p.getName());
+            method.addJavaDocLine(" * @param " + p.getName() + " " + p.getName());
         }
-        method.addJavaDocLine(sb.toString());
         if (method.getReturnType() != null) {
             method.addJavaDocLine(" * @return " + method.getReturnType().getShortName() + " " + method.getReturnType().getShortName() + "<br>");
         }
@@ -83,6 +77,9 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
 
     }
 
+    /**
+     * 添加mybatis generator自生成代码的注解；被注解的代码会被下次mybatis generator时候覆盖
+     */
     protected void addJavadocTag(JavaElement javaElement, boolean markAsDoNotDelete) {
         StringBuilder sb = new StringBuilder();
         sb.append(" * ");
@@ -93,6 +90,9 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
         javaElement.addJavaDocLine(sb.toString());
     }
 
+    /**
+     * 对实体bean中各个字段field增加注释
+     */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
         // 添加@ApiModelProperty注解，用于swaggerUI展示用
@@ -105,17 +105,18 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
             field.addJavaDocLine(" */");
         }
 
-        //添加注解
+        // 对非数据库字段添加@Transient注解
         if (field.isTransient()) {
-            //@Column
             field.addAnnotation("@Transient");
         }
+        // 对主键字段增加@Id注解
         for (IntrospectedColumn column : introspectedTable.getPrimaryKeyColumns()) {
             if (introspectedColumn == column) {
                 field.addAnnotation("@Id");
                 break;
             }
         }
+        // 对数据库字段增加@Column注解，该注解用于解决字段名和数据库字段名不同时的映射问题
         String column = introspectedColumn.getActualColumnName();
         if (StringUtility.stringContainsSpace(column) || introspectedTable.getTableConfiguration().isAllColumnDelimitingEnabled()) {
             column = introspectedColumn.getContext().getBeginningDelimiter() + column + introspectedColumn.getContext().getEndingDelimiter();
@@ -126,6 +127,7 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
         } else if (StringUtility.stringHasValue(beginningDelimiter) || StringUtility.stringHasValue(endingDelimiter)) {
             field.addAnnotation("@Column(name = \"" + getDelimiterName(column) + "\")");
         }
+        // 自增字段根据不同的数据库，添加不同的@GeneratedValue注解
         if (introspectedColumn.isIdentity()) {
             if ("JDBC".equals(introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement())) {
                 field.addAnnotation("@GeneratedValue(generator = \"JDBC\")");
@@ -133,7 +135,7 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
                 field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY)");
             }
         } else if (introspectedColumn.isSequenceColumn()) {
-            //在 Oracle 中，如果需要是 SEQ_TABLENAME，那么可以配置为 select SEQ_{1} from dual
+            // 在 Oracle 中，如果需要是 SEQ_TABLENAME，那么可以配置为 select SEQ_{1} from dual
             String tableName = introspectedTable.getFullyQualifiedTableNameAtRuntime();
             String sql = MessageFormat.format(introspectedTable.getTableConfiguration().
                     getGeneratedKey().getRuntimeSqlStatement(), tableName, tableName.toUpperCase());
@@ -142,6 +144,9 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
 
     }
 
+    /**
+     * 获取context下的properties属性
+     */
     @Override
     public void addConfigurationProperties(Properties properties) {
         this.properties.putAll(properties);

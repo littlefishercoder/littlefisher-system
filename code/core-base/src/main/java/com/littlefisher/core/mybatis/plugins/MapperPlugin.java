@@ -63,6 +63,11 @@ public class MapperPlugin extends PluginAdapter {
      */
     private CommentGeneratorConfiguration commentCfg;
 
+    /**
+     * context下的property
+     */
+    private Properties contextProperties;
+
     @Override
     public void setContext(Context context) {
         super.setContext(context);
@@ -70,8 +75,17 @@ public class MapperPlugin extends PluginAdapter {
         commentCfg = new CommentGeneratorConfiguration();
         commentCfg.setConfigurationType(LittleFisherCommentGenerator.class.getCanonicalName());
         context.setCommentGeneratorConfiguration(commentCfg);
+        contextProperties = context.getProperties();
+        addProperties(context);
         //支持oracle获取注释#114
         context.getJdbcConnectionConfiguration().addProperty("remarksReporting", "true");
+    }
+
+    private void addProperties(Context context) {
+        for (Object key : contextProperties.keySet()) {
+            Object value = contextProperties.get(key);
+            commentCfg.addProperty((String) key, (String) value);
+        }
     }
 
     @Override
@@ -87,16 +101,16 @@ public class MapperPlugin extends PluginAdapter {
         if (StringUtility.stringHasValue(caseSensitive)) {
             this.caseSensitive = EnumBool.TRUE.getCode().equalsIgnoreCase(caseSensitive);
         }
-        String beginningDelimiter = this.properties.getProperty("beginningDelimiter");
+        String beginningDelimiter = this.contextProperties.getProperty("beginningDelimiter");
         if (StringUtility.stringHasValue(beginningDelimiter)) {
             this.beginningDelimiter = beginningDelimiter;
         }
-        commentCfg.addProperty("beginningDelimiter", this.beginningDelimiter);
-        String endingDelimiter = this.properties.getProperty("endingDelimiter");
+        //        commentCfg.addProperty("beginningDelimiter", this.beginningDelimiter);
+        String endingDelimiter = this.contextProperties.getProperty("endingDelimiter");
         if (StringUtility.stringHasValue(endingDelimiter)) {
             this.endingDelimiter = endingDelimiter;
         }
-        commentCfg.addProperty("endingDelimiter", this.endingDelimiter);
+        //        commentCfg.addProperty("endingDelimiter", this.endingDelimiter);
         String schema = this.properties.getProperty("schema");
         if (StringUtility.stringHasValue(schema)) {
             this.schema = schema;
