@@ -9,7 +9,7 @@
     <relativePath>../blog-parent/pom.xml</relativePath>
   </parent>
   <artifactId>blog-web</artifactId>
-  <version>${littlefisher.version}</version>
+  <version>${project.parent.version}</version>
   <packaging>war</packaging>
 
   <name>blog-web</name>
@@ -18,17 +18,17 @@
     <dependency>
       <groupId>com.littlefisher</groupId>
       <artifactId>core-base</artifactId>
-      <version>${littlefisher.version}</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>com.littlefisher</groupId>
       <artifactId>blog-intf</artifactId>
-      <version>${littlefisher.version}</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>com.littlefisher</groupId>
       <artifactId>blog-impl</artifactId>
-      <version>${littlefisher.version}</version>
+      <version>${project.parent.version}</version>
     </dependency>
   </dependencies>
 
@@ -38,7 +38,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
-        <version>2.4</version>
+        <version>${maven-war-plugin.version}</version>
         <configuration>
           <warName>${project.artifactId}</warName>
         </configuration>
@@ -47,7 +47,7 @@
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>${jetty.version}</version>
+        <version>${jetty-maven-plugin.version}</version>
         <!--当升级jdk到9时，可能需要如下jar包支撑-->
         <!--<dependencies>-->
         <!--<dependency>-->

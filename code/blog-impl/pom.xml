@@ -8,7 +8,7 @@
     <relativePath>../blog-parent/pom.xml</relativePath>
   </parent>
   <artifactId>blog-impl</artifactId>
-  <version>${littlefisher.version}</version>
+  <version>${project.parent.version}</version>
   <packaging>jar</packaging>
 
   <name>blog-impl</name>
@@ -17,12 +17,12 @@
     <dependency>
       <groupId>com.littlefisher</groupId>
       <artifactId>blog-intf</artifactId>
-      <version>${littlefisher.version}</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>com.littlefisher</groupId>
       <artifactId>core-base</artifactId>
-      <version>${littlefisher.version}</version>
+      <version>${project.parent.version}</version>
     </dependency>
   </dependencies>
 </project>

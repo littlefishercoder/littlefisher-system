@@ -8,7 +8,7 @@
     <relativePath>../littlefisher-parent/pom.xml</relativePath>
   </parent>
   <artifactId>blog-parent</artifactId>
-  <version>${littlefisher.version}</version>
+  <version>${project.parent.version}</version>
   <packaging>pom</packaging>
 
   <name>blog-parent</name>
@@ -18,4 +18,5 @@
     <module>../blog-impl</module>
     <module>../blog-web</module>
   </modules>
+
 </project>

@@ -8,7 +8,7 @@
     <relativePath>../littlefisher-parent/pom.xml</relativePath>
   </parent>
   <artifactId>core-activiti</artifactId>
-  <version>${littlefisher.version}</version>
+  <version>${project.parent.version}</version>
   <packaging>jar</packaging>
 
   <name>core-activiti</name>
@@ -17,7 +17,7 @@
     <dependency>
       <groupId>com.littlefisher</groupId>
       <artifactId>core-base</artifactId>
-      <version>${littlefisher.version}</version>
+      <version>${project.parent.version}</version>
     </dependency>
     <dependency>
       <groupId>org.activiti</groupId>
@@ -29,9 +29,5 @@
       <artifactId>activiti-spring</artifactId>
       <version>${activiti.version}</version>
     </dependency>
-    <!-- <dependency> <groupId>org.activiti</groupId> <artifactId>activiti-bpmn-model</artifactId> <version>${activiti.version}</version> 
-      </dependency> <dependency> <groupId>org.activiti</groupId> <artifactId>activiti-bpmn-converter</artifactId> <version>${activiti.version}</version> 
-      </dependency> <dependency> <groupId>org.activiti</groupId> <artifactId>activiti-process-validation</artifactId> <version>${activiti.version}</version> 
-      </dependency> -->
   </dependencies>
 </project>
