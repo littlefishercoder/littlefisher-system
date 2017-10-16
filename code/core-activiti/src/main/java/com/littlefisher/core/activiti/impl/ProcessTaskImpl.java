@@ -24,6 +24,7 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Task;
 import org.apache.commons.lang3.StringUtils;
 
+import com.google.common.collect.Maps;
 import com.littlefisher.core.activiti.IProcessTask;
 import com.littlefisher.core.activiti.define.ActivitiDef;
 import com.littlefisher.core.activiti.model.ActivitiStepDto;
@@ -194,8 +195,9 @@ public class ProcessTaskImpl implements IProcessTask {
      * @throws BaseAppException <br>
      */
     private void commitProcess(String taskId, Map<String, Object> variables, String activityId) throws BaseAppException {  
-        if (variables == null) {  
-            variables = new HashMap<String, Object>();  
+        if (variables == null) {
+            // 默认初始化16长度variables
+            variables = Maps.newHashMapWithExpectedSize(16);
         }  
         // 跳转节点为空，默认提交操作  
         if (StringUtils.isEmpty(activityId)) {  

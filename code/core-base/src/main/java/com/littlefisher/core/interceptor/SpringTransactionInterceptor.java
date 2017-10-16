@@ -46,6 +46,7 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
         }
     }
 
+    @Override
     public <U> U execute(final CommandConfig config, final Command<U> command) {
         logger.debug("Running command with propagation {}", config.getTransactionPropagation());
 

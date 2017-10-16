@@ -83,6 +83,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
      * @return Object <br>
      * @throws BaseAppException <br>
      */
+    @Override
     public U execute(CommandContext commandContext) throws BaseAppException {
         this.commandContext = commandContext;
         return execute();

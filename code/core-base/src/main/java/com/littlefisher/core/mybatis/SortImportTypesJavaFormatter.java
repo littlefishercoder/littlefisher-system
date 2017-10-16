@@ -36,6 +36,7 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
      */
     protected Context context;
 
+    @Override
     public String getFormattedContent(CompilationUnit compilationUnit) {
         if (compilationUnit instanceof TopLevelClass) {
             return this.getClassFormattedContent(compilationUnit);
@@ -46,6 +47,7 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
         }
     }
 
+    @Override
     public void setContext(Context context) {
         this.context = context;
     }
@@ -86,23 +88,23 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
         sb.append(interfaceClazz.getVisibility().getValue());
 
         if (interfaceClazz.isStatic()) {
-            sb.append("static "); //$NON-NLS-1$
+            sb.append("static ");
         }
 
         if (interfaceClazz.isFinal()) {
-            sb.append("final "); //$NON-NLS-1$
+            sb.append("final ");
         }
 
-        sb.append("interface "); //$NON-NLS-1$
+        sb.append("interface ");
         sb.append(interfaceClazz.getType().getShortName());
 
         if (interfaceClazz.getSuperInterfaceTypes().size() > 0) {
-            sb.append(" extends "); //$NON-NLS-1$
+            sb.append(" extends ");
 
             boolean comma = false;
             for (FullyQualifiedJavaType fqjt : interfaceClazz.getSuperInterfaceTypes()) {
                 if (comma) {
-                    sb.append(", "); //$NON-NLS-1$
+                    sb.append(", ");
                 } else {
                     comma = true;
                 }
@@ -111,7 +113,7 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
             }
         }
 
-        sb.append(" {"); //$NON-NLS-1$
+        sb.append(" {");
         indentLevel++;
 
         Iterator<Method> mtdIter = interfaceClazz.getMethods().iterator();

@@ -43,10 +43,12 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
         this.systemEngineConfig = systemEngineConfig;
     }
 
+    @Override
     public Class<SystemEngine> getObjectType() {
         return SystemEngine.class;
     }
 
+    @Override
     public boolean isSingleton() {
         return true;
     }
@@ -60,6 +62,7 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
      * @return SystemEngine
      * @throws BaseAppException <br>
      */
+    @Override
     public SystemEngine getObject() throws BaseAppException {
         systemEngine = (SystemEngineImpl) systemEngineConfig.buildSystemEngine();
         

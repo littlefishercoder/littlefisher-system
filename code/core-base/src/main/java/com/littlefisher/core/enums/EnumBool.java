@@ -10,7 +10,9 @@ package com.littlefisher.core.enums;
  */
 public enum EnumBool {
 
+    /** 真 */
     TRUE("TRUE", "真"),
+    /** 假 */
     FALSE("FALSE", "假"),;
 
     /** 编码 */

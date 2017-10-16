@@ -37,10 +37,12 @@ public class DbSqlSession implements Session {
         return getSqlSession().getMapper(type);
     }
 
+    @Override
     public void flush() {
 
     }
 
+    @Override
     public void close() {
         sqlSession.close();
     }

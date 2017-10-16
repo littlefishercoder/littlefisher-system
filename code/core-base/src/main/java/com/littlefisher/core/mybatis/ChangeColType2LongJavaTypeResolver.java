@@ -17,6 +17,7 @@ import org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl;
  */
 public class ChangeColType2LongJavaTypeResolver extends JavaTypeResolverDefaultImpl {
 
+    @Override
     public FullyQualifiedJavaType calculateJavaType(IntrospectedColumn introspectedColumn) {
         FullyQualifiedJavaType answer;
         JdbcTypeInformation jdbcTypeInformation = typeMap.get(introspectedColumn.getJdbcType());

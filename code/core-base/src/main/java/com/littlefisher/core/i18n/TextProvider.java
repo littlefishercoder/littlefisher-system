@@ -13,6 +13,8 @@ public interface TextProvider {
 
     /**
      * Description: 根据key获取资源信息
+     * @param key key值
+     * @return 返回值
      */
     String getText(String key);
 
@@ -20,6 +22,8 @@ public interface TextProvider {
      * Description: 根据local方言和key获取资源信息
      *
      * @param dialect 方言
+     * @param key key值
+     * @return 返回值
      */
     String getText(String dialect, String key);
 }

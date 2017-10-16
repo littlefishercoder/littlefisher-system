@@ -30,7 +30,6 @@ import org.springframework.context.annotation.Import;
         TransactionManagerConfig.class,
         DruidConfig.class
         })
-//@ImportResource("classpath:spring/EngineConfig.xml")
 public class RootConfig {
 
 }

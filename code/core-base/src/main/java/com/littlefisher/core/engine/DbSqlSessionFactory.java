@@ -32,10 +32,12 @@ public class DbSqlSessionFactory implements SessionFactory {
         this.sqlSessionFactory = sqlSessionFactory;
     }
     
+    @Override
     public Class<?> getSessionType() {
         return DbSqlSession.class;
     }
     
+    @Override
     public Session openSession() {
         return new DbSqlSession(this);
     }

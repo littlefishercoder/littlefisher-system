@@ -25,6 +25,7 @@ public interface IProcessAction extends TaskListener, JavaDelegate {
      *
      * @param delegateTask delegateTask
      */
+    @Override
     void notify(DelegateTask delegateTask);
     
     /**
@@ -36,5 +37,6 @@ public interface IProcessAction extends TaskListener, JavaDelegate {
      * @param execution execution
      * @throws Exception <br>
      */
+    @Override
     void execute(DelegateExecution execution) throws Exception;
 }

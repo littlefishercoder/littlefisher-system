@@ -773,11 +773,14 @@ public final class DateUtil {
     public static java.sql.Date getSqlDBDateTime() throws BaseAppException {
         java.sql.Date retDate;
         long begin = System.currentTimeMillis();
-        if (latestQueryTimeMillis == 0 || (begin - latestQueryTimeMillis > 1000L * 60 * 20)) { // 定为20分钟
+        // 定为20分钟
+        long offsetTimeMillis = 1000L * 60 * 20;
+        if (latestQueryTimeMillis == 0 || (begin - latestQueryTimeMillis > offsetTimeMillis)) {
             // 是首次查询，或者是查询超过了指定的间隔时间 <br>
             retDate = new java.sql.Date(getDBCurrentTime().getTime());
             long end = System.currentTimeMillis();
-            if (end - begin <= 50) {
+            long againQueryTimeMillis = 50;
+            if (end - begin <= againQueryTimeMillis) {
                 // 查询小于50毫秒 <br>
                 intervalsOfDBandSysdate = (begin / 1000 * 1000) - retDate.getTime();
                 latestQueryTimeMillis = begin;
@@ -837,7 +840,8 @@ public final class DateUtil {
         if (ret != null) {
             Calendar cal = Calendar.getInstance();
             cal.setTime(ret);
-            if (intout == 0) { // 表示是输入，加上偏移量
+            // 表示是输入，加上偏移量
+            if (intout == 0) {
                 if (hasTimeStr) {
                     cal.add(Calendar.SECOND, offset);
                 }

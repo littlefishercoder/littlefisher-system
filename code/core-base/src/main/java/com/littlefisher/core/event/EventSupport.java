@@ -25,7 +25,7 @@ public class EventSupport {
     /**
      * logger
      */
-    private static final LittleFisherLogger logger = LittleFisherLogger.getLogger(EventSupport.class);
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(EventSupport.class);
 
     /**
      * eventListeners

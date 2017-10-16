@@ -17,9 +17,9 @@ import com.littlefisher.core.utils.LittleFisherLogger;
 public class CommandContextInterceptor extends AbstractCommandInterceptor {
 
     /**
-     * log
+     * logger
      */
-    private static final LittleFisherLogger logger = LittleFisherLogger.getLogger(CommandContextInterceptor.class);
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(CommandContextInterceptor.class);
 
     /**
      * commandContextFactory
@@ -39,6 +39,7 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
         this.systemEngineConfig = systemEngineConfig;
     }
 
+    @Override
     public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
         CommandContext context = Context.getCommandContext();
 

@@ -41,6 +41,9 @@ public class BaseAppException extends RuntimeException {
     /** 资源文件中的value值，如果有占位符，也已被替换 */
     private String localeMessage;
 
+    /** 大括号占位符占位符 */
+    private static Pattern PLACEHOLDER__PATTERN = Pattern.compile("\\{(.*?)\\}");
+
     /**
      * 为了可对异常信息进行参数替换，扩展了String arg0,String arg1,String arg2 三个参数
      * 
@@ -130,8 +133,7 @@ public class BaseAppException extends RuntimeException {
         int i = 0;
         if (s != null && ArrayUtils.isNotEmpty(args)) {
             StringBuilder sb = new StringBuilder();
-            Pattern p = Pattern.compile("\\{(.*?)\\}");
-            Matcher m = p.matcher(s);
+            Matcher m = PLACEHOLDER__PATTERN.matcher(s);
             while (m.find()) {
                 s = s.replaceFirst("\\{(.*?)\\}", args[i++]);
             }
