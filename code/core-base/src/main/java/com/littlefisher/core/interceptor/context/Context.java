@@ -20,12 +20,12 @@ public class Context {
     /**
      * commandContextThreadLocal 分线程存储命令上下文
      */
-    protected static ThreadLocal<Stack<CommandContext>> commandContextThreadLocal = new ThreadLocal<Stack<CommandContext>>();
+    protected static ThreadLocal<Stack<CommandContext>> commandContextThreadLocal = new ThreadLocal<>();
     
     /**
      * systemEngineConfigStackThreadLocal 分线程存储引擎配置
      */
-    protected static ThreadLocal<Stack<SystemEngineConfig>> systemEngineConfigStackThreadLocal = new ThreadLocal<Stack<SystemEngineConfig>>();
+    protected static ThreadLocal<Stack<SystemEngineConfig>> systemEngineConfigStackThreadLocal = new ThreadLocal<>();
     
     public static CommandContext getCommandContext() {
         // 栈 特点是后进先出
@@ -48,6 +48,10 @@ public class Context {
     public static void removeCommandContext() {
         getStack(commandContextThreadLocal).pop();
     }
+
+    public static void clearCommandContext() {
+        commandContextThreadLocal.remove();
+    }
     
     public static SystemEngineConfig getSystemEngineConfig() {
         Stack<SystemEngineConfig> stack = getStack(systemEngineConfigStackThreadLocal);
@@ -66,6 +70,10 @@ public class Context {
         getStack(systemEngineConfigStackThreadLocal).pop();        
     }
 
+    public static void clearSystemEngineConfig() {
+        systemEngineConfigStackThreadLocal.remove();
+    }
+
     protected static <T> Stack<T> getStack(ThreadLocal<Stack<T>> threadLocal) {
         Stack<T> stack = threadLocal.get();
         if (stack == null) {
@@ -74,4 +82,5 @@ public class Context {
         }
         return stack;
     }
+
 }

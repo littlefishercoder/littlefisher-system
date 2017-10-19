@@ -11,8 +11,14 @@ package com.littlefisher.core.engine;
  * @since v1.0
  */
 public interface Session {
-    
+
+    /**
+     * 刷新
+     */
     void flush();
 
+    /**
+     * 关闭
+     */
     void close();
 }

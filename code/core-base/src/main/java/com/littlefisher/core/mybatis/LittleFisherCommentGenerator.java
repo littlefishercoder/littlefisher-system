@@ -95,6 +95,7 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+        String jdbc = "JDBC";
         // 添加@ApiModelProperty注解，用于swaggerUI展示用
         field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() + "\")");
 
@@ -129,7 +130,7 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
         }
         // 自增字段根据不同的数据库，添加不同的@GeneratedValue注解
         if (introspectedColumn.isIdentity()) {
-            if ("JDBC".equals(introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement())) {
+            if (jdbc.equals(introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement())) {
                 field.addAnnotation("@GeneratedValue(generator = \"JDBC\")");
             } else {
                 field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY)");

@@ -44,6 +44,13 @@ public interface EventDispatcher {
      */
     void dispatchEvent(Event event) throws BaseAppException;
 
+    /**
+     * 发布事件
+     *
+     * @param type 事件类型
+     * @param entity 事件传参
+     * @throws BaseAppException <br>
+     */
     void dispatchEntityEvent(String type, Object entity) throws BaseAppException;
 
     /**

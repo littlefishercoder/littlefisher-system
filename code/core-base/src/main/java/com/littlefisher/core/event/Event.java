@@ -12,5 +12,10 @@ package com.littlefisher.core.event;
  */
 public interface Event {
 
+    /**
+     * 获取事件类型
+     *
+     * @return String
+     */
     String getType();
 }

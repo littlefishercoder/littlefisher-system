@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.utils.db.dao.DBMapper;
+import com.littlefisher.core.utils.db.dao.DbMapper;
 
 /**
  * 
@@ -16,7 +16,7 @@ import com.littlefisher.core.utils.db.dao.DBMapper;
  * @version 1.0
  * @since v1.0
  */
-public class QryDBDateTimeCmd extends AbstractCommand<Date> {
+public class QryDbDateTimeCmd extends AbstractCommand<Date> {
 
 //    @Override
 //    public List<Object> getInputArgs() {
@@ -25,7 +25,7 @@ public class QryDBDateTimeCmd extends AbstractCommand<Date> {
 
     @Override
     public Date execute() throws BaseAppException {
-        DBMapper dbMapper = this.getMapper(DBMapper.class);
+        DbMapper dbMapper = this.getMapper(DbMapper.class);
         Date date = dbMapper.getDBDateTime();
         return date;
     }

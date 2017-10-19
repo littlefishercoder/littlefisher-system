@@ -88,10 +88,7 @@ public final class ExceptionHandler {
         StringBuilder sb = new StringBuilder();
         
         sb.append(baseAppException.toString());
-//        if (baseAppException.getDesc() != null) {
-//            sb.append("\r\n").append(baseAppException.getDesc());
-//        }
-        
+
         StackTraceElement[] trace = baseAppException.getStackTrace();
         for (StackTraceElement aTrace : trace) {
             sb.append("\r\n\tat ");

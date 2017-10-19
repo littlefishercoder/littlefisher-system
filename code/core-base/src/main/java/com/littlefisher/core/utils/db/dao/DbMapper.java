@@ -14,7 +14,7 @@ import com.littlefisher.core.mybatis.SuperMapper;
  * @version 1.0
  * @since v1.0
  */
-public interface DBMapper extends SuperMapper {
+public interface DbMapper extends SuperMapper {
 
     /**
      * 

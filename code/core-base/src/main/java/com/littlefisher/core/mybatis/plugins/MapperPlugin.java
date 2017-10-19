@@ -105,12 +105,10 @@ public class MapperPlugin extends PluginAdapter {
         if (StringUtility.stringHasValue(beginningDelimiter)) {
             this.beginningDelimiter = beginningDelimiter;
         }
-        //        commentCfg.addProperty("beginningDelimiter", this.beginningDelimiter);
         String endingDelimiter = this.contextProperties.getProperty("endingDelimiter");
         if (StringUtility.stringHasValue(endingDelimiter)) {
             this.endingDelimiter = endingDelimiter;
         }
-        //        commentCfg.addProperty("endingDelimiter", this.endingDelimiter);
         String schema = this.properties.getProperty("schema");
         if (StringUtility.stringHasValue(schema)) {
             this.schema = schema;

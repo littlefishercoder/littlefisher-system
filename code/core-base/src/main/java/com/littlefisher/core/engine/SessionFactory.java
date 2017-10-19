@@ -12,7 +12,16 @@ package com.littlefisher.core.engine;
  */
 public interface SessionFactory {
 
+    /**
+     * 获取Session类型
+     *
+     * @return Class
+     */
     Class<?> getSessionType();
-    
+
+    /**
+     * 开启Session
+     * @return Session
+     */
     Session openSession();
 }

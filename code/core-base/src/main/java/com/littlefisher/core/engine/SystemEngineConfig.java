@@ -370,8 +370,6 @@ public class SystemEngineConfig {
         List<CommandInterceptor> interceptors = Lists.newArrayList();
         interceptors.add(new CommandContextInterceptor(commandContextFactory, this));
 
-        //        interceptors.add(new LogInterceptor());
-
         CommandInterceptor transactionInterceptor = createTransactionInterceptor();
         if (transactionInterceptor != null) {
             interceptors.add(transactionInterceptor);

@@ -5,6 +5,7 @@ import org.activiti.engine.ProcessEngines;
 import org.activiti.engine.repository.Deployment;
 
 import com.littlefisher.core.activiti.IProcessDeploy;
+import com.littlefisher.core.enums.EnumSymbol;
 import com.littlefisher.core.utils.LittleFisherLogger;
 import com.littlefisher.core.utils.StringUtil;
 
@@ -31,11 +32,11 @@ public class ProcessDeployImpl implements IProcessDeploy {
 
     /** PNG_FINAL_NAME */
     private static final String PNG_FINAL_NAME = ".png";
-    
+
     @Override
     public void deployFlow(String processName, String classPath) {
-        if (StringUtil.isNotEmpty(classPath) && !classPath.endsWith("/")) {
-            classPath += "/";
+        if (StringUtil.isNotEmpty(classPath) && !classPath.endsWith(EnumSymbol.BACKSLASH.getCode())) {
+            classPath += EnumSymbol.BACKSLASH.getCode();
         }
         Deployment deployment = processEngine.getRepositoryService()
                             .createDeployment()
@@ -43,8 +44,6 @@ public class ProcessDeployImpl implements IProcessDeploy {
                             .addClasspathResource(classPath + processName + BPMN_FINAL_NAME)
                             .addClasspathResource(classPath + processName + PNG_FINAL_NAME)
                             .deploy();
-//        System.out.println("Id：" + deployment.getId());
-//        System.out.println("Name：" + deployment.getName());
         logger.debug("Id：" + deployment.getId());
         logger.debug("Name：" + deployment.getName());
     }

@@ -89,5 +89,10 @@ public abstract class AbstractCommand<U> implements Command<U> {
         return execute();
     }
 
+    /**
+     * 执行命令
+     * @return 命令返回值
+     * @throws BaseAppException </br>
+     */
     public abstract U execute() throws BaseAppException;
 }

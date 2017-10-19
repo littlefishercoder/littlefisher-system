@@ -13,9 +13,25 @@ import com.littlefisher.core.exception.BaseAppException;
  */
 public interface CommandInterceptor {
 
+    /**
+     * 执行命令
+     * @param config 命令配置
+     * @param command 具体命令
+     * @param <U> 具体命令类型
+     * @return 该命令执行的返回
+     * @throws BaseAppException </br>
+     */
     <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException;
 
+    /**
+     * 获取下一个命令拦截器
+     * @return CommandInterceptor
+     */
     CommandInterceptor getNext();
 
+    /**
+     * 设置下一个命令拦截器
+     * @param next 下一个命令拦截器
+     */
     void setNext(CommandInterceptor next);
 }

@@ -13,6 +13,11 @@ package com.littlefisher.core.interceptor;
  */
 public interface Command<U> {
 
+    /**
+     * 执行命令
+     * @param commandContext 命令上下文
+     * @return 命令返回值
+     */
     U execute(CommandContext commandContext);
     
 //    /**

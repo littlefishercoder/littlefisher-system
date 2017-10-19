@@ -12,5 +12,9 @@ package com.littlefisher.core.event;
  */
 public interface EntityEvent extends Event {
 
+    /**
+     * 获取事件传参
+     * @return 事件的传参
+     */
     Object getEntity();
 }

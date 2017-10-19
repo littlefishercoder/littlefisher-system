@@ -68,7 +68,7 @@
     <init-param>
       <description>springmvc config</description>
       <param-name>contextConfigLocation</param-name>
-      <param-value>com.littlefisher.blog.config.WebSpringMVCConfig</param-value>
+      <param-value>com.littlefisher.blog.config.WebSpringMvcConfig</param-value>
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>

@@ -136,7 +136,7 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
 
     private void formatStaticImports(StringBuilder sb, Set<String> staticImports) {
         for (String staticImport : staticImports) {
-            sb.append("import static "); //$NON-NLS-1$
+            sb.append("import static ");
             sb.append(staticImport);
             sb.append(';');
             newLine(sb);
@@ -179,7 +179,7 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
 
     private void formatPackage(StringBuilder sb, String packageName) {
         if (stringHasValue(packageName)) {
-            sb.append("package "); //$NON-NLS-1$
+            sb.append("package ");
             sb.append(packageName);
             sb.append(';');
             newLine(sb);

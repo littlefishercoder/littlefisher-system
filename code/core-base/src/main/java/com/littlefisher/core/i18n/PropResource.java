@@ -16,6 +16,7 @@ import org.apache.commons.lang3.ArrayUtils;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.littlefisher.core.enums.EnumCharset;
 import com.littlefisher.core.i18n.utils.I18nConstants;
 import com.littlefisher.core.utils.LittleFisherLogger;
 import com.littlefisher.core.utils.StringUtil;
@@ -33,6 +34,10 @@ public final class PropResource {
 
     /** logger */
     private static LittleFisherLogger logger = LittleFisherLogger.getLogger(PropResource.class);
+
+    private static final String WINDOWS = "windows";
+
+    private static final String UNIX = "unix";
 
     /**
      * 缓存资源文件
@@ -87,19 +92,21 @@ public final class PropResource {
         if (ArrayUtils.isEmpty(files)) {
             return;
         }
-        for (File file : files) {
-            if (file.isDirectory()) {
-                getAllFileName(file.getPath(), list);
-            } else {
-                if (file.getName().endsWith(".properties")) {
-                    list.add(file);
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    getAllFileName(file.getPath(), list);
+                } else {
+                    if (file.getName().endsWith(".properties")) {
+                        list.add(file);
+                    }
                 }
             }
         }
     }
 
     /**
-     * Description: 查询YC_HOME目录地址
+     * Description: 查询SYSTEM_HOME目录地址
      *
      * @return String
      */
@@ -112,14 +119,15 @@ public final class PropResource {
             String os = System.getProperties().getProperty("os.name").toLowerCase();
             try {
                 InputStream inStream;
-                if (os.contains("windows")) {
+                if (os.contains(WINDOWS)) {
                     inStream = Runtime.getRuntime().exec("cmd   /C   set").getInputStream();
-                } else if (os.contains("unix")) {
+                } else if (os.contains(UNIX)) {
                     inStream = Runtime.getRuntime().exec("env").getInputStream();
                 } else {
                     inStream = Runtime.getRuntime().exec("env").getInputStream();
                 }
-                BufferedReader br = new BufferedReader(new InputStreamReader(inStream, "8859_1"));
+                BufferedReader br = new BufferedReader(new InputStreamReader(inStream,
+                        EnumCharset.ISO_8859_1.getCode()));
                 String line;
                 while ((line = br.readLine()) != null) {
 

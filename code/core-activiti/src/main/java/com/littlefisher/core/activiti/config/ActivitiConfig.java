@@ -79,44 +79,11 @@ public class ActivitiConfig {
         springProcessEngineConfiguration.setJobExecutorActivate(false);
         // 设置事务处理功能
         springProcessEngineConfiguration.setTransactionManager(transactionManager);
-//        springProcessEngineConfiguration.setActivityBehaviorFactory(activityBehaviorFactory());
         return springProcessEngineConfiguration;
     }
     
     /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
      *
-     * @return ActivityBehaviorFactory
-     */
-//    @Bean
-//    public ActivityBehaviorFactory activityBehaviorFactory() {
-//        // 重置部分Activiti行为
-//        ActivityBehaviorFactoryExt activityBehaviorFactory = new ActivityBehaviorFactoryExt();
-//        activityBehaviorFactory.setExclusiveGatewayActivityBehaviorExt(exclusiveGatewayActivityBehaviorExt());
-//        return activityBehaviorFactory;
-//    }
-    
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @return ExclusiveGatewayActivityBehaviorExt
-     */
-//    @Bean
-//    public ExclusiveGatewayActivityBehaviorExt exclusiveGatewayActivityBehaviorExt() {
-//        // 重置分支Activiti行为，能够识别自定义行为
-//        return new ExclusiveGatewayActivityBehaviorExt();
-//    }
-    
-    /**
-     * 
-     * Description: 
-     * 
      * @author jinyanan
      *
      * @return RepositoryService

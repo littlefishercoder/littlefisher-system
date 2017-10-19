@@ -6,8 +6,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.littlefisher.core.engine.SystemEngine;
+import com.littlefisher.core.enums.EnumSymbol;
 import com.littlefisher.core.exception.BaseAppException;
-import com.littlefisher.core.utils.db.service.impl.DBServiceImpl;
+import com.littlefisher.core.utils.db.service.impl.DbServiceImpl;
 
 /**
  * Description: 时间工具类 Created on 2017年1月17日
@@ -107,6 +108,12 @@ public final class DateUtil {
      * NAME_FILE_DATE_FORMAT
      */
     public static final String NAME_FILE_DATE_FORMAT = "yyyyMMdd_HHmmss";
+
+    /** 年月日时分秒总计长度 11 */
+    private static final Integer DATE_TIME_LENGTH_11 = 11;
+
+    /** 年月日总计长度 8 */
+    private static final Integer DATE_LENGTH_8 = 8;
 
     /**
      * DATE_FORMAT_SUPPORT
@@ -234,16 +241,16 @@ public final class DateUtil {
         if (StringUtil.isEmpty(date)) {
             return null;
         }
-        if (date.length() > 11) {
-            if (date.indexOf('-') > 0) {
-                if (date.indexOf(':') > 0) {
+        if (date.length() > DATE_TIME_LENGTH_11) {
+            if (date.indexOf(EnumSymbol.MINUS.getCode()) > 0) {
+                if (date.indexOf(EnumSymbol.COLON.getCode()) > 0) {
                     ret = string2SQLDate(date, DATETIME_FORMAT_1);
                 }
                 else {
                     ret = string2SQLDate(date, DATETIME_FORMAT_3);
                 }
             }
-            else if (date.indexOf('/') > 0) {
+            else if (date.indexOf(EnumSymbol.BACKSLASH.getCode()) > 0) {
                 ret = string2SQLDate(date, DATETIME_FORMAT_4);
             }
             else {
@@ -251,10 +258,10 @@ public final class DateUtil {
             }
         }
         else {
-            if (date.indexOf('-') > 0) {
+            if (date.indexOf(EnumSymbol.MINUS.getCode()) > 0) {
                 ret = string2SQLDate(date, DATE_FORMAT_1);
             }
-            else if (date.length() == 8) {
+            else if (date.length() == DATE_LENGTH_8) {
                 ret = string2SQLDate(date, DATE_FORMAT_2);
             }
             else {
@@ -332,16 +339,16 @@ public final class DateUtil {
         if (StringUtil.isEmpty(date)) {
             return null;
         }
-        if (date.length() > 11) {
-            if (date.indexOf('-') > 0) {
-                if (date.indexOf(':') > 0) {
+        if (date.length() > DATE_TIME_LENGTH_11) {
+            if (date.indexOf(EnumSymbol.MINUS.getCode()) > 0) {
+                if (date.indexOf(EnumSymbol.COLON.getCode()) > 0) {
                     ret = string2Date(date, DATETIME_FORMAT_1);
                 }
                 else {
                     ret = string2Date(date, DATETIME_FORMAT_3);
                 }
             }
-            else if (date.indexOf('/') > 0) {
+            else if (date.indexOf(EnumSymbol.BACKSLASH.getCode()) > 0) {
                 ret = string2Date(date, DATETIME_FORMAT_4);
             }
             else {
@@ -349,10 +356,10 @@ public final class DateUtil {
             }
         }
         else {
-            if (date.indexOf('-') > 0) {
+            if (date.indexOf(EnumSymbol.MINUS.getCode()) > 0) {
                 ret = string2Date(date, DATE_FORMAT_1);
             }
-            else if (date.length() == 8) {
+            else if (date.length() == DATE_LENGTH_8) {
                 ret = string2Date(date, DATE_FORMAT_2);
             }
             else {
@@ -446,7 +453,8 @@ public final class DateUtil {
 
         long dstOffset = dstDate - dstDate2;
         // 前后两个日期偏移相同（含不偏移）或者夏令日开始的那个小时不用补偿，否则要补偿偏移量。
-        if (dstOffset == 0 || (dstDate2 - dstDate3 != 0 && dstDate2 != 0)) {
+        boolean isNeedReset = dstOffset == 0 || (dstDate2 - dstDate3 != 0 && dstDate2 != 0);
+        if (!isNeedReset) {
             return date2;
         }
         else {
@@ -819,7 +827,7 @@ public final class DateUtil {
      */
     private static Date getDBCurrentTime() {
         SystemEngine systemEngine = SpringContextUtil.getBean(SystemEngine.class);
-        DBServiceImpl dbServiceImpl = (DBServiceImpl) systemEngine.getService("core.dbService");
+        DbServiceImpl dbServiceImpl = (DbServiceImpl) systemEngine.getService("core.dbService");
         return dbServiceImpl.getDBDateTime();
     }
 

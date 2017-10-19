@@ -129,7 +129,7 @@ public class BaseAppException extends RuntimeException {
      * @param args args 
      * @return String
      */
-    private String replaceArgs(String s, String args[]) {
+    private String replaceArgs(String s, String[] args) {
         int i = 0;
         if (s != null && ArrayUtils.isNotEmpty(args)) {
             StringBuilder sb = new StringBuilder();
