@@ -108,20 +108,10 @@
       <artifactId>commons-fileupload</artifactId>
     </dependency>
     <!-- 日志文件管理包 -->
-    <!-- log start -->
     <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-    </dependency>
-
     <!-- 分页插件 -->
     <dependency>
       <groupId>com.github.pagehelper</groupId>

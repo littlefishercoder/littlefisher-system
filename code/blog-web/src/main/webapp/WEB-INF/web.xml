@@ -6,6 +6,18 @@
   <display-name>blog-web</display-name>
 
   <context-param>
+    <param-name>log4jContextName</param-name>
+    <param-value>blog-web</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>log4jConfiguration</param-name>
+    <!--暂时不支持使用${SYSTEM_HOME}-->
+    <!--<param-value>file:${SYSTEM_HOME}/etc/properties/log4j2.xml</param-value>-->
+    <param-value>/WEB-INF/classes/log4j2.xml</param-value>
+  </context-param>
+
+  <context-param>
     <param-name>contextClass</param-name>
     <param-value>
       org.springframework.web.context.support.AnnotationConfigWebApplicationContext
@@ -14,23 +26,8 @@
 
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <!-- <param-value>classpath:spring/applicationContext.xml</param-value> -->
     <param-value>com.littlefisher.blog.config.WebSpringConfig</param-value>
   </context-param>
-
-  <context-param>
-    <param-name>log4jConfigLocation</param-name>
-    <param-value>file:${SYSTEM_HOME}/etc/properties/log4j.properties</param-value>
-  </context-param>
-  <context-param>
-    <param-name>log4jRefreshInterval</param-name>
-    <param-value>6000</param-value>
-  </context-param>
-
-  <!--spring 5之后，删除了该Listener，暂时没找到替换方式-->
-  <!--<listener>-->
-  <!--<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>-->
-  <!--</listener>-->
 
   <filter>
     <filter-name>characterEncodingFilter</filter-name>
@@ -89,7 +86,5 @@
 
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <!-- <welcome-file>index.htm</welcome-file> -->
-    <!-- <welcome-file>index.jsp</welcome-file> -->
   </welcome-file-list>
 </web-app>

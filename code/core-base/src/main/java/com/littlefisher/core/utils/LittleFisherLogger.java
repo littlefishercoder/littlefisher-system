@@ -2,14 +2,13 @@ package com.littlefisher.core.utils;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-import org.slf4j.helpers.FormattingTuple;
-import org.slf4j.helpers.MessageFormatter;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.common.collect.Maps;
 
 /**
- * Description: 日志管理类 
+ * Description: 日志管理类
  *
  * Created on 2016年12月30日
  *
@@ -35,10 +34,7 @@ public final class LittleFisherLogger {
     }
 
     /**
-     *
-     * Description: 获取Room1000Logger实例，并进行缓存
-     *
-     * @author jinyanan
+     * Description: 获取LittleFisherLogger实例，并进行缓存
      *
      * @param clazz clazz
      * @return LittleFisherLogger
@@ -47,9 +43,9 @@ public final class LittleFisherLogger {
         if (loggerCache.get(clazz.getName()) != null) {
             return loggerCache.get(clazz.getName());
         }
-        LittleFisherLogger room1000Logger = new LittleFisherLogger(Logger.getLogger(clazz));
-        loggerCache.put(clazz.getName(), room1000Logger);
-        return room1000Logger;
+        LittleFisherLogger littleFisherLogger = new LittleFisherLogger(LogManager.getLogger(clazz));
+        loggerCache.put(clazz.getName(), littleFisherLogger);
+        return littleFisherLogger;
     }
 
     public void debug(Object msg) {
@@ -64,10 +60,9 @@ public final class LittleFisherLogger {
         }
     }
 
-    public void debug(String format, Object... arguments) {
+    public void debug(String msg, Object... arguments) {
         if (logger.isDebugEnabled()) {
-            FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
-            logger.debug(ft.getMessage(), ft.getThrowable());
+            logger.debug(msg, arguments);
         }
     }
 
@@ -79,9 +74,8 @@ public final class LittleFisherLogger {
         logger.fatal(msg, t);
     }
 
-    public void fatal(String format, Object... arguments) {
-        FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
-        logger.fatal(ft.getMessage(), ft.getThrowable());
+    public void fatal(String msg, Object... arguments) {
+        logger.fatal(msg, arguments);
     }
 
     public void info(Object msg) {
@@ -96,10 +90,9 @@ public final class LittleFisherLogger {
         }
     }
 
-    public void info(String format, Object... arguments) {
+    public void info(String msg, Object... arguments) {
         if (logger.isInfoEnabled()) {
-            FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
-            logger.info(ft.getMessage(), ft.getThrowable());
+            logger.info(msg, arguments);
         }
     }
 
@@ -111,9 +104,8 @@ public final class LittleFisherLogger {
         logger.warn(msg, t);
     }
 
-    public void warn(String format, Object... arguments) {
-        FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
-        logger.warn(ft.getMessage(), ft.getThrowable());
+    public void warn(String msg, Object... arguments) {
+        logger.warn(msg, arguments);
     }
 
     public void error(Object msg) {
@@ -124,9 +116,8 @@ public final class LittleFisherLogger {
         logger.error(msg, t);
     }
 
-    public void error(String format, Object... arguments) {
-        FormattingTuple ft = MessageFormatter.arrayFormat(format, arguments);
-        logger.error(ft.getMessage(), ft.getThrowable());
+    public void error(String msg, Object... arguments) {
+        logger.error(msg, arguments);
     }
 
 }

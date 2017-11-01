@@ -1,8 +1,6 @@
 package com.littlefisher.core.spring.config;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -11,8 +9,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import com.alibaba.druid.filter.Filter;
-import com.alibaba.druid.filter.logging.Log4jFilter;
+import com.alibaba.druid.filter.logging.Log4j2Filter;
 import com.alibaba.druid.pool.DruidDataSource;
+import com.google.common.collect.Lists;
 
 /**
  * Description: 数据源配置 
@@ -166,21 +165,21 @@ public class DataSourceConfig {
         // druid-xxx.jar!/META-INF/druid-filter.properties
         dataSource.setFilters(filters);
         // 配置log相关的信息
-        List<Filter> filters = new ArrayList<>();
-        filters.add(log4jFilter());
-        dataSource.setProxyFilters(filters);
+        dataSource.setProxyFilters(Lists.newArrayList(
+                log4j2Filter()
+        ));
         return dataSource;
     }
 
     /**
      * Description: 配置log相关的信息
-     * 
+     *
      * @author jinyanan
      * @return Filter
      */
     @Bean
-    public Filter log4jFilter() {
-        Log4jFilter filter = new Log4jFilter();
+    public Filter log4j2Filter() {
+        Log4j2Filter filter = new Log4j2Filter();
         // 打印可执行sql
         filter.setStatementExecutableSqlLogEnable(true);
         return filter;
