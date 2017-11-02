@@ -6,18 +6,6 @@
   <display-name>blog-web</display-name>
 
   <context-param>
-    <param-name>log4jContextName</param-name>
-    <param-value>blog-web</param-value>
-  </context-param>
-
-  <context-param>
-    <param-name>log4jConfiguration</param-name>
-    <!--暂时不支持使用${SYSTEM_HOME}-->
-    <!--<param-value>file:${SYSTEM_HOME}/etc/properties/log4j2.xml</param-value>-->
-    <param-value>/WEB-INF/classes/log4j2.xml</param-value>
-  </context-param>
-
-  <context-param>
     <param-name>contextClass</param-name>
     <param-value>
       org.springframework.web.context.support.AnnotationConfigWebApplicationContext
@@ -27,6 +15,17 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>com.littlefisher.blog.config.WebSpringConfig</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>log4jContextName</param-name>
+    <param-value>blog-web</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>log4jConfiguration</param-name>
+    <!--使用环境变量是，需要加sys，例如${sys:SYSTEM_HOME}-->
+    <param-value>file:///${sys:SYSTEM_HOME}/etc/properties/log4j2.xml</param-value>
   </context-param>
 
   <filter>

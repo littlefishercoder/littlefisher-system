@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.util.Supplier;
 
 import com.google.common.collect.Maps;
 
@@ -66,16 +67,34 @@ public final class LittleFisherLogger {
         }
     }
 
+    public void debug(String msg, Supplier<?>... paramSuppliers) {
+        if (logger.isDebugEnabled()) {
+            logger.debug(msg, paramSuppliers);
+        }
+    }
+
     public void fatal(Object msg) {
-        logger.fatal(msg);
+        if (logger.isFatalEnabled()) {
+            logger.fatal(msg);
+        }
     }
 
     public void fatal(Object msg, Throwable t) {
-        logger.fatal(msg, t);
+        if (logger.isFatalEnabled()) {
+            logger.fatal(msg, t);
+        }
     }
 
     public void fatal(String msg, Object... arguments) {
-        logger.fatal(msg, arguments);
+        if (logger.isFatalEnabled()) {
+            logger.fatal(msg, arguments);
+        }
+    }
+
+    public void fatal(String msg, Supplier<?>... paramSuppliers) {
+        if (logger.isFatalEnabled()) {
+            logger.fatal(msg, paramSuppliers);
+        }
     }
 
     public void info(Object msg) {
@@ -96,28 +115,57 @@ public final class LittleFisherLogger {
         }
     }
 
+    public void info(String msg, Supplier<?>... paramSuppliers) {
+        if (logger.isInfoEnabled()) {
+            logger.info(msg, paramSuppliers);
+        }
+    }
+
     public void warn(Object msg) {
-        logger.warn(msg);
+        if (logger.isWarnEnabled()) {
+            logger.warn(msg);
+        }
     }
 
     public void warn(Object msg, Throwable t) {
-        logger.warn(msg, t);
+        if (logger.isWarnEnabled()) {
+            logger.warn(msg, t);
+        }
     }
 
     public void warn(String msg, Object... arguments) {
-        logger.warn(msg, arguments);
+        if (logger.isWarnEnabled()) {
+            logger.warn(msg, arguments);
+        }
+    }
+
+    public void warn(String msg, Supplier<?>... paramSuppliers) {
+        if (logger.isWarnEnabled()) {
+            logger.warn(msg, paramSuppliers);
+        }
     }
 
     public void error(Object msg) {
-        logger.error(msg);
+        if (logger.isErrorEnabled()) {
+            logger.error(msg);
+        }
     }
 
     public void error(Object msg, Throwable t) {
-        logger.error(msg, t);
+        if (logger.isErrorEnabled()) {
+            logger.error(msg, t);
+        }
     }
 
     public void error(String msg, Object... arguments) {
-        logger.error(msg, arguments);
+        if (logger.isErrorEnabled()) {
+            logger.error(msg, arguments);
+        }
     }
 
+    public void error(String msg, Supplier<?>... paramSuppliers) {
+        if (logger.isErrorEnabled()) {
+            logger.error(msg, paramSuppliers);
+        }
+    }
 }

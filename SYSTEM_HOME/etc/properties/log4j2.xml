@@ -11,7 +11,7 @@
     </console>
     <!-- 这个会打印出所有的debug及以下级别的信息，每次大小超过size，则这size大小的日志会自动存入按年份-月份建立的文件夹下面并进行压缩，作为存档-->
     <RollingFile name="druidLogger" fileName="${SYSTEM_HOME}/log/sql.log"
-                 filePattern="${SYSTEM_HOME}/logs/$${date:yyyy-MM}/%d{yyyy-MM-dd}-%i-sql.log">
+                 filePattern="${SYSTEM_HOME}/log/$${date:yyyy-MM}/%d{yyyy-MM-dd}-%i-sql.log">
       <!--控制台只输出debug及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）-->
       <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
       <PatternLayout pattern="%p [%d{yyyy-MM-dd HH:mm:ss,SSS}] (%c:%L)- %m%n"/>
@@ -27,7 +27,7 @@
     </RollingFile>
 
     <RollingFile name="allLogger" fileName="${SYSTEM_HOME}/log/all.log"
-                 filePattern="${SYSTEM_HOME}/logs/$${date:yyyy-MM}/%d{yyyy-MM-dd}-%i-all.log">
+                 filePattern="${SYSTEM_HOME}/log/$${date:yyyy-MM}/%d{yyyy-MM-dd}-%i-all.log">
       <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
       <PatternLayout pattern="%p [%d{yyyy-MM-dd HH:mm:ss,SSS}] (%c:%L)- %m%n"/>
       <Policies>
@@ -38,7 +38,7 @@
     </RollingFile>
 
     <RollingFile name="blogLogger" fileName="${SYSTEM_HOME}/log/business.log"
-                 filePattern="${SYSTEM_HOME}/logs/$${date:yyyy-MM}/%d{yyyy-MM-dd}-%i-all.log">
+                 filePattern="${SYSTEM_HOME}/log/$${date:yyyy-MM}/%d{yyyy-MM-dd}-%i-business.log">
       <ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
       <PatternLayout pattern="%p [%d{yyyy-MM-dd HH:mm:ss,SSS}] (%c:%L)- %m%n"/>
       <Policies>
