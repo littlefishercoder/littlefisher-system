@@ -2,7 +2,6 @@ package com.littlefisher.core.config.kafka.listener;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.listener.MessageListener;
-import org.springframework.stereotype.Service;
 
 import com.littlefisher.core.utils.LittleFisherLogger;
 
@@ -15,7 +14,6 @@ import com.littlefisher.core.utils.LittleFisherLogger;
  * @version 1.0
  * @since v1.0
  */
-@Service
 public class SingleThreadConsumerListener implements MessageListener<String, String> {
 
     private static LittleFisherLogger logger = LittleFisherLogger.getLogger(SingleThreadConsumerListener.class);
