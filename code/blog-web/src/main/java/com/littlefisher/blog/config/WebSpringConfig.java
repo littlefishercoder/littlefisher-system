@@ -3,7 +3,7 @@ package com.littlefisher.blog.config;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
-import com.littlefisher.core.spring.config.RootConfig;
+import com.littlefisher.core.config.RootConfig;
 
 /**
  * 

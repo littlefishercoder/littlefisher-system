@@ -1,4 +1,4 @@
-package com.littlefisher.core.spring.config;
+package com.littlefisher.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +30,7 @@ public class MapperScannerConfigurerConfig {
     @Bean
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
-        mapperScannerConfigurer.setBasePackage("com.littlefisher.**.dao, com.yc.room1000.**.dao");
+        mapperScannerConfigurer.setBasePackage("com.littlefisher.**.dao");
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
         return mapperScannerConfigurer;
     }

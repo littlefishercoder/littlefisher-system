@@ -1,4 +1,4 @@
-package com.littlefisher.core.spring.config;
+package com.littlefisher.core.config;
 
 import java.io.IOException;
 import java.util.ArrayList;

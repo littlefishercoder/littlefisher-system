@@ -1,6 +1,34 @@
 # MySql 
 driverClassName=com.mysql.jdbc.Driver
 jdbc_url=jdbc:mysql://106.14.156.120:3306/blog?useUnicode=true&characterEncoding=utf-8
-validationQuery=SELECT NOW()
+validation_query=SELECT NOW()
 jdbc_username=root
 jdbc_password=root
+# 初始化大小
+initial_size=0
+# 配置初始化最大值
+max_active=20
+# 最小连接池数量
+min_idle=0
+# 获取连接等待超时的时间
+max_wait=60000
+# 申请连接时执行validationQuery检测连接是否有效
+test_on_borrow=false
+# 归还连接时执行validationQuery检测连接是否有效
+test_on_return=false
+#建议配置为true，不影响性能，并且保证安全性 
+# 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis 执行validationQuery检测连接是否有效
+test_while_idle=true
+# 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+time_between_eviction_runs_millis=60000
+# 配置一个连接在池中最小生存的时间，单位是毫秒
+min_evictable_idle_time_millis=25200000
+# 对于长时间不使用的连接强制关闭
+remove_abandoned=true
+# 超过30分钟开始关闭空闲连接
+remove_abandoned_timeout=1800
+# 将当前关闭动作记录到日志
+log_abandoned=true
+# druid filters的别名保存在下面的地址中 
+# druid-xxx.jar!/META-INF/druid-filter.properties
+filters=mergestat

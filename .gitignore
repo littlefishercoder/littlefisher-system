@@ -25,3 +25,4 @@ node_modules/
 # SYSTEM_HOME
 log/
 **/jdbc.properties
+**/kafka.properties

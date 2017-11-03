@@ -1,4 +1,4 @@
-package com.littlefisher.core.spring.config;
+package com.littlefisher.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

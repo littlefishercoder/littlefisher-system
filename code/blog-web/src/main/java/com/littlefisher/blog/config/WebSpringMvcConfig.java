@@ -33,7 +33,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import com.littlefisher.core.spring.config.swagger.SwaggerConfig;
+import com.littlefisher.core.config.swagger.SwaggerConfig;
 import com.littlefisher.core.springmvc.DateConverter;
 
 /**

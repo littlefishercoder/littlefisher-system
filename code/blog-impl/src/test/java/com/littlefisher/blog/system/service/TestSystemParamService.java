@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.littlefisher.blog.system.model.SystemParamDto;
 import com.littlefisher.blog.system.model.request.GetSystemParamList4PagerByCondRequest;
 import com.littlefisher.core.exception.BaseAppException;
-import com.littlefisher.core.spring.config.RootConfig;
+import com.littlefisher.core.config.RootConfig;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**

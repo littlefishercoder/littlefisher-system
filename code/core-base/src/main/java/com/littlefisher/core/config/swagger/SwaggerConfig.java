@@ -1,4 +1,4 @@
-package com.littlefisher.core.spring.config.swagger;
+package com.littlefisher.core.config.swagger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

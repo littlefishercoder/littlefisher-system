@@ -25,7 +25,7 @@
   <context-param>
     <param-name>log4jConfiguration</param-name>
     <!--使用环境变量是，需要加sys，例如${sys:SYSTEM_HOME}-->
-    <param-value>file:///${sys:SYSTEM_HOME}/etc/properties/log4j2.xml</param-value>
+    <param-value>file:///${sys:SYSTEM_HOME}/etc/log4j/log4j2.xml</param-value>
   </context-param>
 
   <filter>

@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.littlefisher.blog.post.model.PostDto;
 import com.littlefisher.blog.post.model.request.GetPostList4PagerByCondRequest;
-import com.littlefisher.core.spring.config.RootConfig;
+import com.littlefisher.core.config.RootConfig;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**

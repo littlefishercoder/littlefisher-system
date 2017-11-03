@@ -1,4 +1,4 @@
-package com.littlefisher.core.spring.config;
+package com.littlefisher.core.config;
 
 import java.sql.SQLException;
 
@@ -46,75 +46,88 @@ public class DataSourceConfig {
     /**
      * validationQuerySQL
      */
-    @Value("${validationQuery}")
+    @Value("${validation_query}")
     private String validationQuerySQL;
 
     /**
      * 初始化大小
      */
-    private int initialSize = 0;
+    @Value("${initial_size}")
+    private int initialSize;
 
     /**
      * 配置初始化最大值
      */
-    private int maxActive = 20;
+    @Value("${max_active}")
+    private int maxActive;
 
     /**
      * 最小连接池数量
      */
-    private int minIdle = 0;
+    @Value("${min_idle}")
+    private int minIdle;
 
     /**
      * 获取连接等待超时的时间
      */
-    private Long maxWait = 60000L;
+    @Value("${max_wait}")
+    private Long maxWait;
 
     /**
      * 申请连接时执行validationQuery检测连接是否有效
      */
-    private boolean testOnBorrow = false;
+    @Value("${test_on_borrow}")
+    private boolean testOnBorrow;
 
     /**
      * 归还连接时执行validationQuery检测连接是否有效
      */
-    private boolean testOnReturn = false;
+    @Value("${test_on_return}")
+    private boolean testOnReturn;
 
     /**
      * 建议配置为true，不影响性能，并且保证安全性 
      * 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis 执行validationQuery检测连接是否有效
      */
-    private boolean testWhileIdle = true;
+    @Value("${test_while_idle}")
+    private boolean testWhileIdle;
 
     /**
      * 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
      */
-    private Long timeBetweenEvictionRunsMillis = 60000L;
+    @Value("${time_between_eviction_runs_millis}")
+    private Long timeBetweenEvictionRunsMillis;
 
     /**
      * 配置一个连接在池中最小生存的时间，单位是毫秒
      */
-    private Long minEvictableIdleTimeMillis = 25200000L;
+    @Value("${min_evictable_idle_time_millis}")
+    private Long minEvictableIdleTimeMillis;
 
     /**
      * 对于长时间不使用的连接强制关闭
      */
-    private boolean removeAbandoned = true;
+    @Value("${remove_abandoned}")
+    private boolean removeAbandoned;
 
     /**
      * 超过30分钟开始关闭空闲连接
      */
-    private int removeAbandonedTimeout = 1800;
+    @Value("${remove_abandoned_timeout}")
+    private int removeAbandonedTimeout;
 
     /**
      * 将当前关闭动作记录到日志
      */
-    private boolean logAbandoned = true;
+    @Value("${log_abandoned}")
+    private boolean logAbandoned;
 
     /**
      * druid filters的别名保存在下面的地址中 
      * druid-xxx.jar!/META-INF/druid-filter.properties
      */
-    private String filters = "mergeStat";
+    @Value("${filters}")
+    private String filters;
 
     /**
      * Description:
@@ -124,7 +137,7 @@ public class DataSourceConfig {
      * @throws SQLException <br>
      */
     @Bean(initMethod = "init", destroyMethod = "close")
-    public DataSource dataSource() throws SQLException {
+    public DruidDataSource dataSource() throws SQLException {
         DruidDataSource dataSource = new DruidDataSource();
         // 基本属性 url、user、password
         dataSource.setUrl(url);

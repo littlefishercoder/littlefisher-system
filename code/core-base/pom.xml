@@ -127,7 +127,6 @@
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-configuration2</artifactId>
     </dependency>
-    <!-- log end -->
     <!-- swagger-springmvc -->
     <dependency>
       <groupId>com.mangofactory</groupId>
@@ -142,21 +141,18 @@
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
     </dependency>
-    <!--<dependency>-->
-      <!--<groupId>com.fasterxml.jackson.core</groupId>-->
-      <!--<artifactId>jackson-annotations</artifactId>-->
-    <!--</dependency>-->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
     </dependency>
-    <!--<dependency>-->
-      <!--<groupId>com.fasterxml.jackson.core</groupId>-->
-      <!--<artifactId>jackson-core</artifactId>-->
-    <!--</dependency>-->
     <dependency>
       <groupId>com.fasterxml</groupId>
       <artifactId>classmate</artifactId>
+    </dependency>
+    <!--kafka-->
+    <dependency>
+      <groupId>org.springframework.kafka</groupId>
+      <artifactId>spring-kafka</artifactId>
     </dependency>
   </dependencies>
 
