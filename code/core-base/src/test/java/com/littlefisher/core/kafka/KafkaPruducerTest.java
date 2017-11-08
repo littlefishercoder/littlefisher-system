@@ -40,7 +40,7 @@ public class KafkaPruducerTest {
 
         for (int i = 0; i < 100; i++) {
             logger.debug("开始发送第{}条数据", i);
-            kafkaTemplate.sendDefault("TestTopic-" + i);
+            kafkaTemplate.send(topic, "TestTopic-" + i);
         }
         logger.debug("消息发送完毕");
 

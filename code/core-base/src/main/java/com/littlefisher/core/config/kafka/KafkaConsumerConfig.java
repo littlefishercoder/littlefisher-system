@@ -11,8 +11,10 @@ import org.springframework.kafka.listener.AbstractMessageListenerContainer;
 import org.springframework.kafka.listener.KafkaMessageListenerContainer;
 import org.springframework.kafka.listener.config.ContainerProperties;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Maps;
-import com.littlefisher.core.config.kafka.listener.SingleThreadConsumerListener;
+import com.littlefisher.core.config.kafka.consumer.DefaultConsumerMessageListener;
 
 /**
  * Description: KafkaCustomerConfig.java
@@ -47,6 +49,9 @@ public class KafkaConsumerConfig {
     @Value("${consumer_value_deserializer}")
     private String valueDeserializer;
 
+    @Value("${consumer_topics}")
+    private String topics;
+
     @Bean("consumerFactory")
     public <K, V> DefaultKafkaConsumerFactory<K, V> kafkaConsumerFactory() {
         return new DefaultKafkaConsumerFactory<>(generateKafkaConsumerConfig());
@@ -65,21 +70,24 @@ public class KafkaConsumerConfig {
     }
 
     @Bean
-    public SingleThreadConsumerListener singleThreadConsumerListener() {
-        return new SingleThreadConsumerListener();
+    public DefaultConsumerMessageListener consumerMessageListener() {
+        return new DefaultConsumerMessageListener();
     }
 
     @Bean
     public ContainerProperties containerProperties() {
-        ContainerProperties containerProperties = new ContainerProperties("TestTopic");
-        containerProperties.setMessageListener(singleThreadConsumerListener());
+        ContainerProperties containerProperties = new ContainerProperties(Iterables
+                .toArray(Splitter.on(",").omitEmptyStrings().trimResults().split(topics),
+                        String.class));
+        containerProperties.setMessageListener(consumerMessageListener());
         containerProperties.setAckMode(AbstractMessageListenerContainer.AckMode.RECORD);
         return containerProperties;
     }
 
     @Bean(initMethod = "doStart")
     public <K, V> KafkaMessageListenerContainer<K, V> kafkaMessageListenerContainer() {
-        KafkaMessageListenerContainer<K, V> kafkaMessageListenerContainer = new KafkaMessageListenerContainer<>(kafkaConsumerFactory(), containerProperties());
+        KafkaMessageListenerContainer<K, V> kafkaMessageListenerContainer = new KafkaMessageListenerContainer<>(
+                kafkaConsumerFactory(), containerProperties());
         kafkaMessageListenerContainer.setAutoStartup(true);
         return kafkaMessageListenerContainer;
     }

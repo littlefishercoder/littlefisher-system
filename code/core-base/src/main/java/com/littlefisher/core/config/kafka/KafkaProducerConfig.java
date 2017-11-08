@@ -59,7 +59,7 @@ public class KafkaProducerConfig {
     @Value("${producer_value_serializer}")
     private String valueSerializer;
 
-    @Bean("producerFactory")
+    @Bean
     public <K, V> DefaultKafkaProducerFactory<K, V> kafkaProducerFactory() {
         return new DefaultKafkaProducerFactory<>(generateKafkaProducerConfig());
     }
@@ -71,7 +71,7 @@ public class KafkaProducerConfig {
         // ack模式
         config.put(ProducerConfig.ACKS_CONFIG, acks);
         // 用户随意指定，但是不能重复，主要用于跟踪记录消息
-         config.put(ProducerConfig.CLIENT_ID_CONFIG, clientId);
+        config.put(ProducerConfig.CLIENT_ID_CONFIG, clientId);
         // 重试次数
         config.put(ProducerConfig.RETRIES_CONFIG, retries);
         // Producer会尝试去把发往同一个Partition的多个Requests进行合并，
@@ -98,8 +98,6 @@ public class KafkaProducerConfig {
 
     @Bean
     public <K, V> KafkaTemplate<K, V> kafkaTemplate() {
-        KafkaTemplate<K, V> kafkaTemplate =  new KafkaTemplate<>(kafkaProducerFactory(), true);
-        kafkaTemplate.setDefaultTopic("TestTopic");
-        return kafkaTemplate;
+        return new KafkaTemplate<>(kafkaProducerFactory(), true);
     }
 }
