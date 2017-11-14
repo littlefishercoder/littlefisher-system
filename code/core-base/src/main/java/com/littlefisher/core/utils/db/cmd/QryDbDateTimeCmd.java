@@ -26,8 +26,7 @@ public class QryDbDateTimeCmd extends AbstractCommand<Date> {
     @Override
     public Date execute() throws BaseAppException {
         DbMapper dbMapper = this.getMapper(DbMapper.class);
-        Date date = dbMapper.getDBDateTime();
-        return date;
+        return dbMapper.getDBDateTime();
     }
 
 }

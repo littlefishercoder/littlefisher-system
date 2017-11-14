@@ -24,7 +24,8 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
     /**
      * logger
      */
-    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(LoggerInterceptor.class);
+    private static LittleFisherLogger logger = LittleFisherLogger
+            .getLogger(LoggerInterceptor.class);
 
     @Override
     public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
@@ -34,7 +35,9 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
         LittleFisherLogger clazzLogger = LittleFisherLogger.getLogger(clazz);
         U result;
         try {
-            clazzLogger.info("--- starting {} --------------------------------------------------------", methodName);
+            clazzLogger
+                    .info("--- starting {} --------------------------------------------------------",
+                            methodName);
             if (StringUtil.isNotEmpty(parameters)) {
                 clazzLogger.info("Parameters:" + parameters);
             }
@@ -47,7 +50,9 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
             clazzLogger.error("inerror", e);
             throw new BaseRuntimeException("inerror", e);
         } finally {
-            clazzLogger.info("--- {} finished --------------------------------------------------------", methodName);
+            clazzLogger
+                    .info("--- {} finished --------------------------------------------------------",
+                            methodName);
         }
     }
 
@@ -81,11 +86,8 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
         sb.append(" [");
         for (int i = 0; i < parameterTypes.length; i++) {
             Class<?> parameterType = parameterTypes[i];
-            if (i == 0) {
-                sb.append(" ").append(parameterType.getName()).append("=").append(fieldMap.get(parameterType));
-            } else {
-                sb.append(", ").append(parameterType.getName()).append("=").append(fieldMap.get(parameterType));
-            }
+            sb.append(i == 0 ? " " : ", ").append(parameterType.getName()).append("=")
+                    .append(fieldMap.get(parameterType));
         }
         sb.append(" ]");
         return sb.toString();

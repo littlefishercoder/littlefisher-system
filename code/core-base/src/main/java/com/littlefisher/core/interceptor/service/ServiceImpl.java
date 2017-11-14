@@ -37,7 +37,7 @@ public class ServiceImpl implements InitializingBean {
      */
     private void init() { 
         Class<? extends ServiceImpl> mClass = this.getClass();
-        Service service = (Service) mClass.getAnnotation(Service.class);
+        Service service = mClass.getAnnotation(Service.class);
         String value = service.value();
         if (StringUtil.isEmpty(value)) {
             value = StringUtil.uncapitalize(mClass.getSimpleName());

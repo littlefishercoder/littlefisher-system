@@ -14,9 +14,10 @@ import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.littlefisher.core.enums.EnumCharset;
+import com.google.common.io.Files;
 import com.littlefisher.core.i18n.utils.I18nConstants;
 import com.littlefisher.core.utils.LittleFisherLogger;
 import com.littlefisher.core.utils.StringUtil;
@@ -72,7 +73,8 @@ public final class PropResource {
         List<File> allFileList = Lists.newArrayList();
         getAllFileName(resourceDir, allFileList);
         for (File file : allFileList) {
-            String name = file.getName().substring(0, file.getName().length() - I18nConstants.PROPERTIES_LENGTH);
+            String name = file.getName()
+                    .substring(0, file.getName().length() - I18nConstants.PROPERTIES_LENGTH);
             int index = name.lastIndexOf(".");
             String local = name.substring(index + 1, name.length());
             resourceMap.put(local, Maps.newConcurrentMap());
@@ -126,8 +128,8 @@ public final class PropResource {
                 } else {
                     inStream = Runtime.getRuntime().exec("env").getInputStream();
                 }
-                BufferedReader br = new BufferedReader(new InputStreamReader(inStream,
-                        EnumCharset.ISO_8859_1.getCode()));
+                BufferedReader br = new BufferedReader(
+                        new InputStreamReader(inStream, Charsets.ISO_8859_1));
                 String line;
                 while ((line = br.readLine()) != null) {
 
@@ -167,39 +169,17 @@ public final class PropResource {
      * Description: 读取File数据
      */
     private static void readFile(File file, Map<String, String> valueMap) {
-        FileReader fr = null;
-        BufferedReader br = null;
         try {
-            fr = new FileReader(file);
-            br = new BufferedReader(fr);
-            String line;
-            while ((line = br.readLine()) != null) {
+            List<String> lineList = Files.readLines(file, Charsets.UTF_8);
+            for (String line : lineList) {
                 int idx = line.indexOf('=');
                 String key = line.substring(0, idx).trim();
                 String value = line.substring(idx + 1).trim();
                 valueMap.put(key, value);
             }
-        } catch (FileNotFoundException e) {
-            logger.error("FileNotFoundException", e);
         } catch (IOException e) {
             logger.error("IOException", e);
-        } finally {
-            try {
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException e) {
-                logger.error("IOException", e);
-            }
-            try {
-                if (fr != null) {
-                    fr.close();
-                }
-            } catch (IOException e) {
-                logger.error("IOException", e);
-            }
         }
-
     }
 
     /**

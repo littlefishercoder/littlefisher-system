@@ -78,7 +78,7 @@ public class MapperPlugin extends PluginAdapter {
         contextProperties = context.getProperties();
         addProperties(context);
         //支持oracle获取注释#114
-        context.getJdbcConnectionConfiguration().addProperty("remarksReporting", "true");
+        context.getJdbcConnectionConfiguration().addProperty("remarksReporting", EnumBool.TRUE.getCode().toLowerCase());
     }
 
     private void addProperties(Context context) {

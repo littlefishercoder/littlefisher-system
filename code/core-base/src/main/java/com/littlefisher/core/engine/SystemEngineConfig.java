@@ -10,6 +10,9 @@ import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import com.google.common.base.Splitter;
+import com.google.common.collect.Collections2;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.littlefisher.core.event.EventDispatcher;
@@ -363,7 +366,7 @@ public class SystemEngineConfig {
         if (types == null || types.isEmpty()) {
             return emptyArray;
         }
-        return StringUtil.split(types, ",");
+        return Iterables.toArray(Splitter.on(',').omitEmptyStrings().split(types), String.class);
     }
 
     protected Collection<? extends CommandInterceptor> getDefaultCommandInterceptors() throws BaseAppException {

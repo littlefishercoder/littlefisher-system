@@ -17,12 +17,13 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import com.github.pagehelper.PageInterceptor;
+import com.google.common.collect.Lists;
+import com.google.common.collect.ObjectArrays;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年4月18日 
+ * Description:
+ *
+ * Created on 2017年4月18日
  *
  * @author jinyanan
  * @version 1.0
@@ -30,7 +31,7 @@ import com.github.pagehelper.PageInterceptor;
  */
 @Configuration
 public class SqlSessionFactoryBeanConfig {
-    
+
     /**
      * dataSource
      */
@@ -38,10 +39,7 @@ public class SqlSessionFactoryBeanConfig {
     private DataSource dataSource;
 
     /**
-     * 
      * Description: 创建SqlSessionFactoryBean
-     * 
-     * @author jinyanan
      *
      * @return SqlSessionFactoryBean
      * @throws IOException IOException
@@ -51,23 +49,16 @@ public class SqlSessionFactoryBeanConfig {
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(dataSource);
         // 解析classpath
-        Resource[] littlefisherResources = new PathMatchingResourcePatternResolver().getResources("classpath*:com/littlefisher/**/mapper/*.xml");
-        List<Resource> resourceList = new ArrayList<>();
-        resourceList.addAll(Arrays.asList(littlefisherResources));
-        Resource[] room1000Resources = new PathMatchingResourcePatternResolver().getResources("classpath*:com/yc/room1000/**/mapper/*.xml");
-        resourceList.addAll(Arrays.asList(room1000Resources));
-        Resource[] mapperLocations = new Resource[littlefisherResources.length + room1000Resources.length];
-        sqlSessionFactoryBean.setMapperLocations(resourceList.toArray(mapperLocations));
-        Interceptor[] plugins = {pageInterceptor()};
+        Resource[] littlefisherResources = new PathMatchingResourcePatternResolver()
+                .getResources("classpath*:com/littlefisher/**/mapper/*.xml");
+        sqlSessionFactoryBean.setMapperLocations(littlefisherResources);
+        Interceptor[] plugins = { pageInterceptor() };
         sqlSessionFactoryBean.setPlugins(plugins);
         return sqlSessionFactoryBean;
     }
-    
+
     /**
-     * 
      * Description: 引入分页插件
-     * 
-     * @author jinyanan
      *
      * @return PageInterceptor
      */

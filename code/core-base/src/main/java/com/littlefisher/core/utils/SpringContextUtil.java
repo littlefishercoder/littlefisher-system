@@ -36,11 +36,11 @@ public final class SpringContextUtil implements ApplicationContextAware {
     /**
      * 从文件系统初始化 <br>
      */
-    @SuppressWarnings("resource")
     public static void initFromFile(String... filePaths) {
         try {
             new FileSystemXmlApplicationContext(filePaths);
         } catch (BeansException e) {
+            // TODO: 设置异常码
             throw ExceptionHandler.publish("", e);
         }
     }
@@ -48,12 +48,12 @@ public final class SpringContextUtil implements ApplicationContextAware {
     /**
      * 从classpath初始化 <br>
      */
-    @SuppressWarnings("resource")
     public static void initFromClasspath(String... classpaths) {
         try {
             new ClassPathXmlApplicationContext(classpaths);
         } catch (BeansException e) {
-            throw ExceptionHandler.publish("S-CRMCOM-037", e);
+            // TODO: 设置异常码
+            throw ExceptionHandler.publish("", e);
         }
     }
 

@@ -13,14 +13,14 @@ import com.littlefisher.core.exception.BaseAppException;
  */
 public final class ExceptionHandler {
 
+    /** logger */
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(ExceptionHandler.class);
+
     /**
      * 禁止实例化
      */
     private ExceptionHandler() {
     }
-
-    /** logger */
-    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(ExceptionHandler.class);
 
     public static BaseAppException publish(String errorCode, Throwable t) throws BaseAppException {
         return publish(errorCode, null, t, null, null, null);

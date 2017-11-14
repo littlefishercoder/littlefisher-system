@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.google.common.base.Objects;
 import com.littlefisher.core.engine.SystemEngine;
 import com.littlefisher.core.enums.EnumSymbol;
 import com.littlefisher.core.exception.BaseAppException;
@@ -237,7 +238,7 @@ public final class DateUtil {
      * @return java.sql.Date
      */
     public static java.sql.Date string2SQLDate(String date) {
-        java.sql.Date ret = null;
+        java.sql.Date ret;
         if (StringUtil.isEmpty(date)) {
             return null;
         }
@@ -679,12 +680,14 @@ public final class DateUtil {
      */
     public static boolean isInRange(String date, String beginDate, String endDate) {
         if (StringUtil.isEmpty(date) || StringUtil.isEmpty(beginDate) || StringUtil.isEmpty(endDate)) {
+            // TODO: 定义异常码
             ExceptionHandler.publish("");
         }
         int dateLen = date.length();
         int beginDateLen = date.length();
         int endDateLen = date.length();
-        if (!EqualsUtil.equals(beginDateLen, dateLen) || EqualsUtil.equals(dateLen, endDateLen)) {
+        if (!Objects.equal(beginDateLen, dateLen) || !Objects.equal(dateLen, endDateLen)) {
+            // TODO: 定义异常码
             ExceptionHandler.publish("");
         }
         boolean asc = isAsc(beginDate, endDate);

@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.core.convert.converter.Converter;
 
+import com.google.common.collect.Lists;
 import com.littlefisher.core.utils.DateUtil;
 import com.littlefisher.core.utils.StringUtil;
 
@@ -23,7 +24,7 @@ public class DateConverter implements Converter<String, Date> {
     /**
      * formarts
      */
-    private static final List<String> FORMATS = new ArrayList<>(4);
+    private static final List<String> FORMATS = Lists.newArrayListWithCapacity(4);
 
     static {
         FORMATS.add("yyyy-MM");

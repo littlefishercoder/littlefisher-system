@@ -64,7 +64,7 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
      */
     @Override
     public SystemEngine getObject() throws BaseAppException {
-        systemEngine = (SystemEngineImpl) systemEngineConfig.buildSystemEngine();
+        systemEngine = systemEngineConfig.buildSystemEngine();
         
         systemEngineConfig.initServices(registerServices);
         

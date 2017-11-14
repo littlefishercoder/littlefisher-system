@@ -18,7 +18,7 @@ public class I18nConstants {
     /** .properties 长度 */
     public static final int PROPERTIES_LENGTH = 11;
     
-    /** YC_HOME */
+    /** SYSTEM_HOME */
     public static final String SYSTEM_HOME = "SYSTEM_HOME";
     
     /** 默认方言 */

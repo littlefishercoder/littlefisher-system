@@ -1,22 +1,20 @@
 package com.littlefisher.core.exception;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.ArrayUtils;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.littlefisher.core.i18n.PropertiesFileTextProvider;
 import com.littlefisher.core.i18n.TextProvider;
-import com.littlefisher.core.utils.CollectionUtil;
 import com.littlefisher.core.utils.StringUtil;
 
 /**
- * 
  * Description: BaseAppException
- *  
- * Created on 2016年12月30日 
+ *
+ * Created on 2016年12月30日
  *
  * @author jinyanan
  * @version 1.0
@@ -25,10 +23,10 @@ import com.littlefisher.core.utils.StringUtil;
 public class BaseAppException extends RuntimeException {
 
     /**
-     * serialVersionUID 
+     * serialVersionUID
      */
     private static final long serialVersionUID = 3908474026331716374L;
-    
+
     /** textProvider */
     private static TextProvider textProvider = new PropertiesFileTextProvider();
 
@@ -46,7 +44,7 @@ public class BaseAppException extends RuntimeException {
 
     /**
      * 为了可对异常信息进行参数替换，扩展了String arg0,String arg1,String arg2 三个参数
-     * 
+     *
      * @param errorCode String
      * @param message String
      * @param cause Throwable
@@ -54,56 +52,39 @@ public class BaseAppException extends RuntimeException {
      * @param arg1 String
      * @param arg2 String
      */
-    public BaseAppException(String errorCode, String message, Throwable cause, String arg0, String arg1, String arg2) {
-        
+    public BaseAppException(String errorCode, String message, Throwable cause, String arg0,
+                            String arg1, String arg2) {
+
         super(message, cause);
 
-        List<String> list = Lists.newArrayListWithCapacity(3);
-        
-        if (StringUtil.isNotEmpty(arg0)) {
-            list.add(arg0);
-        }
-        if (StringUtil.isNotEmpty(arg1)) {
-            list.add(arg1);
-        }
-        if (StringUtil.isNotEmpty(arg2)) {
-            list.add(arg2);
-        }
-        String[] args = null;
-
-        if (CollectionUtil.isNotEmpty(list)) {
-            args = new String[list.size()];
-            int i = 0;
-            for (String s : list) {
-                args[i++] = s;
-            }
-        }
+        String[] args = Iterables.toArray(
+                Iterables.filter(Lists.newArrayList(arg0, arg1, arg2), StringUtil::isNotBlank),
+                String.class);
 
         this.code = errorCode;
         this.desc = message;
 
         this.localeMessage = (code == null ? StringUtil.EMPTY : textProvider.getText(code));
-        
+
         this.localeMessage = StringUtil.isEmpty(this.localeMessage) ? message : this.localeMessage;
 
         if (ArrayUtils.isNotEmpty(args)) {
             this.localeMessage = this.replaceArgs(localeMessage, args);
         }
     }
-    
+
     /**
-     * 
      * BaseAppException
-     * 
+     *
      * @param errorCode errorCode
      */
     public BaseAppException(String errorCode) {
-        this(errorCode, null, null, null, null, null);  
+        this(errorCode, null, null, null, null, null);
     }
-    
+
     /**
      * BaseAppException
-     * 
+     *
      * @param errorCode errorCode
      * @param message message
      */
@@ -112,9 +93,8 @@ public class BaseAppException extends RuntimeException {
     }
 
     /**
-     * 
      * BaseAppException
-     * 
+     *
      * @param errorCode errorCode
      * @param ex ex
      */
@@ -124,14 +104,14 @@ public class BaseAppException extends RuntimeException {
 
     /**
      * 占位符替换
-     * 
+     *
      * @param s s
-     * @param args args 
+     * @param args args
      * @return String
      */
     private String replaceArgs(String s, String[] args) {
         int i = 0;
-        if (s != null && ArrayUtils.isNotEmpty(args)) {
+        if (StringUtil.isNotBlank(s) && ArrayUtils.isNotEmpty(args)) {
             StringBuilder sb = new StringBuilder();
             Matcher m = PLACEHOLDER__PATTERN.matcher(s);
             while (m.find()) {
@@ -143,7 +123,7 @@ public class BaseAppException extends RuntimeException {
 
         return StringUtil.EMPTY;
     }
-    
+
     public String getCode() {
         return code;
     }

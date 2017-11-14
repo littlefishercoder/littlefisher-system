@@ -35,7 +35,7 @@ import com.littlefisher.core.config.kafka.KafkaConfig;
         SystemEngineConfig.class,
         TransactionManagerConfig.class,
         DruidConfig.class,
-        KafkaConfig.class,
+//        KafkaConfig.class,
         })
 public class RootConfig {
 

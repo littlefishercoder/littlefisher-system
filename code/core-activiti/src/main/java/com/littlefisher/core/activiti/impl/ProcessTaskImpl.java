@@ -2,7 +2,6 @@ package com.littlefisher.core.activiti.impl;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,6 @@ import org.activiti.engine.impl.pvm.process.ProcessDefinitionImpl;
 import org.activiti.engine.impl.pvm.process.TransitionImpl;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Task;
-import org.apache.commons.lang3.StringUtils;
 
 import com.google.common.collect.Maps;
 import com.littlefisher.core.activiti.IProcessTask;
@@ -30,6 +28,7 @@ import com.littlefisher.core.activiti.define.ActivitiDef;
 import com.littlefisher.core.activiti.model.ActivitiStepDto;
 import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.utils.LittleFisherLogger;
+import com.littlefisher.core.utils.StringUtil;
 
 /**
  * 
@@ -200,7 +199,7 @@ public class ProcessTaskImpl implements IProcessTask {
             variables = Maps.newHashMapWithExpectedSize(16);
         }  
         // 跳转节点为空，默认提交操作  
-        if (StringUtils.isEmpty(activityId)) {  
+        if (StringUtil.isEmpty(activityId)) {
             processEngine.getTaskService().complete(taskId, variables);  
         } 
         else { // 流程转向操作  
@@ -250,9 +249,7 @@ public class ProcessTaskImpl implements IProcessTask {
                 .getOutgoingTransitions();  
         pvmTransitionList.clear();  
         // 还原以前流向  
-        for (PvmTransition pvmTransition : oriPvmTransitionList) {  
-            pvmTransitionList.add(pvmTransition);  
-        }  
+        pvmTransitionList.addAll(oriPvmTransitionList);
     }  
     
     /** 
@@ -291,7 +288,7 @@ public class ProcessTaskImpl implements IProcessTask {
         ProcessDefinitionEntity processDefinition = findProcessDefinitionEntityByTaskId(taskId);
 
         // 获取当前活动节点ID
-        if (StringUtils.isEmpty(activityId)) {
+        if (StringUtil.isEmpty(activityId)) {
             activityId = findTaskById(taskId).getTaskDefinitionKey();
         }
 
