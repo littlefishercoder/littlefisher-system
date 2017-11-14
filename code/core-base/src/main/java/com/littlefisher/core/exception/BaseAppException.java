@@ -40,25 +40,12 @@ public class BaseAppException extends RuntimeException {
     private String localeMessage;
 
     /** 大括号占位符占位符 */
-    private static Pattern PLACEHOLDER__PATTERN = Pattern.compile("\\{(.*?)\\}");
+    private static final String PLACEHOLDER_PATTERN = "\\{(.*?)\\}";
 
-    /**
-     * 为了可对异常信息进行参数替换，扩展了String arg0,String arg1,String arg2 三个参数
-     *
-     * @param errorCode String
-     * @param message String
-     * @param cause Throwable
-     * @param arg0 String
-     * @param arg1 String
-     * @param arg2 String
-     */
-    public BaseAppException(String errorCode, String message, Throwable cause, String arg0,
-                            String arg1, String arg2) {
-
+    public BaseAppException(String errorCode, String message, Throwable cause, String... args) {
         super(message, cause);
 
-        String[] args = Iterables.toArray(
-                Iterables.filter(Lists.newArrayList(arg0, arg1, arg2), StringUtil::isNotBlank),
+        args = Iterables.toArray(Iterables.filter(Lists.newArrayList(args), StringUtil::isNotBlank),
                 String.class);
 
         this.code = errorCode;
@@ -79,7 +66,7 @@ public class BaseAppException extends RuntimeException {
      * @param errorCode errorCode
      */
     public BaseAppException(String errorCode) {
-        this(errorCode, null, null, null, null, null);
+        this(errorCode, null, null);
     }
 
     /**
@@ -89,7 +76,7 @@ public class BaseAppException extends RuntimeException {
      * @param message message
      */
     public BaseAppException(String errorCode, String message) {
-        this(errorCode, message, null, null, null, null);
+        this(errorCode, message, null);
     }
 
     /**
@@ -99,25 +86,25 @@ public class BaseAppException extends RuntimeException {
      * @param ex ex
      */
     public BaseAppException(String errorCode, Exception ex) {
-        this(errorCode, null, ex, null, null, null);
+        this(errorCode, null, ex);
     }
 
     /**
      * 占位符替换
      *
-     * @param s s
+     * @param message message
      * @param args args
      * @return String
      */
-    private String replaceArgs(String s, String[] args) {
+    private String replaceArgs(String message, String[] args) {
         int i = 0;
-        if (StringUtil.isNotBlank(s) && ArrayUtils.isNotEmpty(args)) {
+        if (StringUtil.isNotBlank(message) && ArrayUtils.isNotEmpty(args)) {
             StringBuilder sb = new StringBuilder();
-            Matcher m = PLACEHOLDER__PATTERN.matcher(s);
-            while (m.find()) {
-                s = s.replaceFirst("\\{(.*?)\\}", args[i++]);
+            Matcher matcher = Pattern.compile(PLACEHOLDER_PATTERN).matcher(message);
+            while (matcher.find()) {
+                message = message.replaceFirst(PLACEHOLDER_PATTERN, args[i++]);
             }
-            sb.append(s);
+            sb.append(message);
             return sb.toString();
         }
 

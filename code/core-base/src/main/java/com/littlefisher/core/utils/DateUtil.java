@@ -684,11 +684,10 @@ public final class DateUtil {
             ExceptionHandler.publish("");
         }
         int dateLen = date.length();
-        int beginDateLen = date.length();
-        int endDateLen = date.length();
+        int beginDateLen = beginDate.length();
+        int endDateLen = endDate.length();
         if (!Objects.equal(beginDateLen, dateLen) || !Objects.equal(dateLen, endDateLen)) {
-            // TODO: 定义异常码
-            ExceptionHandler.publish("");
+            ExceptionHandler.publish("CORE-000001",date, beginDate, endDate);
         }
         boolean asc = isAsc(beginDate, endDate);
         if (asc) {

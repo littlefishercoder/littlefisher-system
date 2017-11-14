@@ -22,54 +22,49 @@ public final class ExceptionHandler {
     private ExceptionHandler() {
     }
 
-    public static BaseAppException publish(String errorCode, Throwable t) throws BaseAppException {
-        return publish(errorCode, null, t, null, null, null);
+    public static void publish(String errorCode, Throwable t) {
+        publish(errorCode, null, t, null, null, null);
     }
 
-    public static BaseAppException publish(String errorCode) throws BaseAppException {
-        return publish(errorCode, null, null, null, null, null);
+    public static void publish(String errorCode) {
+        publish(errorCode, null, null, null, null, null);
     }
 
-    public static BaseAppException publish(String errorCode, String msg) throws BaseAppException {
-        return publish(errorCode, msg, null, null, null, null);
+    public static void publish(String errorCode, String msg) {
+        publish(errorCode, msg, null, null, null, null);
     }
 
-    public static BaseAppException publish(String errorCode, String msg, Throwable t) throws BaseAppException {
-        return publish(errorCode, msg, t, null, null, null);
+    public static void publish(String errorCode, String msg, Throwable t) {
+        publish(errorCode, msg, t, null, null, null);
     }
 
-    public static BaseAppException publish(String errorCode, String msg, Throwable t, String param)
-        throws BaseAppException {
-        return publish(errorCode, msg, t, param, null, null);
+    public static void publish(String errorCode, String msg, Throwable t, String param) {
+        publish(errorCode, msg, t, param, null, null);
     }
 
-    public static BaseAppException publish(String errorCode, String msg, String param1) throws BaseAppException {
-        return publish(errorCode, msg, null, param1, null, null);
+    public static void publish(String errorCode, String msg, String param1) {
+        publish(errorCode, msg, null, param1, null, null);
     }
 
-    public static BaseAppException publish(String errorCode, String msg, String param1, String param2)
-        throws BaseAppException {
-        return publish(errorCode, msg, null, param1, param2, null);
+    public static void publish(String errorCode, String msg, String param1, String param2) {
+        publish(errorCode, msg, null, param1, param2, null);
     }
 
-    public static BaseAppException publish(String errorCode, String msg, Throwable t, String param1, String param2,
-        String param3) throws BaseAppException {
+    public static void publish(String errorCode, String msg, Throwable t, String param1,
+                               String param2, String param3) {
 
         BaseAppException baseAppException;
         if (t instanceof BaseAppException) {
             baseAppException = (BaseAppException) t;
-        }
-        else if (t instanceof InvocationTargetException) {
+        } else if (t instanceof InvocationTargetException) {
             // 仅仅对此情况进行处理，不能进行深层检查！
             Throwable cause = t.getCause();
             if (cause instanceof BaseAppException) {
                 baseAppException = (BaseAppException) cause;
-            }
-            else {
+            } else {
                 baseAppException = new BaseAppException(errorCode, msg, t, param1, param2, param3);
             }
-        }
-        else {
+        } else {
             baseAppException = new BaseAppException(errorCode, msg, t, param1, param2, param3);
         }
 
@@ -79,14 +74,13 @@ public final class ExceptionHandler {
 
     /**
      * Description: 打印日志
-     * 
-     * @author jinyanan
+     *
      * @param baseAppException 异常
      */
     private static void logErrorInfo(BaseAppException baseAppException) {
-        
+
         StringBuilder sb = new StringBuilder();
-        
+
         sb.append(baseAppException.toString());
 
         StackTraceElement[] trace = baseAppException.getStackTrace();

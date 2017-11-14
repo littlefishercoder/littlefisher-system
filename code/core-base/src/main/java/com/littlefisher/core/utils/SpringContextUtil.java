@@ -40,8 +40,7 @@ public final class SpringContextUtil implements ApplicationContextAware {
         try {
             new FileSystemXmlApplicationContext(filePaths);
         } catch (BeansException e) {
-            // TODO: 设置异常码
-            throw ExceptionHandler.publish("", e);
+            ExceptionHandler.publish("CORE-000002", e);
         }
     }
 
@@ -52,8 +51,7 @@ public final class SpringContextUtil implements ApplicationContextAware {
         try {
             new ClassPathXmlApplicationContext(classpaths);
         } catch (BeansException e) {
-            // TODO: 设置异常码
-            throw ExceptionHandler.publish("", e);
+            ExceptionHandler.publish("CORE-000002", e);
         }
     }
 
