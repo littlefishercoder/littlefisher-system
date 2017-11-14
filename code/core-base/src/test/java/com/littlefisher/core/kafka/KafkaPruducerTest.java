@@ -1,6 +1,7 @@
 package com.littlefisher.core.kafka;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +47,7 @@ public class KafkaPruducerTest {
 
         while (true) {
             logger.debug("currentTime: {}", new Date());
-            Thread.sleep(2000);
+            TimeUnit.SECONDS.sleep(2);
         }
     }
 }
