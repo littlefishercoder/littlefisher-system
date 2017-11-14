@@ -6,7 +6,6 @@ import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.commentary.dao.CommentaryDtoMapper;
 import com.littlefisher.blog.commentary.model.CommentaryDto;
 import com.littlefisher.blog.commentary.model.request.GetCommentaryList4PagerByCondRequest;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
@@ -39,7 +38,7 @@ public class GetCommentaryList4PagerByCondCmd extends AbstractCommand<List<Comme
     }
 
     @Override
-    public List<CommentaryDto> execute() throws BaseAppException {
+    public List<CommentaryDto> execute() {
         CommentaryDtoMapper commentaryDtoMapper = this.getMapper(CommentaryDtoMapper.class);
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
         return commentaryDtoMapper.selectByCond(req);

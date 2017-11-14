@@ -1,7 +1,6 @@
 package com.littlefisher.blog.commentary.cmd;
 
 import com.littlefisher.blog.commentary.dao.CommentaryDtoMapper;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
@@ -34,7 +33,7 @@ public class DeleteCommentaryCmd extends AbstractCommand<Integer> {
     }
 
     @Override
-    public Integer execute() throws BaseAppException {
+    public Integer execute() {
         CommentaryDtoMapper commentaryDtoMapper = this.getMapper(CommentaryDtoMapper.class);
         return commentaryDtoMapper.deleteByPrimaryKey(commentaryId);
     }

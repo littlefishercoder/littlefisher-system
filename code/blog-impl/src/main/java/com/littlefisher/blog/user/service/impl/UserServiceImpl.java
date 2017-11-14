@@ -13,49 +13,47 @@ import com.littlefisher.blog.user.cmd.UpdateUserCmd;
 import com.littlefisher.blog.user.model.UserDto;
 import com.littlefisher.blog.user.model.request.GetUserList4PagerByCondRequest;
 import com.littlefisher.blog.user.service.IUserService;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年5月17日 
+ * Description:
+ *
+ * Created on 2017年5月17日
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-@Service("user.UserService")
+@Service
 public class UserServiceImpl extends ServiceImpl implements IUserService {
 
     @Override
-    public List<UserDto> getAllUser() throws BaseAppException {
+    public List<UserDto> getAllUser() {
         return this.execute(new QryAllUserCmd());
     }
 
     @Override
-    public UserDto getUserById(Long userId) throws BaseAppException {
+    public UserDto getUserById(Long userId) {
         return this.execute(new QryUserByIdCmd(userId));
     }
 
     @Override
-    public UserDto addUser(UserDto userDto) throws BaseAppException {
+    public UserDto addUser(UserDto userDto) {
         return this.execute(new AddUserCmd(userDto));
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto) throws BaseAppException {
+    public UserDto updateUser(UserDto userDto) {
         return this.execute(new UpdateUserCmd(userDto));
     }
 
     @Override
-    public int deleteUser(Long userId) throws BaseAppException {
+    public int deleteUser(Long userId) {
         return this.execute(new DeleteUserCmd(userId));
     }
 
     @Override
-    public List<UserDto> getUserListByCond(GetUserList4PagerByCondRequest req) throws BaseAppException {
+    public List<UserDto> getUserListByCond(GetUserList4PagerByCondRequest req) {
         return this.execute(new GetUserListByCondCmd(req));
     }
 

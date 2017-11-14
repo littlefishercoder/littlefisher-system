@@ -4,14 +4,12 @@ import java.util.List;
 
 import com.littlefisher.blog.user.dao.UserStateDtoMapper;
 import com.littlefisher.blog.user.model.UserStateDto;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
- * 
  * Description: 查询所有用户状态
- *  
- * Created on 2017年5月25日 
+ *
+ * Created on 2017年5月25日
  *
  * @author jinyanan
  * @version 1.0
@@ -20,7 +18,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
 public class GetAllUserStateCmd extends AbstractCommand<List<UserStateDto>> {
 
     @Override
-    public List<UserStateDto> execute() throws BaseAppException {
+    public List<UserStateDto> execute() {
         UserStateDtoMapper userStateDtoMapper = this.getMapper(UserStateDtoMapper.class);
         return userStateDtoMapper.selectAll();
     }

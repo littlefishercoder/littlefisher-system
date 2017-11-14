@@ -60,7 +60,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
      * Description: <br>
      * 此方法只会在command execute 方法内部使用
      */
-    protected ServiceImpl getService(String serviceName) throws BaseAppException {
+    protected ServiceImpl getService(String serviceName) {
         return commandContext.getSystemEngineConfig().getService(serviceName);
     }
 
@@ -72,7 +72,7 @@ public abstract class AbstractCommand<U> implements Command<U> {
      * @return ServiceImpl的具体实现类
      * @throws BaseAppException <br>
      */
-    protected <T> T getService(Class<? extends ServiceImpl> clazzService) throws BaseAppException {
+    protected <T> T getService(Class<? extends ServiceImpl> clazzService) {
         return commandContext.getSystemEngineConfig().getService(clazzService);
     }
 
@@ -84,15 +84,16 @@ public abstract class AbstractCommand<U> implements Command<U> {
      * @throws BaseAppException <br>
      */
     @Override
-    public U execute(CommandContext commandContext) throws BaseAppException {
+    public U execute(CommandContext commandContext) {
         this.commandContext = commandContext;
         return execute();
     }
 
     /**
      * 执行命令
+     *
      * @return 命令返回值
      * @throws BaseAppException </br>
      */
-    public abstract U execute() throws BaseAppException;
+    public abstract U execute();
 }

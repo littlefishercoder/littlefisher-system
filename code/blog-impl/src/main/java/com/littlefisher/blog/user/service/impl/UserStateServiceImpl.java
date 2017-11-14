@@ -14,10 +14,9 @@ import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年5月25日 
+ * Description:
+ *
+ * Created on 2017年5月25日
  *
  * @author jinyanan
  * @version 1.0
@@ -27,22 +26,22 @@ import com.littlefisher.core.interceptor.service.ServiceImpl;
 public class UserStateServiceImpl extends ServiceImpl implements IUserStateService {
 
     @Override
-    public List<UserStateDto> getAllUserState() throws BaseAppException {
+    public List<UserStateDto> getAllUserState() {
         return this.execute(new GetAllUserStateCmd());
     }
 
     @Override
-    public UserStateDto addUserState(UserStateDto userStateDto) throws BaseAppException {
+    public UserStateDto addUserState(UserStateDto userStateDto) {
         return this.execute(new AddUserStateCmd(userStateDto));
     }
 
     @Override
-    public UserStateDto updateUserState(UserStateDto userStateDto) throws BaseAppException {
+    public UserStateDto updateUserState(UserStateDto userStateDto) {
         return this.execute(new UpdateUserStateCmd(userStateDto));
     }
 
     @Override
-    public int deleteUserState(String state) throws BaseAppException {
+    public int deleteUserState(String state) {
         return this.execute(new DeleteUserStateCmd(state));
     }
 

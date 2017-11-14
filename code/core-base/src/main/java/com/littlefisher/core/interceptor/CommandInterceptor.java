@@ -19,9 +19,8 @@ public interface CommandInterceptor {
      * @param command 具体命令
      * @param <U> 具体命令类型
      * @return 该命令执行的返回
-     * @throws BaseAppException </br>
      */
-    <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException;
+    <U> U execute(CommandConfig config, Command<U> command);
 
     /**
      * 获取下一个命令拦截器

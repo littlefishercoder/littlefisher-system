@@ -1,13 +1,11 @@
 package com.littlefisher.core.interceptor;
 
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.context.Context;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月10日 
+ * Description:
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -16,7 +14,7 @@ import com.littlefisher.core.interceptor.context.Context;
 public class CommandInvoker extends AbstractCommandInterceptor {
 
     @Override
-    public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
+    public <U> U execute(CommandConfig config, Command<U> command) {
         // Context.getCommandContext()是为了能让业务的command中，调用工具方法
         // 例如commandContext.getSystemEngineConfig().getService()获取其他Service
         // 例如commandContext.getDbSqlSession().getMapper()获取Mapper
@@ -30,6 +28,7 @@ public class CommandInvoker extends AbstractCommandInterceptor {
 
     @Override
     public void setNext(CommandInterceptor next) {
-        throw new UnsupportedOperationException("CommandInvoker must be the last interceptor in the chain");
+        throw new UnsupportedOperationException(
+                "CommandInvoker must be the last interceptor in the chain");
     }
 }

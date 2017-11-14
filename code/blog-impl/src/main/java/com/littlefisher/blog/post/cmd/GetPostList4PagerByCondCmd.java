@@ -6,31 +6,26 @@ import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.post.dao.PostDtoMapper;
 import com.littlefisher.blog.post.model.PostDto;
 import com.littlefisher.blog.post.model.request.GetPostList4PagerByCondRequest;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年5月23日 
+ * Description:
+ *
+ * Created on 2017年5月23日
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
 public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostDto>> {
-    
+
     /**
      * req
      */
     private GetPostList4PagerByCondRequest req;
-    
+
     /**
-     * 
      * Description: 构造函数
-     *
-     * @author jinyanan
      *
      * @param req req
      */
@@ -40,7 +35,7 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostDto>> {
     }
 
     @Override
-    public List<PostDto> execute() throws BaseAppException {
+    public List<PostDto> execute() {
         PostDtoMapper postDtoMapper = this.getMapper(PostDtoMapper.class);
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
         return postDtoMapper.selectByCond(req);

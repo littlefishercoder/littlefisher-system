@@ -2,31 +2,26 @@ package com.littlefisher.blog.user.cmd;
 
 import com.littlefisher.blog.user.dao.UserDtoMapper;
 import com.littlefisher.blog.user.model.UserDto;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年5月17日 
+ * Description:
+ *
+ * Created on 2017年5月17日
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
 public class AddUserCmd extends AbstractCommand<UserDto> {
-    
+
     /**
      * userDto
      */
     private UserDto userDto;
 
     /**
-     * 
      * Description: 构造函数
-     *
-     * @author jinyanan
      *
      * @param userDto userDto
      */
@@ -36,7 +31,7 @@ public class AddUserCmd extends AbstractCommand<UserDto> {
     }
 
     @Override
-    public UserDto execute() throws BaseAppException {
+    public UserDto execute() {
         UserDtoMapper userDtoMapper = this.getMapper(UserDtoMapper.class);
         userDtoMapper.insert(userDto);
         return userDto;

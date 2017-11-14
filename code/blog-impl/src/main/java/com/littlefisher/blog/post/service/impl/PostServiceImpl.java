@@ -12,14 +12,12 @@ import com.littlefisher.blog.post.cmd.UpdatePostCmd;
 import com.littlefisher.blog.post.model.PostDto;
 import com.littlefisher.blog.post.model.request.GetPostList4PagerByCondRequest;
 import com.littlefisher.blog.post.service.IPostService;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年5月23日 
+ * Description:
+ *
+ * Created on 2017年5月23日
  *
  * @author jinyanan
  * @version 1.0
@@ -29,29 +27,28 @@ import com.littlefisher.core.interceptor.service.ServiceImpl;
 public class PostServiceImpl extends ServiceImpl implements IPostService {
 
     @Override
-    public List<PostDto> getPostList4PagerByCond(GetPostList4PagerByCondRequest req) throws BaseAppException {
+    public List<PostDto> getPostList4PagerByCond(GetPostList4PagerByCondRequest req) {
         return this.execute(new GetPostList4PagerByCondCmd(req));
     }
 
     @Override
-    public PostDto getPostById(Long postId) throws BaseAppException {
+    public PostDto getPostById(Long postId) {
         return this.execute(new GetPostByIdCmd(postId));
     }
 
     @Override
-    public PostDto addPost(PostDto postDto) throws BaseAppException {
+    public PostDto addPost(PostDto postDto) {
         return this.execute(new AddPostCmd(postDto));
     }
 
     @Override
-    public PostDto updatePost(PostDto postDto) throws BaseAppException {
+    public PostDto updatePost(PostDto postDto) {
         return this.execute(new UpdatePostCmd(postDto));
     }
 
     @Override
-    public int deletePostById(Long postId) throws BaseAppException {
+    public int deletePostById(Long postId) {
         return this.execute(new DeletePostByIdCmd(postId));
     }
-
 
 }

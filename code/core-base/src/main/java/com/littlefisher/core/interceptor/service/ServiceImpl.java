@@ -97,9 +97,8 @@ public class ServiceImpl implements InitializingBean {
      * @param command <br>
      * @param <U> <U>
      * @return  <br>
-     * @throws BaseAppException <br>
      */
-    protected <U> U execute(Command<U> command) throws BaseAppException {
+    protected <U> U execute(Command<U> command) {
         return commandExecutor.execute(command);
     }
     
@@ -116,9 +115,8 @@ public class ServiceImpl implements InitializingBean {
      * @param command <br>
      * @param <U> <U>
      * @return <br>
-     * @throws BaseAppException <br>
      */
-    protected <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
+    protected <U> U execute(CommandConfig config, Command<U> command) {
         
         return commandExecutor.execute(config, command);
     }

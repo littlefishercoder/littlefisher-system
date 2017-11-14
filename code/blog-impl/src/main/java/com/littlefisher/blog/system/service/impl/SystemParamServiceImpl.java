@@ -14,13 +14,11 @@ import com.littlefisher.blog.system.cmd.UpdateSystemParamCmd;
 import com.littlefisher.blog.system.model.SystemParamDto;
 import com.littlefisher.blog.system.model.request.GetSystemParamList4PagerByCondRequest;
 import com.littlefisher.blog.system.service.ISystemParamService;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
 /**
- * 
  * Description:
- * 
+ *
  * Created on 2017年5月22日
  *
  * @author jinyanan
@@ -31,38 +29,38 @@ import com.littlefisher.core.interceptor.service.ServiceImpl;
 public class SystemParamServiceImpl extends ServiceImpl implements ISystemParamService {
 
     @Override
-    public List<SystemParamDto> getSystemParamList4PagerByCond(GetSystemParamList4PagerByCondRequest req)
-        throws BaseAppException {
+    public List<SystemParamDto> getSystemParamList4PagerByCond(
+            GetSystemParamList4PagerByCondRequest req) {
         return this.execute(new GetSystemParamList4PagerByCondCmd(req));
     }
 
     @Override
-    public SystemParamDto getSystemParamByKey(String paramKey) throws BaseAppException {
+    public SystemParamDto getSystemParamByKey(String paramKey) {
         return this.execute(new GetSystemParamByKeyCmd(paramKey));
     }
 
     @Override
-    public SystemParamDto getSystemParamById(Long systemParamId) throws BaseAppException {
+    public SystemParamDto getSystemParamById(Long systemParamId) {
         return this.execute(new GetSystemParamByIdCmd(systemParamId));
     }
 
     @Override
-    public SystemParamDto addSystemParam(SystemParamDto systemParamDto) throws BaseAppException {
+    public SystemParamDto addSystemParam(SystemParamDto systemParamDto) {
         return this.execute(new AddSystemParamCmd(systemParamDto));
     }
 
     @Override
-    public int deleteSystemParamByKey(String paramKey) throws BaseAppException {
+    public int deleteSystemParamByKey(String paramKey) {
         return this.execute(new DeleteSystemParamByKeyCmd(paramKey));
     }
 
     @Override
-    public int deleteSystemParamById(Long systemParamId) throws BaseAppException {
+    public int deleteSystemParamById(Long systemParamId) {
         return this.execute(new DeleteSystemParamByIdCmd(systemParamId));
     }
 
     @Override
-    public SystemParamDto updateSystemParam(SystemParamDto systemParamDto) throws BaseAppException {
+    public SystemParamDto updateSystemParam(SystemParamDto systemParamDto) {
         return this.execute(new UpdateSystemParamCmd(systemParamDto));
     }
 

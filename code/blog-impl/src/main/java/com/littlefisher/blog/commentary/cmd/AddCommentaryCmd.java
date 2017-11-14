@@ -2,7 +2,6 @@ package com.littlefisher.blog.commentary.cmd;
 
 import com.littlefisher.blog.commentary.dao.CommentaryDtoMapper;
 import com.littlefisher.blog.commentary.model.CommentaryDto;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
@@ -35,7 +34,7 @@ public class AddCommentaryCmd extends AbstractCommand<CommentaryDto> {
     }
 
     @Override
-    public CommentaryDto execute() throws BaseAppException {
+    public CommentaryDto execute() {
         CommentaryDtoMapper commentaryDtoMapper = this.getMapper(CommentaryDtoMapper.class);
         commentaryDtoMapper.insert(commentaryDto);
         return commentaryDto;

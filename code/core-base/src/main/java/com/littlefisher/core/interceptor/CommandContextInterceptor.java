@@ -40,7 +40,7 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
     }
 
     @Override
-    public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
+    public <U> U execute(CommandConfig config, Command<U> command) {
         CommandContext context = Context.getCommandContext();
 
         boolean contextReused = false;

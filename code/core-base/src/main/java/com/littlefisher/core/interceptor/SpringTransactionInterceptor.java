@@ -33,7 +33,7 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
         this.transactionManager = transactionManager;
     }
 
-    private int getPropagation(CommandConfig config) throws BaseAppException {
+    private int getPropagation(CommandConfig config) {
         switch (config.getTransactionPropagation()) {
             case NOT_SUPPORTED:
                 return TransactionTemplate.PROPAGATION_NOT_SUPPORTED;

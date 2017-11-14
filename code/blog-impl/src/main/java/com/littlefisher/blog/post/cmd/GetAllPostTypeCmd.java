@@ -4,14 +4,12 @@ import java.util.List;
 
 import com.littlefisher.blog.post.dao.PostTypeDtoMapper;
 import com.littlefisher.blog.post.model.PostTypeDto;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年5月25日 
+ * Description:
+ *
+ * Created on 2017年5月25日
  *
  * @author jinyanan
  * @version 1.0
@@ -20,7 +18,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
 public class GetAllPostTypeCmd extends AbstractCommand<List<PostTypeDto>> {
 
     @Override
-    public List<PostTypeDto> execute() throws BaseAppException {
+    public List<PostTypeDto> execute() {
         PostTypeDtoMapper postTypeDtoMapper = this.getMapper(PostTypeDtoMapper.class);
         return postTypeDtoMapper.selectAll();
     }
