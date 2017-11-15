@@ -49,7 +49,7 @@ public class DateConverter implements Converter<String, Date> {
         } else if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}:\\d{1,2}$")) {
             return DateUtil.string2Date(source, FORMATS.get(3));
         } else {
-            ExceptionHandler.publish("CORE-000008", source);
+            ExceptionHandler.publish("CORE-000008", null, source);
         }
         return null;
     }

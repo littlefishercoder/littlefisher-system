@@ -7,10 +7,9 @@ import com.littlefisher.core.utils.ExceptionHandler;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
- * 
  * Description: Spring事务拦截器
- *  
- * Created on 2017年2月10日 
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -41,7 +40,7 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
             case REQUIRES_NEW:
                 return TransactionTemplate.PROPAGATION_REQUIRES_NEW;
             default:
-                ExceptionHandler.publish("CORE-000006", config.getTransactionPropagation().toString());
+                ExceptionHandler.publish("CORE-000006", null, config.getTransactionPropagation().toString());
                 return TransactionTemplate.TIMEOUT_DEFAULT;
         }
     }
@@ -53,8 +52,7 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
         TransactionTemplate transactionTemplate = new TransactionTemplate(transactionManager);
         try {
             transactionTemplate.setPropagationBehavior(getPropagation(config));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             transactionTemplate.setPropagationBehavior(TransactionTemplate.PROPAGATION_REQUIRED);
         }
 
@@ -62,9 +60,8 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
             U result = null;
             try {
                 result = next.execute(config, command);
-            }
-            catch (Exception e) {
-                ExceptionHandler.publish("CORE-000007");
+            } catch (Exception e) {
+                ExceptionHandler.publish("CORE-000007", null, e);
             }
             return result;
         });

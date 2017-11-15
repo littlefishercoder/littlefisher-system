@@ -25,6 +25,7 @@ import com.littlefisher.core.interceptor.CommandExecutorImpl;
 import com.littlefisher.core.interceptor.CommandInterceptor;
 import com.littlefisher.core.interceptor.CommandInvoker;
 import com.littlefisher.core.interceptor.LoggerInterceptor;
+import com.littlefisher.core.interceptor.OvalInterceptor;
 import com.littlefisher.core.interceptor.SpringTransactionInterceptor;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 import com.littlefisher.core.utils.CollectionUtil;
@@ -376,6 +377,10 @@ public class SystemEngineConfig {
         if (transactionInterceptor != null) {
             interceptors.add(transactionInterceptor);
         }
+        CommandInterceptor ovalInterceptor = createOvalInterceptor();
+        if (ovalInterceptor != null) {
+            interceptors.add(ovalInterceptor);
+        }
         CommandInterceptor loggerInterceptor = createLoggerInterceptor();
         if (loggerInterceptor != null) {
             interceptors.add(loggerInterceptor);
@@ -400,6 +405,14 @@ public class SystemEngineConfig {
      */
     protected CommandInterceptor createLoggerInterceptor() {
         return new LoggerInterceptor();
+    }
+
+    /**
+     * 创建oval校验拦截器
+     * @return OvalInterceptor
+     */
+    protected CommandInterceptor createOvalInterceptor() {
+        return new OvalInterceptor();
     }
 
     /**

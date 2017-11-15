@@ -23,8 +23,7 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
     /**
      * logger
      */
-    private static LittleFisherLogger logger = LittleFisherLogger
-            .getLogger(LoggerInterceptor.class);
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(LoggerInterceptor.class);
 
     @Override
     public <U> U execute(CommandConfig config, Command<U> command) {
@@ -34,9 +33,7 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
         LittleFisherLogger clazzLogger = LittleFisherLogger.getLogger(clazz);
         U result;
         try {
-            clazzLogger
-                    .info("--- starting {} --------------------------------------------------------",
-                            methodName);
+            clazzLogger.info("--- starting {} --------------------------------------------------------", methodName);
             if (StringUtil.isNotEmpty(parameters)) {
                 clazzLogger.info("Parameters:" + parameters);
             }
@@ -49,9 +46,7 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
             clazzLogger.error("inerror", e);
             throw new BaseRuntimeException("inerror", e);
         } finally {
-            clazzLogger
-                    .info("--- {} finished --------------------------------------------------------",
-                            methodName);
+            clazzLogger.info("--- {} finished --------------------------------------------------------", methodName);
         }
     }
 
@@ -93,8 +88,14 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
     }
 
     /**
-     * Description: 获取clazz中field字段的属性值
+     * 获取clazz中field字段的属性值
+     *
+     * @param command 要获取字段的类
+     * @param field 具体字段
+     * @param <U> 泛型
+     * @return 字段的值
      */
+    @SuppressWarnings("Duplicates")
     private <U> Object getFieldVariable(Command<U> command, Field field) {
         try {
             field.setAccessible(true);

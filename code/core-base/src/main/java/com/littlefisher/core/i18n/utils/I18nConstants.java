@@ -23,4 +23,7 @@ public class I18nConstants {
     
     /** 默认方言 */
     public static final String DIALECT_DEFAULT = "zh";
+
+    /** 英语方言 */
+    public static final String DIALECT_EN = "en";
 }

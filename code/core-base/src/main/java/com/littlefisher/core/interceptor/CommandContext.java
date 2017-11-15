@@ -68,7 +68,7 @@ public class CommandContext {
         if (session == null) {
             SessionFactory sessionFactory = sessionFactories.get(sessionClass);
             if (sessionFactory == null) {
-                ExceptionHandler.publish("CORE-000005", sessionClass.getName());
+                ExceptionHandler.publish("CORE-000005", null, sessionClass.getName());
             } else {
                 session = sessionFactory.openSession();
                 sessions.put(sessionClass, session);

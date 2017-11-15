@@ -22,11 +22,60 @@ public final class ExceptionHandler {
     private ExceptionHandler() {
     }
 
-    public static void publish(String errorCode, String... param) {
-        publish(errorCode, null, param);
+    public static void publish(String errorCode) {
+        publish(errorCode, null, null, null, null, null, null, null);
     }
 
-    public static void publish(String errorCode, Throwable t, String... param) {
+    public static void publish(String errorCode, String message) {
+        publish(errorCode, message, null, null, null, null, null, null);
+    }
+
+    public static void publish(String errorCode, String message, String param1) {
+        publish(errorCode, message, null, param1, null, null, null, null);
+    }
+
+    public static void publish(String errorCode, String message, String param1, String param2) {
+        publish(errorCode, message, null, param1, param2, null, null, null);
+    }
+
+    public static void publish(String errorCode, String message, String param1, String param2, String param3) {
+        publish(errorCode, message, null, param1, param2, param3, null, null);
+    }
+
+    public static void publish(String errorCode, String message, String param1, String param2, String param3,
+                               String param4) {
+        publish(errorCode, message, null, param1, param2, param3, param4, null);
+    }
+
+    public static void publish(String errorCode, String message, String param1, String param2, String param3,
+                               String param4, String param5) {
+        publish(errorCode, message, null, param1, param2, param3, param4, param5);
+    }
+
+    public static void publish(String errorCode, String message, Throwable t) {
+        publish(errorCode, message, t, null, null, null, null, null);
+    }
+
+    public static void publish(String errorCode, String message, Throwable t, String param1) {
+        publish(errorCode, message, t, param1, null, null, null, null);
+    }
+
+    public static void publish(String errorCode, String message, Throwable t, String param1, String param2) {
+        publish(errorCode, message, t, param1, param2, null, null, null);
+    }
+
+    public static void publish(String errorCode, String message, Throwable t, String param1, String param2,
+                               String param3) {
+        publish(errorCode, message, t, param1, param2, param3, null, null);
+    }
+
+    public static void publish(String errorCode, String message, Throwable t, String param1, String param2,
+                               String param3, String param4) {
+        publish(errorCode, message, t, param1, param2, param3, param4, null);
+    }
+
+    public static void publish(String errorCode, String message, Throwable t, String param1, String param2,
+                               String param3, String param4, String param5) {
         BaseAppException baseAppException;
         if (t != null && t instanceof BaseAppException) {
             baseAppException = (BaseAppException) t;
@@ -36,10 +85,10 @@ public final class ExceptionHandler {
             if (cause instanceof BaseAppException) {
                 baseAppException = (BaseAppException) cause;
             } else {
-                baseAppException = new BaseAppException(errorCode, null, t, param);
+                baseAppException = new BaseAppException(errorCode, message, t, param1, param2, param3, param4, param5);
             }
         } else {
-            baseAppException = new BaseAppException(errorCode, null, t, param);
+            baseAppException = new BaseAppException(errorCode, message, t, param1, param2, param3, param4, param5);
         }
 
         logErrorInfo(baseAppException);

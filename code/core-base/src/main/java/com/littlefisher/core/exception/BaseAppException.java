@@ -1,6 +1,5 @@
 package com.littlefisher.core.exception;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -47,18 +46,15 @@ public class BaseAppException extends RuntimeException {
     public BaseAppException(String errorCode, String message, Throwable cause, String... args) {
         super(message, cause);
 
-        args = Iterables.toArray(Iterables.filter(Lists.newArrayList(args), StringUtil::isNotBlank),
-                String.class);
+        args = Iterables.toArray(Iterables.filter(Lists.newArrayList(args), StringUtil::isNotBlank), String.class);
 
         this.code = errorCode;
 
-        String localTextMessage = new PropertiesFileTextProvider().getText(code);
-        if (StringUtil.isBlank(localTextMessage)) {
-            throw new BaseAppException(StringUtil.EMPTY,
-                    "Can't find message by error code : [" + errorCode + "].", null);
-        }
+        this.localMessage = StringUtil.isNotBlank(code) ?
+                new PropertiesFileTextProvider().getText(code) :
+                StringUtil.EMPTY;
 
-        this.localMessage = StringUtil.isNotBlank(code) ? localTextMessage : StringUtil.EMPTY;
+        this.localMessage = StringUtil.isNotEmpty(this.localMessage) ? this.localMessage : message;
 
         if (ArrayUtils.isNotEmpty(args)) {
             this.localMessage = this.replaceArgs(localMessage, args);
@@ -121,11 +117,6 @@ public class BaseAppException extends RuntimeException {
     }
 
     public String getLocalMessage() {
-        return localMessage;
-    }
-
-    @Override
-    public String getMessage() {
         return localMessage;
     }
 

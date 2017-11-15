@@ -40,7 +40,7 @@ public final class SpringContextUtil implements ApplicationContextAware {
         try {
             new FileSystemXmlApplicationContext(filePaths);
         } catch (BeansException e) {
-            ExceptionHandler.publish("CORE-000002", e);
+            ExceptionHandler.publish("CORE-000002", null, e);
         }
     }
 
@@ -51,7 +51,7 @@ public final class SpringContextUtil implements ApplicationContextAware {
         try {
             new ClassPathXmlApplicationContext(classpaths);
         } catch (BeansException e) {
-            ExceptionHandler.publish("CORE-000002", e);
+            ExceptionHandler.publish("CORE-000002", null, e);
         }
     }
 
@@ -97,7 +97,6 @@ public final class SpringContextUtil implements ApplicationContextAware {
         return context.getBeansOfType(type, includeNonSingletons, allowEagerInit);
     }
 
-    @SuppressWarnings("static-access")
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         context = applicationContext;

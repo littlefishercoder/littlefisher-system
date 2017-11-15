@@ -182,11 +182,18 @@ public final class PropResource {
     /**
      * Description: 根据方言和编码查询对应值
      *
+     * 如果所用方言不是en，但是却根据key查不到value时，会默认使用en再查询一下
+     *
      * @param dialect 方言
      * @param key 编码
      * @return String 值
      */
     public static String getValue(String dialect, String key) {
-        return resourceMap.get(dialect).get(key);
+        String value = resourceMap.get(dialect).get(key);
+        if (!I18nConstants.DIALECT_EN.equals(dialect) && StringUtil.isBlank(value)) {
+            return resourceMap.get(I18nConstants.DIALECT_EN).get(key);
+        } else {
+            return value;
+        }
     }
 }
