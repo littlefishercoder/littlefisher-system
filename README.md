@@ -3,6 +3,13 @@
 **代码是写给人看的，不是写给机器看的，只是顺便计算机可以执行而已**
 **所以请编写代码时注意代码编写规范，不要一段时间后自己都看不懂自己的代码**
 
+#### 个人博客
+[http://www.littlefisher.site/][1]
+欢迎博客上评论
+
+#### Github
+欢迎加星
+
 #### 技术选型
 
  - `Maven`
@@ -12,7 +19,7 @@
  - `MyBatis Generator`
  - `MyBatis 通用Mapper`
  - `Swagger`
- - `Log4j`
+ - `Log4j2`
  - `MySQL`
  - `Druid`
  - `Nginx`
@@ -20,6 +27,10 @@
  - `Jetty`
  - `Guava`
  - 部分功能的二次封装
+ - `Kafka`
+ - `Activiti`
+ - `Gson`
+ - `Oval`
 
 1. 环境搭建
   - 配置`Maven`中央仓库：项目目录下有`Maven`的配置文件`settings.xml`文件，修改该文件中的本地仓库目录`localRepository`为自己系统下目录即可
@@ -51,6 +62,10 @@
   - `PageHelper`使用。在列表查询之前调用`PageHelper.startPage(pageNum, pageSize);`，一定要是紧接着列表查询之前。具体`PageHelper`使用规则，参考[github-PageHelper][4]
 ![PageHelper][5]
   - `Mybatis generator`使用。在`core-base`项目下，有一个`generatorConfig.xml`文件，针对该文件做部分修改，然后执行`mybatis generator`生成`Mapper`的命令即可。生成的`model`已经附带`Swagger UI`所需注解，同时针对于`import`信息也进行了优化，可以通过`checkstype`的检查。生成的`Mapper`接口，集成了通用的`CRUD`操作，个性化的接口`SQL`操作再另外定义即可。具体通用`Mapper`可参考[github-Mapper][6]![通用Mapper][7]
+  - `Guava`工具介绍在博客中有介绍
+  - `Kafka`的使用在工程中已经加入，只不过没有大规模使用例子，具体的配置信息参考`com.littlefisher.core.config.kafka.KafkaConfig`配置内容
+  - `Activiti`单独使用了一个模块，暂时没有引入到`littlefisher-parent`中，因为还没有使用到的地方
+  - `Oval`的校验框架引入在`Command`中，当代码执行到`Command`时会进行校验
 
 #### 项目启动
 
@@ -67,7 +82,8 @@
 
   
 
-  [1]: http://wx1.sinaimg.cn/large/7dde05d2gy1ffhi4mdb04j21kw0zmk4h.jpg
+
+  [1]: http://www.littlefisher.site/
   [2]: http://wx4.sinaimg.cn/large/7dde05d2gy1fd64xlnke7j20ye0ye7b6.jpg
   [3]: http://wx1.sinaimg.cn/large/7dde05d2gy1ffhi1ry0prj21kw04tdla.jpg
   [4]: https://github.com/pagehelper/Mybatis-PageHelper
