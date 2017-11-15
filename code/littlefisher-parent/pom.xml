@@ -74,6 +74,8 @@
 
     <!--kafka相关-->
     <spring-kafka.version>2.0.1.RELEASE</spring-kafka.version>
+    <!--oval验证框架-->
+    <oval.version>1.90</oval.version>
   </properties>
 
   <dependencyManagement>
@@ -257,6 +259,13 @@
         <groupId>org.springframework.kafka</groupId>
         <artifactId>spring-kafka</artifactId>
         <version>${spring-kafka.version}</version>
+      </dependency>
+
+      <!--oval验证框架-->
+      <dependency>
+        <groupId>net.sf.oval</groupId>
+        <artifactId>oval</artifactId>
+        <version>${oval.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

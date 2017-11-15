@@ -158,6 +158,12 @@
       <groupId>org.springframework.kafka</groupId>
       <artifactId>spring-kafka</artifactId>
     </dependency>
+
+    <!--oval验证框架-->
+    <dependency>
+      <groupId>net.sf.oval</groupId>
+      <artifactId>oval</artifactId>
+    </dependency>
   </dependencies>
 
 </project>
