@@ -11,14 +11,12 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import com.google.common.base.Splitter;
-import com.google.common.collect.Collections2;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.littlefisher.core.event.EventDispatcher;
 import com.littlefisher.core.event.EventDispatcherImpl;
 import com.littlefisher.core.event.EventListener;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.CommandConfig;
 import com.littlefisher.core.interceptor.CommandContextFactory;
 import com.littlefisher.core.interceptor.CommandContextInterceptor;
@@ -30,6 +28,7 @@ import com.littlefisher.core.interceptor.LoggerInterceptor;
 import com.littlefisher.core.interceptor.SpringTransactionInterceptor;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 import com.littlefisher.core.utils.CollectionUtil;
+import com.littlefisher.core.utils.ExceptionHandler;
 import com.littlefisher.core.utils.LittleFisherLogger;
 import com.littlefisher.core.utils.StringUtil;
 
@@ -47,7 +46,8 @@ public class SystemEngineConfig {
     /**
      * logger
      */
-    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(SystemEngineConfig.class);
+    private static LittleFisherLogger logger = LittleFisherLogger
+            .getLogger(SystemEngineConfig.class);
 
     /**
      * DB_SCHEMA_UPDATE_FALSE
@@ -206,10 +206,9 @@ public class SystemEngineConfig {
 
     /**
      * Description: 初始化方法<br>
-     *
-     * @throws BaseAppException <br>
      */
-    protected void init() throws BaseAppException {
+    protected void init() {
+        logger.info("SystemEngineConfig init");
         // 初始化默认Command配置
         initDefaultCommandConfig();
         // 初始化Command上下文工厂
@@ -224,7 +223,6 @@ public class SystemEngineConfig {
         initCommandInterceptors();
         // 初始化命令的执行器
         initCommandExecutor();
-
         // 初始化EventDispatcher，暂不具体关注
         initEventDispatcher();
 
@@ -336,7 +334,7 @@ public class SystemEngineConfig {
         }
     }
 
-    private void initEventDispatcher() throws BaseAppException {
+    private void initEventDispatcher() {
         if (this.eventDispatcher == null) {
             this.eventDispatcher = new EventDispatcherImpl();
         }
@@ -350,7 +348,8 @@ public class SystemEngineConfig {
         }
 
         if (typedEventListeners != null) {
-            for (Entry<String, List<EventListener>> listenersToAdd : typedEventListeners.entrySet()) {
+            for (Entry<String, List<EventListener>> listenersToAdd : typedEventListeners
+                    .entrySet()) {
                 // Extract types from the given string
                 String[] types = getEventTypeListFromString(listenersToAdd.getKey());
 
@@ -369,7 +368,7 @@ public class SystemEngineConfig {
         return Iterables.toArray(Splitter.on(',').omitEmptyStrings().split(types), String.class);
     }
 
-    protected Collection<? extends CommandInterceptor> getDefaultCommandInterceptors() throws BaseAppException {
+    protected Collection<? extends CommandInterceptor> getDefaultCommandInterceptors() {
         List<CommandInterceptor> interceptors = Lists.newArrayList();
         interceptors.add(new CommandContextInterceptor(commandContextFactory, this));
 
@@ -388,7 +387,7 @@ public class SystemEngineConfig {
     protected CommandInterceptor createTransactionInterceptor() {
         if (transactionManager == null) {
             //transactionManager is required property for SpringProcessEngineConfiguration
-            throw new BaseAppException("S-SYSTEMCOM-001");
+            ExceptionHandler.publish("CORE-000003");
         }
 
         return new SpringTransactionInterceptor(transactionManager);
@@ -398,9 +397,8 @@ public class SystemEngineConfig {
      * Description: 创建日志拦截器
      *
      * @return LoggerInterceptor
-     * @throws BaseAppException <br>
      */
-    protected CommandInterceptor createLoggerInterceptor() throws BaseAppException {
+    protected CommandInterceptor createLoggerInterceptor() {
         return new LoggerInterceptor();
     }
 
@@ -428,7 +426,8 @@ public class SystemEngineConfig {
         return customPreCommandInterceptors;
     }
 
-    public void setCustomPreCommandInterceptors(List<CommandInterceptor> customPreCommandInterceptors) {
+    public void setCustomPreCommandInterceptors(
+            List<CommandInterceptor> customPreCommandInterceptors) {
         this.customPreCommandInterceptors = customPreCommandInterceptors;
     }
 
@@ -436,7 +435,8 @@ public class SystemEngineConfig {
         return customPostCommandInterceptors;
     }
 
-    public void setCustomPostCommandInterceptors(List<CommandInterceptor> customPostCommandInterceptors) {
+    public void setCustomPostCommandInterceptors(
+            List<CommandInterceptor> customPostCommandInterceptors) {
         this.customPostCommandInterceptors = customPostCommandInterceptors;
     }
 
@@ -468,12 +468,10 @@ public class SystemEngineConfig {
      * Description: 初始化拦截器调用链，并返回第一个拦截器<br>
      *
      * @return CommandInterceptor
-     * @throws BaseAppException <br>
      */
-    protected CommandInterceptor initInterceptorChain(List<CommandInterceptor> chain) throws BaseAppException {
+    protected CommandInterceptor initInterceptorChain(List<CommandInterceptor> chain) {
         if (CollectionUtil.isEmpty(chain)) {
-            logger.error("invalid command interceptor chain configuration: " + chain);
-            throw new BaseAppException("S-SYSTEMCOM-002");
+            ExceptionHandler.publish("CORE-000004");
         }
         for (int i = 0; i < chain.size() - 1; i++) {
             chain.get(i).setNext(chain.get(i + 1));

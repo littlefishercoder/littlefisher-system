@@ -8,6 +8,7 @@ import com.littlefisher.core.engine.Session;
 import com.littlefisher.core.engine.SessionFactory;
 import com.littlefisher.core.engine.SystemEngineConfig;
 import com.littlefisher.core.exception.BaseAppException;
+import com.littlefisher.core.utils.ExceptionHandler;
 
 /**
  * Description:
@@ -33,7 +34,7 @@ public class CommandContext {
     /**
      * exception
      */
-    protected Throwable myException = null;
+    protected Throwable exception = null;
 
     /**
      * sessionFactories
@@ -52,8 +53,8 @@ public class CommandContext {
     }
 
     public void exception(Throwable exception) {
-        if (this.myException == null) {
-            this.myException = exception;
+        if (this.exception == null) {
+            this.exception = exception;
         }
     }
 
@@ -67,10 +68,11 @@ public class CommandContext {
         if (session == null) {
             SessionFactory sessionFactory = sessionFactories.get(sessionClass);
             if (sessionFactory == null) {
-                throw new BaseAppException("no session factory configured for " + sessionClass.getName());
+                ExceptionHandler.publish("CORE-000005", sessionClass.getName());
+            } else {
+                session = sessionFactory.openSession();
+                sessions.put(sessionClass, session);
             }
-            session = sessionFactory.openSession();
-            sessions.put(sessionClass, session);
         }
 
         return (T) session;
@@ -81,11 +83,11 @@ public class CommandContext {
     }
 
     public Throwable getException() {
-        return myException;
+        return exception;
     }
 
     public void setException(Throwable exception) {
-        this.myException = exception;
+        this.exception = exception;
     }
 
     public SystemEngineConfig getSystemEngineConfig() {

@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.github.pagehelper.util.StringUtil;
 import com.google.common.collect.Maps;
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.exception.BaseRuntimeException;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
@@ -28,7 +27,7 @@ public class LoggerInterceptor extends AbstractCommandInterceptor {
             .getLogger(LoggerInterceptor.class);
 
     @Override
-    public <U> U execute(CommandConfig config, Command<U> command) throws BaseAppException {
+    public <U> U execute(CommandConfig config, Command<U> command) {
         Class<?> clazz = command.getClass();
         String parameters = this.getCommandParameters(command);
         String methodName = clazz.getSimpleName();

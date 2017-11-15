@@ -2,8 +2,6 @@ package com.littlefisher.core.i18n;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -60,8 +58,7 @@ public final class PropResource {
      * Description: 第一次加载时初始化资源文件
      */
     private static void init() {
-        List<File> allFileList = findFileNameSuffix();
-        getResourceValueList(allFileList);
+        getResourceValueList(findFileNameSuffix());
     }
 
     /**

@@ -3,8 +3,7 @@ package com.littlefisher.core.interceptor;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
 
-import com.littlefisher.core.exception.BaseAppException;
-import com.littlefisher.core.exception.BaseRuntimeException;
+import com.littlefisher.core.utils.ExceptionHandler;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
@@ -33,7 +32,7 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
         this.transactionManager = transactionManager;
     }
 
-    private int getPropagation(CommandConfig config) {
+    private Integer getPropagation(CommandConfig config) {
         switch (config.getTransactionPropagation()) {
             case NOT_SUPPORTED:
                 return TransactionTemplate.PROPAGATION_NOT_SUPPORTED;
@@ -42,7 +41,8 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
             case REQUIRES_NEW:
                 return TransactionTemplate.PROPAGATION_REQUIRES_NEW;
             default:
-                throw new BaseAppException("Unsupported transaction propagation: " + config.getTransactionPropagation());
+                ExceptionHandler.publish("CORE-000006", config.getTransactionPropagation().toString());
+                return TransactionTemplate.TIMEOUT_DEFAULT;
         }
     }
 
@@ -59,12 +59,12 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
         }
 
         return transactionTemplate.execute(status -> {
-            U result;
+            U result = null;
             try {
                 result = next.execute(config, command);
             }
             catch (Exception e) {
-                throw new BaseRuntimeException("inerror", e);
+                ExceptionHandler.publish("CORE-000007");
             }
             return result;
         });

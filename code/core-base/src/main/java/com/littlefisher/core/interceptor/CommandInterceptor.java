@@ -1,7 +1,5 @@
 package com.littlefisher.core.interceptor;
 
-import com.littlefisher.core.exception.BaseAppException;
-
 /**
  * Description:
  *
@@ -15,6 +13,7 @@ public interface CommandInterceptor {
 
     /**
      * 执行命令
+     *
      * @param config 命令配置
      * @param command 具体命令
      * @param <U> 具体命令类型
@@ -24,12 +23,14 @@ public interface CommandInterceptor {
 
     /**
      * 获取下一个命令拦截器
+     *
      * @return CommandInterceptor
      */
     CommandInterceptor getNext();
 
     /**
      * 设置下一个命令拦截器
+     *
      * @param next 下一个命令拦截器
      */
     void setNext(CommandInterceptor next);

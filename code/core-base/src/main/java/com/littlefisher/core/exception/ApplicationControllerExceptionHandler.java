@@ -40,7 +40,7 @@ public class ApplicationControllerExceptionHandler {
     @ResponseBody
     public ExceptionHandlerModel handlerError(BaseAppException ex) {
         logger.error(ex.getMessage(), ex);
-        return new ExceptionHandlerModel(ex.getCode(), ex.getLocaleMessage());
+        return new ExceptionHandlerModel(ex.getCode(), ex.getLocalMessage());
     }
     
     /**

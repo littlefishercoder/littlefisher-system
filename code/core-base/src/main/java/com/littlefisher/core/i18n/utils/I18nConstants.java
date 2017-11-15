@@ -12,7 +12,7 @@ package com.littlefisher.core.i18n.utils;
  */
 public class I18nConstants {
     
-    /** 资源文件跟目录,存放于ZSMART_HOME环境变量目录下 */
+    /** 资源文件跟目录,存放于SYSTEM_HOME环境变量目录下 */
     public static final String I18N_RESOURCE_PATH = "resource";
     
     /** .properties 长度 */

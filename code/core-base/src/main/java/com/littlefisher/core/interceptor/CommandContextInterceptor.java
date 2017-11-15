@@ -19,7 +19,8 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
     /**
      * logger
      */
-    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(CommandContextInterceptor.class);
+    private static LittleFisherLogger logger = LittleFisherLogger
+            .getLogger(CommandContextInterceptor.class);
 
     /**
      * commandContextFactory
@@ -34,7 +35,8 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
     public CommandContextInterceptor() {
     }
 
-    public CommandContextInterceptor(CommandContextFactory commandContextFactory, SystemEngineConfig systemEngineConfig) {
+    public CommandContextInterceptor(CommandContextFactory commandContextFactory,
+                                     SystemEngineConfig systemEngineConfig) {
         this.commandContextFactory = commandContextFactory;
         this.systemEngineConfig = systemEngineConfig;
     }
@@ -47,7 +49,8 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
         if (!config.isContextReusePossible() || context == null || context.getException() != null) {
             context = commandContextFactory.createCommandContext(command);
         } else {
-            logger.debug("Valid context found. Reusing it for the current command '{}'", command.getClass().getCanonicalName());
+            logger.debug("Valid context found. Reusing it for the current command [{}]",
+                    command.getClass().getCanonicalName());
             contextReused = true;
         }
         try {

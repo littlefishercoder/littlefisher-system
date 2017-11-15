@@ -1,6 +1,5 @@
 package com.littlefisher.core.springmvc;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +7,7 @@ import org.springframework.core.convert.converter.Converter;
 
 import com.google.common.collect.Lists;
 import com.littlefisher.core.utils.DateUtil;
+import com.littlefisher.core.utils.ExceptionHandler;
 import com.littlefisher.core.utils.StringUtil;
 
 /**
@@ -49,7 +49,8 @@ public class DateConverter implements Converter<String, Date> {
         } else if (source.matches("^\\d{4}-\\d{1,2}-\\d{1,2} {1}\\d{1,2}:\\d{1,2}:\\d{1,2}$")) {
             return DateUtil.string2Date(source, FORMATS.get(3));
         } else {
-            throw new IllegalArgumentException("Invalid boolean value '" + source + "'");
+            ExceptionHandler.publish("CORE-000008", source);
         }
+        return null;
     }
 }

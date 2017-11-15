@@ -4,36 +4,31 @@ import java.util.Map;
 
 import org.springframework.beans.factory.FactoryBean;
 
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
 /**
- * 
- * <Description> <br> 
- *  
- * @author jinyanan<br>
- * @version 1.0<br>
- * @taskId <br>
- * @CreateDate 2016年2月25日 <br>
- * @since V9<br>
+ * <Description> <br>
+ *
+ * @author jinyanan
+ * @version 1.0
+ * @since v1.0
  */
 public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
 
     /**
-     * SystemEngineConfig 
+     * SystemEngineConfig
      */
     protected SystemEngineConfig systemEngineConfig;
-    
+
     /**
      * SystemEngine
      */
     protected SystemEngine systemEngine;
-    
+
     /**
      * registerServices
      */
     protected Map<String, ServiceImpl> registerServices;
-
 
     public SystemEngineConfig getSystemEngineConfig() {
         return systemEngineConfig;
@@ -52,22 +47,18 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
     public boolean isSingleton() {
         return true;
     }
-    
+
     /**
-     * 
-     * Description: 通过实现FactoryBean<SystemEngine>接口，实现方法启动时的调用<br> 
-     *  
-     * @author jinyanan<br>
-     * @taskId <br>
+     * Description: 通过实现FactoryBean<SystemEngine>接口，实现方法启动时的调用<br>
+     *
      * @return SystemEngine
-     * @throws BaseAppException <br>
      */
     @Override
-    public SystemEngine getObject() throws BaseAppException {
+    public SystemEngine getObject() {
         systemEngine = systemEngineConfig.buildSystemEngine();
-        
+
         systemEngineConfig.initServices(registerServices);
-        
+
         return systemEngine;
     }
 

@@ -5,7 +5,9 @@ import java.lang.reflect.InvocationTargetException;
 import com.littlefisher.core.exception.BaseAppException;
 
 /**
- * Description: 该类提供给业务侧使用，提供抛出异常的方法 Created on 2016年12月30日
+ * Description: 该类提供给业务侧使用，提供抛出异常的方法
+ *
+ * Created on 2016年12月30日
  *
  * @author jinyanan
  * @version 1.0
@@ -16,56 +18,28 @@ public final class ExceptionHandler {
     /** logger */
     private static LittleFisherLogger logger = LittleFisherLogger.getLogger(ExceptionHandler.class);
 
-    /**
-     * 禁止实例化
-     */
+    /** 禁止实例化 */
     private ExceptionHandler() {
     }
 
-    public static void publish(String errorCode, Throwable t) {
-        publish(errorCode, null, t, null, null, null);
+    public static void publish(String errorCode, String... param) {
+        publish(errorCode, null, param);
     }
 
-    public static void publish(String errorCode) {
-        publish(errorCode, null, null, null, null, null);
-    }
-
-    public static void publish(String errorCode, String msg) {
-        publish(errorCode, msg, null, null, null, null);
-    }
-
-    public static void publish(String errorCode, String msg, Throwable t) {
-        publish(errorCode, msg, t, null, null, null);
-    }
-
-    public static void publish(String errorCode, String msg, Throwable t, String param) {
-        publish(errorCode, msg, t, param, null, null);
-    }
-
-    public static void publish(String errorCode, String msg, String param1) {
-        publish(errorCode, msg, null, param1, null, null);
-    }
-
-    public static void publish(String errorCode, String msg, String param1, String param2) {
-        publish(errorCode, msg, null, param1, param2, null);
-    }
-
-    public static void publish(String errorCode, String msg, Throwable t, String param1,
-                               String param2, String param3) {
-
+    public static void publish(String errorCode, Throwable t, String... param) {
         BaseAppException baseAppException;
-        if (t instanceof BaseAppException) {
+        if (t != null && t instanceof BaseAppException) {
             baseAppException = (BaseAppException) t;
-        } else if (t instanceof InvocationTargetException) {
+        } else if (t != null && t instanceof InvocationTargetException) {
             // 仅仅对此情况进行处理，不能进行深层检查！
             Throwable cause = t.getCause();
             if (cause instanceof BaseAppException) {
                 baseAppException = (BaseAppException) cause;
             } else {
-                baseAppException = new BaseAppException(errorCode, msg, t, param1, param2, param3);
+                baseAppException = new BaseAppException(errorCode, null, t, param);
             }
         } else {
-            baseAppException = new BaseAppException(errorCode, msg, t, param1, param2, param3);
+            baseAppException = new BaseAppException(errorCode, null, t, param);
         }
 
         logErrorInfo(baseAppException);

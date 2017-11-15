@@ -1,5 +1,6 @@
 package com.littlefisher.core.exception;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,7 +9,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.littlefisher.core.i18n.PropertiesFileTextProvider;
-import com.littlefisher.core.i18n.TextProvider;
 import com.littlefisher.core.utils.StringUtil;
 
 /**
@@ -27,21 +27,23 @@ public class BaseAppException extends RuntimeException {
      */
     private static final long serialVersionUID = 3908474026331716374L;
 
-    /** textProvider */
-    private static TextProvider textProvider = new PropertiesFileTextProvider();
-
     /** 资源文件中的key值 */
     private String code;
 
-    /** 异常描述 */
-    private String desc;
-
     /** 资源文件中的value值，如果有占位符，也已被替换 */
-    private String localeMessage;
+    private String localMessage;
 
     /** 大括号占位符占位符 */
     private static final String PLACEHOLDER_PATTERN = "\\{(.*?)\\}";
 
+    /**
+     * BaseAppException
+     *
+     * @param errorCode 异常码
+     * @param message 异常信息
+     * @param cause 异常
+     * @param args 异常信息中的占位符的具体参数
+     */
     public BaseAppException(String errorCode, String message, Throwable cause, String... args) {
         super(message, cause);
 
@@ -49,21 +51,24 @@ public class BaseAppException extends RuntimeException {
                 String.class);
 
         this.code = errorCode;
-        this.desc = message;
 
-        this.localeMessage = (code == null ? StringUtil.EMPTY : textProvider.getText(code));
+        String localTextMessage = new PropertiesFileTextProvider().getText(code);
+        if (StringUtil.isBlank(localTextMessage)) {
+            throw new BaseAppException(StringUtil.EMPTY,
+                    "Can't find message by error code : [" + errorCode + "].", null);
+        }
 
-        this.localeMessage = StringUtil.isEmpty(this.localeMessage) ? message : this.localeMessage;
+        this.localMessage = StringUtil.isNotBlank(code) ? localTextMessage : StringUtil.EMPTY;
 
         if (ArrayUtils.isNotEmpty(args)) {
-            this.localeMessage = this.replaceArgs(localeMessage, args);
+            this.localMessage = this.replaceArgs(localMessage, args);
         }
     }
 
     /**
      * BaseAppException
      *
-     * @param errorCode errorCode
+     * @param errorCode 异常码
      */
     public BaseAppException(String errorCode) {
         this(errorCode, null, null);
@@ -72,8 +77,8 @@ public class BaseAppException extends RuntimeException {
     /**
      * BaseAppException
      *
-     * @param errorCode errorCode
-     * @param message message
+     * @param errorCode 异常码
+     * @param message 异常信息
      */
     public BaseAppException(String errorCode, String message) {
         this(errorCode, message, null);
@@ -82,8 +87,8 @@ public class BaseAppException extends RuntimeException {
     /**
      * BaseAppException
      *
-     * @param errorCode errorCode
-     * @param ex ex
+     * @param errorCode 异常码
+     * @param ex 异常
      */
     public BaseAppException(String errorCode, Exception ex) {
         this(errorCode, null, ex);
@@ -92,9 +97,9 @@ public class BaseAppException extends RuntimeException {
     /**
      * 占位符替换
      *
-     * @param message message
-     * @param args args
-     * @return String
+     * @param message 异常信息
+     * @param args 替换参数
+     * @return 替换后的信息
      */
     private String replaceArgs(String message, String[] args) {
         int i = 0;
@@ -115,23 +120,13 @@ public class BaseAppException extends RuntimeException {
         return code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public String getLocalMessage() {
+        return localMessage;
     }
 
-    public String getDesc() {
-        return desc;
+    @Override
+    public String getMessage() {
+        return localMessage;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    public String getLocaleMessage() {
-        return localeMessage;
-    }
-
-    public void setLocaleMessage(String localeMessage) {
-        this.localeMessage = localeMessage;
-    }
 }
