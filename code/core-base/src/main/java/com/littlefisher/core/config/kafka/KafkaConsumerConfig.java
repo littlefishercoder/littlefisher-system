@@ -76,9 +76,8 @@ public class KafkaConsumerConfig {
 
     @Bean
     public ContainerProperties containerProperties() {
-        ContainerProperties containerProperties = new ContainerProperties(Iterables
-                .toArray(Splitter.on(",").omitEmptyStrings().trimResults().split(topics),
-                        String.class));
+        ContainerProperties containerProperties = new ContainerProperties(
+                Iterables.toArray(Splitter.on(",").omitEmptyStrings().trimResults().split(topics), String.class));
         containerProperties.setMessageListener(consumerMessageListener());
         containerProperties.setAckMode(AbstractMessageListenerContainer.AckMode.RECORD);
         return containerProperties;

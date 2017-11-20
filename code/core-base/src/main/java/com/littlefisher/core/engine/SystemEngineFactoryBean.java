@@ -7,7 +7,6 @@ import org.springframework.beans.factory.FactoryBean;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
 /**
- * <Description> <br>
  *
  * @author jinyanan
  * @version 1.0
@@ -16,7 +15,7 @@ import com.littlefisher.core.interceptor.service.ServiceImpl;
 public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
 
     /**
-     * SystemEngineConfig
+     * SystemEngineConfig 配置
      */
     protected SystemEngineConfig systemEngineConfig;
 
@@ -26,17 +25,9 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
     protected SystemEngine systemEngine;
 
     /**
-     * registerServices
+     * registerServices 初始化需要的Command
      */
     protected Map<String, ServiceImpl> registerServices;
-
-    public SystemEngineConfig getSystemEngineConfig() {
-        return systemEngineConfig;
-    }
-
-    public void setSystemEngineConfig(SystemEngineConfig systemEngineConfig) {
-        this.systemEngineConfig = systemEngineConfig;
-    }
 
     @Override
     public Class<SystemEngine> getObjectType() {
@@ -56,9 +47,7 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
     @Override
     public SystemEngine getObject() {
         systemEngine = systemEngineConfig.buildSystemEngine();
-
         systemEngineConfig.initServices(registerServices);
-
         return systemEngine;
     }
 
@@ -68,5 +57,14 @@ public class SystemEngineFactoryBean implements FactoryBean<SystemEngine> {
 
     public void setRegisterServices(Map<String, ServiceImpl> registerServices) {
         this.registerServices = registerServices;
+    }
+
+    public void setSystemEngineConfig(SystemEngineConfig systemEngineConfig) {
+        this.systemEngineConfig = systemEngineConfig;
+    }
+
+    public SystemEngineConfig getSystemEngineConfig() {
+
+        return systemEngineConfig;
     }
 }

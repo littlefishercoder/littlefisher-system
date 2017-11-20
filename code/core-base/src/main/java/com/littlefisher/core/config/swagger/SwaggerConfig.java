@@ -10,8 +10,8 @@ import com.mangofactory.swagger.plugin.EnableSwagger;
 import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 
 /**
- * Description: 
- * 
+ * Description:
+ *
  * Created on 2017年1月25日
  *
  * @author jinyanan
@@ -31,27 +31,23 @@ public class SwaggerConfig {
     /**
      * Description: Every SwaggerSpringMvcPlugin bean is picked up by the swagger-mvc framework - allowing for multiple
      * swagger groups i.e. same code base multiple swagger resource listings.
-     * 
-     * @author jinyanan
+     *
      * @return SwaggerSpringMvcPlugin
      */
     @Bean
     public SwaggerSpringMvcPlugin customImplementation() {
-        return new SwaggerSpringMvcPlugin(springSwaggerConfig)
-            .apiInfo(apiInfo())
-            .includePatterns(".*?")
-            // 是否展示通用的HTTP 返回码的含义
-            .useDefaultResponseMessages(false);
+        return new SwaggerSpringMvcPlugin(springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?")
+                // 是否展示通用的HTTP 返回码的含义
+                .useDefaultResponseMessages(false);
     }
-    
+
     /**
      * Description:
-     * 
-     * @author jinyanan
+     *
      * @return ApiInfo
      */
     private ApiInfo apiInfo() {
         return new ApiInfo("Littlefisher REST API", "API Description", "API terms of service", "jinyanan@room1000.com",
-            "Version 1.0", "No License URL");
+                "Version 1.0", "No License URL");
     }
 }

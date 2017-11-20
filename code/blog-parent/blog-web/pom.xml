@@ -10,6 +10,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <artifactId>blog-web</artifactId>
+  <packaging>war</packaging>
 
   <dependencies>
     <dependency>
@@ -28,6 +29,14 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <!-- war打包插件, 设定war包名称不带版本号 -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <warName>${project.artifactId}</warName>
+        </configuration>
       </plugin>
     </plugins>
   </build>

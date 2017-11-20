@@ -4,7 +4,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 /**
  * 
- * Description: 
+ * Description: mybatis的session工厂
  *  
  * Created on 2017年2月10日 
  *

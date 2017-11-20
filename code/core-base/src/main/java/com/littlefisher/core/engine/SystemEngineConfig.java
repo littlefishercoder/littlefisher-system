@@ -44,21 +44,8 @@ import com.littlefisher.core.utils.StringUtil;
  */
 public class SystemEngineConfig {
 
-    /**
-     * logger
-     */
-    private static LittleFisherLogger logger = LittleFisherLogger
-            .getLogger(SystemEngineConfig.class);
-
-    /**
-     * DB_SCHEMA_UPDATE_FALSE
-     */
-    public static final String DB_SCHEMA_UPDATE_FALSE = "false";
-
-    /**
-     * DB_SCHEMA_UPDATE_TRUE
-     */
-    public static final String DB_SCHEMA_UPDATE_TRUE = "true";
+    /** logger */
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(SystemEngineConfig.class);
 
     /**
      * dataSource
@@ -86,7 +73,7 @@ public class SystemEngineConfig {
     protected CommandContextFactory commandContextFactory;
 
     /**
-     * sessionFactories
+     * sessionFactories ORM层的session工厂
      */
     protected Map<Class<?>, SessionFactory> sessionFactories;
 
@@ -131,17 +118,17 @@ public class SystemEngineConfig {
     protected CommandInterceptor commandInvoker;
 
     /**
-     * customPreCommandInterceptors
+     * customPreCommandInterceptors 自定义前置Command拦截器
      */
     protected List<CommandInterceptor> customPreCommandInterceptors;
 
     /**
-     * customPostCommandInterceptors
+     * customPostCommandInterceptors 自定义后置Command拦截器
      */
     protected List<CommandInterceptor> customPostCommandInterceptors;
 
     /**
-     * commandInterceptors
+     * commandInterceptors 排好序的Command拦截器
      */
     protected List<CommandInterceptor> commandInterceptors;
 
@@ -159,46 +146,6 @@ public class SystemEngineConfig {
      * databaseType
      */
     protected String databaseType;
-
-    public String getDatabaseType() {
-        return databaseType;
-    }
-
-    public void setDatabaseType(String databaseType) {
-        this.databaseType = databaseType;
-    }
-
-    public SqlSessionFactory getSqlSessionFactory() {
-        return sqlSessionFactory;
-    }
-
-    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-        this.sqlSessionFactory = sqlSessionFactory;
-    }
-
-    public String getSystemEngineName() {
-        return systemEngineName;
-    }
-
-    public void setSystemEngineName(String systemEngineName) {
-        this.systemEngineName = systemEngineName;
-    }
-
-    public DataSource getDataSource() {
-        return dataSource;
-    }
-
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
-
-    public PlatformTransactionManager getTransactionManager() {
-        return transactionManager;
-    }
-
-    public void setTransactionManager(PlatformTransactionManager transactionManager) {
-        this.transactionManager = transactionManager;
-    }
 
     public SystemEngine buildSystemEngine() {
         init();
@@ -229,26 +176,38 @@ public class SystemEngineConfig {
 
     }
 
-    public void initServices(Map<String, ServiceImpl> registerServices) {
-        if (registerServices != null) {
-            for (Entry<String, ServiceImpl> entry : registerServices.entrySet()) {
-                ServiceImpl serv = entry.getValue();
-                initService(serv);
-                services.put(entry.getKey(), serv);
-            }
-        }
-
+    /**
+     * 初始化Service
+     *
+     * @param services 初始化Service的Map列表
+     */
+    public void initServices(Map<String, ServiceImpl> services) {
+        services.forEach((serviceBeanName, service) -> {
+            initService(service);
+            services.put(serviceBeanName, service);
+        });
     }
 
-    public void initService(String serviceName, ServiceImpl registerService) {
-        if (registerService != null && StringUtil.isNotEmpty(serviceName)) {
+    /**
+     * 初始化Service
+     *
+     * @param serviceBeanName 自定义的业务Command的Bean名称
+     * @param registerService 自定义的业务Command
+     */
+    public void initService(String serviceBeanName, ServiceImpl registerService) {
+        if (registerService != null && StringUtil.isNotEmpty(serviceBeanName)) {
             initService(registerService);
             // 对ServiceImpl进行缓存
-            services.put(serviceName, registerService);
+            services.put(serviceBeanName, registerService);
         }
 
     }
 
+    /**
+     * 初始化Service
+     *
+     * @param service 自定义的业务Command
+     */
     protected void initService(Object service) {
         // 每一个ServiceImpl准备执行时，赋值commandExecutor，让ServiceImpl有开始执行的地方
         if (service instanceof ServiceImpl) {
@@ -257,7 +216,7 @@ public class SystemEngineConfig {
     }
 
     /**
-     * Description: 初始化默认Command配置<br>
+     * Description: 初始化默认Command配置
      */
     protected void initDefaultCommandConfig() {
         if (defaultCommandConfig == null) {
@@ -266,7 +225,7 @@ public class SystemEngineConfig {
     }
 
     /**
-     * Description: 初始化自定义的sqlSession工厂<br>
+     * Description: 初始化自定义的sqlSession工厂
      */
     protected void initDbSqlSessionFactory() {
         if (dbSqlSessionFactory == null) {
@@ -276,7 +235,7 @@ public class SystemEngineConfig {
     }
 
     /**
-     * Description: 初始化session工厂<br>
+     * Description: 初始化session工厂
      */
     protected void initSessionFactories() {
         if (sessionFactories == null) {
@@ -301,7 +260,7 @@ public class SystemEngineConfig {
     }
 
     /**
-     * Description: 初始化命令调用工具<br>
+     * Description: 初始化命令调用工具
      */
     protected void initCommandInvoker() {
         if (commandInvoker == null) {
@@ -311,7 +270,7 @@ public class SystemEngineConfig {
     }
 
     /**
-     * Description: 初始化命令的拦截器<br>
+     * Description: 初始化命令的拦截器
      */
     protected void initCommandInterceptors() {
         if (commandInterceptors == null) {
@@ -349,8 +308,7 @@ public class SystemEngineConfig {
         }
 
         if (typedEventListeners != null) {
-            for (Entry<String, List<EventListener>> listenersToAdd : typedEventListeners
-                    .entrySet()) {
+            for (Entry<String, List<EventListener>> listenersToAdd : typedEventListeners.entrySet()) {
                 // Extract types from the given string
                 String[] types = getEventTypeListFromString(listenersToAdd.getKey());
 
@@ -362,25 +320,28 @@ public class SystemEngineConfig {
     }
 
     private String[] getEventTypeListFromString(String types) {
-        String[] emptyArray = new String[] {};
-        if (types == null || types.isEmpty()) {
-            return emptyArray;
-        }
         return Iterables.toArray(Splitter.on(',').omitEmptyStrings().split(types), String.class);
     }
 
+    /**
+     * 初始化默认拦截器
+     *
+     * @return Collection<? extends CommandInterceptor>
+     */
     protected Collection<? extends CommandInterceptor> getDefaultCommandInterceptors() {
         List<CommandInterceptor> interceptors = Lists.newArrayList();
         interceptors.add(new CommandContextInterceptor(commandContextFactory, this));
-
+        // 事务拦截器
         CommandInterceptor transactionInterceptor = createTransactionInterceptor();
         if (transactionInterceptor != null) {
             interceptors.add(transactionInterceptor);
         }
+        // oval拦截器
         CommandInterceptor ovalInterceptor = createOvalInterceptor();
         if (ovalInterceptor != null) {
             interceptors.add(ovalInterceptor);
         }
+        // 日志拦截器
         CommandInterceptor loggerInterceptor = createLoggerInterceptor();
         if (loggerInterceptor != null) {
             interceptors.add(loggerInterceptor);
@@ -409,6 +370,7 @@ public class SystemEngineConfig {
 
     /**
      * 创建oval校验拦截器
+     *
      * @return OvalInterceptor
      */
     protected CommandInterceptor createOvalInterceptor() {
@@ -439,8 +401,7 @@ public class SystemEngineConfig {
         return customPreCommandInterceptors;
     }
 
-    public void setCustomPreCommandInterceptors(
-            List<CommandInterceptor> customPreCommandInterceptors) {
+    public void setCustomPreCommandInterceptors(List<CommandInterceptor> customPreCommandInterceptors) {
         this.customPreCommandInterceptors = customPreCommandInterceptors;
     }
 
@@ -448,8 +409,7 @@ public class SystemEngineConfig {
         return customPostCommandInterceptors;
     }
 
-    public void setCustomPostCommandInterceptors(
-            List<CommandInterceptor> customPostCommandInterceptors) {
+    public void setCustomPostCommandInterceptors(List<CommandInterceptor> customPostCommandInterceptors) {
         this.customPostCommandInterceptors = customPostCommandInterceptors;
     }
 
@@ -565,5 +525,45 @@ public class SystemEngineConfig {
 
     public boolean isEnableEventDispatcher() {
         return enableEventDispatcher;
+    }
+
+    public String getDatabaseType() {
+        return databaseType;
+    }
+
+    public void setDatabaseType(String databaseType) {
+        this.databaseType = databaseType;
+    }
+
+    public SqlSessionFactory getSqlSessionFactory() {
+        return sqlSessionFactory;
+    }
+
+    public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
+        this.sqlSessionFactory = sqlSessionFactory;
+    }
+
+    public String getSystemEngineName() {
+        return systemEngineName;
+    }
+
+    public void setSystemEngineName(String systemEngineName) {
+        this.systemEngineName = systemEngineName;
+    }
+
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    public PlatformTransactionManager getTransactionManager() {
+        return transactionManager;
+    }
+
+    public void setTransactionManager(PlatformTransactionManager transactionManager) {
+        this.transactionManager = transactionManager;
     }
 }
