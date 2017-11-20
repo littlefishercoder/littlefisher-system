@@ -21,14 +21,13 @@
 
   <modules>
     <module>../core-base</module>
-    <!--<module>../core-activiti</module>-->
-    <!--<module>../blog-parent</module>-->
+    <module>../blog-parent</module>
   </modules>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.9</java.version>
+    <java.version>1.8</java.version>
 
     <mybatis-spring.version>1.3.1</mybatis-spring.version>
     <druid.version>1.1.5</druid.version>
@@ -37,6 +36,8 @@
     <commons-lang3.version>3.6</commons-lang3.version>
     <oval.version>1.90</oval.version>
     <swagger.version>1.0.2</swagger.version>
+    <mybatis.generator.version>1.3.5</mybatis.generator.version>
+
   </properties>
 
   <dependencyManagement>
@@ -77,17 +78,13 @@
         <artifactId>swagger-springmvc</artifactId>
         <version>${swagger.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-core</artifactId>
+        <version>${mybatis.generator.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 
   <repositories>
     <repository>

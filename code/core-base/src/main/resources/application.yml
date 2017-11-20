@@ -5,43 +5,43 @@ spring:
     password: root
     driver-class-name: com.mysql.jdbc.Driver
     druid:
-      # ³õÊ¼»¯´óĞ¡
+      # åˆå§‹åŒ–å¤§å°
       initial-size: 0
-      # ÅäÖÃ³õÊ¼»¯×î´óÖµ
+      # é…ç½®åˆå§‹åŒ–æœ€å¤§å€¼
       max-active: 20
-      # ×îĞ¡Á¬½Ó³ØÊıÁ¿
+      # æœ€å°è¿æ¥æ± æ•°é‡
       min-idle: 0
-      # »ñÈ¡Á¬½ÓµÈ´ı³¬Ê±µÄÊ±¼ä
+      # è·å–è¿æ¥ç­‰å¾…è¶…æ—¶çš„æ—¶é—´
       max-wait: 60000
-      # ĞÄÌø¼ì²âÓï¾ä
+      # å¿ƒè·³æ£€æµ‹è¯­å¥
       validation-query: SELECT NOW()
-      # ÉêÇëÁ¬½ÓÊ±Ö´ĞĞvalidationQuery¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§
+      # ç”³è¯·è¿æ¥æ—¶æ‰§è¡ŒvalidationQueryæ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆ
       test-on-borrow: false
-      # ¹é»¹Á¬½ÓÊ±Ö´ĞĞvalidationQuery¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§
+      # å½’è¿˜è¿æ¥æ—¶æ‰§è¡ŒvalidationQueryæ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆ
       test-on-return: false
-      # ÉêÇëÁ¬½ÓµÄÊ±ºò¼ì²â£¬Èç¹û¿ÕÏĞÊ±¼ä´óÓÚtimeBetweenEvictionRunsMillis Ö´ĞĞvalidationQuery¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§
-      # ½¨ÒéÅäÖÃÎªtrue£¬²»Ó°ÏìĞÔÄÜ£¬²¢ÇÒ±£Ö¤°²È«ĞÔ
+      # ç”³è¯·è¿æ¥çš„æ—¶å€™æ£€æµ‹ï¼Œå¦‚æœç©ºé—²æ—¶é—´å¤§äºtimeBetweenEvictionRunsMillis æ‰§è¡ŒvalidationQueryæ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆ
+      # å»ºè®®é…ç½®ä¸ºtrueï¼Œä¸å½±å“æ€§èƒ½ï¼Œå¹¶ä¸”ä¿è¯å®‰å…¨æ€§
       test-while-idle: true
-      # ÅäÖÃ¼ä¸ô¶à¾Ã²Å½øĞĞÒ»´Î¼ì²â£¬¼ì²âĞèÒª¹Ø±ÕµÄ¿ÕÏĞÁ¬½Ó£¬µ¥Î»ÊÇºÁÃë
+      # é…ç½®é—´éš”å¤šä¹…æ‰è¿›è¡Œä¸€æ¬¡æ£€æµ‹ï¼Œæ£€æµ‹éœ€è¦å…³é—­çš„ç©ºé—²è¿æ¥ï¼Œå•ä½æ˜¯æ¯«ç§’
       time-between-eviction-runs-millis: 60000
-      # ÅäÖÃÒ»¸öÁ¬½ÓÔÚ³ØÖĞ×îĞ¡Éú´æµÄÊ±¼ä£¬µ¥Î»ÊÇºÁÃë
+      # é…ç½®ä¸€ä¸ªè¿æ¥åœ¨æ± ä¸­æœ€å°ç”Ÿå­˜çš„æ—¶é—´ï¼Œå•ä½æ˜¯æ¯«ç§’
       min-evictable-idle-time-millis: 25200000
-      # ¶ÔÓÚ³¤Ê±¼ä²»Ê¹ÓÃµÄÁ¬½ÓÇ¿ÖÆ¹Ø±Õ
+      # å¯¹äºé•¿æ—¶é—´ä¸ä½¿ç”¨çš„è¿æ¥å¼ºåˆ¶å…³é—­
       remove-abandoned: true
-      # ³¬¹ı30·ÖÖÓ¿ªÊ¼¹Ø±Õ¿ÕÏĞÁ¬½Ó
+      # è¶…è¿‡30åˆ†é’Ÿå¼€å§‹å…³é—­ç©ºé—²è¿æ¥
       remove-abandoned-timeout: 1800
-      # ½«µ±Ç°¹Ø±Õ¶¯×÷¼ÇÂ¼µ½ÈÕÖ¾
+      # å°†å½“å‰å…³é—­åŠ¨ä½œè®°å½•åˆ°æ—¥å¿—
       log-abandoned: true
-      # druid filtersµÄ±ğÃû±£´æÔÚÏÂÃæµÄµØÖ·ÖĞ
+      # druid filtersçš„åˆ«åä¿å­˜åœ¨ä¸‹é¢çš„åœ°å€ä¸­
       # druid-xxx.jar!/META-INF/druid-filter.properties
-      # ÅäÖÃ¶à¸öÓ¢ÎÄ¶ººÅ·Ö¸ô
+      # é…ç½®å¤šä¸ªè‹±æ–‡é€—å·åˆ†éš”
       filters: mergestat
       filter:
         log4j2:
           statement-executable-sql-log-enable: true
 
 mybatis:
-  # mapperÎÄ¼şÉ¨ÃèÂ·¾¶
+  # mapperæ–‡ä»¶æ‰«æè·¯å¾„
   mapper-locations: classpath*:com/littlefisher/**/mapper/*.xml
 
 mapper:

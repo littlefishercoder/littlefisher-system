@@ -11,7 +11,6 @@
   </parent>
 
   <artifactId>core-base</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>core-base</name>
@@ -30,6 +29,13 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-log4j2</artifactId>
+      <!--TODO: spring-boot中如果附带如下jar，则会自动引入slf4j的内容，可这个jar是做slf4j和log4j2的桥梁的-->
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.logging.log4j</groupId>
+          <artifactId>log4j-slf4j-impl</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -93,10 +99,13 @@
       <groupId>net.sf.oval</groupId>
       <artifactId>oval</artifactId>
     </dependency>
-
     <dependency>
       <groupId>com.mangofactory</groupId>
       <artifactId>swagger-springmvc</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis.generator</groupId>
+      <artifactId>mybatis-generator-core</artifactId>
     </dependency>
   </dependencies>
 
