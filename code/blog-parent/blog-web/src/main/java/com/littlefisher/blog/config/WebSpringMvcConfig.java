@@ -45,7 +45,8 @@ public class WebSpringMvcConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
 
         // 所有swagger目录的访问，直接访问location指定的目录
-        registry.addResourceHandler("/swagger/**").addResourceLocations("/WEB-INF/swagger/");
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
     /**

@@ -11,5 +11,12 @@
 
   <artifactId>blog-intf</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.littlefisher</groupId>
+      <artifactId>core-base</artifactId>
+      <version>${core-base.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>

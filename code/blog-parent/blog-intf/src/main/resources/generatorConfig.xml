@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <properties url="file:${SYSTEM_HOME}/etc/properties/generatorConfig.properties"/>
+
+  <context id="Mysql" targetRuntime="${targetRuntime}" defaultModelType="${defaultModelType}">
+
+    <!--<property name="beginningDelimiter" value="`" />-->
+    <!--<property name="endingDelimiter" value="`" />-->
+    <property name="author" value="${author}"/>
+    <property name="javaFormatter" value="com.littlefisher.core.mybatis.SortImportTypesJavaFormatter"/>
+
+    <plugin type="com.littlefisher.core.mybatis.plugins.MapperPlugin">
+      <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+      <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+      <!--<property name="caseSensitive" value="true"/>-->
+    </plugin>
+
+    <plugin type="com.littlefisher.core.mybatis.plugins.SerializablePlugin"/>
+    <plugin type="com.littlefisher.core.mybatis.plugins.ImportsPlugin"/>
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+
+    <jdbcConnection driverClass="${jdbc.driverClass}" connectionURL="${jdbc.url}"
+                    userId="${jdbc.user}" password="${jdbc.password}">
+    </jdbcConnection>
+
+    <javaTypeResolver type="com.littlefisher.core.mybatis.ChangeColType2LongJavaTypeResolver">
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.littlefisher.blog.model.user" targetProject="${targetJavaProject}"/>
+
+    <sqlMapGenerator targetPackage="com.littlefisher.blog.mapper.user" targetProject="${targetResourcesProject}"/>
+
+    <javaClientGenerator targetPackage="com.littlefisher.blog.dao.user" targetProject="${targetJavaProject}"
+                         type="XMLMAPPER"/>
+
+    <table tableName="user" domainObjectName="UserDto">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+  </context>
+</generatorConfiguration>

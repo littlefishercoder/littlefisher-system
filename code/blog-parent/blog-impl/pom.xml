@@ -14,7 +14,7 @@
   <dependencies>
     <dependency>
       <groupId>com.littlefisher</groupId>
-      <artifactId>blog-impl</artifactId>
+      <artifactId>blog-intf</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
     <dependency>

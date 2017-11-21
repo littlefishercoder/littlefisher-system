@@ -31,11 +31,12 @@
 
     <mybatis-spring.version>1.3.1</mybatis-spring.version>
     <druid.version>1.1.5</druid.version>
-    <mapper.version>1.1.5</mapper.version>
+    <mapper-spring-boot.version>1.1.5</mapper-spring-boot.version>
+    <mapper.version>3.4.0</mapper.version>
     <pagehelper.version>1.2.3</pagehelper.version>
     <commons-lang3.version>3.6</commons-lang3.version>
     <oval.version>1.90</oval.version>
-    <swagger.version>1.0.2</swagger.version>
+    <swagger.version>2.7.0</swagger.version>
     <mybatis.generator.version>1.3.5</mybatis.generator.version>
     <commons-fileupload.version>1.3.3</commons-fileupload.version>
   </properties>
@@ -55,7 +56,7 @@
       <dependency>
         <groupId>tk.mybatis</groupId>
         <artifactId>mapper-spring-boot-starter</artifactId>
-        <version>${mapper.version}</version>
+        <version>${mapper-spring-boot.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.pagehelper</groupId>
@@ -79,10 +80,20 @@
       </dependency>
 
       <dependency>
-        <groupId>com.mangofactory</groupId>
-        <artifactId>swagger-springmvc</artifactId>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger2</artifactId>
         <version>${swagger.version}</version>
       </dependency>
+      <dependency>
+        <groupId>io.springfox</groupId>
+        <artifactId>springfox-swagger-ui</artifactId>
+        <version>${swagger.version}</version>
+      </dependency>
+      <!--<dependency>-->
+        <!--<groupId>com.mangofactory</groupId>-->
+        <!--<artifactId>swagger-springmvc</artifactId>-->
+        <!--<version>${swagger.version}</version>-->
+      <!--</dependency>-->
       <dependency>
         <groupId>org.mybatis.generator</groupId>
         <artifactId>mybatis-generator-core</artifactId>
@@ -90,6 +101,42 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
+
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!-- mybatis自动生成代码的插件 -->
+        <plugin>
+          <groupId>org.mybatis.generator</groupId>
+          <artifactId>mybatis-generator-maven-plugin</artifactId>
+          <version>${mybatis.generator.version}</version>
+          <configuration>
+            <configurationFile>${basedir}/src/main/resources/generatorConfig.xml</configurationFile>
+            <overwrite>true</overwrite>
+            <verbose>true</verbose>
+          </configuration>
+          <dependencies>
+            <dependency>
+              <groupId>mysql</groupId>
+              <artifactId>mysql-connector-java</artifactId>
+              <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>com.littlefisher</groupId>
+              <artifactId>core-base</artifactId>
+              <version>${project.version}</version>
+            </dependency>
+            <dependency>
+              <groupId>tk.mybatis</groupId>
+              <artifactId>mapper</artifactId>
+              <version>${mapper.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
   <repositories>
     <repository>

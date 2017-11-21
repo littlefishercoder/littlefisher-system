@@ -1,13 +1,16 @@
 package com.littlefisher.core.config.swagger;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import com.mangofactory.swagger.configuration.SpringSwaggerConfig;
-import com.mangofactory.swagger.models.dto.ApiInfo;
-import com.mangofactory.swagger.plugin.EnableSwagger;
-import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
 
 /**
  * Description:
@@ -19,35 +22,20 @@ import com.mangofactory.swagger.plugin.SwaggerSpringMvcPlugin;
  * @since v1.0
  */
 @Configuration
-@EnableSwagger
+@EnableSwagger2
 public class SwaggerConfig {
 
-    /**
-     * springSwaggerConfig
-     */
-    @Autowired
-    private SpringSwaggerConfig springSwaggerConfig;
-
-    /**
-     * Description: Every SwaggerSpringMvcPlugin bean is picked up by the swagger-mvc framework - allowing for multiple
-     * swagger groups i.e. same code base multiple swagger resource listings.
-     *
-     * @return SwaggerSpringMvcPlugin
-     */
     @Bean
-    public SwaggerSpringMvcPlugin customImplementation() {
-        return new SwaggerSpringMvcPlugin(springSwaggerConfig).apiInfo(apiInfo()).includePatterns(".*?")
-                // 是否展示通用的HTTP 返回码的含义
-                .useDefaultResponseMessages(false);
+    public Docket createRestApi() {
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
+                .apis(RequestHandlerSelectors.basePackage("com.littlefisher")).paths(PathSelectors.any()).build();
     }
 
-    /**
-     * Description:
-     *
-     * @return ApiInfo
-     */
     private ApiInfo apiInfo() {
-        return new ApiInfo("Littlefisher REST API", "API Description", "API terms of service", "jinyanan@room1000.com",
-                "Version 1.0", "No License URL");
+        return new ApiInfoBuilder().title("Littlefisher REST API").description("API Description")
+                .termsOfServiceUrl("http://www.littlefisher.site/")
+                .contact(new Contact("LittleFisher", "http://www.littlefisher.site/", "jin68716503@163.com"))
+                .version("1.0").build();
     }
+
 }
