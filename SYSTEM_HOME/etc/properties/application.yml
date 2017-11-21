@@ -41,6 +41,8 @@ spring:
           statement-executable-sql-log-enable: true
   aop:
     auto: true
+  config:
+    location: ${SYSTEM_HOME}/etc/properties/application.yml
 
 mybatis:
   # mapper文件扫描路径
@@ -54,4 +56,4 @@ pagehelper:
   page-size-zero: true
 
 server:
-  context-path: /blog-web
+  context-path: /blog

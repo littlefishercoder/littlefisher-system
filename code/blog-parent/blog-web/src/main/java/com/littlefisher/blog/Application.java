@@ -3,6 +3,8 @@ package com.littlefisher.blog;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
@@ -18,18 +20,18 @@ import org.springframework.context.annotation.PropertySource;
 @SpringBootApplication
 @MapperScan("com.littlefisher.**.dao")
 @ComponentScan(basePackages = {
-        "com.littlefisher.core.interceptor.service",
-        "com.littlefisher.**.service.impl",
-        "com.littlefisher.core.utils",
-        "com.littlefisher.core.exception",
-        "com.littlefisher.core.config",
+        "com.littlefisher.**",
 })
-@PropertySource("file:${SYSTEM_HOME}/etc/properties/jdbc.properties")
 @PropertySource("file:${SYSTEM_HOME}/etc/properties/kafka.properties")
-public class Application {
+public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
+    }
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
     }
 
 }

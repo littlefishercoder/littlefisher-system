@@ -182,10 +182,12 @@ public class SystemEngineConfig {
      * @param services 初始化Service的Map列表
      */
     public void initServices(Map<String, ServiceImpl> services) {
-        services.forEach((serviceBeanName, service) -> {
-            initService(service);
-            services.put(serviceBeanName, service);
-        });
+        if (services != null) {
+            services.forEach((serviceBeanName, service) -> {
+                initService(service);
+                services.put(serviceBeanName, service);
+            });
+        }
     }
 
     /**

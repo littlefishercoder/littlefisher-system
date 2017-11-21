@@ -1,16 +1,12 @@
 package com.littlefisher.blog.config;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
@@ -21,7 +17,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter;
 import org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter;
 import org.springframework.http.converter.xml.SourceHttpMessageConverter;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -30,8 +25,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.google.common.base.Charsets;
-import com.littlefisher.core.config.swagger.SwaggerConfig;
+import com.google.common.collect.Lists;
 import com.littlefisher.core.springmvc.DateConverter;
+import com.littlefisher.core.utils.DateUtil;
 
 /**
  * Description: WebSpringMVCConfig
@@ -43,8 +39,6 @@ import com.littlefisher.core.springmvc.DateConverter;
  * @since v1.0
  */
 @Configuration
-@ComponentScan(basePackages = { "com.littlefisher.**.controller" }, includeFilters = @Filter(value = Controller.class))
-@Import(SwaggerConfig.class)
 public class WebSpringMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
@@ -64,7 +58,7 @@ public class WebSpringMvcConfig extends WebMvcConfigurerAdapter {
         CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
 
         // 默认编码格式 默认ISO-8859-1
-        commonsMultipartResolver.setDefaultEncoding("UTF-8");
+        commonsMultipartResolver.setDefaultEncoding(Charsets.UTF_8.displayName());
 
         // 设置允许上传的最大文件大小，以字节为单位计算。当设为-1时表示无限制，默认是-1
         commonsMultipartResolver.setMaxUploadSize(10485760);
@@ -97,14 +91,14 @@ public class WebSpringMvcConfig extends WebMvcConfigurerAdapter {
         MappingJackson2HttpMessageConverter jacksonConverter = new MappingJackson2HttpMessageConverter();
         ObjectMapper om = jacksonConverter.getObjectMapper();
 
-        om.setDateFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+        om.setDateFormat(new SimpleDateFormat(DateUtil.DATETIME_FORMAT_1));
         om.setLocale(Locale.CHINA);
         om.setTimeZone(TimeZone.getTimeZone("GMT+8"));
 
-        List<MediaType> mediaTypeList = new ArrayList<>();
+        List<MediaType> mediaTypeList = Lists.newArrayList();
 
-        mediaTypeList.add(new MediaType("application", "json", Charsets.UTF_8));
-        mediaTypeList.add(new MediaType("text", "html", Charsets.UTF_8));
+        mediaTypeList.add(new MediaType(MediaType.APPLICATION_JSON, Charsets.UTF_8));
+        mediaTypeList.add(new MediaType(MediaType.TEXT_HTML, Charsets.UTF_8));
         jacksonConverter.setSupportedMediaTypes(mediaTypeList);
 
         StringHttpMessageConverter stringConverter = new StringHttpMessageConverter(Charsets.UTF_8);
