@@ -68,7 +68,6 @@ public class ImportsPlugin extends PluginAdapter {
     @Override
     public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         interfaze.addJavaDocLine("/**");
-        interfaze.addJavaDocLine(" *");
         interfaze.addJavaDocLine(" * Description: " + introspectedTable.getFullyQualifiedTable() + " Mapper 接口");
         interfaze.addJavaDocLine(" *");
         interfaze.addJavaDocLine(" * Created on " + currentDateStr);

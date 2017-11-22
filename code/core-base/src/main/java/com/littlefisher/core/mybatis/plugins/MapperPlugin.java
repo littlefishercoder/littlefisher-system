@@ -1,6 +1,5 @@
 package com.littlefisher.core.mybatis.plugins;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;

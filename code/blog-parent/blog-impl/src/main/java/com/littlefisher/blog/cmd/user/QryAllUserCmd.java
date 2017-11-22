@@ -7,9 +7,9 @@ import com.littlefisher.blog.model.user.UserDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
- * Description: QryAllUserCmd.java
+ * Description:
  *
- * Created on 2017年11月21日
+ * Created on 2017年5月17日
  *
  * @author jinyanan
  * @version 1.0
@@ -19,6 +19,8 @@ public class QryAllUserCmd extends AbstractCommand<List<UserDto>> {
 
     @Override
     public List<UserDto> execute() {
-        return this.getMapper(UserDtoMapper.class).selectAll();
+        UserDtoMapper userDtoMapper = this.getMapper(UserDtoMapper.class);
+        return userDtoMapper.selectAll();
     }
+
 }

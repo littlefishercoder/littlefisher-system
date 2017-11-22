@@ -11,7 +11,7 @@
     <!--<property name="beginningDelimiter" value="`" />-->
     <!--<property name="endingDelimiter" value="`" />-->
     <property name="author" value="${author}"/>
-    <property name="javaFormatter" value="com.littlefisher.core.mybatis.SortImportTypesJavaFormatter"/>
+    <property name="javaFormatter" value="com.littlefisher.core.mybatis.SortImportsAndFieldsJavaFormatter"/>
 
     <plugin type="com.littlefisher.core.mybatis.plugins.MapperPlugin">
       <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
@@ -31,15 +31,18 @@
       <property name="forceBigDecimals" value="false"/>
     </javaTypeResolver>
 
-    <javaModelGenerator targetPackage="com.littlefisher.blog.model.user" targetProject="${targetJavaProject}"/>
+    <javaModelGenerator targetPackage="com.littlefisher.blog.model.commentary" targetProject="${targetJavaProject}"/>
 
-    <sqlMapGenerator targetPackage="com.littlefisher.blog.mapper.user" targetProject="${targetResourcesProject}"/>
+    <sqlMapGenerator targetPackage="com.littlefisher.blog.mapper.commentary" targetProject="${targetResourcesProject}"/>
 
-    <javaClientGenerator targetPackage="com.littlefisher.blog.dao.user" targetProject="${targetJavaProject}"
+    <javaClientGenerator targetPackage="com.littlefisher.blog.dao.commentary" targetProject="${targetJavaProject}"
                          type="XMLMAPPER"/>
 
-    <table tableName="user" domainObjectName="UserDto">
+    <table tableName="commentary" domainObjectName="CommentaryDto">
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="commentary_state" domainObjectName="CommentaryStateDto">
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
     </table>
   </context>
 </generatorConfiguration>

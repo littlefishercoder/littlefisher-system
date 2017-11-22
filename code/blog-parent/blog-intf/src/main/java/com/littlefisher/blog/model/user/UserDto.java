@@ -25,6 +25,9 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name = "user")
 @ApiModel("user实体")
 public class UserDto implements Serializable {
+    /** serialVersionUID */
+    private static final long serialVersionUID = 1L;
+
     /**
      * 主键
      */
@@ -118,9 +121,6 @@ public class UserDto implements Serializable {
     @ApiModelProperty(value = "最后一次登录时间")
     @Column(name = "last_login_date")
     private Date lastLoginDate;
-
-    /** serialVersionUID */
-    private static final long serialVersionUID = 1L;
 
     public Long getId() {
         return id;

@@ -5,89 +5,88 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
-
 /**
- * Description: GetUserList4PagerByCondRequest.java
+ * Description:
  *
- * Created on 2017年11月21日
+ * Created on 2017年5月18日
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-@ApiModel(value = "查询User列表的入参条件，分页用")
+@ApiModel("查询User列表的入参条件，分页用")
 public class GetUserList4PagerByCondRequest {
 
     /**
      * pageNum 页码
      */
-    @ApiModelProperty(value = "页码")
+    @ApiModelProperty("页码")
     private int pageNum;
 
     /**
      * pageSize 每页行数
      */
-    @ApiModelProperty(value = "每页行数")
+    @ApiModelProperty("每页行数")
     private int pageSize;
 
     /**
      * accNbr 账号
      */
-    @ApiModelProperty(value = "账号")
+    @ApiModelProperty("账号")
     private String accNbr;
 
     /**
      * email 邮箱，模糊查询
      */
-    @ApiModelProperty(value = "邮箱，模糊查询")
+    @ApiModelProperty("邮箱，模糊查询")
     private String email;
 
     /**
      * realName 真实姓名，模糊查询
      */
-    @ApiModelProperty(value = "真实姓名，模糊查询")
+    @ApiModelProperty("真实姓名，模糊查询")
     private String realName;
 
     /**
      * nickName 昵称，模糊查询
      */
-    @ApiModelProperty(value = "昵称，模糊查询")
+    @ApiModelProperty("昵称，模糊查询")
     private String nickName;
 
     /**
      * eName 英文名，模糊查询
      */
-    @ApiModelProperty(value = "英文名，模糊查询")
+    @ApiModelProperty("英文名，模糊查询")
     private String enName;
 
     /**
      * qq qq,模糊查询
      */
-    @ApiModelProperty(value = "qq,模糊查询")
+    @ApiModelProperty("qq,模糊查询")
     private String qq;
 
     /**
      * phoneNbr 手机号，模糊查询
      */
-    @ApiModelProperty(value = "手机号，模糊查询")
+    @ApiModelProperty("手机号，模糊查询")
     private String phoneNbr;
 
     /**
      * state 状态
      */
-    @ApiModelProperty(value = "状态")
+    @ApiModelProperty("状态")
     private String state;
 
     /**
      * regDateStart 注册时间，时间范围 开始
      */
-    @ApiModelProperty(value = "注册时间，时间范围 开始")
+    @ApiModelProperty("注册时间，时间范围 开始")
     private Date regDateStart;
 
     /**
      * regDateEnd 注册时间，时间范围 截止
      */
-    @ApiModelProperty(value = "注册时间，时间范围 截止")
+    @ApiModelProperty("注册时间，时间范围 截止")
     private Date regDateEnd;
 
     public int getPageNum() {
@@ -188,10 +187,33 @@ public class GetUserList4PagerByCondRequest {
 
     @Override
     public String toString() {
-        return "GetUserList4PagerByCondRequest{" + "pageNum=" + pageNum + ", pageSize=" + pageSize + ", accNbr='"
-               + accNbr + '\'' + ", email='" + email + '\'' + ", realName='" + realName + '\'' + ", nickName='"
-               + nickName + '\'' + ", enName='" + enName + '\'' + ", qq='" + qq + '\'' + ", phoneNbr='" + phoneNbr
-               + '\'' + ", state='" + state + '\'' + ", regDateStart=" + regDateStart + ", regDateEnd=" + regDateEnd
-               + '}';
+        StringBuilder builder = new StringBuilder();
+        builder.append("GetUserList4PagerByCondRequest [pageNum=");
+        builder.append(pageNum);
+        builder.append(", pageSize=");
+        builder.append(pageSize);
+        builder.append(", accNbr=");
+        builder.append(accNbr);
+        builder.append(", email=");
+        builder.append(email);
+        builder.append(", realName=");
+        builder.append(realName);
+        builder.append(", nickName=");
+        builder.append(nickName);
+        builder.append(", enName=");
+        builder.append(enName);
+        builder.append(", qq=");
+        builder.append(qq);
+        builder.append(", phoneNbr=");
+        builder.append(phoneNbr);
+        builder.append(", state=");
+        builder.append(state);
+        builder.append(", regDateStart=");
+        builder.append(regDateStart);
+        builder.append(", regDateEnd=");
+        builder.append(regDateEnd);
+        builder.append("]");
+        return builder.toString();
     }
+
 }
