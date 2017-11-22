@@ -32,7 +32,7 @@ public class SwaggerConfig {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("Littlefisher REST API").description("API Description")
+        return new ApiInfoBuilder().title("Littlefisher REST API").description("API Document管理")
                 .termsOfServiceUrl("http://www.littlefisher.site/")
                 .contact(new Contact("LittleFisher", "http://www.littlefisher.site/", "jin68716503@163.com"))
                 .version("1.0").build();

@@ -27,7 +27,7 @@
                     userId="${jdbc.user}" password="${jdbc.password}">
     </jdbcConnection>
 
-    <javaTypeResolver type="com.littlefisher.core.mybatis.ChangeColType2LongJavaTypeResolver">
+    <javaTypeResolver type="com.littlefisher.core.mybatis.JavaTypeResolver">
       <property name="forceBigDecimals" value="false"/>
     </javaTypeResolver>
 

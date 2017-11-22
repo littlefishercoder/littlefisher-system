@@ -85,10 +85,10 @@ public class ImportsPlugin extends PluginAdapter {
     private void processEntityClass(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
 
         // 导入ApiModel和ApiModelProperty包，用于swaggerUI
-        topLevelClass.addImportedType("com.wordnik.swagger.annotations.ApiModel");
-        topLevelClass.addImportedType("com.wordnik.swagger.annotations.ApiModelProperty");
+        topLevelClass.addImportedType("io.swagger.annotations.ApiModel");
+        topLevelClass.addImportedType("io.swagger.annotations.ApiModelProperty");
 
-        topLevelClass.addAnnotation("@ApiModel(value = \"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
+        topLevelClass.addAnnotation("@ApiModel(\"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
 
         // 引入JPA注解
         topLevelClass.addImportedType("javax.persistence.Column");

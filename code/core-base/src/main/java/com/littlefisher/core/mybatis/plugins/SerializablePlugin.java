@@ -98,9 +98,7 @@ public class SerializablePlugin extends PluginAdapter {
             field.setStatic(true);
             field.setType(new FullyQualifiedJavaType("long"));
             field.setVisibility(JavaVisibility.PRIVATE);
-            field.addJavaDocLine("/**");
-            field.addJavaDocLine(" * serialVersionUID");
-            field.addJavaDocLine(" */");
+            field.addJavaDocLine("/** serialVersionUID */");
             context.getCommentGenerator().addFieldComment(field, introspectedTable);
 
             topLevelClass.addField(field);

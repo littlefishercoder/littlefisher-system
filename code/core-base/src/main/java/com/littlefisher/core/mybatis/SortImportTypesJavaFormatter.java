@@ -18,7 +18,10 @@ import org.mybatis.generator.api.dom.java.Method;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.config.Context;
 
+import com.google.common.collect.Iterators;
+import com.google.common.collect.Sets;
 import com.littlefisher.core.utils.CollectionUtil;
+import com.littlefisher.core.utils.StringUtil;
 
 /**
  * Description: 对import导入的包进行排序
@@ -60,10 +63,10 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
 
         Interface interfaceClazz = (Interface) compilationUnit;
 
-        for (String commentLine : interfaceClazz.getFileCommentLines()) {
+        interfaceClazz.getFileCommentLines().forEach(commentLine -> {
             sb.append(commentLine);
             newLine(sb);
-        }
+        });
 
         formatPackage(sb, interfaceClazz.getType().getPackageName());
 
@@ -135,12 +138,12 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
     }
 
     private void formatStaticImports(StringBuilder sb, Set<String> staticImports) {
-        for (String staticImport : staticImports) {
+        staticImports.forEach(staticImport -> {
             sb.append("import static ");
             sb.append(staticImport);
             sb.append(';');
             newLine(sb);
-        }
+        });
     }
 
     /**
@@ -151,10 +154,10 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
 
         TopLevelClass topLevelClass = (TopLevelClass) compilationUnit;
 
-        for (String fileCommentLine : topLevelClass.getFileCommentLines()) {
+        topLevelClass.getFileCommentLines().forEach(fileCommentLine -> {
             sb.append(fileCommentLine);
             newLine(sb);
-        }
+        });
 
         formatPackage(sb, topLevelClass.getType().getPackageName());
 
@@ -194,11 +197,11 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
      * @param importStrings <br>
      */
     private void sortImportTypes(StringBuilder sb, Set<String> importStrings) {
-        Set<String> javaTypes = new TreeSet<>();
-        Set<String> javaxTypes = new TreeSet<>();
-        Set<String> orgTypes = new TreeSet<>();
-        Set<String> otherTypes = new TreeSet<>();
-        Set<String> comTypes = new TreeSet<>();
+        Set<String> javaTypes = Sets.newTreeSet();
+        Set<String> javaxTypes = Sets.newTreeSet();
+        Set<String> orgTypes = Sets.newTreeSet();
+        Set<String> otherTypes = Sets.newTreeSet();
+        Set<String> comTypes = Sets.newTreeSet();
 
         for (String importType : importStrings) {
             if (importType.startsWith("import javax")) {
@@ -214,48 +217,30 @@ public class SortImportTypesJavaFormatter implements JavaFormatter {
             }
         }
 
-        for (String importType : javaTypes) {
+        generateImports(sb, javaTypes);
+
+        generateImports(sb, javaxTypes);
+
+        generateImports(sb, orgTypes);
+
+        generateImports(sb, comTypes);
+
+        generateImports(sb, otherTypes);
+    }
+
+    /**
+     * 组装import内容
+     *
+     * @param sb import内容
+     * @param javaTypes javaTypes
+     */
+    private void generateImports(StringBuilder sb, Set<String> javaTypes) {
+        javaTypes.forEach(importType -> {
             sb.append(importType);
             newLine(sb);
-        }
+        });
 
         if (javaTypes.size() > 0) {
-            newLine(sb);
-        }
-
-        for (String importType : javaxTypes) {
-            sb.append(importType);
-            newLine(sb);
-        }
-
-        if (javaxTypes.size() > 0) {
-            newLine(sb);
-        }
-
-        for (String importType : orgTypes) {
-            sb.append(importType);
-            newLine(sb);
-        }
-
-        if (orgTypes.size() > 0) {
-            newLine(sb);
-        }
-
-        for (String importType : comTypes) {
-            sb.append(importType);
-            newLine(sb);
-        }
-
-        if (comTypes.size() > 0) {
-            newLine(sb);
-        }
-
-        for (String importType : otherTypes) {
-            sb.append(importType);
-            newLine(sb);
-        }
-
-        if (otherTypes.size() > 0) {
             newLine(sb);
         }
     }

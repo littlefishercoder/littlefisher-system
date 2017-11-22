@@ -16,6 +16,7 @@ import org.mybatis.generator.config.CommentGeneratorConfiguration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.util.StringUtility;
 
+import com.google.common.base.Splitter;
 import com.google.common.collect.Sets;
 import com.littlefisher.core.enums.EnumBool;
 import com.littlefisher.core.mybatis.LittleFisherCommentGenerator;
@@ -93,7 +94,7 @@ public class MapperPlugin extends PluginAdapter {
         super.setProperties(properties);
         String mappers = this.properties.getProperty("mappers");
         if (StringUtility.stringHasValue(mappers)) {
-            Collections.addAll(this.mappers, mappers.split(","));
+            this.mappers.addAll(Splitter.on(',').splitToList(mappers));
         } else {
             throw new MapperException("Mapper插件缺少必要的mappers属性!");
         }

@@ -1,8 +1,5 @@
 package com.littlefisher.blog.model.user;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,18 +9,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 
 /**
  *
  * Description: user 实体
  *
- * Created on 2017年11月21日
+ * Created on 2017年11月22日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
 @Table(name = "user")
-@ApiModel(value = "user实体")
+@ApiModel("user实体")
 public class UserDto implements Serializable {
     /**
      * 主键
@@ -66,7 +66,10 @@ public class UserDto implements Serializable {
     @Column(name = "nick_name")
     private String nickName;
 
-    @ApiModelProperty(value = "")
+    /**
+     * 英文名称
+     */
+    @ApiModelProperty(value = "英文名称")
     @Column(name = "en_name")
     private String enName;
 
@@ -116,9 +119,7 @@ public class UserDto implements Serializable {
     @Column(name = "last_login_date")
     private Date lastLoginDate;
 
-    /**
-     * serialVersionUID
-     */
+    /** serialVersionUID */
     private static final long serialVersionUID = 1L;
 
     public Long getId() {
@@ -233,13 +234,6 @@ public class UserDto implements Serializable {
         this.lastLoginDate = lastLoginDate;
     }
 
-    /**
-     * Description: toString<br>
-     *
-     * @author jinyanan <br>
-     * @return String String<br>
-     * @mbg.generated
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

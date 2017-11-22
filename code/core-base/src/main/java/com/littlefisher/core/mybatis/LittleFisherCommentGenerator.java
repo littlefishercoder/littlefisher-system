@@ -20,6 +20,9 @@ import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.MergeConstants;
 import org.mybatis.generator.internal.util.StringUtility;
 
+import com.google.common.collect.Iterators;
+import com.littlefisher.core.utils.StringUtil;
+
 /**
  * Description:
  *
@@ -61,6 +64,11 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {
+        // 如果带有@Override注解的方法，不进行javadoc
+        if (Iterators.any(method.getAnnotations().iterator(),
+                input -> StringUtil.isNotBlank(input) && "@Override".equalsIgnoreCase(input))) {
+            return;
+        }
         method.addJavaDocLine("/**");
         method.addJavaDocLine(" * Description: " + method.getName() + "<br>");
         method.addJavaDocLine(" *");
@@ -70,7 +78,9 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
             method.addJavaDocLine(" * @param " + p.getName() + " " + p.getName());
         }
         if (method.getReturnType() != null) {
-            method.addJavaDocLine(" * @return " + method.getReturnType().getShortName() + " " + method.getReturnType().getShortName() + "<br>");
+            method.addJavaDocLine(
+                    " * @return " + method.getReturnType().getShortName() + " " + method.getReturnType().getShortName()
+                    + "<br>");
         }
         addJavadocTag(method, false);
         method.addJavaDocLine(" */");
@@ -94,7 +104,8 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
      * 对实体bean中各个字段field增加注释
      */
     @Override
-    public void addFieldComment(Field field, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+    public void addFieldComment(Field field, IntrospectedTable introspectedTable,
+                                IntrospectedColumn introspectedColumn) {
         String jdbc = "JDBC";
         // 添加@ApiModelProperty注解，用于swaggerUI展示用
         field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() + "\")");
@@ -111,16 +122,16 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
             field.addAnnotation("@Transient");
         }
         // 对主键字段增加@Id注解
-        for (IntrospectedColumn column : introspectedTable.getPrimaryKeyColumns()) {
-            if (introspectedColumn == column) {
-                field.addAnnotation("@Id");
-                break;
-            }
+        if (Iterators
+                .any(introspectedTable.getPrimaryKeyColumns().iterator(), column -> introspectedColumn == column)) {
+            field.addAnnotation("@Id");
         }
         // 对数据库字段增加@Column注解，该注解用于解决字段名和数据库字段名不同时的映射问题
         String column = introspectedColumn.getActualColumnName();
-        if (StringUtility.stringContainsSpace(column) || introspectedTable.getTableConfiguration().isAllColumnDelimitingEnabled()) {
-            column = introspectedColumn.getContext().getBeginningDelimiter() + column + introspectedColumn.getContext().getEndingDelimiter();
+        if (StringUtility.stringContainsSpace(column) || introspectedTable.getTableConfiguration()
+                .isAllColumnDelimitingEnabled()) {
+            column = introspectedColumn.getContext().getBeginningDelimiter() + column + introspectedColumn.getContext()
+                    .getEndingDelimiter();
         }
         if (!column.equals(introspectedColumn.getJavaProperty())) {
             //@Column
@@ -187,11 +198,13 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
     }
 
     @Override
-    public void addGetterComment(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+    public void addGetterComment(Method method, IntrospectedTable introspectedTable,
+                                 IntrospectedColumn introspectedColumn) {
     }
 
     @Override
-    public void addSetterComment(Method method, IntrospectedTable introspectedTable, IntrospectedColumn introspectedColumn) {
+    public void addSetterComment(Method method, IntrospectedTable introspectedTable,
+                                 IntrospectedColumn introspectedColumn) {
     }
 
     @Override

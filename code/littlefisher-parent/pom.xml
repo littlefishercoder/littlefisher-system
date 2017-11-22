@@ -89,11 +89,6 @@
         <artifactId>springfox-swagger-ui</artifactId>
         <version>${swagger.version}</version>
       </dependency>
-      <!--<dependency>-->
-        <!--<groupId>com.mangofactory</groupId>-->
-        <!--<artifactId>swagger-springmvc</artifactId>-->
-        <!--<version>${swagger.version}</version>-->
-      <!--</dependency>-->
       <dependency>
         <groupId>org.mybatis.generator</groupId>
         <artifactId>mybatis-generator-core</artifactId>
