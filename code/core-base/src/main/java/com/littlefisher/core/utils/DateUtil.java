@@ -120,15 +120,17 @@ public final class DateUtil {
      * DATE_FORMAT_SUPPORT
      */
     public static final String[] DATE_FORMAT_SUPPORT = {
-        DATETIME_FORMAT_1, DATETIME_FORMAT_2, DATETIME_FORMAT_3, DATETIME_FORMAT_4, DATE_FORMAT_1, DATE_FORMAT_2,
-        DATE_FORMAT_3
+            DATETIME_FORMAT_1,
+            DATETIME_FORMAT_2,
+            DATETIME_FORMAT_3,
+            DATETIME_FORMAT_4,
+            DATE_FORMAT_1,
+            DATE_FORMAT_2,
+            DATE_FORMAT_3
     };
 
     /**
-     * 
      * Description: 根据传入format格式化日期
-     * 
-     * @author jinyanan
      *
      * @param format format
      * @return SimpleDateFormat
@@ -138,10 +140,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 按照format把date转为string
-     * 
-     * @author jinyanan
      *
      * @param date date
      * @param format format
@@ -156,10 +155,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 获取当前时间，使用默认format
-     * 
-     * @author jinyanan
      *
      * @param date date
      * @return String
@@ -169,10 +165,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 获取当前时间
-     * 
-     * @author jinyanan
      *
      * @return String
      */
@@ -182,11 +175,8 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 文件命名用时间String
-     * 
-     * @author jinyanan
-     * 
+     *
      * @return String
      */
     public static String getNameFileCurrentDate() {
@@ -195,10 +185,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 把java.util.Date转为java.sql.Date
-     * 
-     * @author jinyanan
      *
      * @param date date
      * @return java.sql.Date
@@ -206,22 +193,17 @@ public final class DateUtil {
     public static java.sql.Date dateToSqlDate(java.util.Date date) {
         if (date == null) {
             return null;
-        }
-        else if (date instanceof java.sql.Date) {
+        } else if (date instanceof java.sql.Date) {
             return (java.sql.Date) date;
-        }
-        else {
+        } else {
             return new java.sql.Date(date.getTime());
         }
     }
-    
+
     /**
-     * 
      * Description: 把java.sql.Date转为java.util.Date
-     * 
-     * @author jinyanan
      *
-     * @param date java.sql.Date 
+     * @param date java.sql.Date
      * @return java.util.Date
      */
     public static java.util.Date sqlDate2Date(java.sql.Date date) {
@@ -229,10 +211,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 把string转为java.sql.Date，会尝试各种format
-     * 
-     * @author jinyanan
      *
      * @param date date
      * @return java.sql.Date
@@ -246,26 +225,20 @@ public final class DateUtil {
             if (date.indexOf(EnumSymbol.MINUS.getCode()) > 0) {
                 if (date.indexOf(EnumSymbol.COLON.getCode()) > 0) {
                     ret = string2SQLDate(date, DATETIME_FORMAT_1);
-                }
-                else {
+                } else {
                     ret = string2SQLDate(date, DATETIME_FORMAT_3);
                 }
-            }
-            else if (date.indexOf(EnumSymbol.BACKSLASH.getCode()) > 0) {
+            } else if (date.indexOf(EnumSymbol.BACKSLASH.getCode()) > 0) {
                 ret = string2SQLDate(date, DATETIME_FORMAT_4);
-            }
-            else {
+            } else {
                 ret = string2SQLDate(date, DATETIME_FORMAT_2);
             }
-        }
-        else {
+        } else {
             if (date.indexOf(EnumSymbol.MINUS.getCode()) > 0) {
                 ret = string2SQLDate(date, DATE_FORMAT_1);
-            }
-            else if (date.length() == DATE_LENGTH_8) {
+            } else if (date.length() == DATE_LENGTH_8) {
                 ret = string2SQLDate(date, DATE_FORMAT_2);
-            }
-            else {
+            } else {
                 ret = string2SQLDate(date, DATE_FORMAT_3);
             }
         }
@@ -273,10 +246,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 按照format把string转为java.sql.Date
-     * 
-     * @author jinyanan
      *
      * @param date date
      * @param format 格式
@@ -290,11 +260,11 @@ public final class DateUtil {
             operateException = new IllegalArgumentException("the date format string is null!");
         }
         SimpleDateFormat sdf = getDateFormat(format);
-//        if (sdf == null) {
-//            isSucc = false;
-//            operateException = new IllegalArgumentException(
-//                "the date format string is not matching available format object");
-//        }
+        //        if (sdf == null) {
+        //            isSucc = false;
+        //            operateException = new IllegalArgumentException(
+        //                "the date format string is not matching available format object");
+        //        }
         java.util.Date tmpDate = null;
         try {
             if (isSucc) {
@@ -303,11 +273,10 @@ public final class DateUtil {
                 if (!tmpDateStr.equals(date)) {
                     isSucc = false;
                     operateException = new IllegalArgumentException(
-                        "the date string " + date + " is not matching format: " + format);
+                            "the date string " + date + " is not matching format: " + format);
                 }
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             isSucc = false;
             operateException = e;
         }
@@ -315,22 +284,18 @@ public final class DateUtil {
             logger.error("the date string " + date + " is not matching format: " + format, operateException);
             if (operateException instanceof IllegalArgumentException) {
                 throw (IllegalArgumentException) operateException;
+            } else {
+                throw new IllegalArgumentException(
+                        "the date string " + date + " is not matching format: " + format + ".\n cause by :"
+                        + operateException.toString());
             }
-            else {
-                throw new IllegalArgumentException("the date string " + date + " is not matching format: " + format
-                    + ".\n cause by :" + operateException.toString());
-            }
-        }
-        else {
+        } else {
             return new java.sql.Date(tmpDate.getTime());
         }
     }
 
     /**
-     * 
      * Description: 把string转date，会尝试各种format格式
-     * 
-     * @author jinyanan
      *
      * @param date date
      * @return Date
@@ -344,26 +309,20 @@ public final class DateUtil {
             if (date.indexOf(EnumSymbol.MINUS.getCode()) > 0) {
                 if (date.indexOf(EnumSymbol.COLON.getCode()) > 0) {
                     ret = string2Date(date, DATETIME_FORMAT_1);
-                }
-                else {
+                } else {
                     ret = string2Date(date, DATETIME_FORMAT_3);
                 }
-            }
-            else if (date.indexOf(EnumSymbol.BACKSLASH.getCode()) > 0) {
+            } else if (date.indexOf(EnumSymbol.BACKSLASH.getCode()) > 0) {
                 ret = string2Date(date, DATETIME_FORMAT_4);
-            }
-            else {
+            } else {
                 ret = string2Date(date, DATETIME_FORMAT_2);
             }
-        }
-        else {
+        } else {
             if (date.indexOf(EnumSymbol.MINUS.getCode()) > 0) {
                 ret = string2Date(date, DATE_FORMAT_1);
-            }
-            else if (date.length() == DATE_LENGTH_8) {
+            } else if (date.length() == DATE_LENGTH_8) {
                 ret = string2Date(date, DATE_FORMAT_2);
-            }
-            else {
+            } else {
                 ret = string2Date(date, DATE_FORMAT_3);
             }
         }
@@ -371,10 +330,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 按照format把string转date
-     * 
-     * @author jinyanan
      *
      * @param date 时间
      * @param format 格式
@@ -385,22 +341,18 @@ public final class DateUtil {
             throw new IllegalArgumentException("the date format string is null!");
         }
         SimpleDateFormat sdf = getDateFormat(format);
-//        if (sdf == null) {
-//            throw new IllegalArgumentException("the date format string is not matching available format object");
-//        }
+        //        if (sdf == null) {
+        //            throw new IllegalArgumentException("the date format string is not matching available format object");
+        //        }
         try {
             return sdf.parse(date);
-        }
-        catch (ParseException e) {
+        } catch (ParseException e) {
             throw new IllegalArgumentException("the date string " + date + " is not matching format: " + format, e);
         }
     }
 
     /**
-     * 
      * Description: 获取系统当前时间 yyyy-MM-dd HH:mm:ss
-     * 
-     * @author jinyanan
      *
      * @return String
      */
@@ -410,10 +362,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 获取系统当前时间
-     * 
-     * @author jinyanan
      *
      * @return java.sql.Date
      */
@@ -422,10 +371,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description:  根据date计算seconds后的时间
-     * 
-     * @author jinyanan
      *
      * @param date 当前时间
      * @param seconds 秒数
@@ -457,17 +403,13 @@ public final class DateUtil {
         boolean isNeedReset = dstOffset == 0 || (dstDate2 - dstDate3 != 0 && dstDate2 != 0);
         if (!isNeedReset) {
             return date2;
-        }
-        else {
+        } else {
             return new java.sql.Date(time2 + dstOffset);
         }
     }
 
     /**
-     * 
      * Description: 根据date计算minutes后的时间
-     * 
-     * @author jinyanan
      *
      * @param date 当前时间
      * @param minutes 要计算的分钟数
@@ -478,10 +420,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 根据date计算hours后的时间
-     * 
-     * @author jinyanan
      *
      * @param date 当前时间
      * @param hours 要计算的小时数
@@ -492,10 +431,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 根据date计算days后的时间
-     * 
-     * @author jinyanan
      *
      * @param date 当前时间
      * @param days 要计算的天数
@@ -506,10 +442,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 根据date计算weeks后的时间
-     * 
-     * @author jinyanan
      *
      * @param date 当前时间
      * @param weeks 要计算的周数
@@ -520,10 +453,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 根据date计算months后的时间
-     * 
-     * @author jinyanan
      *
      * @param date 当前时间
      * @param months 要计算的月数
@@ -543,12 +473,10 @@ public final class DateUtil {
         int newMaxDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
         if (curDay == maxDay) {
             calendar.set(Calendar.DAY_OF_MONTH, newMaxDay);
-        }
-        else {
+        } else {
             if (curDay > newMaxDay) {
                 calendar.set(Calendar.DAY_OF_MONTH, newMaxDay);
-            }
-            else {
+            } else {
                 calendar.set(Calendar.DAY_OF_MONTH, curDay);
             }
         }
@@ -557,10 +485,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 根据date计算years后的时间
-     * 
-     * @author jinyanan
      *
      * @param date 当前时间
      * @param years 要计算的年数
@@ -579,10 +504,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 获取入参时间的当月最后一天
-     * 
-     * @author jinyanan
      *
      * @param date 要计算的时间
      * @return java.sql.Date
@@ -600,10 +522,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 获取入参时间的当月1号零点零分零秒
-     * 
-     * @author jinyanan
      *
      * @param date 要计算的时间
      * @return java.sql.Date
@@ -620,10 +539,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 计算两个日期之间的差距
-     * 
-     * @author jinyanan
      *
      * @param beginDate beginDate
      * @param endDate endDate
@@ -668,10 +584,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 判断date是否在beginDate和endDate之间（入参都是String类型）
-     * 
-     * @author jinyanan
      *
      * @param date date
      * @param beginDate beginDate
@@ -679,23 +592,22 @@ public final class DateUtil {
      * @return true-在范围之内；false-不在范围内
      */
     public static boolean isInRange(String date, String beginDate, String endDate) {
-        if (StringUtil.isEmpty(date) || StringUtil.isEmpty(beginDate) || StringUtil.isEmpty(endDate)) {
-            // TODO: 定义异常码
-            ExceptionHandler.publish("");
-        }
+        AssertUtil.isNotEmpty(date);
+        AssertUtil.isNotEmpty(beginDate);
+        AssertUtil.isNotEmpty(endDate);
+
         int dateLen = date.length();
         int beginDateLen = beginDate.length();
         int endDateLen = endDate.length();
         if (!Objects.equal(beginDateLen, dateLen) || !Objects.equal(dateLen, endDateLen)) {
-            ExceptionHandler.publish("CORE-000001",date, beginDate, endDate);
+            ExceptionHandler.publish("CORE-000001", null, date, beginDate, endDate);
         }
         boolean asc = isAsc(beginDate, endDate);
         if (asc) {
             if (date.compareTo(beginDate) >= 0 && date.compareTo(endDate) <= 0) {
                 return true;
             }
-        }
-        else {
+        } else {
             if (date.compareTo(beginDate) >= 0 || date.compareTo(endDate) <= 0) {
                 return true;
             }
@@ -704,10 +616,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 判断date是否在beginDate和endDate之间（入参都是Date类型）
-     * 
-     * @author jinyanan
      *
      * @param date date
      * @param beginDate beginDate
@@ -722,10 +631,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 比较两个时间
-     * 
-     * @author jinyanan
      *
      * @param beginDate 开始时间
      * @param endDate 结束时间
@@ -748,14 +654,11 @@ public final class DateUtil {
     }
 
     /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
+     * Description:
      *
      * @param beginDateStr String
      * @param endDateStr String
-     * @return  boolean true-beginDateStr早于endDateStr, false-beginDateStr晚于endDateStr
+     * @return boolean true-beginDateStr早于endDateStr, false-beginDateStr晚于endDateStr
      */
     private static boolean isAsc(String beginDateStr, String endDateStr) {
         return (beginDateStr.compareTo(endDateStr) < 0);
@@ -772,13 +675,9 @@ public final class DateUtil {
     private static long intervalsOfDBandSysdate = 0;
 
     /**
-     * 
      * Description: 获取数据库时间。基于本地时间和数据库时间的差值进行获取,超过20min，则自动跟数据库时间进行校准。该方法没有考虑线程同步，可能会有一点点影响，但没什么关系
-     * 
-     * @author jinyanan
      *
      * @return java.sql.Date
-     * @throws BaseAppException 
      */
     public static java.sql.Date getSqlDBDateTime() throws BaseAppException {
         java.sql.Date retDate;
@@ -794,24 +693,19 @@ public final class DateUtil {
                 // 查询小于50毫秒 <br>
                 intervalsOfDBandSysdate = (begin / 1000 * 1000) - retDate.getTime();
                 latestQueryTimeMillis = begin;
-            }
-            else {
+            } else {
                 // 初始化为首次查询 <br>
                 latestQueryTimeMillis = 0;
             }
-        }
-        else {
+        } else {
             // 两次查询在许可的时间间隔之内，不需要重新从数据库查询 <br>
             retDate = new java.sql.Date((begin / 1000 * 1000) - intervalsOfDBandSysdate);
         }
         return retDate;
     }
-    
+
     /**
-     * 
      * Description: 获取java.util.Date型的数据库时间
-     * 
-     * @author jinyanan
      *
      * @return java.util.Date
      */
@@ -820,10 +714,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 返回数据库当前时间，带毫秒
-     * 
-     * @author jinyanan
      *
      * @return java.sql.Date
      */
@@ -834,10 +725,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 计算时间偏移
-     * 
-     * @author jinyanan
      *
      * @param offset 偏移的值
      * @param dateTimeStr 具体的时间日期字符串
@@ -854,16 +742,13 @@ public final class DateUtil {
             if (intout == 0) {
                 if (hasTimeStr) {
                     cal.add(Calendar.SECOND, offset);
-                }
-                else {
+                } else {
                     cal.add(Calendar.DATE, offset);
                 }
-            }
-            else {
+            } else {
                 if (hasTimeStr) {
                     cal.add(Calendar.SECOND, (-1 * offset));
-                }
-                else {
+                } else {
                     cal.add(Calendar.DATE, (-1 * offset));
                 }
             }
@@ -873,10 +758,7 @@ public final class DateUtil {
     }
 
     /**
-     * 
      * Description: 计算SqlDate的偏移量
-     * 
-     * @author jinyanan
      *
      * @param offset 偏移的值
      * @param dateTimeStr 具体的时间日期字符串
@@ -890,5 +772,5 @@ public final class DateUtil {
         }
         return null;
     }
-    
+
 }
