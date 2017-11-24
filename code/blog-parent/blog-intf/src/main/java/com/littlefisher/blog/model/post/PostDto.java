@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: post 实体
  *
- * Created on 2017年11月22日
+ * Created on 2017年11月24日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -28,7 +28,10 @@ public class PostDto implements Serializable {
     /** serialVersionUID */
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "")
+    /**
+     * id
+     */
+    @ApiModelProperty(value = "id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

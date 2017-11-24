@@ -1,5 +1,7 @@
 package com.littlefisher.core.mybatis.plugins;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.Set;
@@ -16,9 +18,12 @@ import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.util.StringUtility;
 
 import com.google.common.base.Splitter;
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 import com.littlefisher.core.enums.EnumBool;
 import com.littlefisher.core.mybatis.LittleFisherCommentGenerator;
+import com.littlefisher.core.utils.CollectionUtil;
+import com.littlefisher.core.utils.StringUtil;
 
 import tk.mybatis.mapper.MapperException;
 
@@ -64,9 +69,14 @@ public class MapperPlugin extends PluginAdapter {
     private CommentGeneratorConfiguration commentCfg;
 
     /**
-     * context下的property
+     * author
      */
-    private Properties contextProperties;
+    private String author;
+
+    /**
+     * currentDateStr
+     */
+    private String currentDateStr;
 
     @Override
     public void setContext(Context context) {
@@ -75,21 +85,14 @@ public class MapperPlugin extends PluginAdapter {
         commentCfg = new CommentGeneratorConfiguration();
         commentCfg.setConfigurationType(LittleFisherCommentGenerator.class.getCanonicalName());
         context.setCommentGeneratorConfiguration(commentCfg);
-        contextProperties = context.getProperties();
-        addProperties(context);
+        context.getProperties().forEach((key, value) -> commentCfg.addProperty((String) key, (String) value));
         //支持oracle获取注释#114
         context.getJdbcConnectionConfiguration().addProperty("remarksReporting", EnumBool.TRUE.getCode().toLowerCase());
     }
 
-    private void addProperties(Context context) {
-        for (Object key : contextProperties.keySet()) {
-            Object value = contextProperties.get(key);
-            commentCfg.addProperty((String) key, (String) value);
-        }
-    }
-
     @Override
     public void setProperties(Properties properties) {
+        this.context.getProperties().forEach(properties::put);
         super.setProperties(properties);
         String mappers = this.properties.getProperty("mappers");
         if (StringUtility.stringHasValue(mappers)) {
@@ -101,11 +104,11 @@ public class MapperPlugin extends PluginAdapter {
         if (StringUtility.stringHasValue(caseSensitive)) {
             this.caseSensitive = EnumBool.TRUE.getCode().equalsIgnoreCase(caseSensitive);
         }
-        String beginningDelimiter = this.contextProperties.getProperty("beginningDelimiter");
+        String beginningDelimiter = this.properties.getProperty("beginningDelimiter");
         if (StringUtility.stringHasValue(beginningDelimiter)) {
             this.beginningDelimiter = beginningDelimiter;
         }
-        String endingDelimiter = this.contextProperties.getProperty("endingDelimiter");
+        String endingDelimiter = this.properties.getProperty("endingDelimiter");
         if (StringUtility.stringHasValue(endingDelimiter)) {
             this.endingDelimiter = endingDelimiter;
         }
@@ -113,6 +116,11 @@ public class MapperPlugin extends PluginAdapter {
         if (StringUtility.stringHasValue(schema)) {
             this.schema = schema;
         }
+        String authorString = this.properties.getProperty("author");
+        if (StringUtility.stringHasValue(authorString)) {
+            author = authorString;
+        }
+        currentDateStr = new SimpleDateFormat("yyyy年MM月dd日").format(new Date());
     }
 
     public String getDelimiterName(String name) {
@@ -136,16 +144,27 @@ public class MapperPlugin extends PluginAdapter {
      * 生成的Mapper接口
      */
     @Override
-    public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientGenerated(Interface interfaze, TopLevelClass topLevelClass,
+                                   IntrospectedTable introspectedTable) {
         //获取实体类
         FullyQualifiedJavaType entityType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
         //import接口
-        for (String mapper : mappers) {
+        mappers.forEach(mapper -> {
             interfaze.addImportedType(new FullyQualifiedJavaType(mapper));
             interfaze.addSuperInterface(new FullyQualifiedJavaType(mapper + "<" + entityType.getShortName() + ">"));
-        }
+        });
         //import实体类
         interfaze.addImportedType(entityType);
+
+        // 加注释
+        interfaze.addJavaDocLine("/**");
+        interfaze.addJavaDocLine(" * Description: " + introspectedTable.getFullyQualifiedTable() + " Mapper 接口");
+        interfaze.addJavaDocLine(" *");
+        interfaze.addJavaDocLine(" * Created on " + currentDateStr);
+        interfaze.addJavaDocLine(" * @author " + author);
+        interfaze.addJavaDocLine(" * @version 1.0");
+        interfaze.addJavaDocLine(" * @since v1.0");
+        interfaze.addJavaDocLine(" */");
         return true;
     }
 
@@ -165,9 +184,48 @@ public class MapperPlugin extends PluginAdapter {
             topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
         } else if (!topLevelClass.getType().getShortName().equalsIgnoreCase(tableName)) {
             topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
-        } else if (StringUtility.stringHasValue(schema) || StringUtility.stringHasValue(beginningDelimiter) || StringUtility.stringHasValue(endingDelimiter)) {
+        } else if (StringUtility.stringHasValue(schema) || StringUtility.stringHasValue(beginningDelimiter)
+                   || StringUtility.stringHasValue(endingDelimiter)) {
             topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
         }
+
+        // 导入ApiModel和ApiModelProperty包，用于swaggerUI
+        topLevelClass.addImportedType("io.swagger.annotations.ApiModel");
+        topLevelClass.addImportedType("io.swagger.annotations.ApiModelProperty");
+
+        topLevelClass.addAnnotation("@ApiModel(\"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
+
+        // 引入JPA注解
+        topLevelClass.addImportedType("javax.persistence.Column");
+
+        // 判断是否有@GeneratedValue注解的字段
+        boolean hasGeneratedValueField = Iterators.any(topLevelClass.getFields().iterator(),
+                field -> field != null && CollectionUtil.isNotEmpty(field.getAnnotations()) && Iterators
+                        .any(field.getAnnotations().iterator(),
+                                annotation -> StringUtil.isNotBlank(annotation) && annotation
+                                        .startsWith("@GeneratedValue")));
+
+        if (hasGeneratedValueField) {
+            topLevelClass.addImportedType("javax.persistence.GeneratedValue");
+            topLevelClass.addImportedType("javax.persistence.GenerationType");
+        }
+        topLevelClass.addImportedType("javax.persistence.Id");
+
+        // 判断field是否是Transient，如果是则导入对应包
+        if (Iterators.any(topLevelClass.getFields().iterator(), field -> field != null && field.isTransient())) {
+            topLevelClass.addImportedType("javax.persistence.Transient");
+        }
+
+        // 实体类注释
+        topLevelClass.addJavaDocLine("/**");
+        topLevelClass.addJavaDocLine(" *");
+        topLevelClass.addJavaDocLine(" * Description: " + introspectedTable.getFullyQualifiedTable() + " 实体");
+        topLevelClass.addJavaDocLine(" *");
+        topLevelClass.addJavaDocLine(" * Created on " + currentDateStr);
+        topLevelClass.addJavaDocLine(" * @author " + author);
+        topLevelClass.addJavaDocLine(" * @version 1.0");
+        topLevelClass.addJavaDocLine(" * @since v1.0");
+        topLevelClass.addJavaDocLine(" */");
     }
 
     /**
@@ -190,91 +248,109 @@ public class MapperPlugin extends PluginAdapter {
 
     /**
      * 生成带BLOB字段的对象
+     * XxxWithBlobs
      */
     @Override
-    public boolean modelRecordWithBLOBsClassGenerated(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean modelRecordWithBLOBsClassGenerated(TopLevelClass topLevelClass,
+                                                      IntrospectedTable introspectedTable) {
         processEntityClass(topLevelClass, introspectedTable);
-        return false;
+        return true;
     }
 
     //下面所有return false的方法都不生成。这些都是基础的CRUD方法，使用通用Mapper实现
     @Override
-    public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                           IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientInsertMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientInsertMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                               IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientInsertSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientInsertSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                        IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientSelectByPrimaryKeyMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientSelectByPrimaryKeyMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                           IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                    IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                    IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                       IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method, Interface interfaze,
+                                                           IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientInsertMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientInsertMethodGenerated(Method method, Interface interfaze,
+                                               IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientInsertSelectiveMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientInsertSelectiveMethodGenerated(Method method, Interface interfaze,
+                                                        IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientSelectAllMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientSelectAllMethodGenerated(Method method, Interface interfaze,
+                                                  IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientSelectAllMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean clientSelectAllMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                  IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientSelectByPrimaryKeyMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientSelectByPrimaryKeyMethodGenerated(Method method, Interface interfaze,
+                                                           IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientUpdateByPrimaryKeySelectiveMethodGenerated(Method method, Interface interfaze,
+                                                                    IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientUpdateByPrimaryKeyWithBLOBsMethodGenerated(Method method, Interface interfaze,
+                                                                    IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(Method method, Interface interfaze, IntrospectedTable introspectedTable) {
+    public boolean clientUpdateByPrimaryKeyWithoutBLOBsMethodGenerated(Method method, Interface interfaze,
+                                                                       IntrospectedTable introspectedTable) {
         return false;
     }
 
@@ -304,17 +380,20 @@ public class MapperPlugin extends PluginAdapter {
     }
 
     @Override
-    public boolean sqlMapUpdateByPrimaryKeySelectiveElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+    public boolean sqlMapUpdateByPrimaryKeySelectiveElementGenerated(XmlElement element,
+                                                                     IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean sqlMapUpdateByPrimaryKeyWithBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+    public boolean sqlMapUpdateByPrimaryKeyWithBLOBsElementGenerated(XmlElement element,
+                                                                     IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+    public boolean sqlMapUpdateByPrimaryKeyWithoutBLOBsElementGenerated(XmlElement element,
+                                                                        IntrospectedTable introspectedTable) {
         return false;
     }
 
@@ -324,17 +403,116 @@ public class MapperPlugin extends PluginAdapter {
     }
 
     @Override
-    public boolean providerApplyWhereMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean providerApplyWhereMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                     IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean providerInsertSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean providerInsertSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                          IntrospectedTable introspectedTable) {
         return false;
     }
 
     @Override
-    public boolean providerUpdateByPrimaryKeySelectiveMethodGenerated(Method method, TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+    public boolean providerUpdateByPrimaryKeySelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                      IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    // 以下方法，关闭所有跟Example相关的count、update方法，仅放开delete、select方法
+    @Override
+    public boolean clientCountByExampleMethodGenerated(Method method, Interface interfaze,
+                                                       IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientCountByExampleMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                       IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleSelectiveMethodGenerated(Method method, Interface interfaze,
+                                                                 IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                 IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleWithBLOBsMethodGenerated(Method method, Interface interfaze,
+                                                                 IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleWithBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                 IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleWithoutBLOBsMethodGenerated(Method method, Interface interfaze,
+                                                                    IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean clientUpdateByExampleWithoutBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                    IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean sqlMapCountByExampleElementGenerated(XmlElement element, IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean sqlMapUpdateByExampleSelectiveElementGenerated(XmlElement element,
+                                                                  IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean sqlMapUpdateByExampleWithBLOBsElementGenerated(XmlElement element,
+                                                                  IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean sqlMapUpdateByExampleWithoutBLOBsElementGenerated(XmlElement element,
+                                                                     IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean providerCountByExampleMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                         IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean providerUpdateByExampleSelectiveMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                   IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean providerUpdateByExampleWithBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                   IntrospectedTable introspectedTable) {
+        return false;
+    }
+
+    @Override
+    public boolean providerUpdateByExampleWithoutBLOBsMethodGenerated(Method method, TopLevelClass topLevelClass,
+                                                                      IntrospectedTable introspectedTable) {
         return false;
     }
 }

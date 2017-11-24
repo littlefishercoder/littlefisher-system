@@ -1,6 +1,7 @@
 package com.littlefisher.blog.cmd.system;
 
 import com.littlefisher.blog.dao.system.SystemParamDtoMapper;
+import com.littlefisher.blog.model.system.SystemParamDtoExample;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
@@ -32,7 +33,9 @@ public class DeleteSystemParamByKeyCmd extends AbstractCommand<Integer> {
     @Override
     public Integer execute() {
         SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
-        return systemParamDtoMapper.deleteByParamKey(paramKey);
+        SystemParamDtoExample example = new SystemParamDtoExample();
+        example.createCriteria().andParamKeyEqualTo(paramKey);
+        return systemParamDtoMapper.deleteByExample(example);
     }
 
 }

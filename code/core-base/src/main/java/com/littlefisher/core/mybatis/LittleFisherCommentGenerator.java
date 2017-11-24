@@ -82,40 +82,36 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
                     " * @return " + method.getReturnType().getShortName() + " " + method.getReturnType().getShortName()
                     + "<br>");
         }
-        addJavadocTag(method, false);
         method.addJavaDocLine(" */");
 
     }
 
     /**
      * 添加mybatis generator自生成代码的注解；被注解的代码会被下次mybatis generator时候覆盖
+     * @deprecated mybatis generator并不支持.java文件对该注解的使用，仅支持xml的
      */
-    protected void addJavadocTag(JavaElement javaElement, boolean markAsDoNotDelete) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(" * ");
-        sb.append(MergeConstants.NEW_ELEMENT_TAG);
-        if (markAsDoNotDelete) {
-            sb.append(" do_not_delete_during_merge");
-        }
-        javaElement.addJavaDocLine(sb.toString());
+    @Deprecated
+    protected void addJavadocTag(JavaElement javaElement) {
+        javaElement.addJavaDocLine(" *");
+        javaElement.addJavaDocLine(" * " + MergeConstants.NEW_ELEMENT_TAG);
     }
 
     /**
-     * 对实体bean中各个字段field增加注释
+     * 对实体bean中各个字段(仅数据库中的字段)field增加注释
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable,
                                 IntrospectedColumn introspectedColumn) {
         String jdbc = "JDBC";
+        String remarks = StringUtility.stringHasValue(introspectedColumn.getRemarks()) ?
+                introspectedColumn.getRemarks() :
+                field.getName();
         // 添加@ApiModelProperty注解，用于swaggerUI展示用
-        field.addAnnotation("@ApiModelProperty(value = \"" + introspectedColumn.getRemarks() + "\")");
-
-        if (StringUtility.stringHasValue(introspectedColumn.getRemarks())) {
-            field.addJavaDocLine("/**");
-            String sb = " * " + introspectedColumn.getRemarks();
-            field.addJavaDocLine(sb);
-            field.addJavaDocLine(" */");
-        }
+        field.addAnnotation("@ApiModelProperty(value = \"" + remarks + "\")");
+        field.addJavaDocLine("/**");
+        String sb = " * " + remarks;
+        field.addJavaDocLine(sb);
+        field.addJavaDocLine(" */");
 
         // 对非数据库字段添加@Transient注解
         if (field.isTransient()) {
@@ -179,10 +175,11 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
     }
 
     /**
-     * Description: Example使用
+     * 对实体bean中各个字段(仅数据库中没有的字段)field增加注释
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable) {
+        field.addJavaDocLine("/** " + field.getName() + " */");
     }
 
     @Override
@@ -207,30 +204,19 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
                                  IntrospectedColumn introspectedColumn) {
     }
 
+    /**
+     * 对.java文件的头部增加注释，例如copyright等的信息，一般是文件认证信息
+     */
     @Override
     public void addJavaFileComment(CompilationUnit compilationUnit) {
     }
 
     /**
      * xml中的注释
-     *
-     * @param xmlElement xmlElement
      */
     @Override
     public void addComment(XmlElement xmlElement) {
-
-        xmlElement.addElement(new TextElement("<!--"));
-
-        xmlElement.addElement(new TextElement(MergeConstants.NEW_ELEMENT_TAG));
-
-        xmlElement.addElement(new TextElement("-->"));
-
-        //        xmlElement.addElement(new TextElement("<!--"));
-        //        StringBuilder sb = new StringBuilder();
-        //        sb.append("  WARNING - ");
-        //        sb.append(MergeConstants.NEW_ELEMENT_TAG);
-        //        xmlElement.addElement(new TextElement(sb.toString()));
-        //        xmlElement.addElement(new TextElement("-->"));
+        xmlElement.addElement(new TextElement("<!--" + MergeConstants.NEW_ELEMENT_TAG + "-->"));
     }
 
     @Override

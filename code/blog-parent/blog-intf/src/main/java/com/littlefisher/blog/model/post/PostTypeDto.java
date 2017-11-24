@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: post_type 实体
  *
- * Created on 2017年11月22日
+ * Created on 2017年11月24日
  * @author jinyanan
  * @version 1.0
  * @since v1.0

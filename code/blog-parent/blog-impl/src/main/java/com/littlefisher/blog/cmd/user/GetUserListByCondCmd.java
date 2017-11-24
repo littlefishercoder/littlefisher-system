@@ -5,6 +5,7 @@ import java.util.List;
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.dao.user.UserDtoMapper;
 import com.littlefisher.blog.model.user.UserDto;
+import com.littlefisher.blog.model.user.UserDtoExample;
 import com.littlefisher.blog.request.user.GetUserList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
@@ -37,8 +38,13 @@ public class GetUserListByCondCmd extends AbstractCommand<List<UserDto>> {
     @Override
     public List<UserDto> execute() {
         UserDtoMapper userDtoMapper = this.getMapper(UserDtoMapper.class);
+        UserDtoExample example = new UserDtoExample();
+        example.createCriteria().andAccNbrEqualTo(req.getAccNbr()).andEmailLike(req.getEmail())
+                .andRealNameLike(req.getRealName()).andNickNameLike(req.getNickName()).andEnNameLike(req.getEnName())
+                .andQqLike(req.getQq()).andPhoneNbrLike(req.getPhoneNbr()).andStateEqualTo(req.getState())
+                .andRegDateGreaterThanOrEqualTo(req.getRegDateStart()).andRegDateLessThanOrEqualTo(req.getRegDateEnd());
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
-        return userDtoMapper.selectByCond(req);
+        return userDtoMapper.selectByExample(example);
     }
 
 }

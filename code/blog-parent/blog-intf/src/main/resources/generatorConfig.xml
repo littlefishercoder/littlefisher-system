@@ -8,8 +8,6 @@
 
   <context id="Mysql" targetRuntime="${targetRuntime}" defaultModelType="${defaultModelType}">
 
-    <!--<property name="beginningDelimiter" value="`" />-->
-    <!--<property name="endingDelimiter" value="`" />-->
     <property name="author" value="${author}"/>
     <property name="javaFormatter" value="com.littlefisher.core.mybatis.SortImportsAndFieldsJavaFormatter"/>
 
@@ -19,8 +17,7 @@
       <!--<property name="caseSensitive" value="true"/>-->
     </plugin>
 
-    <plugin type="com.littlefisher.core.mybatis.plugins.SerializablePlugin"/>
-    <plugin type="com.littlefisher.core.mybatis.plugins.ImportsPlugin"/>
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
 
     <jdbcConnection driverClass="${jdbc.driverClass}" connectionURL="${jdbc.url}"

@@ -5,6 +5,7 @@ import java.util.List;
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.dao.post.PostDtoMapper;
 import com.littlefisher.blog.model.post.PostDto;
+import com.littlefisher.blog.model.post.PostDtoExample;
 import com.littlefisher.blog.request.post.GetPostList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
@@ -37,8 +38,12 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostDto>> {
     @Override
     public List<PostDto> execute() {
         PostDtoMapper postDtoMapper = this.getMapper(PostDtoMapper.class);
+        PostDtoExample example = new PostDtoExample();
+        example.createCriteria().andTitleLike(req.getTitle())
+                .andCreatedDateGreaterThanOrEqualTo(req.getCreatedDateStart())
+                .andCreatedDateLessThanOrEqualTo(req.getCreatedDateEnd());
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
-        return postDtoMapper.selectByCond(req);
+        return postDtoMapper.selectByExampleWithBLOBs(example);
     }
 
 }

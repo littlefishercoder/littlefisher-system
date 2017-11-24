@@ -1,8 +1,12 @@
 package com.littlefisher.blog.cmd.system;
 
+import java.util.List;
+
 import com.littlefisher.blog.dao.system.SystemParamDtoMapper;
 import com.littlefisher.blog.model.system.SystemParamDto;
+import com.littlefisher.blog.model.system.SystemParamDtoExample;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.utils.CollectionUtil;
 
 /**
  * Description: 根据key查询系统参数
@@ -33,7 +37,10 @@ public class GetSystemParamByKeyCmd extends AbstractCommand<SystemParamDto> {
     @Override
     public SystemParamDto execute() {
         SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
-        return systemParamDtoMapper.selectByParamKey(paramKey);
+        SystemParamDtoExample example = new SystemParamDtoExample();
+        example.createCriteria().andParamKeyEqualTo(paramKey);
+        List<SystemParamDto> systemParamList = systemParamDtoMapper.selectByExample(example);
+        return CollectionUtil.isNotEmpty(systemParamList) ? systemParamList.get(0) : null;
     }
 
 }

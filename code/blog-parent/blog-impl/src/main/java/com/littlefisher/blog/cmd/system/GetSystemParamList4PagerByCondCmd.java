@@ -5,6 +5,7 @@ import java.util.List;
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.dao.system.SystemParamDtoMapper;
 import com.littlefisher.blog.model.system.SystemParamDto;
+import com.littlefisher.blog.model.system.SystemParamDtoExample;
 import com.littlefisher.blog.request.system.GetSystemParamList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
@@ -37,8 +38,11 @@ public class GetSystemParamList4PagerByCondCmd extends AbstractCommand<List<Syst
     @Override
     public List<SystemParamDto> execute() {
         SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
+        SystemParamDtoExample example = new SystemParamDtoExample();
+        example.createCriteria().andIdEqualTo(req.getId()).andParamKeyEqualTo(req.getParamKey())
+                .andParamValueLike(req.getParamValue()).andDefaultValueLike(req.getDefaultValue());
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
-        return systemParamDtoMapper.selectByCond(req);
+        return systemParamDtoMapper.selectByExample(example);
         //        RowBounds rowBounds = new RowBounds(req.getPageNum() - 1, req.getPageSize());
         //        return systemParamDtoMapper.selectByCond(req, rowBounds);
     }

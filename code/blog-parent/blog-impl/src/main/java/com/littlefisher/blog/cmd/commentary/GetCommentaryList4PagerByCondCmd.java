@@ -5,6 +5,7 @@ import java.util.List;
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.dao.commentary.CommentaryDtoMapper;
 import com.littlefisher.blog.model.commentary.CommentaryDto;
+import com.littlefisher.blog.model.commentary.CommentaryDtoExample;
 import com.littlefisher.blog.request.commentary.GetCommentaryList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
@@ -40,8 +41,13 @@ public class GetCommentaryList4PagerByCondCmd extends AbstractCommand<List<Comme
     @Override
     public List<CommentaryDto> execute() {
         CommentaryDtoMapper commentaryDtoMapper = this.getMapper(CommentaryDtoMapper.class);
+        CommentaryDtoExample example = new CommentaryDtoExample();
+        example.createCriteria().andPostIdEqualTo(req.getPostId())
+                .andCreatedDateGreaterThanOrEqualTo(req.getCreatedDateStart())
+                .andCreatedDateLessThanOrEqualTo(req.getCreatedDateEnd());
+        // TODO: 大字段的模糊查询条件在example中没有
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
-        return commentaryDtoMapper.selectByCond(req);
+        return commentaryDtoMapper.selectByExampleWithBLOBs(example);
     }
 
 }
