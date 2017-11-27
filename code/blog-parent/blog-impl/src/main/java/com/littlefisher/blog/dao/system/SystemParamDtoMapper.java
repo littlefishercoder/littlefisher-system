@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.model.system.SystemParamDto;
 import com.littlefisher.blog.model.system.SystemParamDtoExample;
+import com.littlefisher.blog.request.system.GetSystemParamList4PagerByCondRequest;
 
 /**
  * Description: system_param Mapper 接口
@@ -33,4 +34,11 @@ public interface SystemParamDtoMapper extends Mapper<SystemParamDto> {
      * @return List<SystemParamDto> List<SystemParamDto><br>
      */
     List<SystemParamDto> selectByExample(SystemParamDtoExample example);
+
+    /**
+     * 根据条件查询
+     * @param req req
+     * @return List<SystemParamDto>
+     */
+    List<SystemParamDto> selectByCond(GetSystemParamList4PagerByCondRequest req);
 }

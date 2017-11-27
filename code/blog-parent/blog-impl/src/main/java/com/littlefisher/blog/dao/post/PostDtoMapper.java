@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.model.post.PostDto;
 import com.littlefisher.blog.model.post.PostDtoExample;
+import com.littlefisher.blog.request.post.GetPostList4PagerByCondRequest;
 
 /**
  * Description: post Mapper 接口
@@ -42,4 +43,11 @@ public interface PostDtoMapper extends Mapper<PostDto> {
      * @return List<PostDto> List<PostDto><br>
      */
     List<PostDto> selectByExample(PostDtoExample example);
+
+    /**
+     * 根据条件查询
+     * @param req req
+     * @return List<PostDto>
+     */
+    List<PostDto> selectByCond(GetPostList4PagerByCondRequest req);
 }

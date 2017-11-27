@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -122,6 +123,13 @@ public class UserDto implements Serializable {
     @Column(name = "last_login_date")
     private Date lastLoginDate;
 
+    /**
+     * 用户状态
+     */
+    @ApiModelProperty("用户状态")
+    @Transient
+    private UserStateDto userState;
+
     public Long getId() {
         return id;
     }
@@ -234,28 +242,20 @@ public class UserDto implements Serializable {
         this.lastLoginDate = lastLoginDate;
     }
 
+    public UserStateDto getUserState() {
+        return userState;
+    }
+
+    public void setUserState(UserStateDto userState) {
+        this.userState = userState;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", accNbr=").append(accNbr);
-        sb.append(", password=").append(password);
-        sb.append(", email=").append(email);
-        sb.append(", realName=").append(realName);
-        sb.append(", nickName=").append(nickName);
-        sb.append(", enName=").append(enName);
-        sb.append(", qq=").append(qq);
-        sb.append(", wechat=").append(wechat);
-        sb.append(", phoneNbr=").append(phoneNbr);
-        sb.append(", userDesc=").append(userDesc);
-        sb.append(", state=").append(state);
-        sb.append(", regDate=").append(regDate);
-        sb.append(", lastLoginDate=").append(lastLoginDate);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "UserDto{" + "id=" + id + ", accNbr='" + accNbr + '\'' + ", password='" + password + '\'' + ", email='"
+               + email + '\'' + ", realName='" + realName + '\'' + ", nickName='" + nickName + '\'' + ", enName='"
+               + enName + '\'' + ", qq='" + qq + '\'' + ", wechat='" + wechat + '\'' + ", phoneNbr='" + phoneNbr + '\''
+               + ", userDesc='" + userDesc + '\'' + ", state='" + state + '\'' + ", regDate=" + regDate
+               + ", lastLoginDate=" + lastLoginDate + ", userState=" + userState + '}';
     }
 }

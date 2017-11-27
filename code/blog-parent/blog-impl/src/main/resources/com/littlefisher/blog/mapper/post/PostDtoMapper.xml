@@ -129,4 +129,106 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+
+  <resultMap id="BaseResultMapWithModels" type="com.littlefisher.blog.model.post.PostDto">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="original_url" jdbcType="VARCHAR" property="originalUrl" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="last_modify_date" jdbcType="TIMESTAMP" property="lastModifyDate" />
+    <result column="read_times" jdbcType="INTEGER" property="readTimes" />
+    <result column="liked_times" jdbcType="INTEGER" property="likedTimes" />
+    <result column="comment_times" jdbcType="INTEGER" property="commentTimes" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="enable_comment" jdbcType="CHAR" property="enableComment" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <association property="author" javaType="com.littlefisher.blog.model.user.UserDto">
+      <id column="a_id" jdbcType="INTEGER" property="id" />
+      <result column="a_acc_nbr" jdbcType="VARCHAR" property="accNbr" />
+      <result column="a_password" jdbcType="VARCHAR" property="password" />
+      <result column="a_email" jdbcType="VARCHAR" property="email" />
+      <result column="a_real_name" jdbcType="VARCHAR" property="realName" />
+      <result column="a_nick_name" jdbcType="VARCHAR" property="nickName" />
+      <result column="a_en_name" jdbcType="VARCHAR" property="enName" />
+      <result column="a_qq" jdbcType="VARCHAR" property="qq" />
+      <result column="a_wechat" jdbcType="VARCHAR" property="wechat" />
+      <result column="a_phone_nbr" jdbcType="VARCHAR" property="phoneNbr" />
+      <result column="a_user_desc" jdbcType="VARCHAR" property="userDesc" />
+      <result column="a_state" jdbcType="CHAR" property="state" />
+      <result column="a_reg_date" jdbcType="TIMESTAMP" property="regDate" />
+      <result column="a_last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
+    </association>
+    <association property="postState" javaType="com.littlefisher.blog.model.post.PostStateDto">
+      <id column="ps_state" jdbcType="CHAR" property="state" />
+      <result column="ps_state_name" jdbcType="VARCHAR" property="stateName" />
+      <result column="ps_comments" jdbcType="VARCHAR" property="comments" />
+    </association>
+    <association property="postType" javaType="com.littlefisher.blog.model.post.PostTypeDto">
+      <id column="pt_type" jdbcType="CHAR" property="type" />
+      <result column="pt_type_name" jdbcType="VARCHAR" property="typeName" />
+      <result column="pt_comments" jdbcType="VARCHAR" property="comments" />
+    </association>
+  </resultMap>
+  <sql id="postColumns">
+    ${alias}.id, ${alias}.title, ${alias}.created_date, ${alias}.original_url, ${alias}.type,
+    ${alias}.last_modify_date, ${alias}.read_times, ${alias}.liked_times, ${alias}.comment_times, ${alias}.user_id,
+    ${alias}.enable_comment, ${alias}.state, ${alias}.state_date, ${alias}.content
+  </sql>
+  <sql id="authorColumns">
+    ${alias}.id ${prefix}id, ${alias}.acc_nbr ${prefix}acc_nbr, ${alias}.password ${prefix}password,
+    ${alias}.email ${prefix}email, ${alias}.real_name ${prefix}real_name,
+    ${alias}.nick_name ${prefix}nick_name, ${alias}.en_name ${prefix}en_name,
+    ${alias}.qq ${prefix}qq, ${alias}.wechat ${prefix}wechat,
+    ${alias}.phone_nbr ${prefix}phone_nbr, ${alias}.user_desc ${prefix}user_desc,
+    ${alias}.state ${prefix}state, ${alias}.reg_date ${prefix}reg_date,
+    ${alias}.last_login_date ${prefix}last_login_date
+  </sql>
+  <sql id="postStateColumns">
+    ${alias}.state ${prefix}state, ${alias}.state_name ${prefix}state_name, ${alias}.comments ${prefix}comments
+  </sql>
+  <sql id="postTypeColumns">
+    ${alias}.type ${prefix}type, ${alias}.type_name ${prefix}type_name, ${alias}.comments ${prefix}comments
+  </sql>
+  <select id="selectByCond" parameterType="com.littlefisher.blog.request.post.GetPostList4PagerByCondRequest" resultMap="BaseResultMapWithModels">
+    select
+    <include refid="postColumns">
+      <property name="alias" value="a"/>
+    </include>
+    ,
+    <include refid="authorColumns">
+      <property name="alias" value="c"/>
+      <property name="prefix" value="a_"/>
+    </include>
+    ,
+    <include refid="postStateColumns">
+      <property name="alias" value="b"/>
+      <property name="prefix" value="ps_"/>
+    </include>
+    ,
+    <include refid="postTypeColumns">
+      <property name="alias" value="d"/>
+      <property name="prefix" value="pt_"/>
+    </include>
+    from post a
+    left join post_state b on a.state = b.state
+    left join user c on a.user_id = c.id
+    left join post_type d on a.type = d.type
+    <where>
+      <if test="title != null">
+        and a.title like concat('%', #{title,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="keyword != null">
+        and a.content like concat('%', #{keyword,jdbcType=VARCHAR}, '%')
+      </if>
+      <if test="createdDateStart != null">
+        and a.created_date &gt;= #{createdDateStart, jdbcType=TIMESTAMP}
+      </if>
+      <if test="createdDateEnd != null">
+        and a.created_date &lt;= #{createdDateEnd, jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
 </mapper>

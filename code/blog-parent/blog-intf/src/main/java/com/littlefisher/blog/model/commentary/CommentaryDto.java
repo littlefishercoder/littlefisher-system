@@ -8,10 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import com.littlefisher.blog.model.user.UserDto;
 
 /**
  *
@@ -31,7 +33,7 @@ public class CommentaryDto implements Serializable {
     /**
      * id
      */
-    @ApiModelProperty(value = "id")
+    @ApiModelProperty("id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,63 +41,77 @@ public class CommentaryDto implements Serializable {
     /**
      * 父评价主键
      */
-    @ApiModelProperty(value = "父评价主键")
+    @ApiModelProperty("父评价主键")
     @Column(name = "parent_commentary_id")
     private Long parentCommentaryId;
 
     /**
      * 评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示
      */
-    @ApiModelProperty(value = "评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示")
+    @ApiModelProperty("评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示")
     @Column(name = "user_id")
     private Long userId;
 
     /**
      * 评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示
      */
-    @ApiModelProperty(value = "评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示")
+    @ApiModelProperty("评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示")
     @Column(name = "nick_name")
     private String nickName;
 
     /**
      * ip地址
      */
-    @ApiModelProperty(value = "ip地址")
+    @ApiModelProperty("ip地址")
     @Column(name = "commentary_ip")
     private String commentaryIp;
 
     /**
      * 评价时间
      */
-    @ApiModelProperty(value = "评价时间")
+    @ApiModelProperty("评价时间")
     @Column(name = "created_date")
     private Date createdDate;
 
     /**
      * 博文主键
      */
-    @ApiModelProperty(value = "博文主键")
+    @ApiModelProperty("博文主键")
     @Column(name = "post_id")
     private Long postId;
 
     /**
      * 状态
      */
-    @ApiModelProperty(value = "状态")
+    @ApiModelProperty("状态")
     private String state;
 
     /**
      * 状态变更时间
      */
-    @ApiModelProperty(value = "状态变更时间")
+    @ApiModelProperty("状态变更时间")
     @Column(name = "state_date")
     private Date stateDate;
 
     /**
      * 评论内容
      */
-    @ApiModelProperty(value = "评论内容")
+    @ApiModelProperty("评论内容")
     private String content;
+
+    /**
+     * 作者
+     */
+    @ApiModelProperty("作者")
+    @Transient
+    private UserDto author;
+
+    /**
+     * 评论状态
+     */
+    @ApiModelProperty("评论状态")
+    @Transient
+    private CommentaryStateDto commentaryState;
 
     public Long getId() {
         return id;
@@ -177,24 +193,27 @@ public class CommentaryDto implements Serializable {
         this.content = content;
     }
 
+    public UserDto getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserDto author) {
+        this.author = author;
+    }
+
+    public CommentaryStateDto getCommentaryState() {
+        return commentaryState;
+    }
+
+    public void setCommentaryState(CommentaryStateDto commentaryState) {
+        this.commentaryState = commentaryState;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", parentCommentaryId=").append(parentCommentaryId);
-        sb.append(", userId=").append(userId);
-        sb.append(", nickName=").append(nickName);
-        sb.append(", commentaryIp=").append(commentaryIp);
-        sb.append(", createdDate=").append(createdDate);
-        sb.append(", postId=").append(postId);
-        sb.append(", state=").append(state);
-        sb.append(", stateDate=").append(stateDate);
-        sb.append(", content=").append(content);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "CommentaryDto{" + "id=" + id + ", parentCommentaryId=" + parentCommentaryId + ", userId=" + userId
+               + ", nickName='" + nickName + '\'' + ", commentaryIp='" + commentaryIp + '\'' + ", createdDate="
+               + createdDate + ", postId=" + postId + ", state='" + state + '\'' + ", stateDate=" + stateDate
+               + ", content='" + content + '\'' + ", author=" + author + ", commentaryState=" + commentaryState + '}';
     }
 }

@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import com.littlefisher.blog.model.user.UserDto;
 
 /**
  *
@@ -31,7 +32,7 @@ public class PostDto implements Serializable {
     /**
      * id
      */
-    @ApiModelProperty(value = "id")
+    @ApiModelProperty("id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,89 +40,107 @@ public class PostDto implements Serializable {
     /**
      * 标题
      */
-    @ApiModelProperty(value = "标题")
+    @ApiModelProperty("标题")
     private String title;
 
     /**
      * 创建时间
      */
-    @ApiModelProperty(value = "创建时间")
+    @ApiModelProperty("创建时间")
     @Column(name = "created_date")
     private Date createdDate;
 
     /**
      * 原文链接
      */
-    @ApiModelProperty(value = "原文链接")
+    @ApiModelProperty("原文链接")
     @Column(name = "original_url")
     private String originalUrl;
 
     /**
      * 类型
      */
-    @ApiModelProperty(value = "类型")
+    @ApiModelProperty("类型")
     private String type;
 
     /**
      * 上次修改时间
      */
-    @ApiModelProperty(value = "上次修改时间")
+    @ApiModelProperty("上次修改时间")
     @Column(name = "last_modify_date")
     private Date lastModifyDate;
 
     /**
      * 阅读数
      */
-    @ApiModelProperty(value = "阅读数")
+    @ApiModelProperty("阅读数")
     @Column(name = "read_times")
     private Long readTimes;
 
     /**
      * 点赞数
      */
-    @ApiModelProperty(value = "点赞数")
+    @ApiModelProperty("点赞数")
     @Column(name = "liked_times")
     private Long likedTimes;
 
     /**
      * 评论数
      */
-    @ApiModelProperty(value = "评论数")
+    @ApiModelProperty("评论数")
     @Column(name = "comment_times")
     private Long commentTimes;
 
     /**
      * 作者主键，空为匿名作者
      */
-    @ApiModelProperty(value = "作者主键，空为匿名作者")
+    @ApiModelProperty("作者主键，空为匿名作者")
     @Column(name = "user_id")
     private Long userId;
 
     /**
      * 是否可评论，Y为可评论， 空或N为不可评论
      */
-    @ApiModelProperty(value = "是否可评论，Y为可评论， 空或N为不可评论")
+    @ApiModelProperty("是否可评论，Y为可评论， 空或N为不可评论")
     @Column(name = "enable_comment")
     private String enableComment;
 
     /**
      * 状态
      */
-    @ApiModelProperty(value = "状态")
+    @ApiModelProperty("状态")
     private String state;
 
     /**
      * 状态变更时间
      */
-    @ApiModelProperty(value = "状态变更时间")
+    @ApiModelProperty("状态变更时间")
     @Column(name = "state_date")
     private Date stateDate;
 
     /**
      * 博文
      */
-    @ApiModelProperty(value = "博文")
+    @ApiModelProperty("博文")
     private String content;
+
+    /**
+     * 作者
+     */
+    @ApiModelProperty("作者")
+    private UserDto author;
+
+    /**
+     * 博文状态
+     */
+    @ApiModelProperty("博文状态")
+    private PostStateDto postState;
+
+    /**
+     * 博文类型
+     */
+    @ApiModelProperty("博文类型")
+    private PostTypeDto postType;
 
     public Long getId() {
         return id;
@@ -235,28 +254,37 @@ public class PostDto implements Serializable {
         this.content = content;
     }
 
+    public UserDto getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(UserDto author) {
+        this.author = author;
+    }
+
+    public PostStateDto getPostState() {
+        return postState;
+    }
+
+    public void setPostState(PostStateDto postState) {
+        this.postState = postState;
+    }
+
+    public PostTypeDto getPostType() {
+        return postType;
+    }
+
+    public void setPostType(PostTypeDto postType) {
+        this.postType = postType;
+    }
+
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getClass().getSimpleName());
-        sb.append(" [");
-        sb.append("Hash = ").append(hashCode());
-        sb.append(", id=").append(id);
-        sb.append(", title=").append(title);
-        sb.append(", createdDate=").append(createdDate);
-        sb.append(", originalUrl=").append(originalUrl);
-        sb.append(", type=").append(type);
-        sb.append(", lastModifyDate=").append(lastModifyDate);
-        sb.append(", readTimes=").append(readTimes);
-        sb.append(", likedTimes=").append(likedTimes);
-        sb.append(", commentTimes=").append(commentTimes);
-        sb.append(", userId=").append(userId);
-        sb.append(", enableComment=").append(enableComment);
-        sb.append(", state=").append(state);
-        sb.append(", stateDate=").append(stateDate);
-        sb.append(", content=").append(content);
-        sb.append(", serialVersionUID=").append(serialVersionUID);
-        sb.append("]");
-        return sb.toString();
+        return "PostDto{" + "id=" + id + ", title='" + title + '\'' + ", createdDate=" + createdDate + ", originalUrl='"
+               + originalUrl + '\'' + ", type='" + type + '\'' + ", lastModifyDate=" + lastModifyDate + ", readTimes="
+               + readTimes + ", likedTimes=" + likedTimes + ", commentTimes=" + commentTimes + ", userId=" + userId
+               + ", enableComment='" + enableComment + '\'' + ", state='" + state + '\'' + ", stateDate=" + stateDate
+               + ", content='" + content + '\'' + ", author=" + author + ", postState=" + postState + ", postType="
+               + postType + '}';
     }
 }

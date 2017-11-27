@@ -38,13 +38,8 @@ public class GetUserListByCondCmd extends AbstractCommand<List<UserDto>> {
     @Override
     public List<UserDto> execute() {
         UserDtoMapper userDtoMapper = this.getMapper(UserDtoMapper.class);
-        UserDtoExample example = new UserDtoExample();
-        example.createCriteria().andAccNbrEqualTo(req.getAccNbr()).andEmailLike(req.getEmail())
-                .andRealNameLike(req.getRealName()).andNickNameLike(req.getNickName()).andEnNameLike(req.getEnName())
-                .andQqLike(req.getQq()).andPhoneNbrLike(req.getPhoneNbr()).andStateEqualTo(req.getState())
-                .andRegDateGreaterThanOrEqualTo(req.getRegDateStart()).andRegDateLessThanOrEqualTo(req.getRegDateEnd());
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
-        return userDtoMapper.selectByExample(example);
+        return userDtoMapper.selectByCond(req);
     }
 
 }

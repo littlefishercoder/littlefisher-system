@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.model.user.UserDto;
 import com.littlefisher.blog.model.user.UserDtoExample;
+import com.littlefisher.blog.request.user.GetUserList4PagerByCondRequest;
 
 /**
  * Description: user Mapper 接口
@@ -33,4 +34,11 @@ public interface UserDtoMapper extends Mapper<UserDto> {
      * @return List<UserDto> List<UserDto><br>
      */
     List<UserDto> selectByExample(UserDtoExample example);
+
+    /**
+     * 根据条件查询
+     * @param req req
+     * @return List<UserDto>
+     */
+    List<UserDto> selectByCond(GetUserList4PagerByCondRequest req);
 }

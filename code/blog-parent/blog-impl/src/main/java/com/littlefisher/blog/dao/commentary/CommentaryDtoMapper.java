@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.model.commentary.CommentaryDto;
 import com.littlefisher.blog.model.commentary.CommentaryDtoExample;
+import com.littlefisher.blog.request.commentary.GetCommentaryList4PagerByCondRequest;
 
 /**
  * Description: commentary Mapper 接口
@@ -42,4 +43,11 @@ public interface CommentaryDtoMapper extends Mapper<CommentaryDto> {
      * @return List<CommentaryDto> List<CommentaryDto><br>
      */
     List<CommentaryDto> selectByExample(CommentaryDtoExample example);
+
+    /**
+     * 根据条件查询评价
+     * @param req 查询条件
+     * @return List<CommentaryDto> List<CommentaryDto><br>
+     */
+    List<CommentaryDto> selectByCond(GetCommentaryList4PagerByCondRequest req);
 }
