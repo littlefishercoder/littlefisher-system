@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -128,18 +129,21 @@ public class PostDto implements Serializable {
      * 作者
      */
     @ApiModelProperty("作者")
+    @Transient
     private UserDto author;
 
     /**
      * 博文状态
      */
     @ApiModelProperty("博文状态")
+    @Transient
     private PostStateDto postState;
 
     /**
      * 博文类型
      */
     @ApiModelProperty("博文类型")
+    @Transient
     private PostTypeDto postType;
 
     public Long getId() {

@@ -55,3 +55,8 @@ pagehelper:
 
 server:
   context-path: /blog-web
+
+# 关闭权限校验
+management:
+  security:
+    enabled: false
