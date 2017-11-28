@@ -1,15 +1,16 @@
 package com.littlefisher.core.interceptor.context;
 
-import java.util.Stack;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
 import com.littlefisher.core.engine.SystemEngineConfig;
 import com.littlefisher.core.interceptor.CommandContext;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月10日 
+ * Description: 通过栈的方式时间LIFO
+ * 可是在jdk中，已经不推荐使用Stack，用ArrayDeque进行替换
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -20,29 +21,29 @@ public class Context {
     /**
      * commandContextThreadLocal 分线程存储命令上下文
      */
-    protected static ThreadLocal<Stack<CommandContext>> commandContextThreadLocal = new ThreadLocal<>();
-    
+    protected static ThreadLocal<Deque<CommandContext>> commandContextThreadLocal = new ThreadLocal<>();
+
     /**
      * systemEngineConfigStackThreadLocal 分线程存储引擎配置
      */
-    protected static ThreadLocal<Stack<SystemEngineConfig>> systemEngineConfigStackThreadLocal = new ThreadLocal<>();
-    
+    protected static ThreadLocal<Deque<SystemEngineConfig>> systemEngineConfigStackThreadLocal = new ThreadLocal<>();
+
     public static CommandContext getCommandContext() {
         // 栈 特点是后进先出
-        Stack<CommandContext> stack = getStack(commandContextThreadLocal);
-        if (stack.isEmpty()) {
+        Deque<CommandContext> deque = getStack(commandContextThreadLocal);
+        if (deque.isEmpty()) {
             return null;
         }
-        return stack.peek();
+        return deque.peek();
     }
 
     public static void setCommandContext(CommandContext commandContext) {
         getStack(commandContextThreadLocal).push(commandContext);
     }
-    
+
     public static int getCommandContextStackSize() {
         return getStack(commandContextThreadLocal).size();
-        
+
     }
 
     public static void removeCommandContext() {
@@ -52,35 +53,35 @@ public class Context {
     public static void clearCommandContext() {
         commandContextThreadLocal.remove();
     }
-    
+
     public static SystemEngineConfig getSystemEngineConfig() {
-        Stack<SystemEngineConfig> stack = getStack(systemEngineConfigStackThreadLocal);
-        if (stack.isEmpty()) {
+        Deque<SystemEngineConfig> deque = getStack(systemEngineConfigStackThreadLocal);
+        if (deque.isEmpty()) {
             return null;
         }
-        return stack.peek();
-        
+        return deque.peek();
+
     }
-    
+
     public static void setSystemEngineConfig(SystemEngineConfig systemEngineConfig) {
         getStack(systemEngineConfigStackThreadLocal).push(systemEngineConfig);
     }
-    
+
     public static void removeSystemEngineConfig() {
-        getStack(systemEngineConfigStackThreadLocal).pop();        
+        getStack(systemEngineConfigStackThreadLocal).pop();
     }
 
     public static void clearSystemEngineConfig() {
         systemEngineConfigStackThreadLocal.remove();
     }
 
-    protected static <T> Stack<T> getStack(ThreadLocal<Stack<T>> threadLocal) {
-        Stack<T> stack = threadLocal.get();
-        if (stack == null) {
-            stack = new Stack<>();
-            threadLocal.set(stack);            
+    protected static <T> Deque<T> getStack(ThreadLocal<Deque<T>> threadLocal) {
+        Deque<T> deque = threadLocal.get();
+        if (deque == null) {
+            deque = new ArrayDeque<>();
+            threadLocal.set(deque);
         }
-        return stack;
+        return deque;
     }
 
 }
