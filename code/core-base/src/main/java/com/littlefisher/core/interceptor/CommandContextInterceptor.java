@@ -19,8 +19,7 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
     /**
      * logger
      */
-    private static LittleFisherLogger logger = LittleFisherLogger
-            .getLogger(CommandContextInterceptor.class);
+    private static LittleFisherLogger logger = LittleFisherLogger.getLogger(CommandContextInterceptor.class);
 
     /**
      * commandContextFactory
