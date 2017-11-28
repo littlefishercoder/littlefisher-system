@@ -133,6 +133,7 @@
     </pluginManagement>
   </build>
 
+  <!--发现依赖和扩展的远程仓库列表。-->
   <repositories>
     <repository>
       <id>spring-snapshots</id>
@@ -152,6 +153,7 @@
     </repository>
   </repositories>
 
+  <!--发现插件远程仓库列表。-->
   <pluginRepositories>
     <pluginRepository>
       <id>spring-snapshots</id>
