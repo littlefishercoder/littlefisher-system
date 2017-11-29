@@ -58,7 +58,7 @@
     <!--把com.littlefisher.blog下的所有信息都打印到blogLogger中-->
     <logger name="com.littlefisher.blog" level="debug">
       <appender-ref ref="blogLogger"/>
-      <appender-ref ref="stdout"/>
+      <!--<appender-ref ref="stdout"/>-->
     </logger>
     <!--把druid.sql.Statement下的所有信息打印到druidLogger中-->
     <logger name="druid.sql.Statement" level="debug">
