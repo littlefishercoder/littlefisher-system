@@ -44,7 +44,7 @@ spring:
 
 mybatis:
   # mapper文件扫描路径
-  mapper-locations: classpath*:com/littlefisher/**/mapper/*.xml
+  mapper-locations: classpath*:com/littlefisher/**/mapper/**/*.xml
 
 mapper:
   identity: mysql
