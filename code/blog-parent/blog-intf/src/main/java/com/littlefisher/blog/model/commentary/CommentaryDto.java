@@ -13,13 +13,14 @@ import javax.persistence.Transient;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import com.littlefisher.blog.enums.commentary.EnumCommentaryState;
 import com.littlefisher.blog.model.user.UserDto;
 
 /**
- *
  * Description: commentary 实体
  *
  * Created on 2017年11月24日
+ *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -27,6 +28,7 @@ import com.littlefisher.blog.model.user.UserDto;
 @Table(name = "commentary")
 @ApiModel("commentary实体")
 public class CommentaryDto implements Serializable {
+
     /** serialVersionUID */
     private static final long serialVersionUID = 1L;
 
@@ -84,7 +86,7 @@ public class CommentaryDto implements Serializable {
      * 状态
      */
     @ApiModelProperty("状态")
-    private String state;
+    private EnumCommentaryState state;
 
     /**
      * 状态变更时间
@@ -105,13 +107,6 @@ public class CommentaryDto implements Serializable {
     @ApiModelProperty("作者")
     @Transient
     private UserDto author;
-
-    /**
-     * 评论状态
-     */
-    @ApiModelProperty("评论状态")
-    @Transient
-    private CommentaryStateDto commentaryState;
 
     public Long getId() {
         return id;
@@ -169,11 +164,11 @@ public class CommentaryDto implements Serializable {
         this.postId = postId;
     }
 
-    public String getState() {
+    public EnumCommentaryState getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(EnumCommentaryState state) {
         this.state = state;
     }
 
@@ -201,19 +196,11 @@ public class CommentaryDto implements Serializable {
         this.author = author;
     }
 
-    public CommentaryStateDto getCommentaryState() {
-        return commentaryState;
-    }
-
-    public void setCommentaryState(CommentaryStateDto commentaryState) {
-        this.commentaryState = commentaryState;
-    }
-
     @Override
     public String toString() {
         return "CommentaryDto{" + "id=" + id + ", parentCommentaryId=" + parentCommentaryId + ", userId=" + userId
                + ", nickName='" + nickName + '\'' + ", commentaryIp='" + commentaryIp + '\'' + ", createdDate="
                + createdDate + ", postId=" + postId + ", state='" + state + '\'' + ", stateDate=" + stateDate
-               + ", content='" + content + '\'' + ", author=" + author + ", commentaryState=" + commentaryState + '}';
+               + ", content='" + content + '\'' + ", author=" + author + '}';
     }
 }

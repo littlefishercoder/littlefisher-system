@@ -6,13 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.littlefisher.blog.cmd.commentary.AddCommentaryCmd;
 import com.littlefisher.blog.cmd.commentary.DeleteCommentaryCmd;
-import com.littlefisher.blog.cmd.commentary.GetAllCommentaryStateCmd;
 import com.littlefisher.blog.cmd.commentary.GetCommentaryByIdCmd;
 import com.littlefisher.blog.cmd.commentary.GetCommentaryList4PagerByCondCmd;
 import com.littlefisher.blog.cmd.commentary.UpdateCommentaryCmd;
 import com.littlefisher.blog.intf.commentary.ICommentaryService;
 import com.littlefisher.blog.model.commentary.CommentaryDto;
-import com.littlefisher.blog.model.commentary.CommentaryStateDto;
 import com.littlefisher.blog.request.commentary.GetCommentaryList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
@@ -52,11 +50,6 @@ public class CommentaryServiceImpl extends ServiceImpl implements ICommentarySer
     @Override
     public int deleteCommentary(Long commentaryId) {
         return this.execute(new DeleteCommentaryCmd(commentaryId));
-    }
-
-    @Override
-    public List<CommentaryStateDto> getAllCommentaryState() {
-        return this.execute(new GetAllCommentaryStateCmd());
     }
 
 }

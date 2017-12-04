@@ -13,13 +13,15 @@ import javax.persistence.Transient;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import com.littlefisher.blog.enums.post.EnumPostState;
+import com.littlefisher.blog.enums.post.EnumPostType;
 import com.littlefisher.blog.model.user.UserDto;
 
 /**
- *
  * Description: post 实体
  *
  * Created on 2017年11月24日
+ *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -27,6 +29,7 @@ import com.littlefisher.blog.model.user.UserDto;
 @Table(name = "post")
 @ApiModel("post实体")
 public class PostDto implements Serializable {
+
     /** serialVersionUID */
     private static final long serialVersionUID = 1L;
 
@@ -62,7 +65,7 @@ public class PostDto implements Serializable {
      * 类型
      */
     @ApiModelProperty("类型")
-    private String type;
+    private EnumPostType type;
 
     /**
      * 上次修改时间
@@ -110,7 +113,7 @@ public class PostDto implements Serializable {
      * 状态
      */
     @ApiModelProperty("状态")
-    private String state;
+    private EnumPostState state;
 
     /**
      * 状态变更时间
@@ -131,20 +134,6 @@ public class PostDto implements Serializable {
     @ApiModelProperty("作者")
     @Transient
     private UserDto author;
-
-    /**
-     * 博文状态
-     */
-    @ApiModelProperty("博文状态")
-    @Transient
-    private PostStateDto postState;
-
-    /**
-     * 博文类型
-     */
-    @ApiModelProperty("博文类型")
-    @Transient
-    private PostTypeDto postType;
 
     public Long getId() {
         return id;
@@ -178,11 +167,11 @@ public class PostDto implements Serializable {
         this.originalUrl = originalUrl;
     }
 
-    public String getType() {
+    public EnumPostType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(EnumPostType type) {
         this.type = type;
     }
 
@@ -234,11 +223,11 @@ public class PostDto implements Serializable {
         this.enableComment = enableComment;
     }
 
-    public String getState() {
+    public EnumPostState getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(EnumPostState state) {
         this.state = state;
     }
 
@@ -266,29 +255,12 @@ public class PostDto implements Serializable {
         this.author = author;
     }
 
-    public PostStateDto getPostState() {
-        return postState;
-    }
-
-    public void setPostState(PostStateDto postState) {
-        this.postState = postState;
-    }
-
-    public PostTypeDto getPostType() {
-        return postType;
-    }
-
-    public void setPostType(PostTypeDto postType) {
-        this.postType = postType;
-    }
-
     @Override
     public String toString() {
         return "PostDto{" + "id=" + id + ", title='" + title + '\'' + ", createdDate=" + createdDate + ", originalUrl='"
                + originalUrl + '\'' + ", type='" + type + '\'' + ", lastModifyDate=" + lastModifyDate + ", readTimes="
                + readTimes + ", likedTimes=" + likedTimes + ", commentTimes=" + commentTimes + ", userId=" + userId
                + ", enableComment='" + enableComment + '\'' + ", state='" + state + '\'' + ", stateDate=" + stateDate
-               + ", content='" + content + '\'' + ", author=" + author + ", postState=" + postState + ", postType="
-               + postType + '}';
+               + ", content='" + content + '\'' + ", author=" + author + '}';
     }
 }

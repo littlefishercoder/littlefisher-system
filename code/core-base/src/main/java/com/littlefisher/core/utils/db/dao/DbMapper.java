@@ -2,8 +2,6 @@ package com.littlefisher.core.utils.db.dao;
 
 import java.util.Date;
 
-import com.littlefisher.core.mybatis.SuperMapper;
-
 /**
  * 
  * Description: 
@@ -14,7 +12,7 @@ import com.littlefisher.core.mybatis.SuperMapper;
  * @version 1.0
  * @since v1.0
  */
-public interface DbMapper extends SuperMapper {
+public interface DbMapper {
 
     /**
      * 

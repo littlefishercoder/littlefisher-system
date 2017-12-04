@@ -8,17 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import com.littlefisher.blog.enums.user.EnumUserState;
 
 /**
- *
  * Description: user 实体
  *
  * Created on 2017年11月24日
+ *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -26,6 +26,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name = "user")
 @ApiModel("user实体")
 public class UserDto implements Serializable {
+
     /** serialVersionUID */
     private static final long serialVersionUID = 1L;
 
@@ -107,7 +108,7 @@ public class UserDto implements Serializable {
      * 状态
      */
     @ApiModelProperty(value = "状态")
-    private String state;
+    private EnumUserState state;
 
     /**
      * 注册时间
@@ -122,13 +123,6 @@ public class UserDto implements Serializable {
     @ApiModelProperty(value = "最后一次登录时间")
     @Column(name = "last_login_date")
     private Date lastLoginDate;
-
-    /**
-     * 用户状态
-     */
-    @ApiModelProperty("用户状态")
-    @Transient
-    private UserStateDto userState;
 
     public Long getId() {
         return id;
@@ -218,11 +212,11 @@ public class UserDto implements Serializable {
         this.userDesc = userDesc;
     }
 
-    public String getState() {
+    public EnumUserState getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(EnumUserState state) {
         this.state = state;
     }
 
@@ -242,20 +236,12 @@ public class UserDto implements Serializable {
         this.lastLoginDate = lastLoginDate;
     }
 
-    public UserStateDto getUserState() {
-        return userState;
-    }
-
-    public void setUserState(UserStateDto userState) {
-        this.userState = userState;
-    }
-
     @Override
     public String toString() {
         return "UserDto{" + "id=" + id + ", accNbr='" + accNbr + '\'' + ", password='" + password + '\'' + ", email='"
                + email + '\'' + ", realName='" + realName + '\'' + ", nickName='" + nickName + '\'' + ", enName='"
                + enName + '\'' + ", qq='" + qq + '\'' + ", wechat='" + wechat + '\'' + ", phoneNbr='" + phoneNbr + '\''
                + ", userDesc='" + userDesc + '\'' + ", state='" + state + '\'' + ", regDate=" + regDate
-               + ", lastLoginDate=" + lastLoginDate + ", userState=" + userState + '}';
+               + ", lastLoginDate=" + lastLoginDate + '}';
     }
 }

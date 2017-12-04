@@ -5,6 +5,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
+import com.littlefisher.blog.enums.user.EnumUserState;
+
 /**
  * Description:
  *
@@ -75,7 +77,7 @@ public class GetUserList4PagerByCondRequest {
      * state 状态
      */
     @ApiModelProperty("状态")
-    private String state;
+    private EnumUserState state;
 
     /**
      * regDateStart 注册时间，时间范围 开始
@@ -161,11 +163,11 @@ public class GetUserList4PagerByCondRequest {
         this.phoneNbr = phoneNbr;
     }
 
-    public String getState() {
+    public EnumUserState getState() {
         return state;
     }
 
-    public void setState(String state) {
+    public void setState(EnumUserState state) {
         this.state = state;
     }
 

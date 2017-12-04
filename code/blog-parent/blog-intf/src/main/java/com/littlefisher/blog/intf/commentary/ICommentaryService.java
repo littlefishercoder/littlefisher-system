@@ -3,7 +3,6 @@ package com.littlefisher.blog.intf.commentary;
 import java.util.List;
 
 import com.littlefisher.blog.model.commentary.CommentaryDto;
-import com.littlefisher.blog.model.commentary.CommentaryStateDto;
 import com.littlefisher.blog.request.commentary.GetCommentaryList4PagerByCondRequest;
 
 /**
@@ -57,10 +56,4 @@ public interface ICommentaryService {
      */
     int deleteCommentary(Long commentaryId);
 
-    /**
-     * Description: 查询所有的评论状态
-     *
-     * @return List<CommentaryStateDto>
-     */
-    List<CommentaryStateDto> getAllCommentaryState();
 }
