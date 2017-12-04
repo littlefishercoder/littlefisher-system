@@ -60,7 +60,7 @@ public class SystemParamController {
      * @param paramKey paramKey
      * @return SystemParamDto
      */
-    @RequestMapping(value = "/{paramKey}", method = RequestMethod.GET)
+    @RequestMapping(value = "/paramKey/{paramKey}", method = RequestMethod.GET)
     @ApiOperation(value = "根据key查询系统参数")
     public SystemParamDto getSystemParamByKey(
             @ApiParam(required = true, value = "系统参数key值") @PathVariable("paramKey") String paramKey) {
@@ -99,7 +99,7 @@ public class SystemParamController {
      * @param paramKey paramKey
      * @return int
      */
-    @RequestMapping(value = "/{paramKey}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/paramKey/{paramKey}", method = RequestMethod.DELETE)
     @ApiOperation(value = "删除系统参数")
     public int deleteSystemParamByKey(
             @ApiParam(required = true, value = "系统参数key值") @PathVariable("paramKey") String paramKey) {
