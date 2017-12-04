@@ -61,7 +61,7 @@ public class SpringTransactionInterceptor extends AbstractCommandInterceptor {
             try {
                 result = next.execute(config, command);
             } catch (Exception e) {
-                ExceptionHandler.publish("CORE-000007", null, e);
+                ExceptionHandler.publish("CORE-000007", e.getMessage(), e);
             }
             return result;
         });

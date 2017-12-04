@@ -25,7 +25,7 @@ import com.littlefisher.core.interceptor.CommandExecutorImpl;
 import com.littlefisher.core.interceptor.CommandInterceptor;
 import com.littlefisher.core.interceptor.CommandInvoker;
 import com.littlefisher.core.interceptor.LoggerInterceptor;
-import com.littlefisher.core.interceptor.OvalInterceptor;
+import com.littlefisher.core.interceptor.ValidationInterceptor;
 import com.littlefisher.core.interceptor.SpringTransactionInterceptor;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 import com.littlefisher.core.utils.CollectionUtil;
@@ -328,7 +328,7 @@ public class SystemEngineConfig {
     /**
      * 初始化默认拦截器
      *
-     * @return Collection<? extends CommandInterceptor>
+     * @return Collection<?   extends   CommandInterceptor>
      */
     protected Collection<? extends CommandInterceptor> getDefaultCommandInterceptors() {
         List<CommandInterceptor> interceptors = Lists.newArrayList();
@@ -338,10 +338,10 @@ public class SystemEngineConfig {
         if (transactionInterceptor != null) {
             interceptors.add(transactionInterceptor);
         }
-        // oval拦截器
-        CommandInterceptor ovalInterceptor = createOvalInterceptor();
-        if (ovalInterceptor != null) {
-            interceptors.add(ovalInterceptor);
+        // 校验拦截器
+        CommandInterceptor validationInterceptor = createValidationInterceptor();
+        if (validationInterceptor != null) {
+            interceptors.add(validationInterceptor);
         }
         // 日志拦截器
         CommandInterceptor loggerInterceptor = createLoggerInterceptor();
@@ -373,10 +373,10 @@ public class SystemEngineConfig {
     /**
      * 创建oval校验拦截器
      *
-     * @return OvalInterceptor
+     * @return ValidationInterceptor
      */
-    protected CommandInterceptor createOvalInterceptor() {
-        return new OvalInterceptor();
+    protected CommandInterceptor createValidationInterceptor() {
+        return new ValidationInterceptor();
     }
 
     /**
