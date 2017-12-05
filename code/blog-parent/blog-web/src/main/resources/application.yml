@@ -60,3 +60,8 @@ server:
 management:
   security:
     enabled: false
+
+littlefisher:
+  mybatis:
+    # 配置Mybatis枚举扫描路径
+    type-enums-package: classpath*:com/littlefisher/blog/enums/**/Enum*

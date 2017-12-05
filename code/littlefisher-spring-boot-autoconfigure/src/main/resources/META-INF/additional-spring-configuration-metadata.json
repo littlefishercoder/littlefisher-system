@@ -1,0 +1,11 @@
+{
+  "properties": [
+    {
+      "name": "littlefisher.mybatis.type-enums-package",
+      "type": "java.lang.String",
+      "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",
+      "description": "mybatis enums package scan path.",
+      "defaultValue": "classpath*:com/littlefisher/**/enums/**/Enum*"
+    }
+  ]
+}

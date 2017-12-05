@@ -22,6 +22,7 @@
   <modules>
     <module>../core-base</module>
     <module>../blog-parent</module>
+    <module>../littlefisher-spring-boot-autoconfigure</module>
   </modules>
 
   <properties>
@@ -29,6 +30,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
 
+    <littlefisher-spring-boot-autoconfig.version>1.0.1-SNAPSHOT</littlefisher-spring-boot-autoconfig.version>
     <mybatis-spring.version>1.3.1</mybatis-spring.version>
     <druid.version>1.1.5</druid.version>
     <mapper-spring-boot.version>1.1.5</mapper-spring-boot.version>
@@ -62,6 +64,11 @@
         <groupId>com.github.pagehelper</groupId>
         <artifactId>pagehelper-spring-boot-starter</artifactId>
         <version>${pagehelper.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.littlefisher</groupId>
+        <artifactId>littlefisher-spring-boot-autoconfigure</artifactId>
+        <version>${littlefisher-spring-boot-autoconfig.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.commons</groupId>

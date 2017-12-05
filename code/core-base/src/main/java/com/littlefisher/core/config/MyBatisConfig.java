@@ -1,22 +1,32 @@
 package com.littlefisher.core.config;
 
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Set;
 
 import org.apache.ibatis.io.ResolverUtil;
 import org.apache.ibatis.type.EnumOrdinalTypeHandler;
 import org.apache.ibatis.type.TypeHandlerRegistry;
 import org.mybatis.spring.boot.autoconfigure.ConfigurationCustomizer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.util.StringUtils;
 
 import com.google.common.collect.Sets;
+import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.mybatis.EnumTypeHandler;
 import com.littlefisher.core.mybatis.IEnum;
+import com.littlefisher.core.utils.PackageUtil;
 import com.littlefisher.core.utils.StringUtil;
+import com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties;
 
 /**
  * Description: MyBatisConfig.java
+ * 配置Mybatis的枚举转换
  *
  * Created on 2017年12月04日
  *
@@ -25,23 +35,22 @@ import com.littlefisher.core.utils.StringUtil;
  * @since v1.0
  */
 @Configuration
+@EnableConfigurationProperties(LittleFisherProperties.class)
 public class MyBatisConfig implements ConfigurationCustomizer {
 
-    private String typeEnumsPackage = "com.littlefisher.blog.enums";
+    @Autowired
+    private LittleFisherProperties littleFisherProperties;
 
     @Override
     public void customize(org.apache.ibatis.session.Configuration configuration) {
+        String typeEnumsPackage = littleFisherProperties.getMybatis().getTypeEnumsPackage();
+        final Set<Class> classes = Sets.newHashSet();
         if (StringUtil.isNotBlank(typeEnumsPackage)) {
-            Set<Class> classes;
-            String[] typeEnumsPackageArray = StringUtils.tokenizeToStringArray(this.typeEnumsPackage,
-                    ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS);
-            classes = Sets.newHashSet();
-            ResolverUtil<Class<?>> resolverUtil = new ResolverUtil<>();
-            for (String typePackage : typeEnumsPackageArray) {
-                resolverUtil.find(new ResolverUtil.IsA(IEnum.class), typePackage);
-                Set<Class<? extends Class<?>>> handlerSet = resolverUtil.getClasses();
-                classes.addAll(handlerSet);
-            }
+            String[] typeEnumsPackageArray = StringUtils
+                    .tokenizeToStringArray(typeEnumsPackage, ConfigurableApplicationContext.CONFIG_LOCATION_DELIMITERS);
+            Arrays.stream(typeEnumsPackageArray)
+                    .forEach(typeEnumsPackageStr -> classes.addAll(PackageUtil.scanTypePackage(typeEnumsPackage)));
+
             // 取得类型转换注册器
             TypeHandlerRegistry typeHandlerRegistry = configuration.getTypeHandlerRegistry();
             try {
@@ -56,7 +65,7 @@ public class MyBatisConfig implements ConfigurationCustomizer {
                     }
                 }
             } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                throw new BaseAppException("CORE-000007", null, e);
             }
         }
     }
