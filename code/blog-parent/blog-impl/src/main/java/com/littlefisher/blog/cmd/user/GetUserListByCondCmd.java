@@ -5,7 +5,6 @@ import java.util.List;
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.dao.user.UserDtoMapper;
 import com.littlefisher.blog.model.user.UserDto;
-import com.littlefisher.blog.model.user.UserDtoExample;
 import com.littlefisher.blog.request.user.GetUserList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
