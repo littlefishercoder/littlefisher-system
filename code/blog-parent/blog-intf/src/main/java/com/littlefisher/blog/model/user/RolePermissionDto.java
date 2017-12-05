@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: role_permission 实体
  *
- * Created on 2017年11月24日
+ * Created on 2017年12月05日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -30,7 +30,7 @@ public class RolePermissionDto implements Serializable {
     /**
      * 主键
      */
-    @ApiModelProperty(value = "主键")
+    @ApiModelProperty("主键")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,14 +38,14 @@ public class RolePermissionDto implements Serializable {
     /**
      * 权限主键
      */
-    @ApiModelProperty(value = "权限主键")
+    @ApiModelProperty("权限主键")
     @Column(name = "permission_id")
     private Long permissionId;
 
     /**
      * 角色主键
      */
-    @ApiModelProperty(value = "角色主键")
+    @ApiModelProperty("角色主键")
     @Column(name = "role_id")
     private Long roleId;
 

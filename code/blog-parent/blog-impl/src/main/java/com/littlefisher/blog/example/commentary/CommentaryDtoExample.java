@@ -1,4 +1,4 @@
-package com.littlefisher.blog.model.commentary;
+package com.littlefisher.blog.example.commentary;
 
 import java.util.ArrayList;
 import java.util.Date;

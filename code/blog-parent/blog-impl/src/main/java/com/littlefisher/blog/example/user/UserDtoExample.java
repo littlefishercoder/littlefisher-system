@@ -1,8 +1,10 @@
-package com.littlefisher.blog.model.user;
+package com.littlefisher.blog.example.user;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.littlefisher.blog.enums.user.EnumUserState;
 
 
 public class UserDtoExample {
@@ -943,62 +945,62 @@ public class UserDtoExample {
             return (Criteria) this;
         }
 
-        public Criteria andStateEqualTo(String value) {
+        public Criteria andStateEqualTo(EnumUserState value) {
             addCriterion("state =", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotEqualTo(String value) {
+        public Criteria andStateNotEqualTo(EnumUserState value) {
             addCriterion("state <>", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThan(String value) {
+        public Criteria andStateGreaterThan(EnumUserState value) {
             addCriterion("state >", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThanOrEqualTo(String value) {
+        public Criteria andStateGreaterThanOrEqualTo(EnumUserState value) {
             addCriterion("state >=", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThan(String value) {
+        public Criteria andStateLessThan(EnumUserState value) {
             addCriterion("state <", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThanOrEqualTo(String value) {
+        public Criteria andStateLessThanOrEqualTo(EnumUserState value) {
             addCriterion("state <=", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLike(String value) {
+        public Criteria andStateLike(EnumUserState value) {
             addCriterion("state like", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotLike(String value) {
+        public Criteria andStateNotLike(EnumUserState value) {
             addCriterion("state not like", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateIn(List<String> values) {
+        public Criteria andStateIn(List<EnumUserState> values) {
             addCriterion("state in", values, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotIn(List<String> values) {
+        public Criteria andStateNotIn(List<EnumUserState> values) {
             addCriterion("state not in", values, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateBetween(String value1, String value2) {
+        public Criteria andStateBetween(EnumUserState value1, EnumUserState value2) {
             addCriterion("state between", value1, value2, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotBetween(String value1, String value2) {
+        public Criteria andStateNotBetween(EnumUserState value1, EnumUserState value2) {
             addCriterion("state not between", value1, value2, "state");
             return (Criteria) this;
         }

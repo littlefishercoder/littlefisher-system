@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: system_param 实体
  *
- * Created on 2017年11月24日
+ * Created on 2017年12月05日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -30,7 +30,7 @@ public class SystemParamDto implements Serializable {
     /**
      * 主键
      */
-    @ApiModelProperty(value = "主键")
+    @ApiModelProperty("主键")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,28 +38,28 @@ public class SystemParamDto implements Serializable {
     /**
      * key值
      */
-    @ApiModelProperty(value = "key值")
+    @ApiModelProperty("key值")
     @Column(name = "param_key")
     private String paramKey;
 
     /**
      * value值
      */
-    @ApiModelProperty(value = "value值")
+    @ApiModelProperty("value值")
     @Column(name = "param_value")
     private String paramValue;
 
     /**
      * 默认值
      */
-    @ApiModelProperty(value = "默认值")
+    @ApiModelProperty("默认值")
     @Column(name = "default_value")
     private String defaultValue;
 
     /**
      * 描述
      */
-    @ApiModelProperty(value = "描述")
+    @ApiModelProperty("描述")
     @Column(name = "param_desc")
     private String paramDesc;
 

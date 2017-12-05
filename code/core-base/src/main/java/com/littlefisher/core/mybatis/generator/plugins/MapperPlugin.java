@@ -257,7 +257,8 @@ public class MapperPlugin extends PluginAdapter {
         return true;
     }
 
-    //下面所有return false的方法都不生成。这些都是基础的CRUD方法，使用通用Mapper实现
+    /*下面所有return false的方法都不生成。这些都是基础的CRUD方法，使用通用Mapper实现*/
+
     @Override
     public boolean clientDeleteByPrimaryKeyMethodGenerated(Method method, TopLevelClass topLevelClass,
                                                            IntrospectedTable introspectedTable) {

@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: user_role 实体
  *
- * Created on 2017年11月24日
+ * Created on 2017年12月05日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -30,7 +30,7 @@ public class UserRoleDto implements Serializable {
     /**
      * 主键
      */
-    @ApiModelProperty(value = "主键")
+    @ApiModelProperty("主键")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,14 +38,14 @@ public class UserRoleDto implements Serializable {
     /**
      * 用户主键
      */
-    @ApiModelProperty(value = "用户主键")
+    @ApiModelProperty("用户主键")
     @Column(name = "user_id")
     private Long userId;
 
     /**
      * 角色主键
      */
-    @ApiModelProperty(value = "角色主键")
+    @ApiModelProperty("角色主键")
     @Column(name = "role_id")
     private Long roleId;
 

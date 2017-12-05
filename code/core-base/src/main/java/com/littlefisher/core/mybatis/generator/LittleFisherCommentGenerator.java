@@ -107,7 +107,7 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
                 introspectedColumn.getRemarks() :
                 field.getName();
         // 添加@ApiModelProperty注解，用于swaggerUI展示用
-        field.addAnnotation("@ApiModelProperty(value = \"" + remarks + "\")");
+        field.addAnnotation("@ApiModelProperty(\"" + remarks + "\")");
         field.addJavaDocLine("/**");
         String sb = " * " + remarks;
         field.addJavaDocLine(sb);

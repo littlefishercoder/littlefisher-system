@@ -19,6 +19,11 @@
 
     <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
     <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+    <!--把Example文件位置隔离开-->
+    <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+      <property name="searchString" value=".model."/>
+      <property name="replaceString" value=".example."/>
+    </plugin>
 
     <jdbcConnection driverClass="${jdbc.driverClass}" connectionURL="${jdbc.url}"
                     userId="${jdbc.user}" password="${jdbc.password}">
@@ -37,7 +42,7 @@
 
     <table tableName="commentary" domainObjectName="CommentaryDto" escapeWildcards="true">
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
-      <columnOverride column="state" javaType="com.littlefisher.blog.enums.commentary.EnumCommentaryState" />
+      <columnOverride column="state" javaType="com.littlefisher.blog.enums.commentary.EnumCommentaryState"/>
     </table>
   </context>
 </generatorConfiguration>

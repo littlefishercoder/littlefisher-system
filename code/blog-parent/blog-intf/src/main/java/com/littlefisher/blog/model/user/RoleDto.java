@@ -17,7 +17,7 @@ import com.littlefisher.blog.enums.user.EnumRoleType;
  *
  * Description: role 实体
  *
- * Created on 2017年11月24日
+ * Created on 2017年12月05日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -31,7 +31,7 @@ public class RoleDto implements Serializable {
     /**
      * 主键
      */
-    @ApiModelProperty(value = "主键")
+    @ApiModelProperty("主键")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,19 +39,19 @@ public class RoleDto implements Serializable {
     /**
      * 角色名
      */
-    @ApiModelProperty(value = "角色名")
+    @ApiModelProperty("角色名")
     private String name;
 
     /**
      * 类型
      */
-    @ApiModelProperty(value = "类型")
+    @ApiModelProperty("类型")
     private EnumRoleType type;
 
     /**
      * 描述
      */
-    @ApiModelProperty(value = "描述")
+    @ApiModelProperty("描述")
     @Column(name = "role_desc")
     private String roleDesc;
 

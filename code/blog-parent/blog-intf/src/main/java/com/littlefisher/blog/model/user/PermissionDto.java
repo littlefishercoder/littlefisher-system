@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: permission 实体
  *
- * Created on 2017年11月24日
+ * Created on 2017年12月05日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -30,7 +30,7 @@ public class PermissionDto implements Serializable {
     /**
      * 主键
      */
-    @ApiModelProperty(value = "主键")
+    @ApiModelProperty("主键")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -38,13 +38,13 @@ public class PermissionDto implements Serializable {
     /**
      * 权限编码
      */
-    @ApiModelProperty(value = "权限编码")
+    @ApiModelProperty("权限编码")
     private String code;
 
     /**
      * 描述
      */
-    @ApiModelProperty(value = "描述")
+    @ApiModelProperty("描述")
     @Column(name = "permission_desc")
     private String permissionDesc;
 

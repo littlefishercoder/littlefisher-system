@@ -1,8 +1,11 @@
-package com.littlefisher.blog.model.post;
+package com.littlefisher.blog.example.post;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.littlefisher.blog.enums.post.EnumPostState;
+import com.littlefisher.blog.enums.post.EnumPostType;
 
 
 public class PostDtoExample {
@@ -443,62 +446,62 @@ public class PostDtoExample {
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(String value) {
+        public Criteria andTypeEqualTo(EnumPostType value) {
             addCriterion("type =", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(String value) {
+        public Criteria andTypeNotEqualTo(EnumPostType value) {
             addCriterion("type <>", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(String value) {
+        public Criteria andTypeGreaterThan(EnumPostType value) {
             addCriterion("type >", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(String value) {
+        public Criteria andTypeGreaterThanOrEqualTo(EnumPostType value) {
             addCriterion("type >=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(String value) {
+        public Criteria andTypeLessThan(EnumPostType value) {
             addCriterion("type <", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(String value) {
+        public Criteria andTypeLessThanOrEqualTo(EnumPostType value) {
             addCriterion("type <=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLike(String value) {
+        public Criteria andTypeLike(EnumPostType value) {
             addCriterion("type like", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotLike(String value) {
+        public Criteria andTypeNotLike(EnumPostType value) {
             addCriterion("type not like", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<String> values) {
+        public Criteria andTypeIn(List<EnumPostType> values) {
             addCriterion("type in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<String> values) {
+        public Criteria andTypeNotIn(List<EnumPostType> values) {
             addCriterion("type not in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(String value1, String value2) {
+        public Criteria andTypeBetween(EnumPostType value1, EnumPostType value2) {
             addCriterion("type between", value1, value2, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(String value1, String value2) {
+        public Criteria andTypeNotBetween(EnumPostType value1, EnumPostType value2) {
             addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
@@ -883,62 +886,62 @@ public class PostDtoExample {
             return (Criteria) this;
         }
 
-        public Criteria andStateEqualTo(String value) {
+        public Criteria andStateEqualTo(EnumPostState value) {
             addCriterion("state =", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotEqualTo(String value) {
+        public Criteria andStateNotEqualTo(EnumPostState value) {
             addCriterion("state <>", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThan(String value) {
+        public Criteria andStateGreaterThan(EnumPostState value) {
             addCriterion("state >", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThanOrEqualTo(String value) {
+        public Criteria andStateGreaterThanOrEqualTo(EnumPostState value) {
             addCriterion("state >=", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThan(String value) {
+        public Criteria andStateLessThan(EnumPostState value) {
             addCriterion("state <", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThanOrEqualTo(String value) {
+        public Criteria andStateLessThanOrEqualTo(EnumPostState value) {
             addCriterion("state <=", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLike(String value) {
+        public Criteria andStateLike(EnumPostState value) {
             addCriterion("state like", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotLike(String value) {
+        public Criteria andStateNotLike(EnumPostState value) {
             addCriterion("state not like", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateIn(List<String> values) {
+        public Criteria andStateIn(List<EnumPostState> values) {
             addCriterion("state in", values, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotIn(List<String> values) {
+        public Criteria andStateNotIn(List<EnumPostState> values) {
             addCriterion("state not in", values, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateBetween(String value1, String value2) {
+        public Criteria andStateBetween(EnumPostState value1, EnumPostState value2) {
             addCriterion("state between", value1, value2, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotBetween(String value1, String value2) {
+        public Criteria andStateNotBetween(EnumPostState value1, EnumPostState value2) {
             addCriterion("state not between", value1, value2, "state");
             return (Criteria) this;
         }
