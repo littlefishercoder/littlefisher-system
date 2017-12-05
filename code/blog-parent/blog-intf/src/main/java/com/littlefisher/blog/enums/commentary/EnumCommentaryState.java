@@ -22,11 +22,11 @@ public enum EnumCommentaryState implements IEnum {
     private String code;
 
     /** 描述 */
-    private String description;
+    private String desc;
 
-    EnumCommentaryState(String code, String description) {
+    EnumCommentaryState(String code, String desc) {
         this.code = code;
-        this.description = description;
+        this.desc = desc;
     }
 
     /**
@@ -49,7 +49,7 @@ public enum EnumCommentaryState implements IEnum {
         return code;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 }

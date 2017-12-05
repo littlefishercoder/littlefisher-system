@@ -23,11 +23,11 @@ public enum EnumPostType implements IEnum {
     private String code;
 
     /** 描述 */
-    private String description;
+    private String desc;
 
-    EnumPostType(String code, String description) {
+    EnumPostType(String code, String desc) {
         this.code = code;
-        this.description = description;
+        this.desc = desc;
     }
 
     @Override
@@ -45,7 +45,7 @@ public enum EnumPostType implements IEnum {
         return code;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDesc() {
+        return desc;
     }
 }

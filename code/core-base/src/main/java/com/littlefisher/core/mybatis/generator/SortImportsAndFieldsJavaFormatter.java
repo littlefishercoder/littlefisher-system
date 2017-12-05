@@ -1,4 +1,4 @@
-package com.littlefisher.core.mybatis;
+package com.littlefisher.core.mybatis.generator;
 
 import java.util.Iterator;
 import java.util.List;

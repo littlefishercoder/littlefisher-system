@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import com.littlefisher.blog.enums.user.EnumRoleType;
 
 /**
  *
@@ -45,7 +46,7 @@ public class RoleDto implements Serializable {
      * 类型
      */
     @ApiModelProperty(value = "类型")
-    private String type;
+    private EnumRoleType type;
 
     /**
      * 描述
@@ -70,11 +71,11 @@ public class RoleDto implements Serializable {
         this.name = name;
     }
 
-    public String getType() {
+    public EnumRoleType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(EnumRoleType type) {
         this.type = type;
     }
 

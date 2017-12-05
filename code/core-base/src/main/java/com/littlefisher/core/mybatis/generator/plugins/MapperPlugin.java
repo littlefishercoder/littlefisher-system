@@ -1,4 +1,4 @@
-package com.littlefisher.core.mybatis.plugins;
+package com.littlefisher.core.mybatis.generator.plugins;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,7 +21,7 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
 import com.littlefisher.core.enums.EnumBool;
-import com.littlefisher.core.mybatis.LittleFisherCommentGenerator;
+import com.littlefisher.core.mybatis.generator.LittleFisherCommentGenerator;
 import com.littlefisher.core.utils.CollectionUtil;
 import com.littlefisher.core.utils.StringUtil;
 

@@ -1,4 +1,4 @@
-package com.littlefisher.core.mybatis;
+package com.littlefisher.core.mybatis.generator;
 
 import java.math.BigDecimal;
 import java.sql.Types;
@@ -29,11 +29,11 @@ public class JavaTypeResolver extends JavaTypeResolverDefaultImpl {
             switch (introspectedColumn.getJdbcType()) {
                 case Types.DECIMAL:
                     answer = new FullyQualifiedJavaType(BigDecimal.class.getName());
+                    break;
                 case Types.NUMERIC:
                 case Types.INTEGER:
                     answer = new FullyQualifiedJavaType(Long.class.getName());
                     break;
-
                 default:
                     answer = null;
                     break;

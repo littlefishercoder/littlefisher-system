@@ -3,36 +3,36 @@ package com.littlefisher.blog.enums.user;
 import com.littlefisher.core.mybatis.IEnum;
 
 /**
- * Description: EnumUserState.java
+ * Description: EnumRoleType.java
  *
- * Created on 2017年12月04日
+ * Created on 2017年12月05日
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-public enum EnumUserState implements IEnum {
+public enum EnumRoleType implements IEnum {
 
     /** 有效 */
     VALID("A", "有效"),
-    /** 失效 */
-    INVALID("X", "失效"),
     ;
 
+    /** 编码 */
     private String code;
 
+    /** 描述 */
     private String desc;
 
-    EnumUserState(String code, String desc) {
+    EnumRoleType(String code, String desc) {
         this.code = code;
         this.desc = desc;
     }
 
     @Override
-    public EnumUserState find(String code) {
-        for (EnumUserState enumUserState : EnumUserState.values()) {
-            if (enumUserState.getCode().equals(code)) {
-                return enumUserState;
+    public IEnum find(String code) {
+        for (EnumRoleType enumRoleType : EnumRoleType.values()) {
+            if (enumRoleType.getCode().equals(code)) {
+                return enumRoleType;
             }
         }
         return null;
