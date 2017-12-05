@@ -80,11 +80,6 @@
         <artifactId>commons-fileupload</artifactId>
         <version>${commons-fileupload.version}</version>
       </dependency>
-      <!--<dependency>-->
-        <!--<groupId>org.hibernate.validator</groupId>-->
-        <!--<artifactId>hibernate-validator</artifactId>-->
-        <!--<version>${hibernate-validator.version}</version>-->
-      <!--</dependency>-->
 
       <dependency>
         <groupId>io.springfox</groupId>
