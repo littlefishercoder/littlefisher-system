@@ -6,8 +6,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * Description: Application.java
@@ -23,8 +21,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @ComponentScan(basePackages = {
         "com.littlefisher.**",
 })
-@PropertySource("file:${SYSTEM_HOME}/etc/properties/kafka.properties")
-@EnableTransactionManagement
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

@@ -1,15 +1,15 @@
-package com.littlefisher.core.config.kafka.consumer;
+package com.littlefisher.core.kafka;
 
 /**
- * Description: MessageRecord.java
+ * Description: Message.java
  *
- * Created on 2017年11月06日
+ * Created on 2017年12月05日
  *
  * @author jinyanan
  * @version 1.0
  * @since v1.0
  */
-public class MessageRecord {
+public class Message {
 
     /** 消息的主题 */
     private String topic;
@@ -20,7 +20,10 @@ public class MessageRecord {
     /** 消息的value */
     private String value;
 
-    public MessageRecord(String topic, String key, String value) {
+    public Message() {
+    }
+
+    public Message(String topic, String key, String value) {
         this.topic = topic;
         this.key = key;
         this.value = value;
@@ -52,7 +55,6 @@ public class MessageRecord {
 
     @Override
     public String toString() {
-        return "MessageRecord{" + "topic='" + topic + '\'' + ", key='" + key + '\'' + ", value='"
-               + value + '\'' + '}';
+        return "Message{" + "topic='" + topic + '\'' + ", key='" + key + '\'' + ", value='" + value + '\'' + '}';
     }
 }
