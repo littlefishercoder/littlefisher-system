@@ -24,18 +24,18 @@
  - `Druid`
  - `Nginx`
  - `PageHelper`
- - `Jetty`
  - `Guava`
  - 部分功能的二次封装
  - `Kafka`
  - `Activiti`
  - `Gson`
- - `Oval`
+ - `Hibernate Validation`
+ - `Spring Boot`
 
 1. 环境搭建
   - 配置`Maven`中央仓库：项目目录下有`Maven`的配置文件`settings.xml`文件，修改该文件中的本地仓库目录`localRepository`为自己系统下目录即可
   - IDE导入项目，需要 **JDK1.8+**
-  - 配置`Jetty`启动参数，添加`-DSYSTEM_HOME=\PATH\TO\YOUR\SYSTEM_HOME`，`SYSTEM_HOME`在项目目录下；或者在系统环境变量中增加`SYSTEM_HOME`，对应值也是`SYSTEM_HOME`的系统路径
+  - 配置`Spring Boot`启动参数，添加`-DSYSTEM_HOME=\PATH\TO\YOUR\SYSTEM_HOME`，`SYSTEM_HOME`在项目目录下；或者在系统环境变量中增加`SYSTEM_HOME`，对应值也是`SYSTEM_HOME`的系统路径
 
 2.  开发前请安装相关检查工具，并将`pre-commit`文件复制到`.git\hooks`目录下，这样提交时会预先检查一遍代码规范（必须使用`Bash`命令行才有用）（暂时没有开发）
 
@@ -51,28 +51,27 @@
 
 8.  `Controller`编写要带上`Swagger`相关注解，以便于接口测试时的阅读
 
-9.  修改`IDE`中关于`xml`的配置，设置每行的最大长度为`120`，Tab替换为`2`个空格，如图为Eclipse中的配置位置
+9.  修改`IDE`中关于`xml`的配置，设置每行的最大长度为`120`，`Tab`替换为`2`个空格，如图为`Eclipse`中的配置位置
 ![修改xml文件的配置][2]
 
 10.  集成功能使用与介绍
-  - `Swagger UI`接口测试。启动启动`Jetty`后，进入`http://{ip}:{port}/blog-web/swagger/index.html`查看，可以直接在界面中对接口进行测试
+  - `Swagger UI`接口测试。启动启动`Spring B`后，进入`http://{ip}:{port}/blog-web/swagger-ui.html`查看，可以直接在界面中对接口进行测试
   - `Druid`监控界面，启动`Tomcat`后，进入`http://{ip}:{port}/blog-web/druid`查看
   - `Command`日志打印功能集成，每次请求`Command`都会进行日志的打印
 ![日志信息][3]
   - `PageHelper`使用。在列表查询之前调用`PageHelper.startPage(pageNum, pageSize);`，一定要是紧接着列表查询之前。具体`PageHelper`使用规则，参考[github-PageHelper][4]
 ![PageHelper][5]
-  - `Mybatis generator`使用。在`core-base`项目下，有一个`generatorConfig.xml`文件，针对该文件做部分修改，然后执行`mybatis generator`生成`Mapper`的命令即可。生成的`model`已经附带`Swagger UI`所需注解，同时针对于`import`信息也进行了优化，可以通过`checkstype`的检查。生成的`Mapper`接口，集成了通用的`CRUD`操作，个性化的接口`SQL`操作再另外定义即可。具体通用`Mapper`可参考[github-Mapper][6]![通用Mapper][7]
+  - `Mybatis generator`使用。在`blog-intf`项目下，有一个`generatorConfig.xml`文件，针对该文件做部分修改，然后执行`mybatis generator`生成`Mapper`的命令即可。生成的`model`已经附带`Swagger UI`所需注解，同时针对于`import`信息也进行了优化，可以通过`checkstype`的检查。生成的`Mapper`接口，集成了通用的`CRUD`操作，个性化的接口`SQL`操作再另外定义即可。具体通用`Mapper`可参考[github-Mapper][6]![通用Mapper][7]
   - `Guava`工具介绍在博客中有介绍
-  - `Kafka`的使用在工程中已经加入，只不过没有大规模使用例子，具体的配置信息参考`com.littlefisher.core.config.kafka.KafkaConfig`配置内容
+  - `Kafka`的使用在工程中已经加入，只不过没有大规模使用例子，具体的配置信息参考`application.yml`配置内容
   - `Activiti`单独使用了一个模块，暂时没有引入到`littlefisher-parent`中，因为还没有使用到的地方
-  - `Oval`的校验框架引入在`Command`中，当代码执行到`Command`时会进行校验
+  - `Hibernate Validation`的校验框架引入在`Command`中，当代码执行到`Command`时会进行校验
 
 #### 项目启动
 
  - 在`littlefisher-parent`工程上，执行`maven`命令`mvn clean install -DskipTests`
- - 在`blog-web`工程上，执行`maven`命令`mvn jetty:run`
+ - 在`blog-web`工程上，找到`Application`类，执行`main`方法即可
  - 在浏览器中输入`http://{ip}:8080/blog-web/swagger/index.html`，即可访问到`swaggerUI`界面
- - 具体关于`Jetty`的信息与配置，请自行`Google`
  - 以上所涉及`maven`命令皆为完整命令，可根据不同`IDE`变更部分命令
 
 #### 后续技术扩展
