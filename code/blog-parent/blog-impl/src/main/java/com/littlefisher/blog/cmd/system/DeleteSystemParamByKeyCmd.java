@@ -1,7 +1,7 @@
 package com.littlefisher.blog.cmd.system;
 
 import com.littlefisher.blog.dao.system.SystemParamDtoMapper;
-import com.littlefisher.blog.model.system.SystemParamDtoExample;
+import com.littlefisher.blog.example.system.SystemParamDtoExample;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**

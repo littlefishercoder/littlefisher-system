@@ -3,8 +3,8 @@ package com.littlefisher.blog.cmd.system;
 import java.util.List;
 
 import com.littlefisher.blog.dao.system.SystemParamDtoMapper;
+import com.littlefisher.blog.example.system.SystemParamDtoExample;
 import com.littlefisher.blog.model.system.SystemParamDto;
-import com.littlefisher.blog.model.system.SystemParamDtoExample;
 import com.littlefisher.core.interceptor.AbstractCommand;
 import com.littlefisher.core.utils.CollectionUtil;
 
