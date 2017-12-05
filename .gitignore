@@ -26,3 +26,5 @@ node_modules/
 log/
 **/jdbc.properties
 **/kafka.properties
+**/application.yml
+**/generatorConfig.properties

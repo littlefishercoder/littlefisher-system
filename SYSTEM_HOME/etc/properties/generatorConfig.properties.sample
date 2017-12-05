@@ -1,0 +1,10 @@
+# 具体各参数配置解析，请参考http://blog.csdn.net/isea533/article/details/42102297
+targetRuntime=MyBatis3
+defaultModelType=flat
+author=jinyanan
+targetJavaProject=src/main/java
+targetResourcesProject=src/main/resources
+jdbc.driverClass=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://106.14.156.120:3306/blog
+jdbc.user=root
+jdbc.password=root
