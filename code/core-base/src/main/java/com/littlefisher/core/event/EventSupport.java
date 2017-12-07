@@ -10,6 +10,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.utils.CollectionUtil;
+import com.littlefisher.core.utils.ExceptionHandler;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
@@ -92,18 +93,17 @@ public class EventSupport {
         }
     }
 
-    protected void dispatchEvent(Event event, EventListener listener) throws BaseAppException {
+    protected void dispatchEvent(Event event, EventListener listener) {
         try {
             listener.onEvent(event);
-        } catch (Exception ex) {
+        } catch (Exception e) {
             if (listener.isFailOnException()) {
-                logger.error(ex.getMessage());
-                throw new BaseAppException("S-SYSTEMCOM-004", ex);
+                ExceptionHandler.publish("COMMON-000002", null, e);
             } else {
                 // Ignore the exception and continue notifying remaining listeners. The
                 // listener
                 // explicitly states that the exception should not bubble up
-                logger.warn("Exception while executing event-listener, which was ignored", ex);
+                logger.warn("Exception while executing event-listener, which was ignored", e);
             }
         }
     }

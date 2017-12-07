@@ -1,6 +1,6 @@
 package com.littlefisher.core.event;
 
-import com.littlefisher.core.exception.BaseAppException;
+import com.littlefisher.core.utils.ExceptionHandler;
 
 /**
  * Description:
@@ -21,8 +21,8 @@ public class EntityEventImpl extends EventImpl implements EntityEvent {
     public EntityEventImpl(Object entity, String type) {
         super(type);
         if (entity == null) {
-            //  Entity cannot be null.            
-            throw new BaseAppException("S-SYSTEMCOM-003");
+            //  Entity cannot be null.
+            ExceptionHandler.publish("COMMON-000001", null, "Entity");
         }
         this.entity = entity;
     }

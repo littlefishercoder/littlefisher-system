@@ -1,12 +1,9 @@
 package com.littlefisher.core.event;
 
-import com.littlefisher.core.exception.BaseAppException;
-
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月10日 
+ * Description:
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -57,15 +54,15 @@ public class EventDispatcherImpl implements EventDispatcher {
     }
 
     @Override
-    public void dispatchEvent(Event event) throws BaseAppException {
+    public void dispatchEvent(Event event) {
         if (enabled) {
             eventSupport.dispatchEvent(event);
         }
 
     }
-    
+
     @Override
-    public void dispatchEntityEvent(String type, Object entity) throws BaseAppException {
+    public void dispatchEntityEvent(String type, Object entity) {
         EntityEvent event = EventBuilder.createEntityEvent(type, entity);
         dispatchEvent(event);
     }
