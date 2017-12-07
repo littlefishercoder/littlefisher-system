@@ -68,6 +68,5 @@ public class EventDispatcherImpl implements EventDispatcher {
     public void dispatchEntityEvent(String type, Object entity) throws BaseAppException {
         EntityEvent event = EventBuilder.createEntityEvent(type, entity);
         dispatchEvent(event);
-
     }
 }

@@ -1,5 +1,6 @@
 package com.littlefisher.core.event;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -58,47 +59,36 @@ public class EventSupport {
         if (listenerToAdd == null) {
             throw new IllegalArgumentException("Listener cannot be null.");
         }
-
         if (ArrayUtils.isEmpty(types)) {
             addEventListener(listenerToAdd);
-
         } else {
-            for (String type : types) {
-                addTypedEventListener(listenerToAdd, type);
-            }
+            Arrays.stream(types).forEach(type -> addTypedEventListener(listenerToAdd, type));
         }
     }
 
     public void removeEventListener(EventListener listenerToRemove) {
         eventListeners.remove(listenerToRemove);
 
-        for (List<EventListener> listeners : typedListeners.values()) {
-            listeners.remove(listenerToRemove);
-        }
+        typedListeners.values().forEach(listeners -> listeners.remove(listenerToRemove));
     }
 
     public void dispatchEvent(Event event) throws BaseAppException {
         if (event == null) {
             throw new IllegalArgumentException("Event cannot be null.");
         }
-
         if (event.getType() == null) {
             throw new IllegalArgumentException("Event type cannot be null.");
         }
 
         // Call global listeners
-        if (eventListeners != null && !eventListeners.isEmpty()) {
-            for (EventListener listener : eventListeners) {
-                dispatchEvent(event, listener);
-            }
+        if (CollectionUtil.isNotEmpty(eventListeners)) {
+            eventListeners.forEach(listener -> dispatchEvent(event, listener));
         }
 
         // Call typed listeners, if any
         List<EventListener> typed = typedListeners.get(event.getType());
         if (CollectionUtil.isNotEmpty(typed)) {
-            for (EventListener listener : typed) {
-                dispatchEvent(event, listener);
-            }
+            typed.forEach(listener -> dispatchEvent(event, listener));
         }
     }
 
