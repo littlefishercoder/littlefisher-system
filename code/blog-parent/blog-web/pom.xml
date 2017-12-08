@@ -18,6 +18,12 @@
       <artifactId>blog-impl</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
+    <!--由于未做分布式，所以web工程还是需要把biz-framework-impl引入的-->
+    <dependency>
+      <groupId>com.littlefisher</groupId>
+      <artifactId>biz-framework-impl</artifactId>
+      <version>${biz-framework.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>

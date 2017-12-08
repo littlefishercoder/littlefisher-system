@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <properties url="file:${SYSTEM_HOME}/etc/properties/generatorConfig.properties"/>
+
+  <context id="Mysql" targetRuntime="${targetRuntime}" defaultModelType="${defaultModelType}">
+
+    <property name="author" value="${author}"/>
+    <property name="javaFormatter" value="com.littlefisher.core.mybatis.generator.SortImportsAndFieldsJavaFormatter"/>
+
+    <plugin type="com.littlefisher.core.mybatis.generator.plugins.MapperPlugin">
+      <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+      <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+      <!--<property name="caseSensitive" value="true"/>-->
+    </plugin>
+
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+    <!--把Example文件位置隔离开-->
+    <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+      <property name="searchString" value=".model."/>
+      <property name="replaceString" value=".example."/>
+    </plugin>
+
+    <jdbcConnection driverClass="${jdbc.driverClass}" connectionURL="${jdbc.url}"
+                    userId="${jdbc.user}" password="${jdbc.password}">
+    </jdbcConnection>
+
+    <javaTypeResolver type="com.littlefisher.core.mybatis.generator.JavaTypeResolver">
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.littlefisher.core.biz.framework.model.system" targetProject="${targetJavaProject}"/>
+
+    <sqlMapGenerator targetPackage="com.littlefisher.core.biz.framework.mapper.system" targetProject="${targetResourcesProject}"/>
+
+    <javaClientGenerator targetPackage="com.littlefisher.core.biz.framework.dao.system" targetProject="${targetJavaProject}"
+                         type="XMLMAPPER"/>
+
+    <table tableName="bfm_system_param" domainObjectName="SystemParamDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+  </context>
+</generatorConfiguration>

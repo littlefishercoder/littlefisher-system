@@ -30,7 +30,7 @@
     <result column="state" jdbcType="CHAR" property="state"/>
     <result column="state_date" jdbcType="TIMESTAMP" property="stateDate"/>
     <result column="content" jdbcType="LONGVARCHAR" property="content"/>
-    <association property="author" javaType="com.littlefisher.blog.model.user.UserDto">
+    <association property="author" javaType="com.littlefisher.core.biz.framework.model.user.UserDto">
       <id column="author_id" jdbcType="INTEGER" property="id"/>
       <result column="a_acc_nbr" jdbcType="VARCHAR" property="accNbr"/>
       <result column="a_password" jdbcType="VARCHAR" property="password"/>
@@ -73,7 +73,7 @@
       <property name="prefix" value="a_"/>
     </include>
     from commentary a
-    left join user b on a.user_id = b.id
+    left join bfm_user b on a.user_id = b.id
     <where>
       <if test="postId != null">
         and a.post_id = #{postId, jdbcType=INTEGER}

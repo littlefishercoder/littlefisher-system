@@ -20,6 +20,7 @@
 
   <properties>
     <core-base.version>1.0.1-SNAPSHOT</core-base.version>
+    <biz-framework.version>1.0.1-SNAPSHOT</biz-framework.version>
   </properties>
 
 </project>

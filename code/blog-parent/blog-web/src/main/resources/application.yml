@@ -111,4 +111,6 @@ management:
 littlefisher:
   mybatis:
     # 配置Mybatis枚举扫描路径
-    type-enums-package: classpath*:com/littlefisher/blog/enums/**/Enum*
+    type-enums-package: classpath*:com/littlefisher/**/enums/**/Enum*
+  shiro:
+    enabled: false
