@@ -58,15 +58,18 @@
     <!--把com.littlefisher.blog下的所有信息都打印到blogLogger中-->
     <logger name="com.littlefisher.blog" level="debug">
       <appender-ref ref="blogLogger"/>
-      <!--<appender-ref ref="stdout"/>-->
+      <appender-ref ref="stdout"/>
     </logger>
     <!--把druid.sql.Statement下的所有信息打印到druidLogger中-->
     <logger name="druid.sql.Statement" level="debug">
       <appender-ref ref="druidLogger"/>
-    </logger>
-    <root level="debug">
       <appender-ref ref="stdout"/>
+    </logger>
+    <!--把spring下的所有信息打印到allLogger中-->
+    <logger name="org.springframework" level="debug">
       <appender-ref ref="allLogger"/>
-    </root>
+      <appender-ref ref="stdout" />
+    </logger>
+    <!--删去root节点，以防jetty打印过多无用日志-->
   </loggers>
 </configuration>
