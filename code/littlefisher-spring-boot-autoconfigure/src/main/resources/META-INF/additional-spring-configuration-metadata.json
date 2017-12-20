@@ -33,6 +33,12 @@
       "description": "unauthorized url."
     },
     {
+      "name": "littlefisher.shiro.swagger-filter-chain-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",
+      "description": "enabled swagger filter chain definition. It will filter the swagger url if config 'true'."
+    },
+    {
       "name": "littlefisher.shiro.filter-chain-definition",
       "type": "java.util.Map<java.lang.String,java.lang.String>",
       "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",

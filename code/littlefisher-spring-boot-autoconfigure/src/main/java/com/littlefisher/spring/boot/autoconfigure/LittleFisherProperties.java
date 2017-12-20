@@ -37,6 +37,9 @@ public class LittleFisherProperties {
         /** 未授权的页面路径 */
         private String unauthorizedUrl;
 
+        /** 是否针对于Swagger做拦截校验 */
+        private String swaggerFileChainEnable;
+
         /** Shiro鉴权拦截器 */
         private Map<String, String> filterChainDefinition = new HashMap<>();
 
@@ -72,6 +75,14 @@ public class LittleFisherProperties {
             this.loginUrl = loginUrl;
         }
 
+        public String getSwaggerFileChainEnable() {
+            return swaggerFileChainEnable;
+        }
+
+        public void setSwaggerFileChainEnable(String swaggerFileChainEnable) {
+            this.swaggerFileChainEnable = swaggerFileChainEnable;
+        }
+
         public Map<String, String> getFilterChainDefinition() {
             return filterChainDefinition;
         }
@@ -82,9 +93,10 @@ public class LittleFisherProperties {
 
         @Override
         public String toString() {
-            return "ShiroConfiguration{" + "enabled='" + enabled + '\'' + ", loginUrl='" + loginUrl + '\''
-                   + ", successUrl='" + successUrl + '\'' + ", unauthorizedUrl='" + unauthorizedUrl + '\''
-                   + ", filterChainDefinition=" + filterChainDefinition + '}';
+            return "ShiroConfiguration{" + "enabled='" + enabled + '\'' + ", loginUrl='" + loginUrl + '\'' +
+                    ", successUrl='" + successUrl + '\'' + ", unauthorizedUrl='" + unauthorizedUrl + '\'' +
+                    ", swaggerFileChainEnable='" + swaggerFileChainEnable + '\'' + ", filterChainDefinition=" +
+                    filterChainDefinition + '}';
         }
     }
 
