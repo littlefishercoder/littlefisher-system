@@ -10,6 +10,9 @@
 #### Github
 欢迎加星
 
+#### 项目搭建路径
+http://swaggerui.littlefisher.site/
+
 #### 项目介绍
 该工程使用`SpringBoot`搭建（最近刚进行`SpringBoot`改造完成），其目的是封装业务底层框架，让开发人员更集中于业务的开发。
 
