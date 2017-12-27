@@ -3,9 +3,9 @@ package com.littlefisher.blog.cmd.post;
 import java.util.List;
 
 import com.github.pagehelper.PageHelper;
-import com.littlefisher.blog.dao.post.PostDtoMapper;
-import com.littlefisher.blog.model.post.PostDto;
-import com.littlefisher.blog.request.post.GetPostList4PagerByCondRequest;
+import com.littlefisher.blog.dao.ext.PostDtoExtMapper;
+import com.littlefisher.blog.model.ext.PostExtDto;
+import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
@@ -17,7 +17,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
-public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostDto>> {
+public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>> {
 
     /**
      * req
@@ -35,8 +35,8 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostDto>> {
     }
 
     @Override
-    public List<PostDto> execute() {
-        PostDtoMapper postDtoMapper = this.getMapper(PostDtoMapper.class);
+    public List<PostExtDto> execute() {
+        PostDtoExtMapper postDtoMapper = this.getMapper(PostDtoExtMapper.class);
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
         return postDtoMapper.selectByCond(req);
     }

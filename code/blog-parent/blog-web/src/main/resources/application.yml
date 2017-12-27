@@ -113,7 +113,7 @@ littlefisher:
     # 配置Mybatis枚举扫描路径
     type-enums-package: classpath*:com/littlefisher/**/enums/**/Enum*
   shiro:
-    enabled: true
+    enabled: false
     login-url: /login
     success-url: /success
     unauthorized-url: /index

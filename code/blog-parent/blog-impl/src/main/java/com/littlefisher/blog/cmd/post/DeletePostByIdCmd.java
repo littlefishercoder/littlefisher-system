@@ -1,6 +1,6 @@
 package com.littlefisher.blog.cmd.post;
 
-import com.littlefisher.blog.dao.post.PostDtoMapper;
+import com.littlefisher.blog.dao.PostDtoMapper;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**

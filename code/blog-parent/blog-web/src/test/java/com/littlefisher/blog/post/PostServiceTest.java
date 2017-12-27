@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.littlefisher.blog.intf.post.IPostService;
-import com.littlefisher.blog.model.post.PostDto;
-import com.littlefisher.blog.request.post.GetPostList4PagerByCondRequest;
+import com.littlefisher.blog.service.IPostService;
+import com.littlefisher.blog.model.ext.PostExtDto;
+import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**
@@ -36,7 +36,7 @@ public class PostServiceTest {
         GetPostList4PagerByCondRequest req = new GetPostList4PagerByCondRequest();
         req.setPageNum(1);
         req.setPageSize(20);
-        List<PostDto> postList = postService.getPostList4PagerByCond(req);
+        List<PostExtDto> postList = postService.getPostList4PagerByCond(req);
         logger.debug("postList: [{}]", postList);
     }
 

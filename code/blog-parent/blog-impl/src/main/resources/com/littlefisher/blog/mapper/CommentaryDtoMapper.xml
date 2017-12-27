@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.littlefisher.blog.dao.CommentaryDtoMapper">
+  <resultMap id="BaseResultMap" type="com.littlefisher.blog.model.CommentaryDto">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="parent_commentary_id" jdbcType="INTEGER" property="parentCommentaryId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="commentary_ip" jdbcType="VARCHAR" property="commentaryIp" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="post_id" jdbcType="INTEGER" property="postId" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.littlefisher.blog.model.CommentaryDto">
+    <!--@mbg.generated-->
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, parent_commentary_id, user_id, nick_name, commentary_ip, created_date, post_id, 
+    state, state_date
+  </sql>
+  <sql id="Blob_Column_List">
+    <!--@mbg.generated-->
+    content
+  </sql>
+</mapper>

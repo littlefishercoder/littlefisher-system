@@ -1,6 +1,6 @@
 package com.littlefisher.blog.cmd.commentary;
 
-import com.littlefisher.blog.dao.commentary.CommentaryDtoMapper;
+import com.littlefisher.blog.dao.CommentaryDtoMapper;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**

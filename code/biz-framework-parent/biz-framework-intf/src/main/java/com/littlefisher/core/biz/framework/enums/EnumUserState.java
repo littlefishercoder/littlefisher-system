@@ -14,17 +14,14 @@ import com.littlefisher.core.mybatis.IEnum;
 public enum EnumUserState implements IEnum {
 
     /** 有效 */
-    VALID("A", "有效"),
+    VALID("有效"),
     /** 失效 */
-    INVALID("X", "失效"),
+    INVALID("失效"),
     ;
-
-    private String code;
 
     private String desc;
 
-    EnumUserState(String code, String desc) {
-        this.code = code;
+    EnumUserState(String desc) {
         this.desc = desc;
     }
 
@@ -40,7 +37,7 @@ public enum EnumUserState implements IEnum {
 
     @Override
     public String getCode() {
-        return code;
+        return this.name();
     }
 
     public String getDesc() {
