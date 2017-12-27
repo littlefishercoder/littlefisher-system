@@ -3,10 +3,9 @@ package com.littlefisher.core.event;
 import com.littlefisher.core.exception.BaseAppException;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月10日 
+ * Description:
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -17,8 +16,8 @@ public class EventBuilder {
     public static Event createGlobalEvent(String type) {
         return new EventImpl(type);
     }
-    
-    public static EntityEvent createEntityEvent(String type, Object entity) throws BaseAppException {
+
+    public static EntityEvent createEntityEvent(String type, Object entity) {
         return new EntityEventImpl(entity, type);
     }
 }

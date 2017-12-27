@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.littlefisher.blog.intf.system.ISystemParamService;
-import com.littlefisher.blog.model.system.SystemParamDto;
-import com.littlefisher.blog.request.system.GetSystemParamList4PagerByCondRequest;
 import com.littlefisher.blog.user.UserServiceTest;
+import com.littlefisher.core.biz.framework.intf.system.ISystemParamService;
+import com.littlefisher.core.biz.framework.model.system.SystemParamDto;
+import com.littlefisher.core.biz.framework.request.system.GetSystemParamList4PagerByCondRequest;
 import com.littlefisher.core.utils.LittleFisherLogger;
 
 /**

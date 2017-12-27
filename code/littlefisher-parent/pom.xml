@@ -23,6 +23,7 @@
     <module>../core-base</module>
     <module>../blog-parent</module>
     <module>../littlefisher-spring-boot-autoconfigure</module>
+    <module>../biz-framework-parent</module>
   </modules>
 
   <properties>

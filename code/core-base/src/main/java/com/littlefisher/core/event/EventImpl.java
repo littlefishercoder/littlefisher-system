@@ -1,10 +1,9 @@
 package com.littlefisher.core.event;
 
 /**
- * 
- * Description: 
- *  
- * Created on 2017年2月10日 
+ * Description:
+ *
+ * Created on 2017年2月10日
  *
  * @author jinyanan
  * @version 1.0
@@ -19,6 +18,7 @@ public class EventImpl implements Event {
 
     /**
      * EventImpl
+     *
      * @param type <br>
      */
     public EventImpl(String type) {

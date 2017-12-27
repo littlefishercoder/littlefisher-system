@@ -15,7 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import com.littlefisher.blog.enums.post.EnumPostState;
 import com.littlefisher.blog.enums.post.EnumPostType;
-import com.littlefisher.blog.model.user.UserDto;
+import com.littlefisher.core.biz.framework.model.user.UserDto;
 
 /**
  * Description: post 实体

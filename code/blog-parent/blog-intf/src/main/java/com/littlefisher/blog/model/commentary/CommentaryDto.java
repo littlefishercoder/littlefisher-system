@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import com.littlefisher.blog.enums.commentary.EnumCommentaryState;
-import com.littlefisher.blog.model.user.UserDto;
+import com.littlefisher.core.biz.framework.model.user.UserDto;
 
 /**
  * Description: commentary 实体
