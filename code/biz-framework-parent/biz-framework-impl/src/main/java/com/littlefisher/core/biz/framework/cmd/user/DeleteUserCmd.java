@@ -1,6 +1,6 @@
 package com.littlefisher.core.biz.framework.cmd.user;
 
-import com.littlefisher.core.biz.framework.dao.user.UserDtoMapper;
+import com.littlefisher.core.biz.framework.dao.UserDtoMapper;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**

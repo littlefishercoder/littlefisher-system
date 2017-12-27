@@ -7,7 +7,7 @@ import javax.persistence.Transient;
 import java.io.Serializable;
 
 import com.littlefisher.blog.model.CommentaryDto;
-import com.littlefisher.core.biz.framework.model.user.UserDto;
+import com.littlefisher.core.biz.framework.model.UserDto;
 
 /**
  * Description: CommentaryExtDto.java

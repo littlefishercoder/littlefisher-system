@@ -2,8 +2,8 @@ package com.littlefisher.core.biz.framework.cmd.user;
 
 import java.util.List;
 
-import com.littlefisher.core.biz.framework.dao.user.UserDtoMapper;
-import com.littlefisher.core.biz.framework.model.user.UserDto;
+import com.littlefisher.core.biz.framework.dao.UserDtoMapper;
+import com.littlefisher.core.biz.framework.model.UserDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**

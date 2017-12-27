@@ -3,9 +3,9 @@ package com.littlefisher.core.biz.framework.cmd.user;
 import java.util.List;
 
 import com.github.pagehelper.PageHelper;
-import com.littlefisher.core.biz.framework.dao.user.UserDtoMapper;
-import com.littlefisher.core.biz.framework.model.user.UserDto;
-import com.littlefisher.core.biz.framework.request.user.GetUserList4PagerByCondRequest;
+import com.littlefisher.core.biz.framework.dao.ext.UserDtoExtMapper;
+import com.littlefisher.core.biz.framework.model.UserDto;
+import com.littlefisher.core.biz.framework.request.GetUserList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
@@ -36,7 +36,7 @@ public class GetUserListByCondCmd extends AbstractCommand<List<UserDto>> {
 
     @Override
     public List<UserDto> execute() {
-        UserDtoMapper userDtoMapper = this.getMapper(UserDtoMapper.class);
+        UserDtoExtMapper userDtoMapper = this.getMapper(UserDtoExtMapper.class);
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
         return userDtoMapper.selectByCond(req);
     }

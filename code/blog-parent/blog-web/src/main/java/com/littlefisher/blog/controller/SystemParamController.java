@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
-import com.littlefisher.core.biz.framework.intf.system.ISystemParamService;
-import com.littlefisher.core.biz.framework.model.system.SystemParamDto;
-import com.littlefisher.core.biz.framework.request.system.GetSystemParamList4PagerByCondRequest;
+import com.littlefisher.core.biz.framework.service.ISystemParamService;
+import com.littlefisher.core.biz.framework.model.SystemParamDto;
+import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCondRequest;
 
 /**
  * Description: 系统信息Controller

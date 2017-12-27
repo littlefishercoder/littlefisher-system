@@ -14,17 +14,12 @@ import com.littlefisher.core.mybatis.IEnum;
 public enum EnumRoleType implements IEnum {
 
     /** 有效 */
-    VALID("A", "有效"),
-    ;
-
-    /** 编码 */
-    private String code;
+    VALID("有效"),;
 
     /** 描述 */
     private String desc;
 
-    EnumRoleType(String code, String desc) {
-        this.code = code;
+    EnumRoleType(String desc) {
         this.desc = desc;
     }
 
@@ -40,7 +35,7 @@ public enum EnumRoleType implements IEnum {
 
     @Override
     public String getCode() {
-        return code;
+        return this.name();
     }
 
     public String getDesc() {

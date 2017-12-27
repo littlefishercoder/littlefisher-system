@@ -3,9 +3,9 @@ package com.littlefisher.core.biz.framework.cmd.system;
 import java.util.List;
 
 import com.github.pagehelper.PageHelper;
-import com.littlefisher.core.biz.framework.dao.system.SystemParamDtoMapper;
-import com.littlefisher.core.biz.framework.model.system.SystemParamDto;
-import com.littlefisher.core.biz.framework.request.system.GetSystemParamList4PagerByCondRequest;
+import com.littlefisher.core.biz.framework.dao.ext.SystemParamDtoExtMapper;
+import com.littlefisher.core.biz.framework.model.SystemParamDto;
+import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
@@ -36,7 +36,7 @@ public class GetSystemParamList4PagerByCondCmd extends AbstractCommand<List<Syst
 
     @Override
     public List<SystemParamDto> execute() {
-        SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
+        SystemParamDtoExtMapper systemParamDtoMapper = this.getMapper(SystemParamDtoExtMapper.class);
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
         return systemParamDtoMapper.selectByCond(req);
         //        RowBounds rowBounds = new RowBounds(req.getPageNum() - 1, req.getPageSize());

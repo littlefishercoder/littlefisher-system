@@ -15,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
-import com.littlefisher.core.biz.framework.intf.user.IUserService;
-import com.littlefisher.core.biz.framework.model.user.UserDto;
-import com.littlefisher.core.biz.framework.request.user.GetUserList4PagerByCondRequest;
+import com.littlefisher.core.biz.framework.service.IUserService;
+import com.littlefisher.core.biz.framework.model.UserDto;
+import com.littlefisher.core.biz.framework.request.GetUserList4PagerByCondRequest;
 
 /**
  * Description: 用户Controller

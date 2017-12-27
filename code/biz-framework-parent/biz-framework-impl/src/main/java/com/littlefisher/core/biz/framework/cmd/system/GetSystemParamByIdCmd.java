@@ -1,7 +1,7 @@
 package com.littlefisher.core.biz.framework.cmd.system;
 
-import com.littlefisher.core.biz.framework.dao.system.SystemParamDtoMapper;
-import com.littlefisher.core.biz.framework.model.system.SystemParamDto;
+import com.littlefisher.core.biz.framework.dao.SystemParamDtoMapper;
+import com.littlefisher.core.biz.framework.model.SystemParamDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
 
 /**
