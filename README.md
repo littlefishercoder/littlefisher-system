@@ -11,7 +11,7 @@
 欢迎加星
 
 #### 项目搭建路径
-http://swaggerui.littlefisher.site/
+http://swaggerui.littlefisher.site/  
 由于整个工程都是后端内容，所以页面展示的内容仅是一个`Swagger`测试页面而已
 
 #### 项目介绍
@@ -46,6 +46,7 @@ http://swaggerui.littlefisher.site/
  - `Gson`
  - `Hibernate Validation`
  - `Spring Boot`
+ - `Apache Shiro`
 
 1. 环境搭建
   - 配置`Maven`中央仓库：项目目录下有`Maven`的配置文件`settings.xml`文件，修改该文件中的本地仓库目录`localRepository`为自己系统下目录即可
@@ -86,13 +87,9 @@ http://swaggerui.littlefisher.site/
 
  - 在`littlefisher-parent`工程上，执行`maven`命令`mvn clean install -DskipTests`
  - 在`blog-web`工程上，找到`Application`类，执行`main`方法即可
- - 在浏览器中输入`http://{ip}:8080/blog-web/swagger/index.html`，即可访问到`swaggerUI`界面
+ - 在浏览器中输入`http://{ip}:8080/blog-web/swagger_ui.html`，即可访问到`swaggerUI`界面
  - 以上所涉及`maven`命令皆为完整命令，可根据不同`IDE`变更部分命令
 
-#### 后续技术扩展
-
- 1. 前端使用`Angular`框架搭建
- 2. 后端使用`Apache Shiro`进行权限控制（暂时还不知道`Apache Shiro`和`Spring Security`到底哪个好）
 
   
 
