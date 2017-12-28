@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.littlefisher.blog.request.GetPostList4IndexPagerByCondRequest;
 import com.littlefisher.blog.service.IPostService;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
@@ -55,6 +56,36 @@ public class PostController {
     }
 
     /**
+     *
+     * 首页查询博文列表
+     *
+     * @param request 入参
+     * @return 分页博文
+     */
+    @RequestMapping(value = "/index/pager", method = RequestMethod.GET)
+    @ApiOperation("首页查询博文列表")
+    public PageInfo<PostExtDto> getPostList4IndexPagerByCond(
+            @ApiParam(required = true, value = "首页查询博文列表入参") @ModelAttribute
+                    GetPostList4IndexPagerByCondRequest request) {
+        // TODO: 首页博文分页列表，包含博文标签、博文分类、阅读数、点赞数、评论数等
+        return null;
+    }
+
+    /**
+     * 根据分类查询博文列表
+     *
+     * @param archiveId 博文分类
+     * @return 分页博文
+     */
+    @RequestMapping(value = "/{archiveId}/pager", method = RequestMethod.GET)
+    @ApiOperation("根据分类查询博文列表")
+    public PageInfo<PostExtDto> getPostList4PagerByArchiveId(
+            @ApiParam(required = true, value = "博文分类id") @PathVariable("archiveId") Long archiveId) {
+        // TODO: 根据分类查询博文列表
+        return null;
+    }
+
+    /**
      * Description: 根据博文主键查询具体博文
      *
      * @param postId postId
@@ -62,8 +93,7 @@ public class PostController {
      */
     @RequestMapping(value = "/{postId}", method = RequestMethod.GET)
     @ApiOperation("根据博文主键查询具体博文")
-    public PostDto getPostById(
-            @ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) {
+    public PostDto getPostById(@ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) {
         return postService.getPostById(postId);
     }
 
@@ -75,8 +105,7 @@ public class PostController {
      */
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation("新增博文")
-    public PostDto addPost(
-            @ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) {
+    public PostDto addPost(@ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) {
         return postService.addPost(postDto);
     }
 
@@ -88,8 +117,7 @@ public class PostController {
      */
     @RequestMapping(method = RequestMethod.PATCH)
     @ApiOperation("修改博文")
-    public PostDto updatePost(
-            @ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) {
+    public PostDto updatePost(@ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) {
         return postService.updatePost(postDto);
     }
 
@@ -101,8 +129,7 @@ public class PostController {
      */
     @RequestMapping(value = "/{postId}", method = RequestMethod.DELETE)
     @ApiOperation("删除博文")
-    public int deletePost(
-            @ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) {
+    public int deletePost(@ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) {
         return postService.deletePostById(postId);
     }
 

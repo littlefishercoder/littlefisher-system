@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 
 import java.util.Date;
 
+import com.littlefisher.core.biz.framework.request.common.PagerRequest;
 
 /**
  * Description:
@@ -16,19 +17,7 @@ import java.util.Date;
  * @since v1.0
  */
 @ApiModel("查询博文列表的入参条件，分页用")
-public class GetPostList4PagerByCondRequest {
-
-    /**
-     * pageNum
-     */
-    @ApiModelProperty("页码")
-    private int pageNum;
-
-    /**
-     * pageSize 每页行数
-     */
-    @ApiModelProperty("每页行数")
-    private int pageSize;
+public class GetPostList4PagerByCondRequest extends PagerRequest {
 
     /**
      * title 标题，模糊查询
@@ -53,22 +42,6 @@ public class GetPostList4PagerByCondRequest {
      */
     @ApiModelProperty("创建时间，时间范围的结束时间")
     private Date createdDateEnd;
-
-    public int getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
 
     public String getTitle() {
         return title;
@@ -104,22 +77,8 @@ public class GetPostList4PagerByCondRequest {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("GetPostList4PagerByCondRequest [pageNum=");
-        builder.append(pageNum);
-        builder.append(", pageSize=");
-        builder.append(pageSize);
-        builder.append(", title=");
-        builder.append(title);
-        builder.append(", keyword=");
-        builder.append(keyword);
-        builder.append(", createdDateStart=");
-        builder.append(createdDateStart);
-        builder.append(", createdDateEnd=");
-        builder.append(createdDateEnd);
-        builder.append("]");
-        return builder.toString();
+        return "GetPostList4PagerByCondRequest{" + "title='" + title + '\'' + ", keyword='" + keyword + '\'' +
+                ", createdDateStart=" + createdDateStart + ", createdDateEnd=" + createdDateEnd + "} " +
+                super.toString();
     }
-
-
 }

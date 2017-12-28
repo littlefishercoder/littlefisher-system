@@ -6,6 +6,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.util.Date;
 
 import com.littlefisher.core.biz.framework.enums.EnumUserState;
+import com.littlefisher.core.biz.framework.request.common.PagerRequest;
 
 /**
  * Description:
@@ -17,31 +18,13 @@ import com.littlefisher.core.biz.framework.enums.EnumUserState;
  * @since v1.0
  */
 @ApiModel("查询User列表的入参条件，分页用")
-public class GetUserList4PagerByCondRequest {
-
-    /**
-     * pageNum 页码
-     */
-    @ApiModelProperty("页码")
-    private int pageNum;
-
-    /**
-     * pageSize 每页行数
-     */
-    @ApiModelProperty("每页行数")
-    private int pageSize;
+public class GetUserList4PagerByCondRequest extends PagerRequest {
 
     /**
      * accNbr 账号
      */
     @ApiModelProperty("账号")
     private String accNbr;
-
-    /**
-     * email 邮箱，模糊查询
-     */
-    @ApiModelProperty("邮箱，模糊查询")
-    private String email;
 
     /**
      * realName 真实姓名，模糊查询
@@ -62,18 +45,6 @@ public class GetUserList4PagerByCondRequest {
     private String enName;
 
     /**
-     * qq qq,模糊查询
-     */
-    @ApiModelProperty("qq,模糊查询")
-    private String qq;
-
-    /**
-     * phoneNbr 手机号，模糊查询
-     */
-    @ApiModelProperty("手机号，模糊查询")
-    private String phoneNbr;
-
-    /**
      * state 状态
      */
     @ApiModelProperty("状态")
@@ -91,36 +62,12 @@ public class GetUserList4PagerByCondRequest {
     @ApiModelProperty("注册时间，时间范围 截止")
     private Date regDateEnd;
 
-    public int getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
     public String getAccNbr() {
         return accNbr;
     }
 
     public void setAccNbr(String accNbr) {
         this.accNbr = accNbr;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getRealName() {
@@ -145,22 +92,6 @@ public class GetUserList4PagerByCondRequest {
 
     public void setEnName(String enName) {
         this.enName = enName;
-    }
-
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
-
-    public String getPhoneNbr() {
-        return phoneNbr;
-    }
-
-    public void setPhoneNbr(String phoneNbr) {
-        this.phoneNbr = phoneNbr;
     }
 
     public EnumUserState getState() {
@@ -189,33 +120,8 @@ public class GetUserList4PagerByCondRequest {
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("GetUserList4PagerByCondRequest [pageNum=");
-        builder.append(pageNum);
-        builder.append(", pageSize=");
-        builder.append(pageSize);
-        builder.append(", accNbr=");
-        builder.append(accNbr);
-        builder.append(", email=");
-        builder.append(email);
-        builder.append(", realName=");
-        builder.append(realName);
-        builder.append(", nickName=");
-        builder.append(nickName);
-        builder.append(", enName=");
-        builder.append(enName);
-        builder.append(", qq=");
-        builder.append(qq);
-        builder.append(", phoneNbr=");
-        builder.append(phoneNbr);
-        builder.append(", state=");
-        builder.append(state);
-        builder.append(", regDateStart=");
-        builder.append(regDateStart);
-        builder.append(", regDateEnd=");
-        builder.append(regDateEnd);
-        builder.append("]");
-        return builder.toString();
+        return "GetUserList4PagerByCondRequest{" + "accNbr='" + accNbr + '\'' + ", realName='" + realName + '\'' +
+                ", nickName='" + nickName + '\'' + ", enName='" + enName + '\'' + ", state=" + state +
+                ", regDateStart=" + regDateStart + ", regDateEnd=" + regDateEnd + "} " + super.toString();
     }
-
 }

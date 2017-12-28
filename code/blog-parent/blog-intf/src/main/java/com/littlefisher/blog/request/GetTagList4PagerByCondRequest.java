@@ -3,6 +3,8 @@ package com.littlefisher.blog.request;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import com.littlefisher.core.biz.framework.request.common.PagerRequest;
+
 /**
  * Description: GetTagList4PagerByCondRequest.java
  *
@@ -13,38 +15,6 @@ import io.swagger.annotations.ApiModelProperty;
  * @since v1.0
  */
 @ApiModel("查询标签列表的入参条件，分页用")
-public class GetTagList4PagerByCondRequest {
+public class GetTagList4PagerByCondRequest extends PagerRequest {
 
-    /**
-     * pageNum
-     */
-    @ApiModelProperty("页码")
-    private int pageNum;
-
-    /**
-     * pageSize 每页行数
-     */
-    @ApiModelProperty("每页行数")
-    private int pageSize;
-
-    public int getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
-
-    @Override
-    public String toString() {
-        return "GetTagList4PagerByCondRequest{" + "pageNum=" + pageNum + ", pageSize=" + pageSize + '}';
-    }
 }

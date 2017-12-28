@@ -3,6 +3,8 @@ package com.littlefisher.core.biz.framework.request;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import com.littlefisher.core.biz.framework.request.common.PagerRequest;
+
 /**
  * Description: 查询系统参数列表条件
  *
@@ -13,19 +15,7 @@ import io.swagger.annotations.ApiModelProperty;
  * @since v1.0
  */
 @ApiModel("查询系统参数列表的入参条件，分页用")
-public class GetSystemParamList4PagerByCondRequest {
-
-    /**
-     * pageNum 页码
-     */
-    @ApiModelProperty("页码")
-    private int pageNum;
-
-    /**
-     * pageSize 每页行数
-     */
-    @ApiModelProperty("每页行数")
-    private int pageSize;
+public class GetSystemParamList4PagerByCondRequest extends PagerRequest {
 
     /**
      * id 主键id
@@ -50,22 +40,6 @@ public class GetSystemParamList4PagerByCondRequest {
      */
     @ApiModelProperty("参数默认value")
     private String defaultValue;
-
-    public int getPageNum() {
-        return pageNum;
-    }
-
-    public void setPageNum(int pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
-    }
 
     public Long getId() {
         return id;
@@ -101,14 +75,8 @@ public class GetSystemParamList4PagerByCondRequest {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("GetSystemParamList4PagerByCondRequest{");
-        sb.append("pageNum=").append(pageNum);
-        sb.append(", pageSize=").append(pageSize);
-        sb.append(", id=").append(id);
-        sb.append(", paramKey='").append(paramKey).append('\'');
-        sb.append(", paramValue='").append(paramValue).append('\'');
-        sb.append(", defaultValue='").append(defaultValue).append('\'');
-        sb.append('}');
-        return sb.toString();
+        return "GetSystemParamList4PagerByCondRequest{" + "id=" + id + ", paramKey='" + paramKey + '\'' +
+                ", paramValue='" + paramValue + '\'' + ", defaultValue='" + defaultValue + '\'' + "} " +
+                super.toString();
     }
 }
