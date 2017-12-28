@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.enums.EnumPostState;
 import com.littlefisher.blog.enums.EnumPostType;
+import com.littlefisher.core.enums.EnumBizBool;
 
 public class PostDtoExample {
     /** orderByClause */
@@ -505,63 +506,63 @@ public class PostDtoExample {
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateIsNull() {
-            addCriterion("last_modify_date is null");
+        public Criteria andArchiveIdIsNull() {
+            addCriterion("archive_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateIsNotNull() {
-            addCriterion("last_modify_date is not null");
+        public Criteria andArchiveIdIsNotNull() {
+            addCriterion("archive_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateEqualTo(Date value) {
-            addCriterion("last_modify_date =", value, "lastModifyDate");
+        public Criteria andArchiveIdEqualTo(Long value) {
+            addCriterion("archive_id =", value, "archiveId");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateNotEqualTo(Date value) {
-            addCriterion("last_modify_date <>", value, "lastModifyDate");
+        public Criteria andArchiveIdNotEqualTo(Long value) {
+            addCriterion("archive_id <>", value, "archiveId");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateGreaterThan(Date value) {
-            addCriterion("last_modify_date >", value, "lastModifyDate");
+        public Criteria andArchiveIdGreaterThan(Long value) {
+            addCriterion("archive_id >", value, "archiveId");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateGreaterThanOrEqualTo(Date value) {
-            addCriterion("last_modify_date >=", value, "lastModifyDate");
+        public Criteria andArchiveIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("archive_id >=", value, "archiveId");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateLessThan(Date value) {
-            addCriterion("last_modify_date <", value, "lastModifyDate");
+        public Criteria andArchiveIdLessThan(Long value) {
+            addCriterion("archive_id <", value, "archiveId");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateLessThanOrEqualTo(Date value) {
-            addCriterion("last_modify_date <=", value, "lastModifyDate");
+        public Criteria andArchiveIdLessThanOrEqualTo(Long value) {
+            addCriterion("archive_id <=", value, "archiveId");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateIn(List<Date> values) {
-            addCriterion("last_modify_date in", values, "lastModifyDate");
+        public Criteria andArchiveIdIn(List<Long> values) {
+            addCriterion("archive_id in", values, "archiveId");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateNotIn(List<Date> values) {
-            addCriterion("last_modify_date not in", values, "lastModifyDate");
+        public Criteria andArchiveIdNotIn(List<Long> values) {
+            addCriterion("archive_id not in", values, "archiveId");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateBetween(Date value1, Date value2) {
-            addCriterion("last_modify_date between", value1, value2, "lastModifyDate");
+        public Criteria andArchiveIdBetween(Long value1, Long value2) {
+            addCriterion("archive_id between", value1, value2, "archiveId");
             return (Criteria) this;
         }
 
-        public Criteria andLastModifyDateNotBetween(Date value1, Date value2) {
-            addCriterion("last_modify_date not between", value1, value2, "lastModifyDate");
+        public Criteria andArchiveIdNotBetween(Long value1, Long value2) {
+            addCriterion("archive_id not between", value1, value2, "archiveId");
             return (Criteria) this;
         }
 
@@ -635,62 +636,62 @@ public class PostDtoExample {
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentEqualTo(String value) {
+        public Criteria andEnableCommentEqualTo(EnumBizBool value) {
             addCriterion("enable_comment =", value, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentNotEqualTo(String value) {
+        public Criteria andEnableCommentNotEqualTo(EnumBizBool value) {
             addCriterion("enable_comment <>", value, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentGreaterThan(String value) {
+        public Criteria andEnableCommentGreaterThan(EnumBizBool value) {
             addCriterion("enable_comment >", value, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentGreaterThanOrEqualTo(String value) {
+        public Criteria andEnableCommentGreaterThanOrEqualTo(EnumBizBool value) {
             addCriterion("enable_comment >=", value, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentLessThan(String value) {
+        public Criteria andEnableCommentLessThan(EnumBizBool value) {
             addCriterion("enable_comment <", value, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentLessThanOrEqualTo(String value) {
+        public Criteria andEnableCommentLessThanOrEqualTo(EnumBizBool value) {
             addCriterion("enable_comment <=", value, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentLike(String value) {
+        public Criteria andEnableCommentLike(EnumBizBool value) {
             addCriterion("enable_comment like", value, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentNotLike(String value) {
+        public Criteria andEnableCommentNotLike(EnumBizBool value) {
             addCriterion("enable_comment not like", value, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentIn(List<String> values) {
+        public Criteria andEnableCommentIn(List<EnumBizBool> values) {
             addCriterion("enable_comment in", values, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentNotIn(List<String> values) {
+        public Criteria andEnableCommentNotIn(List<EnumBizBool> values) {
             addCriterion("enable_comment not in", values, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentBetween(String value1, String value2) {
+        public Criteria andEnableCommentBetween(EnumBizBool value1, EnumBizBool value2) {
             addCriterion("enable_comment between", value1, value2, "enableComment");
             return (Criteria) this;
         }
 
-        public Criteria andEnableCommentNotBetween(String value1, String value2) {
+        public Criteria andEnableCommentNotBetween(EnumBizBool value1, EnumBizBool value2) {
             addCriterion("enable_comment not between", value1, value2, "enableComment");
             return (Criteria) this;
         }
@@ -822,6 +823,66 @@ public class PostDtoExample {
 
         public Criteria andStateDateNotBetween(Date value1, Date value2) {
             addCriterion("state_date not between", value1, value2, "stateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateIsNull() {
+            addCriterion("update_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateIsNotNull() {
+            addCriterion("update_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateEqualTo(Date value) {
+            addCriterion("update_date =", value, "updateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateNotEqualTo(Date value) {
+            addCriterion("update_date <>", value, "updateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateGreaterThan(Date value) {
+            addCriterion("update_date >", value, "updateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("update_date >=", value, "updateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateLessThan(Date value) {
+            addCriterion("update_date <", value, "updateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateLessThanOrEqualTo(Date value) {
+            addCriterion("update_date <=", value, "updateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateIn(List<Date> values) {
+            addCriterion("update_date in", values, "updateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateNotIn(List<Date> values) {
+            addCriterion("update_date not in", values, "updateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateBetween(Date value1, Date value2) {
+            addCriterion("update_date between", value1, value2, "updateDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpdateDateNotBetween(Date value1, Date value2) {
+            addCriterion("update_date not between", value1, value2, "updateDate");
             return (Criteria) this;
         }
     }

@@ -16,7 +16,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: bfm_system_param 实体
  *
- * Created on 2017年12月08日
+ * Created on 2017年12月28日
  * @author jinyanan
  * @version 1.0
  * @since v1.0

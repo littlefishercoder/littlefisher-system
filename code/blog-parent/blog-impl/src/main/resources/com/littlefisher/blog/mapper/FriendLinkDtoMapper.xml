@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.littlefisher.blog.dao.FriendLinkDtoMapper">
+  <resultMap id="BaseResultMap" type="com.littlefisher.blog.model.FriendLinkDto">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="author_id" jdbcType="INTEGER" property="authorId" />
+    <result column="friend_real_name" jdbcType="VARCHAR" property="friendRealName" />
+    <result column="friend_nick_name" jdbcType="VARCHAR" property="friendNickName" />
+    <result column="friend_url_link" jdbcType="VARCHAR" property="friendUrlLink" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, author_id, friend_real_name, friend_nick_name, friend_url_link, state, update_date
+  </sql>
+</mapper>

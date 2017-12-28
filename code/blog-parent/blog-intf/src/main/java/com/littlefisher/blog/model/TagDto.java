@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: tag 实体
  *
- * Created on 2017年12月27日
+ * Created on 2017年12月28日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -43,6 +43,13 @@ public class TagDto implements Serializable {
      */
     @ApiModelProperty("名称(唯一)")
     private String name;
+
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty("创建时间")
+    @Column(name = "create_date")
+    private Date createDate;
 
     /**
      * 状态
@@ -73,6 +80,14 @@ public class TagDto implements Serializable {
         this.name = name;
     }
 
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
     public EnumTagState getState() {
         return state;
     }
@@ -97,6 +112,7 @@ public class TagDto implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
+        sb.append(", createDate=").append(createDate);
         sb.append(", state=").append(state);
         sb.append(", stateDate=").append(stateDate);
         sb.append(", serialVersionUID=").append(serialVersionUID);

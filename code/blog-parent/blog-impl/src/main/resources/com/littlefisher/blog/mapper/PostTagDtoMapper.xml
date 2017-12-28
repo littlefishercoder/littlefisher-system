@@ -7,9 +7,11 @@
     <result column="post_id" jdbcType="INTEGER" property="postId" />
     <result column="tag_id" jdbcType="INTEGER" property="tagId" />
     <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, post_id, tag_id, create_date
+    id, post_id, tag_id, create_date, state, update_date
   </sql>
 </mapper>

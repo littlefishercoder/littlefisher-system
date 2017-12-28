@@ -5,11 +5,12 @@
     <!--@mbg.generated-->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
     <result column="state" jdbcType="CHAR" property="state" />
     <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, name, state, state_date
+    id, name, create_date, state, state_date
   </sql>
 </mapper>

@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import com.littlefisher.blog.enums.EnumPostState;
 import com.littlefisher.blog.enums.EnumPostType;
+import com.littlefisher.core.enums.EnumBizBool;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -20,7 +21,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: post 实体
  *
- * Created on 2017年12月27日
+ * Created on 2017年12月28日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -66,11 +67,11 @@ public class PostDto implements Serializable {
     private EnumPostType type;
 
     /**
-     * 上次修改时间
+     * 文章分类 主键
      */
-    @ApiModelProperty("上次修改时间")
-    @Column(name = "last_modify_date")
-    private Date lastModifyDate;
+    @ApiModelProperty("文章分类 主键")
+    @Column(name = "archive_id")
+    private Long archiveId;
 
     /**
      * 作者主键，空为匿名作者
@@ -84,7 +85,7 @@ public class PostDto implements Serializable {
      */
     @ApiModelProperty("是否可评论")
     @Column(name = "enable_comment")
-    private String enableComment;
+    private EnumBizBool enableComment;
 
     /**
      * 状态
@@ -98,6 +99,13 @@ public class PostDto implements Serializable {
     @ApiModelProperty("状态变更时间")
     @Column(name = "state_date")
     private Date stateDate;
+
+    /**
+     * 修改时间
+     */
+    @ApiModelProperty("修改时间")
+    @Column(name = "update_date")
+    private Date updateDate;
 
     /**
      * 博文
@@ -145,12 +153,12 @@ public class PostDto implements Serializable {
         this.type = type;
     }
 
-    public Date getLastModifyDate() {
-        return lastModifyDate;
+    public Long getArchiveId() {
+        return archiveId;
     }
 
-    public void setLastModifyDate(Date lastModifyDate) {
-        this.lastModifyDate = lastModifyDate;
+    public void setArchiveId(Long archiveId) {
+        this.archiveId = archiveId;
     }
 
     public Long getAuthorId() {
@@ -161,11 +169,11 @@ public class PostDto implements Serializable {
         this.authorId = authorId;
     }
 
-    public String getEnableComment() {
+    public EnumBizBool getEnableComment() {
         return enableComment;
     }
 
-    public void setEnableComment(String enableComment) {
+    public void setEnableComment(EnumBizBool enableComment) {
         this.enableComment = enableComment;
     }
 
@@ -183,6 +191,14 @@ public class PostDto implements Serializable {
 
     public void setStateDate(Date stateDate) {
         this.stateDate = stateDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     public String getContent() {
@@ -204,11 +220,12 @@ public class PostDto implements Serializable {
         sb.append(", createdDate=").append(createdDate);
         sb.append(", originalUrl=").append(originalUrl);
         sb.append(", type=").append(type);
-        sb.append(", lastModifyDate=").append(lastModifyDate);
+        sb.append(", archiveId=").append(archiveId);
         sb.append(", authorId=").append(authorId);
         sb.append(", enableComment=").append(enableComment);
         sb.append(", state=").append(state);
         sb.append(", stateDate=").append(stateDate);
+        sb.append(", updateDate=").append(updateDate);
         sb.append(", content=").append(content);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

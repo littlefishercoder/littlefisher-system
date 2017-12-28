@@ -33,14 +33,53 @@
       <property name="forceBigDecimals" value="false"/>
     </javaTypeResolver>
 
-    <javaModelGenerator targetPackage="com.littlefisher.core.biz.framework.model.system" targetProject="${targetJavaProject}"/>
+    <javaModelGenerator targetPackage="com.littlefisher.core.biz.framework.model" targetProject="${targetJavaProject}"/>
 
-    <sqlMapGenerator targetPackage="com.littlefisher.core.biz.framework.mapper.system" targetProject="${targetResourcesProject}"/>
+    <sqlMapGenerator targetPackage="com.littlefisher.core.biz.framework.mapper" targetProject="${targetResourcesProject}"/>
 
-    <javaClientGenerator targetPackage="com.littlefisher.core.biz.framework.dao.system" targetProject="${targetJavaProject}"
+    <javaClientGenerator targetPackage="com.littlefisher.core.biz.framework.dao" targetProject="${targetJavaProject}"
                          type="XMLMAPPER"/>
 
+    <table tableName="bfm_permission" domainObjectName="PermissionDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="bfm_role" domainObjectName="RoleDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <columnOverride column="type" javaType="com.littlefisher.core.biz.framework.enums.EnumRoleType" />
+    </table>
+    <table tableName="bfm_role_permission" domainObjectName="RolePermissionDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
     <table tableName="bfm_system_param" domainObjectName="SystemParamDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="bfm_user" domainObjectName="UserDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <columnOverride column="state" javaType="com.littlefisher.core.biz.framework.enums.EnumUserState" />
+    </table>
+    <table tableName="bfm_user_contact_station" domainObjectName="UserContactStationDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <columnOverride column="type" javaType="com.littlefisher.core.biz.framework.enums.EnumUserContactStationType" />
+      <columnOverride column="state" javaType="com.littlefisher.core.biz.framework.enums.EnumUserContactStationState" />
+      <columnOverride column="default_flag" javaType="com.littlefisher.core.enums.EnumBizBool" />
+    </table>
+    <table tableName="bfm_user_contact_station_4_email" domainObjectName="UserContactStation4EmailDto" escapeWildcards="true">
+      <generatedKey column="contact_station_id" sqlStatement="Mysql" />
+      <columnOverride column="type" javaType="com.littlefisher.core.biz.framework.enums.EnumUserContactStation4EmailType" />
+    </table>
+    <table tableName="bfm_user_contact_station_4_phone" domainObjectName="UserContactStation4PhoneDto" escapeWildcards="true">
+      <generatedKey column="contact_station_id" sqlStatement="Mysql" />
+      <columnOverride column="type" javaType="com.littlefisher.core.biz.framework.enums.EnumUserContactStation4PhoneType" />
+    </table>
+    <table tableName="bfm_user_contact_station_4_social" domainObjectName="UserContactStation4SocialDto" escapeWildcards="true">
+      <generatedKey column="contact_station_id" sqlStatement="Mysql" />
+      <columnOverride column="type" javaType="com.littlefisher.core.biz.framework.enums.EnumUserContactStation4SocialType" />
+    </table>
+    <table tableName="bfm_user_contact_station_4_website" domainObjectName="UserContactStation4WebsiteDto" escapeWildcards="true">
+      <generatedKey column="contact_station_id" sqlStatement="Mysql" />
+      <columnOverride column="type" javaType="com.littlefisher.core.biz.framework.enums.EnumUserContactStation4WebsiteType" />
+    </table>
+    <table tableName="bfm_user_role" domainObjectName="UserRoleDto" escapeWildcards="true">
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
     </table>
   </context>

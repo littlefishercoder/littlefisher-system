@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.littlefisher.blog.enums.EnumPostTagState;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -17,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: post_tag 实体
  *
- * Created on 2017年12月27日
+ * Created on 2017年12月28日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -57,6 +59,19 @@ public class PostTagDto implements Serializable {
     @Column(name = "create_date")
     private Date createDate;
 
+    /**
+     * 状态
+     */
+    @ApiModelProperty("状态")
+    private EnumPostTagState state;
+
+    /**
+     * 修改时间
+     */
+    @ApiModelProperty("修改时间")
+    @Column(name = "update_date")
+    private Date updateDate;
+
     public Long getId() {
         return id;
     }
@@ -89,6 +104,22 @@ public class PostTagDto implements Serializable {
         this.createDate = createDate;
     }
 
+    public EnumPostTagState getState() {
+        return state;
+    }
+
+    public void setState(EnumPostTagState state) {
+        this.state = state;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -99,6 +130,8 @@ public class PostTagDto implements Serializable {
         sb.append(", postId=").append(postId);
         sb.append(", tagId=").append(tagId);
         sb.append(", createDate=").append(createDate);
+        sb.append(", state=").append(state);
+        sb.append(", updateDate=").append(updateDate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

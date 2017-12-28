@@ -48,13 +48,38 @@
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
       <columnOverride column="type" javaType="com.littlefisher.blog.enums.EnumPostType"/>
       <columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumPostState"/>
+      <columnOverride column="enable_comment" javaType="com.littlefisher.core.enums.EnumBizBool" />
     </table>
     <table tableName="post_tag" domainObjectName="PostTagDto" escapeWildcards="true">
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumPostTagState" />
     </table>
     <table tableName="tag" domainObjectName="TagDto" escapeWildcards="true">
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
       <columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumTagState"/>
+    </table>
+    <table tableName="archive" domainObjectName="ArchiveDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumArchiveState"/>
+    </table>
+    <table tableName="author" domainObjectName="AuthorDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumAuthorState" />
+    </table>
+    <table tableName="count_statistic" domainObjectName="CountStatisticDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <columnOverride column="type" javaType="com.littlefisher.blog.enums.EnumCountStatisticType" />
+      <columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumCountStatisticState" />
+    </table>
+    <table tableName="count_statistic_4_blog" domainObjectName="CountStatistic4BlogDto" escapeWildcards="true">
+      <!--<generatedKey column="count_statistic_id" sqlStatement="Mysql" identity="true"/>-->
+    </table>
+    <table tableName="count_statistic_4_post" domainObjectName="CountStatistic4PostDto" escapeWildcards="true">
+      <!--<generatedKey column="count_statistic_id" sqlStatement="Mysql" identity="true"/>-->
+    </table>
+    <table tableName="friend_link" domainObjectName="FriendLinkDto" escapeWildcards="true">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumFriendLinkState" />
     </table>
   </context>
 </generatorConfiguration>

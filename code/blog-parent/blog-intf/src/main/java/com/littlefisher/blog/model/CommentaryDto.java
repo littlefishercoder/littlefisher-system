@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: commentary 实体
  *
- * Created on 2017年12月27日
+ * Created on 2017年12月28日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -92,6 +92,13 @@ public class CommentaryDto implements Serializable {
     @ApiModelProperty("状态变更时间")
     @Column(name = "state_date")
     private Date stateDate;
+
+    /**
+     * 修改时间
+     */
+    @ApiModelProperty("修改时间")
+    @Column(name = "update_date")
+    private Date updateDate;
 
     /**
      * 评论内容
@@ -171,6 +178,14 @@ public class CommentaryDto implements Serializable {
         this.stateDate = stateDate;
     }
 
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
     public String getContent() {
         return content;
     }
@@ -194,6 +209,7 @@ public class CommentaryDto implements Serializable {
         sb.append(", postId=").append(postId);
         sb.append(", state=").append(state);
         sb.append(", stateDate=").append(stateDate);
+        sb.append(", updateDate=").append(updateDate);
         sb.append(", content=").append(content);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

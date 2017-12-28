@@ -17,9 +17,9 @@ import io.swagger.annotations.ApiModelProperty;
 
 /**
  *
- * Description: user 实体
+ * Description: bfm_user 实体
  *
- * Created on 2017年12月08日
+ * Created on 2017年12月28日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -52,12 +52,6 @@ public class UserDto implements Serializable {
     private String password;
 
     /**
-     * 邮箱
-     */
-    @ApiModelProperty("邮箱")
-    private String email;
-
-    /**
      * 中文真实姓名
      */
     @ApiModelProperty("中文真实姓名")
@@ -77,25 +71,6 @@ public class UserDto implements Serializable {
     @ApiModelProperty("英文名称")
     @Column(name = "en_name")
     private String enName;
-
-    /**
-     * QQ
-     */
-    @ApiModelProperty("QQ")
-    private String qq;
-
-    /**
-     * 微信
-     */
-    @ApiModelProperty("微信")
-    private String wechat;
-
-    /**
-     * 手机号
-     */
-    @ApiModelProperty("手机号")
-    @Column(name = "phone_nbr")
-    private String phoneNbr;
 
     /**
      * 描述
@@ -148,14 +123,6 @@ public class UserDto implements Serializable {
         this.password = password;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getRealName() {
         return realName;
     }
@@ -178,30 +145,6 @@ public class UserDto implements Serializable {
 
     public void setEnName(String enName) {
         this.enName = enName;
-    }
-
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq;
-    }
-
-    public String getWechat() {
-        return wechat;
-    }
-
-    public void setWechat(String wechat) {
-        this.wechat = wechat;
-    }
-
-    public String getPhoneNbr() {
-        return phoneNbr;
-    }
-
-    public void setPhoneNbr(String phoneNbr) {
-        this.phoneNbr = phoneNbr;
     }
 
     public String getUserDesc() {
@@ -245,13 +188,9 @@ public class UserDto implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", accNbr=").append(accNbr);
         sb.append(", password=").append(password);
-        sb.append(", email=").append(email);
         sb.append(", realName=").append(realName);
         sb.append(", nickName=").append(nickName);
         sb.append(", enName=").append(enName);
-        sb.append(", qq=").append(qq);
-        sb.append(", wechat=").append(wechat);
-        sb.append(", phoneNbr=").append(phoneNbr);
         sb.append(", userDesc=").append(userDesc);
         sb.append(", state=").append(state);
         sb.append(", regDate=").append(regDate);

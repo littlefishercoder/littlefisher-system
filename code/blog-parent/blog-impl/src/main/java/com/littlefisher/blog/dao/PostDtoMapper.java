@@ -7,7 +7,7 @@ import com.littlefisher.blog.model.PostDto;
 /**
  * Description: post Mapper 接口
  *
- * Created on 2017年12月27日
+ * Created on 2017年12月28日
  * @author jinyanan
  * @version 1.0
  * @since v1.0

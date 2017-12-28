@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.littlefisher.core.biz.framework.enums.EnumRoleType;
 
-
 public class RoleDtoExample {
     /** orderByClause */
     protected String orderByClause;
