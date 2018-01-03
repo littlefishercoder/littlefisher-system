@@ -34,13 +34,9 @@
       <id column="a_id" jdbcType="INTEGER" property="id"/>
       <result column="a_acc_nbr" jdbcType="VARCHAR" property="accNbr"/>
       <result column="a_password" jdbcType="VARCHAR" property="password"/>
-      <result column="a_email" jdbcType="VARCHAR" property="email"/>
       <result column="a_real_name" jdbcType="VARCHAR" property="realName"/>
       <result column="a_nick_name" jdbcType="VARCHAR" property="nickName"/>
       <result column="a_en_name" jdbcType="VARCHAR" property="enName"/>
-      <result column="a_qq" jdbcType="VARCHAR" property="qq"/>
-      <result column="a_wechat" jdbcType="VARCHAR" property="wechat"/>
-      <result column="a_phone_nbr" jdbcType="VARCHAR" property="phoneNbr"/>
       <result column="a_user_desc" jdbcType="VARCHAR" property="userDesc"/>
       <result column="a_state" jdbcType="CHAR" property="state"/>
       <result column="a_reg_date" jdbcType="TIMESTAMP" property="regDate"/>
@@ -55,8 +51,7 @@
     ${alias}.id ${prefix}id, ${alias}.acc_nbr ${prefix}acc_nbr, ${alias}.password `${prefix}password`,
     ${alias}.email ${prefix}email, ${alias}.real_name ${prefix}real_name,
     ${alias}.nick_name ${prefix}nick_name, ${alias}.en_name ${prefix}en_name,
-    ${alias}.qq ${prefix}qq, ${alias}.wechat ${prefix}wechat,
-    ${alias}.phone_nbr ${prefix}phone_nbr, ${alias}.user_desc ${prefix}user_desc,
+    ${alias}.user_desc ${prefix}user_desc,
     ${alias}.state ${prefix}state, ${alias}.reg_date ${prefix}reg_date,
     ${alias}.last_login_date ${prefix}last_login_date
   </sql>

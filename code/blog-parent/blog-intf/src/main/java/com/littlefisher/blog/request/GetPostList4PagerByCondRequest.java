@@ -25,6 +25,10 @@ public class GetPostList4PagerByCondRequest extends PagerRequest {
     @ApiModelProperty("标题，模糊查询")
     private String title;
 
+    /** 博文分类id */
+    @ApiModelProperty("博文分类id")
+    private Long archiveId;
+
     /**
      * keyword 关键字，针对于博文，模糊查询
      */
@@ -49,6 +53,14 @@ public class GetPostList4PagerByCondRequest extends PagerRequest {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Long getArchiveId() {
+        return archiveId;
+    }
+
+    public void setArchiveId(Long archiveId) {
+        this.archiveId = archiveId;
     }
 
     public String getKeyword() {
@@ -77,8 +89,8 @@ public class GetPostList4PagerByCondRequest extends PagerRequest {
 
     @Override
     public String toString() {
-        return "GetPostList4PagerByCondRequest{" + "title='" + title + '\'' + ", keyword='" + keyword + '\'' +
-                ", createdDateStart=" + createdDateStart + ", createdDateEnd=" + createdDateEnd + "} " +
-                super.toString();
+        return "GetPostList4PagerByCondRequest{" + "title='" + title + '\'' + ", archiveId=" + archiveId +
+                ", keyword='" + keyword + '\'' + ", createdDateStart=" + createdDateStart + ", createdDateEnd=" +
+                createdDateEnd + "} " + super.toString();
     }
 }

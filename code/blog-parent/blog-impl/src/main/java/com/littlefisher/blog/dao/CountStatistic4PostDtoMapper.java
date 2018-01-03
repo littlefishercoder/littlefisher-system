@@ -7,7 +7,7 @@ import com.littlefisher.blog.model.CountStatistic4PostDto;
 /**
  * Description: count_statistic_4_post Mapper 接口
  *
- * Created on 2017年12月28日
+ * Created on 2018年01月03日
  * @author jinyanan
  * @version 1.0
  * @since v1.0

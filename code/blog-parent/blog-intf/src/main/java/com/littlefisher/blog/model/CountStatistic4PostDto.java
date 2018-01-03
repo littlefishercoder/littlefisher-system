@@ -14,7 +14,7 @@ import io.swagger.annotations.ApiModelProperty;
  *
  * Description: count_statistic_4_post 实体
  *
- * Created on 2017年12月28日
+ * Created on 2018年01月03日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -32,6 +32,13 @@ public class CountStatistic4PostDto implements Serializable {
     @Id
     @Column(name = "count_statistic_id")
     private Long countStatisticId;
+
+    /**
+     * 博文主键
+     */
+    @ApiModelProperty("博文主键")
+    @Column(name = "post_id")
+    private Long postId;
 
     /**
      * 阅读数
@@ -60,6 +67,14 @@ public class CountStatistic4PostDto implements Serializable {
 
     public void setCountStatisticId(Long countStatisticId) {
         this.countStatisticId = countStatisticId;
+    }
+
+    public Long getPostId() {
+        return postId;
+    }
+
+    public void setPostId(Long postId) {
+        this.postId = postId;
     }
 
     public Long getReadTimes() {
@@ -93,6 +108,7 @@ public class CountStatistic4PostDto implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", countStatisticId=").append(countStatisticId);
+        sb.append(", postId=").append(postId);
         sb.append(", readTimes=").append(readTimes);
         sb.append(", commentedTimes=").append(commentedTimes);
         sb.append(", likedTimes=").append(likedTimes);

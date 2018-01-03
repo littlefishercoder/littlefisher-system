@@ -3,6 +3,9 @@ package com.littlefisher.blog.request;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 /**
  * Description: AddPostCountTimesRequest.java
  *
@@ -15,33 +18,25 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel("增加博文统计数据")
 public class AddPostCountTimesRequest {
 
-    /** 作者id */
-    @ApiModelProperty("作者id")
-    private Long authorId;
-
     /** 博文id */
     @ApiModelProperty("博文id")
+    @NotNull
     private Long postId;
 
     /** 新增评价数 */
     @ApiModelProperty("新增评价数")
+    @Min(0)
     private Long addCommentedTimes;
 
     /** 新增点赞数 */
     @ApiModelProperty("新增点赞数")
+    @Min(0)
     private Long addLikedTimes;
 
     /** 新增访问数 */
     @ApiModelProperty("新增阅读数")
+    @Min(0)
     private Long addReadTimes;
-
-    public Long getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(Long authorId) {
-        this.authorId = authorId;
-    }
 
     public Long getPostId() {
         return postId;
@@ -77,7 +72,7 @@ public class AddPostCountTimesRequest {
 
     @Override
     public String toString() {
-        return "AddPostCountTimesRequest{" + "authorId=" + authorId + ", postId=" + postId + ", addCommentedTimes=" +
-                addCommentedTimes + ", addLikedTimes=" + addLikedTimes + ", addReadTimes=" + addReadTimes + '}';
+        return "AddPostCountTimesRequest{" + "postId=" + postId + ", addCommentedTimes=" + addCommentedTimes +
+                ", addLikedTimes=" + addLikedTimes + ", addReadTimes=" + addReadTimes + '}';
     }
 }

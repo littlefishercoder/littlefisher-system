@@ -32,7 +32,7 @@ public class AuthorExtDto extends AuthorDto {
 
     /** 文章归类列表 */
     @ApiModelProperty("文章归类列表")
-    private ArchiveDto archive;
+    private List<ArchiveDto> archiveList;
 
     /** 标签列表 */
     @ApiModelProperty("标签列表")
@@ -50,12 +50,12 @@ public class AuthorExtDto extends AuthorDto {
         this.user = user;
     }
 
-    public ArchiveDto getArchive() {
-        return archive;
+    public List<ArchiveDto> getArchiveList() {
+        return archiveList;
     }
 
-    public void setArchive(ArchiveDto archive) {
-        this.archive = archive;
+    public void setArchiveList(List<ArchiveDto> archiveList) {
+        this.archiveList = archiveList;
     }
 
     public List<TagDto> getTagList() {
@@ -76,7 +76,7 @@ public class AuthorExtDto extends AuthorDto {
 
     @Override
     public String toString() {
-        return "AuthorExtDto{" + "user=" + user + ", archive=" + archive + ", tagList=" + tagList +
+        return "AuthorExtDto{" + "user=" + user + ", archiveList=" + archiveList + ", tagList=" + tagList +
                 ", userContactStation4WebsiteList=" + userContactStation4WebsiteList + "} " + super.toString();
     }
 }

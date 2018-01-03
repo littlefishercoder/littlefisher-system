@@ -25,4 +25,11 @@ public interface TagDtoExtMapper extends TagDtoMapper, Mapper<TagDto> {
      * @return tag列表
      */
     List<TagDto> selectByCond(GetTagList4PagerByCondRequest request);
+
+    /**
+     * 查询作者名下所有文章的所有tag
+     * @param authorId 作者
+     * @return tag列表
+     */
+    List<TagDto> selectTagListByAuthorId(Long authorId);
 }

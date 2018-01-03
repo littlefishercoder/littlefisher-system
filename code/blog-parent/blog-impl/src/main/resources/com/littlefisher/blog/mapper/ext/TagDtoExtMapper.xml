@@ -17,4 +17,12 @@
     <include refid="Base_Column_List" />
     from tag
   </select>
+  <select id="selectTagListByAuthorId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select distinct
+      c.id, c.`name`, c.state, c.state_date, c.create_date
+    from post a
+      left join post_tag b on a.id = b.post_id
+      left join tag c on b.tag_id = c.id
+    where a.author_id = #{authorId, jdbcType=INTEGER}
+  </select>
 </mapper>

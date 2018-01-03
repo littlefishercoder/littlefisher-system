@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.littlefisher.blog.model.ext.CountStatisticExtDto;
 import com.littlefisher.blog.request.AddBlogCountTimesRequest;
 import com.littlefisher.blog.request.AddPostCountTimesRequest;
+import com.littlefisher.blog.service.ICountStatisticService;
 
 /**
  * Description: CountStatisticController.java
@@ -28,6 +30,9 @@ import com.littlefisher.blog.request.AddPostCountTimesRequest;
 @Api(value = "countStatistics", description = "countStatistics 接口API")
 public class CountStatisticController {
 
+    @Autowired
+    private ICountStatisticService countStatisticService;
+
     /**
      * 查询博客相关数量统计
      *
@@ -37,9 +42,9 @@ public class CountStatisticController {
     @RequestMapping(value = "/blog/{authorId}", method = RequestMethod.GET)
     @ApiOperation("查询博客相关数量统计")
     public CountStatisticExtDto getBlogCountStatistic(
-            @ApiParam(required = true, value = "作者id") @PathVariable("authorId") String authorId) {
-        // TODO: 查询博客相关数量统计
-        return null;
+            @ApiParam(required = true, value = "作者id") @PathVariable("authorId") Long authorId) {
+        // 查询博客相关数量统计
+        return countStatisticService.getBlogCountStatistic(authorId);
     }
 
     /**
@@ -50,7 +55,8 @@ public class CountStatisticController {
     @RequestMapping(value = "/blog", method = RequestMethod.PATCH)
     public void addBlogCountTimes(
             @ApiParam(required = true, value = "增加博客统计信息") @RequestBody AddBlogCountTimesRequest request) {
-        // TODO: 增加博客统计信息
+        // 增加博客统计信息
+        countStatisticService.addBlogCountTimes(request);
     }
 
     /**
@@ -61,7 +67,8 @@ public class CountStatisticController {
     @RequestMapping(value = "/post", method = RequestMethod.PATCH)
     public void addPostCountTimes(
             @ApiParam(required = true, value = "增加博文统计数据") @RequestBody AddPostCountTimesRequest request) {
-        // TODO: 增加博文统计数据
+        // 增加博文统计数据
+        countStatisticService.addPostCountTimes(request);
     }
 
 }

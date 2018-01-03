@@ -28,7 +28,7 @@ public class ValidationInterceptor extends AbstractCommandInterceptor {
 
     @Override
     public <U> U execute(CommandConfig config, Command<U> command) {
-        genetateValidator();
+        generateValidator();
         validateFields(command);
         return next.execute(config, command);
     }
@@ -36,7 +36,7 @@ public class ValidationInterceptor extends AbstractCommandInterceptor {
     /**
      * 初始化Validator
      */
-    private void genetateValidator() {
+    private void generateValidator() {
         if (validator == null) {
             validator = Validation.byProvider(HibernateValidator.class).configure().failFast(true)
                     .buildValidatorFactory().getValidator();

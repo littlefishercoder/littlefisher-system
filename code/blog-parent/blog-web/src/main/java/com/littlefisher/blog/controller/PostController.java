@@ -72,20 +72,6 @@ public class PostController {
     }
 
     /**
-     * 根据分类查询博文列表
-     *
-     * @param archiveId 博文分类
-     * @return 分页博文
-     */
-    @RequestMapping(value = "/{archiveId}/pager", method = RequestMethod.GET)
-    @ApiOperation("根据分类查询博文列表")
-    public PageInfo<PostExtDto> getPostList4PagerByArchiveId(
-            @ApiParam(required = true, value = "博文分类id") @PathVariable("archiveId") Long archiveId) {
-        // TODO: 根据分类查询博文列表
-        return null;
-    }
-
-    /**
      * Description: 根据博文主键查询具体博文
      *
      * @param postId postId

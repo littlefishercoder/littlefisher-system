@@ -3,6 +3,8 @@ package com.littlefisher.blog.request;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.Min;
+
 /**
  * Description: AddBlogCountTimesRequest.java
  *
@@ -21,10 +23,12 @@ public class AddBlogCountTimesRequest {
 
     /** 新增评论数量 */
     @ApiModelProperty("新增评论数量")
+    @Min(0)
     private Long addCommentedTimes;
 
     /** 新增访问数量 */
     @ApiModelProperty("新增访问数量")
+    @Min(0)
     private Long addVisitedTimes;
 
     public Long getAuthorId() {

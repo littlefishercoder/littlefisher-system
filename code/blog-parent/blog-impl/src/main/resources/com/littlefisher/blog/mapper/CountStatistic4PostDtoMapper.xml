@@ -4,12 +4,13 @@
   <resultMap id="BaseResultMap" type="com.littlefisher.blog.model.CountStatistic4PostDto">
     <!--@mbg.generated-->
     <id column="count_statistic_id" jdbcType="INTEGER" property="countStatisticId" />
+    <result column="post_id" jdbcType="INTEGER" property="postId" />
     <result column="read_times" jdbcType="INTEGER" property="readTimes" />
     <result column="commented_times" jdbcType="INTEGER" property="commentedTimes" />
     <result column="liked_times" jdbcType="INTEGER" property="likedTimes" />
   </resultMap>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    count_statistic_id, read_times, commented_times, liked_times
+    count_statistic_id, post_id, read_times, commented_times, liked_times
   </sql>
 </mapper>

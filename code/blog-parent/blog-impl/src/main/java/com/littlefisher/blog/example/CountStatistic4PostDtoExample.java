@@ -231,6 +231,66 @@ public class CountStatistic4PostDtoExample {
             return (Criteria) this;
         }
 
+        public Criteria andPostIdIsNull() {
+            addCriterion("post_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdIsNotNull() {
+            addCriterion("post_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdEqualTo(Long value) {
+            addCriterion("post_id =", value, "postId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdNotEqualTo(Long value) {
+            addCriterion("post_id <>", value, "postId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdGreaterThan(Long value) {
+            addCriterion("post_id >", value, "postId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("post_id >=", value, "postId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdLessThan(Long value) {
+            addCriterion("post_id <", value, "postId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdLessThanOrEqualTo(Long value) {
+            addCriterion("post_id <=", value, "postId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdIn(List<Long> values) {
+            addCriterion("post_id in", values, "postId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdNotIn(List<Long> values) {
+            addCriterion("post_id not in", values, "postId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdBetween(Long value1, Long value2) {
+            addCriterion("post_id between", value1, value2, "postId");
+            return (Criteria) this;
+        }
+
+        public Criteria andPostIdNotBetween(Long value1, Long value2) {
+            addCriterion("post_id not between", value1, value2, "postId");
+            return (Criteria) this;
+        }
+
         public Criteria andReadTimesIsNull() {
             addCriterion("read_times is null");
             return (Criteria) this;
