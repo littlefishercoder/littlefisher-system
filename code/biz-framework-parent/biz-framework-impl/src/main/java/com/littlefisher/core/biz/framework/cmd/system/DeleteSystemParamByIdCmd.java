@@ -1,7 +1,10 @@
 package com.littlefisher.core.biz.framework.cmd.system;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.littlefisher.core.biz.framework.dao.SystemParamDtoMapper;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 
 /**
  * Description:
@@ -12,6 +15,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class DeleteSystemParamByIdCmd extends AbstractCommand<Integer> {
 
     /**
@@ -19,19 +23,16 @@ public class DeleteSystemParamByIdCmd extends AbstractCommand<Integer> {
      */
     private Long systemParamId;
 
-    /**
-     * Description: 构造函数
-     *
-     * @param systemParamId systemParamId
-     */
-    public DeleteSystemParamByIdCmd(Long systemParamId) {
-        super();
+    @Autowired
+    private SystemParamDtoMapper systemParamDtoMapper;
+
+    public DeleteSystemParamByIdCmd setSystemParamId(Long systemParamId) {
         this.systemParamId = systemParamId;
+        return this;
     }
 
     @Override
     public Integer execute() {
-        SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
         return systemParamDtoMapper.deleteByPrimaryKey(systemParamId);
     }
 

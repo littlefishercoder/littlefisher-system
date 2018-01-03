@@ -31,37 +31,37 @@ public class SystemParamServiceImpl extends ServiceImpl implements ISystemParamS
     @Override
     public List<SystemParamDto> getSystemParamList4PagerByCond(
             GetSystemParamList4PagerByCondRequest req) {
-        return this.execute(new GetSystemParamList4PagerByCondCmd(req));
+        return this.execute(getCommand(GetSystemParamList4PagerByCondCmd.class).setReq(req));
     }
 
     @Override
     public SystemParamDto getSystemParamByKey(String paramKey) {
-        return this.execute(new GetSystemParamByKeyCmd(paramKey));
+        return this.execute(getCommand(GetSystemParamByKeyCmd.class).setParamKey(paramKey));
     }
 
     @Override
     public SystemParamDto getSystemParamById(Long systemParamId) {
-        return this.execute(new GetSystemParamByIdCmd(systemParamId));
+        return this.execute(getCommand(GetSystemParamByIdCmd.class).setSystemParamId(systemParamId));
     }
 
     @Override
     public SystemParamDto addSystemParam(SystemParamDto systemParamDto) {
-        return this.execute(new AddSystemParamCmd(systemParamDto));
+        return this.execute(getCommand(AddSystemParamCmd.class).setSystemParamDto(systemParamDto));
     }
 
     @Override
     public int deleteSystemParamByKey(String paramKey) {
-        return this.execute(new DeleteSystemParamByKeyCmd(paramKey));
+        return this.execute(getCommand(DeleteSystemParamByKeyCmd.class).setParamKey(paramKey));
     }
 
     @Override
     public int deleteSystemParamById(Long systemParamId) {
-        return this.execute(new DeleteSystemParamByIdCmd(systemParamId));
+        return this.execute(getCommand(DeleteSystemParamByIdCmd.class).setSystemParamId(systemParamId));
     }
 
     @Override
     public SystemParamDto updateSystemParam(SystemParamDto systemParamDto) {
-        return this.execute(new UpdateSystemParamCmd(systemParamDto));
+        return this.execute(getCommand(UpdateSystemParamCmd.class).setSystemParamDto(systemParamDto));
     }
 
 }

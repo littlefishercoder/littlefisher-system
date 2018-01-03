@@ -29,32 +29,32 @@ public class UserServiceImpl extends ServiceImpl implements IUserService {
 
     @Override
     public List<UserDto> getAllUser() {
-        return this.execute(new QryAllUserCmd());
+        return this.execute(getCommand(QryAllUserCmd.class));
     }
 
     @Override
     public UserDto getUserById(Long userId) {
-        return this.execute(new QryUserByIdCmd(userId));
+        return this.execute(getCommand(QryUserByIdCmd.class).setUserId(userId));
     }
 
     @Override
     public UserDto addUser(UserDto userDto) {
-        return this.execute(new AddUserCmd(userDto));
+        return this.execute(getCommand(AddUserCmd.class).setUserDto(userDto));
     }
 
     @Override
     public UserDto updateUser(UserDto userDto) {
-        return this.execute(new UpdateUserCmd(userDto));
+        return this.execute(getCommand(UpdateUserCmd.class).setUserDto(userDto));
     }
 
     @Override
     public int deleteUser(Long userId) {
-        return this.execute(new DeleteUserCmd(userId));
+        return this.execute(getCommand(DeleteUserCmd.class).setUserId(userId));
     }
 
     @Override
     public List<UserDto> getUserListByCond(GetUserList4PagerByCondRequest req) {
-        return this.execute(new GetUserListByCondCmd(req));
+        return this.execute(getCommand(GetUserListByCondCmd.class).setReq(req));
     }
 
 }

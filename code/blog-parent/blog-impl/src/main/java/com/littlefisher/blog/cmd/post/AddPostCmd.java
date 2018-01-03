@@ -1,8 +1,11 @@
 package com.littlefisher.blog.cmd.post;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.littlefisher.blog.dao.PostDtoMapper;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 
 /**
  * Description:
@@ -13,6 +16,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class AddPostCmd extends AbstractCommand<PostDto> {
 
     /**
@@ -20,19 +24,16 @@ public class AddPostCmd extends AbstractCommand<PostDto> {
      */
     private PostDto postDto;
 
-    /**
-     * Description: 构造函数
-     *
-     * @param postDto postDto
-     */
-    public AddPostCmd(PostDto postDto) {
-        super();
+    @Autowired
+    private PostDtoMapper postDtoMapper;
+
+    public AddPostCmd setPostDto(PostDto postDto) {
         this.postDto = postDto;
+        return this;
     }
 
     @Override
     public PostDto execute() {
-        PostDtoMapper postDtoMapper = this.getMapper(PostDtoMapper.class);
         postDtoMapper.insert(postDto);
         return postDto;
     }

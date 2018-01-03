@@ -2,10 +2,13 @@ package com.littlefisher.core.biz.framework.cmd.system;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.littlefisher.core.biz.framework.dao.SystemParamDtoMapper;
 import com.littlefisher.core.biz.framework.example.SystemParamDtoExample;
 import com.littlefisher.core.biz.framework.model.SystemParamDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 import com.littlefisher.core.utils.CollectionUtil;
 
 /**
@@ -17,6 +20,7 @@ import com.littlefisher.core.utils.CollectionUtil;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class GetSystemParamByKeyCmd extends AbstractCommand<SystemParamDto> {
 
     /**
@@ -24,19 +28,16 @@ public class GetSystemParamByKeyCmd extends AbstractCommand<SystemParamDto> {
      */
     private String paramKey;
 
-    /**
-     * Description: 构造函数
-     *
-     * @param paramKey paramKey
-     */
-    public GetSystemParamByKeyCmd(String paramKey) {
-        super();
+    @Autowired
+    private SystemParamDtoMapper systemParamDtoMapper;
+
+    public GetSystemParamByKeyCmd setParamKey(String paramKey) {
         this.paramKey = paramKey;
+        return this;
     }
 
     @Override
     public SystemParamDto execute() {
-        SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
         SystemParamDtoExample example = new SystemParamDtoExample();
         example.createCriteria().andParamKeyEqualTo(paramKey);
         List<SystemParamDto> systemParamList = systemParamDtoMapper.selectByExample(example);

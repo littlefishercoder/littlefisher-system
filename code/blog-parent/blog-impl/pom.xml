@@ -27,6 +27,11 @@
       <artifactId>biz-framework-intf</artifactId>
       <version>${biz-framework.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.littlefisher</groupId>
+      <artifactId>biz-framework-impl</artifactId>
+      <version>${biz-framework.version}</version>
+    </dependency>
   </dependencies>
 
 </project>

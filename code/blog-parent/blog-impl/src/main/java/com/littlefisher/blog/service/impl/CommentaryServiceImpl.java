@@ -28,29 +28,28 @@ import com.littlefisher.core.interceptor.service.ServiceImpl;
 public class CommentaryServiceImpl extends ServiceImpl implements ICommentaryService {
 
     @Override
-    public List<CommentaryExtDto> getCommentaryList4PagerByCond(
-            GetCommentaryList4PagerByCondRequest req) {
-        return this.execute(new GetCommentaryList4PagerByCondCmd(req));
+    public List<CommentaryExtDto> getCommentaryList4PagerByCond(GetCommentaryList4PagerByCondRequest req) {
+        return this.execute(getCommand(GetCommentaryList4PagerByCondCmd.class).setReq(req));
     }
 
     @Override
     public CommentaryDto getCommentaryById(Long commentaryId) {
-        return this.execute(new GetCommentaryByIdCmd(commentaryId));
+        return this.execute(getCommand(GetCommentaryByIdCmd.class).setCommentaryId(commentaryId));
     }
 
     @Override
     public CommentaryDto addCommentary(CommentaryDto commentaryDto) {
-        return this.execute(new AddCommentaryCmd(commentaryDto));
+        return this.execute(getCommand(AddCommentaryCmd.class).setCommentaryDto(commentaryDto));
     }
 
     @Override
     public CommentaryDto updateCommentary(CommentaryDto commentaryDto) {
-        return this.execute(new UpdateCommentaryCmd(commentaryDto));
+        return this.execute(getCommand(UpdateCommentaryCmd.class).setCommentaryDto(commentaryDto));
     }
 
     @Override
     public int deleteCommentary(Long commentaryId) {
-        return this.execute(new DeleteCommentaryCmd(commentaryId));
+        return this.execute(getCommand(DeleteCommentaryCmd.class).setCommentaryId(commentaryId));
     }
 
 }

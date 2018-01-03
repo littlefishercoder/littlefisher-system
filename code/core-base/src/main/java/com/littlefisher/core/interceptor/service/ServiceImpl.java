@@ -1,7 +1,10 @@
 package com.littlefisher.core.interceptor.service;
 
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
 import com.littlefisher.core.engine.SystemEngine;
@@ -19,7 +22,7 @@ import com.littlefisher.core.utils.StringUtil;
  * @version 1.0
  * @since v1.0
  */
-public class ServiceImpl implements InitializingBean {
+public class ServiceImpl implements InitializingBean, ApplicationContextAware {
 
     /**
      * commandExecutor
@@ -32,6 +35,9 @@ public class ServiceImpl implements InitializingBean {
     @Autowired
     private SystemEngine systemEngine;
 
+    @Autowired
+    private ApplicationContext ac;
+
     /**
      * Description: <br>
      */
@@ -43,24 +49,6 @@ public class ServiceImpl implements InitializingBean {
             value = StringUtil.uncapitalize(mClass.getSimpleName());
         }
         initService(value, this);
-    }
-
-    /**
-     * Description: <br>
-     *
-     * @return CommandExecutor <br>
-     */
-    public CommandExecutor getCommandExecutor() {
-        return commandExecutor;
-    }
-
-    /**
-     * Description: <br>
-     *
-     * @param commandExecutor <br>
-     */
-    public void setCommandExecutor(CommandExecutor commandExecutor) {
-        this.commandExecutor = commandExecutor;
     }
 
     /**
@@ -96,16 +84,48 @@ public class ServiceImpl implements InitializingBean {
      * @return <br>
      */
     protected <U> U execute(CommandConfig config, Command<U> command) {
-
         return commandExecutor.execute(config, command);
     }
 
     /**
-     * Description: 当产生ServiceImpl实例化类时，会调用该方法，然后进行ServiceImpl的初始化操作
+     * 获取Spring中的Command实例，且为新实例。每次请求的实例都不同
+     * @param clazz Command实例
+     * @param <U> <U>
+     * @param <T> <T>
+     * @return Command实例
+     */
+    protected <U, T extends Command<U>> T getCommand(Class<T> clazz) {
+        return ac.getBean(clazz);
+    }
+
+    /**
+     * Description: 当ServiceImpl实例化类时，会调用该方法，然后进行ServiceImpl的初始化操作
      */
     @Override
     public void afterPropertiesSet() {
         init();
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.ac = applicationContext;
+    }
+
+    /**
+     * Description: <br>
+     *
+     * @return CommandExecutor <br>
+     */
+    public CommandExecutor getCommandExecutor() {
+        return commandExecutor;
+    }
+
+    /**
+     * Description: <br>
+     *
+     * @param commandExecutor <br>
+     */
+    public void setCommandExecutor(CommandExecutor commandExecutor) {
+        this.commandExecutor = commandExecutor;
+    }
 }

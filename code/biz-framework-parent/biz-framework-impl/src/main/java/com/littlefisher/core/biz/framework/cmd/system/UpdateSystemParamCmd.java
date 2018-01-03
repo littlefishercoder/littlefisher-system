@@ -1,8 +1,11 @@
 package com.littlefisher.core.biz.framework.cmd.system;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.littlefisher.core.biz.framework.dao.SystemParamDtoMapper;
 import com.littlefisher.core.biz.framework.model.SystemParamDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 
 /**
  * Description: 修改系统参数
@@ -13,6 +16,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class UpdateSystemParamCmd extends AbstractCommand<SystemParamDto> {
 
     /**
@@ -20,19 +24,16 @@ public class UpdateSystemParamCmd extends AbstractCommand<SystemParamDto> {
      */
     private SystemParamDto systemParamDto;
 
-    /**
-     * Description: 构造函数
-     *
-     * @param systemParamDto systemParamDto
-     */
-    public UpdateSystemParamCmd(SystemParamDto systemParamDto) {
-        super();
+    @Autowired
+    private SystemParamDtoMapper systemParamDtoMapper;
+
+    public UpdateSystemParamCmd setSystemParamDto(SystemParamDto systemParamDto) {
         this.systemParamDto = systemParamDto;
+        return this;
     }
 
     @Override
     public SystemParamDto execute() {
-        SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
         systemParamDtoMapper.updateByPrimaryKey(systemParamDto);
         return systemParamDto;
     }

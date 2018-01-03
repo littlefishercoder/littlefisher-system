@@ -29,27 +29,27 @@ public class PostServiceImpl extends ServiceImpl implements IPostService {
 
     @Override
     public List<PostExtDto> getPostList4PagerByCond(GetPostList4PagerByCondRequest req) {
-        return this.execute(new GetPostList4PagerByCondCmd(req));
+        return this.execute(getCommand(GetPostList4PagerByCondCmd.class).setReq(req));
     }
 
     @Override
     public PostDto getPostById(Long postId) {
-        return this.execute(new GetPostByIdCmd(postId));
+        return this.execute(getCommand(GetPostByIdCmd.class).setPostId(postId));
     }
 
     @Override
     public PostDto addPost(PostDto postDto) {
-        return this.execute(new AddPostCmd(postDto));
+        return this.execute(getCommand(AddPostCmd.class).setPostDto(postDto));
     }
 
     @Override
     public PostDto updatePost(PostDto postDto) {
-        return this.execute(new UpdatePostCmd(postDto));
+        return this.execute(getCommand(UpdatePostCmd.class).setPostDto(postDto));
     }
 
     @Override
     public int deletePostById(Long postId) {
-        return this.execute(new DeletePostByIdCmd(postId));
+        return this.execute(getCommand(DeletePostByIdCmd.class).setPostId(postId));
     }
 
 }

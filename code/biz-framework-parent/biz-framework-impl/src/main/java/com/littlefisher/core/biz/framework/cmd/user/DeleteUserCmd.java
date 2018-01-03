@@ -1,7 +1,10 @@
 package com.littlefisher.core.biz.framework.cmd.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.littlefisher.core.biz.framework.dao.UserDtoMapper;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 
 /**
  * Description:
@@ -12,6 +15,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class DeleteUserCmd extends AbstractCommand<Integer> {
 
     /**
@@ -19,18 +23,16 @@ public class DeleteUserCmd extends AbstractCommand<Integer> {
      */
     private Long userId;
 
-    /**
-     * Description: 构造函数
-     *
-     * @param userId userId
-     */
-    public DeleteUserCmd(Long userId) {
+    @Autowired
+    private UserDtoMapper userDtoMapper;
+
+    public DeleteUserCmd setUserId(Long userId) {
         this.userId = userId;
+        return this;
     }
 
     @Override
     public Integer execute() {
-        UserDtoMapper userDtoMapper = this.getMapper(UserDtoMapper.class);
         return userDtoMapper.deleteByPrimaryKey(userId);
     }
 

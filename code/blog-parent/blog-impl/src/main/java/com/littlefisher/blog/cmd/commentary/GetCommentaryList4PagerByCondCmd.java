@@ -2,11 +2,14 @@ package com.littlefisher.blog.cmd.commentary;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.dao.ext.CommentaryDtoExtMapper;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
 import com.littlefisher.blog.request.GetCommentaryList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 
 /**
  *
@@ -18,6 +21,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class GetCommentaryList4PagerByCondCmd extends AbstractCommand<List<CommentaryExtDto>> {
 
     /**
@@ -25,21 +29,16 @@ public class GetCommentaryList4PagerByCondCmd extends AbstractCommand<List<Comme
      */
     private GetCommentaryList4PagerByCondRequest req;
 
-    /**
-     * Description: 构造函数
-     *
-     * @author jinyanan
-     *
-     * @param req req 
-     */
-    public GetCommentaryList4PagerByCondCmd(GetCommentaryList4PagerByCondRequest req) {
-        super();
+    @Autowired
+    private CommentaryDtoExtMapper commentaryDtoMapper;
+
+    public GetCommentaryList4PagerByCondCmd setReq(GetCommentaryList4PagerByCondRequest req) {
         this.req = req;
+        return this;
     }
 
     @Override
     public List<CommentaryExtDto> execute() {
-        CommentaryDtoExtMapper commentaryDtoMapper = this.getMapper(CommentaryDtoExtMapper.class);
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
         return commentaryDtoMapper.selectByCond(req);
     }

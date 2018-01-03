@@ -68,8 +68,11 @@
     <!--把spring下的所有信息打印到allLogger中-->
     <logger name="org.springframework" level="debug">
       <appender-ref ref="allLogger"/>
-      <appender-ref ref="stdout" />
+      <!--<appender-ref ref="stdout" />-->
     </logger>
     <!--删去root节点，以防jetty打印过多无用日志-->
+    <!--<root level="info">-->
+      <!--<appender-ref ref="stdout" />-->
+    <!--</root>-->
   </loggers>
 </configuration>

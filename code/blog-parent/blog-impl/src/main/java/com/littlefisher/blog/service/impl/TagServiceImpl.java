@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.littlefisher.blog.cmd.tag.GetTagList4PagerByCondCommand;
+import com.littlefisher.blog.cmd.tag.GetTagList4PagerByCondCmd;
 import com.littlefisher.blog.model.TagDto;
 import com.littlefisher.blog.request.GetTagList4PagerByCondRequest;
 import com.littlefisher.blog.service.ITagService;
@@ -24,6 +24,6 @@ public class TagServiceImpl extends ServiceImpl implements ITagService {
 
     @Override
     public List<TagDto> getTagList4PagerByCond(GetTagList4PagerByCondRequest request) {
-        return execute(new GetTagList4PagerByCondCommand(request));
+        return execute(getCommand(GetTagList4PagerByCondCmd.class).setRequest(request));
     }
 }

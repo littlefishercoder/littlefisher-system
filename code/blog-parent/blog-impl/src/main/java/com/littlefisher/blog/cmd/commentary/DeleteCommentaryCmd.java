@@ -1,7 +1,10 @@
 package com.littlefisher.blog.cmd.commentary;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.littlefisher.blog.dao.CommentaryDtoMapper;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 
 /**
  * 
@@ -13,6 +16,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class DeleteCommentaryCmd extends AbstractCommand<Integer> {
     
     /**
@@ -20,21 +24,16 @@ public class DeleteCommentaryCmd extends AbstractCommand<Integer> {
      */
     private Long commentaryId;
 
-    /** 
-     * Description: 构造函数
-     *
-     * @author jinyanan
-     *
-     * @param commentaryId commentaryId 
-     */ 
-    public DeleteCommentaryCmd(Long commentaryId) {
-        super();
+    @Autowired
+    private CommentaryDtoMapper commentaryDtoMapper;
+
+    public DeleteCommentaryCmd setCommentaryId(Long commentaryId) {
         this.commentaryId = commentaryId;
+        return this;
     }
 
     @Override
     public Integer execute() {
-        CommentaryDtoMapper commentaryDtoMapper = this.getMapper(CommentaryDtoMapper.class);
         return commentaryDtoMapper.deleteByPrimaryKey(commentaryId);
     }
 

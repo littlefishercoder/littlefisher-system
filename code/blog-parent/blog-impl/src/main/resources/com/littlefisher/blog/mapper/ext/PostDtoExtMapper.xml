@@ -3,16 +3,17 @@
 <mapper namespace="com.littlefisher.blog.dao.ext.PostDtoExtMapper">
   <resultMap id="BaseResultMap" type="com.littlefisher.blog.model.PostDto">
     <!--@mbg.generated-->
-    <id column="id" jdbcType="INTEGER" property="id"/>
-    <result column="title" jdbcType="VARCHAR" property="title"/>
-    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate"/>
-    <result column="original_url" jdbcType="VARCHAR" property="originalUrl"/>
-    <result column="type" jdbcType="CHAR" property="type"/>
-    <result column="last_modify_date" jdbcType="TIMESTAMP" property="lastModifyDate"/>
-    <result column="author_id" jdbcType="INTEGER" property="authorId"/>
-    <result column="enable_comment" jdbcType="CHAR" property="enableComment"/>
-    <result column="state" jdbcType="CHAR" property="state"/>
-    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate"/>
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="original_url" jdbcType="VARCHAR" property="originalUrl" />
+    <result column="type" jdbcType="CHAR" property="type" />
+    <result column="archive_id" jdbcType="INTEGER" property="archiveId" />
+    <result column="author_id" jdbcType="INTEGER" property="authorId" />
+    <result column="enable_comment" jdbcType="CHAR" property="enableComment" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="state_date" jdbcType="TIMESTAMP" property="stateDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.littlefisher.blog.model.PostDto">
     <!--@mbg.generated-->
@@ -25,23 +26,19 @@
     <result column="created_date" jdbcType="TIMESTAMP" property="createdDate"/>
     <result column="original_url" jdbcType="VARCHAR" property="originalUrl"/>
     <result column="type" jdbcType="CHAR" property="type"/>
-    <result column="last_modify_date" jdbcType="TIMESTAMP" property="lastModifyDate"/>
     <result column="author_id" jdbcType="INTEGER" property="authorId"/>
     <result column="enable_comment" jdbcType="CHAR" property="enableComment"/>
     <result column="state" jdbcType="CHAR" property="state"/>
     <result column="state_date" jdbcType="TIMESTAMP" property="stateDate"/>
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate"/>
     <result column="content" jdbcType="LONGVARCHAR" property="content"/>
     <association property="author" javaType="com.littlefisher.core.biz.framework.model.UserDto">
       <id column="a_id" jdbcType="INTEGER" property="id"/>
       <result column="a_acc_nbr" jdbcType="VARCHAR" property="accNbr"/>
       <result column="a_password" jdbcType="VARCHAR" property="password"/>
-      <result column="a_email" jdbcType="VARCHAR" property="email"/>
       <result column="a_real_name" jdbcType="VARCHAR" property="realName"/>
       <result column="a_nick_name" jdbcType="VARCHAR" property="nickName"/>
       <result column="a_en_name" jdbcType="VARCHAR" property="enName"/>
-      <result column="a_qq" jdbcType="VARCHAR" property="qq"/>
-      <result column="a_wechat" jdbcType="VARCHAR" property="wechat"/>
-      <result column="a_phone_nbr" jdbcType="VARCHAR" property="phoneNbr"/>
       <result column="a_user_desc" jdbcType="VARCHAR" property="userDesc"/>
       <result column="a_state" jdbcType="CHAR" property="state"/>
       <result column="a_reg_date" jdbcType="TIMESTAMP" property="regDate"/>
@@ -50,15 +47,14 @@
   </resultMap>
   <sql id="postColumns">
     ${alias}.id, ${alias}.title, ${alias}.created_date, ${alias}.original_url, ${alias}.type,
-    ${alias}.last_modify_date, ${alias}.author_id,
+    ${alias}.update_date, ${alias}.author_id,
     ${alias}.enable_comment, ${alias}.state, ${alias}.state_date, ${alias}.content
   </sql>
   <sql id="authorColumns">
     ${alias}.id ${prefix}id, ${alias}.acc_nbr ${prefix}acc_nbr, ${alias}.password `${prefix}password`,
-    ${alias}.email ${prefix}email, ${alias}.real_name ${prefix}real_name,
+    ${alias}.real_name ${prefix}real_name,
     ${alias}.nick_name ${prefix}nick_name, ${alias}.en_name ${prefix}en_name,
-    ${alias}.qq ${prefix}qq, ${alias}.wechat ${prefix}wechat,
-    ${alias}.phone_nbr ${prefix}phone_nbr, ${alias}.user_desc ${prefix}user_desc,
+    ${alias}.user_desc ${prefix}user_desc,
     ${alias}.state ${prefix}state, ${alias}.reg_date ${prefix}reg_date,
     ${alias}.last_login_date ${prefix}last_login_date
   </sql>

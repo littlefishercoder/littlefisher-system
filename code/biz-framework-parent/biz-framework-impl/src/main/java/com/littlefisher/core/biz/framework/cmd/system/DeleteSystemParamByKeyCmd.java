@@ -1,8 +1,11 @@
 package com.littlefisher.core.biz.framework.cmd.system;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.littlefisher.core.biz.framework.dao.SystemParamDtoMapper;
 import com.littlefisher.core.biz.framework.example.SystemParamDtoExample;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 
 /**
  * Description: 根据key删除系统参数
@@ -13,6 +16,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class DeleteSystemParamByKeyCmd extends AbstractCommand<Integer> {
 
     /**
@@ -20,19 +24,16 @@ public class DeleteSystemParamByKeyCmd extends AbstractCommand<Integer> {
      */
     private String paramKey;
 
-    /**
-     * Description: 构造函数
-     *
-     * @param paramKey paramKey
-     */
-    public DeleteSystemParamByKeyCmd(String paramKey) {
-        super();
+    @Autowired
+    private SystemParamDtoMapper systemParamDtoMapper;
+
+    public DeleteSystemParamByKeyCmd setParamKey(String paramKey) {
         this.paramKey = paramKey;
+        return this;
     }
 
     @Override
     public Integer execute() {
-        SystemParamDtoMapper systemParamDtoMapper = this.getMapper(SystemParamDtoMapper.class);
         SystemParamDtoExample example = new SystemParamDtoExample();
         example.createCriteria().andParamKeyEqualTo(paramKey);
         return systemParamDtoMapper.deleteByExample(example);

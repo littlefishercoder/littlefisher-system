@@ -4,10 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Transient;
-import java.io.Serializable;
-import java.util.List;
 
-import com.littlefisher.blog.model.CountStatistic4PostDto;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.core.biz.framework.model.UserDto;
 
@@ -21,7 +18,7 @@ import com.littlefisher.core.biz.framework.model.UserDto;
  * @since v1.0
  */
 @ApiModel("博文实体")
-public class PostExtDto extends PostDto implements Serializable {
+public class PostExtDto extends PostDto {
 
     /** serialVersionUID */
     private static final long serialVersionUID = -1797683355874863046L;

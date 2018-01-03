@@ -2,11 +2,14 @@ package com.littlefisher.blog.cmd.post;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.blog.dao.ext.PostDtoExtMapper;
 import com.littlefisher.blog.model.ext.PostExtDto;
 import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 
 /**
  * Description:
@@ -17,6 +20,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>> {
 
     /**
@@ -24,19 +28,16 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>
      */
     private GetPostList4PagerByCondRequest req;
 
-    /**
-     * Description: 构造函数
-     *
-     * @param req req
-     */
-    public GetPostList4PagerByCondCmd(GetPostList4PagerByCondRequest req) {
-        super();
+    @Autowired
+    private PostDtoExtMapper postDtoMapper;
+
+    public GetPostList4PagerByCondCmd setReq(GetPostList4PagerByCondRequest req) {
         this.req = req;
+        return this;
     }
 
     @Override
     public List<PostExtDto> execute() {
-        PostDtoExtMapper postDtoMapper = this.getMapper(PostDtoExtMapper.class);
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
         return postDtoMapper.selectByCond(req);
     }

@@ -1,8 +1,11 @@
 package com.littlefisher.blog.cmd.commentary;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.littlefisher.blog.dao.CommentaryDtoMapper;
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 
 /**
  * 
@@ -14,6 +17,7 @@ import com.littlefisher.core.interceptor.AbstractCommand;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class UpdateCommentaryCmd extends AbstractCommand<CommentaryDto> {
     
     /**
@@ -21,21 +25,16 @@ public class UpdateCommentaryCmd extends AbstractCommand<CommentaryDto> {
      */
     private CommentaryDto commentaryDto;
 
-    /** 
-     * Description: 构造函数
-     *
-     * @author jinyanan
-     *
-     * @param commentaryDto commentaryDto  
-     */ 
-    public UpdateCommentaryCmd(CommentaryDto commentaryDto) {
-        super();
+    @Autowired
+    private CommentaryDtoMapper commentaryDtoMapper;
+
+    public UpdateCommentaryCmd setCommentaryDto(CommentaryDto commentaryDto) {
         this.commentaryDto = commentaryDto;
+        return this;
     }
 
     @Override
     public CommentaryDto execute() {
-        CommentaryDtoMapper commentaryDtoMapper = this.getMapper(CommentaryDtoMapper.class);
         commentaryDtoMapper.updateByPrimaryKey(commentaryDto);
         return commentaryDto;
     }
