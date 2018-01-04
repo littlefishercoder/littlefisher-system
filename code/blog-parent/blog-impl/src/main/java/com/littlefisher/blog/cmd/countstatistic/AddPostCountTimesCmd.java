@@ -10,12 +10,12 @@ import com.littlefisher.blog.dao.PostDtoMapper;
 import com.littlefisher.blog.enums.EnumCountStatisticState;
 import com.littlefisher.blog.enums.EnumCountStatisticType;
 import com.littlefisher.blog.example.CountStatistic4PostDtoExample;
-import com.littlefisher.blog.example.CountStatisticDtoExample;
 import com.littlefisher.blog.model.CountStatistic4PostDto;
 import com.littlefisher.blog.model.CountStatisticDto;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.request.AddPostCountTimesRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.stereotype.Command;
 import com.littlefisher.core.utils.CollectionUtil;
 import com.littlefisher.core.utils.DateUtil;
 
@@ -28,6 +28,7 @@ import com.littlefisher.core.utils.DateUtil;
  * @version 1.0
  * @since v1.0
  */
+@Command
 public class AddPostCountTimesCmd extends AbstractCommand<Void> {
 
     /** 请求 */

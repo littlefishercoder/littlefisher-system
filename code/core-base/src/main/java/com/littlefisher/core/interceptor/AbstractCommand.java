@@ -2,6 +2,7 @@ package com.littlefisher.core.interceptor;
 
 import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.utils.SpringContextUtil;
 
 /**
  * Description:

@@ -59,7 +59,7 @@ public class GetBlogCountStatisticCmd extends AbstractCommand<CountStatisticExtD
             request.setAddCommentedTimes(0L);
             request.setAddVisitedTimes(0L);
             countStatisticService.addBlogCountTimes(request);
-            return execute();
+            return this.execute();
         }
         CountStatisticExtDto countStatistic = (CountStatisticExtDto) countStatisticList.get(0);
         countStatistic.setCountStatistic4Blog(countStatistic4BlogDtoMapper.selectByPrimaryKey(countStatistic.getId()));

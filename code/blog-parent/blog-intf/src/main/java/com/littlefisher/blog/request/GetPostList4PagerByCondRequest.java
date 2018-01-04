@@ -30,12 +30,6 @@ public class GetPostList4PagerByCondRequest extends PagerRequest {
     private Long archiveId;
 
     /**
-     * keyword 关键字，针对于博文，模糊查询
-     */
-    @ApiModelProperty("关键字，针对于博文，模糊查询")
-    private String keyword;
-
-    /**
      * createdDateStart 创建时间，时间范围的开始时间
      */
     @ApiModelProperty("创建时间，时间范围的开始时间")
@@ -63,14 +57,6 @@ public class GetPostList4PagerByCondRequest extends PagerRequest {
         this.archiveId = archiveId;
     }
 
-    public String getKeyword() {
-        return keyword;
-    }
-
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
     public Date getCreatedDateStart() {
         return createdDateStart;
     }
@@ -90,7 +76,7 @@ public class GetPostList4PagerByCondRequest extends PagerRequest {
     @Override
     public String toString() {
         return "GetPostList4PagerByCondRequest{" + "title='" + title + '\'' + ", archiveId=" + archiveId +
-                ", keyword='" + keyword + '\'' + ", createdDateStart=" + createdDateStart + ", createdDateEnd=" +
-                createdDateEnd + "} " + super.toString();
+                ", createdDateStart=" + createdDateStart + ", createdDateEnd=" + createdDateEnd + "} " +
+                super.toString();
     }
 }

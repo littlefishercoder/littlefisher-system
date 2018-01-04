@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import com.littlefisher.blog.cmd.countstatistic.AddBlogCountTimesCmd;
 import com.littlefisher.blog.cmd.countstatistic.AddPostCountTimesCmd;
 import com.littlefisher.blog.cmd.countstatistic.GetBlogCountStatisticCmd;
+import com.littlefisher.blog.cmd.countstatistic.GetPostCountStatisticCmd;
 import com.littlefisher.blog.model.ext.CountStatisticExtDto;
 import com.littlefisher.blog.request.AddBlogCountTimesRequest;
 import com.littlefisher.blog.request.AddPostCountTimesRequest;
@@ -26,6 +27,11 @@ public class CountStatisticServiceImpl extends ServiceImpl implements ICountStat
     @Override
     public CountStatisticExtDto getBlogCountStatistic(Long authorId) {
         return execute(getCommand(GetBlogCountStatisticCmd.class).setAuthorId(authorId));
+    }
+
+    @Override
+    public CountStatisticExtDto getPostCountStatistic(Long postId) {
+        return execute(getCommand(GetPostCountStatisticCmd.class).setPostId(postId));
     }
 
     @Override

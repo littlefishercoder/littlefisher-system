@@ -23,6 +23,13 @@ public interface ICountStatisticService {
     CountStatisticExtDto getBlogCountStatistic(Long authorId);
 
     /**
+     * 查询针对于博文的数量统计
+     * @param postId 博文id
+     * @return 数量统计
+     */
+    CountStatisticExtDto getPostCountStatistic(Long postId);
+
+    /**
      * 增加博客相关统计数据
      * @param request 请求
      */
