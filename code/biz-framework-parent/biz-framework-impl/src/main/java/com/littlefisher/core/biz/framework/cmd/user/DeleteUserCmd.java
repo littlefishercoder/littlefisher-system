@@ -18,9 +18,7 @@ import com.littlefisher.core.stereotype.Command;
 @Command
 public class DeleteUserCmd extends AbstractCommand<Integer> {
 
-    /**
-     * userId
-     */
+    /** userId */
     private Long userId;
 
     @Autowired
