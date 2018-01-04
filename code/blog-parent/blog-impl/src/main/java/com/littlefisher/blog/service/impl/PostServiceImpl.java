@@ -9,6 +9,7 @@ import com.littlefisher.blog.cmd.post.DeletePostByIdCmd;
 import com.littlefisher.blog.cmd.post.GetPostByIdCmd;
 import com.littlefisher.blog.cmd.post.GetPostList4PagerByCondCmd;
 import com.littlefisher.blog.cmd.post.UpdatePostCmd;
+import com.littlefisher.blog.request.AddPostRequest;
 import com.littlefisher.blog.service.IPostService;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
@@ -38,8 +39,8 @@ public class PostServiceImpl extends ServiceImpl implements IPostService {
     }
 
     @Override
-    public PostDto addPost(PostDto postDto) {
-        return this.execute(getCommand(AddPostCmd.class).setPostDto(postDto));
+    public void addPost(AddPostRequest request) {
+        this.execute(getCommand(AddPostCmd.class).setRequest(request));
     }
 
     @Override

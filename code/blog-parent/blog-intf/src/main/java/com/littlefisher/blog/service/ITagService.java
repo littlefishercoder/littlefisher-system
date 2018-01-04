@@ -2,6 +2,7 @@ package com.littlefisher.blog.service;
 
 import java.util.List;
 
+import com.littlefisher.blog.model.PostTagDto;
 import com.littlefisher.blog.model.TagDto;
 import com.littlefisher.blog.request.GetTagList4PagerByCondRequest;
 
@@ -23,4 +24,25 @@ public interface ITagService {
      * @return 标签列表
      */
     List<TagDto> getTagList4PagerByCond(GetTagList4PagerByCondRequest request);
+
+    /**
+     * 根据标签名查询标签
+     * @param name 标签名
+     * @return 标签实体
+     */
+    TagDto getTagByName(String name);
+
+    /**
+     * 新增标签
+     * @param name 标签名
+     * @return 标签
+     */
+    TagDto addTag(String name);
+
+    /**
+     * 给博文加标签
+     * @param postTagDto 关联
+     * @return PostTagDto
+     */
+    PostTagDto linkPostAndTag(PostTagDto postTagDto);
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
+import com.littlefisher.blog.request.AddPostRequest;
 import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
 
 /**
@@ -34,12 +35,11 @@ public interface IPostService {
     PostDto getPostById(Long postId);
 
     /**
-     * Description:
+     * Description: 新增博文
      *
-     * @param postDto postDto
-     * @return PostDto
+     * @param request request
      */
-    PostDto addPost(PostDto postDto);
+    void addPost(AddPostRequest request);
 
     /**
      * Description:

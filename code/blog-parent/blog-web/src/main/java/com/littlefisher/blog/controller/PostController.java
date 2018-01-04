@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.littlefisher.blog.request.AddPostRequest;
 import com.littlefisher.blog.service.IPostService;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
@@ -74,8 +75,8 @@ public class PostController {
      */
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation("新增博文")
-    public PostDto addPost(@ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) {
-        return postService.addPost(postDto);
+    public void addPost(@ApiParam(required = true, value = "博文实体") @RequestBody AddPostRequest request) {
+        postService.addPost(request);
     }
 
     /**
