@@ -86,6 +86,9 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>
         if (StringUtil.isNotBlank(req.getTitle())) {
             criteria.andTitleLike(req.getTitle());
         }
+        if (req.getAuthorId() != null) {
+            criteria.andAuthorIdEqualTo(req.getAuthorId());
+        }
         if (req.getArchiveId() != null) {
             criteria.andArchiveIdEqualTo(req.getArchiveId());
         }

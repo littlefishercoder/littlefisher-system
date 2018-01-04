@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
-import com.littlefisher.blog.request.GetPostList4IndexPagerByCondRequest;
 import com.littlefisher.blog.service.IPostService;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
@@ -53,22 +52,6 @@ public class PostController {
             @ApiParam(required = true, value = "查询博文列表的条件") @ModelAttribute GetPostList4PagerByCondRequest req) {
         List<PostExtDto> postList = postService.getPostList4PagerByCond(req);
         return new PageInfo<>(postList);
-    }
-
-    /**
-     *
-     * 首页查询博文列表
-     *
-     * @param request 入参
-     * @return 分页博文
-     */
-    @RequestMapping(value = "/index/pager", method = RequestMethod.GET)
-    @ApiOperation("首页查询博文列表")
-    public PageInfo<PostExtDto> getPostList4IndexPagerByCond(
-            @ApiParam(required = true, value = "首页查询博文列表入参") @ModelAttribute
-                    GetPostList4IndexPagerByCondRequest request) {
-        // TODO: 首页博文分页列表，包含博文标签、博文分类、阅读数、点赞数、评论数等
-        return null;
     }
 
     /**

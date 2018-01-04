@@ -74,9 +74,9 @@ public class PostDto implements Serializable {
     private Long archiveId;
 
     /**
-     * 作者主键，空为匿名作者
+     * 作者主键
      */
-    @ApiModelProperty("作者主键，空为匿名作者")
+    @ApiModelProperty("作者主键")
     @Column(name = "author_id")
     private Long authorId;
 
