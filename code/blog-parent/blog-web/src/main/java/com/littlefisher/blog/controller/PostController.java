@@ -70,7 +70,7 @@ public class PostController {
     /**
      * Description: 新增博文
      *
-     * @param postDto 博文实体
+     * @param request 博文实体
      * @return PostDto
      */
     @RequestMapping(method = RequestMethod.POST)
