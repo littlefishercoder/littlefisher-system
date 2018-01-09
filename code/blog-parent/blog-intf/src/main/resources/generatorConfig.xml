@@ -38,7 +38,9 @@
     <sqlMapGenerator targetPackage="com.littlefisher.blog.mapper" targetProject="${targetResourcesProject}"/>
 
     <javaClientGenerator targetPackage="com.littlefisher.blog.dao" targetProject="${targetJavaProject}"
-                         type="XMLMAPPER"/>
+                         type="XMLMAPPER">
+      <property name="rootInterface" value="com.littlefisher.core.mybatis.mapper.common.CommonMapper"/>
+    </javaClientGenerator>
 
     <!--<table tableName="commentary" domainObjectName="CommentaryDto" escapeWildcards="true">-->
       <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->

@@ -39,6 +39,11 @@ public class PostServiceImpl extends ServiceImpl implements IPostService {
     }
 
     @Override
+    public PostDto getPostWithoutBlobById(Long postId) {
+        return null;
+    }
+
+    @Override
     public void addPost(AddPostRequest request) {
         this.execute(getCommand(AddPostCmd.class).setRequest(request));
     }

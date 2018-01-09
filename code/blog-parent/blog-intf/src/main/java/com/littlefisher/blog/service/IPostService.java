@@ -35,6 +35,13 @@ public interface IPostService {
     PostDto getPostById(Long postId);
 
     /**
+     * 根据id查询博文，不带博文全文
+     * @param postId 博文id
+     * @return 博文实体
+     */
+    PostDto getPostWithoutBlobById(Long postId);
+
+    /**
      * Description: 新增博文
      *
      * @param request request
