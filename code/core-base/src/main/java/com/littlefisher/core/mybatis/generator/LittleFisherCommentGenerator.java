@@ -4,6 +4,7 @@ import java.text.MessageFormat;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.ibatis.type.JdbcType;
 import org.mybatis.generator.api.CommentGenerator;
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -148,6 +149,11 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
             String sql = MessageFormat.format(introspectedTable.getTableConfiguration().
                     getGeneratedKey().getRuntimeSqlStatement(), tableName, tableName.toUpperCase());
             field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY, generator = \"" + sql + "\")");
+        }
+        // 针对于大字段，增加ColumnType注解
+        if (introspectedColumn.isBLOBColumn()) {
+            JdbcType type = JdbcType.forCode(introspectedColumn.getJdbcType());
+            field.addAnnotation("@ColumnType(jdbcType = JdbcType." + type.name() + ")");
         }
 
     }

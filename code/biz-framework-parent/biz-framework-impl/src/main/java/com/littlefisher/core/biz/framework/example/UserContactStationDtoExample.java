@@ -8,6 +8,7 @@ import com.littlefisher.core.biz.framework.enums.EnumUserContactStationState;
 import com.littlefisher.core.biz.framework.enums.EnumUserContactStationType;
 import com.littlefisher.core.enums.EnumBizBool;
 
+
 public class UserContactStationDtoExample {
     /** orderByClause */
     protected String orderByClause;

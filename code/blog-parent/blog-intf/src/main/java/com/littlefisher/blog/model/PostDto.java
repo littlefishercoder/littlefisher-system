@@ -1,27 +1,28 @@
 package com.littlefisher.blog.model;
 
-import java.io.Serializable;
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import tk.mybatis.mapper.annotation.ColumnType;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Date;
+
+import org.apache.ibatis.type.JdbcType;
 
 import com.littlefisher.blog.enums.EnumPostState;
 import com.littlefisher.blog.enums.EnumPostType;
 import com.littlefisher.core.enums.EnumBizBool;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
-
 /**
  *
  * Description: post 实体
  *
- * Created on 2017年12月28日
+ * Created on 2018年01月10日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -111,6 +112,7 @@ public class PostDto implements Serializable {
      * 博文
      */
     @ApiModelProperty("博文")
+    @ColumnType(jdbcType = JdbcType.LONGVARCHAR)
     private String content;
 
     public Long getId() {

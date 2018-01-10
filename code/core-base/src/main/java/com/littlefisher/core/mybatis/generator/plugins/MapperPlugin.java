@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.ibatis.type.JdbcType;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
@@ -25,7 +27,15 @@ import com.littlefisher.core.mybatis.generator.LittleFisherCommentGenerator;
 import com.littlefisher.core.utils.CollectionUtil;
 import com.littlefisher.core.utils.StringUtil;
 
+import io.swagger.annotations.ApiModelProperty;
 import tk.mybatis.mapper.MapperException;
+import tk.mybatis.mapper.annotation.ColumnType;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 
 /**
  * Description:
@@ -172,6 +182,78 @@ public class MapperPlugin extends PluginAdapter {
      * 处理实体类的包和@Table注解
      */
     private void processEntityClass(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+//        //引入JPA注解
+//        topLevelClass.addImportedType("javax.persistence.Table");
+//        String tableName = introspectedTable.getFullyQualifiedTableNameAtRuntime();
+//        //如果包含空格，或者需要分隔符，需要完善
+//        if (StringUtility.stringContainsSpace(tableName)) {
+//            tableName = context.getBeginningDelimiter() + tableName + context.getEndingDelimiter();
+//        }
+//        //是否忽略大小写，对于区分大小写的数据库，会有用
+//        if (caseSensitive && !topLevelClass.getType().getShortName().equals(tableName)) {
+//            topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
+//        } else if (!topLevelClass.getType().getShortName().equalsIgnoreCase(tableName)) {
+//            topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
+//        } else if (StringUtility.stringHasValue(schema) || StringUtility.stringHasValue(beginningDelimiter)
+//                   || StringUtility.stringHasValue(endingDelimiter)) {
+//            topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
+//        }
+        //  导入Table注解
+        importClassTableAnnotation(topLevelClass, introspectedTable);
+        // 导入ApiModel注解
+        importClassApiModelAnnotation(topLevelClass, introspectedTable);
+//        topLevelClass.addImportedType("io.swagger.annotations.ApiModelProperty");
+
+//        topLevelClass.addImportedType("javax.persistence.Column");
+        //        // 引入JPA注解
+        importFieldAnnotation(topLevelClass, Column.class);
+        // 判断是否有@GeneratedValue注解的字段
+        importFieldAnnotation(topLevelClass, GeneratedValue.class, GenerationType.class);
+        // 导入swagger配置
+        importFieldAnnotation(topLevelClass, ApiModelProperty.class);
+        // 导入主键生成策略
+        importFieldAnnotation(topLevelClass, Id.class);
+        // 判断field是否是Transient，如果是则导入对应包
+        importFieldAnnotation(topLevelClass, Transient.class);
+        // 导入列类型
+        importFieldAnnotation(topLevelClass, ColumnType.class, JdbcType.class);
+
+        // 判断是否有@GeneratedValue注解的字段
+//        boolean hasGeneratedValueField = Iterators.any(topLevelClass.getFields().iterator(),
+//                field -> field != null && CollectionUtil.isNotEmpty(field.getAnnotations()) && Iterators
+//                        .any(field.getAnnotations().iterator(),
+//                                annotation -> StringUtil.isNotBlank(annotation) && annotation
+//                                        .startsWith("@GeneratedValue")));
+//
+//        if (hasGeneratedValueField) {
+//            topLevelClass.addImportedType("javax.persistence.GeneratedValue");
+//            topLevelClass.addImportedType("javax.persistence.GenerationType");
+//        }
+//        topLevelClass.addImportedType("javax.persistence.Id");
+
+        // 判断field是否是Transient，如果是则导入对应包
+//        if (Iterators.any(topLevelClass.getFields().iterator(), field -> field != null && field.isTransient())) {
+//            topLevelClass.addImportedType("javax.persistence.Transient");
+//        }
+
+        // 实体类注释
+        topLevelClass.addJavaDocLine("/**");
+        topLevelClass.addJavaDocLine(" *");
+        topLevelClass.addJavaDocLine(" * Description: " + introspectedTable.getFullyQualifiedTable() + " 实体");
+        topLevelClass.addJavaDocLine(" *");
+        topLevelClass.addJavaDocLine(" * Created on " + currentDateStr);
+        topLevelClass.addJavaDocLine(" * @author " + author);
+        topLevelClass.addJavaDocLine(" * @version 1.0");
+        topLevelClass.addJavaDocLine(" * @since v1.0");
+        topLevelClass.addJavaDocLine(" */");
+    }
+
+    /**
+     * 导入Table注解
+     * @param topLevelClass topLevelClass
+     * @param introspectedTable introspectedTable
+     */
+    private void importClassTableAnnotation(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
         //引入JPA注解
         topLevelClass.addImportedType("javax.persistence.Table");
         String tableName = introspectedTable.getFullyQualifiedTableNameAtRuntime();
@@ -185,47 +267,41 @@ public class MapperPlugin extends PluginAdapter {
         } else if (!topLevelClass.getType().getShortName().equalsIgnoreCase(tableName)) {
             topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
         } else if (StringUtility.stringHasValue(schema) || StringUtility.stringHasValue(beginningDelimiter)
-                   || StringUtility.stringHasValue(endingDelimiter)) {
+                || StringUtility.stringHasValue(endingDelimiter)) {
             topLevelClass.addAnnotation("@Table(name = \"" + getDelimiterName(tableName) + "\")");
         }
+    }
 
-        // 导入ApiModel和ApiModelProperty包，用于swaggerUI
-        topLevelClass.addImportedType("io.swagger.annotations.ApiModel");
-        topLevelClass.addImportedType("io.swagger.annotations.ApiModelProperty");
-
-        topLevelClass.addAnnotation("@ApiModel(\"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
-
-        // 引入JPA注解
-        topLevelClass.addImportedType("javax.persistence.Column");
-
-        // 判断是否有@GeneratedValue注解的字段
-        boolean hasGeneratedValueField = Iterators.any(topLevelClass.getFields().iterator(),
+    /**
+     * field上的注解，需要在class上进行导入
+     * @param topLevelClass topLevelClass
+     * @param mainAnnotation 字段上的注解
+     * @param extAnnotations 该注解所需额外的导入类
+     */
+    private void importFieldAnnotation(TopLevelClass topLevelClass, Class<?> mainAnnotation, Class<?>... extAnnotations) {
+        boolean hasAnnotationOnField = Iterators.any(topLevelClass.getFields().iterator(),
                 field -> field != null && CollectionUtil.isNotEmpty(field.getAnnotations()) && Iterators
                         .any(field.getAnnotations().iterator(),
                                 annotation -> StringUtil.isNotBlank(annotation) && annotation
-                                        .startsWith("@GeneratedValue")));
-
-        if (hasGeneratedValueField) {
-            topLevelClass.addImportedType("javax.persistence.GeneratedValue");
-            topLevelClass.addImportedType("javax.persistence.GenerationType");
+                                        .startsWith("@" + mainAnnotation.getSimpleName())));
+        if (hasAnnotationOnField) {
+            topLevelClass.addImportedType(mainAnnotation.getCanonicalName());
+            if (ArrayUtils.isNotEmpty(extAnnotations)) {
+                for (Class<?> extAnnotation : extAnnotations) {
+                    topLevelClass.addImportedType(extAnnotation.getCanonicalName());
+                }
+            }
         }
-        topLevelClass.addImportedType("javax.persistence.Id");
+    }
 
-        // 判断field是否是Transient，如果是则导入对应包
-        if (Iterators.any(topLevelClass.getFields().iterator(), field -> field != null && field.isTransient())) {
-            topLevelClass.addImportedType("javax.persistence.Transient");
-        }
-
-        // 实体类注释
-        topLevelClass.addJavaDocLine("/**");
-        topLevelClass.addJavaDocLine(" *");
-        topLevelClass.addJavaDocLine(" * Description: " + introspectedTable.getFullyQualifiedTable() + " 实体");
-        topLevelClass.addJavaDocLine(" *");
-        topLevelClass.addJavaDocLine(" * Created on " + currentDateStr);
-        topLevelClass.addJavaDocLine(" * @author " + author);
-        topLevelClass.addJavaDocLine(" * @version 1.0");
-        topLevelClass.addJavaDocLine(" * @since v1.0");
-        topLevelClass.addJavaDocLine(" */");
+    /**
+     * 导入ApiModel配置
+     * @param topLevelClass topLevelClass
+     * @param introspectedTable introspectedTable
+     */
+    private void importClassApiModelAnnotation(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        topLevelClass.addAnnotation("@ApiModel(\"" + introspectedTable.getFullyQualifiedTable() + "实体\")");
+        topLevelClass.addImportedType("io.swagger.annotations.ApiModel");
     }
 
     /**

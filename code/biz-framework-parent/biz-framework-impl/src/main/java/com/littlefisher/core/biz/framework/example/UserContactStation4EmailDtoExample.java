@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.core.biz.framework.enums.EnumUserContactStation4EmailType;
 
+
 public class UserContactStation4EmailDtoExample {
     /** orderByClause */
     protected String orderByClause;

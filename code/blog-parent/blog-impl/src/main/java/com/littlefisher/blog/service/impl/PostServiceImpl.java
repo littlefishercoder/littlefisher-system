@@ -8,6 +8,7 @@ import com.littlefisher.blog.cmd.post.AddPostCmd;
 import com.littlefisher.blog.cmd.post.DeletePostByIdCmd;
 import com.littlefisher.blog.cmd.post.GetPostByIdCmd;
 import com.littlefisher.blog.cmd.post.GetPostList4PagerByCondCmd;
+import com.littlefisher.blog.cmd.post.GetPostWithoutBlobByIdCmd;
 import com.littlefisher.blog.cmd.post.UpdatePostCmd;
 import com.littlefisher.blog.request.AddPostRequest;
 import com.littlefisher.blog.service.IPostService;
@@ -40,7 +41,7 @@ public class PostServiceImpl extends ServiceImpl implements IPostService {
 
     @Override
     public PostDto getPostWithoutBlobById(Long postId) {
-        return null;
+        return this.execute(getCommand(GetPostWithoutBlobByIdCmd.class).setPostId(postId));
     }
 
     @Override

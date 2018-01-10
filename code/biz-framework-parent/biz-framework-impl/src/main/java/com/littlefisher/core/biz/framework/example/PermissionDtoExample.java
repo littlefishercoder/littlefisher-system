@@ -3,6 +3,7 @@ package com.littlefisher.core.biz.framework.example;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class PermissionDtoExample {
     /** orderByClause */
     protected String orderByClause;

@@ -1,25 +1,26 @@
 package com.littlefisher.blog.model;
 
-import java.io.Serializable;
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import tk.mybatis.mapper.annotation.ColumnType;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Date;
+
+import org.apache.ibatis.type.JdbcType;
 
 import com.littlefisher.blog.enums.EnumCommentaryState;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 
 /**
  *
  * Description: commentary 实体
  *
- * Created on 2017年12月28日
+ * Created on 2018年01月10日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -104,6 +105,7 @@ public class CommentaryDto implements Serializable {
      * 评论内容
      */
     @ApiModelProperty("评论内容")
+    @ColumnType(jdbcType = JdbcType.LONGVARCHAR)
     private String content;
 
     public Long getId() {

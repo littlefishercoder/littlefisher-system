@@ -1,12 +1,11 @@
 package com.littlefisher.core.biz.framework.dao.ext;
 
-import tk.mybatis.mapper.common.Mapper;
-
 import java.util.List;
 
 import com.littlefisher.core.biz.framework.dao.UserDtoMapper;
 import com.littlefisher.core.biz.framework.model.UserDto;
 import com.littlefisher.core.biz.framework.request.GetUserList4PagerByCondRequest;
+import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
 
 /**
  * Description: UserDtoExtMapper.java
@@ -17,7 +16,7 @@ import com.littlefisher.core.biz.framework.request.GetUserList4PagerByCondReques
  * @version 1.0
  * @since v1.0
  */
-public interface UserDtoExtMapper extends UserDtoMapper, Mapper<UserDto> {
+public interface UserDtoExtMapper extends UserDtoMapper, CommonMapper<UserDto> {
 
     /**
      * 根据条件查询

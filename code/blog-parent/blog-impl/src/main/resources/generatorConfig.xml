@@ -12,7 +12,7 @@
     <property name="javaFormatter" value="com.littlefisher.core.mybatis.generator.SortImportsAndFieldsJavaFormatter"/>
 
     <plugin type="com.littlefisher.core.mybatis.generator.plugins.MapperPlugin">
-      <property name="mappers" value="tk.mybatis.mapper.common.Mapper"/>
+      <property name="mappers" value="com.littlefisher.core.mybatis.mapper.common.CommonMapper"/>
       <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
       <!--<property name="caseSensitive" value="true"/>-->
     </plugin>
@@ -38,9 +38,7 @@
     <sqlMapGenerator targetPackage="com.littlefisher.blog.mapper" targetProject="${targetResourcesProject}"/>
 
     <javaClientGenerator targetPackage="com.littlefisher.blog.dao" targetProject="${targetJavaProject}"
-                         type="XMLMAPPER">
-      <property name="rootInterface" value="com.littlefisher.core.mybatis.mapper.common.CommonMapper"/>
-    </javaClientGenerator>
+                         type="XMLMAPPER" />
 
     <!--<table tableName="commentary" domainObjectName="CommentaryDto" escapeWildcards="true">-->
       <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
@@ -74,11 +72,9 @@
       <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumCountStatisticState" />-->
     <!--</table>-->
     <!--<table tableName="count_statistic_4_blog" domainObjectName="CountStatistic4BlogDto" escapeWildcards="true">-->
-      <!--&lt;!&ndash;<generatedKey column="count_statistic_id" sqlStatement="Mysql" identity="true"/>&ndash;&gt;-->
     <!--</table>-->
-    <table tableName="count_statistic_4_post" domainObjectName="CountStatistic4PostDto" escapeWildcards="true">
-      <!--<generatedKey column="count_statistic_id" sqlStatement="Mysql" identity="true"/>-->
-    </table>
+    <!--<table tableName="count_statistic_4_post" domainObjectName="CountStatistic4PostDto" escapeWildcards="true">-->
+    <!--</table>-->
     <!--<table tableName="friend_link" domainObjectName="FriendLinkDto" escapeWildcards="true">-->
       <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
       <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumFriendLinkState" />-->

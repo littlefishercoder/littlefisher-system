@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.enums.EnumTagState;
 
+
 public class TagDtoExample {
     /** orderByClause */
     protected String orderByClause;

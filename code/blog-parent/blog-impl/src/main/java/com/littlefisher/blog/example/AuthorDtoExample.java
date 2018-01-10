@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.enums.EnumAuthorState;
 
+
 public class AuthorDtoExample {
     /** orderByClause */
     protected String orderByClause;

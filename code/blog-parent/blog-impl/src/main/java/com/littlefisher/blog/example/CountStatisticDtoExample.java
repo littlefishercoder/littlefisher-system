@@ -7,6 +7,7 @@ import java.util.List;
 import com.littlefisher.blog.enums.EnumCountStatisticState;
 import com.littlefisher.blog.enums.EnumCountStatisticType;
 
+
 public class CountStatisticDtoExample {
     /** orderByClause */
     protected String orderByClause;

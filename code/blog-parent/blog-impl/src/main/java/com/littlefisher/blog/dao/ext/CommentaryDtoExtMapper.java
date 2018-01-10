@@ -1,13 +1,12 @@
 package com.littlefisher.blog.dao.ext;
 
-import tk.mybatis.mapper.common.Mapper;
-
 import java.util.List;
 
 import com.littlefisher.blog.dao.CommentaryDtoMapper;
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
 import com.littlefisher.blog.request.GetCommentaryList4PagerByCondRequest;
+import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
 
 /**
  * Description: commentary Mapper 接口
@@ -18,7 +17,7 @@ import com.littlefisher.blog.request.GetCommentaryList4PagerByCondRequest;
  * @version 1.0
  * @since v1.0
  */
-public interface CommentaryDtoExtMapper extends CommentaryDtoMapper, Mapper<CommentaryDto> {
+public interface CommentaryDtoExtMapper extends CommentaryDtoMapper, CommonMapper<CommentaryDto> {
 
     /**
      * 根据条件查询评价

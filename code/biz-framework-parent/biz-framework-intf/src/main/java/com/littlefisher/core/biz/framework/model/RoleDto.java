@@ -1,24 +1,22 @@
 package com.littlefisher.core.biz.framework.model;
 
-import java.io.Serializable;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 import com.littlefisher.core.biz.framework.enums.EnumRoleType;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 
 /**
  *
  * Description: bfm_role 实体
  *
- * Created on 2017年12月28日
+ * Created on 2018年01月10日
  * @author jinyanan
  * @version 1.0
  * @since v1.0

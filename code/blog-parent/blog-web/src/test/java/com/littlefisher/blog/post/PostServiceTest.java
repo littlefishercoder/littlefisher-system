@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.service.IPostService;
 import com.littlefisher.blog.model.ext.PostExtDto;
 import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
@@ -38,6 +39,14 @@ public class PostServiceTest {
         req.setPageSize(20);
         List<PostExtDto> postList = postService.getPostList4PagerByCond(req);
         logger.debug("postList: [{}]", postList);
+    }
+
+    @Test
+    public void testGetPostWithoutBlobById() {
+        Long postId = 1L;
+        PostDto postDto = postService.getPostWithoutBlobById(postId);
+
+        logger.debug("postDto: [{}]", postDto);
     }
 
 }

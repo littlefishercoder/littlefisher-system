@@ -1,11 +1,15 @@
 package com.littlefisher.blog.cmd.post;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.littlefisher.blog.dao.PostDtoMapper;
+import com.littlefisher.blog.example.PostDtoExample;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
 import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.utils.CollectionUtil;
 
 /**
  * Description: getPostWithoutBlobByIdCmd.java
@@ -32,7 +36,9 @@ public class GetPostWithoutBlobByIdCmd extends AbstractCommand<PostDto> {
 
     @Override
     public PostDto execute() {
-//        return postDtoMapper.select;
-        return null;
+        PostDtoExample example = new PostDtoExample();
+        example.createCriteria().andIdEqualTo(postId);
+        List<PostDto> postList = postDtoMapper.selectByExampleWithoutBlob(example);
+        return CollectionUtil.isEmpty(postList) ? null : postList.get(0);
     }
 }

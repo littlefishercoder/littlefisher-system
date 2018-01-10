@@ -1,25 +1,23 @@
 package com.littlefisher.blog.model;
 
-import java.io.Serializable;
-import java.util.Date;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
+import java.util.Date;
 
 import com.littlefisher.blog.enums.EnumArchiveState;
-
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 
 /**
  *
  * Description: archive 实体
  *
- * Created on 2017年12月28日
+ * Created on 2018年01月10日
  * @author jinyanan
  * @version 1.0
  * @since v1.0

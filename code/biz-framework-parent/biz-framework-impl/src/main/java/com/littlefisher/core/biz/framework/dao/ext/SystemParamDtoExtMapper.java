@@ -1,12 +1,12 @@
 package com.littlefisher.core.biz.framework.dao.ext;
 
-import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
 
 import com.littlefisher.core.biz.framework.dao.SystemParamDtoMapper;
 import com.littlefisher.core.biz.framework.model.SystemParamDto;
 import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCondRequest;
+import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
 
 /**
  * Description: SystemParamDtoExtMapper.java
@@ -17,7 +17,7 @@ import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCon
  * @version 1.0
  * @since v1.0
  */
-public interface SystemParamDtoExtMapper extends SystemParamDtoMapper, Mapper<SystemParamDto> {
+public interface SystemParamDtoExtMapper extends SystemParamDtoMapper, CommonMapper<SystemParamDto> {
 
     /**
      * 根据条件查询

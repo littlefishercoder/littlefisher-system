@@ -1,12 +1,11 @@
 package com.littlefisher.blog.dao.ext;
 
-import tk.mybatis.mapper.common.Mapper;
-
 import java.util.List;
 
 import com.littlefisher.blog.dao.TagDtoMapper;
 import com.littlefisher.blog.model.TagDto;
 import com.littlefisher.blog.request.GetTagList4PagerByCondRequest;
+import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
 
 /**
  * Description: TagDtoExtMapper.java
@@ -17,7 +16,7 @@ import com.littlefisher.blog.request.GetTagList4PagerByCondRequest;
  * @version 1.0
  * @since v1.0
  */
-public interface TagDtoExtMapper extends TagDtoMapper, Mapper<TagDto> {
+public interface TagDtoExtMapper extends TagDtoMapper, CommonMapper<TagDto> {
 
     /**
      * 根据条件查询

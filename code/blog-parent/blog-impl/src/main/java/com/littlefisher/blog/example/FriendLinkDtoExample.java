@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.enums.EnumFriendLinkState;
 
+
 public class FriendLinkDtoExample {
     /** orderByClause */
     protected String orderByClause;

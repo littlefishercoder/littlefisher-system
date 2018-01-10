@@ -95,6 +95,7 @@ mybatis:
 
 mapper:
   identity: mysql
+  mappers: com.littlefisher.core.mybatis.mapper.common.CommonMapper
 
 pagehelper:
   helper-dialect: mysql

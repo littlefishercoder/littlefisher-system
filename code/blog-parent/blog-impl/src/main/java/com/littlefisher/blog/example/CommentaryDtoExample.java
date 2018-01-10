@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.enums.EnumCommentaryState;
 
+
 public class CommentaryDtoExample {
     /** orderByClause */
     protected String orderByClause;

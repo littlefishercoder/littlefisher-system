@@ -1,6 +1,8 @@
 package com.littlefisher.core.mybatis.mapper.common;
 
-import tk.mybatis.mapper.common.Marker;
+import tk.mybatis.mapper.common.Mapper;
+
+import com.littlefisher.core.mybatis.mapper.common.example.SelectByExampleMapper;
 
 /**
  * Description: CommonMapper.java
@@ -11,5 +13,5 @@ import tk.mybatis.mapper.common.Marker;
  * @version 1.0
  * @since v1.0
  */
-public interface CommonMapper<T> extends Marker {
+public interface CommonMapper<T> extends Mapper<T>, SelectByExampleMapper<T> {
 }

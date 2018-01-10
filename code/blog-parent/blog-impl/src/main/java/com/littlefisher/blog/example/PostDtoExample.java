@@ -8,6 +8,7 @@ import com.littlefisher.blog.enums.EnumPostState;
 import com.littlefisher.blog.enums.EnumPostType;
 import com.littlefisher.core.enums.EnumBizBool;
 
+
 public class PostDtoExample {
     /** orderByClause */
     protected String orderByClause;

@@ -1,13 +1,12 @@
 package com.littlefisher.blog.dao.ext;
 
-import tk.mybatis.mapper.common.Mapper;
-
 import java.util.List;
 
 import com.littlefisher.blog.dao.PostDtoMapper;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
 import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
+import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
 
 /**
  * Description: post Mapper 接口
@@ -18,7 +17,7 @@ import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
  * @version 1.0
  * @since v1.0
  */
-public interface PostDtoExtMapper extends PostDtoMapper, Mapper<PostDto> {
+public interface PostDtoExtMapper extends PostDtoMapper, CommonMapper<PostDto> {
 
     /**
      * 根据条件查询

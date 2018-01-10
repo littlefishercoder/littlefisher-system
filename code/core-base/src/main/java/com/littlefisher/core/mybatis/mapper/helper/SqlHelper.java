@@ -45,12 +45,16 @@ public class SqlHelper extends tk.mybatis.mapper.mapperhelper.SqlHelper {
         Set<EntityColumn> columnList = EntityHelper.getColumns(entityClass);
         StringBuilder sql = new StringBuilder();
         for (EntityColumn entityColumn : columnList) {
-            if (entityColumn.getJdbcType() == JdbcType.BLOB || entityColumn.getJdbcType() == JdbcType.CLOB ||
-                    entityColumn.getJdbcType() == JdbcType.LONGNVARCHAR ||
-                    entityColumn.getJdbcType() == JdbcType.NCLOB) {
+            if (JdbcType.BINARY.equals(entityColumn.getJdbcType()) || JdbcType.BLOB.equals(
+                    entityColumn.getJdbcType()) || JdbcType.CLOB.equals(entityColumn.getJdbcType()) ||
+                    JdbcType.LONGNVARCHAR.equals(entityColumn.getJdbcType()) || JdbcType.LONGVARBINARY.equals(
+                    entityColumn.getJdbcType()) || JdbcType.LONGVARCHAR.equals(entityColumn.getJdbcType()) ||
+                    JdbcType.NCLOB.equals(entityColumn.getJdbcType()) || JdbcType.VARBINARY.equals(
+                    entityColumn.getJdbcType())) {
                 continue;
             }
-            sql.append(entityColumn.getColumn()).append(",");
+            sql.append(entityColumn.getColumn())
+                    .append(",");
         }
         return sql.substring(0, sql.length() - 1);
     }

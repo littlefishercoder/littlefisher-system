@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.core.biz.framework.enums.EnumUserState;
 
+
 public class UserDtoExample {
     /** orderByClause */
     protected String orderByClause;

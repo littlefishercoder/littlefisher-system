@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.core.biz.framework.enums.EnumUserContactStation4SocialType;
 
+
 public class UserContactStation4SocialDtoExample {
     /** orderByClause */
     protected String orderByClause;

@@ -3,6 +3,7 @@ package com.littlefisher.blog.example;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class CountStatistic4BlogDtoExample {
     /** orderByClause */
     protected String orderByClause;
