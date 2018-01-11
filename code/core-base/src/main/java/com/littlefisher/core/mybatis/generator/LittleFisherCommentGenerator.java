@@ -3,6 +3,7 @@ package com.littlefisher.core.mybatis.generator;
 import java.text.MessageFormat;
 import java.util.List;
 import java.util.Properties;
+import java.util.Set;
 
 import org.apache.ibatis.type.JdbcType;
 import org.mybatis.generator.api.CommentGenerator;
@@ -10,6 +11,7 @@ import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.dom.java.CompilationUnit;
 import org.mybatis.generator.api.dom.java.Field;
+import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
 import org.mybatis.generator.api.dom.java.InnerClass;
 import org.mybatis.generator.api.dom.java.InnerEnum;
 import org.mybatis.generator.api.dom.java.JavaElement;
@@ -56,7 +58,7 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
         properties = new Properties();
     }
 
-    public String getDelimiterName(String name) {
+    private String getDelimiterName(String name) {
         return beginningDelimiter + name + endingDelimiter;
     }
 
@@ -227,6 +229,30 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
 
     @Override
     public void addRootComment(XmlElement rootElement) {
+    }
+
+    @Override
+    public void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable,
+            Set<FullyQualifiedJavaType> imports) {
+    }
+
+    @Override
+    public void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable,
+            IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports) {
+    }
+
+    @Override
+    public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable, Set<FullyQualifiedJavaType> imports) {
+    }
+
+    @Override
+    public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable,
+            IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports) {
+    }
+
+    @Override
+    public void addClassAnnotation(InnerClass innerClass, IntrospectedTable introspectedTable,
+            Set<FullyQualifiedJavaType> imports) {
     }
 
     @Override
