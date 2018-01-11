@@ -34,13 +34,13 @@
     <littlefisher-spring-boot-autoconfig.version>1.0.1-SNAPSHOT</littlefisher-spring-boot-autoconfig.version>
     <mybatis-spring.version>1.3.1</mybatis-spring.version>
     <druid.version>1.1.5</druid.version>
-    <mapper-spring-boot.version>1.1.5</mapper-spring-boot.version>
-    <mapper.version>3.4.0</mapper.version>
+    <mapper-spring-boot.version>1.2.1</mapper-spring-boot.version>
+    <mapper.version>3.5.0</mapper.version>
     <pagehelper.version>1.2.3</pagehelper.version>
     <commons-lang3.version>3.6</commons-lang3.version>
     <oval.version>1.90</oval.version>
     <swagger.version>2.7.0</swagger.version>
-    <mybatis.generator.version>1.3.5</mybatis.generator.version>
+    <mybatis.generator.version>1.3.6</mybatis.generator.version>
     <commons-fileupload.version>1.3.3</commons-fileupload.version>
   </properties>
 
