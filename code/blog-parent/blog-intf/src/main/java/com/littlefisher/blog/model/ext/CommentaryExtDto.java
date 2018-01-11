@@ -2,8 +2,6 @@ package com.littlefisher.blog.model.ext;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Transient;
-
 import java.io.Serializable;
 
 import com.littlefisher.blog.model.CommentaryDto;
@@ -25,7 +23,6 @@ public class CommentaryExtDto extends CommentaryDto implements Serializable {
 
     /** 评价人 */
     @ApiModelProperty("评价人")
-    @Transient
     private UserDto user;
 
     public UserDto getUser() {

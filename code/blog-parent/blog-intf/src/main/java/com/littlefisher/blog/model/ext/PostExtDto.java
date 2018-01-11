@@ -3,14 +3,11 @@ package com.littlefisher.blog.model.ext;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Transient;
-
 import java.util.List;
 
 import com.littlefisher.blog.model.ArchiveDto;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.TagDto;
-import com.littlefisher.core.biz.framework.model.UserDto;
 
 /**
  * Description: PostExtDto.java
@@ -29,22 +26,18 @@ public class PostExtDto extends PostDto {
 
     /** 作者 */
     @ApiModelProperty("作者")
-    @Transient
     private AuthorExtDto author;
 
     /** 文章归档类型 */
     @ApiModelProperty("文章归档类型")
-    @Transient
     private ArchiveDto archive;
 
     /** 标签列表 */
     @ApiModelProperty("标签列表")
-    @Transient
     private List<TagDto> tagList;
 
     /** 博文统计数据 */
     @ApiModelProperty("博文统计数据")
-    @Transient
     private CountStatisticExtDto countStatistic4Post;
 
     public AuthorExtDto getAuthor() {
