@@ -62,4 +62,11 @@ public interface IUserService {
      * @return int
      */
     int deleteUser(Long userId);
+
+    /**
+     * 根据用户编号列表查询用户
+     * @param userIdList 用户编号列表
+     * @return 用户
+     */
+    List<UserDto> getUserListByIds(List<Long> userIdList);
 }

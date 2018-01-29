@@ -2,8 +2,6 @@ package com.littlefisher.blog.model.ext;
 
 import io.swagger.annotations.ApiModelProperty;
 
-import java.io.Serializable;
-
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.core.biz.framework.model.UserDto;
 
@@ -16,7 +14,7 @@ import com.littlefisher.core.biz.framework.model.UserDto;
  * @version 1.0
  * @since v1.0
  */
-public class CommentaryExtDto extends CommentaryDto implements Serializable {
+public class CommentaryExtDto extends CommentaryDto {
 
     /** serialVersionUID */
     private static final long serialVersionUID = 2862852923258309514L;

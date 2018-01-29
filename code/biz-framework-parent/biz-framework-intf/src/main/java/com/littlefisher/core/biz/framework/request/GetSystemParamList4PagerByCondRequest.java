@@ -24,19 +24,19 @@ public class GetSystemParamList4PagerByCondRequest extends PagerRequest {
     private Long id;
 
     /**
-     * paramKey 参数key
+     * paramKey 参数key 模糊查询
      */
     @ApiModelProperty("参数key")
     private String paramKey;
 
     /**
-     * paramValue 参数value
+     * paramValue 参数value 模糊查询
      */
     @ApiModelProperty("参数value")
     private String paramValue;
 
     /**
-     * defaultValue 参数默认value
+     * defaultValue 参数默认value 模糊查询
      */
     @ApiModelProperty("参数默认value")
     private String defaultValue;

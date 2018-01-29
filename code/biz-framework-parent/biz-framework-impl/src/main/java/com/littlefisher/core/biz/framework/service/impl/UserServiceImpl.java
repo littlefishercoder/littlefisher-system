@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.littlefisher.core.biz.framework.cmd.user.AddUserCmd;
 import com.littlefisher.core.biz.framework.cmd.user.DeleteUserCmd;
 import com.littlefisher.core.biz.framework.cmd.user.GetUserListByCondCmd;
+import com.littlefisher.core.biz.framework.cmd.user.GetUserListByIdsCmd;
 import com.littlefisher.core.biz.framework.cmd.user.QryAllUserCmd;
 import com.littlefisher.core.biz.framework.cmd.user.QryUserByIdCmd;
 import com.littlefisher.core.biz.framework.cmd.user.UpdateUserCmd;
@@ -50,6 +51,11 @@ public class UserServiceImpl extends ServiceImpl implements IUserService {
     @Override
     public int deleteUser(Long userId) {
         return this.execute(getCommand(DeleteUserCmd.class).setUserId(userId));
+    }
+
+    @Override
+    public List<UserDto> getUserListByIds(List<Long> userIdList) {
+        return this.execute(getCommand(GetUserListByIdsCmd.class).setUserIdList(userIdList));
     }
 
     @Override

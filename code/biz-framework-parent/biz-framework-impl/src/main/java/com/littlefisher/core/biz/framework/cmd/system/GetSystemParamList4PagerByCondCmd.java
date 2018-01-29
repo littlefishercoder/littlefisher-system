@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.core.biz.framework.dao.SystemParamDtoMapper;
-import com.littlefisher.core.biz.framework.dao.ext.SystemParamDtoExtMapper;
+import com.littlefisher.core.biz.framework.example.SystemParamDtoExample;
 import com.littlefisher.core.biz.framework.model.SystemParamDto;
 import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
 import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.utils.StringUtil;
 
 /**
  * Description:
@@ -30,7 +31,7 @@ public class GetSystemParamList4PagerByCondCmd extends AbstractCommand<List<Syst
     private GetSystemParamList4PagerByCondRequest req;
 
     @Autowired
-    private SystemParamDtoExtMapper systemParamDtoMapper;
+    private SystemParamDtoMapper systemParamDtoMapper;
 
     public GetSystemParamList4PagerByCondCmd setReq(GetSystemParamList4PagerByCondRequest req) {
         this.req = req;
@@ -39,10 +40,22 @@ public class GetSystemParamList4PagerByCondCmd extends AbstractCommand<List<Syst
 
     @Override
     public List<SystemParamDto> execute() {
+        SystemParamDtoExample example = new SystemParamDtoExample();
+        SystemParamDtoExample.Criteria criteria = example.createCriteria();
+        if (req.getId() != null) {
+            criteria.andIdEqualTo(req.getId());
+        }
+        if (StringUtil.isNotBlank(req.getParamKey())) {
+            criteria.andParamKeyLike(req.getParamKey());
+        }
+        if (StringUtil.isNotBlank(req.getParamValue())) {
+            criteria.andParamValueLike(req.getParamValue());
+        }
+        if (StringUtil.isNotBlank(req.getDefaultValue())) {
+            criteria.andDefaultValueLike(req.getDefaultValue());
+        }
         PageHelper.startPage(req.getPageNum(), req.getPageSize());
-        return systemParamDtoMapper.selectByCond(req);
-        //        RowBounds rowBounds = new RowBounds(req.getPageNum() - 1, req.getPageSize());
-        //        return systemParamDtoMapper.selectByCond(req, rowBounds);
+        return systemParamDtoMapper.selectByExample(req);
     }
 
 }
