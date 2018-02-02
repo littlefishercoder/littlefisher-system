@@ -14,9 +14,9 @@ import com.littlefisher.blog.model.TagDto;
 import com.littlefisher.blog.request.AddPostRequest;
 import com.littlefisher.blog.service.IArchiveService;
 import com.littlefisher.blog.service.ITagService;
-import com.littlefisher.core.enums.EnumBizBool;
+import com.littlefisher.core.stereotype.enums.EnumBizBool;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.DateUtil;
 
 /**

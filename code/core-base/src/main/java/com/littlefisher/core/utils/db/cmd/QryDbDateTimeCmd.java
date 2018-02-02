@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.db.dao.DbMapper;
 
 /**

@@ -6,7 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.google.common.base.Objects;
-import com.littlefisher.core.enums.EnumSymbol;
+import com.littlefisher.core.stereotype.enums.EnumSymbol;
 import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.utils.db.service.IDbService;
 

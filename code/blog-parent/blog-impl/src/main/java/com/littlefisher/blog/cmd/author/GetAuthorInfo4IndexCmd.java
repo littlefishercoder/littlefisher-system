@@ -20,7 +20,7 @@ import com.littlefisher.core.biz.framework.example.UserContactStationDtoExample;
 import com.littlefisher.core.biz.framework.model.UserContactStation4WebsiteDto;
 import com.littlefisher.core.biz.framework.model.UserContactStationDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 
 /**
  * Description: GetAuthorInfo4IndexCommand.java

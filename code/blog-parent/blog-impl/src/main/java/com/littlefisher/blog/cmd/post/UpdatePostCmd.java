@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.littlefisher.blog.dao.PostDtoMapper;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 
 /**
  * Description:

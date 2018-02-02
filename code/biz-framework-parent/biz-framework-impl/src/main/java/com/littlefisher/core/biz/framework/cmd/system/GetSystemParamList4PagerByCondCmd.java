@@ -10,7 +10,7 @@ import com.littlefisher.core.biz.framework.example.SystemParamDtoExample;
 import com.littlefisher.core.biz.framework.model.SystemParamDto;
 import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.StringUtil;
 
 /**

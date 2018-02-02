@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.persistence.Column;
+import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class AddPostRequest {
      * 标题
      */
     @ApiModelProperty("标题")
+    @NotNull(message = "标题不能为空")
     private String title;
 
     /**
@@ -37,12 +39,14 @@ public class AddPostRequest {
      * 类型
      */
     @ApiModelProperty("类型")
+    @NotNull(message = "类型不能为空")
     private EnumPostType type;
 
     /**
      * 文章分类
      */
     @ApiModelProperty("文章分类")
+    @NotNull(message = "文章分类不能为空")
     private String archiveName;
 
     /**
@@ -56,6 +60,7 @@ public class AddPostRequest {
      * 博文
      */
     @ApiModelProperty("博文")
+    @NotNull(message = "博文不能为空")
     private String content;
 
     /**

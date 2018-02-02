@@ -9,7 +9,7 @@ import com.littlefisher.blog.dao.ext.TagDtoExtMapper;
 import com.littlefisher.blog.model.TagDto;
 import com.littlefisher.blog.request.GetTagList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 
 /**
  * Description: GetTagList4PagerByCondCmd.java

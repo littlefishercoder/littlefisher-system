@@ -1,4 +1,4 @@
-package com.littlefisher.core.i18n.utils;
+package com.littlefisher.core.stereotype.constants;
 
 /**
  * 
@@ -10,7 +10,7 @@ package com.littlefisher.core.i18n.utils;
  * @version 1.0
  * @since v1.0
  */
-public class I18nConstants {
+public class BaseConstants {
     
     /** 资源文件跟目录,存放于SYSTEM_HOME环境变量目录下 */
     public static final String I18N_RESOURCE_PATH = "resource";
@@ -26,4 +26,7 @@ public class I18nConstants {
 
     /** 英语方言 */
     public static final String DIALECT_EN = "en";
+
+    /** controller请求前缀 */
+    public static final String BASE_API_PREFIX = "/api";
 }

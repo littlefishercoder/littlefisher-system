@@ -18,6 +18,7 @@ import com.github.pagehelper.PageInfo;
 import com.littlefisher.core.biz.framework.service.IUserService;
 import com.littlefisher.core.biz.framework.model.UserDto;
 import com.littlefisher.core.biz.framework.request.GetUserList4PagerByCondRequest;
+import com.littlefisher.core.stereotype.constants.BaseConstants;
 
 /**
  * Description: 用户Controller
@@ -29,7 +30,7 @@ import com.littlefisher.core.biz.framework.request.GetUserList4PagerByCondReques
  * @since v1.0
  */
 @RestController
-@RequestMapping("/api/blog/v1/users")
+@RequestMapping(BaseConstants.BASE_API_PREFIX + "/blog/v1/users")
 @Api(value = "user", description = "user 接口API")
 public class UserController {
 

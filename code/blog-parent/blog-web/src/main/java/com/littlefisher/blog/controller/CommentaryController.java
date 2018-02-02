@@ -19,6 +19,7 @@ import com.littlefisher.blog.service.ICommentaryService;
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
 import com.littlefisher.blog.request.GetCommentaryList4PagerByCondRequest;
+import com.littlefisher.core.stereotype.constants.BaseConstants;
 
 /**
  * Description: 评价Controller
@@ -30,7 +31,7 @@ import com.littlefisher.blog.request.GetCommentaryList4PagerByCondRequest;
  * @since v1.0
  */
 @RestController
-@RequestMapping("/api/blog/v1/commentaries")
+@RequestMapping(BaseConstants.BASE_API_PREFIX + "/blog/v1/commentaries")
 @Api(value = "commentary", description = "commentary 接口API")
 public class CommentaryController {
 

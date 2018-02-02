@@ -13,7 +13,7 @@ import java.util.Date;
 
 import com.littlefisher.core.biz.framework.enums.EnumUserContactStationState;
 import com.littlefisher.core.biz.framework.enums.EnumUserContactStationType;
-import com.littlefisher.core.enums.EnumBizBool;
+import com.littlefisher.core.stereotype.enums.EnumBizBool;
 
 /**
  *

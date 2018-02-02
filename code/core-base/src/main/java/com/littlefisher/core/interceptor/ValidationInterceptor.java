@@ -56,7 +56,7 @@ public class ValidationInterceptor extends AbstractCommandInterceptor {
             return;
         }
         Arrays.stream(fields).forEach(field -> validator.validate(getFieldVariable(command, field))
-                .forEach(validation -> ExceptionHandler.publish("CORE-000009", validation.getMessage())));
+                .forEach(validation -> ExceptionHandler.publish("CORE-000009", null, validation.getMessage())));
     }
 
     /**

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.littlefisher.core.biz.framework.dao.SystemParamDtoMapper;
 import com.littlefisher.core.biz.framework.example.SystemParamDtoExample;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 
 /**
  * Description: 根据key删除系统参数

@@ -9,7 +9,7 @@ import com.littlefisher.blog.enums.EnumPostTagState;
 import com.littlefisher.blog.example.PostTagDtoExample;
 import com.littlefisher.blog.model.PostTagDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.CollectionUtil;
 import com.littlefisher.core.utils.DateUtil;
 

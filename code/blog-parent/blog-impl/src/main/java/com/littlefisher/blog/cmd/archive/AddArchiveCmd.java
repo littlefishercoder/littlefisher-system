@@ -7,7 +7,7 @@ import com.littlefisher.blog.enums.EnumArchiveState;
 import com.littlefisher.blog.model.ArchiveDto;
 import com.littlefisher.blog.service.IArchiveService;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.DateUtil;
 
 /**

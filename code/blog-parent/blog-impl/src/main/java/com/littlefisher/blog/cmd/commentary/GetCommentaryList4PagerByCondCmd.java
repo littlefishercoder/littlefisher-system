@@ -9,7 +9,7 @@ import com.littlefisher.blog.dao.ext.CommentaryDtoExtMapper;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
 import com.littlefisher.blog.request.GetCommentaryList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 
 /**
  *

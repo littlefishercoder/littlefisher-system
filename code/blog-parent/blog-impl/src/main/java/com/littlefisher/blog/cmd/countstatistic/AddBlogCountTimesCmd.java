@@ -13,7 +13,7 @@ import com.littlefisher.blog.model.CountStatistic4BlogDto;
 import com.littlefisher.blog.model.CountStatisticDto;
 import com.littlefisher.blog.request.AddBlogCountTimesRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.CollectionUtil;
 import com.littlefisher.core.utils.DateUtil;
 

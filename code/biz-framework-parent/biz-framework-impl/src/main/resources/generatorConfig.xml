@@ -61,7 +61,7 @@
       <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
       <columnOverride column="type" javaType="com.littlefisher.core.biz.framework.enums.EnumUserContactStationType" />
       <columnOverride column="state" javaType="com.littlefisher.core.biz.framework.enums.EnumUserContactStationState" />
-      <columnOverride column="default_flag" javaType="com.littlefisher.core.enums.EnumBizBool" />
+      <columnOverride column="default_flag" javaType="com.littlefisher.core.stereotype.enums.EnumBizBool" />
     </table>
     <table tableName="bfm_user_contact_station_4_email" domainObjectName="UserContactStation4EmailDto" escapeWildcards="true">
       <generatedKey column="contact_station_id" sqlStatement="Mysql" />

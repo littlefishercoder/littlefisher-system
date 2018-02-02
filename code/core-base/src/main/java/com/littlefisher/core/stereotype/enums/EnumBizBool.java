@@ -1,4 +1,4 @@
-package com.littlefisher.core.enums;
+package com.littlefisher.core.stereotype.enums;
 
 import com.littlefisher.core.mybatis.IEnum;
 
@@ -28,7 +28,8 @@ public enum EnumBizBool implements IEnum {
     @Override
     public EnumBizBool find(String code) {
         for (EnumBizBool enumBizBool : EnumBizBool.values()) {
-            if (enumBizBool.getCode().equals(code)) {
+            if (enumBizBool.getCode()
+                    .equals(code)) {
                 return enumBizBool;
             }
         }

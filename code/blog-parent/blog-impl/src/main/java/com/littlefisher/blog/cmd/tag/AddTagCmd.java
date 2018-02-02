@@ -7,7 +7,7 @@ import com.littlefisher.blog.enums.EnumTagState;
 import com.littlefisher.blog.model.TagDto;
 import com.littlefisher.blog.service.ITagService;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.DateUtil;
 
 /**

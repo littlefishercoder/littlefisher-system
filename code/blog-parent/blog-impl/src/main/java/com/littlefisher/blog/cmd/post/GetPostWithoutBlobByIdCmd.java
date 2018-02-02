@@ -8,7 +8,7 @@ import com.littlefisher.blog.dao.PostDtoMapper;
 import com.littlefisher.blog.example.PostDtoExample;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.CollectionUtil;
 
 /**

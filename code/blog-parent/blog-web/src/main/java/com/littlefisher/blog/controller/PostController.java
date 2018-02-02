@@ -20,6 +20,7 @@ import com.littlefisher.blog.service.IPostService;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
 import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
+import com.littlefisher.core.stereotype.constants.BaseConstants;
 
 /**
  * Description: 博文Controller
@@ -31,7 +32,7 @@ import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
  * @since v1.0
  */
 @RestController
-@RequestMapping("/api/blog/v1/posts")
+@RequestMapping(BaseConstants.BASE_API_PREFIX + "/blog/v1/posts")
 @Api(value = "post", description = "post 接口API")
 public class PostController {
 

@@ -1,4 +1,4 @@
-package com.littlefisher.core.stereotype;
+package com.littlefisher.core.stereotype.annotations;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

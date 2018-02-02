@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.littlefisher.core.biz.framework.enums.EnumUserContactStationState;
 import com.littlefisher.core.biz.framework.enums.EnumUserContactStationType;
-import com.littlefisher.core.enums.EnumBizBool;
+import com.littlefisher.core.stereotype.enums.EnumBizBool;
 
 
 public class UserContactStationDtoExample {

@@ -10,7 +10,7 @@ import com.littlefisher.core.biz.framework.example.UserDtoExample;
 import com.littlefisher.core.biz.framework.model.UserDto;
 import com.littlefisher.core.biz.framework.request.GetUserList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.StringUtil;
 
 /**

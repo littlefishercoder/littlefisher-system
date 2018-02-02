@@ -15,6 +15,7 @@ import com.littlefisher.blog.model.ext.CountStatisticExtDto;
 import com.littlefisher.blog.request.AddBlogCountTimesRequest;
 import com.littlefisher.blog.request.AddPostCountTimesRequest;
 import com.littlefisher.blog.service.ICountStatisticService;
+import com.littlefisher.core.stereotype.constants.BaseConstants;
 
 /**
  * Description: CountStatisticController.java
@@ -26,7 +27,7 @@ import com.littlefisher.blog.service.ICountStatisticService;
  * @since v1.0
  */
 @RestController
-@RequestMapping("/api/blog/v1/countStatistics")
+@RequestMapping(BaseConstants.BASE_API_PREFIX + "/blog/v1/countStatistics")
 @Api(value = "countStatistics", description = "countStatistics 接口API")
 public class CountStatisticController {
 

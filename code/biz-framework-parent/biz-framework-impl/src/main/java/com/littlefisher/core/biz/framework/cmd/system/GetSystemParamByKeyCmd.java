@@ -6,7 +6,7 @@ import com.littlefisher.core.biz.framework.dao.SystemParamDtoMapper;
 import com.littlefisher.core.biz.framework.example.SystemParamDtoExample;
 import com.littlefisher.core.biz.framework.model.SystemParamDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 
 /**
  * Description: 根据key查询系统参数

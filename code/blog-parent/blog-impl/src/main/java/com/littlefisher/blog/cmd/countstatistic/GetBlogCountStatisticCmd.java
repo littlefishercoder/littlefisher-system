@@ -14,7 +14,7 @@ import com.littlefisher.blog.model.ext.CountStatisticExtDto;
 import com.littlefisher.blog.request.AddBlogCountTimesRequest;
 import com.littlefisher.blog.service.ICountStatisticService;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.core.utils.CollectionUtil;
 
 /**

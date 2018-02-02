@@ -1,6 +1,6 @@
 package com.littlefisher.core.i18n;
 
-import com.littlefisher.core.i18n.utils.I18nConstants;
+import com.littlefisher.core.stereotype.constants.BaseConstants;
 
 /**
  * 
@@ -16,7 +16,7 @@ public class PropertiesFileTextProvider implements TextProvider {
 
     @Override
     public String getText(String key) {
-        return this.getText(I18nConstants.DIALECT_DEFAULT, key);
+        return this.getText(BaseConstants.DIALECT_DEFAULT, key);
     }
 
     @Override

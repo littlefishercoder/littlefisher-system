@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.enums.EnumPostState;
 import com.littlefisher.blog.enums.EnumPostType;
-import com.littlefisher.core.enums.EnumBizBool;
+import com.littlefisher.core.stereotype.enums.EnumBizBool;
 
 
 public class PostDtoExample {

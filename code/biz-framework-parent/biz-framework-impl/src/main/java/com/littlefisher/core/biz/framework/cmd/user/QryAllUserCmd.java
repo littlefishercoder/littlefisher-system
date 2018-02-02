@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.littlefisher.core.biz.framework.dao.UserDtoMapper;
 import com.littlefisher.core.biz.framework.model.UserDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.Command;
+import com.littlefisher.core.stereotype.annotations.Command;
 
 /**
  * Description:

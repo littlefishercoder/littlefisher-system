@@ -16,6 +16,7 @@ import com.github.pagehelper.PageInfo;
 import com.littlefisher.blog.model.TagDto;
 import com.littlefisher.blog.request.GetTagList4PagerByCondRequest;
 import com.littlefisher.blog.service.ITagService;
+import com.littlefisher.core.stereotype.constants.BaseConstants;
 
 /**
  * Description: TagController.java
@@ -27,7 +28,7 @@ import com.littlefisher.blog.service.ITagService;
  * @since v1.0
  */
 @RestController
-@RequestMapping("/api/blog/v1/tags")
+@RequestMapping(BaseConstants.BASE_API_PREFIX + "/blog/v1/tags")
 @Api(value = "tag", description = "tag 接口API")
 public class TagController {
 

@@ -2,7 +2,7 @@
  * hsjry.com Inc.
  * Copyright (c) 2014-2017 All Rights Reserved.
  */
-package com.littlefisher.core.enums;
+package com.littlefisher.core.stereotype.enums;
 
 /**
  * @author jinyn22648

@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import com.littlefisher.blog.model.FriendLinkDto;
 import com.littlefisher.blog.model.ext.AuthorExtDto;
 import com.littlefisher.blog.service.IAuthorService;
 import com.littlefisher.blog.service.IFriendLinkService;
+import com.littlefisher.core.stereotype.constants.BaseConstants;
 
 /**
  * Description: AuthorController.java
@@ -27,7 +29,7 @@ import com.littlefisher.blog.service.IFriendLinkService;
  * @since v1.0
  */
 @RestController
-@RequestMapping("/api/blog/v1/authors")
+@RequestMapping(BaseConstants.BASE_API_PREFIX + "/blog/v1/authors")
 @Api(value = "author", description = "author 接口API")
 public class AuthorController {
 
@@ -45,7 +47,8 @@ public class AuthorController {
     @RequestMapping(value = "/index/{authorId}", method = RequestMethod.GET)
     @ApiOperation("首页作者详情")
     public AuthorExtDto getAuthorInfo4Index(
-            @ApiParam(required = true, value = "作者主键") @PathVariable("authorId") Long authorId) {
+            @ApiParam(required = false, value = "作者主键") @PathVariable("authorId") @NotNull(message = "authorId不能为空")
+                    Long authorId) {
         // 首页作者详情
         return authorService.getAuthorInfo4Index(authorId);
     }

@@ -16,7 +16,7 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.google.common.io.Files;
-import com.littlefisher.core.i18n.utils.I18nConstants;
+import com.littlefisher.core.stereotype.constants.BaseConstants;
 import com.littlefisher.core.utils.LittleFisherLogger;
 import com.littlefisher.core.utils.StringUtil;
 
@@ -66,12 +66,12 @@ public final class PropResource {
      */
     private static List<File> findFileNameSuffix() {
         String littleFisherHome = initHomePath();
-        String resourceDir = littleFisherHome + File.separator + I18nConstants.I18N_RESOURCE_PATH;
+        String resourceDir = littleFisherHome + File.separator + BaseConstants.I18N_RESOURCE_PATH;
         List<File> allFileList = Lists.newArrayList();
         getAllFileName(resourceDir, allFileList);
         for (File file : allFileList) {
             String name = file.getName()
-                    .substring(0, file.getName().length() - I18nConstants.PROPERTIES_LENGTH);
+                    .substring(0, file.getName().length() - BaseConstants.PROPERTIES_LENGTH);
             int index = name.lastIndexOf(".");
             String local = name.substring(index + 1, name.length());
             resourceMap.put(local, Maps.newConcurrentMap());
@@ -111,7 +111,7 @@ public final class PropResource {
      */
     private static String initHomePath() {
         Properties p = System.getProperties();
-        String littlefisherHome = p.getProperty(I18nConstants.SYSTEM_HOME);
+        String littlefisherHome = p.getProperty(BaseConstants.SYSTEM_HOME);
         if (StringUtil.isNotEmpty(littlefisherHome)) {
             return littlefisherHome;
         } else {
@@ -130,7 +130,7 @@ public final class PropResource {
                 String line;
                 while ((line = br.readLine()) != null) {
 
-                    if (line.contains(I18nConstants.SYSTEM_HOME)) {
+                    if (line.contains(BaseConstants.SYSTEM_HOME)) {
                         int idx = line.indexOf('=');
                         return line.substring(idx + 1).trim();
                     }
@@ -190,8 +190,8 @@ public final class PropResource {
      */
     public static String getValue(String dialect, String key) {
         String value = resourceMap.get(dialect).get(key);
-        if (!I18nConstants.DIALECT_EN.equals(dialect) && StringUtil.isBlank(value)) {
-            return resourceMap.get(I18nConstants.DIALECT_EN).get(key);
+        if (!BaseConstants.DIALECT_EN.equals(dialect) && StringUtil.isBlank(value)) {
+            return resourceMap.get(BaseConstants.DIALECT_EN).get(key);
         } else {
             return value;
         }

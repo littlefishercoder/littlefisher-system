@@ -18,6 +18,7 @@ import com.github.pagehelper.PageInfo;
 import com.littlefisher.core.biz.framework.service.ISystemParamService;
 import com.littlefisher.core.biz.framework.model.SystemParamDto;
 import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCondRequest;
+import com.littlefisher.core.stereotype.constants.BaseConstants;
 
 /**
  * Description: 系统信息Controller
@@ -29,7 +30,7 @@ import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCon
  * @since v1.0
  */
 @RestController
-@RequestMapping("/api/blog/v1/system/systemParam")
+@RequestMapping(BaseConstants.BASE_API_PREFIX + "/blog/v1/system/systemParam")
 @Api(value = "systemParam", description = "systemParam 接口API")
 public class SystemParamController {
 
