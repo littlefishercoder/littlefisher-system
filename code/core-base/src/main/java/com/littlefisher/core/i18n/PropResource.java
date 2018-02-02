@@ -57,7 +57,7 @@ public final class PropResource {
     /**
      * Description: 第一次加载时初始化资源文件
      */
-    private static void init() {
+    public static void init() {
         getResourceValueList(findFileNameSuffix());
     }
 
@@ -195,5 +195,14 @@ public final class PropResource {
         } else {
             return value;
         }
+    }
+
+    /**
+     * 根据方言查询对应的资源
+     * @param dialect 方言
+     * @return 资源
+     */
+    public static Map<String, String> getResource(String dialect) {
+        return resourceMap.get(dialect);
     }
 }

@@ -43,6 +43,12 @@ public class ControllerValidation {
         }
     }
 
+    /**
+     * 循环aop
+     * @param pjp joinPoint
+     * @return 返回值
+     * @throws Throwable 异常
+     */
     @Around("@annotation(org.springframework.web.bind.annotation.RequestMapping)")
     public Object processCheck(ProceedingJoinPoint pjp) throws Throwable {
         generateValidator();
