@@ -2,6 +2,8 @@ package com.littlefisher.core.utils.db.dao;
 
 import java.util.Date;
 
+import org.apache.ibatis.annotations.Select;
+
 /**
  * 
  * Description: 
@@ -22,5 +24,6 @@ public interface DbMapper {
      *
      * @return Date
      */
+    @Select("SELECT CURRENT_TIMESTAMP()")
     Date getDBDateTime();
 }

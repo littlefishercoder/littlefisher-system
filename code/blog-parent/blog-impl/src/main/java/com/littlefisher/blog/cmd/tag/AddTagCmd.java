@@ -44,6 +44,7 @@ public class AddTagCmd extends AbstractCommand<TagDto> {
             tagDto.setName(name);
             tagDto.setState(EnumTagState.VALID);
             tagDto.setStateDate(DateUtil.getDBDateTime());
+            tagDto.setCreateDate(DateUtil.getDBDateTime());
             tagDtoMapper.insert(tagDto);
             return tagDto;
         } else {

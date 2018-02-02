@@ -3,6 +3,7 @@ package com.littlefisher.blog.cmd.post;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.github.pagehelper.PageHelper;
@@ -105,7 +106,8 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>
         List<Long> archivedIdList = Lists.newArrayListWithCapacity(postList.size());
         List<Long> tagIdList = Lists.newArrayListWithCapacity(postList.size());
         postList.forEach(postDto -> {
-            PostExtDto postExtDto = (PostExtDto) postDto;
+            PostExtDto postExtDto = new PostExtDto();
+            BeanUtils.copyProperties(postDto, postExtDto);
             if (postDto.getAuthorId() != null) {
                 authorIdList.add(postDto.getAuthorId());
             }
@@ -136,18 +138,24 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>
         Map<Long, ArchiveDto> archiveMap = getArchiveMap(archivedIdList);
         Map<Long, TagDto> tagMap = getTagMap(tagIdList);
         postExtList.forEach(postExtDto -> {
-            AuthorExtDto authorExtDto = (AuthorExtDto) authorMap.get(postExtDto.getAuthorId());
+            AuthorExtDto authorExtDto = new AuthorExtDto();
+            if (authorMap.get(postExtDto.getAuthorId()) != null) {
+                BeanUtils.copyProperties(authorExtDto, authorMap.get(postExtDto.getAuthorId()));
+            }
+
             authorExtDto.setUser(userMap.get(postExtDto.getAuthorId()));
             postExtDto.setAuthor(authorExtDto);
 
             postExtDto.setArchive(archiveMap.get(postExtDto.getArchiveId()));
-            postExtDto.getTagList().forEach(tagDto -> {
-                TagDto tagWithProp = tagMap.get(tagDto.getId());
-                tagDto.setName(tagWithProp.getName());
-                tagDto.setState(tagWithProp.getState());
-                tagDto.setCreateDate(tagWithProp.getCreateDate());
-                tagDto.setStateDate(tagWithProp.getStateDate());
-            });
+            if (CollectionUtil.isNotEmpty(postExtDto.getTagList())) {
+                postExtDto.getTagList().forEach(tagDto -> {
+                    TagDto tagWithProp = tagMap.get(tagDto.getId());
+                    tagDto.setName(tagWithProp.getName());
+                    tagDto.setState(tagWithProp.getState());
+                    tagDto.setCreateDate(tagWithProp.getCreateDate());
+                    tagDto.setStateDate(tagWithProp.getStateDate());
+                });
+            }
 
             // 博文统计信息补充
             postExtDto.setCountStatistic4Post(countStatisticService.getPostCountStatistic(postExtDto.getId()));
@@ -157,6 +165,9 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>
     }
 
     private Map<Long,UserDto> getUserMap(List<Long> authorIdList) {
+        if (CollectionUtil.isEmpty(authorIdList)) {
+            return Maps.newHashMap();
+        }
         UserDtoExample userDtoExample = new UserDtoExample();
         userDtoExample.createCriteria().andIdIn(authorIdList);
         List<UserDto> userList = userDtoMapper.selectByExample(userDtoExample);
@@ -166,6 +177,9 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>
     }
 
     private Map<Long,TagDto> getTagMap(List<Long> tagIdList) {
+        if (CollectionUtil.isEmpty(tagIdList)) {
+            return Maps.newHashMap();
+        }
         TagDtoExample tagDtoExample = new TagDtoExample();
         tagDtoExample.createCriteria().andIdIn(tagIdList);
         List<TagDto> tagList = tagDtoMapper.selectByExample(tagDtoExample);
@@ -175,6 +189,9 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>
     }
 
     private Map<Long,ArchiveDto> getArchiveMap(List<Long> archivedIdList) {
+        if (CollectionUtil.isEmpty(archivedIdList)) {
+            return Maps.newHashMap();
+        }
         ArchiveDtoExample archiveDtoExample = new ArchiveDtoExample();
         archiveDtoExample.createCriteria().andIdIn(archivedIdList);
         List<ArchiveDto> archiveList = archiveDtoMapper.selectByExample(archiveDtoExample);
@@ -184,6 +201,9 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<List<PostExtDto>
     }
 
     private Map<Long,AuthorDto> getAuthorMap(List<Long> authorIdList) {
+        if (CollectionUtil.isEmpty(authorIdList)) {
+            return Maps.newHashMap();
+        }
         AuthorDtoExample authorDtoExample = new AuthorDtoExample();
         authorDtoExample.createCriteria().andIdIn(authorIdList);
         List<AuthorDto> authorList = authorDtoMapper.selectByExample(authorDtoExample);

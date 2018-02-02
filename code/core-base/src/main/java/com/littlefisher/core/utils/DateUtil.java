@@ -6,10 +6,9 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.google.common.base.Objects;
-import com.littlefisher.core.engine.SystemEngine;
 import com.littlefisher.core.enums.EnumSymbol;
 import com.littlefisher.core.exception.BaseAppException;
-import com.littlefisher.core.utils.db.service.impl.DbServiceImpl;
+import com.littlefisher.core.utils.db.service.IDbService;
 
 /**
  * Description: 时间工具类 Created on 2017年1月17日
@@ -719,9 +718,8 @@ public final class DateUtil {
      * @return java.sql.Date
      */
     private static Date getDBCurrentTime() {
-        SystemEngine systemEngine = SpringContextUtil.getBean(SystemEngine.class);
-        DbServiceImpl dbServiceImpl = (DbServiceImpl) systemEngine.getService("core.dbService");
-        return dbServiceImpl.getDBDateTime();
+        IDbService dbService = SpringContextUtil.getBean(IDbService.class);
+        return dbService.getDBDateTime();
     }
 
     /**

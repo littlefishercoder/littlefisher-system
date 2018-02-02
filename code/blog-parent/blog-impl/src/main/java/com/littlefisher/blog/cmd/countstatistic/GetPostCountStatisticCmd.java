@@ -2,6 +2,7 @@ package com.littlefisher.blog.cmd.countstatistic;
 
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.littlefisher.blog.dao.CountStatistic4PostDtoMapper;
@@ -47,7 +48,8 @@ public class GetPostCountStatisticCmd extends AbstractCommand<CountStatisticExtD
     @Override
     public CountStatisticExtDto execute() {
         CountStatistic4PostDtoExample countStatistic4PostDtoExample = new CountStatistic4PostDtoExample();
-        countStatistic4PostDtoExample.createCriteria().andPostIdEqualTo(postId);
+        countStatistic4PostDtoExample.createCriteria()
+                .andPostIdEqualTo(postId);
         List<CountStatistic4PostDto> countStatistic4PostList = countStatistic4PostDtoMapper.selectByExample(
                 countStatistic4PostDtoExample);
         if (CollectionUtil.isEmpty(countStatistic4PostList)) {
@@ -60,8 +62,9 @@ public class GetPostCountStatisticCmd extends AbstractCommand<CountStatisticExtD
             return this.execute();
         }
         CountStatistic4PostDto countStatistic4PostDto = countStatistic4PostList.get(0);
-        CountStatisticExtDto countStatisticExtDto = (CountStatisticExtDto) countStatisticDtoMapper.selectByPrimaryKey(
-                countStatistic4PostDto.getCountStatisticId());
+        CountStatisticExtDto countStatisticExtDto = new CountStatisticExtDto();
+        BeanUtils.copyProperties(countStatisticExtDto,
+                countStatisticDtoMapper.selectByPrimaryKey(countStatistic4PostDto.getCountStatisticId()));
         countStatisticExtDto.setCountStatistic4Post(countStatistic4PostDto);
         return countStatisticExtDto;
     }

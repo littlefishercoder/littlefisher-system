@@ -4,9 +4,9 @@ import java.util.Date;
 
 import org.springframework.stereotype.Service;
 
-import com.littlefisher.core.exception.BaseAppException;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 import com.littlefisher.core.utils.db.cmd.QryDbDateTimeCmd;
+import com.littlefisher.core.utils.db.service.IDbService;
 
 /**
  * 
@@ -18,19 +18,11 @@ import com.littlefisher.core.utils.db.cmd.QryDbDateTimeCmd;
  * @version 1.0
  * @since v1.0
  */
-@Service("core.dbService")
-public class DbServiceImpl extends ServiceImpl {
+@Service
+public class DbServiceImpl extends ServiceImpl implements IDbService {
 
-    /**
-     * 
-     * Description: 
-     * 
-     * @author jinyanan
-     *
-     * @return Date
-     * @throws BaseAppException <br>
-     */
-    public Date getDBDateTime() throws BaseAppException {
+    @Override
+    public Date getDBDateTime() {
         return this.execute(new QryDbDateTimeCmd());
 
     }

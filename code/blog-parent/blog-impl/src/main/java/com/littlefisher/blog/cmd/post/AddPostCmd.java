@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Lists;
 import com.littlefisher.blog.dao.PostDtoMapper;
+import com.littlefisher.blog.enums.EnumPostState;
 import com.littlefisher.blog.model.ArchiveDto;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.PostTagDto;
@@ -66,6 +67,8 @@ public class AddPostCmd extends AbstractCommand<PostDto> {
         postDto.setCreatedDate(DateUtil.getDBDateTime());
         postDto.setOriginalUrl(request.getOriginalUrl());
         postDto.setType(request.getType());
+        postDto.setState(EnumPostState.PUBLISHED);
+        postDto.setStateDate(DateUtil.getDBDateTime());
         postDtoMapper.insert(postDto);
 
         // 关联post和tag
