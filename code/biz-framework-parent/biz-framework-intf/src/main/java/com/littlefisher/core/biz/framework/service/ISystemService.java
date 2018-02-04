@@ -1,6 +1,6 @@
 package com.littlefisher.core.biz.framework.service;
 
-import java.util.Properties;
+import java.util.Map;
 
 /**
  * Description: ISystemService.java
@@ -23,5 +23,5 @@ public interface ISystemService {
      * @param dialect 方言
      * @return Resource
      */
-    Properties getResource(String dialect);
+    Map<Object, Object> getResource(String dialect);
 }

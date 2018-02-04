@@ -1,11 +1,12 @@
 package com.littlefisher.core.biz.framework.cmd.system;
 
+import com.google.common.collect.Maps;
 import com.littlefisher.core.i18n.PropResource;
-import com.littlefisher.core.i18n.PropResourceImpl;
 import com.littlefisher.core.interceptor.AbstractCommand;
 import com.littlefisher.core.stereotype.annotations.Command;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.HashMap;
 import java.util.Properties;
 
 /**
@@ -18,7 +19,7 @@ import java.util.Properties;
  * @since v1.0
  */
 @Command
-public class GetResourceCmd extends AbstractCommand<Properties> {
+public class GetResourceCmd extends AbstractCommand<HashMap<Object,Object>> {
 
     /** 方言 */
     private String dialect;
@@ -32,7 +33,8 @@ public class GetResourceCmd extends AbstractCommand<Properties> {
     }
 
     @Override
-    public Properties execute() {
-        return propResource.getResource(dialect);
+    public HashMap<Object, Object> execute() {
+        Properties properties = propResource.getResource(dialect);
+        return Maps.newHashMap(properties);
     }
 }

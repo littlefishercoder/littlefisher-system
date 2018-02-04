@@ -7,7 +7,7 @@ import com.littlefisher.core.biz.framework.cmd.system.RefreshResourceCmd;
 import com.littlefisher.core.biz.framework.service.ISystemService;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 
-import java.util.Properties;
+import java.util.Map;
 
 /**
  * Description: SystemServiceImpl.java
@@ -27,7 +27,7 @@ public class SystemServiceImpl extends ServiceImpl implements ISystemService {
     }
 
     @Override
-    public Properties getResource(String dialect) {
+    public Map<Object, Object> getResource(String dialect) {
         return execute(getCommand(GetResourceCmd.class).setDialect(dialect));
     }
 }

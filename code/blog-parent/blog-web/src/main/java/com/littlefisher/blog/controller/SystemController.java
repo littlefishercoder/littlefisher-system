@@ -14,7 +14,7 @@ import com.littlefisher.core.biz.framework.request.GetResourceRequest;
 import com.littlefisher.core.biz.framework.service.ISystemService;
 import com.littlefisher.core.stereotype.constants.BaseConstants;
 
-import java.util.Properties;
+import java.util.Map;
 
 /**
  * Description: SystemController.java
@@ -48,7 +48,7 @@ public class SystemController {
      */
     @RequestMapping(value = "/resources", method = RequestMethod.GET)
     @ApiOperation(value = "查询Resource")
-    public Properties getResource(@ApiParam(value = "查询Resource条件") @ModelAttribute GetResourceRequest request) {
+    public Map<Object, Object> getResource(@ApiParam(value = "查询Resource条件") @ModelAttribute GetResourceRequest request) {
         return systemService.getResource(request.getDialect());
     }
 }
