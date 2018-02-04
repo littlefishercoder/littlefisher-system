@@ -6,8 +6,10 @@ import com.littlefisher.core.interceptor.AbstractCommand;
 import com.littlefisher.core.stereotype.annotations.Command;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.Properties;
+
 /**
- * Description: RefreshResourceCmd.java
+ * Description: GetResourceCmd.java
  *
  * Created on 2018年02月02日
  *
@@ -16,14 +18,21 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @since v1.0
  */
 @Command
-public class RefreshResourceCmd extends AbstractCommand<Void> {
+public class GetResourceCmd extends AbstractCommand<Properties> {
+
+    /** 方言 */
+    private String dialect;
 
     @Autowired
     private PropResource propResource;
 
+    public GetResourceCmd setDialect(String dialect) {
+        this.dialect = dialect;
+        return this;
+    }
+
     @Override
-    public Void execute() {
-        propResource.init();
-        return null;
+    public Properties execute() {
+        return propResource.getResource(dialect);
     }
 }

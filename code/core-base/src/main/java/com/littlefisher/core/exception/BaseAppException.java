@@ -3,6 +3,8 @@ package com.littlefisher.core.exception;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.littlefisher.core.i18n.TextProvider;
+import com.littlefisher.core.utils.SpringContextUtil;
 import org.apache.commons.lang3.ArrayUtils;
 
 import com.google.common.collect.Iterables;
@@ -51,7 +53,7 @@ public class BaseAppException extends RuntimeException {
         this.code = errorCode;
 
         this.localMessage = StringUtil.isNotBlank(code) ?
-                new PropertiesFileTextProvider().getText(code) :
+                SpringContextUtil.getBean(TextProvider.class).getText(code) :
                 StringUtil.EMPTY;
 
         this.localMessage = StringUtil.isNotEmpty(this.localMessage) ? this.localMessage : message;

@@ -1,5 +1,6 @@
 package com.littlefisher.blog.controller;
 
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -11,8 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.littlefisher.core.biz.framework.request.GetResourceRequest;
 import com.littlefisher.core.biz.framework.service.ISystemService;
-import com.littlefisher.core.i18n.PropResource;
 import com.littlefisher.core.stereotype.constants.BaseConstants;
+
+import java.util.Properties;
 
 /**
  * Description: SystemController.java
@@ -25,6 +27,7 @@ import com.littlefisher.core.stereotype.constants.BaseConstants;
  */
 @RestController
 @RequestMapping(BaseConstants.BASE_API_PREFIX + "/blog/v1/system")
+@Api(value = "system", description = "system操作相关API")
 public class SystemController {
 
     @Autowired
@@ -45,7 +48,7 @@ public class SystemController {
      */
     @RequestMapping(value = "/resources", method = RequestMethod.GET)
     @ApiOperation(value = "查询Resource")
-    public void getResource(@ApiParam(value = "查询Resource条件") @ModelAttribute GetResourceRequest request) {
-
+    public Properties getResource(@ApiParam(value = "查询Resource条件") @ModelAttribute GetResourceRequest request) {
+        return systemService.getResource(request.getDialect());
     }
 }

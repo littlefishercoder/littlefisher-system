@@ -1,6 +1,8 @@
 package com.littlefisher.core.i18n;
 
 import com.littlefisher.core.stereotype.constants.BaseConstants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * 
@@ -12,7 +14,11 @@ import com.littlefisher.core.stereotype.constants.BaseConstants;
  * @version 1.0
  * @since v1.0
  */
+@Component
 public class PropertiesFileTextProvider implements TextProvider {
+
+    @Autowired
+    private PropResource propResource;
 
     @Override
     public String getText(String key) {
@@ -21,7 +27,7 @@ public class PropertiesFileTextProvider implements TextProvider {
 
     @Override
     public String getText(String dialect, String key) {
-        return PropResource.getValue(dialect, key);
+        return propResource.getValue(dialect, key);
     }
 
 }

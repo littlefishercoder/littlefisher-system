@@ -1,10 +1,13 @@
 package com.littlefisher.core.biz.framework.service.impl;
 
+import com.littlefisher.core.biz.framework.cmd.system.GetResourceCmd;
 import org.springframework.stereotype.Service;
 
 import com.littlefisher.core.biz.framework.cmd.system.RefreshResourceCmd;
 import com.littlefisher.core.biz.framework.service.ISystemService;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
+
+import java.util.Properties;
 
 /**
  * Description: SystemServiceImpl.java
@@ -21,5 +24,10 @@ public class SystemServiceImpl extends ServiceImpl implements ISystemService {
     @Override
     public void refreshResource() {
         execute(getCommand(RefreshResourceCmd.class));
+    }
+
+    @Override
+    public Properties getResource(String dialect) {
+        return execute(getCommand(GetResourceCmd.class).setDialect(dialect));
     }
 }

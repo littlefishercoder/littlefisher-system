@@ -17,6 +17,9 @@ public class BaseConstants {
     
     /** .properties 长度 */
     public static final int PROPERTIES_LENGTH = 11;
+
+    /** properties文件后缀 */
+    public static final String PROPERTIES_SUFFIX = ".properties";
     
     /** SYSTEM_HOME */
     public static final String SYSTEM_HOME = "SYSTEM_HOME";
