@@ -1,5 +1,6 @@
 package com.littlefisher.blog.request;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import net.sf.oval.constraint.NotBlank;
 
@@ -17,6 +18,7 @@ import com.littlefisher.blog.enums.EnumCommentaryState;
  * @version 1.0
  * @since v1.0
  */
+@ApiModel("修改评价请求")
 public class UpdateCommentaryRequest implements Serializable {
 
     /** serialVersionUID */

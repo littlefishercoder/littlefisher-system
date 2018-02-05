@@ -1,5 +1,6 @@
 package com.littlefisher.core.biz.framework.request;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.CheckWithCheck;
@@ -19,6 +20,7 @@ import com.littlefisher.core.utils.StringUtil;
  * @version 1.0
  * @since v1.0
  */
+@ApiModel("修改系统参数请求")
 public class UpdateSystemParamRequest implements Serializable {
 
     /** serialVersionUID */
