@@ -1,4 +1,4 @@
-package com.littlefisher.core.config.swagger;
+package com.littlefisher.core.config;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.google.common.collect.Lists;

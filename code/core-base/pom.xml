@@ -99,6 +99,10 @@
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
     </dependency>
+    <dependency>
+      <groupId>net.sf.oval</groupId>
+      <artifactId>oval</artifactId>
+    </dependency>
 
     <dependency>
       <groupId>io.springfox</groupId>

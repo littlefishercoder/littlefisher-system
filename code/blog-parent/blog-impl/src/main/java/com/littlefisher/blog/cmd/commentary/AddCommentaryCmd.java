@@ -1,5 +1,7 @@
 package com.littlefisher.blog.cmd.commentary;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.littlefisher.blog.dao.CommentaryDtoMapper;
@@ -23,6 +25,7 @@ public class AddCommentaryCmd extends AbstractCommand<CommentaryDto> {
     /**
      * commentaryDto
      */
+    @Valid
     private CommentaryDto commentaryDto;
 
     @Autowired
