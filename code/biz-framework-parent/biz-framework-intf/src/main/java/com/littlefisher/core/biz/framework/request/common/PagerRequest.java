@@ -16,14 +16,14 @@ public class PagerRequest {
     /**
      * pageNum
      */
-    @ApiModelProperty("页码")
-    private int pageNum;
+    @ApiModelProperty("页码，默认第一页")
+    private int pageNum = 1;
 
     /**
      * pageSize 每页行数
      */
-    @ApiModelProperty("每页行数")
-    private int pageSize;
+    @ApiModelProperty("每页行数，默认每页20行")
+    private int pageSize = 20;
 
     public int getPageNum() {
         return pageNum;

@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
+import com.littlefisher.blog.request.AddCommentaryRequest;
 import com.littlefisher.blog.service.ICommentaryService;
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
@@ -63,22 +65,23 @@ public class CommentaryController {
      */
     @RequestMapping(value = "/{commentaryId}", method = RequestMethod.GET)
     @ApiOperation("根据主键查询评价")
-    public CommentaryDto getCommentaryById(
-            @ApiParam(required = true, value = "评价主键") @PathVariable("commentaryId") Long commentaryId) {
+    public CommentaryDto getCommentaryById(@ApiParam(required = true, value = "评价主键") @PathVariable("commentaryId")
+    @NotNull(message = "commentaryId不能为空") Long commentaryId) {
         return commentaryService.getCommentaryById(commentaryId);
     }
 
     /**
      * Description: 新增评价
      *
-     * @param commentaryDto commentaryDto
+     * @param request 请求入参
      * @return CommentaryDto
      */
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation("新增评价")
     public CommentaryDto addCommentary(
-            @ApiParam(required = true, value = "评价实体") @RequestBody CommentaryDto commentaryDto) {
-        return commentaryService.addCommentary(commentaryDto);
+            @ApiParam(required = true, value = "评价实体") @RequestBody @NotNull(message = "评价不能为空")
+            AddCommentaryRequest request) {
+        return commentaryService.addCommentary(request);
     }
 
     /**

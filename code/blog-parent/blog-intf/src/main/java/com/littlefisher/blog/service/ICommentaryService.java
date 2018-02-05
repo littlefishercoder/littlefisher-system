@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
+import com.littlefisher.blog.request.AddCommentaryRequest;
 import com.littlefisher.blog.request.GetCommentaryList4PagerByCondRequest;
 
 /**
@@ -36,10 +37,10 @@ public interface ICommentaryService {
     /**
      * Description: 新增评价
      *
-     * @param commentaryDto commentaryDto
+     * @param request commentaryDto
      * @return CommentaryDto
      */
-    CommentaryDto addCommentary(CommentaryDto commentaryDto);
+    CommentaryDto addCommentary(AddCommentaryRequest request);
 
     /**
      * Description: 修改评价

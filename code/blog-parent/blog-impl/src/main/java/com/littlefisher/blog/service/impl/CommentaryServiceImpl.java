@@ -9,6 +9,7 @@ import com.littlefisher.blog.cmd.commentary.DeleteCommentaryCmd;
 import com.littlefisher.blog.cmd.commentary.GetCommentaryByIdCmd;
 import com.littlefisher.blog.cmd.commentary.GetCommentaryList4PagerByCondCmd;
 import com.littlefisher.blog.cmd.commentary.UpdateCommentaryCmd;
+import com.littlefisher.blog.request.AddCommentaryRequest;
 import com.littlefisher.blog.service.ICommentaryService;
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
@@ -38,7 +39,14 @@ public class CommentaryServiceImpl extends ServiceImpl implements ICommentarySer
     }
 
     @Override
-    public CommentaryDto addCommentary(CommentaryDto commentaryDto) {
+    public CommentaryDto addCommentary(AddCommentaryRequest request) {
+        CommentaryDto commentaryDto = new CommentaryDto();
+        commentaryDto.setParentCommentaryId(request.getParentCommentaryId());
+        commentaryDto.setUserId(request.getUserId());
+        commentaryDto.setNickName(request.getNickName());
+        commentaryDto.setCommentaryIp(request.getCommentaryIp());
+        commentaryDto.setPostId(request.getPostId());
+        commentaryDto.setContent(request.getContent());
         return this.execute(getCommand(AddCommentaryCmd.class).setCommentaryDto(commentaryDto));
     }
 

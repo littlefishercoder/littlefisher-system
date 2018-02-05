@@ -47,7 +47,7 @@ public class AuthorController {
     @RequestMapping(value = "/index/{authorId}", method = RequestMethod.GET)
     @ApiOperation("首页作者详情")
     public AuthorExtDto getAuthorInfo4Index(
-            @ApiParam(required = false, value = "作者主键") @PathVariable("authorId") @NotNull(message = "authorId不能为空")
+            @ApiParam(required = true, value = "作者主键") @PathVariable("authorId") @NotNull(message = "authorId不能为空")
                     Long authorId) {
         // 首页作者详情
         return authorService.getAuthorInfo4Index(authorId);
@@ -59,8 +59,10 @@ public class AuthorController {
      * @return 友情链接
      */
     @RequestMapping(value = "/{authorId}/friendLinks", method = RequestMethod.GET)
+    @ApiOperation("作者友情链接")
     public List<FriendLinkDto> getFriendLinkList(
-            @ApiParam(required = true, value = "作者主键") @PathVariable("authorId") Long authorId) {
+            @ApiParam(required = true, value = "作者主键") @PathVariable("authorId") @NotNull(message = "authorId不能为空")
+                    Long authorId) {
         // 作者友情链接
         return friendLinkService.getFriendLinkList(authorId);
     }
