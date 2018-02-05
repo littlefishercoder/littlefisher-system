@@ -3,7 +3,9 @@ package com.littlefisher.core.biz.framework.service;
 import java.util.List;
 
 import com.littlefisher.core.biz.framework.model.SystemParamDto;
+import com.littlefisher.core.biz.framework.request.AddSystemParamRequest;
 import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCondRequest;
+import com.littlefisher.core.biz.framework.request.UpdateSystemParamRequest;
 
 /**
  * Description: 系统信息参数
@@ -43,10 +45,10 @@ public interface ISystemParamService {
     /**
      * Description: 新增系统参数
      *
-     * @param systemParamDto systemParamDto
+     * @param request systemParamDto
      * @return SystemParamDto
      */
-    SystemParamDto addSystemParam(SystemParamDto systemParamDto);
+    SystemParamDto addSystemParam(AddSystemParamRequest request);
 
     /**
      * Description: 根据key删除系统参数
@@ -67,8 +69,8 @@ public interface ISystemParamService {
     /**
      * Description: 修改系统参数
      *
-     * @param systemParamDto systemParamDto
+     * @param request systemParamDto
      * @return SystemParamDto
      */
-    SystemParamDto updateSystemParam(SystemParamDto systemParamDto);
+    SystemParamDto updateSystemParam(UpdateSystemParamRequest request);
 }

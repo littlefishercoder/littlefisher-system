@@ -22,7 +22,7 @@ public class GetResourceRequest implements Serializable {
     private static final long serialVersionUID = -2904028821745421517L;
 
     /** 方言 */
-    @ApiModelProperty("方言，可选zh、en")
+    @ApiModelProperty(required = true, value = "方言，可选zh、en")
     @NotNull(message = "方言不可为空")
     private String dialect;
 

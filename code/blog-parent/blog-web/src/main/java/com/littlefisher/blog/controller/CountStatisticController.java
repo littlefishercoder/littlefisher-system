@@ -3,6 +3,9 @@ package com.littlefisher.blog.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import net.sf.oval.constraint.NotBlank;
+
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,7 +46,8 @@ public class CountStatisticController {
     @RequestMapping(value = "/blog/{authorId}", method = RequestMethod.GET)
     @ApiOperation("查询博客相关数量统计")
     public CountStatisticExtDto getBlogCountStatistic(
-            @ApiParam(required = true, value = "作者id") @PathVariable("authorId") Long authorId) {
+            @ApiParam(required = true, value = "作者id") @PathVariable("authorId") @NotNull(message = "作者id不能为空")
+            @NotBlank(message = "作者id不能为空") Long authorId) {
         // 查询博客相关数量统计
         return countStatisticService.getBlogCountStatistic(authorId);
     }
@@ -55,7 +59,8 @@ public class CountStatisticController {
      */
     @RequestMapping(value = "/blog", method = RequestMethod.PATCH)
     public void addBlogCountTimes(
-            @ApiParam(required = true, value = "增加博客统计信息") @RequestBody AddBlogCountTimesRequest request) {
+            @ApiParam(required = true, value = "增加博客统计信息") @RequestBody @NotNull(message = "请求不能为空")
+                    AddBlogCountTimesRequest request) {
         // 增加博客统计信息
         countStatisticService.addBlogCountTimes(request);
     }
@@ -67,7 +72,8 @@ public class CountStatisticController {
      */
     @RequestMapping(value = "/post", method = RequestMethod.PATCH)
     public void addPostCountTimes(
-            @ApiParam(required = true, value = "增加博文统计数据") @RequestBody AddPostCountTimesRequest request) {
+            @ApiParam(required = true, value = "增加博文统计数据") @RequestBody @NotNull(message = "请求不能为空")
+                    AddPostCountTimesRequest request) {
         // 增加博文统计数据
         countStatisticService.addPostCountTimes(request);
     }

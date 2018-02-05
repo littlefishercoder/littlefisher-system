@@ -4,6 +4,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import javax.validation.constraints.NotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +50,8 @@ public class SystemController {
      */
     @RequestMapping(value = "/resources", method = RequestMethod.GET)
     @ApiOperation(value = "查询Resource")
-    public Map<Object, Object> getResource(@ApiParam(value = "查询Resource条件") @ModelAttribute GetResourceRequest request) {
+    public Map<Object, Object> getResource(
+            @ApiParam(value = "查询Resource条件") @ModelAttribute @NotNull(message = "请求不能为空") GetResourceRequest request) {
         return systemService.getResource(request.getDialect());
     }
 }

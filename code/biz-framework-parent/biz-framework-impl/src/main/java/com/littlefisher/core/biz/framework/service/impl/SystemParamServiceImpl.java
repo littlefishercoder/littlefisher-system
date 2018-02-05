@@ -11,6 +11,8 @@ import com.littlefisher.core.biz.framework.cmd.system.GetSystemParamByIdCmd;
 import com.littlefisher.core.biz.framework.cmd.system.GetSystemParamByKeyCmd;
 import com.littlefisher.core.biz.framework.cmd.system.GetSystemParamList4PagerByCondCmd;
 import com.littlefisher.core.biz.framework.cmd.system.UpdateSystemParamCmd;
+import com.littlefisher.core.biz.framework.request.AddSystemParamRequest;
+import com.littlefisher.core.biz.framework.request.UpdateSystemParamRequest;
 import com.littlefisher.core.biz.framework.service.ISystemParamService;
 import com.littlefisher.core.biz.framework.model.SystemParamDto;
 import com.littlefisher.core.biz.framework.request.GetSystemParamList4PagerByCondRequest;
@@ -29,8 +31,7 @@ import com.littlefisher.core.interceptor.service.ServiceImpl;
 public class SystemParamServiceImpl extends ServiceImpl implements ISystemParamService {
 
     @Override
-    public List<SystemParamDto> getSystemParamList4PagerByCond(
-            GetSystemParamList4PagerByCondRequest req) {
+    public List<SystemParamDto> getSystemParamList4PagerByCond(GetSystemParamList4PagerByCondRequest req) {
         return this.execute(getCommand(GetSystemParamList4PagerByCondCmd.class).setReq(req));
     }
 
@@ -45,7 +46,12 @@ public class SystemParamServiceImpl extends ServiceImpl implements ISystemParamS
     }
 
     @Override
-    public SystemParamDto addSystemParam(SystemParamDto systemParamDto) {
+    public SystemParamDto addSystemParam(AddSystemParamRequest request) {
+        SystemParamDto systemParamDto = new SystemParamDto();
+        systemParamDto.setParamKey(request.getParamKey());
+        systemParamDto.setParamValue(request.getParamValue());
+        systemParamDto.setDefaultValue(request.getDefaultValue());
+        systemParamDto.setParamDesc(request.getParamDesc());
         return this.execute(getCommand(AddSystemParamCmd.class).setSystemParamDto(systemParamDto));
     }
 
@@ -60,7 +66,12 @@ public class SystemParamServiceImpl extends ServiceImpl implements ISystemParamS
     }
 
     @Override
-    public SystemParamDto updateSystemParam(SystemParamDto systemParamDto) {
+    public SystemParamDto updateSystemParam(UpdateSystemParamRequest request) {
+        SystemParamDto systemParamDto = this.getSystemParamById(request.getId());
+        systemParamDto.setParamValue(request.getParamValue());
+        systemParamDto.setDefaultValue(request.getDefaultValue());
+        systemParamDto.setParamDesc(request.getParamDesc());
+
         return this.execute(getCommand(UpdateSystemParamCmd.class).setSystemParamDto(systemParamDto));
     }
 

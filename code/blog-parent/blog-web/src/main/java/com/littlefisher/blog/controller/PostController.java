@@ -3,7 +3,9 @@ package com.littlefisher.blog.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import net.sf.oval.constraint.NotBlank;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.littlefisher.blog.request.AddPostRequest;
+import com.littlefisher.blog.request.UpdatePostRequest;
 import com.littlefisher.blog.service.IPostService;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
@@ -36,9 +39,6 @@ import com.littlefisher.core.stereotype.constants.BaseConstants;
 @Api(value = "post", description = "post 接口API")
 public class PostController {
 
-    /**
-     * postService
-     */
     @Autowired
     private IPostService postService;
 
@@ -51,7 +51,8 @@ public class PostController {
     @RequestMapping(value = "/pager", method = RequestMethod.GET)
     @ApiOperation("根据条件查询博文列表")
     public PageInfo<PostExtDto> getPostList4PagerByCond(
-            @ApiParam(required = true, value = "查询博文列表的条件") @ModelAttribute GetPostList4PagerByCondRequest req) {
+            @ApiParam(required = true, value = "查询博文列表的条件") @ModelAttribute @NotNull(message = "请求不能为空")
+                    GetPostList4PagerByCondRequest req) {
         List<PostExtDto> postList = postService.getPostList4PagerByCond(req);
         return new PageInfo<>(postList);
     }
@@ -64,7 +65,9 @@ public class PostController {
      */
     @RequestMapping(value = "/{postId}", method = RequestMethod.GET)
     @ApiOperation("根据博文主键查询具体博文")
-    public PostDto getPostById(@ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) {
+    public PostDto getPostById(
+            @ApiParam(required = true, value = "博文主键") @PathVariable("postId") @NotNull(message = "博文id不能为空")
+            @NotBlank(message = "博文id不能为空") Long postId) {
         return postService.getPostById(postId);
     }
 
@@ -72,24 +75,25 @@ public class PostController {
      * Description: 新增博文
      *
      * @param request 博文实体
-     * @return PostDto
      */
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation("新增博文")
-    public void addPost(@ApiParam(required = true, value = "博文实体") @RequestBody AddPostRequest request) {
+    public void addPost(@ApiParam(required = true, value = "博文实体") @RequestBody @NotNull(message = "请求不能为空")
+            AddPostRequest request) {
         postService.addPost(request);
     }
 
     /**
      * Description: 修改博文
      *
-     * @param postDto 博文实体
+     * @param request 请求入参
      * @return PostDto
      */
     @RequestMapping(method = RequestMethod.PATCH)
     @ApiOperation("修改博文")
-    public PostDto updatePost(@ApiParam(required = true, value = "博文实体") @RequestBody PostDto postDto) {
-        return postService.updatePost(postDto);
+    public PostDto updatePost(@ApiParam(required = true, value = "博文实体") @RequestBody @NotNull(message = "修改博文请求不能为空")
+            UpdatePostRequest request) {
+        return postService.updatePost(request);
     }
 
     /**
@@ -100,7 +104,9 @@ public class PostController {
      */
     @RequestMapping(value = "/{postId}", method = RequestMethod.DELETE)
     @ApiOperation("删除博文")
-    public int deletePost(@ApiParam(required = true, value = "博文主键") @PathVariable("postId") Long postId) {
+    public int deletePost(
+            @ApiParam(required = true, value = "博文主键") @PathVariable("postId") @NotNull(message = "博文id不能为空")
+            @NotBlank(message = "博文id不能为空") Long postId) {
         return postService.deletePostById(postId);
     }
 

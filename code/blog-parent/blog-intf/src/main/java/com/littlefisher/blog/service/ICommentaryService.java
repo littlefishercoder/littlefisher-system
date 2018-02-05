@@ -6,6 +6,7 @@ import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
 import com.littlefisher.blog.request.AddCommentaryRequest;
 import com.littlefisher.blog.request.GetCommentaryList4PagerByCondRequest;
+import com.littlefisher.blog.request.UpdateCommentaryRequest;
 
 /**
  * Description: 评价接口
@@ -45,10 +46,10 @@ public interface ICommentaryService {
     /**
      * Description: 修改评价
      *
-     * @param commentaryDto commentaryDto
+     * @param request commentaryDto
      * @return CommentaryDto
      */
-    CommentaryDto updateCommentary(CommentaryDto commentaryDto);
+    CommentaryDto updateCommentary(UpdateCommentaryRequest request);
 
     /**
      * Description: 删除评价

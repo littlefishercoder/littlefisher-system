@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,8 @@ public class TagController {
     @RequestMapping(value = "/pager", method = RequestMethod.GET)
     @ApiOperation("查询tag列表，分页用")
     public PageInfo<TagDto> getTagList4PagerByCond(
-            @ApiParam(value = "查询tag列表条件") @ModelAttribute GetTagList4PagerByCondRequest request) {
+            @ApiParam(value = "查询tag列表条件") @ModelAttribute @NotNull(message = "请求不能为空")
+                    GetTagList4PagerByCondRequest request) {
         List<TagDto> tagList = tagService.getTagList4PagerByCond(request);
         return new PageInfo<>(tagList);
     }

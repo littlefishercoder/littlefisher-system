@@ -2,8 +2,10 @@ package com.littlefisher.blog.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import net.sf.oval.constraint.NotBlank;
 
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Description: AddBlogCountTimesRequest.java
@@ -18,7 +20,9 @@ import javax.validation.constraints.Min;
 public class AddBlogCountTimesRequest {
 
     /** 作者id */
-    @ApiModelProperty("作者id")
+    @ApiModelProperty(required = true, value = "作者id")
+    @NotBlank(message = "作者id不能为空")
+    @NotNull(message = "作者id不能为空")
     private Long authorId;
 
     /** 新增评论数量 */

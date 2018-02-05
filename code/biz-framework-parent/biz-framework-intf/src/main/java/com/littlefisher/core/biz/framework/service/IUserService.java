@@ -3,7 +3,9 @@ package com.littlefisher.core.biz.framework.service;
 import java.util.List;
 
 import com.littlefisher.core.biz.framework.model.UserDto;
+import com.littlefisher.core.biz.framework.request.AddUserRequest;
 import com.littlefisher.core.biz.framework.request.GetUserList4PagerByCondRequest;
+import com.littlefisher.core.biz.framework.request.UpdateUserRequest;
 
 /**
  * Description:
@@ -42,18 +44,18 @@ public interface IUserService {
     /**
      * Description: 新增用户
      *
-     * @param userDto userDto
+     * @param request userDto
      * @return UserDto
      */
-    UserDto addUser(UserDto userDto);
+    UserDto addUser(AddUserRequest request);
 
     /**
      * Description: 修改用户
      *
-     * @param userDto userDto
+     * @param request userDto
      * @return UserDto
      */
-    UserDto updateUser(UserDto userDto);
+    UserDto updateUser(UpdateUserRequest request);
 
     /**
      * Description: 删除用户

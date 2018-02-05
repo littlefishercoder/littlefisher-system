@@ -6,6 +6,7 @@ import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
 import com.littlefisher.blog.request.AddPostRequest;
 import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
+import com.littlefisher.blog.request.UpdatePostRequest;
 
 /**
  * Description: 博文接口
@@ -51,10 +52,10 @@ public interface IPostService {
     /**
      * Description:
      *
-     * @param postDto postDto
+     * @param request postDto
      * @return PostDto
      */
-    PostDto updatePost(PostDto postDto);
+    PostDto updatePost(UpdatePostRequest request);
 
     /**
      * Description:

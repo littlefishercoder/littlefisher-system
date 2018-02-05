@@ -10,11 +10,13 @@ import com.littlefisher.blog.cmd.commentary.GetCommentaryByIdCmd;
 import com.littlefisher.blog.cmd.commentary.GetCommentaryList4PagerByCondCmd;
 import com.littlefisher.blog.cmd.commentary.UpdateCommentaryCmd;
 import com.littlefisher.blog.request.AddCommentaryRequest;
+import com.littlefisher.blog.request.UpdateCommentaryRequest;
 import com.littlefisher.blog.service.ICommentaryService;
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
 import com.littlefisher.blog.request.GetCommentaryList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.utils.DateUtil;
 
 /**
  * Description: 评价Service
@@ -51,7 +53,14 @@ public class CommentaryServiceImpl extends ServiceImpl implements ICommentarySer
     }
 
     @Override
-    public CommentaryDto updateCommentary(CommentaryDto commentaryDto) {
+    public CommentaryDto updateCommentary(UpdateCommentaryRequest request) {
+        CommentaryDto commentaryDto = this.getCommentaryById(request.getId());
+        if (request.getState() != null) {
+            commentaryDto.setState(request.getState());
+            commentaryDto.setStateDate(DateUtil.getDBDateTime());
+        }
+        commentaryDto.setContent(request.getContent());
+        commentaryDto.setUpdateDate(DateUtil.getDBDateTime());
         return this.execute(getCommand(UpdateCommentaryCmd.class).setCommentaryDto(commentaryDto));
     }
 

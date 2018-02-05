@@ -5,9 +5,11 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.littlefisher.blog.dao.CommentaryDtoMapper;
+import com.littlefisher.blog.enums.EnumCommentaryState;
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.core.interceptor.AbstractCommand;
 import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.utils.DateUtil;
 
 /**
  *
@@ -38,6 +40,9 @@ public class AddCommentaryCmd extends AbstractCommand<CommentaryDto> {
 
     @Override
     public CommentaryDto execute() {
+        commentaryDto.setCreatedDate(DateUtil.getDBDateTime());
+        commentaryDto.setState(EnumCommentaryState.PUBLISHED);
+        commentaryDto.setStateDate(DateUtil.getDBDateTime());
         commentaryDtoMapper.insert(commentaryDto);
         return commentaryDto;
     }

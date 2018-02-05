@@ -8,9 +8,9 @@ import com.littlefisher.core.interceptor.AbstractCommand;
 import com.littlefisher.core.stereotype.annotations.Command;
 
 /**
- * 
+ *
  * Description: 
- *  
+ *
  * Created on 2017年5月24日 
  *
  * @author jinyanan
@@ -19,7 +19,7 @@ import com.littlefisher.core.stereotype.annotations.Command;
  */
 @Command
 public class UpdateCommentaryCmd extends AbstractCommand<CommentaryDto> {
-    
+
     /**
      * commentaryDto
      */

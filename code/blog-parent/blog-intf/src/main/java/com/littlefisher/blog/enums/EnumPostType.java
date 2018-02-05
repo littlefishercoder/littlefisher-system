@@ -29,7 +29,8 @@ public enum EnumPostType implements IEnum {
     @Override
     public EnumPostState find(String code) {
         for (EnumPostState enumPostState : EnumPostState.values()) {
-            if (enumPostState.getCode().equals(code)) {
+            if (enumPostState.getCode()
+                    .equals(code)) {
                 return enumPostState;
             }
         }

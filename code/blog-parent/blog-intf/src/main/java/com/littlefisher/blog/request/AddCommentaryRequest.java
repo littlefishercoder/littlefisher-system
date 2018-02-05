@@ -2,9 +2,14 @@ package com.littlefisher.blog.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import net.sf.oval.constraint.CheckWith;
+import net.sf.oval.constraint.CheckWithCheck;
+import net.sf.oval.constraint.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+
+import com.littlefisher.core.utils.StringUtil;
 
 /**
  * Description: AddCommentaryRequest.java
@@ -31,6 +36,7 @@ public class AddCommentaryRequest implements Serializable {
      * 评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示
      */
     @ApiModelProperty("评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示")
+    @CheckWith(value = NameCheck.class, message = "评价人主键和昵称二选一")
     private Long userId;
 
     /**
@@ -50,6 +56,7 @@ public class AddCommentaryRequest implements Serializable {
      */
     @ApiModelProperty(required = true, value = "博文主键")
     @NotNull(message = "博文主键不能为空")
+    @NotBlank(message = "博文主键不能为空")
     private Long postId;
 
     /**
@@ -57,7 +64,21 @@ public class AddCommentaryRequest implements Serializable {
      */
     @ApiModelProperty(required = true, value = "评论内容")
     @NotNull(message = "评价内容不能为空")
+    @NotBlank(message = "评价内容不能为空")
     private String content;
+
+    public static class NameCheck implements CheckWithCheck.SimpleCheck {
+
+        /** serialVersionUID */
+        private static final long serialVersionUID = 4258982788288498768L;
+
+        @Override
+        public boolean isSatisfied(Object validatedObject, Object value) {
+            AddCommentaryRequest request = (AddCommentaryRequest) validatedObject;
+            Long userId = (Long) value;
+            return userId != null || StringUtil.isNotBlank(request.getNickName());
+        }
+    }
 
     public Long getParentCommentaryId() {
         return parentCommentaryId;

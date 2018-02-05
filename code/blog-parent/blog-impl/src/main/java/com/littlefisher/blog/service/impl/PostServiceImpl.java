@@ -11,11 +11,13 @@ import com.littlefisher.blog.cmd.post.GetPostList4PagerByCondCmd;
 import com.littlefisher.blog.cmd.post.GetPostWithoutBlobByIdCmd;
 import com.littlefisher.blog.cmd.post.UpdatePostCmd;
 import com.littlefisher.blog.request.AddPostRequest;
+import com.littlefisher.blog.request.UpdatePostRequest;
 import com.littlefisher.blog.service.IPostService;
 import com.littlefisher.blog.model.PostDto;
 import com.littlefisher.blog.model.ext.PostExtDto;
 import com.littlefisher.blog.request.GetPostList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.utils.DateUtil;
 
 /**
  * Description:
@@ -50,7 +52,18 @@ public class PostServiceImpl extends ServiceImpl implements IPostService {
     }
 
     @Override
-    public PostDto updatePost(PostDto postDto) {
+    public PostDto updatePost(UpdatePostRequest request) {
+        PostDto postDto = this.getPostById(request.getId());
+        postDto.setTitle(request.getTitle());
+        postDto.setOriginalUrl(request.getOriginalUrl());
+        postDto.setType(request.getType());
+        postDto.setArchiveId(request.getArchiveId());
+        postDto.setEnableComment(request.getEnableComment());
+        if (request.getState() != null) {
+            postDto.setState(request.getState());
+            postDto.setStateDate(DateUtil.getDBDateTime());
+        }
+        postDto.setContent(request.getContent());
         return this.execute(getCommand(UpdatePostCmd.class).setPostDto(postDto));
     }
 

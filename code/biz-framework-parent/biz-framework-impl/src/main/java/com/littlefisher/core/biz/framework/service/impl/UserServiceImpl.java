@@ -11,10 +11,14 @@ import com.littlefisher.core.biz.framework.cmd.user.GetUserListByIdsCmd;
 import com.littlefisher.core.biz.framework.cmd.user.QryAllUserCmd;
 import com.littlefisher.core.biz.framework.cmd.user.QryUserByIdCmd;
 import com.littlefisher.core.biz.framework.cmd.user.UpdateUserCmd;
+import com.littlefisher.core.biz.framework.enums.EnumUserState;
+import com.littlefisher.core.biz.framework.request.AddUserRequest;
+import com.littlefisher.core.biz.framework.request.UpdateUserRequest;
 import com.littlefisher.core.biz.framework.service.IUserService;
 import com.littlefisher.core.biz.framework.model.UserDto;
 import com.littlefisher.core.biz.framework.request.GetUserList4PagerByCondRequest;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.utils.DateUtil;
 
 /**
  * Description:
@@ -39,12 +43,30 @@ public class UserServiceImpl extends ServiceImpl implements IUserService {
     }
 
     @Override
-    public UserDto addUser(UserDto userDto) {
+    public UserDto addUser(AddUserRequest request) {
+        UserDto userDto = new UserDto();
+        userDto.setAccNbr(request.getAccNbr());
+        userDto.setPassword(request.getPassword());
+        userDto.setRealName(request.getRealName());
+        userDto.setEnName(request.getEnName());
+        userDto.setNickName(request.getNickName());
+        userDto.setUserDesc(request.getUserDesc());
+        userDto.setState(EnumUserState.VALID);
+        userDto.setRegDate(DateUtil.getDBDateTime());
         return this.execute(getCommand(AddUserCmd.class).setUserDto(userDto));
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto) {
+    public UserDto updateUser(UpdateUserRequest request) {
+        UserDto userDto = this.getUserById(request.getId());
+        userDto.setAccNbr(request.getAccNbr());
+        userDto.setPassword(request.getPassword());
+        userDto.setRealName(request.getRealName());
+        userDto.setNickName(request.getNickName());
+        userDto.setEnName(request.getEnName());
+        userDto.setUserDesc(request.getUserDesc());
+        userDto.setState(request.getState());
+        userDto.setLastLoginDate(request.getLastLoginDate());
         return this.execute(getCommand(UpdateUserCmd.class).setUserDto(userDto));
     }
 

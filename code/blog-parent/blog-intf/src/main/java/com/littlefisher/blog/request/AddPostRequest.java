@@ -2,8 +2,8 @@ package com.littlefisher.blog.request;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import net.sf.oval.constraint.NotBlank;
 
-import javax.persistence.Column;
 import javax.validation.constraints.NotNull;
 
 import java.util.List;
@@ -25,8 +25,9 @@ public class AddPostRequest {
     /**
      * 标题
      */
-    @ApiModelProperty("标题")
+    @ApiModelProperty(required = true, value = "标题")
     @NotNull(message = "标题不能为空")
+    @NotBlank(message = "标题不能为空")
     private String title;
 
     /**
@@ -38,29 +39,33 @@ public class AddPostRequest {
     /**
      * 类型
      */
-    @ApiModelProperty("类型")
+    @ApiModelProperty(required = true, value = "类型")
     @NotNull(message = "类型不能为空")
+    @NotBlank(message = "类型不能为空")
     private EnumPostType type;
 
     /**
      * 文章分类
      */
-    @ApiModelProperty("文章分类")
+    @ApiModelProperty(required = true, value = "文章分类")
     @NotNull(message = "文章分类不能为空")
+    @NotBlank(message = "文章分类不能为空")
     private String archiveName;
 
     /**
      * 作者主键
      */
-    @ApiModelProperty("作者主键")
-    @Column(name = "author_id")
+    @ApiModelProperty(required = true, value = "作者主键")
+    @NotNull(message = "作者主键不能为空")
+    @NotBlank(message = "作者主键不能为空")
     private Long authorId;
 
     /**
      * 博文
      */
-    @ApiModelProperty("博文")
+    @ApiModelProperty(required = true, value = "博文")
     @NotNull(message = "博文不能为空")
+    @NotBlank(message = "博文不能为空")
     private String content;
 
     /**

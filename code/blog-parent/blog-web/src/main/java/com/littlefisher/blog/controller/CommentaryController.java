@@ -3,6 +3,7 @@ package com.littlefisher.blog.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import net.sf.oval.constraint.NotBlank;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.pagehelper.PageInfo;
 import com.littlefisher.blog.request.AddCommentaryRequest;
+import com.littlefisher.blog.request.UpdateCommentaryRequest;
 import com.littlefisher.blog.service.ICommentaryService;
 import com.littlefisher.blog.model.CommentaryDto;
 import com.littlefisher.blog.model.ext.CommentaryExtDto;
@@ -80,21 +82,22 @@ public class CommentaryController {
     @ApiOperation("新增评价")
     public CommentaryDto addCommentary(
             @ApiParam(required = true, value = "评价实体") @RequestBody @NotNull(message = "评价不能为空")
-            AddCommentaryRequest request) {
+                    AddCommentaryRequest request) {
         return commentaryService.addCommentary(request);
     }
 
     /**
      * Description: 修改评价
      *
-     * @param commentaryDto commentaryDto
+     * @param request 请求入参
      * @return CommentaryDto
      */
     @RequestMapping(method = RequestMethod.PATCH)
     @ApiOperation("修改评价")
     public CommentaryDto updateCommentary(
-            @ApiParam(required = true, value = "评价实体") @RequestBody CommentaryDto commentaryDto) {
-        return commentaryService.updateCommentary(commentaryDto);
+            @ApiParam(required = true, value = "评价实体") @RequestBody @NotNull(message = "入参不能为空")
+                    UpdateCommentaryRequest request) {
+        return commentaryService.updateCommentary(request);
     }
 
     /**
@@ -106,7 +109,8 @@ public class CommentaryController {
     @RequestMapping(value = "/{commentaryId}", method = RequestMethod.DELETE)
     @ApiOperation("删除评价")
     public int deleteCommentary(
-            @ApiParam(required = true, value = "评价主键") @PathVariable("commentaryId") Long commentaryId) {
+            @ApiParam(required = true, value = "评价主键") @PathVariable("commentaryId") @NotNull(message = "评价id不能为空")
+            @NotBlank(message = "评价id不能为空") Long commentaryId) {
         return commentaryService.deleteCommentary(commentaryId);
     }
 }
