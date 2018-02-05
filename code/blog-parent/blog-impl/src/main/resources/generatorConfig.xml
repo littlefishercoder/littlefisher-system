@@ -18,7 +18,9 @@
     </plugin>
 
     <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
-    <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin">
+      <property name="useToStringFromRoot" value="true"/>
+    </plugin>
     <!--把Example文件位置隔离开-->
     <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
       <property name="searchString" value=".model."/>
