@@ -67,7 +67,7 @@ spring:
       # 设置是否可以自动提交
       enable-auto-commit: true
       # 自动提交的时间间隔
-      auto-commit-interval: 1000
+      auto-commit-interval: 1000ms
       # Key的序列化类
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       # Value的序列化类
@@ -102,12 +102,8 @@ pagehelper:
   page-size-zero: true
 
 server:
-  context-path: /blog-web
-
-# 关闭权限校验
-management:
-  security:
-    enabled: false
+  servlet:
+    context-path: /blog-web
 
 littlefisher:
   mybatis:
