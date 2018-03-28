@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <properties url="file:${SYSTEM_HOME}/etc/properties/generatorConfig.properties"/>
+
+  <context id="Mysql" targetRuntime="${targetRuntime}" defaultModelType="${defaultModelType}">
+
+    <property name="author" value="${author}"/>
+    <property name="javaFormatter" value="com.littlefisher.core.mybatis.generator.SortImportsAndFieldsJavaFormatter"/>
+
+    <plugin type="com.littlefisher.core.mybatis.generator.plugins.MapperPlugin">
+      <property name="mappers" value="com.littlefisher.core.mybatis.mapper.common.CommonMapper"/>
+      <!-- caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true -->
+      <!--<property name="caseSensitive" value="true"/>-->
+    </plugin>
+
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin">
+      <property name="useToStringFromRoot" value="true"/>
+    </plugin>
+    <!--把Example文件位置隔离开-->
+    <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+      <property name="searchString" value=".model."/>
+      <property name="replaceString" value=".example."/>
+    </plugin>
+
+    <jdbcConnection driverClass="${jdbc.driverClass}" connectionURL="${jdbc.url}"
+                    userId="${jdbc.user}" password="${jdbc.password}">
+    </jdbcConnection>
+
+    <javaTypeResolver type="com.littlefisher.core.mybatis.generator.JavaTypeResolver">
+      <property name="forceBigDecimals" value="false"/>
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="com.littlefisher.blog.model" targetProject="${targetJavaProject}"/>
+
+    <sqlMapGenerator targetPackage="com.littlefisher.blog.mapper" targetProject="${targetResourcesProject}"/>
+
+    <javaClientGenerator targetPackage="com.littlefisher.blog.dao" targetProject="${targetJavaProject}"
+                         type="XMLMAPPER" />
+
+    <!--<table tableName="commentary" domainObjectName="CommentaryDto" escapeWildcards="true">-->
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+      <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumCommentaryState"/>-->
+    <!--</table>-->
+    <!--<table tableName="post" domainObjectName="PostDto" escapeWildcards="true">-->
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+      <!--<columnOverride column="type" javaType="com.littlefisher.blog.enums.EnumPostType"/>-->
+      <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumPostState"/>-->
+      <!--<columnOverride column="enable_comment" javaType="com.littlefisher.core.stereotype.enums.EnumBizBool" />-->
+    <!--</table>-->
+    <!--<table tableName="post_tag" domainObjectName="PostTagDto" escapeWildcards="true">-->
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+      <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumPostTagState" />-->
+    <!--</table>-->
+    <!--<table tableName="tag" domainObjectName="TagDto" escapeWildcards="true">-->
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+      <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumTagState"/>-->
+    <!--</table>-->
+    <!--<table tableName="archive" domainObjectName="ArchiveDto" escapeWildcards="true">-->
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+      <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumArchiveState"/>-->
+    <!--</table>-->
+    <!--<table tableName="author" domainObjectName="AuthorDto" escapeWildcards="true">-->
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+      <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumAuthorState" />-->
+    <!--</table>-->
+    <!--<table tableName="count_statistic" domainObjectName="CountStatisticDto" escapeWildcards="true">-->
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+      <!--<columnOverride column="type" javaType="com.littlefisher.blog.enums.EnumCountStatisticType" />-->
+      <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumCountStatisticState" />-->
+    <!--</table>-->
+    <!--<table tableName="count_statistic_4_blog" domainObjectName="CountStatistic4BlogDto" escapeWildcards="true">-->
+    <!--</table>-->
+    <!--<table tableName="count_statistic_4_post" domainObjectName="CountStatistic4PostDto" escapeWildcards="true">-->
+    <!--</table>-->
+    <!--<table tableName="friend_link" domainObjectName="FriendLinkDto" escapeWildcards="true">-->
+      <!--<generatedKey column="id" sqlStatement="Mysql" identity="true"/>-->
+      <!--<columnOverride column="state" javaType="com.littlefisher.blog.enums.EnumFriendLinkState" />-->
+    <!--</table>-->
+  </context>
+</generatorConfiguration>

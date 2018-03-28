@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>littlefisher-parent</artifactId>
+    <groupId>com.littlefisher</groupId>
+    <version>1.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>biz-framework-parent</artifactId>
+  <packaging>pom</packaging>
+
+  <properties>
+    <core-base.version>1.0.1-SNAPSHOT</core-base.version>
+    <shiro-spring.version>1.4.0</shiro-spring.version>
+  </properties>
+
+  <modules>
+    <module>biz-framework-biz</module>
+    <module>biz-framework-biz-impl</module>
+    <module>biz-framework-dal</module>
+    <module>biz-framework-dal-impl</module>
+    <module>biz-framework-common</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-spring</artifactId>
+        <version>${shiro-spring.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>
