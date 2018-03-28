@@ -18,8 +18,7 @@ import com.littlefisher.core.mybatis.mapper.provider.base.BaseSelectProvider;
 public interface SelectWithoutBlobMapper<T> {
 
     /**
-     * 根据实体中的属性值进行查询，查询条件使用等号
-     * 不带Blob字段
+     * 根据实体中的属性值进行查询，查询条件使用等号 不带Blob字段
      *
      * @param record 条件
      * @return 结果

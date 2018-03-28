@@ -16,8 +16,7 @@ import com.littlefisher.core.mybatis.mapper.provider.base.BaseSelectProvider;
 public interface SelectOneWithoutBlobMapper<T> {
 
     /**
-     * 根据实体中的属性进行查询，只能有一个返回值，有多个结果是抛出异常，查询条件使用等号
-     * 不带Blob字段
+     * 根据实体中的属性进行查询，只能有一个返回值，有多个结果是抛出异常，查询条件使用等号 不带Blob字段
      *
      * @param record 条件
      * @return 结果
