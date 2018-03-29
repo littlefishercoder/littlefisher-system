@@ -1,5 +1,8 @@
 package com.littlefisher.blog.biz.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,6 +14,7 @@ import com.littlefisher.blog.common.enums.EnumCountStatisticType;
  * @author jinyn22648
  * @version $$Id: CountStatisticBizDto.java, v 0.1 2018/3/27 下午7:31 jinyn22648 Exp $$
  */
+@ApiModel("统计")
 public class CountStatisticBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -19,31 +23,37 @@ public class CountStatisticBizDto implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty("主键")
     private Long id;
 
     /**
      * 作者id
      */
+    @ApiModelProperty("作者id")
     private Long authorId;
 
     /**
      * 统计类型
      */
+    @ApiModelProperty("统计类型")
     private EnumCountStatisticType type;
 
     /**
      * 状态
      */
+    @ApiModelProperty("状态")
     private EnumCountStatisticState state;
 
     /**
      * 创建时间
      */
+    @ApiModelProperty("创建时间")
     private Date createDate;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("修改时间")
     private Date updateDate;
 
     public static class Builder {

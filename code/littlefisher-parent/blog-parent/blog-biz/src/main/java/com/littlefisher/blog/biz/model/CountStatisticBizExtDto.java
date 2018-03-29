@@ -1,5 +1,6 @@
 package com.littlefisher.blog.biz.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
@@ -9,12 +10,14 @@ import java.io.Serializable;
  * @author jinyn22648
  * @version $$Id: CountStatisticBizExtDto.java, v 0.1 2018/3/23 下午12:36 jinyn22648 Exp $$
  */
+@ApiModel("统计详细信息")
 public class CountStatisticBizExtDto implements Serializable {
 
     /** serialVersionUID */
     private static final long serialVersionUID = -7464714177024253047L;
 
     /** 统计 */
+    @ApiModelProperty("统计")
     private CountStatisticBizDto countStatistic;
 
     /** 针对于博客的数据统计 */

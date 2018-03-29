@@ -1,5 +1,8 @@
 package com.littlefisher.core.biz.framework.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +13,7 @@ import com.littlefisher.biz.framework.common.enums.EnumUserState;
  * @author jinyn22648
  * @version $$Id: UserBizDto.java, v 0.1 2018/3/23 下午4:07 jinyn22648 Exp $$
  */
+@ApiModel("用户信息")
 public class UserBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -18,51 +22,61 @@ public class UserBizDto implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty("主键")
     private Long id;
 
     /**
      * 账号
      */
+    @ApiModelProperty("账号")
     private String accNbr;
 
     /**
      * 密码
      */
+    @ApiModelProperty("密码")
     private String password;
 
     /**
      * 中文真实姓名
      */
+    @ApiModelProperty("中文真实姓名")
     private String realName;
 
     /**
      * 中文昵称
      */
+    @ApiModelProperty("中文昵称")
     private String nickName;
 
     /**
      * 英文名称
      */
+    @ApiModelProperty("英文名称")
     private String enName;
 
     /**
      * 描述
      */
+    @ApiModelProperty("描述")
     private String userDesc;
 
     /**
      * 状态
      */
+    @ApiModelProperty("状态")
     private EnumUserState state;
 
     /**
      * 注册时间
      */
+    @ApiModelProperty("注册时间")
     private Date regDate;
 
     /**
      * 最后一次登录时间
      */
+    @ApiModelProperty("最后一次登录时间")
     private Date lastLoginDate;
 
     public static class Builder {

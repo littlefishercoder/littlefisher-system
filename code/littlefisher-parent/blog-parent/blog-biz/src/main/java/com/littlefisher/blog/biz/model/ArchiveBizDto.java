@@ -1,5 +1,8 @@
 package com.littlefisher.blog.biz.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +13,7 @@ import com.littlefisher.blog.common.enums.EnumArchiveState;
  * @author jinyn22648
  * @version $$Id: ArchiveBizDto.java, v 0.1 2018/3/23 下午12:33 jinyn22648 Exp $$
  */
+@ApiModel("博文归档")
 public class ArchiveBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -18,21 +22,25 @@ public class ArchiveBizDto implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty("主键")
     private Long id;
 
     /**
      * 分类名
      */
+    @ApiModelProperty("分类名")
     private String name;
 
     /**
      * 状态
      */
+    @ApiModelProperty("状态")
     private EnumArchiveState state;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("修改时间")
     private Date updateDate;
 
     public static class Builder {

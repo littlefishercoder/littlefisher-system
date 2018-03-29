@@ -1,5 +1,6 @@
 package com.littlefisher.blog.biz.model;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import com.littlefisher.core.biz.framework.model.UserContactStation4WebsiteBizDt
  * @author jinyn22648
  * @version $$Id: AuthorBizExtDto.java, v 0.1 2018/3/23 下午12:34 jinyn22648 Exp $$
  */
+@ApiModel("作者详细信息")
 public class AuthorBizExtDto implements Serializable {
 
     /** serialVersionUID */

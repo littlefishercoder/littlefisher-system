@@ -1,5 +1,8 @@
 package com.littlefisher.core.biz.framework.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,6 +18,7 @@ import com.littlefisher.biz.framework.common.enums.EnumUserContactStation4EmailT
  * @version 1.0
  * @since v1.0
  */
+@ApiModel("邮箱联系点")
 public class UserContactStation4EmailBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -23,26 +27,31 @@ public class UserContactStation4EmailBizDto implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty("主键")
     private Long contactStationId;
 
     /**
      * 邮箱类型
      */
+    @ApiModelProperty("邮箱类型")
     private EnumUserContactStation4EmailType type;
 
     /**
      * 邮箱地址
      */
+    @ApiModelProperty("邮箱地址")
     private String email;
 
     /**
      * 创建时间
      */
+    @ApiModelProperty("创建时间")
     private Date createDate;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("修改时间")
     private Date updateDate;
 
     public static class Builder {

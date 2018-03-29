@@ -1,5 +1,8 @@
 package com.littlefisher.blog.biz.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +15,7 @@ import com.littlefisher.core.stereotype.enums.EnumBizBool;
  * @author jinyn22648
  * @version $$Id: PostBizDto.java, v 0.1 2018/3/23 下午12:37 jinyn22648 Exp $$
  */
+@ApiModel("博文")
 public class PostBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -20,61 +24,73 @@ public class PostBizDto implements Serializable {
     /**
      * id
      */
+    @ApiModelProperty("id")
     private Long id;
 
     /**
      * 标题
      */
+    @ApiModelProperty("标题")
     private String title;
 
     /**
      * 创建时间
      */
+    @ApiModelProperty("创建时间")
     private Date createdDate;
 
     /**
      * 原文链接
      */
+    @ApiModelProperty("原文链接")
     private String originalUrl;
 
     /**
      * 类型
      */
+    @ApiModelProperty("类型")
     private EnumPostType type;
 
     /**
      * 文章分类 主键
      */
+    @ApiModelProperty("文章分类 主键")
     private Long archiveId;
 
     /**
      * 作者主键
      */
+    @ApiModelProperty("作者主键")
     private Long authorId;
 
     /**
      * 是否可评论
      */
+    @ApiModelProperty("是否可评论")
     private EnumBizBool enableComment;
 
     /**
      * 状态
      */
+    @ApiModelProperty("状态")
     private EnumPostState state;
 
     /**
      * 状态变更时间
      */
+    @ApiModelProperty("状态变更时间")
     private Date stateDate;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("修改时间")
     private Date updateDate;
 
     /**
      * 博文
      */
+    @ApiModelProperty("博文")
     private String content;
 
     public static class Builder {

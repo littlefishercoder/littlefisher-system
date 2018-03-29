@@ -1,5 +1,8 @@
 package com.littlefisher.core.biz.framework.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -7,6 +10,7 @@ import java.io.Serializable;
  * @author jinyn22648
  * @version $$Id: SystemParamBizDto.java, v 0.1 2018/3/23 下午4:06 jinyn22648 Exp $$
  */
+@ApiModel("系统参数")
 public class SystemParamBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -15,26 +19,31 @@ public class SystemParamBizDto implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty("主键")
     private Long id;
 
     /**
      * key值
      */
+    @ApiModelProperty("key值")
     private String paramKey;
 
     /**
      * value值
      */
+    @ApiModelProperty("value值")
     private String paramValue;
 
     /**
      * 默认值
      */
+    @ApiModelProperty("默认值")
     private String defaultValue;
 
     /**
      * 描述
      */
+    @ApiModelProperty("描述")
     private String paramDesc;
 
     public static class Builder {
@@ -119,8 +128,7 @@ public class SystemParamBizDto implements Serializable {
 
     @Override
     public String toString() {
-        return "SystemParamBizDto{" + "id=" + id + ", paramKey='" + paramKey + '\'' +
-                ", paramValue='" + paramValue + '\'' + ", defaultValue='" + defaultValue + '\'' +
-                ", paramDesc='" + paramDesc + '\'' + '}';
+        return "SystemParamBizDto{" + "id=" + id + ", paramKey='" + paramKey + '\'' + ", paramValue='" + paramValue
+            + '\'' + ", defaultValue='" + defaultValue + '\'' + ", paramDesc='" + paramDesc + '\'' + '}';
     }
 }

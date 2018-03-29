@@ -1,5 +1,8 @@
 package com.littlefisher.blog.biz.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +13,7 @@ import com.littlefisher.blog.common.enums.EnumPostTagState;
  * @author jinyn22648
  * @version $$Id: PostTagBizDto.java, v 0.1 2018/3/23 下午12:38 jinyn22648 Exp $$
  */
+@ApiModel("博文tag关联")
 public class PostTagBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -18,31 +22,37 @@ public class PostTagBizDto implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty("主键")
     private Long id;
 
     /**
      * 博文主键
      */
+    @ApiModelProperty("博文主键")
     private Long postId;
 
     /**
      * 标签主键
      */
+    @ApiModelProperty("标签主键")
     private Long tagId;
 
     /**
      * 创建时间
      */
+    @ApiModelProperty("创建时间")
     private Date createDate;
 
     /**
      * 状态
      */
+    @ApiModelProperty("状态")
     private EnumPostTagState state;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("修改时间")
     private Date updateDate;
 
     public static class Builder {

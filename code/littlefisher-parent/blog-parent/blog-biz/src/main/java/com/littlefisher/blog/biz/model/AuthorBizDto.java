@@ -1,5 +1,8 @@
 package com.littlefisher.blog.biz.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -14,6 +17,7 @@ import com.littlefisher.blog.common.enums.EnumAuthorState;
  * @version 1.0
  * @since v1.0
  */
+@ApiModel("作者信息")
 public class AuthorBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -22,26 +26,31 @@ public class AuthorBizDto implements Serializable {
     /**
      * 主键，跟bfm_user表相同主键
      */
+    @ApiModelProperty("")
     private Long id;
 
     /**
      * 笔名
      */
+    @ApiModelProperty("")
     private String penName;
 
     /**
      * 座右铭
      */
+    @ApiModelProperty("")
     private String motto;
 
     /**
      * 状态
      */
+    @ApiModelProperty("")
     private EnumAuthorState state;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("")
     private Date updateDate;
 
     public static class Builder {

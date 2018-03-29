@@ -1,6 +1,7 @@
 package com.littlefisher.core.biz.framework.dal.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.github.pagehelper.PageHelper;
 import com.littlefisher.core.biz.framework.dal.dao.ISystemParamDtoDao;
@@ -18,6 +19,7 @@ import com.littlefisher.core.utils.StringUtil;
  * @author jinyn22648
  * @version $$Id: SystemParamDtoDaoImpl.java, v 0.1 2018/3/23 下午4:46 jinyn22648 Exp $$
  */
+@Repository
 public class SystemParamDtoDaoImpl extends AbstractBaseDaoImpl<SystemParamDto, SystemParamDtoMapper> implements
         ISystemParamDtoDao {
 

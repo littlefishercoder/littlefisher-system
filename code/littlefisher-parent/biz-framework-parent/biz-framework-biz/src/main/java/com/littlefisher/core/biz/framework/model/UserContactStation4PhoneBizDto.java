@@ -1,5 +1,8 @@
 package com.littlefisher.core.biz.framework.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -15,6 +18,7 @@ import com.littlefisher.biz.framework.common.enums.EnumUserContactStation4PhoneT
  * @version 1.0
  * @since v1.0
  */
+@ApiModel("电话联系点")
 public class UserContactStation4PhoneBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -23,31 +27,37 @@ public class UserContactStation4PhoneBizDto implements Serializable {
     /**
      * 联系点主键
      */
+    @ApiModelProperty("联系点主键")
     private Long contactStationId;
 
     /**
      * 类型
      */
+    @ApiModelProperty("类型")
     private EnumUserContactStation4PhoneType type;
 
     /**
      * 区号
      */
+    @ApiModelProperty("区号")
     private String areaCode;
 
     /**
      * 手机号
      */
+    @ApiModelProperty("手机号")
     private String phoneNbr;
 
     /**
      * 创建时间
      */
+    @ApiModelProperty("创建时间")
     private Date createDate;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("修改时间")
     private Date updateDate;
 
     public static class Builder {

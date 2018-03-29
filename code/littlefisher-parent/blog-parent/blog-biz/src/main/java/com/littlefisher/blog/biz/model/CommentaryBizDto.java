@@ -1,5 +1,8 @@
 package com.littlefisher.blog.biz.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +13,7 @@ import com.littlefisher.blog.common.enums.EnumCommentaryState;
  * @author jinyn22648
  * @version $$Id: CommentaryBizDto.java, v 0.1 2018/3/23 下午12:35 jinyn22648 Exp $$
  */
+@ApiModel("评价信息")
 public class CommentaryBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -18,56 +22,67 @@ public class CommentaryBizDto implements Serializable {
     /**
      * id
      */
+    @ApiModelProperty("")
     private Long id;
 
     /**
      * 父评价主键
      */
+    @ApiModelProperty("")
     private Long parentCommentaryId;
 
     /**
      * 评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示
      */
+    @ApiModelProperty("")
     private Long userId;
 
     /**
      * 评价人主键和昵称二选一，评价人主键为空说明是匿名评价，则必须有昵称来展示
      */
+    @ApiModelProperty("")
     private String nickName;
 
     /**
      * ip地址
      */
+    @ApiModelProperty("")
     private String commentaryIp;
 
     /**
      * 评价时间
      */
+    @ApiModelProperty("")
     private Date createdDate;
 
     /**
      * 博文主键
      */
+    @ApiModelProperty("")
     private Long postId;
 
     /**
      * 状态
      */
+    @ApiModelProperty("")
     private EnumCommentaryState state;
 
     /**
      * 状态变更时间
      */
+    @ApiModelProperty("")
     private Date stateDate;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("")
     private Date updateDate;
 
     /**
      * 评论内容
      */
+    @ApiModelProperty("")
     private String content;
 
     public static class Builder {

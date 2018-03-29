@@ -58,7 +58,7 @@ public class SwaggerConfig {
                 // 设置哪些注解不被Swagger展示，默认被@ApiIgnore标记的class或者method不被展示
                 .select()
                 // 展示哪些Controller，默认会展示所有的，包括非业务的Controller
-                .apis(RequestHandlerSelectors.basePackage("com.littlefisher.blog.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.littlefisher.blog.web.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 // 可以针对原有的RequestMapping前再配置路径

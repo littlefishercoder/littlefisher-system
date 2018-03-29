@@ -1,5 +1,8 @@
 package com.littlefisher.core.biz.framework.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,6 +20,7 @@ import com.littlefisher.core.stereotype.enums.EnumBizBool;
  * @version 1.0
  * @since v1.0
  */
+@ApiModel("联系点")
 public class UserContactStationBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -25,36 +29,43 @@ public class UserContactStationBizDto implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty("主键")
     private Long id;
 
     /**
      * 用户主键
      */
+    @ApiModelProperty("用户主键")
     private Long userId;
 
     /**
      * 联系点类型
      */
+    @ApiModelProperty("联系点类型")
     private EnumUserContactStationType type;
 
     /**
      * 联系点状态
      */
+    @ApiModelProperty("联系点状态")
     private EnumUserContactStationState state;
 
     /**
      * 是否默认联系点（一种联系点类型下最多一个默认）
      */
+    @ApiModelProperty("是否默认联系点（一种联系点类型下最多一个默认）")
     private EnumBizBool defaultFlag;
 
     /**
      * 创建时间
      */
+    @ApiModelProperty("创建时间")
     private Date createDate;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("修改时间")
     private Date updateDate;
 
     public static class Builder {

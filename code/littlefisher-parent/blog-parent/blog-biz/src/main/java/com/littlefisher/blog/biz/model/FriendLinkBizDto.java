@@ -1,5 +1,8 @@
 package com.littlefisher.blog.biz.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +13,7 @@ import com.littlefisher.blog.common.enums.EnumFriendLinkState;
  * @author jinyn22648
  * @version $$Id: FriendLinkBizDto.java, v 0.1 2018/3/23 下午12:36 jinyn22648 Exp $$
  */
+@ApiModel("友情链接")
 public class FriendLinkBizDto implements Serializable {
 
     /** serialVersionUID */
@@ -18,36 +22,43 @@ public class FriendLinkBizDto implements Serializable {
     /**
      * 主键
      */
+    @ApiModelProperty("主键")
     private Long id;
 
     /**
      * 作者主键
      */
+    @ApiModelProperty("作者主键")
     private Long authorId;
 
     /**
      * 好友真名
      */
+    @ApiModelProperty("好友真名")
     private String friendRealName;
 
     /**
      * 好友昵称
      */
+    @ApiModelProperty("好友昵称")
     private String friendNickName;
 
     /**
      * 好友链接
      */
+    @ApiModelProperty("好友链接")
     private String friendUrlLink;
 
     /**
      * 状态
      */
+    @ApiModelProperty("状态")
     private EnumFriendLinkState state;
 
     /**
      * 修改时间
      */
+    @ApiModelProperty("修改时间")
     private Date updateDate;
 
     public static class Builder {
