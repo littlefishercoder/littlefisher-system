@@ -114,8 +114,10 @@ public class GetPostList4PagerByCondCmd extends AbstractCommand<PageInfo<PostBiz
 
         return new PageInfo<>(pageInfo, postDto -> {
             List<PostTagBizDto> postTagBizList = postTagMap.get(postDto.getId());
-            List<TagBizDto> tagList = Lists.newArrayListWithCapacity(postTagBizList.size());
-            postTagBizList.forEach(postTagBizDto -> tagList.add(tagMap.get(postTagBizDto.getTagId())));
+            List<TagBizDto> tagList = Lists.newArrayList();
+            if (CollectionUtil.isNotEmpty(postTagBizList)) {
+                postTagBizList.forEach(postTagBizDto -> tagList.add(tagMap.get(postTagBizDto.getTagId())));
+            }
 
             return PostBizExtDto.Builder.getInstance()
                 // 作者信息

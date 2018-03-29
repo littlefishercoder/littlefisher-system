@@ -89,6 +89,12 @@ public class UserBizDto implements Serializable {
             return new Builder();
         }
 
+        public static Builder getInstance(UserBizDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
         public Builder addId(Long id) {
             this.instance.setId(id);
             return this;

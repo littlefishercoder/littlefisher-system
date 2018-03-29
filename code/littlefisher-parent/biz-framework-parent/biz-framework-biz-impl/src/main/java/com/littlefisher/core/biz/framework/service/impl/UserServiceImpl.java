@@ -45,29 +45,19 @@ public class UserServiceImpl extends ServiceImpl implements IUserService {
 
     @Override
     public UserBizDto addUser(AddUserRequest request) {
-        UserBizDto userDto = new UserBizDto();
-        userDto.setAccNbr(request.getAccNbr());
-        userDto.setPassword(request.getPassword());
-        userDto.setRealName(request.getRealName());
-        userDto.setEnName(request.getEnName());
-        userDto.setNickName(request.getNickName());
-        userDto.setUserDesc(request.getUserDesc());
-        userDto.setState(EnumUserState.VALID);
-        userDto.setRegDate(DateUtil.getDBDateTime());
+        UserBizDto userDto = UserBizDto.Builder.getInstance().addAccNbr(request.getAccNbr())
+            .addPassword(request.getPassword()).addRealName(request.getRealName()).addEnName(request.getEnName())
+            .addNickName(request.getNickName()).addUserDesc(request.getUserDesc()).addState(EnumUserState.VALID)
+            .addRegDate(DateUtil.getDBDateTime()).build();
         return this.execute(getCommand(AddUserCmd.class).setUserDto(userDto));
     }
 
     @Override
     public UserBizDto updateUser(UpdateUserRequest request) {
-        UserBizDto userDto = this.getUserById(request.getId());
-        userDto.setAccNbr(request.getAccNbr());
-        userDto.setPassword(request.getPassword());
-        userDto.setRealName(request.getRealName());
-        userDto.setNickName(request.getNickName());
-        userDto.setEnName(request.getEnName());
-        userDto.setUserDesc(request.getUserDesc());
-        userDto.setState(request.getState());
-        userDto.setLastLoginDate(request.getLastLoginDate());
+        UserBizDto userDto = UserBizDto.Builder.getInstance(this.getUserById(request.getId()))
+            .addAccNbr(request.getAccNbr()).addPassword(request.getPassword()).addRealName(request.getRealName())
+            .addNickName(request.getNickName()).addEnName(request.getEnName()).addUserDesc(request.getUserDesc())
+            .addState(request.getState()).addLastLoginDate(request.getLastLoginDate()).build();
         return this.execute(getCommand(UpdateUserCmd.class).setUserDto(userDto));
     }
 
