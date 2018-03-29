@@ -17,7 +17,7 @@ import com.littlefisher.core.mybatis.dao.AbstractBaseDaoImpl;
  * @version $$Id: ArchiveDtoDaoImpl.java, v 0.1 2018/3/23 下午12:31 jinyn22648 Exp $$
  */
 @Repository
-public class ArchiveDtoDaoImpl extends AbstractBaseDaoImpl<ArchiveDto> implements IArchiveDtoDao {
+public class ArchiveDtoDaoImpl extends AbstractBaseDaoImpl<ArchiveDto, ArchiveDtoMapper> implements IArchiveDtoDao {
 
     @Autowired
     private ArchiveDtoMapper archiveDtoMapper;

@@ -21,7 +21,7 @@ import com.littlefisher.core.mybatis.dao.AbstractBaseDaoImpl;
  * @since v1.0
  */
 @Repository
-public class PostTagDtoDaoImpl extends AbstractBaseDaoImpl<PostTagDto> implements IPostTagDtoDao {
+public class PostTagDtoDaoImpl extends AbstractBaseDaoImpl<PostTagDto, PostTagDtoMapper> implements IPostTagDtoDao {
 
     @Autowired
     private PostTagDtoMapper postTagDtoMapper;

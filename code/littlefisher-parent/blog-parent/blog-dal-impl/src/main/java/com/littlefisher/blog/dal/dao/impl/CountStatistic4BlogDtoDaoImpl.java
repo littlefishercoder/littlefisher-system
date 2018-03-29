@@ -3,6 +3,7 @@ package com.littlefisher.blog.dal.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import com.littlefisher.blog.dal.dao.ICountStatistic4BlogDtoDao;
+import com.littlefisher.blog.dal.mapper.CountStatistic4BlogDtoMapper;
 import com.littlefisher.blog.dal.model.CountStatistic4BlogDto;
 import com.littlefisher.core.mybatis.dao.AbstractBaseDaoImpl;
 
@@ -16,7 +17,7 @@ import com.littlefisher.core.mybatis.dao.AbstractBaseDaoImpl;
  * @since v1.0
  */
 @Repository
-public class CountStatistic4BlogDtoDaoImpl extends AbstractBaseDaoImpl<CountStatistic4BlogDto> implements
+public class CountStatistic4BlogDtoDaoImpl extends AbstractBaseDaoImpl<CountStatistic4BlogDto, CountStatistic4BlogDtoMapper> implements
         ICountStatistic4BlogDtoDao {
 
 }

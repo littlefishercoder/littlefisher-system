@@ -1,9 +1,9 @@
 package com.littlefisher.core.mybatis.dao;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
 import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
 
@@ -12,11 +12,10 @@ import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
  * @author jinyn22648
  * @version $$Id: BaseDaoImpl.java, v 0.1 2018/3/24 上午11:00 jinyn22648 Exp $$
  */
-@Repository
-public abstract class AbstractBaseDaoImpl<T> implements IBaseDao<T> {
+public abstract class AbstractBaseDaoImpl<T, D extends CommonMapper<T>> implements IBaseDao<T> {
 
     @Autowired
-    private CommonMapper<T> mapper;
+    private D mapper;
 
     @Override
     public T insert(T record) {

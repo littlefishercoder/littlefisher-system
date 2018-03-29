@@ -3,6 +3,7 @@ package com.littlefisher.blog.dal.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import com.littlefisher.blog.dal.dao.IFriendLinkDtoDao;
+import com.littlefisher.blog.dal.mapper.FriendLinkDtoMapper;
 import com.littlefisher.blog.dal.model.FriendLinkDto;
 import com.littlefisher.core.mybatis.dao.AbstractBaseDaoImpl;
 
@@ -16,6 +17,6 @@ import com.littlefisher.core.mybatis.dao.AbstractBaseDaoImpl;
  * @since v1.0
  */
 @Repository
-public class FriendLinkDtoDaoImpl extends AbstractBaseDaoImpl<FriendLinkDto> implements IFriendLinkDtoDao {
+public class FriendLinkDtoDaoImpl extends AbstractBaseDaoImpl<FriendLinkDto, FriendLinkDtoMapper> implements IFriendLinkDtoDao {
 
 }

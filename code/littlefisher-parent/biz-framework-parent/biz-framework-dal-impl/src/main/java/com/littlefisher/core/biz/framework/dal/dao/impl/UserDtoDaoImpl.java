@@ -22,7 +22,7 @@ import com.littlefisher.core.utils.StringUtil;
  * @version $$Id: UserDtoDaoImpl.java, v 0.1 2018/3/26 下午7:41 jinyn22648 Exp $$
  */
 @Repository
-public class UserDtoDaoImpl extends AbstractBaseDaoImpl<UserDto> implements IUserDtoDao {
+public class UserDtoDaoImpl extends AbstractBaseDaoImpl<UserDto, UserDtoMapper> implements IUserDtoDao {
 
     @Autowired
     private UserDtoMapper userDtoMapper;

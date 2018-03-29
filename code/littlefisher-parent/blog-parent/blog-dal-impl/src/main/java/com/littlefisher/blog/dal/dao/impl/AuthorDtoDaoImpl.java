@@ -21,7 +21,7 @@ import com.littlefisher.core.mybatis.dao.AbstractBaseDaoImpl;
  * @since v1.0
  */
 @Repository
-public class AuthorDtoDaoImpl extends AbstractBaseDaoImpl<AuthorDto> implements IAuthorDtoDao {
+public class AuthorDtoDaoImpl extends AbstractBaseDaoImpl<AuthorDto, AuthorDtoMapper> implements IAuthorDtoDao {
 
     @Autowired
     private AuthorDtoMapper authorDtoMapper;

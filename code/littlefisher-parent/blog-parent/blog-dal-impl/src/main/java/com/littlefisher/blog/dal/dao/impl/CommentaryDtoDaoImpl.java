@@ -20,7 +20,7 @@ import com.littlefisher.core.utils.StringUtil;
  * @version $$Id: CommentaryDtoDaoImpl.java, v 0.1 2018/3/27 下午3:41 jinyn22648 Exp $$
  */
 @Repository
-public class CommentaryDtoDaoImpl extends AbstractBaseDaoImpl<CommentaryDto> implements ICommentaryDtoDao {
+public class CommentaryDtoDaoImpl extends AbstractBaseDaoImpl<CommentaryDto, CommentaryDtoMapper> implements ICommentaryDtoDao {
 
     @Autowired
     private CommentaryDtoMapper commentaryDtoMapper;

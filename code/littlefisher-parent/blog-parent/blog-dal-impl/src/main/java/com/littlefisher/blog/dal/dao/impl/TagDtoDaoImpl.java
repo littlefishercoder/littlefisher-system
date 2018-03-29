@@ -21,7 +21,7 @@ import com.littlefisher.core.mybatis.pagehelper.PageParam;
  * @version $$Id: TagDtoDaoImpl.java, v 0.1 2018/3/27 下午8:56 jinyn22648 Exp $$
  */
 @Repository
-public class TagDtoDaoImpl extends AbstractBaseDaoImpl<TagDto> implements ITagDtoDao {
+public class TagDtoDaoImpl extends AbstractBaseDaoImpl<TagDto, TagDtoMapper> implements ITagDtoDao {
 
     @Autowired
     private TagDtoMapper tagDtoMapper;

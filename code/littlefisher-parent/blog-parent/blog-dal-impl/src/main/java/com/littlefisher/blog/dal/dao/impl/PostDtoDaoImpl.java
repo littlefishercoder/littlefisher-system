@@ -24,7 +24,7 @@ import com.littlefisher.core.utils.StringUtil;
  * @since v1.0
  */
 @Repository
-public class PostDtoDaoImpl extends AbstractBaseWithBlobDaoImpl<PostDto> implements IPostDtoDao {
+public class PostDtoDaoImpl extends AbstractBaseWithBlobDaoImpl<PostDto, PostDtoMapper> implements IPostDtoDao {
 
     @Autowired
     private PostDtoMapper postDtoMapper;

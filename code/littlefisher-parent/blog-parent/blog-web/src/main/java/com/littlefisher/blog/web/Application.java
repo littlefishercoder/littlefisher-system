@@ -20,7 +20,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @since v1.0
  */
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
-@MapperScan("com.littlefisher.**.mapper")
+@MapperScan("com.littlefisher.**.dal.mapper")
 @ComponentScan(basePackages = {"com.littlefisher.**",})
 public class Application extends SpringBootServletInitializer {
 
