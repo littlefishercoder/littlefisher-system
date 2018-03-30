@@ -50,9 +50,9 @@ public class CommentaryController {
      * @param req req
      * @return PageInfo<CommentaryDto>
      */
-    @RequestMapping(value = "/pager", method = RequestMethod.GET)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ApiOperation("查询评价列表，分页用")
-    public PageInfo<CommentaryBizExtDto> getCommentaryList4PagerByCond(
+    public PageInfo<CommentaryBizExtDto> getCommentaryList4PageByCond(
             @ApiParam(required = true, value = "查询评价列表条件") @ModelAttribute
                     GetCommentaryList4PagerByCondRequest req) {
         return commentaryService.getCommentaryList4PageByCond(req);

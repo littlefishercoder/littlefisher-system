@@ -35,9 +35,9 @@ public class TagController {
     @Autowired
     private ITagService tagService;
 
-    @RequestMapping(value = "/pager", method = RequestMethod.GET)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ApiOperation("查询tag列表，分页用")
-    public PageInfo<TagBizDto> getTagList4PagerByCond(
+    public PageInfo<TagBizDto> getTagList4PageByCond(
             @ApiParam(value = "查询tag列表条件") @ModelAttribute @NotNull(message = "请求不能为空") GetTagList4PageByCondRequest request) {
         return tagService.getTagList4PageByCond(request);
     }

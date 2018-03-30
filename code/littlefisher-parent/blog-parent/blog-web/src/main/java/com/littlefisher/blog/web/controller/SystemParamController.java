@@ -46,7 +46,7 @@ public class SystemParamController {
      * @param req req
      * @return PageInfo<SystemParamDto>
      */
-    @RequestMapping(value = "/pager", method = RequestMethod.GET)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ApiOperation(value = "根据条件查询分页列表")
     public PageInfo<SystemParamBizDto> getSystemParamList4PagerByCond(
             @ApiParam(value = "查询系统参数列表条件") @ModelAttribute @NotNull(message = "请求不能为空") GetSystemParamList4PageByCondRequest req) {

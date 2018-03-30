@@ -46,10 +46,10 @@ public class UserController {
      * @param request request
      * @return List<UserDto>
      */
-    @RequestMapping(value = "/pager", method = RequestMethod.GET)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ApiOperation(value = "根据条件查询User，分页用")
     public PageInfo<UserBizDto>
-        getUserList4PagerByCond(@ApiParam(required = true, value = "根据条件查询User入参，分页用") @ModelAttribute @NotNull(
+        getUserList4PageByCond(@ApiParam(required = true, value = "根据条件查询User入参，分页用") @ModelAttribute @NotNull(
             message = "请求不能为空") GetUserList4PageByCondRequest request) {
         return userService.getUserList4PageByCond(request);
     }

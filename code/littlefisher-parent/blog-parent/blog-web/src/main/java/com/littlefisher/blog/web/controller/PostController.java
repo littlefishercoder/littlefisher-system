@@ -47,9 +47,9 @@ public class PostController {
      * @param req req
      * @return PageInfo<PostDto>
      */
-    @RequestMapping(value = "/pager", method = RequestMethod.GET)
+    @RequestMapping(value = "/page", method = RequestMethod.GET)
     @ApiOperation("根据条件查询博文列表")
-    public PageInfo<PostBizExtDto> getPostList4PagerByCond(
+    public PageInfo<PostBizExtDto> getPostList4PageByCond(
             @ApiParam(required = true, value = "查询博文列表的条件") @ModelAttribute @NotNull(message = "请求不能为空") GetPostList4PageByCondRequest req) {
         return postService.getPostList4PageByCond(req);
     }
