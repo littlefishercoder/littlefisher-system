@@ -15,37 +15,32 @@ http://swaggerui.littlefisher.site/
 由于整个工程都是后端内容，所以页面展示的内容仅是一个`Swagger`测试页面而已
 
 #### 项目介绍
-该工程使用`SpringBoot`搭建（最近刚进行`SpringBoot`改造完成），其目的是封装业务底层框架，让开发人员更集中于业务的开发。
+该工程使用`SpringBoot`搭建，其目的是封装业务底层框架，让开发人员更集中于业务的开发。
 
-该工程使用命令模式进行业务处理，在开发逻辑上屏蔽`Service`层过于庞大冗余的可能性（不知道是否遇到过某个`Service`层的类超过`7000`行的，这种代码的可读性实在是差）。使用命令模式强制拆分不同业务逻辑，避免超长类文件。
-
-使用`MyBatis`一整套的插件，包括`MyBatis 通用Mapper`（`mapper.xml`无需配置特别多的`sql`，常用`sql`自动封装使用）；`MyBatis Generator`（自动生成文件，做了改造，包括生成的注释，针对于通用`Mapper`生成不同的注解，针对`Swagger`生成相应注解）；`PageHelper`（`MyBatis`的分页插件）
-
-使用`Swagger`接口测试工具，能够通过页面进行接口测试（针对于`Controller`层进行测试）
-
-其他的功能还有待大家去探索
+ - 该工程使用**命令模式**进行业务处理，在开发逻辑上屏蔽`Service`层过于庞大冗余的可能性（不知道是否遇到过某个`Service`层的类超过`7000`行的，这种代码的可读性实在是差）。使用命令模式强制拆分不同业务逻辑，避免超长类文件。
+ - 使用`MyBatis`一整套的插件，包括`MyBatis 通用Mapper`（`XxxMapper.xml`无需配置`sql`，常用`sql`自动封装使用）；`MyBatis Generator`（自动生成文件，做了改造，包括生成的注释，针对于通用`Mapper`生成不同的注解，对`import`做顺序改造，对`model`生成`Builder`建造者模式工具类）；`PageHelper`（`MyBatis`的分页插件）
+ - 使用`Swagger`接口测试工具，能够通过页面进行接口测试（针对于`Controller`层进行测试）
+ - 其他的功能还有待大家去探索
 
 #### 技术选型
 
  - `Maven`
  - `Spring`
+ - `Spring Boot`
  - `SpringMVC`
  - `MyBatis`
  - `MyBatis Generator`
  - `MyBatis 通用Mapper`
- - `Swagger`
+ - `Swagger3`
  - `Log4j2`
  - `MySQL`
  - `Druid`
- - `Nginx`
  - `PageHelper`
  - `Guava`
  - 部分功能的二次封装
  - `Kafka`
- - `Activiti`
  - `Gson`
- - `Hibernate Validation`
- - `Spring Boot`
+ - `Oval Validation`
  - `Apache Shiro`
 
 1. 环境搭建
@@ -67,21 +62,21 @@ http://swaggerui.littlefisher.site/
 
 8.  `Controller`编写要带上`Swagger`相关注解，以便于接口测试时的阅读
 
-9.  修改`IDE`中关于`xml`的配置，设置每行的最大长度为`120`，`Tab`替换为`2`个空格，如图为`Eclipse`中的配置位置
+9.  修改`IDE`中关于`xml`的配置，设置每行的最大长度为`120`，`Tab`替换为`2`个空格。`IDEA`中默认使用`2`个空格替换`Tab`的，如图为`Eclipse`中的配置位置
 ![修改xml文件的配置][2]
 
 10.  集成功能使用与介绍
-  - `Swagger UI`接口测试。启动启动`Spring B`后，进入`http://{ip}:{port}/blog-web/swagger-ui.html`查看，可以直接在界面中对接口进行测试
-  - `Druid`监控界面，启动`Tomcat`后，进入`http://{ip}:{port}/blog-web/druid`查看
+  - `Swagger UI`接口测试。启动启动`Spring B`后，进入`http://{ip}:{port}/{contextPath}/swagger-ui.html`查看，可以直接在界面中对接口进行测试。其中`ip`为本机`ip`；`port`为`application.yml`中`server.port`所配，默认为`8080`；`contextPath`为`application.yml`中`server.servlet.context-path`所配置
+  - `Druid`监控界面，启动`Tomcat`后，进入`http://{ip}:{port}/{contextPath}/druid`查看
   - `Command`日志打印功能集成，每次请求`Command`都会进行日志的打印
 ![日志信息][3]
   - `PageHelper`使用。在列表查询之前调用`PageHelper.startPage(pageNum, pageSize);`，一定要是紧接着列表查询之前。具体`PageHelper`使用规则，参考[github-PageHelper][4]
 ![PageHelper][5]
-  - `Mybatis generator`使用。在`blog-intf`项目下，有一个`generatorConfig.xml`文件，针对该文件做部分修改，然后执行`mybatis generator`生成`Mapper`的命令即可。生成的`model`已经附带`Swagger UI`所需注解，同时针对于`import`信息也进行了优化，可以通过`checkstype`的检查。生成的`Mapper`接口，集成了通用的`CRUD`操作，个性化的接口`SQL`操作再另外定义即可。具体通用`Mapper`可参考[github-Mapper][6]![通用Mapper][7]
+  - `Mybatis generator`使用。在`blog-intf`项目下，有一个`generatorConfig.xml`文件，针对该文件做部分修改，然后执行`mybatis generator`生成`Mapper`的命令即可。生成的`model`已经附带`Swagger UI`所需注解，同时针对于`import`信息也进行了优化，可以通过`checkstype`的检查。生成的`Mapper`接口，集成了通用的`CRUD`操作，个性化的接口`SQL`操作再另外定义即可。具体通用`Mapper`可参考[github-Mapper][6]![generatorConfig.xml][7]
   - `Guava`工具介绍在博客中有介绍
   - `Kafka`的使用在工程中已经加入，只不过没有大规模使用例子，具体的配置信息参考`application.yml`配置内容
   - `Activiti`单独使用了一个模块，暂时没有引入到`littlefisher-parent`中，因为还没有使用到的地方
-  - `Hibernate Validation`的校验框架引入在`Command`中，当代码执行到`Command`时会进行校验
+  - `Oval Validation`的校验框架引入在`Command`中，当代码执行到`Command`时会进行校验
 
 #### 项目启动
 
@@ -95,8 +90,8 @@ http://swaggerui.littlefisher.site/
 
   [1]: http://www.littlefisher.site/
   [2]: http://wx4.sinaimg.cn/large/7dde05d2gy1fd64xlnke7j20ye0ye7b6.jpg
-  [3]: http://wx1.sinaimg.cn/large/7dde05d2gy1ffhi1ry0prj21kw04tdla.jpg
+  [3]: https://wx1.sinaimg.cn/large/7dde05d2gy1fpuqgmz5m7j21kw0ushdq.jpg
   [4]: https://github.com/pagehelper/Mybatis-PageHelper
-  [5]: http://wx1.sinaimg.cn/large/7dde05d2gy1ffhia4rac9j21hu106tgp.jpg
+  [5]: https://wx2.sinaimg.cn/large/7dde05d2gy1fpuqgl6koyj21as0z4jye.jpg
   [6]: https://github.com/litttlefisher/Mapper
-  [7]: http://wx4.sinaimg.cn/large/7dde05d2gy1ffhin0d3epj21kw0zhwup.jpg
+  [7]: https://wx1.sinaimg.cn/large/7dde05d2gy1fpuqgmj48kj21kw0vwnga.jpg
