@@ -8,17 +8,23 @@ import java.util.Set;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.ibatis.type.JdbcType;
+import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
 import org.mybatis.generator.api.PluginAdapter;
+import org.mybatis.generator.api.dom.java.Field;
 import org.mybatis.generator.api.dom.java.FullyQualifiedJavaType;
+import org.mybatis.generator.api.dom.java.InnerClass;
 import org.mybatis.generator.api.dom.java.Interface;
+import org.mybatis.generator.api.dom.java.JavaVisibility;
 import org.mybatis.generator.api.dom.java.Method;
+import org.mybatis.generator.api.dom.java.Parameter;
 import org.mybatis.generator.api.dom.java.TopLevelClass;
 import org.mybatis.generator.api.dom.xml.XmlElement;
 import org.mybatis.generator.config.CommentGeneratorConfiguration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.util.StringUtility;
 
+import com.google.common.base.CaseFormat;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Sets;
@@ -96,7 +102,11 @@ public class MapperPlugin extends PluginAdapter {
         context.setCommentGeneratorConfiguration(commentCfg);
         context.getProperties().forEach((key, value) -> commentCfg.addProperty((String)key, (String)value));
         // 支持oracle获取注释#114
-        context.getJdbcConnectionConfiguration().addProperty("remarksReporting", EnumBool.TRUE.getCode().toLowerCase());
+        if (context.getJdbcConnectionConfiguration() != null) {
+            context.getJdbcConnectionConfiguration().addProperty("remarksReporting", EnumBool.TRUE.getCode().toLowerCase());
+        } else {
+            context.getConnectionFactoryConfiguration().addProperty("remarksReporting", EnumBool.TRUE.getCode().toLowerCase());
+        }
     }
 
     @Override
@@ -194,6 +204,9 @@ public class MapperPlugin extends PluginAdapter {
         // 导入列类型
         importFieldAnnotation(topLevelClass, ColumnType.class, JdbcType.class);
 
+        // 构造Builder内部类
+        addBuilderInnerClass(topLevelClass, introspectedTable);
+
         // 实体类注释
         topLevelClass.addJavaDocLine("/**");
         topLevelClass.addJavaDocLine(" *");
@@ -204,6 +217,124 @@ public class MapperPlugin extends PluginAdapter {
         topLevelClass.addJavaDocLine(" * @version 1.0");
         topLevelClass.addJavaDocLine(" * @since v1.0");
         topLevelClass.addJavaDocLine(" */");
+    }
+
+    /**
+     * 创建Builder内部类
+     * 
+     * @param topLevelClass topLevelClass
+     * @param introspectedTable introspectedTable
+     */
+    private void addBuilderInnerClass(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
+        InnerClass builder = new InnerClass(new FullyQualifiedJavaType("Builder"));
+        builder.setVisibility(JavaVisibility.PUBLIC);
+        builder.setStatic(true);
+
+        FullyQualifiedJavaType entityType = new FullyQualifiedJavaType(introspectedTable.getBaseRecordType());
+
+        // 构造参数
+        builder.addField(buildInstanceField(entityType));
+
+        // 空参数的私有构造函数
+        builder.addMethod(buildConstructor());
+
+        // 空入参getInstance
+        builder.addMethod(buildGetInstance(entityType, true));
+        // 有实体入参的getInstance
+        builder.addMethod(buildGetInstance(entityType, false));
+        // 构造add方法
+        introspectedTable.getAllColumns()
+            .forEach(introspectedColumn -> builder.addMethod(buildAddMethod(introspectedColumn)));
+        // 构造build方法
+        builder.addMethod(buildBuildMethod(entityType));
+
+        topLevelClass.addInnerClass(builder);
+    }
+
+    /**
+     * 构造getInstance方法
+     * 
+     * @param entityType 实体
+     * @return Method
+     */
+    private Method buildGetInstance(FullyQualifiedJavaType entityType, boolean emptyParameter) {
+        Method method = new Method();
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setStatic(true);
+        method.setReturnType(new FullyQualifiedJavaType("Builder"));
+        method.setName("getInstance");
+        method.addBodyLine("Builder builder = new Builder();");
+        if (!emptyParameter) {
+            method.addParameter(new Parameter(entityType, "instance"));
+            method.addBodyLine("builder.instance = instance;");
+        } else {
+            method.addBodyLine("builder.instance = new " + entityType.getShortNameWithoutTypeArguments() + "();");
+        }
+        method.addBodyLine("return builder;");
+        return method;
+    }
+
+    /**
+     * 构造build方法
+     * 
+     * @param entityType 实体
+     * @return Method
+     */
+    private Method buildBuildMethod(FullyQualifiedJavaType entityType) {
+        Method method = new Method();
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setReturnType(entityType);
+        method.setName("build");
+        method.addBodyLine("return this.instance;");
+        return method;
+    }
+
+    /**
+     * 构造field参数
+     * 
+     * @param entityType 实体
+     * @return Field
+     */
+    private Field buildInstanceField(FullyQualifiedJavaType entityType) {
+        Field field = new Field();
+        field.setName("instance");
+        field.setType(entityType);
+        field.setVisibility(JavaVisibility.PRIVATE);
+        return field;
+    }
+
+    /**
+     * 构造addXxx方法
+     * 
+     * @param introspectedColumn 列信息
+     * @return Method
+     */
+    private Method buildAddMethod(IntrospectedColumn introspectedColumn) {
+        Method method = new Method();
+        method.setVisibility(JavaVisibility.PUBLIC);
+        method.setReturnType(new FullyQualifiedJavaType("Builder"));
+        method.setName("add" + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, introspectedColumn.getJavaProperty()));
+        method.addParameter(
+            new Parameter(introspectedColumn.getFullyQualifiedJavaType(), introspectedColumn.getJavaProperty()));
+        method.addBodyLine("this.instance.set"
+            + CaseFormat.LOWER_CAMEL.to(CaseFormat.UPPER_CAMEL, introspectedColumn.getJavaProperty()) + "("
+            + introspectedColumn.getJavaProperty() + ");");
+        method.addBodyLine("return this;");
+        return method;
+    }
+
+    /**
+     * 创建构造函数
+     * 
+     * @return 生成的方法
+     */
+    private Method buildConstructor() {
+        Method method = new Method();
+        method.setVisibility(JavaVisibility.PRIVATE);
+        method.setName("Builder");
+        method.setConstructor(true);
+        method.addBodyLine("super();");
+        return method;
     }
 
     /**

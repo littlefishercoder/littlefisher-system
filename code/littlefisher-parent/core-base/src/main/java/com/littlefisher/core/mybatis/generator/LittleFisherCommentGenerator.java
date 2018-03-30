@@ -69,7 +69,7 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
     public void addGeneralMethodComment(Method method, IntrospectedTable introspectedTable) {
         // 如果带有@Override注解的方法，不进行javadoc
         if (Iterators.any(method.getAnnotations().iterator(),
-                input -> StringUtil.isNotBlank(input) && "@Override".equalsIgnoreCase(input))) {
+            input -> StringUtil.isNotBlank(input) && "@Override".equalsIgnoreCase(input))) {
             return;
         }
         method.addJavaDocLine("/**");
@@ -81,9 +81,8 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
             method.addJavaDocLine(" * @param " + p.getName() + " " + p.getName());
         }
         if (method.getReturnType() != null) {
-            method.addJavaDocLine(
-                    " * @return " + method.getReturnType().getShortName() + " " + method.getReturnType().getShortName()
-                    + "<br>");
+            method.addJavaDocLine(" * @return " + method.getReturnType().getShortName() + " "
+                + method.getReturnType().getShortName() + "<br>");
         }
         method.addJavaDocLine(" */");
 
@@ -91,6 +90,7 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
 
     /**
      * 添加mybatis generator自生成代码的注解；被注解的代码会被下次mybatis generator时候覆盖
+     * 
      * @deprecated mybatis generator并不支持.java文件对该注解的使用，仅支持xml的
      */
     @Deprecated
@@ -104,13 +104,12 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
      */
     @Override
     public void addFieldComment(Field field, IntrospectedTable introspectedTable,
-                                IntrospectedColumn introspectedColumn) {
+        IntrospectedColumn introspectedColumn) {
         String jdbc = "JDBC";
-        String remarks = StringUtility.stringHasValue(introspectedColumn.getRemarks()) ?
-                introspectedColumn.getRemarks() :
-                field.getName();
+        String remarks = StringUtility.stringHasValue(introspectedColumn.getRemarks()) ? introspectedColumn.getRemarks()
+            : field.getName();
         // 添加@ApiModelProperty注解，用于swaggerUI展示用
-        field.addAnnotation("@ApiModelProperty(\"" + remarks + "\")");
+        // field.addAnnotation("@ApiModelProperty(\"" + remarks + "\")");
         field.addJavaDocLine("/**");
         String sb = " * " + remarks;
         field.addJavaDocLine(sb);
@@ -121,19 +120,19 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
             field.addAnnotation("@Transient");
         }
         // 对主键字段增加@Id注解
-        if (Iterators
-                .any(introspectedTable.getPrimaryKeyColumns().iterator(), column -> introspectedColumn == column)) {
+        if (Iterators.any(introspectedTable.getPrimaryKeyColumns().iterator(),
+            column -> introspectedColumn == column)) {
             field.addAnnotation("@Id");
         }
         // 对数据库字段增加@Column注解，该注解用于解决字段名和数据库字段名不同时的映射问题
         String column = introspectedColumn.getActualColumnName();
-        if (StringUtility.stringContainsSpace(column) || introspectedTable.getTableConfiguration()
-                .isAllColumnDelimitingEnabled()) {
-            column = introspectedColumn.getContext().getBeginningDelimiter() + column + introspectedColumn.getContext()
-                    .getEndingDelimiter();
+        if (StringUtility.stringContainsSpace(column)
+            || introspectedTable.getTableConfiguration().isAllColumnDelimitingEnabled()) {
+            column = introspectedColumn.getContext().getBeginningDelimiter() + column
+                + introspectedColumn.getContext().getEndingDelimiter();
         }
         if (!column.equals(introspectedColumn.getJavaProperty())) {
-            //@Column
+            // @Column
             field.addAnnotation("@Column(name = \"" + getDelimiterName(column) + "\")");
         } else if (StringUtility.stringHasValue(beginningDelimiter) || StringUtility.stringHasValue(endingDelimiter)) {
             field.addAnnotation("@Column(name = \"" + getDelimiterName(column) + "\")");
@@ -148,8 +147,9 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
         } else if (introspectedColumn.isSequenceColumn()) {
             // 在 Oracle 中，如果需要是 SEQ_TABLENAME，那么可以配置为 select SEQ_{1} from dual
             String tableName = introspectedTable.getFullyQualifiedTableNameAtRuntime();
-            String sql = MessageFormat.format(introspectedTable.getTableConfiguration().
-                    getGeneratedKey().getRuntimeSqlStatement(), tableName, tableName.toUpperCase());
+            String sql = MessageFormat.format(
+                introspectedTable.getTableConfiguration().getGeneratedKey().getRuntimeSqlStatement(), tableName,
+                tableName.toUpperCase());
             field.addAnnotation("@GeneratedValue(strategy = GenerationType.IDENTITY, generator = \"" + sql + "\")");
         }
         // 针对于大字段，增加ColumnType注解
@@ -191,33 +191,28 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
     }
 
     @Override
-    public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable) {
-    }
+    public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable) {}
 
     @Override
-    public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable, boolean markAsDoNotDelete) {
-    }
+    public void addClassComment(InnerClass innerClass, IntrospectedTable introspectedTable,
+        boolean markAsDoNotDelete) {}
 
     @Override
-    public void addEnumComment(InnerEnum innerEnum, IntrospectedTable introspectedTable) {
-    }
+    public void addEnumComment(InnerEnum innerEnum, IntrospectedTable introspectedTable) {}
 
     @Override
     public void addGetterComment(Method method, IntrospectedTable introspectedTable,
-                                 IntrospectedColumn introspectedColumn) {
-    }
+        IntrospectedColumn introspectedColumn) {}
 
     @Override
     public void addSetterComment(Method method, IntrospectedTable introspectedTable,
-                                 IntrospectedColumn introspectedColumn) {
-    }
+        IntrospectedColumn introspectedColumn) {}
 
     /**
      * 对.java文件的头部增加注释，例如copyright等的信息，一般是文件认证信息
      */
     @Override
-    public void addJavaFileComment(CompilationUnit compilationUnit) {
-    }
+    public void addJavaFileComment(CompilationUnit compilationUnit) {}
 
     /**
      * xml中的注释
@@ -228,35 +223,29 @@ public class LittleFisherCommentGenerator implements CommentGenerator {
     }
 
     @Override
-    public void addRootComment(XmlElement rootElement) {
-    }
+    public void addRootComment(XmlElement rootElement) {}
 
     @Override
     public void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable,
-            Set<FullyQualifiedJavaType> imports) {
-    }
+        Set<FullyQualifiedJavaType> imports) {}
 
     @Override
     public void addGeneralMethodAnnotation(Method method, IntrospectedTable introspectedTable,
-            IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports) {
-    }
-
-    @Override
-    public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable, Set<FullyQualifiedJavaType> imports) {
-    }
+        IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports) {}
 
     @Override
     public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable,
-            IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports) {
-    }
+        Set<FullyQualifiedJavaType> imports) {}
+
+    @Override
+    public void addFieldAnnotation(Field field, IntrospectedTable introspectedTable,
+        IntrospectedColumn introspectedColumn, Set<FullyQualifiedJavaType> imports) {}
 
     @Override
     public void addClassAnnotation(InnerClass innerClass, IntrospectedTable introspectedTable,
-            Set<FullyQualifiedJavaType> imports) {
-    }
+        Set<FullyQualifiedJavaType> imports) {}
 
     @Override
-    public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {
-    }
+    public void addModelClassComment(TopLevelClass topLevelClass, IntrospectedTable introspectedTable) {}
 
 }

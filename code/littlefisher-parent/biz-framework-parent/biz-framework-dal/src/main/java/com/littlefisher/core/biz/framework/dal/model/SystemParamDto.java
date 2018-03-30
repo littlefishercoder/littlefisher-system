@@ -1,17 +1,19 @@
 package com.littlefisher.core.biz.framework.dal.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
+
 
 /**
  *
  * Description: bfm_system_param 实体
  *
- * Created on 2018年01月10日
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -51,46 +53,6 @@ public class SystemParamDto implements Serializable {
      */
     @Column(name = "param_desc")
     private String paramDesc;
-
-    public static class Builder {
-
-        private SystemParamDto instance = new SystemParamDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addId(Long id) {
-            this.instance.setId(id);
-            return this;
-        }
-
-        public Builder addParamKey(String paramKey) {
-            this.instance.setParamKey(paramKey);
-            return this;
-        }
-
-        public Builder addParamValue(String paramValue) {
-            this.instance.setParamValue(paramValue);
-            return this;
-        }
-
-        public Builder addDefaultValue(String defaultValue) {
-            this.instance.setDefaultValue(defaultValue);
-            return this;
-        }
-
-        public Builder addParamDesc(String paramDesc) {
-            this.instance.setParamDesc(paramDesc);
-            return this;
-        }
-
-        public SystemParamDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getId() {
         return id;
@@ -146,5 +108,54 @@ public class SystemParamDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private SystemParamDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new SystemParamDto();
+            return builder;
+        }
+
+        public static Builder getInstance(SystemParamDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addId(Long id) {
+            this.instance.setId(id);
+            return this;
+        }
+
+        public Builder addParamKey(String paramKey) {
+            this.instance.setParamKey(paramKey);
+            return this;
+        }
+
+        public Builder addParamValue(String paramValue) {
+            this.instance.setParamValue(paramValue);
+            return this;
+        }
+
+        public Builder addDefaultValue(String defaultValue) {
+            this.instance.setDefaultValue(defaultValue);
+            return this;
+        }
+
+        public Builder addParamDesc(String paramDesc) {
+            this.instance.setParamDesc(paramDesc);
+            return this;
+        }
+
+        public SystemParamDto build() {
+            return this.instance;
+        }
     }
 }

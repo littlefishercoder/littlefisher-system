@@ -1,20 +1,22 @@
 package com.littlefisher.blog.dal.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
 
 import com.littlefisher.blog.common.enums.EnumAuthorState;
+
 
 /**
  *
  * Description: author 实体
  *
- * Created on 2018年01月10日
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -52,46 +54,6 @@ public class AuthorDto implements Serializable {
      */
     @Column(name = "update_date")
     private Date updateDate;
-
-    public static class Builder {
-
-        private AuthorDto instance = new AuthorDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addId(Long id) {
-            this.instance.setId(id);
-            return this;
-        }
-
-        public Builder addPenName(String penName) {
-            this.instance.setPenName(penName);
-            return this;
-        }
-
-        public Builder addMotto(String motto) {
-            this.instance.setMotto(motto);
-            return this;
-        }
-
-        public Builder addState(EnumAuthorState state) {
-            this.instance.setState(state);
-            return this;
-        }
-
-        public Builder addUpdateDate(Date updateDate) {
-            this.instance.setUpdateDate(updateDate);
-            return this;
-        }
-
-        public AuthorDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getId() {
         return id;
@@ -147,5 +109,54 @@ public class AuthorDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private AuthorDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new AuthorDto();
+            return builder;
+        }
+
+        public static Builder getInstance(AuthorDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addId(Long id) {
+            this.instance.setId(id);
+            return this;
+        }
+
+        public Builder addPenName(String penName) {
+            this.instance.setPenName(penName);
+            return this;
+        }
+
+        public Builder addMotto(String motto) {
+            this.instance.setMotto(motto);
+            return this;
+        }
+
+        public Builder addState(EnumAuthorState state) {
+            this.instance.setState(state);
+            return this;
+        }
+
+        public Builder addUpdateDate(Date updateDate) {
+            this.instance.setUpdateDate(updateDate);
+            return this;
+        }
+
+        public AuthorDto build() {
+            return this.instance;
+        }
     }
 }

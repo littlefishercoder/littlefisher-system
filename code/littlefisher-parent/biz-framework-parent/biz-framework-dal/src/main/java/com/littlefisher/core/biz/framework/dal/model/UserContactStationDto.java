@@ -1,23 +1,24 @@
 package com.littlefisher.core.biz.framework.dal.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
 
 import com.littlefisher.biz.framework.common.enums.EnumUserContactStationState;
 import com.littlefisher.biz.framework.common.enums.EnumUserContactStationType;
 import com.littlefisher.core.stereotype.enums.EnumBizBool;
 
+
 /**
  *
  * Description: bfm_user_contact_station 实体
  *
- * Created on 2018年01月10日
- * 
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -67,56 +68,6 @@ public class UserContactStationDto implements Serializable {
      */
     @Column(name = "update_date")
     private Date updateDate;
-
-    public static class Builder {
-
-        private UserContactStationDto instance = new UserContactStationDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addId(Long id) {
-            this.instance.setId(id);
-            return this;
-        }
-
-        public Builder addUserId(Long userId) {
-            this.instance.setUserId(userId);
-            return this;
-        }
-
-        public Builder addType(EnumUserContactStationType type) {
-            this.instance.setType(type);
-            return this;
-        }
-
-        public Builder addState(EnumUserContactStationState state) {
-            this.instance.setState(state);
-            return this;
-        }
-
-        public Builder addDefaultFlag(EnumBizBool defaultFlag) {
-            this.instance.setDefaultFlag(defaultFlag);
-            return this;
-        }
-
-        public Builder addCreateDate(Date createDate) {
-            this.instance.setCreateDate(createDate);
-            return this;
-        }
-
-        public Builder addUpdateDate(Date updateDate) {
-            this.instance.setUpdateDate(updateDate);
-            return this;
-        }
-
-        public UserContactStationDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getId() {
         return id;
@@ -190,5 +141,64 @@ public class UserContactStationDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private UserContactStationDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new UserContactStationDto();
+            return builder;
+        }
+
+        public static Builder getInstance(UserContactStationDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addId(Long id) {
+            this.instance.setId(id);
+            return this;
+        }
+
+        public Builder addUserId(Long userId) {
+            this.instance.setUserId(userId);
+            return this;
+        }
+
+        public Builder addType(EnumUserContactStationType type) {
+            this.instance.setType(type);
+            return this;
+        }
+
+        public Builder addState(EnumUserContactStationState state) {
+            this.instance.setState(state);
+            return this;
+        }
+
+        public Builder addDefaultFlag(EnumBizBool defaultFlag) {
+            this.instance.setDefaultFlag(defaultFlag);
+            return this;
+        }
+
+        public Builder addCreateDate(Date createDate) {
+            this.instance.setCreateDate(createDate);
+            return this;
+        }
+
+        public Builder addUpdateDate(Date updateDate) {
+            this.instance.setUpdateDate(updateDate);
+            return this;
+        }
+
+        public UserContactStationDto build() {
+            return this.instance;
+        }
     }
 }

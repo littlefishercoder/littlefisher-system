@@ -1,21 +1,22 @@
 package com.littlefisher.core.biz.framework.dal.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
 
 import com.littlefisher.biz.framework.common.enums.EnumUserState;
+
 
 /**
  *
  * Description: bfm_user 实体
  *
- * Created on 2018年01月10日
- * 
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -83,71 +84,6 @@ public class UserDto implements Serializable {
      */
     @Column(name = "last_login_date")
     private Date lastLoginDate;
-
-    public static class Builder {
-
-        private UserDto instance = new UserDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addId(Long id) {
-            this.instance.setId(id);
-            return this;
-        }
-
-        public Builder addAccNbr(String accNbr) {
-            this.instance.setAccNbr(accNbr);
-            return this;
-        }
-
-        public Builder addPassword(String password) {
-            this.instance.setPassword(password);
-            return this;
-        }
-
-        public Builder addRealName(String realName) {
-            this.instance.setRealName(realName);
-            return this;
-        }
-
-        public Builder addNickName(String nickName) {
-            this.instance.setNickName(nickName);
-            return this;
-        }
-
-        public Builder addEnName(String enName) {
-            this.instance.setEnName(enName);
-            return this;
-        }
-
-        public Builder addUserDesc(String userDesc) {
-            this.instance.setUserDesc(userDesc);
-            return this;
-        }
-
-        public Builder addState(EnumUserState state) {
-            this.instance.setState(state);
-            return this;
-        }
-
-        public Builder addRegDate(Date regDate) {
-            this.instance.setRegDate(regDate);
-            return this;
-        }
-
-        public Builder addLastLoginDate(Date lastLoginDate) {
-            this.instance.setLastLoginDate(lastLoginDate);
-            return this;
-        }
-
-        public UserDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getId() {
         return id;
@@ -248,5 +184,79 @@ public class UserDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private UserDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new UserDto();
+            return builder;
+        }
+
+        public static Builder getInstance(UserDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addId(Long id) {
+            this.instance.setId(id);
+            return this;
+        }
+
+        public Builder addAccNbr(String accNbr) {
+            this.instance.setAccNbr(accNbr);
+            return this;
+        }
+
+        public Builder addPassword(String password) {
+            this.instance.setPassword(password);
+            return this;
+        }
+
+        public Builder addRealName(String realName) {
+            this.instance.setRealName(realName);
+            return this;
+        }
+
+        public Builder addNickName(String nickName) {
+            this.instance.setNickName(nickName);
+            return this;
+        }
+
+        public Builder addEnName(String enName) {
+            this.instance.setEnName(enName);
+            return this;
+        }
+
+        public Builder addUserDesc(String userDesc) {
+            this.instance.setUserDesc(userDesc);
+            return this;
+        }
+
+        public Builder addState(EnumUserState state) {
+            this.instance.setState(state);
+            return this;
+        }
+
+        public Builder addRegDate(Date regDate) {
+            this.instance.setRegDate(regDate);
+            return this;
+        }
+
+        public Builder addLastLoginDate(Date lastLoginDate) {
+            this.instance.setLastLoginDate(lastLoginDate);
+            return this;
+        }
+
+        public UserDto build() {
+            return this.instance;
+        }
     }
 }

@@ -1,16 +1,17 @@
 package com.littlefisher.blog.dal.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
+
 
 /**
  *
  * Description: count_statistic_4_post 实体
  *
- * Created on 2018年01月10日
- * 
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -50,46 +51,6 @@ public class CountStatistic4PostDto implements Serializable {
      */
     @Column(name = "liked_times")
     private Long likedTimes;
-
-    public static class Builder {
-
-        private CountStatistic4PostDto instance = new CountStatistic4PostDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addCountStatisticId(Long countStatisticId) {
-            this.instance.setCountStatisticId(countStatisticId);
-            return this;
-        }
-
-        public Builder addPostId(Long postId) {
-            this.instance.setPostId(postId);
-            return this;
-        }
-
-        public Builder addReadTimes(Long readTimes) {
-            this.instance.setReadTimes(readTimes);
-            return this;
-        }
-
-        public Builder addCommentedTimes(Long commentedTimes) {
-            this.instance.setCommentedTimes(commentedTimes);
-            return this;
-        }
-
-        public Builder addLikedTimes(Long likedTimes) {
-            this.instance.setLikedTimes(likedTimes);
-            return this;
-        }
-
-        public CountStatistic4PostDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getCountStatisticId() {
         return countStatisticId;
@@ -145,5 +106,54 @@ public class CountStatistic4PostDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private CountStatistic4PostDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new CountStatistic4PostDto();
+            return builder;
+        }
+
+        public static Builder getInstance(CountStatistic4PostDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addCountStatisticId(Long countStatisticId) {
+            this.instance.setCountStatisticId(countStatisticId);
+            return this;
+        }
+
+        public Builder addPostId(Long postId) {
+            this.instance.setPostId(postId);
+            return this;
+        }
+
+        public Builder addReadTimes(Long readTimes) {
+            this.instance.setReadTimes(readTimes);
+            return this;
+        }
+
+        public Builder addCommentedTimes(Long commentedTimes) {
+            this.instance.setCommentedTimes(commentedTimes);
+            return this;
+        }
+
+        public Builder addLikedTimes(Long likedTimes) {
+            this.instance.setLikedTimes(likedTimes);
+            return this;
+        }
+
+        public CountStatistic4PostDto build() {
+            return this.instance;
+        }
     }
 }

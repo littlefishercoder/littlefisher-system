@@ -1,16 +1,17 @@
 package com.littlefisher.blog.dal.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
+
 
 /**
  *
  * Description: count_statistic_4_blog 实体
  *
- * Created on 2018年01月10日
- * 
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -38,36 +39,6 @@ public class CountStatistic4BlogDto implements Serializable {
      */
     @Column(name = "commented_times")
     private Long commentedTimes;
-
-    public static class Builder {
-
-        private CountStatistic4BlogDto instance = new CountStatistic4BlogDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addCountStatisticId(Long countStatisticId) {
-            this.instance.setCountStatisticId(countStatisticId);
-            return this;
-        }
-
-        public Builder addVisitedTimes(Long visitedTimes) {
-            this.instance.setVisitedTimes(visitedTimes);
-            return this;
-        }
-
-        public Builder addCommentedTimes(Long commentedTimes) {
-            this.instance.setCommentedTimes(commentedTimes);
-            return this;
-        }
-
-        public CountStatistic4BlogDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getCountStatisticId() {
         return countStatisticId;
@@ -105,5 +76,44 @@ public class CountStatistic4BlogDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private CountStatistic4BlogDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new CountStatistic4BlogDto();
+            return builder;
+        }
+
+        public static Builder getInstance(CountStatistic4BlogDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addCountStatisticId(Long countStatisticId) {
+            this.instance.setCountStatisticId(countStatisticId);
+            return this;
+        }
+
+        public Builder addVisitedTimes(Long visitedTimes) {
+            this.instance.setVisitedTimes(visitedTimes);
+            return this;
+        }
+
+        public Builder addCommentedTimes(Long commentedTimes) {
+            this.instance.setCommentedTimes(commentedTimes);
+            return this;
+        }
+
+        public CountStatistic4BlogDto build() {
+            return this.instance;
+        }
     }
 }

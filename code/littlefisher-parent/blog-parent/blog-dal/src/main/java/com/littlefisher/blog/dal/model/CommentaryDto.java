@@ -1,25 +1,26 @@
 package com.littlefisher.blog.dal.model;
 
-import tk.mybatis.mapper.annotation.ColumnType;
+import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
 
 import org.apache.ibatis.type.JdbcType;
 
 import com.littlefisher.blog.common.enums.EnumCommentaryState;
 
+import tk.mybatis.mapper.annotation.ColumnType;
+
+
 /**
  *
  * Description: commentary 实体
  *
- * Created on 2018年01月10日
- * 
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -94,76 +95,6 @@ public class CommentaryDto implements Serializable {
      */
     @ColumnType(jdbcType = JdbcType.LONGVARCHAR)
     private String content;
-
-    public static class Builder {
-
-        private CommentaryDto instance = new CommentaryDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addId(Long id) {
-            this.instance.setId(id);
-            return this;
-        }
-
-        public Builder addParentCommentaryId(Long parentCommentaryId) {
-            this.instance.setParentCommentaryId(parentCommentaryId);
-            return this;
-        }
-
-        public Builder addUserId(Long userId) {
-            this.instance.setUserId(userId);
-            return this;
-        }
-
-        public Builder addNickName(String nickName) {
-            this.instance.setNickName(nickName);
-            return this;
-        }
-
-        public Builder addCommentaryIp(String commentaryIp) {
-            this.instance.setCommentaryIp(commentaryIp);
-            return this;
-        }
-
-        public Builder addCreatedDate(Date createdDate) {
-            this.instance.setCreatedDate(createdDate);
-            return this;
-        }
-
-        public Builder addPostId(Long postId) {
-            this.instance.setPostId(postId);
-            return this;
-        }
-
-        public Builder addState(EnumCommentaryState state) {
-            this.instance.setState(state);
-            return this;
-        }
-
-        public Builder addStateDate(Date stateDate) {
-            this.instance.setStateDate(stateDate);
-            return this;
-        }
-
-        public Builder addUpdateDate(Date updateDate) {
-            this.instance.setUpdateDate(updateDate);
-            return this;
-        }
-
-        public Builder addContent(String content) {
-            this.instance.setContent(content);
-            return this;
-        }
-
-        public CommentaryDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getId() {
         return id;
@@ -273,5 +204,84 @@ public class CommentaryDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private CommentaryDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new CommentaryDto();
+            return builder;
+        }
+
+        public static Builder getInstance(CommentaryDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addId(Long id) {
+            this.instance.setId(id);
+            return this;
+        }
+
+        public Builder addParentCommentaryId(Long parentCommentaryId) {
+            this.instance.setParentCommentaryId(parentCommentaryId);
+            return this;
+        }
+
+        public Builder addUserId(Long userId) {
+            this.instance.setUserId(userId);
+            return this;
+        }
+
+        public Builder addNickName(String nickName) {
+            this.instance.setNickName(nickName);
+            return this;
+        }
+
+        public Builder addCommentaryIp(String commentaryIp) {
+            this.instance.setCommentaryIp(commentaryIp);
+            return this;
+        }
+
+        public Builder addCreatedDate(Date createdDate) {
+            this.instance.setCreatedDate(createdDate);
+            return this;
+        }
+
+        public Builder addPostId(Long postId) {
+            this.instance.setPostId(postId);
+            return this;
+        }
+
+        public Builder addState(EnumCommentaryState state) {
+            this.instance.setState(state);
+            return this;
+        }
+
+        public Builder addStateDate(Date stateDate) {
+            this.instance.setStateDate(stateDate);
+            return this;
+        }
+
+        public Builder addUpdateDate(Date updateDate) {
+            this.instance.setUpdateDate(updateDate);
+            return this;
+        }
+
+        public Builder addContent(String content) {
+            this.instance.setContent(content);
+            return this;
+        }
+
+        public CommentaryDto build() {
+            return this.instance;
+        }
     }
 }

@@ -1,18 +1,19 @@
 package com.littlefisher.core.biz.framework.dal.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
+
 
 /**
  *
  * Description: bfm_user_role 实体
  *
- * Created on 2018年01月10日
- * 
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -40,36 +41,6 @@ public class UserRoleDto implements Serializable {
      */
     @Column(name = "role_id")
     private Long roleId;
-
-    public static class Builder {
-
-        private UserRoleDto instance = new UserRoleDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addId(Long id) {
-            this.instance.setId(id);
-            return this;
-        }
-
-        public Builder addUserId(Long userId) {
-            this.instance.setUserId(userId);
-            return this;
-        }
-
-        public Builder addRoleId(Long roleId) {
-            this.instance.setRoleId(roleId);
-            return this;
-        }
-
-        public UserRoleDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getId() {
         return id;
@@ -107,5 +78,44 @@ public class UserRoleDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private UserRoleDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new UserRoleDto();
+            return builder;
+        }
+
+        public static Builder getInstance(UserRoleDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addId(Long id) {
+            this.instance.setId(id);
+            return this;
+        }
+
+        public Builder addUserId(Long userId) {
+            this.instance.setUserId(userId);
+            return this;
+        }
+
+        public Builder addRoleId(Long roleId) {
+            this.instance.setRoleId(roleId);
+            return this;
+        }
+
+        public UserRoleDto build() {
+            return this.instance;
+        }
     }
 }

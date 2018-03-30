@@ -1,21 +1,22 @@
 package com.littlefisher.core.biz.framework.dal.model;
 
+import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
-import java.util.Date;
 
 import com.littlefisher.biz.framework.common.enums.EnumUserContactStation4WebsiteType;
+
 
 /**
  *
  * Description: bfm_user_contact_station_4_website 实体
  *
- * Created on 2018年01月10日
- * 
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -54,46 +55,6 @@ public class UserContactStation4WebsiteDto implements Serializable {
      */
     @Column(name = "update_date")
     private Date updateDate;
-
-    public static class Builder {
-
-        private UserContactStation4WebsiteDto instance = new UserContactStation4WebsiteDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addContactStationId(Long contactStationId) {
-            this.instance.setContactStationId(contactStationId);
-            return this;
-        }
-
-        public Builder addType(EnumUserContactStation4WebsiteType type) {
-            this.instance.setType(type);
-            return this;
-        }
-
-        public Builder addWebsite(String website) {
-            this.instance.setWebsite(website);
-            return this;
-        }
-
-        public Builder addCreateDate(Date createDate) {
-            this.instance.setCreateDate(createDate);
-            return this;
-        }
-
-        public Builder addUpdateDate(Date updateDate) {
-            this.instance.setUpdateDate(updateDate);
-            return this;
-        }
-
-        public UserContactStation4WebsiteDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getContactStationId() {
         return contactStationId;
@@ -149,5 +110,54 @@ public class UserContactStation4WebsiteDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private UserContactStation4WebsiteDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new UserContactStation4WebsiteDto();
+            return builder;
+        }
+
+        public static Builder getInstance(UserContactStation4WebsiteDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addContactStationId(Long contactStationId) {
+            this.instance.setContactStationId(contactStationId);
+            return this;
+        }
+
+        public Builder addType(EnumUserContactStation4WebsiteType type) {
+            this.instance.setType(type);
+            return this;
+        }
+
+        public Builder addWebsite(String website) {
+            this.instance.setWebsite(website);
+            return this;
+        }
+
+        public Builder addCreateDate(Date createDate) {
+            this.instance.setCreateDate(createDate);
+            return this;
+        }
+
+        public Builder addUpdateDate(Date updateDate) {
+            this.instance.setUpdateDate(updateDate);
+            return this;
+        }
+
+        public UserContactStation4WebsiteDto build() {
+            return this.instance;
+        }
     }
 }

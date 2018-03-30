@@ -81,12 +81,14 @@ public class UserBizDto implements Serializable {
 
     public static class Builder {
 
-        private UserBizDto instance = new UserBizDto();
+        private UserBizDto instance;
 
         private Builder() {}
 
         public static Builder getInstance() {
-            return new Builder();
+            Builder builder = new Builder();
+            builder.instance = new UserBizDto();
+            return builder;
         }
 
         public static Builder getInstance(UserBizDto instance) {

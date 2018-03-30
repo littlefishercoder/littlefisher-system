@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.littlefisher.blog.common.enums.EnumArchiveState;
 
+
 public class ArchiveDtoExample {
     /** orderByClause */
     protected String orderByClause;

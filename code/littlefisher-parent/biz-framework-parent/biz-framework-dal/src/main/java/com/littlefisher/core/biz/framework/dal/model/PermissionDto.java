@@ -1,18 +1,19 @@
 package com.littlefisher.core.biz.framework.dal.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.io.Serializable;
+
 
 /**
  *
  * Description: bfm_permission 实体
  *
- * Created on 2018年01月10日
- * 
+ * Created on 2018年03月30日
  * @author jinyanan
  * @version 1.0
  * @since v1.0
@@ -39,36 +40,6 @@ public class PermissionDto implements Serializable {
      */
     @Column(name = "permission_desc")
     private String permissionDesc;
-
-    public static class Builder {
-
-        private PermissionDto instance = new PermissionDto();
-
-        private Builder() {}
-
-        public static Builder getInstance() {
-            return new Builder();
-        }
-
-        public Builder addId(Long id) {
-            this.instance.setId(id);
-            return this;
-        }
-
-        public Builder addCode(String code) {
-            this.instance.setCode(code);
-            return this;
-        }
-
-        public Builder addPermissionDesc(String permissionDesc) {
-            this.instance.setPermissionDesc(permissionDesc);
-            return this;
-        }
-
-        public PermissionDto build() {
-            return this.instance;
-        }
-    }
 
     public Long getId() {
         return id;
@@ -106,5 +77,44 @@ public class PermissionDto implements Serializable {
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
+    }
+
+    public static class Builder {
+        private PermissionDto instance;
+
+        private Builder() {
+            super();
+        }
+
+        public static Builder getInstance() {
+            Builder builder = new Builder();
+            builder.instance = new PermissionDto();
+            return builder;
+        }
+
+        public static Builder getInstance(PermissionDto instance) {
+            Builder builder = new Builder();
+            builder.instance = instance;
+            return builder;
+        }
+
+        public Builder addId(Long id) {
+            this.instance.setId(id);
+            return this;
+        }
+
+        public Builder addCode(String code) {
+            this.instance.setCode(code);
+            return this;
+        }
+
+        public Builder addPermissionDesc(String permissionDesc) {
+            this.instance.setPermissionDesc(permissionDesc);
+            return this;
+        }
+
+        public PermissionDto build() {
+            return this.instance;
+        }
     }
 }
