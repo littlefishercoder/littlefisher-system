@@ -11,5 +11,11 @@ package com.littlefisher.core.mybatis.generator.jdbc;
  */
 public interface JdbcConnectionPasswordResolver {
 
+    /**
+     * 对密码进行解密
+     *
+     * @param password 加密的密码
+     * @return 解密的密码
+     */
     String decrypt(String password);
 }
