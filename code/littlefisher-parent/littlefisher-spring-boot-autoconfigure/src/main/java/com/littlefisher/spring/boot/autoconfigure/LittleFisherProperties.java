@@ -1,9 +1,12 @@
 package com.littlefisher.spring.boot.autoconfigure;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+
+import com.littlefisher.spring.boot.stereotype.enums.EnumRegistryType;
 
 /**
  * Description: LittleFisherProperties.java
@@ -23,6 +26,86 @@ public class LittleFisherProperties {
     /** shiro相关配置 */
     private ShiroConfiguration shiro = new ShiroConfiguration();
 
+    /** dubbo相关配置 */
+    private DubboConfiguration dubbo = new DubboConfiguration();
+
+    /** dubbo相关配置 */
+    public static class DubboConfiguration {
+
+        /** 应用名 */
+        private String appName;
+
+        /** 超时时间 */
+        private Duration timeout;
+
+        /** 注册中心类型 */
+        private EnumRegistryType registryType;
+
+        /** 这次中心ip地址 */
+        private String ips;
+
+        /**
+         * 消费方相关配置
+         */
+        public static class Consumer {
+
+            /** 重试次数 */
+            private Integer retries;
+
+            public Integer getRetries() {
+                return retries;
+            }
+
+            public void setRetries(Integer retries) {
+                this.retries = retries;
+            }
+
+            @Override
+            public String toString() {
+                return "Consumer{" + "retries=" + retries + '}';
+            }
+        }
+
+        public String getAppName() {
+            return appName;
+        }
+
+        public void setAppName(String appName) {
+            this.appName = appName;
+        }
+
+        public Duration getTimeout() {
+            return timeout;
+        }
+
+        public void setTimeout(Duration timeout) {
+            this.timeout = timeout;
+        }
+
+        public EnumRegistryType getRegistryType() {
+            return registryType;
+        }
+
+        public void setRegistryType(EnumRegistryType registryType) {
+            this.registryType = registryType;
+        }
+
+        public String getIps() {
+            return ips;
+        }
+
+        public void setIps(String ips) {
+            this.ips = ips;
+        }
+
+        @Override
+        public String toString() {
+            return "DubboConfiguration{" + "appName='" + appName + '\'' + ", timeout=" + timeout + ", registryType="
+                + registryType + ", ips='" + ips + '\'' + '}';
+        }
+    }
+
+    /** shiro相关配置 */
     public static class ShiroConfiguration {
 
         /** 是否开启shrio */
@@ -93,10 +176,10 @@ public class LittleFisherProperties {
 
         @Override
         public String toString() {
-            return "ShiroConfiguration{" + "enabled='" + enabled + '\'' + ", loginUrl='" + loginUrl + '\'' +
-                    ", successUrl='" + successUrl + '\'' + ", unauthorizedUrl='" + unauthorizedUrl + '\'' +
-                    ", swaggerFileChainEnable='" + swaggerFileChainEnable + '\'' + ", filterChainDefinition=" +
-                    filterChainDefinition + '}';
+            return "ShiroConfiguration{" + "enabled='" + enabled + '\'' + ", loginUrl='" + loginUrl + '\''
+                + ", successUrl='" + successUrl + '\'' + ", unauthorizedUrl='" + unauthorizedUrl + '\''
+                + ", swaggerFileChainEnable='" + swaggerFileChainEnable + '\'' + ", filterChainDefinition="
+                + filterChainDefinition + '}';
         }
     }
 
@@ -138,8 +221,16 @@ public class LittleFisherProperties {
         this.shiro = shiro;
     }
 
+    public DubboConfiguration getDubbo() {
+        return dubbo;
+    }
+
+    public void setDubbo(DubboConfiguration dubbo) {
+        this.dubbo = dubbo;
+    }
+
     @Override
     public String toString() {
-        return "LittleFisherProperties{" + "mybatis=" + mybatis + ", shiro=" + shiro + '}';
+        return "LittleFisherProperties{" + "mybatis=" + mybatis + ", shiro=" + shiro + ", dubbo=" + dubbo + '}';
     }
 }
