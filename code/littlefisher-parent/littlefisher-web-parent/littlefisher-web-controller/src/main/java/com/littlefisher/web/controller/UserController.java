@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.littlefisher.core.biz.framework.model.UserBizDto;
-import com.littlefisher.core.biz.framework.request.AddUserRequest;
-import com.littlefisher.core.biz.framework.request.GetUserList4PageByCondRequest;
-import com.littlefisher.core.biz.framework.request.UpdateUserRequest;
-import com.littlefisher.core.biz.framework.service.IUserService;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.core.stereotype.constants.BaseConstants;
+import com.littlefisher.user.model.UserBizDto;
+import com.littlefisher.user.request.AddUserRequest;
+import com.littlefisher.user.request.GetUserList4PageByCondRequest;
+import com.littlefisher.user.request.UpdateUserRequest;
+import com.littlefisher.web.dal.integration.user.IUserIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,7 +38,7 @@ import net.sf.oval.constraint.NotBlank;
 public class UserController {
 
     @Autowired
-    private IUserService userService;
+    private IUserIntegration userIntegration;
 
     /**
      * Description: 根据条件查询User，分页用
@@ -51,7 +51,7 @@ public class UserController {
     public PageInfo<UserBizDto>
         getUserList4PageByCond(@ApiParam(required = true, value = "根据条件查询User入参，分页用") @ModelAttribute @NotNull(
             message = "请求不能为空") GetUserList4PageByCondRequest request) {
-        return userService.getUserList4PageByCond(request);
+        return userIntegration.getUserList4PageByCond(request);
     }
 
     /**
@@ -64,7 +64,7 @@ public class UserController {
     @ApiOperation(value = "根据userId查询对应User")
     public UserBizDto getUserById(@ApiParam(required = true, value = "User主键") @PathVariable(value = "userId") @NotNull(
         message = "用户id不能为空") @NotBlank(message = "用户id不能为空") Long userId) {
-        return userService.getUserById(userId);
+        return userIntegration.getUserById(userId);
     }
 
     /**
@@ -77,7 +77,7 @@ public class UserController {
     @ApiOperation(value = "新增User")
     public UserBizDto addUser(@ApiParam(required = true,
         value = "User实体") @RequestBody @NotNull(message = "新增用户请求不能为空") AddUserRequest request) {
-        return userService.addUser(request);
+        return userIntegration.addUser(request);
     }
 
     /**
@@ -90,7 +90,7 @@ public class UserController {
     @ApiOperation(value = "修改User")
     public UserBizDto updateUser(@ApiParam(required = true,
         value = "User实体") @RequestBody @NotNull(message = "修改用户请求不能为空") UpdateUserRequest request) {
-        return userService.updateUser(request);
+        return userIntegration.updateUser(request);
     }
 
     /**
@@ -103,6 +103,6 @@ public class UserController {
     @ApiOperation(value = "删除User")
     public int deleteUser(@ApiParam(required = true, value = "User主键") @PathVariable("userId") @NotNull(
         message = "用户id不能为空") @NotBlank(message = "用户id不能为空") Long userId) {
-        return userService.deleteUser(userId);
+        return userIntegration.deleteUser(userId);
     }
 }

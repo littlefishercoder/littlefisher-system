@@ -1,5 +1,7 @@
 package com.littlefisher.user.service.impl;
 
+import org.springframework.stereotype.Component;
+
 import com.alibaba.dubbo.config.annotation.Service;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
@@ -25,6 +27,7 @@ import com.littlefisher.user.service.ISystemParamService;
  * @version 1.0
  * @since v1.0
  */
+@Component
 @Service(interfaceClass = ISystemParamService.class)
 public class SystemParamServiceImpl extends ServiceImpl implements ISystemParamService {
 

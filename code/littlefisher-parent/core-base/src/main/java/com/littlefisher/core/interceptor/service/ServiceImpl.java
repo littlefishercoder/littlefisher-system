@@ -5,6 +5,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.littlefisher.core.engine.SystemEngine;
@@ -44,7 +45,15 @@ public class ServiceImpl implements InitializingBean, ApplicationContextAware {
     private void init() {
         Class<? extends ServiceImpl> mClass = this.getClass();
         Service service = mClass.getAnnotation(Service.class);
-        String value = service.value();
+        Component component = mClass.getAnnotation(Component.class);
+        String value;
+        if (service != null) {
+            value = service.value();
+        } else if (component != null) {
+            value = component.value();
+        } else {
+            value = null;
+        }
         if (StringUtil.isEmpty(value)) {
             value = StringUtil.uncapitalize(mClass.getSimpleName());
         }

@@ -19,11 +19,6 @@
     </dependency>
     <dependency>
       <groupId>com.littlefisher</groupId>
-      <artifactId>core-base</artifactId>
-      <version>${core-base.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.littlefisher</groupId>
       <artifactId>littlefisher-blog-dal</artifactId>
       <version>${project.parent.version}</version>
     </dependency>

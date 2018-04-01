@@ -14,11 +14,6 @@
   <dependencies>
     <dependency>
       <groupId>com.littlefisher</groupId>
-      <artifactId>core-base</artifactId>
-      <version>${core-base.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.littlefisher</groupId>
       <artifactId>littlefisher-user-biz</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
@@ -26,10 +21,6 @@
       <groupId>com.littlefisher</groupId>
       <artifactId>littlefisher-user-dal</artifactId>
       <version>${project.parent.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.shiro</groupId>
-      <artifactId>shiro-spring</artifactId>
     </dependency>
 
   </dependencies>

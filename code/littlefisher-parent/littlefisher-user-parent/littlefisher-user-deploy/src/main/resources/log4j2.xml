@@ -70,6 +70,9 @@
       <appender-ref ref="allLogger"/>
       <!--<appender-ref ref="stdout" />-->
     </logger>
+    <logger name="com.alibaba.dubbo" level="debug">
+      <appender-ref ref="allLogger"/>
+    </logger>
     <!--删去root节点，以防jetty打印过多无用日志-->
     <!--<root level="info">-->
       <!--<appender-ref ref="stdout" />-->

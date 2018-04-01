@@ -9,6 +9,8 @@ import com.littlefisher.user.service.ISystemService;
 
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Description: SystemServiceImpl.java
  *
@@ -18,6 +20,7 @@ import java.util.Map;
  * @version 1.0
  * @since v1.0
  */
+@Component
 @Service(interfaceClass = ISystemService.class)
 public class SystemServiceImpl extends ServiceImpl implements ISystemService {
 

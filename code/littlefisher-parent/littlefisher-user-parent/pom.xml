@@ -14,7 +14,6 @@
 
   <properties>
     <core-base.version>1.0.1-SNAPSHOT</core-base.version>
-    <shiro-spring.version>1.4.0</shiro-spring.version>
     <blog.version>1.0.1-SNAPSHOT</blog.version>
   </properties>
 
@@ -26,15 +25,5 @@
     <module>littlefisher-user-common</module>
     <module>littlefisher-user-deploy</module>
   </modules>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.apache.shiro</groupId>
-        <artifactId>shiro-spring</artifactId>
-        <version>${shiro-spring.version}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
 </project>

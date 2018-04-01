@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.littlefisher.core.biz.framework.model.SystemParamBizDto;
-import com.littlefisher.core.biz.framework.request.AddSystemParamRequest;
-import com.littlefisher.core.biz.framework.request.GetSystemParamList4PageByCondRequest;
-import com.littlefisher.core.biz.framework.request.UpdateSystemParamRequest;
-import com.littlefisher.core.biz.framework.service.ISystemParamService;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.core.stereotype.constants.BaseConstants;
+import com.littlefisher.user.model.SystemParamBizDto;
+import com.littlefisher.user.request.AddSystemParamRequest;
+import com.littlefisher.user.request.GetSystemParamList4PageByCondRequest;
+import com.littlefisher.user.request.UpdateSystemParamRequest;
+import com.littlefisher.web.dal.integration.user.ISystemParamIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -38,7 +38,7 @@ import net.sf.oval.constraint.NotBlank;
 public class SystemParamController {
 
     @Autowired
-    private ISystemParamService systemParamService;
+    private ISystemParamIntegration systemParamIntegration;
 
     /**
      * Description: 根据条件查询分页列表
@@ -50,7 +50,7 @@ public class SystemParamController {
     @ApiOperation(value = "根据条件查询分页列表")
     public PageInfo<SystemParamBizDto> getSystemParamList4PagerByCond(
             @ApiParam(value = "查询系统参数列表条件") @ModelAttribute @NotNull(message = "请求不能为空") GetSystemParamList4PageByCondRequest req) {
-        return systemParamService.getSystemParamList4PageByCond(req);
+        return systemParamIntegration.getSystemParamList4PageByCond(req);
     }
 
     /**
@@ -64,7 +64,7 @@ public class SystemParamController {
     public SystemParamBizDto getSystemParamByKey(
             @ApiParam(required = true, value = "系统参数key值") @PathVariable("paramKey") @NotNull(message = "key不能为空")
             @NotBlank(message = "key不能为空") String paramKey) {
-        return systemParamService.getSystemParamByKey(paramKey);
+        return systemParamIntegration.getSystemParamByKey(paramKey);
     }
 
     /**
@@ -77,7 +77,7 @@ public class SystemParamController {
     @ApiOperation(value = "根据主键查询系统信息")
     public SystemParamBizDto getSystemParamById(@ApiParam(required = true, value = "系统参数主键") @PathVariable("systemParamId")
     @NotNull(message = "systemParamId不能为空") @NotBlank(message = "systemParamId不能为空") Long systemParamId) {
-        return systemParamService.getSystemParamById(systemParamId);
+        return systemParamIntegration.getSystemParamById(systemParamId);
     }
 
     /**
@@ -89,9 +89,8 @@ public class SystemParamController {
     @RequestMapping(method = RequestMethod.POST)
     @ApiParam(value = "新增系统参数")
     public SystemParamBizDto addSystemParam(
-            @ApiParam(required = true, value = "系统参数信息") @RequestBody @NotNull(message = "请求不能为空")
-                    AddSystemParamRequest request) {
-        return systemParamService.addSystemParam(request);
+            @ApiParam(required = true, value = "系统参数信息") @RequestBody @NotNull(message = "请求不能为空") AddSystemParamRequest request) {
+        return systemParamIntegration.addSystemParam(request);
     }
 
     /**
@@ -105,7 +104,7 @@ public class SystemParamController {
     public int deleteSystemParamByKey(
             @ApiParam(required = true, value = "系统参数key值") @PathVariable("paramKey") @NotNull(message = "paramKey不能为空")
             @NotBlank(message = "paramKey不能为空") String paramKey) {
-        return systemParamService.deleteSystemParamByKey(paramKey);
+        return systemParamIntegration.deleteSystemParamByKey(paramKey);
     }
 
     /**
@@ -118,7 +117,7 @@ public class SystemParamController {
     @ApiOperation(value = "根据主键删除系统参数")
     public int deleteSystemParamById(@ApiParam(required = true, value = "系统参数主键") @PathVariable("systemParamId")
     @NotNull(message = "systemParamId不能为空") @NotBlank(message = "systemParamId不能为空") Long systemParamId) {
-        return systemParamService.deleteSystemParamById(systemParamId);
+        return systemParamIntegration.deleteSystemParamById(systemParamId);
     }
 
     /**
@@ -130,8 +129,7 @@ public class SystemParamController {
     @RequestMapping(method = RequestMethod.PATCH)
     @ApiOperation(value = "修改系统参数")
     public SystemParamBizDto updateSystemParam(
-            @ApiParam(required = true, value = "系统参数信息") @RequestBody @NotNull(message = "请求参数不能为空")
-                    UpdateSystemParamRequest request) {
-        return systemParamService.updateSystemParam(request);
+            @ApiParam(required = true, value = "系统参数信息") @RequestBody @NotNull(message = "请求参数不能为空") UpdateSystemParamRequest request) {
+        return systemParamIntegration.updateSystemParam(request);
     }
 }

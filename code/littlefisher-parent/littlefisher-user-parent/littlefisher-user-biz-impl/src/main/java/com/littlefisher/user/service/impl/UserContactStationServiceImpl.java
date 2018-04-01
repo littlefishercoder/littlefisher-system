@@ -2,6 +2,8 @@ package com.littlefisher.user.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.alibaba.dubbo.config.annotation.Service;
 import com.littlefisher.core.interceptor.service.ServiceImpl;
 import com.littlefisher.user.cmd.station.GetUserContactStation4EmailByUserIdCmd;
@@ -23,6 +25,7 @@ import com.littlefisher.user.service.IUserContactStationService;
  * @version 1.0
  * @since v1.0
  */
+@Component
 @Service(interfaceClass = IUserContactStationService.class)
 public class UserContactStationServiceImpl extends ServiceImpl implements
         IUserContactStationService {

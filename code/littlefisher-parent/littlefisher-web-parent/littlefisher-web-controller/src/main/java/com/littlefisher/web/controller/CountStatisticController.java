@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.littlefisher.blog.biz.model.CountStatisticBizExtDto;
 import com.littlefisher.blog.biz.request.AddBlogCountTimesRequest;
 import com.littlefisher.blog.biz.request.AddPostCountTimesRequest;
-import com.littlefisher.blog.biz.service.ICountStatisticService;
 import com.littlefisher.core.stereotype.constants.BaseConstants;
+import com.littlefisher.web.dal.integration.blog.ICountStatisticIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,7 +35,7 @@ import net.sf.oval.constraint.NotBlank;
 public class CountStatisticController {
 
     @Autowired
-    private ICountStatisticService countStatisticService;
+    private ICountStatisticIntegration countStatisticIntegration;
 
     /**
      * 查询博客相关数量统计
@@ -49,7 +49,7 @@ public class CountStatisticController {
             @ApiParam(required = true, value = "作者id") @PathVariable("authorId") @NotNull(message = "作者id不能为空")
             @NotBlank(message = "作者id不能为空") Long authorId) {
         // 查询博客相关数量统计
-        return countStatisticService.getBlogCountStatistic(authorId);
+        return countStatisticIntegration.getBlogCountStatistic(authorId);
     }
 
     /**
@@ -61,7 +61,7 @@ public class CountStatisticController {
     public void addBlogCountTimes(
             @ApiParam(required = true, value = "增加博客统计信息") @RequestBody @NotNull(message = "请求不能为空") AddBlogCountTimesRequest request) {
         // 增加博客统计信息
-        countStatisticService.addBlogCountTimes(request);
+        countStatisticIntegration.addBlogCountTimes(request);
     }
 
     /**
@@ -73,7 +73,7 @@ public class CountStatisticController {
     public void addPostCountTimes(
             @ApiParam(required = true, value = "增加博文统计数据") @RequestBody @NotNull(message = "请求不能为空") AddPostCountTimesRequest request) {
         // 增加博文统计数据
-        countStatisticService.addPostCountTimes(request);
+        countStatisticIntegration.addPostCountTimes(request);
     }
 
 }

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.littlefisher.core.biz.framework.request.GetResourceRequest;
-import com.littlefisher.core.biz.framework.service.ISystemService;
 import com.littlefisher.core.stereotype.constants.BaseConstants;
+import com.littlefisher.user.request.GetResourceRequest;
+import com.littlefisher.web.dal.integration.user.ISystemIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -33,7 +33,7 @@ import io.swagger.annotations.ApiParam;
 public class SystemController {
 
     @Autowired
-    private ISystemService systemService;
+    private ISystemIntegration systemIntegration;
 
     /**
      * 刷新Resource文件
@@ -41,7 +41,7 @@ public class SystemController {
     @RequestMapping(value = "/resources/refresh", method = RequestMethod.PATCH)
     @ApiOperation(value = "刷新Resource文件")
     public void refreshResource() {
-        systemService.refreshResource();
+        systemIntegration.refreshResource();
     }
 
     /**
@@ -52,6 +52,6 @@ public class SystemController {
     @ApiOperation(value = "查询Resource")
     public Map<Object, Object> getResource(
             @ApiParam(value = "查询Resource条件") @ModelAttribute @NotNull(message = "请求不能为空") GetResourceRequest request) {
-        return systemService.getResource(request.getDialect());
+        return systemIntegration.getResource(request.getDialect());
     }
 }

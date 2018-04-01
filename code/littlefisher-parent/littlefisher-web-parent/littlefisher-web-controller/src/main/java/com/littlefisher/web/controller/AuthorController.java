@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.littlefisher.blog.biz.model.AuthorBizExtDto;
 import com.littlefisher.blog.biz.model.FriendLinkBizDto;
-import com.littlefisher.blog.biz.service.IAuthorService;
-import com.littlefisher.blog.biz.service.IFriendLinkService;
 import com.littlefisher.core.stereotype.constants.BaseConstants;
+import com.littlefisher.web.dal.integration.blog.IAuthorIntegration;
+import com.littlefisher.web.dal.integration.blog.IFriendLinkIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -36,10 +36,10 @@ import net.sf.oval.constraint.NotBlank;
 public class AuthorController {
 
     @Autowired
-    private IAuthorService authorService;
+    private IAuthorIntegration authorIntegration;
 
     @Autowired
-    private IFriendLinkService friendLinkService;
+    private IFriendLinkIntegration friendLinkIntegration;
 
     /**
      * 首页作者详情
@@ -52,7 +52,7 @@ public class AuthorController {
             @ApiParam(required = true, value = "作者主键") @PathVariable("authorId") @NotNull(message = "用户id不能为空")
             @NotBlank(message = "用户id不能为空") Long authorId) {
         // 首页作者详情
-        return authorService.getAuthorInfo4Index(authorId);
+        return authorIntegration.getAuthorInfo4Index(authorId);
     }
 
     /**
@@ -66,6 +66,6 @@ public class AuthorController {
             @ApiParam(required = true, value = "作者主键") @PathVariable("authorId") @NotNull(message = "用户id不能为空")
             @NotBlank(message = "用户id不能为空") Long authorId) {
         // 作者友情链接
-        return friendLinkService.getFriendLinkList(authorId);
+        return friendLinkIntegration.getFriendLinkList(authorId);
     }
 }

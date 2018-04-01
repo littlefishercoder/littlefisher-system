@@ -11,5 +11,17 @@
 
   <artifactId>littlefisher-web-controller</artifactId>
 
+  <dependencies>
+    <dependency>
+      <groupId>com.littlefisher</groupId>
+      <artifactId>littlefisher-web-biz</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.littlefisher</groupId>
+      <artifactId>littlefisher-web-dal</artifactId>
+      <version>${project.parent.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>

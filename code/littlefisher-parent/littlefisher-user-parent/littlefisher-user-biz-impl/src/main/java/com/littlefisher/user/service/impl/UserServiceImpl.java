@@ -2,6 +2,8 @@ package com.littlefisher.user.service.impl;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.alibaba.dubbo.config.annotation.Service;
 import com.littlefisher.user.cmd.user.AddUserCmd;
 import com.littlefisher.user.cmd.user.DeleteUserCmd;
@@ -29,6 +31,7 @@ import com.littlefisher.user.service.IUserService;
  * @version 1.0
  * @since v1.0
  */
+@Component
 @Service(interfaceClass = IUserService.class)
 public class UserServiceImpl extends ServiceImpl implements IUserService {
 

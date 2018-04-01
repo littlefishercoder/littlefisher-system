@@ -15,9 +15,9 @@ import com.littlefisher.blog.biz.model.PostBizExtDto;
 import com.littlefisher.blog.biz.request.AddPostRequest;
 import com.littlefisher.blog.biz.request.GetPostList4PageByCondRequest;
 import com.littlefisher.blog.biz.request.UpdatePostRequest;
-import com.littlefisher.blog.biz.service.IPostService;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.core.stereotype.constants.BaseConstants;
+import com.littlefisher.web.dal.integration.blog.IPostIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -39,7 +39,7 @@ import net.sf.oval.constraint.NotBlank;
 public class PostController {
 
     @Autowired
-    private IPostService postService;
+    private IPostIntegration postIntegration;
 
     /**
      * Description: 根据条件查询博文列表
@@ -51,7 +51,7 @@ public class PostController {
     @ApiOperation("根据条件查询博文列表")
     public PageInfo<PostBizExtDto> getPostList4PageByCond(
             @ApiParam(required = true, value = "查询博文列表的条件") @ModelAttribute @NotNull(message = "请求不能为空") GetPostList4PageByCondRequest req) {
-        return postService.getPostList4PageByCond(req);
+        return postIntegration.getPostList4PageByCond(req);
     }
 
     /**
@@ -65,7 +65,7 @@ public class PostController {
     public PostBizDto getPostById(
             @ApiParam(required = true, value = "博文主键") @PathVariable("postId") @NotNull(message = "博文id不能为空")
             @NotBlank(message = "博文id不能为空") Long postId) {
-        return postService.getPostById(postId);
+        return postIntegration.getPostById(postId);
     }
 
     /**
@@ -76,7 +76,7 @@ public class PostController {
     @RequestMapping(method = RequestMethod.POST)
     @ApiOperation("新增博文")
     public void addPost(@ApiParam(required = true, value = "博文实体") @RequestBody @NotNull(message = "请求不能为空") AddPostRequest request) {
-        postService.addPost(request);
+        postIntegration.addPost(request);
     }
 
     /**
@@ -88,7 +88,7 @@ public class PostController {
     @RequestMapping(method = RequestMethod.PATCH)
     @ApiOperation("修改博文")
     public PostBizDto updatePost(@ApiParam(required = true, value = "博文实体") @RequestBody @NotNull(message = "修改博文请求不能为空") UpdatePostRequest request) {
-        return postService.updatePost(request);
+        return postIntegration.updatePost(request);
     }
 
     /**
@@ -102,7 +102,7 @@ public class PostController {
     public int deletePost(
             @ApiParam(required = true, value = "博文主键") @PathVariable("postId") @NotNull(message = "博文id不能为空")
             @NotBlank(message = "博文id不能为空") Long postId) {
-        return postService.deletePostById(postId);
+        return postIntegration.deletePostById(postId);
     }
 
 }

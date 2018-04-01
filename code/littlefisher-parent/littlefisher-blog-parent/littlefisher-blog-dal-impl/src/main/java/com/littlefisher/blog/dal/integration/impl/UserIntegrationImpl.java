@@ -19,10 +19,10 @@ import com.littlefisher.user.service.IUserService;
 @Repository
 public class UserIntegrationImpl implements IUserIntegration {
 
-//    @Reference
+    @Reference(interfaceClass = IUserService.class)
     private IUserService userService;
 
-//    @Reference
+    @Reference(interfaceClass = IUserContactStationService.class)
     private IUserContactStationService userContactStationService;
 
     @Override

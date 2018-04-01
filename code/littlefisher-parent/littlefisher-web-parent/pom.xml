@@ -13,6 +13,29 @@
   <packaging>pom</packaging>
   <modules>
     <module>littlefisher-web-controller</module>
+    <module>littlefisher-web-dal</module>
+    <module>littlefisher-web-dal-impl</module>
+    <module>littlefisher-web-biz</module>
+    <module>littlefisher-web-biz-impl</module>
+    <module>littlefisher-web-deploy</module>
+    <module>littlefisher-web-common</module>
   </modules>
+
+  <properties>
+    <shiro-spring.version>1.4.0</shiro-spring.version>
+    <core-base.version>1.0.1-SNAPSHOT</core-base.version>
+    <littlefisher-user.version>1.0.1-SNAPSHOT</littlefisher-user.version>
+    <littlefisher-blog.version>1.0.1-SNAPSHOT</littlefisher-blog.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-spring</artifactId>
+        <version>${shiro-spring.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
 </project>
