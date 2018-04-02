@@ -3,6 +3,8 @@ package com.littlefisher.core.mybatis.pagehelper;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 /**
  * Description: PageParam.java
  *
@@ -13,7 +15,10 @@ import io.swagger.annotations.ApiModelProperty;
  * @since v1.0
  */
 @ApiModel("分页参数")
-public class PageParam {
+public class PageParam implements Serializable {
+
+    /** serialVersionUID */
+    private static final long serialVersionUID = 4901705218363381498L;
 
     /**
      * pageNum

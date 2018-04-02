@@ -6,6 +6,7 @@ import net.sf.oval.constraint.NotBlank;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  * Description: AddPostCountTimesRequest.java
@@ -17,7 +18,10 @@ import javax.validation.constraints.NotNull;
  * @since v1.0
  */
 @ApiModel("增加博文统计数据")
-public class AddPostCountTimesRequest {
+public class AddPostCountTimesRequest implements Serializable {
+
+    /** serialVersionUID */
+    private static final long serialVersionUID = -2903584782695349484L;
 
     /** 博文id */
     @ApiModelProperty(required = true, value = "博文id")

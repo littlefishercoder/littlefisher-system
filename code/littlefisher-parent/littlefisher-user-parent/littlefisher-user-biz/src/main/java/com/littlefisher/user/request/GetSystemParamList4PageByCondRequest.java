@@ -17,6 +17,9 @@ import com.littlefisher.core.mybatis.pagehelper.PageParam;
 @ApiModel("查询系统参数列表的入参条件，分页用")
 public class GetSystemParamList4PageByCondRequest extends PageParam {
 
+    /** serialVersionUID */
+    private static final long serialVersionUID = 5469564953353972757L;
+
     /**
      * id 主键id
      */

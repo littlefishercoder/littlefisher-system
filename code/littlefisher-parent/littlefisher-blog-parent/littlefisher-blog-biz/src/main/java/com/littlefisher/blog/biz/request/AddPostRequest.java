@@ -6,6 +6,7 @@ import net.sf.oval.constraint.NotBlank;
 
 import javax.validation.constraints.NotNull;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.littlefisher.blog.common.enums.EnumPostType;
@@ -20,7 +21,10 @@ import com.littlefisher.blog.common.enums.EnumPostType;
  * @since v1.0
  */
 @ApiModel("新增博文参数")
-public class AddPostRequest {
+public class AddPostRequest implements Serializable {
+
+    /** serialVersionUID */
+    private static final long serialVersionUID = 635699460546049821L;
 
     /**
      * 标题

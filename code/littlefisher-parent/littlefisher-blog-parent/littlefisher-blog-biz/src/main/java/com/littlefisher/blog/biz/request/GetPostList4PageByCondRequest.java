@@ -19,6 +19,9 @@ import com.littlefisher.core.mybatis.pagehelper.PageParam;
 @ApiModel("查询博文列表的入参条件，分页用")
 public class GetPostList4PageByCondRequest extends PageParam {
 
+    /** serialVersionUID */
+    private static final long serialVersionUID = 4031692986695735776L;
+
     /**
      * title 标题，模糊查询
      */

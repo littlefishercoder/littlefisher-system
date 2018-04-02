@@ -20,6 +20,9 @@ import com.littlefisher.core.mybatis.pagehelper.PageParam;
 @ApiModel("查询User列表的入参条件，分页用")
 public class GetUserList4PageByCondRequest extends PageParam {
 
+    /** serialVersionUID */
+    private static final long serialVersionUID = 1995732920194320377L;
+
     /**
      * accNbr 账号
      */

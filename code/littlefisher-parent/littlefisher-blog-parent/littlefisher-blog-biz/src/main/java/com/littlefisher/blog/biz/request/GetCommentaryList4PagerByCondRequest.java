@@ -19,6 +19,9 @@ import com.littlefisher.core.mybatis.pagehelper.PageParam;
 @ApiModel("查询评价列表条件")
 public class GetCommentaryList4PagerByCondRequest extends PageParam {
 
+    /** serialVersionUID */
+    private static final long serialVersionUID = -1880056918589996556L;
+
     /**
      * postId 博文主键
      */

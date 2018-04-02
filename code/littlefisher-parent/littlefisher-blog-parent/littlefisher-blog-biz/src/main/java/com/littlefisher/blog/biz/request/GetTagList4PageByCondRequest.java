@@ -16,4 +16,6 @@ import com.littlefisher.core.mybatis.pagehelper.PageParam;
 @ApiModel("查询标签列表的入参条件，分页用")
 public class GetTagList4PageByCondRequest extends PageParam {
 
+    /** serialVersionUID */
+    private static final long serialVersionUID = -8464817957236483817L;
 }
