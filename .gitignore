@@ -24,10 +24,10 @@ node_modules/
 
 # SYSTEM_HOME
 log/
-**/jdbc.properties
-**/kafka.properties
-**/application.yml
-**/generatorConfig.properties
+SYSTEM_HOME/**/jdbc.properties
+SYSTEM_HOME/**/kafka.properties
+SYSTEM_HOME/**/application.yml
+SYSTEM_HOME/**/generatorConfig.properties
 
 #Jrebel
 **/rebel.xml
