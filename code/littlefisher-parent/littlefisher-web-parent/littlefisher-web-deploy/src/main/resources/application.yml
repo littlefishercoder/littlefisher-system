@@ -1,0 +1,125 @@
+spring:
+  datasource:
+    url: jdbc:mysql://106.14.156.120:3306/blog
+    username: root
+    password: bNVOqb7WKLX5Bjnw+LMv92taj25KOxDimXxILPQjw42wgv+1lHzOH8kr97xDwWdhpY67QuYCS7sWN4W46YbkFA==
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      # 初始化大小
+      initial-size: 0
+      # 配置初始化最大值
+      max-active: 20
+      # 最小连接池数量
+      min-idle: 0
+      # 获取连接等待超时的时间
+      max-wait: 60000
+      # 心跳检测语句
+      validation-query: SELECT NOW()
+      # 申请连接时执行validationQuery检测连接是否有效
+      test-on-borrow: false
+      # 归还连接时执行validationQuery检测连接是否有效
+      test-on-return: false
+      # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis 执行validationQuery检测连接是否有效
+      # 建议配置为true，不影响性能，并且保证安全性
+      test-while-idle: true
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 60000
+      # 配置一个连接在池中最小生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 25200000
+      # 对于长时间不使用的连接强制关闭
+      remove-abandoned: true
+      # 超过30分钟开始关闭空闲连接
+      remove-abandoned-timeout: 1800
+      # 将当前关闭动作记录到日志
+      log-abandoned: true
+      # druid filters的别名保存在下面的地址中
+      # druid-xxx.jar!/META-INF/druid-filter.properties
+      # 配置多个英文逗号分隔
+      filters: mergeStat
+      filter:
+        log4j2:
+          statement-executable-sql-log-enable: true
+        config:
+          enabled: true
+      connection-properties: config.decrypt=true
+  aop:
+    auto: true
+  kafka:
+    producer:
+      # ack模式
+      acks: all
+      # 用户随意指定，但是不能重复，主要用于跟踪记录消息
+      client-id: localhost
+      # 重试次数
+      retries: 30
+      # Producer会尝试去把发往同一个Partition的多个Requests进行合并，
+      # batch.size指明了一次Batch合并后Requests总大小的上限。如果这个值设置的太小，可能会导致所有的Request都不进行Batch
+      batch-size: 16384
+      # 在Producer端用来存放尚未发送出去的Message的缓冲区大小。
+      # 缓冲区满了之后可以选择阻塞发送或抛出异常，由block.on.buffer.full的配置来决定
+      buffer-memory: 33554432
+      # Key的序列化类
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # Value的序列化类
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      # kafka broker的ip和host，可以多个
+      bootstrap-servers: 192.168.229.128:9092,192.168.229.128:9093,192.168.229.128:9094
+    consumer:
+      # 决定该Consumer归属的唯一组ID，By setting the same group id multiple processes indicate that they are all part of the same consumer group.
+      group-id: 0
+      # 设置是否可以自动提交
+      enable-auto-commit: true
+      # 自动提交的时间间隔
+      auto-commit-interval: 1000ms
+      # Key的序列化类
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # Value的序列化类
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      # kafka broker的ip和host，可以多个
+      bootstrap-servers: 192.168.229.128:9092,192.168.229.128:9093,192.168.229.128:9094
+    properties:
+      # producer
+      # Producer默认会把两次发送时间间隔内收集到的所有Requests进行一次聚合然后再发送，以此提高吞吐量，
+      # 而linger.ms则更进一步，这个参数为每次发送增加一些delay，以此来聚合更多的Message
+      linger.ms: 50
+      # Broker等待ack的超时时间，若等待时间超过此值，会返回客户端错误信息。
+      request.timeout.ms: 20000
+      # 每次重新连接的间隔时间
+      reconnect.backoff.ms: 20000
+      # 每次失败后的间隔时间
+      retry.backoff.ms: 20000
+      # consumer
+      # session超时时间
+      session.timeout.ms: 15000
+  dubbo:
+    server: true
+    application:
+      name: web-deploy
+    consumer:
+      timeout: 10000
+      retries: 3
+      # 启动检查，避免依赖服务未启动导致Spring启动报差错
+      check: false
+    registry:
+      # 注册地址，配置多个会报错
+      address: zookeeper://106.14.156.120:2181
+    protocol:
+      name: dubbo
+      port: 20882
+
+server:
+  servlet:
+    context-path: /blog-web
+  port: 8088
+
+littlefisher:
+  shiro:
+    enabled: false
+    login-url: /login
+    success-url: /success
+    unauthorized-url: /index
+    swagger-file-chain-enable: true
+    filter-chain-definition:
+      # authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
+      /static/*: anon
+      /*: authc
