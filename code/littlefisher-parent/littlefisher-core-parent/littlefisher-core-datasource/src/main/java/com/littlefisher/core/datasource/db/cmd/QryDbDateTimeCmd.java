@@ -3,7 +3,7 @@ package com.littlefisher.core.datasource.db.cmd;
 import java.util.Date;
 
 import com.littlefisher.core.common.stereotype.annotations.Command;
-import com.littlefisher.core.datasource.db.dao.DbMapper;
+import com.littlefisher.core.datasource.db.dal.mapper.DbMapper;
 import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 
 /**

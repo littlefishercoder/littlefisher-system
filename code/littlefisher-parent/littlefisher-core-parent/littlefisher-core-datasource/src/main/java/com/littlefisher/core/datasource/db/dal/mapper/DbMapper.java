@@ -1,4 +1,4 @@
-package com.littlefisher.core.datasource.db.dao;
+package com.littlefisher.core.datasource.db.dal.mapper;
 
 import java.util.Date;
 
