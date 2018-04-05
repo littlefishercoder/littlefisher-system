@@ -23,8 +23,8 @@ import com.littlefisher.blog.dal.model.AuthorDto;
 import com.littlefisher.blog.dal.model.PostDto;
 import com.littlefisher.blog.dal.model.PostTagDto;
 import com.littlefisher.blog.dal.model.TagDto;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 
 /**
  * Description: GetAuthorInfo4IndexCommand.java

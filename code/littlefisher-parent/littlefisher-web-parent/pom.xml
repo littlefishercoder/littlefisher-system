@@ -23,9 +23,9 @@
 
   <properties>
     <shiro-spring.version>1.4.0</shiro-spring.version>
-    <core-base.version>1.0.1-SNAPSHOT</core-base.version>
     <littlefisher-user.version>1.0.1-SNAPSHOT</littlefisher-user.version>
     <littlefisher-blog.version>1.0.1-SNAPSHOT</littlefisher-blog.version>
+    <littlefisher-core.version>1.0.1-SNAPSHOT</littlefisher-core.version>
   </properties>
 
   <dependencyManagement>

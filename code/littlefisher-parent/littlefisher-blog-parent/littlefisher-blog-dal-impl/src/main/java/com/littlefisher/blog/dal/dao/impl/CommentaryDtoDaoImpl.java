@@ -9,10 +9,10 @@ import com.littlefisher.blog.dal.example.CommentaryDtoExample;
 import com.littlefisher.blog.dal.mapper.CommentaryDtoMapper;
 import com.littlefisher.blog.dal.model.CommentaryDto;
 import com.littlefisher.blog.dal.param.SelectCommentary4PageByCondParam;
+import com.littlefisher.core.common.utils.StringUtil;
 import com.littlefisher.core.mybatis.dao.AbstractBaseDaoImpl;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.core.mybatis.pagehelper.PageParam;
-import com.littlefisher.core.utils.StringUtil;
 
 /**
  *

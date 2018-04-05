@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 import com.littlefisher.user.common.enums.EnumUserContactStationState;
 import com.littlefisher.user.common.enums.EnumUserContactStationType;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.user.converter.UserContactStation4SocialDtoConverter;
 import com.littlefisher.user.dal.dao.IUserContactStation4SocialDtoDao;
 import com.littlefisher.user.dal.dao.IUserContactStationDtoDao;
@@ -27,7 +27,8 @@ import com.littlefisher.user.model.UserContactStation4SocialBizDto;
  * @since v1.0
  */
 @Command
-public class GetUserContactStation4SocialByUserIdCmd extends AbstractCommand<List<UserContactStation4SocialBizDto>> {
+public class GetUserContactStation4SocialByUserIdCmd extends
+        AbstractCommand<List<UserContactStation4SocialBizDto>> {
 
     /** 用户id */
     private Long userId;

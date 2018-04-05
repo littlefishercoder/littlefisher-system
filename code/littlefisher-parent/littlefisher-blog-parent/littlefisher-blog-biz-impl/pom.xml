@@ -22,6 +22,11 @@
       <artifactId>littlefisher-blog-dal</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
+    <dependency>
+      <groupId>com.littlefisher</groupId>
+      <artifactId>littlefisher-core-datasource</artifactId>
+      <version>${littlefisher-core.version}</version>
+    </dependency>
   </dependencies>
 
 </project>

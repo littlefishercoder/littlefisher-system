@@ -5,11 +5,11 @@ import io.swagger.annotations.ApiModelProperty;
 import net.sf.oval.constraint.CheckWith;
 import net.sf.oval.constraint.CheckWithCheck;
 import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
-import com.littlefisher.core.utils.StringUtil;
+import com.littlefisher.core.common.utils.StringUtil;
 
 /**
  * Description: UpdateSystemParamRequest.java

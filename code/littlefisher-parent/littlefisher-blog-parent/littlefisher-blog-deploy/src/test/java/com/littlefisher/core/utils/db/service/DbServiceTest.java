@@ -2,11 +2,11 @@ package com.littlefisher.core.utils.db.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.littlefisher.blog.deploy.Application;
+import com.littlefisher.core.common.utils.DateUtil;
 
 /**
  * Description: DbServiceTest.java
@@ -22,11 +22,8 @@ import com.littlefisher.blog.deploy.Application;
 @SpringBootTest(classes = Application.class)
 public class DbServiceTest {
 
-    @Autowired
-    private IDbService dbService;
-
     @Test
     public void testGetDbDateTime() {
-        dbService.getDBDateTime();
+        DateUtil.getDBDateTime();
     }
 }

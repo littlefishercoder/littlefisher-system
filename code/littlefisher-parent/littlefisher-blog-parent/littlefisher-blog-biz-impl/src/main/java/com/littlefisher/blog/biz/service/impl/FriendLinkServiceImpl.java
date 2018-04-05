@@ -8,7 +8,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.littlefisher.blog.biz.cmd.friendlink.GetFriendLinkListByAuthorIdCmd;
 import com.littlefisher.blog.biz.model.FriendLinkBizDto;
 import com.littlefisher.blog.biz.service.IFriendLinkService;
-import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
 
 /**
  * Description: FriendLinkService.java

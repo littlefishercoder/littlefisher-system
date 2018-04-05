@@ -13,7 +13,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <core-base.version>1.0.1-SNAPSHOT</core-base.version>
+    <littlefisher-core.version>1.0.1-SNAPSHOT</littlefisher-core.version>
     <blog.version>1.0.1-SNAPSHOT</blog.version>
   </properties>
 

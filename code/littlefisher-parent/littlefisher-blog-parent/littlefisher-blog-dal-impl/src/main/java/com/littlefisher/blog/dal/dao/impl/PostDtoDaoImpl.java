@@ -9,10 +9,10 @@ import com.littlefisher.blog.dal.example.PostDtoExample;
 import com.littlefisher.blog.dal.mapper.PostDtoMapper;
 import com.littlefisher.blog.dal.model.PostDto;
 import com.littlefisher.blog.dal.param.SelectPost4PageByCondParam;
+import com.littlefisher.core.common.utils.StringUtil;
 import com.littlefisher.core.mybatis.dao.AbstractBaseWithBlobDaoImpl;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.core.mybatis.pagehelper.PageParam;
-import com.littlefisher.core.utils.StringUtil;
 
 /**
  * Description: PostDtoDaoImpl

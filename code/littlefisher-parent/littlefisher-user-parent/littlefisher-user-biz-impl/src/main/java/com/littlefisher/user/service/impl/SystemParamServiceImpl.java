@@ -3,7 +3,7 @@ package com.littlefisher.user.service.impl;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.user.cmd.system.AddSystemParamCmd;
 import com.littlefisher.user.cmd.system.DeleteSystemParamByIdCmd;

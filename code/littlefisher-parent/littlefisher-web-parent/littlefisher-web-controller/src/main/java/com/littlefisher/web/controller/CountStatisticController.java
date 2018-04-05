@@ -1,6 +1,5 @@
 package com.littlefisher.web.controller;
 
-import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.littlefisher.blog.biz.model.CountStatisticBizExtDto;
 import com.littlefisher.blog.biz.request.AddBlogCountTimesRequest;
 import com.littlefisher.blog.biz.request.AddPostCountTimesRequest;
-import com.littlefisher.core.stereotype.constants.BaseConstants;
+import com.littlefisher.core.common.stereotype.constants.BaseConstants;
 import com.littlefisher.web.dal.integration.blog.ICountStatisticIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
 
 /**
  * Description: CountStatisticController.java

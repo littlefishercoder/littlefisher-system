@@ -8,7 +8,7 @@ import java.util.Date;
 
 import com.littlefisher.blog.common.enums.EnumPostState;
 import com.littlefisher.blog.common.enums.EnumPostType;
-import com.littlefisher.core.stereotype.enums.EnumBizBool;
+import com.littlefisher.core.common.stereotype.enums.EnumBizBool;
 
 /**
  *

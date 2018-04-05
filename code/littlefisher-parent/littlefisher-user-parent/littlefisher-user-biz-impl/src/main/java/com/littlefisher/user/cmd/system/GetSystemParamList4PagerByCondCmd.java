@@ -2,10 +2,10 @@ package com.littlefisher.user.cmd.system;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.core.mybatis.pagehelper.PageParam;
-import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.user.converter.SystemParamDtoConverter;
 import com.littlefisher.user.dal.dao.ISystemParamDtoDao;
 import com.littlefisher.user.dal.model.SystemParamDto;
@@ -23,7 +23,8 @@ import com.littlefisher.user.request.GetSystemParamList4PageByCondRequest;
  * @since v1.0
  */
 @Command
-public class GetSystemParamList4PagerByCondCmd extends AbstractCommand<PageInfo<SystemParamBizDto>> {
+public class GetSystemParamList4PagerByCondCmd extends
+        AbstractCommand<PageInfo<SystemParamBizDto>> {
 
     /**
      * req

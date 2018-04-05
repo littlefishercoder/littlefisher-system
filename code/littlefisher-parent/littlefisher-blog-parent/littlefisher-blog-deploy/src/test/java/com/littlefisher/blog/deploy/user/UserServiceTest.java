@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.littlefisher.core.utils.LittleFisherLogger;
+import com.littlefisher.core.common.utils.LittleFisherLogger;
 import com.littlefisher.user.model.UserBizDto;
 import com.littlefisher.user.service.IUserService;
 

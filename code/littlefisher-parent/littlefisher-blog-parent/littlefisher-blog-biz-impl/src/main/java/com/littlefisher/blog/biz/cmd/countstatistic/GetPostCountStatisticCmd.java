@@ -10,8 +10,8 @@ import com.littlefisher.blog.biz.service.ICountStatisticService;
 import com.littlefisher.blog.dal.dao.ICountStatistic4PostDtoDao;
 import com.littlefisher.blog.dal.dao.ICountStatisticDtoDao;
 import com.littlefisher.blog.dal.model.CountStatistic4PostDto;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 
 /**
  * Description: GetPostCountStatisticCmd.java

@@ -3,8 +3,8 @@ package com.littlefisher.user.request;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**

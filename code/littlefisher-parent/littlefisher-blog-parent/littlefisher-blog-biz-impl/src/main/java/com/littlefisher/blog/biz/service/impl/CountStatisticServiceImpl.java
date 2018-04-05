@@ -11,7 +11,7 @@ import com.littlefisher.blog.biz.model.CountStatisticBizExtDto;
 import com.littlefisher.blog.biz.request.AddBlogCountTimesRequest;
 import com.littlefisher.blog.biz.request.AddPostCountTimesRequest;
 import com.littlefisher.blog.biz.service.ICountStatisticService;
-import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
 
 /**
  * Description: CountStatisticServiceImpl.java

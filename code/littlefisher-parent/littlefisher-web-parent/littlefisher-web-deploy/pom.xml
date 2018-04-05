@@ -47,6 +47,11 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>commons-fileupload</groupId>
+      <artifactId>commons-fileupload</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
@@ -61,6 +66,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
           <warName>${project.artifactId}</warName>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
     </plugins>

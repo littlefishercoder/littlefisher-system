@@ -6,9 +6,9 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.littlefisher.core.common.stereotype.enums.EnumBizBool;
 import com.littlefisher.user.common.enums.EnumUserContactStationState;
 import com.littlefisher.user.common.enums.EnumUserContactStationType;
-import com.littlefisher.core.stereotype.enums.EnumBizBool;
 
 /**
  *

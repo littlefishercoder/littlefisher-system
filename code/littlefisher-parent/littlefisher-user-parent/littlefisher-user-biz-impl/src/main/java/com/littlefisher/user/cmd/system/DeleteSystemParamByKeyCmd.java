@@ -2,8 +2,8 @@ package com.littlefisher.user.cmd.system;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 import com.littlefisher.user.dal.dao.ISystemParamDtoDao;
 
 /**

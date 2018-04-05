@@ -9,10 +9,10 @@ import com.littlefisher.blog.biz.request.GetTagList4PageByCondRequest;
 import com.littlefisher.blog.dal.dao.ITagDtoDao;
 import com.littlefisher.blog.dal.model.TagDto;
 import com.littlefisher.blog.dal.param.SelectTag4PageByCondParam;
-import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.core.mybatis.pagehelper.PageParam;
-import com.littlefisher.core.stereotype.annotations.Command;
 
 /**
  * Description: GetTagList4PagerByCondCmd.java

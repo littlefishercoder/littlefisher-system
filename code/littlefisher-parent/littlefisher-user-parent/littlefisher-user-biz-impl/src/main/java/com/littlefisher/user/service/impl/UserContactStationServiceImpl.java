@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
 import com.littlefisher.user.cmd.station.GetUserContactStation4EmailByUserIdCmd;
 import com.littlefisher.user.cmd.station.GetUserContactStation4PhoneByUserIdCmd;
 import com.littlefisher.user.cmd.station.GetUserContactStation4SocialByUserIdCmd;

@@ -7,8 +7,8 @@ import com.littlefisher.blog.biz.model.TagBizDto;
 import com.littlefisher.blog.common.enums.EnumTagState;
 import com.littlefisher.blog.dal.dao.ITagDtoDao;
 import com.littlefisher.blog.dal.model.TagDto;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 
 /**
  * Description: GetTagByNameCmd.java

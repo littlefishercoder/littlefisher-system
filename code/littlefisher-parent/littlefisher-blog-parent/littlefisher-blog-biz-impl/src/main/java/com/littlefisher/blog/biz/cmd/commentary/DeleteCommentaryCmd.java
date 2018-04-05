@@ -3,8 +3,8 @@ package com.littlefisher.blog.biz.cmd.commentary;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.littlefisher.blog.dal.dao.ICommentaryDtoDao;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 
 /**
  * 

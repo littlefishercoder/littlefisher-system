@@ -1,6 +1,5 @@
 package com.littlefisher.web.controller;
 
-import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -15,14 +14,15 @@ import com.littlefisher.blog.biz.model.PostBizExtDto;
 import com.littlefisher.blog.biz.request.AddPostRequest;
 import com.littlefisher.blog.biz.request.GetPostList4PageByCondRequest;
 import com.littlefisher.blog.biz.request.UpdatePostRequest;
+import com.littlefisher.core.common.stereotype.constants.BaseConstants;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
-import com.littlefisher.core.stereotype.constants.BaseConstants;
 import com.littlefisher.web.dal.integration.blog.IPostIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
 
 /**
  * Description: 博文Controller

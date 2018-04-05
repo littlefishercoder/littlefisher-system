@@ -1,6 +1,6 @@
 package com.littlefisher.blog.common.enums;
 
-import com.littlefisher.core.mybatis.IEnum;
+import com.littlefisher.core.common.stereotype.enums.IEnum;
 
 /**
  * Description: EnumArchiveState.java

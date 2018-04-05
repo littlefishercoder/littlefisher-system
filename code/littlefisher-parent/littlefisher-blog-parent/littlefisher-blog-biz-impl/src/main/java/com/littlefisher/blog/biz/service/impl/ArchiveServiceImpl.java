@@ -7,7 +7,7 @@ import com.littlefisher.blog.biz.cmd.archive.AddArchiveCmd;
 import com.littlefisher.blog.biz.cmd.archive.GetArchiveByNameCmd;
 import com.littlefisher.blog.biz.model.ArchiveBizDto;
 import com.littlefisher.blog.biz.service.IArchiveService;
-import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
 
 /**
  * Description: ArchiveServiceImpl.java

@@ -4,12 +4,10 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.littlefisher.blog.deploy.Application;
-import com.littlefisher.core.utils.GsonUtil;
-import com.littlefisher.core.utils.LittleFisherLogger;
+import com.littlefisher.core.common.utils.LittleFisherLogger;
 
 /**
  * Description: TestKafka.java
@@ -26,18 +24,18 @@ public class TestKafka {
 
     private LittleFisherLogger logger = LittleFisherLogger.getLogger(TestKafka.class);
 
-    @Autowired
-    private KafkaTemplate kafkaTemplate;
+//    @Autowired
+//    private KafkaTemplate kafkaTemplate;
 
     @Test
     public void testKafka() {
-        String topic = "TestTopic";
-        Message message;
-        for (int i = 0; i < 100; i++) {
-            message = new Message(topic, String.valueOf(i), "data-" + String.valueOf(i));
-            logger.debug("SendMessage: [{}]", message);
-            kafkaTemplate.send(topic, GsonUtil.obj2Json(message));
-        }
+//        String topic = "TestTopic";
+//        Message message;
+//        for (int i = 0; i < 100; i++) {
+//            message = new Message(topic, String.valueOf(i), "data-" + String.valueOf(i));
+//            logger.debug("SendMessage: [{}]", message);
+//            kafkaTemplate.send(topic, GsonUtil.obj2Json(message));
+//        }
 
 //        while (true) {
 //

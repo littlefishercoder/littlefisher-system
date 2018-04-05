@@ -2,7 +2,6 @@ package com.littlefisher.web.controller;
 
 import java.util.Map;
 
-import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,13 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.littlefisher.core.stereotype.constants.BaseConstants;
+import com.littlefisher.core.common.stereotype.constants.BaseConstants;
 import com.littlefisher.user.request.GetResourceRequest;
 import com.littlefisher.web.dal.integration.user.ISystemIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import net.sf.oval.constraint.NotNull;
 
 /**
  * Description: SystemController.java

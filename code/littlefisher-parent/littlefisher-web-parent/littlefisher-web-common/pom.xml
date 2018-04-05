@@ -14,8 +14,8 @@
   <dependencies>
     <dependency>
       <groupId>com.littlefisher</groupId>
-      <artifactId>core-base</artifactId>
-      <version>${core-base.version}</version>
+      <artifactId>littlefisher-core-common</artifactId>
+      <version>${littlefisher-core.version}</version>
     </dependency>
 
     <dependency>

@@ -1,6 +1,5 @@
 package com.littlefisher.web.controller;
 
-import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.littlefisher.core.common.stereotype.constants.BaseConstants;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
-import com.littlefisher.core.stereotype.constants.BaseConstants;
 import com.littlefisher.user.model.SystemParamBizDto;
 import com.littlefisher.user.request.AddSystemParamRequest;
 import com.littlefisher.user.request.GetSystemParamList4PageByCondRequest;
@@ -22,6 +21,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
 
 /**
  * Description: 系统信息Controller

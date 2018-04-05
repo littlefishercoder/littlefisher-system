@@ -6,8 +6,8 @@ import com.littlefisher.blog.biz.converter.CommentaryDtoConverter;
 import com.littlefisher.blog.biz.model.CommentaryBizDto;
 import com.littlefisher.blog.dal.dao.ICommentaryDtoDao;
 import com.littlefisher.blog.dal.model.CommentaryDto;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 
 /**
  *

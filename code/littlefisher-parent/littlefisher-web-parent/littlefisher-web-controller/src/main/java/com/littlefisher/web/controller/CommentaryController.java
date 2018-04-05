@@ -1,7 +1,5 @@
 package com.littlefisher.web.controller;
 
-import javax.validation.constraints.NotNull;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,14 +13,15 @@ import com.littlefisher.blog.biz.model.CommentaryBizExtDto;
 import com.littlefisher.blog.biz.request.AddCommentaryRequest;
 import com.littlefisher.blog.biz.request.GetCommentaryList4PagerByCondRequest;
 import com.littlefisher.blog.biz.request.UpdateCommentaryRequest;
+import com.littlefisher.core.common.stereotype.constants.BaseConstants;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
-import com.littlefisher.core.stereotype.constants.BaseConstants;
 import com.littlefisher.web.dal.integration.blog.ICommentaryIntegration;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
 
 /**
  * Description: 评价Controller

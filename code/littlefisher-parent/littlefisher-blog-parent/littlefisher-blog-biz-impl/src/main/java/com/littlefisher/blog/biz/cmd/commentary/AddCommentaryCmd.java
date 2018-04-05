@@ -1,7 +1,5 @@
 package com.littlefisher.blog.biz.cmd.commentary;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.littlefisher.blog.biz.converter.CommentaryDtoConverter;
@@ -9,9 +7,9 @@ import com.littlefisher.blog.biz.model.CommentaryBizDto;
 import com.littlefisher.blog.common.enums.EnumCommentaryState;
 import com.littlefisher.blog.dal.dao.ICommentaryDtoDao;
 import com.littlefisher.blog.dal.model.CommentaryDto;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
-import com.littlefisher.core.utils.DateUtil;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.common.utils.DateUtil;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 
 /**
  *
@@ -29,7 +27,6 @@ public class AddCommentaryCmd extends AbstractCommand<CommentaryBizDto> {
     /**
      * commentaryDto
      */
-    @Valid
     private CommentaryBizDto commentaryBizDto;
 
     @Autowired

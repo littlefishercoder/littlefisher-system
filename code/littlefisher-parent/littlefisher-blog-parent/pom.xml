@@ -21,7 +21,7 @@
   </modules>
 
   <properties>
-    <core-base.version>1.0.1-SNAPSHOT</core-base.version>
+    <littlefisher-core.version>1.0.1-SNAPSHOT</littlefisher-core.version>
     <littlefisher-user.version>1.0.1-SNAPSHOT</littlefisher-user.version>
   </properties>
 

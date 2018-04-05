@@ -2,7 +2,6 @@ package com.littlefisher.web.controller;
 
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.littlefisher.blog.biz.model.AuthorBizExtDto;
 import com.littlefisher.blog.biz.model.FriendLinkBizDto;
-import com.littlefisher.core.stereotype.constants.BaseConstants;
+import com.littlefisher.core.common.stereotype.constants.BaseConstants;
 import com.littlefisher.web.dal.integration.blog.IAuthorIntegration;
 import com.littlefisher.web.dal.integration.blog.IFriendLinkIntegration;
 
@@ -20,6 +19,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
 
 /**
  * Description: AuthorController.java

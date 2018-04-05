@@ -57,6 +57,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <configuration>
           <warName>${project.artifactId}</warName>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
     </plugins>

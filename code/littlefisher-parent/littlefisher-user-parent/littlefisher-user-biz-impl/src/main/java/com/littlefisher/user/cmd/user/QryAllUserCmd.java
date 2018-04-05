@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 import com.littlefisher.user.converter.UserDtoConverter;
 import com.littlefisher.user.dal.dao.IUserDtoDao;
 import com.littlefisher.user.model.UserBizDto;

@@ -25,8 +25,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
-import com.littlefisher.core.springmvc.DateConverter;
-import com.littlefisher.core.utils.DateUtil;
+import com.littlefisher.core.common.utils.DateUtil;
+import com.littlefisher.core.mvc.DateConverter;
 
 /**
  * Description: WebSpringMVCConfig

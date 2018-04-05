@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.littlefisher.core.stereotype.enums.EnumBizBool;
+import com.littlefisher.core.common.stereotype.enums.EnumBizBool;
 import com.littlefisher.user.common.enums.EnumUserContactStationState;
 import com.littlefisher.user.common.enums.EnumUserContactStationType;
 

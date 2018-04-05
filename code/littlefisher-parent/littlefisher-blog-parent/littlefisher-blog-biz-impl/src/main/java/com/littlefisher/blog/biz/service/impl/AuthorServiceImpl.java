@@ -7,7 +7,7 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.littlefisher.blog.biz.cmd.author.GetAuthorInfo4IndexCmd;
 import com.littlefisher.blog.biz.model.AuthorBizExtDto;
 import com.littlefisher.blog.biz.service.IAuthorService;
-import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
 
 /**
  * Description: AuthorServiceImpl.java

@@ -1,8 +1,6 @@
 package com.littlefisher.core.kafka;
 
-import org.springframework.kafka.annotation.KafkaListener;
-
-import com.littlefisher.core.utils.LittleFisherLogger;
+import com.littlefisher.core.common.utils.LittleFisherLogger;
 
 /**
  * Description: GetKafkaMessage.java
@@ -20,9 +18,9 @@ public class GetKafkaMessage {
 
     private LittleFisherLogger logger = LittleFisherLogger.getLogger(GetKafkaMessage.class);
 
-    @KafkaListener(topics = "TestTopic")
-    public void getMessage(String message) {
-        logger.debug("Message: [{}]", message);
-    }
+//    @KafkaListener(topics = "TestTopic")
+//    public void getMessage(String message) {
+//        logger.debug("Message: [{}]", message);
+//    }
 
 }

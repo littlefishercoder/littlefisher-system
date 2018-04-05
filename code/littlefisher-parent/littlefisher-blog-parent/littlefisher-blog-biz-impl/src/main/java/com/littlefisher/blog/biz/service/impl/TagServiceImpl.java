@@ -11,7 +11,7 @@ import com.littlefisher.blog.biz.model.PostTagBizDto;
 import com.littlefisher.blog.biz.model.TagBizDto;
 import com.littlefisher.blog.biz.request.GetTagList4PageByCondRequest;
 import com.littlefisher.blog.biz.service.ITagService;
-import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 
 /**

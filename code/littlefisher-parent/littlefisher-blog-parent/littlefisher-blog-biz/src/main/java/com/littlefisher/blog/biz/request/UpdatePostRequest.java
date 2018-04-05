@@ -3,13 +3,13 @@ package com.littlefisher.blog.biz.request;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import net.sf.oval.constraint.NotBlank;
+import net.sf.oval.constraint.NotNull;
 
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 import com.littlefisher.blog.common.enums.EnumPostState;
 import com.littlefisher.blog.common.enums.EnumPostType;
-import com.littlefisher.core.stereotype.enums.EnumBizBool;
+import com.littlefisher.core.common.stereotype.enums.EnumBizBool;
 
 /**
  * Description: UpdatePostRequest.java

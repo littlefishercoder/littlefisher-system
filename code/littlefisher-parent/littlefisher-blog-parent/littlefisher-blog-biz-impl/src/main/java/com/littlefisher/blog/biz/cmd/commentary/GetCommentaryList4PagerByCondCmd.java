@@ -15,10 +15,10 @@ import com.littlefisher.blog.dal.dao.ICommentaryDtoDao;
 import com.littlefisher.blog.dal.integration.IUserIntegration;
 import com.littlefisher.blog.dal.model.CommentaryDto;
 import com.littlefisher.blog.dal.param.SelectCommentary4PageByCondParam;
-import com.littlefisher.core.interceptor.AbstractCommand;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.core.mybatis.pagehelper.PageParam;
-import com.littlefisher.core.stereotype.annotations.Command;
 import com.littlefisher.user.model.UserBizDto;
 
 /**

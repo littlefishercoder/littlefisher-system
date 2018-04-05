@@ -1,0 +1,32 @@
+package com.littlefisher.core.datasource.interceptor;
+
+import com.littlefisher.core.datasource.engine.SystemEngineConfig;
+
+/**
+ * Description:
+ *
+ * Created on 2017年2月10日
+ *
+ * @author jinyanan
+ * @version 1.0
+ * @since v1.0
+ */
+public class CommandContextFactory {
+
+    /**
+     * systemEngineConfig
+     */
+    protected SystemEngineConfig systemEngineConfig;
+
+    public CommandContext createCommandContext(Command<?> cmd) {
+        return new CommandContext(cmd, systemEngineConfig);
+    }
+
+    public SystemEngineConfig getSystemEngineConfig() {
+        return systemEngineConfig;
+    }
+
+    public void setSystemEngineConfig(SystemEngineConfig systemEngineConfig) {
+        this.systemEngineConfig = systemEngineConfig;
+    }
+}

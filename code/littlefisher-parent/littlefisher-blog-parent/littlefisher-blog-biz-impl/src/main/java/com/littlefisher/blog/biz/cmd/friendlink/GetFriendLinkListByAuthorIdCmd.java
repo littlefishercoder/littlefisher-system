@@ -10,8 +10,8 @@ import com.littlefisher.blog.biz.converter.FriendLinkDtoConverter;
 import com.littlefisher.blog.biz.model.FriendLinkBizDto;
 import com.littlefisher.blog.dal.dao.IFriendLinkDtoDao;
 import com.littlefisher.blog.dal.model.FriendLinkDto;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 
 /**
  * Description: GetFriendLinkListByAuthorIdCommand.java

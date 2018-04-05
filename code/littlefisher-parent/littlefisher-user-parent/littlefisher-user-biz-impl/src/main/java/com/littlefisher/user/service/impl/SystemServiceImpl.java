@@ -2,7 +2,7 @@ package com.littlefisher.user.service.impl;
 
 
 import com.alibaba.dubbo.config.annotation.Service;
-import com.littlefisher.core.interceptor.service.ServiceImpl;
+import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
 import com.littlefisher.user.cmd.system.GetResourceCmd;
 import com.littlefisher.user.cmd.system.RefreshResourceCmd;
 import com.littlefisher.user.service.ISystemService;

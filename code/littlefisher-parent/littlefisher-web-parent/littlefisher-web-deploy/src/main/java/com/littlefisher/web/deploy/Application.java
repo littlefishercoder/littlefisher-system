@@ -2,6 +2,7 @@ package com.littlefisher.web.deploy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 
 import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
@@ -15,7 +16,7 @@ import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
  * @version 1.0
  * @since v1.0
  */
-@SpringBootApplication
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @EnableDubboConfiguration
 @ComponentScan(basePackages = {"com.littlefisher.**"})
 //@DubboComponentScan(basePackages = "com.littlefisher.**.service.impl")

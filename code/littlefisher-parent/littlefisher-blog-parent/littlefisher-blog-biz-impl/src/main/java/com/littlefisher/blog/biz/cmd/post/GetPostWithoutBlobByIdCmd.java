@@ -6,8 +6,8 @@ import com.littlefisher.blog.biz.converter.PostDtoConverter;
 import com.littlefisher.blog.biz.model.PostBizDto;
 import com.littlefisher.blog.dal.dao.IPostDtoDao;
 import com.littlefisher.blog.dal.model.PostDto;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 
 /**
  * Description: getPostWithoutBlobByIdCmd.java

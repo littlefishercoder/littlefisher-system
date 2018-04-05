@@ -1,9 +1,10 @@
 package com.littlefisher.user.cmd.system;
 
 import com.google.common.collect.Maps;
-import com.littlefisher.core.i18n.PropResource;
-import com.littlefisher.core.interceptor.AbstractCommand;
-import com.littlefisher.core.stereotype.annotations.Command;
+import com.littlefisher.core.common.i18n.PropResource;
+import com.littlefisher.core.common.stereotype.annotations.Command;
+import com.littlefisher.core.datasource.interceptor.AbstractCommand;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashMap;
