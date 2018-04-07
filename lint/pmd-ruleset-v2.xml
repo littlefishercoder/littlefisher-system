@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ruleset name="Favorites"
+	xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+	<description>
+		版本号：V1.0（2014-05-05）
+			从pmd4.0-ruleset-base-V8.xml继承，因为UseSingleton改名为UseUtilityClass了
+	</description>
+
+	<!--====================Basic Rules begin====================== -->
+
+	<!--equals和hashcode同时定义。 -->
+	<rule ref="rulesets/basic.xml/OverrideBothEqualsAndHashcode">
+		<priority>2</priority>
+	</rule>
+
+	<!--避免空的同步块。 -->
+	<rule ref="rulesets/basic.xml/EmptySynchronizedBlock">
+		<priority>2</priority>
+	</rule>
+
+	<!--方法返回值void，避免不必要的return。 -->
+	<rule ref="rulesets/basic.xml/UnnecessaryReturn">
+		<priority>2</priority>
+	</rule>
+
+	<!--空的static初始化。 -->
+	<rule ref="rulesets/basic.xml/EmptyStaticInitializer">
+		<priority>2</priority>
+	</rule>
+
+	<!--if语句的条件始终是true或false。 -->
+	<rule ref="rulesets/basic.xml/UnconditionalIfStatement">
+		<priority>2</priority>
+	</rule>
+
+	<!--出现了空语句（就一个分号），如果在循环里则可以。 -->
+	<rule ref="rulesets/basic.xml/EmptyStatementNotInLoop">
+		<priority>2</priority>
+	</rule>
+
+	<!--避免实例化Boolean对象，而应用常量Boolean.TRUE, Boolean.FALSE。 -->
+	<rule ref="rulesets/basic.xml/BooleanInstantiation">
+		<priority>2</priority>
+	</rule>
+
+	<!--当一个类定义成final后，它所有的方法自动final。 -->
+	<rule ref="rulesets/basic.xml/UnnecessaryFinalModifier">
+		<priority>2</priority>
+	</rule>
+
+	<!--Collection.toArray调用转换成数组，应主动传一个明确类型的数组对象，否则运行时会抛ClassCastException异常。相似规则：rulesets/design.xml/OptimizableToArrayCall。 -->
+	<rule ref="rulesets/basic.xml/ClassCastExceptionWithToArray">
+		<priority>2</priority>
+	</rule>
+
+	<!--new BigDecimal建议用String参数的构造方法，而不是十进制小数常量（整数除外）。 -->
+	<rule ref="rulesets/basic.xml/AvoidDecimalLiteralsInBigDecimalConstructor">
+		<priority>2</priority>
+	</rule>
+
+	<!--不可变对象（如BigDecimal、BigInteger）上的操作结果被忽略。 -->
+	<rule ref="rulesets/basic.xml/UselessOperationOnImmutable">
+		<priority>2</priority>
+	</rule>
+
+	<!--空指针判断放错了位置。要么之前已报空指针，要么此处永远不可能是空指针。 -->
+	<rule ref="rulesets/basic.xml/MisplacedNullCheck">
+		<priority>2</priority>
+	</rule>
+
+	<!--应该用&&取代||或反之。 -->
+	<rule ref="rulesets/basic.xml/BrokenNullCheck">
+		<priority>2</priority>
+	</rule>
+
+	<!--不要再创建已经有的对象（BigDecimal.ZERO, BigDecimal.ONE, BigDecimal.TEN）。 -->
+	<rule ref="rulesets/basic.xml/BigIntegerInstantiation">
+		<priority>2</priority>
+	</rule>
+
+	<!--对ResultSet的方法（next,previous,first,last）调用结果要进行是否是真的判断。 -->
+	<rule ref="rulesets/basic.xml/CheckResultSet">
+		<priority>2</priority>
+	</rule>
+
+	<!--避免多个一元操作符，要么是一个错误，要么易引起混淆。 -->
+	<rule ref="rulesets/basic.xml/AvoidMultipleUnaryOperators">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================Basic Rules end====================== -->
+
+
+	<!--====================clone Rules begin====================== -->
+
+	<!-- CLONE()方法应包含SUPER.CLONE()实现 -->
+	<rule ref="rulesets/clone.xml/ProperCloneImplementation">
+		<priority>2</priority>
+	</rule>
+
+	<!-- CLONE()方法应该抛出异常（CloneThrowsCloneNotSupportedException） -->
+	<rule ref="rulesets/clone.xml/CloneThrowsCloneNotSupportedException">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================clone Rules end====================== -->
+
+
+	<!--====================controversial Rules begin====================== -->
+
+	<!-- 不允许引入Sun包 -->
+	<rule ref="rulesets/controversial.xml/DontImportSun">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免改变访问控制，如在运行时改变变量、类和方法的可见性 -->
+	<rule ref="rulesets/controversial.xml/AvoidAccessibilityAlteration">
+		<priority>4</priority>
+	</rule>
+
+	<!-- 不允许手动调用垃圾回收 -->
+	<rule ref="rulesets/controversial.xml/DoNotCallGarbageCollectionExplicitly">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================controversial Rules end====================== -->
+
+
+	<!--====================coupling Rules begin====================== -->
+
+	<!-- 避免使用具体实现类型(如：HashSet);用接口(如：Set)代替 -->
+	<rule ref="rulesets/coupling.xml/LooseCoupling">
+		<priority>4</priority>
+	</rule>
+
+	<!--====================coupling Rules end====================== -->
+
+
+	<!--====================Design Rules begin====================== -->
+
+	<!--如果成员方法都是static，建议使用Singletom模式，或定义成abstract类。在老版本PMD中，这个规则叫UseSingleton -->
+	<rule ref="rulesets/design.xml/UseSingleton">
+		<priority>4</priority>
+	</rule>
+
+	<!-- 简化布尔表达式，避免布尔表达式之间无用的比较 -->
+	<rule ref="rulesets/design.xml/SimplifyBooleanExpressions">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免以下代码，私有构造方法类在类定义外生成实例，这会导致the generation of an accessor。 -->
+	<rule ref="rulesets/design.xml/AccessorClassGeneration">
+		<priority>2</priority>
+	</rule>
+
+	<!-- final成员变量(field，类字段)建议定义成static，这样可以节省空间 。 -->
+	<rule ref="rulesets/design.xml/FinalFieldCouldBeStatic">
+		<priority>4</priority>
+	</rule>
+
+	<!-- switch中的default应放在最后一个。 -->
+	<rule ref="rulesets/design.xml/DefaultLabelNotLastInSwitchStmt">
+		<priority>2</priority>
+	</rule>
+
+	<!-- switch中有非case的label。 -->
+	<rule ref="rulesets/design.xml/NonCaseLabelInSwitchStatement">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免与Double.NaN进行是否相等比较(==)。 -->
+	<rule ref="rulesets/design.xml/BadComparison">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免与null比较，如x.equals(null) -->
+	<rule ref="rulesets/design.xml/EqualsNull">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 为了获得Class对象，请用类的class成员，而不要实例化对象然后getClass -->
+	<rule ref="rulesets/design.xml/InstantiationToGetClass">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 在不能实例化的类里（定义了私有构造方法的类）没有静态方法，这样这个类不可用。 -->
+	<rule ref="rulesets/design.xml/MissingStaticMethodInNonInstantiatableClass">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 用notifyAll取代notify -->
+	<rule ref="rulesets/design.xml/UseNotifyAllInsteadOfNotify">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免在catch子句里再判断具体的异常类型，就是用instanceof。 -->
+	<rule ref="rulesets/design.xml/AvoidInstanceofChecksInCatchClause">
+		<priority>4</priority>
+	</rule>
+
+	<!-- catch到了异常后又重新throw新的异常，未保留源异常，源异常的stack trace可能会丢失，不利于程序调试。 -->
+	<rule ref="rulesets/design.xml/PreserveStackTrace">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 对Collection对象，建议用isEmpty()取代size()与0的判断。 -->
+	<rule ref="rulesets/design.xml/UseCollectionIsEmpty">
+		<priority>4</priority>
+	</rule>
+
+	<!-- 只有私有构造方法的类应该申明为final的，除非构造方法被内部类调用。注，私有构造方法的类能够被它的内部类使用。 -->
+	<rule
+		ref="rulesets/design.xml/ClassWithOnlyPrivateConstructorsShouldBeFinal">
+		<priority>2</priority>
+	</rule>
+
+
+	<!-- 返回空数组，而不是null。 -->
+	<rule ref="rulesets/design.xml/ReturnEmptyArrayRatherThanNull">
+		<priority>5</priority>
+	</rule>
+
+	<!-- switch的case语句如果太少的话建议用if取代，以增加代码可读性。 -->
+	<rule ref="rulesets/design.xml/TooFewBranchesForASwitchStatement">
+		<priority>5</priority>
+	</rule>
+
+
+	<!--====================Design Rules end====================== -->
+
+
+	<!--====================finalizers Rules begin====================== -->
+
+	<!-- 不允许存在空的FINALIZE()方法 -->
+	<rule ref="rulesets/finalizers.xml/EmptyFinalizer">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 如果finalize()被实现，它应该除了调用super.finalize()之外还应该做点别的 -->
+	<rule ref="rulesets/finalizers.xml/FinalizeOnlyCallsSuperFinalize">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 方法名是finalize()的方法应该具有参数 -->
+	<rule ref="rulesets/finalizers.xml/FinalizeOverloaded">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 如果FINALIZE()方法被重新实现，它最后一个动作应该是调用SUPER.FINALIZE() -->
+	<rule ref="rulesets/finalizers.xml/FinalizeDoesNotCallSuperFinalize">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免调用finalize -->
+	<rule ref="rulesets/finalizers.xml/AvoidCallingFinalize">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================finalizers Rules end====================== -->
+
+
+	<!--====================imports Rules begin====================== -->
+
+	<!-- 不要引入java.lang -->
+	<rule ref="rulesets/imports.xml/DontImportJavaLang">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================imports Rules end====================== -->
+
+
+	<!--====================logging-java Rules begin====================== -->
+
+	<!-- 避免多于一个日志记录器 -->
+	<rule ref="rulesets/logging-java.xml/MoreThanOneLogger">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================logging-java Rules end====================== -->
+
+
+	<!--====================naming Rules begin====================== -->
+
+	<!-- 不允许使用过短的方法名：最少3个字符 -->
+	<rule ref="rulesets/naming.xml/ShortMethodName">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 在变量/方法/类/接口中避免使用美元符号 -->
+	<rule ref="rulesets/naming.xml/AvoidDollarSigns">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 非构造方法不能和封装类同名 -->
+	<rule ref="rulesets/naming.xml/MethodWithSameNameAsEnclosingClass">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 方法名和返回类型不能类似于hashCode() -->
+	<rule ref="rulesets/naming.xml/SuspiciousHashcodeMethodName">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 方法名和返回类型不能类似于equals(Object) -->
+	<rule ref="rulesets/naming.xml/SuspiciousEqualsMethodName">
+		<priority>2</priority>
+	</rule>
+
+
+	<!-- 避免属性和类同名 -->
+	<rule ref="rulesets/naming.xml/AvoidFieldNameMatchingTypeName">
+		<priority>5</priority>
+	</rule>
+
+	<!-- 避免属性和方法同名 -->
+	<rule ref="rulesets/naming.xml/AvoidFieldNameMatchingMethodName">
+		<priority>5</priority>
+	</rule>
+
+	<!-- 避免类或接口没有定义在包里面的情况 -->
+	<rule ref="rulesets/naming.xml/NoPackage">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 返回布尔类型的方法命名使用‘isX()’而不是’getX()’ -->
+	<rule ref="rulesets/naming.xml/BooleanGetMethodName">
+		<properties>
+			<property name="checkParameterizedMethods" value="false" />
+		</properties>
+		<priority>4</priority>
+	</rule>
+
+	<!--====================naming Rules end====================== -->
+
+
+	<!--====================optimization Rules begin====================== -->
+
+	<!-- 使用ArrayList代替Vector -->
+	<rule ref="rulesets/optimizations.xml/UseArrayListInsteadOfVector">
+		<priority>5</priority>
+	</rule>
+
+	<!-- 使用Arrays类的asList方法（当你试图将一个对象数组转换为一个List时应该使用这个方法，这比循环从数据拷贝元素快得多。） -->
+	<rule ref="rulesets/optimizations.xml/UseArraysAsList">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免数组循环，拷贝数组用System.arraycopy代替循环拷贝数组元素 -->
+	<rule ref="rulesets/optimizations.xml/AvoidArrayLoops">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免不必要的包装对象创建，解析方法应该被直接调用 -->
+	<rule ref="rulesets/optimizations.xml/UnnecessaryWrapperObjectCreation">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================optimization Rules end====================== -->
+
+
+	<!--====================strict exception Rules begin====================== -->
+
+	<!-- 避免catch Throwable对象，这是危险的因为覆盖的范围太广，它能够catch类似于OutOfMemoryError这样的错误 -->
+	<rule ref="rulesets/strictexception.xml/AvoidCatchingThrowable">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 具体声明抛出的异常 -->
+	<rule ref="rulesets/strictexception.xml/SignatureDeclareThrowsException">
+		<priority>4</priority>
+	</rule>
+
+	<!-- 避免异常用作流程控制，使用异常来做流程控制会导致goto类型的代码，且使得调试的时候发生的真正的异常含糊化。 -->
+	<rule ref="rulesets/strictexception.xml/ExceptionAsFlowControl">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免捕获空指针异常，在正常情形下代码不应该捕获NullPointException。否则Catch块可能隐藏原始错误，导致其他更多微妙的错误。 -->
+	<rule ref="rulesets/strictexception.xml/AvoidCatchingNPE">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免抛出原始异常类型， -->
+	<rule ref="rulesets/strictexception.xml/AvoidThrowingRawExceptionTypes">
+		<priority>4</priority>
+	</rule>
+
+	<!-- 避免重复抛出异常 -->
+	<rule ref="rulesets/strictexception.xml/AvoidRethrowingException">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 不允许继承java.lang.Error -->
+	<rule ref="rulesets/strictexception.xml/DoNotExtendJavaLangError">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 不要在finally块中抛出异常 -->
+	<rule ref="rulesets/strictexception.xml/DoNotThrowExceptionInFinally">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================strictexception Rules end====================== -->
+
+
+	<!--====================strings Rules begin====================== -->
+
+	<!-- 将反复使用的字符串、数字等定义成常量 -->
+	<!--
+	<rule ref="rulesets/strings.xml/AvoidDuplicateLiterals">
+		<properties>
+			<property name="threshold" value="4" />
+		</properties>
+	</rule>
+	-->
+
+	<!-- 避免初始化字符串对象，如 new String("hello"); -->
+	<rule ref="rulesets/strings.xml/StringInstantiation">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免对字符串对象调用toString()方法 -->
+	<rule ref="rulesets/strings.xml/StringToString">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免在StringBuffer的构造器或append()方法中连接非字面量类型 -->
+	<rule ref="rulesets/strings.xml/InefficientStringBuffering">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免不必要的大小写转换 -->
+	<rule ref="rulesets/strings.xml/UnnecessaryCaseChange">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免无用的valueOf方法，调用append()方法时不需要把参数用valueOf()转换一次，直接将非String类型的值作为参数放在append()里面。 -->
+	<rule ref="rulesets/strings.xml/UselessStringValueOf">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 不允许StringBuffer使用字符初始化，StringBuffer sb = new StringBuffer('c');字符c会转换为int值，作为StringBuffer的初始化大小参数。 -->
+	<rule ref="rulesets/strings.xml/StringBufferInstantiationWithChar">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================strings Rules end====================== -->
+
+
+	<!--====================unusedcode Rules begin====================== -->
+
+	<!-- 避免未用的私有变量 -->
+	<rule ref="rulesets/unusedcode.xml/UnusedPrivateField">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免未用的本地变量 -->
+	<rule ref="rulesets/unusedcode.xml/UnusedLocalVariable">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免未用的私有方法 -->
+	<rule ref="rulesets/unusedcode.xml/UnusedPrivateMethod">
+		<priority>2</priority>
+	</rule>
+
+	<!-- 避免未用的常规参数 -->
+	<rule ref="rulesets/unusedcode.xml/UnusedFormalParameter">
+		<priority>2</priority>
+	</rule>
+
+	<!--====================unusedcode Rules end====================== -->
+
+</ruleset>

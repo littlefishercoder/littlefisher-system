@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="false" context="overridecomment_context" deleted="false" description="Comment for overriding methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.overridecomment" name="overridecomment">/**
- * Description:  
+ * Description: 
  * 
  * @author XXX
  *
  * ${tags} 
  */ </template><template autoinsert="false" context="methodcomment_context" deleted="false" description="Comment for non-overriding methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.methodcomment" name="methodcomment">/**
- * Description:  
+ * Description: 
  * 
  * @author XXX
  *
@@ -40,7 +40,7 @@
  *
  * @param ${param} 
  */ </template><template autoinsert="false" context="delegatecomment_context" deleted="false" description="Comment for delegate methods" enabled="true" id="org.eclipse.jdt.ui.text.codetemplates.delegatecomment" name="delegatecomment">/**
- * Description:  
+ * Description: 
  * 
  * @author XXX
  *

@@ -1,0 +1,25 @@
+表的命名，域表，字段长度，索引命名，序列命名
+
+varcahr长度为一般是3/30/60/120/255/4000
+
+int一般是3/6/9/12/15
+
+固定字符使用char(1)
+
+备注、说明用字段,使用 comments varchar2(120)/varchar2(255)/ varchar2(4000)
+
+状态字段使用 state char(1)
+
+状态变更时间 state_date datetime
+
+修改时间用 update_date datetime 
+
+生成时间用 created_date datetime
+
+生效时间 eff_date datetime
+
+失效时间 exp_date datetime 
+
+记录创建时间 rec_created_date datetime
+
+所有状态中a为有效，x为失效

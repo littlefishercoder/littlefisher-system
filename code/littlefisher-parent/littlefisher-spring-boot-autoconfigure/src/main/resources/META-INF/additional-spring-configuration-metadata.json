@@ -1,0 +1,48 @@
+{
+  "properties": [
+    {
+      "name": "littlefisher.mybatis.type-enums-package",
+      "type": "java.lang.String",
+      "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",
+      "description": "mybatis enums package scan path.",
+      "defaultValue": "classpath*:com/littlefisher/**/enums/**/Enum*"
+    },
+    {
+      "name": "littlefisher.shiro.enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",
+      "description": "enabled shiro."
+    },
+    {
+      "name": "littlefisher.shiro.login-url",
+      "type": "java.lang.String",
+      "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",
+      "description": "login url.",
+      "defaultValue": "/login"
+    },
+    {
+      "name": "littlefisher.shiro.success-url",
+      "type": "java.lang.String",
+      "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",
+      "description": "success url."
+    },
+    {
+      "name": "littlefisher.shiro.unauthorized-url",
+      "type": "java.lang.String",
+      "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",
+      "description": "unauthorized url."
+    },
+    {
+      "name": "littlefisher.shiro.swagger-filter-chain-enabled",
+      "type": "java.lang.Boolean",
+      "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",
+      "description": "enabled swagger filter chain definition. It will filter the swagger url if config 'true'."
+    },
+    {
+      "name": "littlefisher.shiro.filter-chain-definition",
+      "type": "java.util.Map<java.lang.String,java.lang.String>",
+      "sourceType": "com.littlefisher.spring.boot.autoconfigure.LittleFisherProperties",
+      "description": "shiro ordered filter chain definition."
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <parent>
+    <artifactId>littlefisher-parent</artifactId>
+    <groupId>com.littlefisher</groupId>
+    <version>1.0.1-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>littlefisher-web-parent</artifactId>
+  <packaging>pom</packaging>
+  <modules>
+    <module>littlefisher-web-controller</module>
+    <module>littlefisher-web-dal</module>
+    <module>littlefisher-web-dal-impl</module>
+    <module>littlefisher-web-biz</module>
+    <module>littlefisher-web-biz-impl</module>
+    <module>littlefisher-web-deploy</module>
+    <module>littlefisher-web-common</module>
+  </modules>
+
+  <properties>
+    <shiro-spring.version>1.4.0</shiro-spring.version>
+    <littlefisher-user.version>1.0.1-SNAPSHOT</littlefisher-user.version>
+    <littlefisher-blog.version>1.0.1-SNAPSHOT</littlefisher-blog.version>
+    <littlefisher-core.version>1.0.1-SNAPSHOT</littlefisher-core.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.apache.shiro</groupId>
+        <artifactId>shiro-spring</artifactId>
+        <version>${shiro-spring.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+</project>

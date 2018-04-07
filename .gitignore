@@ -4,12 +4,15 @@
 RemoteSystemsTempFiles/
 Servers/
 **/target/
+**／.DS_Store
 **/.settings
 **/.classpath
 **/.project
 **/.externalToolBuilders
 **/.pmd
 **/.checkstyle
+**/*.bpmn2d
+settings.xml
 
 # idea
 .idea/
@@ -17,5 +20,14 @@ Servers/
 
 # Others
 node_modules/
-**/logback.xml.runtime
 **/MANIFEST.MF
+
+# SYSTEM_HOME
+log/
+SYSTEM_HOME/**/jdbc.properties
+SYSTEM_HOME/**/kafka.properties
+SYSTEM_HOME/**/application.yml
+SYSTEM_HOME/**/generatorConfig.properties
+
+#Jrebel
+**/rebel.xml

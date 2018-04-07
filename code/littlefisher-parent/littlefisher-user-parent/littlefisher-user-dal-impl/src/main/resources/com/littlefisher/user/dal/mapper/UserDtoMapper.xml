@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.littlefisher.user.dal.mapper.UserDtoMapper">
+  <resultMap id="BaseResultMap" type="com.littlefisher.user.dal.model.UserDto">
+    <!--@mbg.generated-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="acc_nbr" jdbcType="VARCHAR" property="accNbr" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="real_name" jdbcType="VARCHAR" property="realName" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="en_name" jdbcType="VARCHAR" property="enName" />
+    <result column="user_desc" jdbcType="VARCHAR" property="userDesc" />
+    <result column="state" jdbcType="CHAR" property="state" />
+    <result column="reg_date" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="last_login_date" jdbcType="TIMESTAMP" property="lastLoginDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, acc_nbr, password, real_name, nick_name, en_name, user_desc, state, reg_date, 
+    last_login_date
+  </sql>
+</mapper>
