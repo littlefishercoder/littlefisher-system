@@ -5,7 +5,7 @@
   <parent>
     <artifactId>littlefisher-parent</artifactId>
     <groupId>com.littlefisher</groupId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
@@ -13,8 +13,8 @@
   <packaging>pom</packaging>
 
   <properties>
-    <littlefisher-core.version>1.0.1-SNAPSHOT</littlefisher-core.version>
-    <blog.version>1.0.1-SNAPSHOT</blog.version>
+    <littlefisher-core.version>1.2.0-SNAPSHOT</littlefisher-core.version>
+    <littlefisher-blog.version>1.2.0-SNAPSHOT</littlefisher-blog.version>
   </properties>
 
   <modules>
