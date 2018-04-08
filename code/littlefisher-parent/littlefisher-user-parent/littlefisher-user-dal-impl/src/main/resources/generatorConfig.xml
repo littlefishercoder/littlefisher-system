@@ -48,46 +48,46 @@
                          type="XMLMAPPER"/>
 
     <table tableName="bfm_permission" domainObjectName="PermissionDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
     </table>
     <table tableName="bfm_role" domainObjectName="RoleDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="type" javaType="com.littlefisher.user.common.enums.EnumRoleType" />
     </table>
     <table tableName="bfm_role_permission" domainObjectName="RolePermissionDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
     </table>
     <table tableName="bfm_system_param" domainObjectName="SystemParamDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
     </table>
     <table tableName="bfm_user" domainObjectName="UserDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="state" javaType="com.littlefisher.user.common.enums.EnumUserState" />
     </table>
     <table tableName="bfm_user_contact_station" domainObjectName="UserContactStationDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="type" javaType="com.littlefisher.user.common.enums.EnumUserContactStationType" />
       <columnOverride column="state" javaType="com.littlefisher.user.common.enums.EnumUserContactStationState" />
-      <columnOverride column="default_flag" javaType="com.littlefisher.core.stereotype.enums.EnumBizBool" />
+      <columnOverride column="default_flag" javaType="com.littlefisher.core.common.stereotype.enums.EnumBizBool" />
     </table>
     <table tableName="bfm_user_contact_station_4_email" domainObjectName="UserContactStation4EmailDto" escapeWildcards="true">
-      <generatedKey column="contact_station_id" sqlStatement="Mysql" />
+      <generatedKey column="contact_station_id" sqlStatement="MySql" />
       <columnOverride column="type" javaType="com.littlefisher.user.common.enums.EnumUserContactStation4EmailType" />
     </table>
     <table tableName="bfm_user_contact_station_4_phone" domainObjectName="UserContactStation4PhoneDto" escapeWildcards="true">
-      <generatedKey column="contact_station_id" sqlStatement="Mysql" />
+      <generatedKey column="contact_station_id" sqlStatement="MySql" />
       <columnOverride column="type" javaType="com.littlefisher.user.common.enums.EnumUserContactStation4PhoneType" />
     </table>
     <table tableName="bfm_user_contact_station_4_social" domainObjectName="UserContactStation4SocialDto" escapeWildcards="true">
-      <generatedKey column="contact_station_id" sqlStatement="Mysql" />
+      <generatedKey column="contact_station_id" sqlStatement="MySql" />
       <columnOverride column="type" javaType="com.littlefisher.user.common.enums.EnumUserContactStation4SocialType" />
     </table>
     <table tableName="bfm_user_contact_station_4_website" domainObjectName="UserContactStation4WebsiteDto" escapeWildcards="true">
-      <generatedKey column="contact_station_id" sqlStatement="Mysql" />
+      <generatedKey column="contact_station_id" sqlStatement="MySql" />
       <columnOverride column="type" javaType="com.littlefisher.user.common.enums.EnumUserContactStation4WebsiteType" />
     </table>
     <table tableName="bfm_user_role" domainObjectName="UserRoleDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
     </table>
   </context>
 </generatorConfiguration>

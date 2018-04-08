@@ -48,33 +48,33 @@
                          type="XMLMAPPER" />
 
     <table tableName="commentary" domainObjectName="CommentaryDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="state" javaType="com.littlefisher.blog.common.enums.EnumCommentaryState"/>
     </table>
     <table tableName="post" domainObjectName="PostDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="type" javaType="com.littlefisher.blog.common.enums.EnumPostType"/>
       <columnOverride column="state" javaType="com.littlefisher.blog.common.enums.EnumPostState"/>
-      <columnOverride column="enable_comment" javaType="com.littlefisher.core.stereotype.enums.EnumBizBool" />
+      <columnOverride column="enable_comment" javaType="com.littlefisher.core.common.stereotype.enums.EnumBizBool" />
     </table>
     <table tableName="post_tag" domainObjectName="PostTagDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="state" javaType="com.littlefisher.blog.common.enums.EnumPostTagState" />
     </table>
     <table tableName="tag" domainObjectName="TagDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="state" javaType="com.littlefisher.blog.common.enums.EnumTagState"/>
     </table>
     <table tableName="archive" domainObjectName="ArchiveDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="state" javaType="com.littlefisher.blog.common.enums.EnumArchiveState"/>
     </table>
     <table tableName="author" domainObjectName="AuthorDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="state" javaType="com.littlefisher.blog.common.enums.EnumAuthorState" />
     </table>
     <table tableName="count_statistic" domainObjectName="CountStatisticDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="type" javaType="com.littlefisher.blog.common.enums.EnumCountStatisticType" />
       <columnOverride column="state" javaType="com.littlefisher.blog.common.enums.EnumCountStatisticState" />
     </table>
@@ -83,7 +83,7 @@
     <table tableName="count_statistic_4_post" domainObjectName="CountStatistic4PostDto" escapeWildcards="true">
     </table>
     <table tableName="friend_link" domainObjectName="FriendLinkDto" escapeWildcards="true">
-      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+      <generatedKey column="id" sqlStatement="MySql" identity="true"/>
       <columnOverride column="state" javaType="com.littlefisher.blog.common.enums.EnumFriendLinkState" />
     </table>
   </context>
