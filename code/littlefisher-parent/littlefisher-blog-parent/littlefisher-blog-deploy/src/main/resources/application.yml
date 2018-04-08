@@ -106,6 +106,9 @@ spring:
       name: dubbo
       port: 20881
 
+server:
+  port: 8081
+
 mybatis:
   # mapper文件扫描路径
   mapper-locations: classpath*:com/littlefisher/**/mapper/**/*.xml

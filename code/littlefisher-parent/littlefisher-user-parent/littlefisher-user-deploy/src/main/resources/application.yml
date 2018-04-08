@@ -104,7 +104,10 @@ spring:
       address: zookeeper://106.14.156.120:2181
     protocol:
       name: dubbo
-      port: 20880
+      port: 20882
+
+server:
+  port: 8082
 
 mybatis:
   # mapper文件扫描路径

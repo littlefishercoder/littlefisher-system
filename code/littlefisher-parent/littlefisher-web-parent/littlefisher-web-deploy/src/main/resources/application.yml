@@ -15,7 +15,7 @@ spring:
       address: zookeeper://106.14.156.120:2181
     protocol:
       name: dubbo
-      port: 20882
+      port: 20883
 
 server:
   servlet:
