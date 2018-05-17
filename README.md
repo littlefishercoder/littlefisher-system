@@ -10,6 +10,27 @@
 #### Github
 欢迎加星!!!
 
+#### 代码分层
+代码全都放在`code`包下
+```
+littlefisher-parent 总的父包
+-littlefisher-blog-parent 跟博客相关的业务内容
+-littlefisher-core-parent 基础服务代码
+-littlefisher-spring-boot-autoconfigure 配置application.yml可读的配置信息
+-littlefisher-user-parent 跟用户相关的业务内容
+-littlefisher-web-parent 包装以上内容，对外提供MVC服务
+```
+
+以littlefisher-user-parent 举例描述分层
+```
+littlefisher-user-biz 业务接口描述层
+littlefisher-user-biz-impl 业务接口实现层
+littlefisher-user-common 公共定义层，包括工具，枚举等
+littlefisher-user-dal 数据访问及远程调用接口层
+littlefisher-user-dal-impl 数据访问及远程调用实现层
+littlefisher-user-deploy 发布层，定义配置文件及打war包
+```
+
 #### 项目搭建路径
 http://swaggerui.littlefisher.site/  
 由于整个工程都是后端内容，所以页面展示的内容仅是一个`Swagger`测试页面而已
