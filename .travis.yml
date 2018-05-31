@@ -1,0 +1,11 @@
+language: java
+
+jdk:
+  - oraclejdk8
+  
+ script:
+  - cd code/littlefisher-parent/ && mvn clean install -DskipTests=true
+  
+  branches:
+  only:
+    - dev
