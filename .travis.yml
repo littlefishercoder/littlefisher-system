@@ -1,11 +1,7 @@
 language: java
 
 jdk:
-  - oraclejdk8
-  
- script:
-  - cd code/littlefisher-parent/ && mvn clean install -DskipTests=true
-  
-  branches:
-    only:
-      - dev
+  - openjdk8
+
+script: 
+  - mvn clean install -U -Dmaven.test.skip=true
