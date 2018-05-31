@@ -109,8 +109,6 @@ http://swaggerui.littlefisher.site/
  - 在浏览器中输入`http://{ip}:8080/blog-web/swagger_ui.html`，即可访问到`swaggerUI`界面
  - 以上所涉及`maven`命令皆为完整命令，可根据不同`IDE`变更部分命令
 
-#### 额外补充
-
 
   [1]: http://www.littlefisher.site/
   [2]: http://wx4.sinaimg.cn/large/7dde05d2gy1fd64xlnke7j20ye0ye7b6.jpg
