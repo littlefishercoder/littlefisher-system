@@ -3,6 +3,9 @@
 **代码是写给人看的，不是写给机器看的，只是顺便计算机可以执行而已**
 **所以请编写代码时注意代码编写规范，不要一段时间后自己都看不懂自己的代码**
 
+#### 构建结果
+[![Build Status](https://travis-ci.org/littlefishercoder/littlefisher-system.svg?branch=dev)](https://travis-ci.org/littlefishercoder/littlefisher-system)
+
 #### 个人博客
 [http://www.littlefisher.site/][1]
 欢迎博客上评论
