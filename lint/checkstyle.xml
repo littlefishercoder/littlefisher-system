@@ -1,222 +1,228 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+        "-//Puppy Crawl//DTD Check Configuration 1.3//EN"
+        "http://checkstyle.sourceforge.net/dtds/configuration_1_3.dtd">
+
 <!--
-	Checkstyle 基础规则
-
-	版本：V1.4
-	说明：仅检查 printStackTrace()，允许异常打印到非控制台。
-				指定待检查的文件的字符集为UTF-8。
-
-	版本：V1.3
-	说明：取消MagicNumber，MultipleStringLiterals的校验，改为人工走查。
-
-	版本：V1.2
-	说明：取消对getters, setters方法的校验
-
-	版本：V1.1
-	说明：java格式化模板中定义的行最大长度120是不包括开头空格的
-		而checkstyle定义120个字符是包括开头空格的，这样就导致格式化出来的代码超长报错。故修改检查长度为150.
-
-	版本：V1.0
-	说明：完成基础规则的配置
+    This configuration file was written by the eclipse-cs plugin configuration editor
 -->
-<!DOCTYPE module PUBLIC "-//Puppy Crawl//DTD Check Configuration 1.3//EN" "http://www.puppycrawl.com/dtds/configuration_1_3.dtd">
+<!--
+    Checkstyle-Configuration: HsjryCheckStyle
+    Description: none
+-->
 <module name="Checker">
-    <!-- 默认告警为error -->
-    <property name="severity" value="error" />
-    <property name="charset" value="UTF-8" />
-
-    <!-- 不允许使用"tab"键 -->
-    <module name="FileTabCharacter" />
-    <!-- 文件长度最大1500行 -->
-    <module name="FileLength">
-        <property name="max" value="1500" />
+  <property name="severity" value="error"/>
+  <property name="charset" value="UTF-8"/>
+  <property name="fileExtensions" value="java, properties, xml"/>
+  <module name="TreeWalker">
+    <property name="tabWidth" value="4"/>
+    <module name="OuterTypeFilename"/>
+    <module name="LineLength">
+      <property name="ignorePattern"
+                value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
+      <property name="max" value="150"/>
     </module>
-
-    <module name="TreeWalker">
-        <!-- javaDoc Comments -->
-        <!-- 检查 public的 interface和class 的注解 -->
-        <module name="JavadocType">
-            <property name="scope" value="public" />
-            <property name="allowUnknownTags" value="true" />
-        </module>
-        <!-- 校验 Javadoc 注解. -->
-        <module name="JavadocMethod">
-            <property name="allowMissingPropertyJavadoc" value="true"/>
-        </module>
-        <module name="JavadocVariable" />
-        <module name="JavadocStyle">
-            <property name="checkEmptyJavadoc" value="true" />
-            <property name="checkFirstSentence" value="false" />
-            <property name="checkHtml" value="false" />
-        </module>
-
-        <!-- imports -->
-        <!-- import中不运行有‘*’ -->
-        <module name="AvoidStarImport" />
-        <!-- 校验重复的的import -->
-        <module name="RedundantImport"/>
-        <!-- 校验未使用的import -->
-        <module name="UnusedImports" />
-        <!-- 校验import的顺序：分为4组，java(x).*，org.*，其他，我们自己的类 -->
-        <module name="ImportOrder">
-            <property name="groups" value="/^javax?\./,org,/./,/^com\.(yc|publicmobile)\./" />
-            <property name="ordered" value="true" />
-            <property name="separated" value="true" />
-            <property name="option" value="above" />
-        </module>
-
-        <!-- Naming Conventions -->
-        <!-- 校验包名，小写字母开头，后接小写字母或数字 -->
-        <module name="PackageName">
-            <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$" />
-        </module>
-        <!-- 校验class和interface名  默认format为“^[A-Z][a-zA-Z0-9]*$” -->
-        <module name="TypeName" />
-        <!-- 校验常量名 -->
-        <module name="ConstantName">
-            <property name="format" value="(^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$)|(^logger$)" />
-        </module>
-        <!-- 校验static型的变量  默认format为“^[a-z][a-zA-0Z-9]*$” -->
-        <module name="StaticVariableName" />
-        <!-- 校验变量名  默认format为“^[a-z][a-zA-Z0-9]*$”-->
-        <module name="MemberName" />
-        <!-- 校验方法名 默认format为“^[a-z][a-zA-Z0-9]*$” -->
-        <module name="MethodName" />
-
-        <!-- Size Violations -->        
-        <!-- 方法体的行数最大200，不计算空行 -->
-        <module name="MethodLength">
-            <property name="max" value="200" />
-            <property name="countEmpty" value="false" />
-        </module>
-        <!-- 每行字符数最多150 忽略指定格式的行 -->
-        <module name="LineLength">
-            <property name="ignorePattern" value="^ *\* *[^ ]+$" />
-            <property name="max" value="150" />
-        </module>
-        <!-- 检查方法和构造子参数的最大个数,warning级别 -->
-        <module name="ParameterNumber">
-            <property name="severity" value="warning" />
-            <property name="max" value="10" />
-        </module>
-
-        <!-- Coding -->
-        <!-- 避免行内条件表达式，如[String b = (a==null || a.length<1) ? null : a.substring(1)] 
-        <module name="AvoidInlineConditionals">
-            <property name="severity" value="warning" />
-        </module>
-        -->
-        <!-- 避免使用直接常量数字 -1, 0, 1, 2 除外
-        <module name="MagicNumber">
-            <property name="severity" value="warning" />
-        </module>
-        -->
-        <!--校验 是否包含缺省的switchdefault-->
-        <module name="MissingSwitchDefault" />
-        <!-- 循环控制变量不能被修改 -->
-        <module name="ModifiedControlVariable">
-    	    <property name="severity" value="warning"/>
-        </module>
-        <!-- 避免多余的throw 
-        <module name="RedundantThrows">
-            <property name="severity" value="warning" />
-        </module>-->
-        <!-- 不允许使用未被简化的表达式，例如对boolean类型的变量 b的如下使用：if (b == true)；应该是 if (b) -->
-        <module name="SimplifyBooleanExpression" />
-        <!--不许使用未被简化的布尔返回值-->
-        <module name="SimplifyBooleanReturn" />
-        <!-- 布尔表达式的复杂度，不超过7 -->
-        <module name="BooleanExpressionComplexity">
-            <property name="max" value="7" />
-        </module>
-        <!-- 不许内部赋值(=, +=, -=) String s = Integer.toString(i = 2)-->
-        <module name="InnerAssignment">
-            <property name="severity" value="warning" />
-            <property name="tokens" value="ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN" />
-        </module>
-        <!-- String的比较不能用!= 和 == -->
-        <module name="StringLiteralEquality" />
-        <!-- try最多被嵌套2层 -->
-        <module name="NestedTryDepth">
-            <property name="max" value="2" />
-        </module>
-        <!-- if最多嵌套5层 -->
-        <module name="NestedIfDepth">
-            <property name="max" value="5" />
-        </module>
-        <!-- for最多嵌套3层 -->
-        <module name="NestedForDepth">
-            <property name="max" value="3" />
-        </module>
-        <!-- 避免定义过多的String字面量。warning 
-        <module name="MultipleStringLiterals">
-            <property name="severity" value="warning" />
-        </module>
-        -->
-        <!-- 不允许一行定义多个变量 -->
-        <module name="MultipleVariableDeclarations" />
-        <!-- String字面量应该放在equals()方法前面 -->
-        <module name="EqualsAvoidNull" />
-        <!-- 覆写equals()方法必须同时覆写hashCode()方法 -->
-        <module name="EqualsHashCode" />
-        <!-- 一行只能写一条语句 -->
-        <module name="OneStatementPerLine" />
-
-        <!-- Block Checks -->
-        <!-- 不允许嵌套块 -->
-        <module name="AvoidNestedBlocks">
-            <!--Switch Case 允许有嵌套块，用于定义case级的变量 -->
-            <property name="allowInSwitchCase" value="true" />
-        </module>
-        <!--校验 空块 catch Finally 没处理-->
-        <module name="EmptyBlock">
-            <property name="tokens" value="LITERAL_CATCH,LITERAL_FINALLY" />
-        </module>
-        <!-- 所有区域都要使用大括号 -->
-        <module name="NeedBraces" />
-        <!-- 左大括号与代码在同一行 -->
-        <module name="LeftCurly" />
-        <!-- 右大括号要独占一行 -->
-        <module name="RightCurly">
-            <property name="option" value="alone" />
-        </module>
-
-        <!-- modifer order -->        
-        <!-- 修饰符的顺序要符合java规范 -->
-        <module name="ModifierOrder" />
-
-        <!-- Class design -->        
-        <!--确保只有private 构造函数的class声明成final -->
-        <module name="FinalClass" />
-
-        <!-- Miscellaneous -->        
-        <!-- 校验缩进 -->
-        <module name="Indentation" />
-
-        <!-- Whitespace -->
-        <!-- 强制转型的左右括号中不能有空格 -->
-        <module name="TypecastParenPad" />
-        <!-- 方法调用，左右括号中间 不能有空格 -->
-        <module name="ParenPad" />
-        <!-- 方法名后面没有空格 -->
-        <module name="MethodParamPad" />
-        <!-- 分号，自增，自减这些符号前没有空格 -->
-        <module name="NoWhitespaceBefore" />
-        <!-- ARRAY_INIT, BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS这些tokens后没有空格 -->
-        <module name="NoWhitespaceAfter" />
-        <!-- 分号，逗号，强制转型后需要有空格 -->
-        <module name="WhitespaceAfter" />
-        <!-- 操作符左右应该有空格 -->
-        <module name="WhitespaceAround" />
-        <!-- for-iterator中自增语句部分不需要空格 -->
-        <module name="EmptyForIteratorPad" />
-
-        <!-- other -->
-        <!-- java文件中不允许出现 format 中指定的字符，注释除外-->
-        <module name="RegexpSinglelineJava">
-            <property name="format" value="(System\.(((out|err)\.print(ln)?)|exit)\()|(\.printStackTrace\(\))" />
-            <property name="ignoreComments" value="true" />
-            <property name="message" value="avoid use system.out(err,exit) or printStackTrace()" />
-        </module>
+    <module name="MethodLength">
+      <property name="max" value="200"/>
+      <property name="countEmpty" value="false"/>
     </module>
+    <module name="ParameterNumber">
+      <property name="severity" value="warning"/>
+      <property name="max" value="10"/>
+    </module>
+    <module name="AvoidStarImport"/>
+    <module name="RedundantImport"/>
+    <module name="UnusedImports"/>
+    <module name="OneTopLevelClass"/>
+    <module name="NoLineWrap"/>
+    <module name="EmptyBlock">
+      <property name="option" value="TEXT"/>
+      <property name="tokens"
+                value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
+    </module>
+    <module name="NeedBraces"/>
+    <module name="LeftCurly"/>
+    <module name="RightCurly">
+      <property name="id" value="RightCurlyAlone"/>
+      <property name="option" value="alone"/>
+      <property name="tokens" value="LITERAL_FINALLY"/>
+    </module>
+    <module name="FinalClass"/>
+    <module name="WhitespaceAround">
+      <property name="allowEmptyConstructors" value="true"/>
+      <property name="allowEmptyMethods" value="true"/>
+      <property name="allowEmptyTypes" value="true"/>
+      <property name="allowEmptyLoops" value="true"/>
+      <message key="ws.notPreceded"
+               value="WhitespaceAround: ''{0}'' is not preceded with whitespace."/>
+      <message key="ws.notFollowed"
+               value="WhitespaceAround: ''{0}'' is not followed by whitespace. Empty blocks may only be represented as '{}' when not part of a multi-block statement (4.1.3)"/>
+    </module>
+    <module name="EmptyForIteratorPad"/>
+    <module name="OneStatementPerLine"/>
+    <module name="MultipleVariableDeclarations"/>
+    <module name="ArrayTypeStyle"/>
+    <module name="MissingSwitchDefault"/>
+    <module name="ModifiedControlVariable">
+      <property name="severity" value="warning"/>
+    </module>
+    <module name="SimplifyBooleanExpression"/>
+    <module name="SimplifyBooleanReturn"/>
+    <module name="BooleanExpressionComplexity">
+      <property name="max" value="7"/>
+    </module>
+    <module name="InnerAssignment">
+      <property name="severity" value="warning"/>
+      <property name="tokens" value="ASSIGN,PLUS_ASSIGN,MINUS_ASSIGN"/>
+    </module>
+    <module name="StringLiteralEquality"/>
+    <module name="NestedTryDepth">
+      <property name="max" value="2"/>
+    </module>
+    <module name="NestedIfDepth">
+      <property name="max" value="5"/>
+    </module>
+    <module name="NestedForDepth">
+      <property name="max" value="3"/>
+    </module>
+    <module name="EqualsAvoidNull"/>
+    <module name="EqualsHashCode"/>
+    <module name="AvoidNestedBlocks">
+      <property name="allowInSwitchCase" value="true"/>
+    </module>
+    <module name="UpperEll"/>
+    <module name="ModifierOrder">
+      <message key="mod.order"
+               value="修饰符正确的顺序为public protected private abstract default static final transient volatile synchronized native strictfp"/>
+    </module>
+    <module name="PackageName">
+      <property name="format" value="^[a-z]+(\.[a-z][a-z0-9]*)*$"/>
+      <message key="name.invalidPattern" value="包名 ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="TypeName">
+      <message key="name.invalidPattern" value="类或接口 ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="MemberName">
+      <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+      <message key="name.invalidPattern" value="变量名 ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="ParameterName">
+      <property name="format" value="^[a-z]([a-z0-9][a-zA-Z0-9]*)?$"/>
+      <message key="name.invalidPattern" value="方法入参或者catch参数 ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="CatchParameterName">
+      <message key="name.invalidPattern" value="catch参数 ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="LocalVariableName">
+      <property name="allowOneCharVarInForLoop" value="true"/>
+      <message key="name.invalidPattern" value="Local variable name ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="ClassTypeParameterName">
+      <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+      <message key="name.invalidPattern" value="Class type name ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="MethodTypeParameterName">
+      <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+      <message key="name.invalidPattern" value="Method type name ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="InterfaceTypeParameterName">
+      <property name="format" value="(^[A-Z][0-9]?)$|([A-Z][a-zA-Z0-9]*[T]$)"/>
+      <message key="name.invalidPattern" value="Interface type name ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="NoFinalizer"/>
+    <module name="GenericWhitespace">
+      <message key="ws.notPreceded" value="GenericWhitespace ''{0}'' 前应该加空格."/>
+      <message key="ws.followed" value="GenericWhitespace ''{0}'' 后加了空格."/>
+      <message key="ws.preceded" value="GenericWhitespace ''{0}'' 前加了空格."/>
+      <message key="ws.illegalFollow" value="GenericWhitespace ''{0}'' 后应该加空格."/>
+    </module>
+    <module name="Indentation"/>
+    <module name="OverloadMethodsDeclarationOrder"/>
+    <module name="CustomImportOrder">
+      <property name="customImportOrderRules"
+                value="STATIC###STANDARD_JAVA_PACKAGE###THIRD_PARTY_PACKAGE"/>
+      <property name="standardPackageRegExp" value="^(java|javax)\."/>
+      <property name="thirdPartyPackageRegExp" value="^org\."/>
+      <property name="specialImportsRegExp" value="^com\."/>
+      <property name="sortImportsInGroupAlphabetically" value="true"/>
+    </module>
+    <module name="MethodParamPad"/>
+    <module name="NoWhitespaceBefore">
+      <property name="allowLineBreaks" value="true"/>
+      <property name="tokens" value="COMMA, SEMI, POST_INC, POST_DEC, DOT, ELLIPSIS, METHOD_REF"/>
+    </module>
+    <module name="NoWhitespaceAfter"/>
+    <module name="WhitespaceAfter"/>
+    <module name="ParenPad"/>
+    <module name="TypecastParenPad"/>
+    <module name="OperatorWrap"/>
+    <module name="AnnotationLocation">
+      <property name="id" value="AnnotationLocationMostCases"/>
+      <property name="tokens" value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF"/>
+    </module>
+    <module name="AnnotationLocation">
+      <property name="id" value="AnnotationLocationVariables"/>
+      <property name="tokens" value="VARIABLE_DEF"/>
+      <property name="allowSamelineMultipleAnnotations" value="true"/>
+    </module>
+    <module name="NonEmptyAtclauseDescription"/>
+    <module name="JavadocTagContinuationIndentation"/>
+    <module name="AtclauseOrder">
+      <property name="target"
+                value="CLASS_DEF, INTERFACE_DEF, ENUM_DEF, METHOD_DEF, CTOR_DEF, VARIABLE_DEF"/>
+      <property name="tagOrder" value="@param, @return, @throws, @deprecated"/>
+    </module>
+    <module name="JavadocMethod">
+      <property name="minLineCount" value="2"/>
+      <property name="allowedAnnotations" value="Override, Test"/>
+      <property name="scope" value="public"/>
+      <property name="allowThrowsTagsForSubclasses" value="true"/>
+      <message key="javadoc.expectedTag" value="public方法下，Javadoc必须完整。''{1}''需要Javadoc注释 {0} 。"/>
+      <message key="javadoc.return.expected"
+               value="public方法下，Javadoc必须完整。需要一个 Javadoc注释 @return 。"/>
+    </module>
+    <module name="MethodName">
+      <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>
+      <message key="name.invalidPattern" value="方法名 ''{0}'' 必须匹配正则表达式: ''{1}''."/>
+    </module>
+    <module name="SingleLineJavadoc">
+      <property name="ignoreInlineTags" value="false"/>
+    </module>
+    <module name="EmptyCatchBlock">
+      <property name="exceptionVariableName" value="expected"/>
+    </module>
+    <module name="CommentsIndentation"/>
+    <module name="RegexpSinglelineJava">
+      <property name="format"
+                value="(System\.(((out|err)\.print(ln)?)|exit)\()|(\.printStackTrace\(\))"/>
+      <property name="message" value="禁止使用system.out(err,exit) 或者 printStackTrace()"/>
+      <property name="ignoreComments" value="true"/>
+    </module>
+    <module name="MissingOverride"/>
+    <module name="ConstantName"/>
+    <module name="LocalFinalVariableName"/>
+    <module name="DefaultComesLast"/>
+    <module name="TrailingComment"/>
+    <module name="ImportOrder">
+      <property name="option" value="above"/>
+      <property name="groups" value="/^java\./,javax,org,com"/>
+      <property name="separated" value="true"/>
+    </module>
+    <module name="JavadocMethod">
+      <property name="minLineCount" value="2"/>
+      <property name="allowMissingParamTags" value="true"/>
+      <property name="allowMissingThrowsTags" value="true"/>
+      <property name="allowMissingReturnTag" value="true"/>
+      <property name="allowMissingPropertyJavadoc" value="true"/>
+      <property name="suppressLoadErrors" value="true"/>
+      <property name="tokens" value="METHOD_DEF"/>
+      <message key="javadoc.missing"
+               value="非public方法至少需要一个描述性的 Javadoc ，@param、@return和@throws不做强制要求。"/>
+    </module>
+  </module>
+  <module name="FileTabCharacter">
+    <property name="eachLine" value="true"/>
+  </module>
+  <module name="FileLength"/>
+  <module name="UniqueProperties"/>
 </module>
