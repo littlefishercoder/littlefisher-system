@@ -1,12 +1,20 @@
 <?xml version="1.0"?>
+
 <!DOCTYPE suppressions PUBLIC
-    "-//Puppy Crawl//DTD Suppressions 1.1//EN"
-    "http://www.puppycrawl.com/dtds/suppressions_1_1.dtd">
+        "-//Puppy Crawl//DTD Suppressions 1.1//EN"
+        "http://checkstyle.sourceforge.net/dtds/suppressions_1_1.dtd">
+
 <suppressions>
-	<!-- checks="[a-zA-Z0-9]*" 忽略所有校验规则 -->
-	<suppress checks="[a-zA-Z0-9]*" files=".png"/>
+  <!--对mac生成的.DS_Store做忽略-->
+  <suppress checks=".*" files=".DS_Store"/>
 
-	<suppress checks="[a-zA-Z0-9]*" files=".DS_Store"/>
+  <!--对所有的转换器类做忽略，不需要检查javadoc-->
+  <suppress checks="JavadocMethodCheck" files=".*Converter.java"/>
 
-	<!-- <suppress checks="[a-zA-Z0-9]*" files="[\\/]generated-sources[\\/]"/> -->
+  <!--对Mybatis Generator生成的Example不做检查-->
+  <suppress checks=".*" files="dal[\\/]example[\\/]"/>
+
+  <!--对Mybatis Generator生成的Model不做检查-->
+  <suppress checks=".*" files="[\\/]model[\\/]"/>
+
 </suppressions>

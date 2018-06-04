@@ -210,14 +210,15 @@
     </module>
     <module name="JavadocMethod">
       <property name="minLineCount" value="2"/>
-      <property name="allowMissingParamTags" value="true"/>
-      <property name="allowMissingThrowsTags" value="true"/>
-      <property name="allowMissingReturnTag" value="true"/>
-      <property name="allowMissingPropertyJavadoc" value="true"/>
-      <property name="suppressLoadErrors" value="true"/>
+      <property name="allowedAnnotations" value="Override, Test"/>
+      <!--<property name="allowMissingParamTags" value="true"/>-->
+      <!--<property name="allowMissingThrowsTags" value="true"/>-->
+      <!--<property name="allowMissingReturnTag" value="true"/>-->
+      <!--<property name="allowMissingPropertyJavadoc" value="true"/>-->
+      <!--<property name="suppressLoadErrors" value="true"/>-->
       <property name="tokens" value="METHOD_DEF"/>
-      <message key="javadoc.missing"
-               value="非public方法至少需要一个描述性的 Javadoc ，@param、@return和@throws不做强制要求。"/>
+      <!--<message key="javadoc.missing"-->
+               <!--value="非public方法至少需要一个描述性的 Javadoc ，@param、@return和@throws不做强制要求。"/>-->
     </module>
   </module>
   <module name="FileTabCharacter">
@@ -225,4 +226,8 @@
   </module>
   <module name="FileLength"/>
   <module name="UniqueProperties"/>
+  <!--<module name="SuppressionFilter">-->
+    <!--<property name="file" value="suppressions.xml"/>-->
+    <!--<property name="optional" value="false"/>-->
+  <!--</module>-->
 </module>
