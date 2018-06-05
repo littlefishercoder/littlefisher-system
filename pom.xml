@@ -206,4 +206,15 @@
     </plugins>
   </build>
 
+  <repositories>
+    <repository>
+      <id>aliyun-maven</id>
+      <name>aliyun-maven</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
 </project>
