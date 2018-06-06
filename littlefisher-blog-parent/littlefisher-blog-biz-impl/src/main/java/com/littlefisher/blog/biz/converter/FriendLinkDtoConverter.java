@@ -8,10 +8,16 @@ import com.littlefisher.blog.dal.model.FriendLinkDto;
  * @author jinyn22648
  * @version $$Id: FriendLinkDtoConverter.java, v 0.1 2018/3/27 下午8:19 jinyn22648 Exp $$
  */
-public class FriendLinkDtoConverter {
+public final class FriendLinkDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private FriendLinkDtoConverter() {}
 
     /**
      * FriendLinkBizDto转FriendLinkDto
+     * 
      * @param friendLinkBizDto FriendLinkBizDto
      * @return FriendLinkDto
      */
@@ -25,6 +31,7 @@ public class FriendLinkDtoConverter {
 
     /**
      * FriendLinkDto转FriendLinkBizDto
+     * 
      * @param friendLinkDto FriendLinkDto
      * @return FriendLinkBizDto
      */

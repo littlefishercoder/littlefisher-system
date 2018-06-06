@@ -8,7 +8,12 @@ import com.littlefisher.blog.dal.model.TagDto;
  * @author jinyn22648
  * @version $$Id: TagDtoConverter.java, v 0.1 2018/3/27 下午8:40 jinyn22648 Exp $$
  */
-public class TagDtoConverter {
+public final class TagDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private TagDtoConverter() {}
 
     /**
      * TagBizDto转TagDto

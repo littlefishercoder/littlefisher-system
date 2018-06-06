@@ -12,7 +12,12 @@ import com.littlefisher.user.model.UserContactStation4WebsiteBizDto;
  * @version 1.0
  * @since v1.0
  */
-public class UserContactStation4WebsiteDtoConverter {
+public final class UserContactStation4WebsiteDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private UserContactStation4WebsiteDtoConverter() {}
 
     public static UserContactStation4WebsiteDto
         convert2UserContactStation4WebsiteDto(UserContactStation4WebsiteBizDto userContactStation4WebsiteBizDto) {

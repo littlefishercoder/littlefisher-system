@@ -22,7 +22,7 @@ public interface EventListener {
     /**
      * isFailOnException
      * 
-     * @return whether or not the current operation should fail when this listeners execution throws an exception.
+     * @return whether or not the current operation should fail when this listeners execution throws an throwException.
      */
     boolean isFailOnException();
 }

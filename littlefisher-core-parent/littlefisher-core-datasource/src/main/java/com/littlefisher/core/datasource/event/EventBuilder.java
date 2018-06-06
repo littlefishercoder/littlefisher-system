@@ -9,7 +9,12 @@ package com.littlefisher.core.datasource.event;
  * @version 1.0
  * @since v1.0
  */
-public class EventBuilder {
+public final class EventBuilder {
+
+    /**
+     * 私有构造函数
+     */
+    private EventBuilder() {}
 
     public static Event createGlobalEvent(String type) {
         return new EventImpl(type);

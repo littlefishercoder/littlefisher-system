@@ -61,7 +61,7 @@ public class CommandContextInterceptor extends AbstractCommandInterceptor {
 
         } catch (BaseAppException e) {
 
-            context.exception(e);
+            context.throwException(e);
             throw e;
 
         } finally {

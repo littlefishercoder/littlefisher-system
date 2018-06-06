@@ -23,7 +23,13 @@ import com.littlefisher.core.common.exception.BaseAppException;
  * @version 1.0
  * @since v1.0
  */
-public class PackageUtil {
+public final class PackageUtil {
+
+    /**
+     * 私有构造函数
+     */
+    private PackageUtil() {
+    }
 
     /**
      * 扫描获取指定包路径所有类

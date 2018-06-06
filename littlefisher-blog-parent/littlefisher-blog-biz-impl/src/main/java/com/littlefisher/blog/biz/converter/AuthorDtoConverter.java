@@ -12,7 +12,12 @@ import com.littlefisher.blog.dal.model.AuthorDto;
  * @version 1.0
  * @since v1.0
  */
-public class AuthorDtoConverter {
+public final class AuthorDtoConverter {
+    /**
+     * 私有构造函数
+     */
+    private AuthorDtoConverter() {
+    }
 
     public static AuthorDto convert2AuthorDto(AuthorBizDto authorBizDto) {
         return AuthorDto.Builder.getInstance().addId(authorBizDto.getId()).addMotto(authorBizDto.getMotto())

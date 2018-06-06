@@ -12,7 +12,12 @@ import com.littlefisher.user.model.UserContactStation4EmailBizDto;
  * @version 1.0
  * @since v1.0
  */
-public class UserContactStation4EmailDtoConverter {
+public final class UserContactStation4EmailDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private UserContactStation4EmailDtoConverter() {}
 
     public static UserContactStation4EmailDto
         convert2UserContactStation4EmailDto(UserContactStation4EmailBizDto userContactStation4EmailBizDto) {

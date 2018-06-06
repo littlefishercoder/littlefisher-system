@@ -121,6 +121,12 @@ public final class DateUtil {
         DATETIME_FORMAT_4, DATE_FORMAT_1, DATE_FORMAT_2, DATE_FORMAT_3};
 
     /**
+     * 私有构造函数
+     */
+    private DateUtil() {
+    }
+
+    /**
      * Description: 根据传入format格式化日期
      *
      * @param format format

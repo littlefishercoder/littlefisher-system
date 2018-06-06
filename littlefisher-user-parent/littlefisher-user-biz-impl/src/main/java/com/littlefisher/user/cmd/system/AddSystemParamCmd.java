@@ -37,6 +37,7 @@ public class AddSystemParamCmd extends AbstractCommand<SystemParamBizDto> {
     @Override
     public SystemParamBizDto execute() {
         SystemParamDto systemParam = SystemParamDtoConverter.converterSystemParamDto(systemParamBizDto);
+        systemParamDtoDao.insert(systemParam);
         return SystemParamDtoConverter.converterSystemParamBizDto(systemParam);
     }
 

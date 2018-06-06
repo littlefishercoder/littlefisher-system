@@ -12,7 +12,12 @@ import com.littlefisher.user.model.UserContactStation4PhoneBizDto;
  * @version 1.0
  * @since v1.0
  */
-public class UserContactStation4PhoneDtoConverter {
+public final class UserContactStation4PhoneDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private UserContactStation4PhoneDtoConverter() {}
 
     public static UserContactStation4PhoneDto
         convert2UserContactStation4PhoneDto(UserContactStation4PhoneBizDto userContactStation4PhoneBizDto) {

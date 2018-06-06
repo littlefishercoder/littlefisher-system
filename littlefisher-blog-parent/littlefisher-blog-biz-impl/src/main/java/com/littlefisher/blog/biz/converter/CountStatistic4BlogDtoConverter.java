@@ -8,7 +8,12 @@ import com.littlefisher.blog.dal.model.CountStatistic4BlogDto;
  * @author jinyn22648
  * @version $$Id: CountStatistic4BlogDtoConverter.java, v 0.1 2018/3/27 下午7:46 jinyn22648 Exp $$
  */
-public class CountStatistic4BlogDtoConverter {
+public final class CountStatistic4BlogDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private CountStatistic4BlogDtoConverter() {}
 
     /**
      * CountStatistic4BlogBizDto转CountStatistic4BlogDto

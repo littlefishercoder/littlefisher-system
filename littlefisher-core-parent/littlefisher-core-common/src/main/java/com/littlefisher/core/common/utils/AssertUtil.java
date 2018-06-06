@@ -9,7 +9,12 @@ package com.littlefisher.core.common.utils;
  * @version 1.0
  * @since v1.0
  */
-public class AssertUtil {
+public final class AssertUtil {
+
+    /**
+     * 私有构造函数
+     */
+    private AssertUtil() {}
 
     /**
      * 校验是否不为null

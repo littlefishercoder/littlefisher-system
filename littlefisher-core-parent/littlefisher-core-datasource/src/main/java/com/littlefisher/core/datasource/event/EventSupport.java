@@ -128,9 +128,9 @@ public class EventSupport {
             if (listener.isFailOnException()) {
                 ExceptionHandler.publish("COMMON-000002", null, e);
             } else {
-                // Ignore the exception and continue notifying remaining listeners. The
+                // Ignore the throwException and continue notifying remaining listeners. The
                 // listener
-                // explicitly states that the exception should not bubble up
+                // explicitly states that the throwException should not bubble up
                 logger.warn("Exception while executing event-listener, which was ignored", e);
             }
         }

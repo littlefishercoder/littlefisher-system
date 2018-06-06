@@ -31,7 +31,7 @@ public class CommandContext {
     protected SystemEngineConfig systemEngineConfig;
 
     /**
-     * exception
+     * throwException
      */
     protected Throwable exception = null;
 
@@ -62,7 +62,7 @@ public class CommandContext {
      * 
      * @param exception 异常信息
      */
-    public void exception(Throwable exception) {
+    public void throwException(Throwable exception) {
         if (this.exception == null) {
             this.exception = exception;
         }

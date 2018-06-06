@@ -18,7 +18,6 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.schema.AlternateTypeRules;
 import springfox.documentation.schema.WildcardType;
 import springfox.documentation.service.ApiInfo;
-import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
 import springfox.documentation.service.SecurityReference;
@@ -96,14 +95,14 @@ public class SwaggerConfig {
         // .additionalModels(typeResolver.resolve(AdditionalModel.class))
     }
 
-    /**
-     * 获取ApiKey
-     * 
-     * @return ApiKey
-     */
-    private ApiKey apiKey() {
-        return new ApiKey("mykey", "api_key", "header");
-    }
+    // /**
+    // * 获取ApiKey
+    // *
+    // * @return ApiKey
+    // */
+    // private ApiKey apiKey() {
+    // return new ApiKey("mykey", "api_key", "header");
+    // }
 
     /**
      * 获取SecurityContext

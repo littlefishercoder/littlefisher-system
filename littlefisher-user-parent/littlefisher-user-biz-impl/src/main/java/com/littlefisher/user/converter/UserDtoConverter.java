@@ -8,7 +8,12 @@ import com.littlefisher.user.model.UserBizDto;
  * @author jinyn22648
  * @version $$Id: UserDtoConverter.java, v 0.1 2018/3/26 下午7:45 jinyn22648 Exp $$
  */
-public class UserDtoConverter {
+public final class UserDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private UserDtoConverter() {}
 
     /**
      * UserBizDto转UserDto

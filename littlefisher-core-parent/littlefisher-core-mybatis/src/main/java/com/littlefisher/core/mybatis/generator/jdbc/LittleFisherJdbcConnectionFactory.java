@@ -96,7 +96,7 @@ public class LittleFisherJdbcConnectionFactory implements ConnectionFactory {
             Class<?> clazz = ObjectFactory.externalClassForName(driverClass);
             driver = (Driver) clazz.newInstance();
         } catch (Exception e) {
-            throw new RuntimeException(Messages.getString("RuntimeError.8"), e);
+            throw new IllegalArgumentException(Messages.getString("RuntimeError.8"), e);
         }
 
         return driver;

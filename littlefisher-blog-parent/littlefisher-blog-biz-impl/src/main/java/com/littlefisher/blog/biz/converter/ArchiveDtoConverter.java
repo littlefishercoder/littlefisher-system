@@ -8,7 +8,13 @@ import com.littlefisher.blog.dal.model.ArchiveDto;
  * @author jinyn22648
  * @version $$Id: ArchiveDtoConverter.java, v 0.1 2018/3/26 下午8:35 jinyn22648 Exp $$
  */
-public class ArchiveDtoConverter {
+public final class ArchiveDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private ArchiveDtoConverter() {
+    }
 
     /**
      * ArchiveBizDto转ArchiveDto

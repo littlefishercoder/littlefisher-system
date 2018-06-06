@@ -8,10 +8,16 @@ import com.littlefisher.blog.dal.model.CountStatisticDto;
  * @author jinyn22648
  * @version $$Id: CountStatisticDtoConverter.java, v 0.1 2018/3/27 下午7:32 jinyn22648 Exp $$
  */
-public class CountStatisticDtoConverter {
+public final class CountStatisticDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private CountStatisticDtoConverter() {}
 
     /**
      * CountStatisticBizDto转CountStatisticDto
+     * 
      * @param countStatisticBizDto CountStatisticBizDto
      * @return CountStatisticDto
      */
@@ -24,6 +30,7 @@ public class CountStatisticDtoConverter {
 
     /**
      * CountStatisticDto转CountStatisticBizDto
+     * 
      * @param countStatisticDto CountStatisticDto
      * @return CountStatisticBizDto
      */

@@ -16,7 +16,12 @@ import tk.mybatis.mapper.mapperhelper.EntityHelper;
  * @version 1.0
  * @since v1.0
  */
-public class SqlHelper extends tk.mybatis.mapper.mapperhelper.SqlHelper {
+public final class SqlHelper extends tk.mybatis.mapper.mapperhelper.SqlHelper {
+
+    /**
+     * 私有构造函数
+     */
+    private SqlHelper() {}
 
     /**
      * example支持查询指定列时

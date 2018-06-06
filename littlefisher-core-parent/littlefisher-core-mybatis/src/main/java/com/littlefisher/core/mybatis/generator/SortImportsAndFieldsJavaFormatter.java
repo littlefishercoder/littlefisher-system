@@ -206,7 +206,7 @@ public class SortImportsAndFieldsJavaFormatter implements JavaFormatter {
 
         sortImportTypes(sb, importStrings);
 
-        if (importStrings.size() > 0) {
+        if (CollectionUtil.isNotEmpty(importStrings)) {
             OutputUtilities.newLine(sb);
         }
 
@@ -281,7 +281,7 @@ public class SortImportsAndFieldsJavaFormatter implements JavaFormatter {
             OutputUtilities.newLine(sb);
         });
 
-        if (javaTypes.size() > 0) {
+        if (CollectionUtil.isNotEmpty(javaTypes)) {
             OutputUtilities.newLine(sb);
         }
     }

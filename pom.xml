@@ -47,6 +47,7 @@
     <zkclient.version>0.10</zkclient.version>
     <guava.version>25.0-jre</guava.version>
     <hibernate-validator.version>6.0.9.Final</hibernate-validator.version>
+    <pmd.version>6.4.0</pmd.version>
     <littlefisher-core.version>1.2.0-SNAPSHOT</littlefisher-core.version>
   </properties>
 
@@ -137,7 +138,6 @@
     </dependencies>
   </dependencyManagement>
 
-
   <build>
     <pluginManagement>
       <plugins>
@@ -202,6 +202,62 @@
           <consoleOutput>true</consoleOutput>
           <failOnViolation>true</failOnViolation>
         </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.9.0</version>
+        <dependencies>
+          <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd-core</artifactId>
+            <version>${pmd.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd-java</artifactId>
+            <version>${pmd.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd-javascript</artifactId>
+            <version>${pmd.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd-jsp</artifactId>
+            <version>${pmd.version}</version>
+          </dependency>
+        </dependencies>
+        <configuration>
+          <!--编码格式-->
+          <sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
+          <!--是否生成报告-->
+          <linkXRef>false</linkXRef>
+          <!--jdk版本-->
+          <targetJdk>${java.version}</targetJdk>
+          <failOnViolation>true</failOnViolation>
+          <printFailingErrors>true</printFailingErrors>
+          <!--pmd校验规则-->
+          <rulesets>
+            <ruleset>https://github.com/littlefishercoder/littlefisher-system/blob/dev/lint/pmd-ruleset.xml</ruleset>
+          </rulesets>
+          <!-- 开启分析缓存 -->
+          <analysisCache>true</analysisCache>
+          <!-- 分析缓存文件地址 -->
+          <analysisCacheLocation>${project.build.directory}/pmd/pmd.cache</analysisCacheLocation>
+          <!--例外文件-->
+          <excludes>
+            <exclude>**/dal/model/*.java</exclude>
+            <exclude>**/dal/example/*.java</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

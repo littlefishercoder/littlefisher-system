@@ -15,7 +15,7 @@ import com.littlefisher.core.datasource.interceptor.CommandContext;
  * @version 1.0
  * @since v1.0
  */
-public class Context {
+public final class Context {
 
     /**
      * commandContextThreadLocal 分线程存储命令上下文
@@ -26,6 +26,11 @@ public class Context {
      * systemEngineConfigStackThreadLocal 分线程存储引擎配置
      */
     protected static ThreadLocal<Deque<SystemEngineConfig>> systemEngineConfigStackThreadLocal = new ThreadLocal<>();
+
+    /**
+     * 私有构造函数
+     */
+    private Context() {}
 
     /**
      * 获取CommandContext

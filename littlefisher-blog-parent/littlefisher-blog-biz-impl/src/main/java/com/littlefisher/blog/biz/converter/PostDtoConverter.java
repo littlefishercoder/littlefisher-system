@@ -8,10 +8,16 @@ import com.littlefisher.blog.dal.model.PostDto;
  * @author jinyn22648
  * @version $$Id: PostDtoConverter.java, v 0.1 2018/3/27 下午8:28 jinyn22648 Exp $$
  */
-public class PostDtoConverter {
+public final class PostDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private PostDtoConverter() {}
 
     /**
      * PostBizDto转PostDto
+     * 
      * @param postBizDto PostBizDto
      * @return PostDto
      */
@@ -26,6 +32,7 @@ public class PostDtoConverter {
 
     /**
      * PostDto转PostBizDto
+     * 
      * @param postDto PostDto
      * @return PostBizDto
      */

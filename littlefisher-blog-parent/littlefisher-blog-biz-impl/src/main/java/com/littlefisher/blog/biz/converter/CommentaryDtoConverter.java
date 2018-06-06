@@ -8,7 +8,12 @@ import com.littlefisher.blog.dal.model.CommentaryDto;
  * @author jinyn22648
  * @version $$Id: CommentaryDtoConverter.java, v 0.1 2018/3/27 上午10:16 jinyn22648 Exp $$
  */
-public class CommentaryDtoConverter {
+public final class CommentaryDtoConverter {
+
+    /**
+     * 私有构造函数
+     */
+    private CommentaryDtoConverter() {}
 
     /**
      * CommentaryBizDto转CommentaryDto

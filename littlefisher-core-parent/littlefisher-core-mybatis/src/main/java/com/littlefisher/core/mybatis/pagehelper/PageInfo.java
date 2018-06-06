@@ -8,6 +8,7 @@ import java.util.function.Function;
 import com.github.pagehelper.Page;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
+import com.littlefisher.core.common.utils.CollectionUtil;
 
 /**
  * 对Page结果进行包装
@@ -155,7 +156,7 @@ public class PageInfo<T> implements Serializable {
             this.size = list.size();
             this.total = list.size();
             this.startRow = 0;
-            this.endRow = list.size() > 0 ? list.size() - 1 : 0;
+            this.endRow = CollectionUtil.isNotEmpty(list) ? list.size() - 1 : 0;
         }
         if (list instanceof Collection) {
             this.navigatePages = navigatePages;
@@ -227,7 +228,7 @@ public class PageInfo<T> implements Serializable {
      */
     private void judgePageBoudary() {
         isFirstPage = pageNum == 1;
-        isLastPage = pageNum == pages || pages == 0;;
+        isLastPage = pageNum == pages || pages == 0;
         hasPreviousPage = pageNum > 1;
         hasNextPage = pageNum < pages;
     }
