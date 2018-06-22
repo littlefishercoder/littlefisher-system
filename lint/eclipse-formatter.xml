@@ -501,7 +501,7 @@
     <setting id="org.eclipse.jdt.core.formatter.insert_new_line_after_type_annotation"
              value="do not insert"/>
     <setting id="org.eclipse.jdt.core.formatter.insert_new_line_after_label" value="insert"/>
-    <!--Idea可以通过Wrap Always实现 TODO-->
+    <!--Idea可以通过Wrap Always实现-->
     <setting id="org.eclipse.jdt.core.formatter.insert_new_line_after_annotation_on_field"
              value="insert"/>
     <setting id="org.eclipse.jdt.core.formatter.insert_new_line_after_annotation_on_method"
@@ -798,7 +798,7 @@
     <!--Java:KEEP_SIMPLE_BLOCKS_IN_ONE_LINE-->
     <setting id="org.eclipse.jdt.core.formatter.keep_imple_if_on_one_line" value="false"/>
 
-    <!--Java:CLASS_BRACE_STYLE，统一使用end_of_line TODO-->
+    <!--Java:CLASS_BRACE_STYLE，统一使用end_of_line-->
     <setting id="org.eclipse.jdt.core.formatter.brace_position_for_enum_constant"
              value="end_of_line"/>
     <setting id="org.eclipse.jdt.core.formatter.brace_position_for_type_declaration"
