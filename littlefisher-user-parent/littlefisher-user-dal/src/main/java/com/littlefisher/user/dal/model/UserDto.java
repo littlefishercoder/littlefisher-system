@@ -11,7 +11,6 @@ import javax.persistence.Table;
 
 import com.littlefisher.user.common.enums.EnumUserState;
 
-
 /**
  *
  * Description: bfm_user 实体

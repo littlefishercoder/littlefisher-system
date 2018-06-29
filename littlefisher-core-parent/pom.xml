@@ -18,6 +18,7 @@
     <module>littlefisher-core-datasource</module>
     <module>littlefisher-core-message</module>
     <module>littlefisher-core-mybatis</module>
+    <module>littlefisher-core-spring-cloud</module>
   </modules>
 
 

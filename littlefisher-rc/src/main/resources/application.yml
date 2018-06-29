@@ -1,0 +1,11 @@
+server:
+  port: 8761
+
+eureka:
+  client:
+    # 由于当前应用为注册中心，所以设置不向注册中心注册自己
+    registerWithEureka: false
+    # 由于注册中心的职责是维护服务实例，不需要检索服务
+    fetchRegistry: false
+  server:
+    waitTimeInMsWhenSyncEmpty: 0

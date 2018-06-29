@@ -1,8 +1,8 @@
 package com.littlefisher.web.dal.integration.blog.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.littlefisher.blog.biz.model.ArchiveBizDto;
 import com.littlefisher.blog.biz.service.IArchiveService;
 import com.littlefisher.web.dal.integration.blog.IArchiveIntegration;
@@ -19,7 +19,8 @@ import com.littlefisher.web.dal.integration.blog.IArchiveIntegration;
 @Repository
 public class ArchiveIntegrationImpl implements IArchiveIntegration {
 
-    @Reference
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private IArchiveService archiveService;
 
     @Override

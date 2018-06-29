@@ -1,8 +1,7 @@
 package com.littlefisher.blog.biz.service.impl;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.littlefisher.blog.biz.cmd.countstatistic.AddBlogCountTimesCmd;
 import com.littlefisher.blog.biz.cmd.countstatistic.AddPostCountTimesCmd;
 import com.littlefisher.blog.biz.cmd.countstatistic.GetBlogCountStatisticCmd;
@@ -22,8 +21,7 @@ import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
  * @version 1.0
  * @since v1.0
  */
-@Component
-@Service(interfaceClass = ICountStatisticService.class)
+@Service
 public class CountStatisticServiceImpl extends ServiceImpl implements ICountStatisticService {
 
     @Override

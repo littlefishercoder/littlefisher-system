@@ -2,11 +2,10 @@ package com.littlefisher.blog.biz.model;
 
 import java.io.Serializable;
 
-import com.littlefisher.user.model.UserBizDto;
+import com.littlefisher.user.biz.model.UserBizDto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
 
 /**
  *

@@ -1,21 +1,8 @@
 spring:
   aop:
     auto: true
-  dubbo:
-    server: true
-    application:
-      name: web-deploy
-    consumer:
-      timeout: 10000
-      retries: 3
-      # 启动检查，避免依赖服务未启动导致Spring启动报差错
-      check: false
-    registry:
-      # 注册地址，配置多个会报错
-      address: zookeeper://106.14.156.120:2181
-    protocol:
-      name: dubbo
-      port: 20883
+  application:
+    name: web
 
 server:
   servlet:
@@ -33,3 +20,7 @@ littlefisher:
       # authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
       /static/*: anon
       /*: authc
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

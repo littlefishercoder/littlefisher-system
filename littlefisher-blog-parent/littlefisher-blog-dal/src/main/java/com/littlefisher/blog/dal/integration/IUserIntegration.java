@@ -2,8 +2,8 @@ package com.littlefisher.blog.dal.integration;
 
 import java.util.List;
 
-import com.littlefisher.user.model.UserBizDto;
-import com.littlefisher.user.model.UserContactStation4WebsiteBizDto;
+import com.littlefisher.user.biz.model.UserBizDto;
+import com.littlefisher.user.biz.model.UserContactStation4WebsiteBizDto;
 
 /**
  *

@@ -3,8 +3,8 @@ package com.littlefisher.blog.biz.model;
 import java.io.Serializable;
 import java.util.List;
 
-import com.littlefisher.user.model.UserBizDto;
-import com.littlefisher.user.model.UserContactStation4WebsiteBizDto;
+import com.littlefisher.user.biz.model.UserBizDto;
+import com.littlefisher.user.biz.model.UserContactStation4WebsiteBizDto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

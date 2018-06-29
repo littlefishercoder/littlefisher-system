@@ -5,9 +5,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
-
-import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 
 /**
  * Description: Application.java
@@ -19,9 +19,9 @@ import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
  * @since v1.0
  */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@EnableDubboConfiguration
 @ComponentScan(basePackages = {"com.littlefisher.**"})
-//@DubboComponentScan(basePackages = "com.littlefisher.**.service.impl")
+@EnableDiscoveryClient
+@EnableFeignClients
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

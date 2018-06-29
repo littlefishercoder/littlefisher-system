@@ -2,6 +2,10 @@ package com.littlefisher.blog.biz.service;
 
 import java.util.List;
 
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 import com.littlefisher.blog.biz.model.FriendLinkBizDto;
 
 /**
@@ -13,12 +17,15 @@ import com.littlefisher.blog.biz.model.FriendLinkBizDto;
  * @version 1.0
  * @since v1.0
  */
+@FeignClient(value = "friend-link-service", path = "/friendLinks")
 public interface IFriendLinkService {
 
     /**
      * 查询友情链接
+     * 
      * @param authorId 作者id
      * @return 友情链接
      */
-    List<FriendLinkBizDto> getFriendLinkList(Long authorId);
+    @GetMapping("/{authorId}")
+    List<FriendLinkBizDto> getFriendLinkList(@PathVariable("authorId") Long authorId);
 }

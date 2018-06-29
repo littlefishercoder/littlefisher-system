@@ -19,7 +19,7 @@ import com.littlefisher.core.common.stereotype.annotations.Command;
 import com.littlefisher.core.datasource.interceptor.AbstractCommand;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
 import com.littlefisher.core.mybatis.pagehelper.PageParam;
-import com.littlefisher.user.model.UserBizDto;
+import com.littlefisher.user.biz.model.UserBizDto;
 
 /**
  *

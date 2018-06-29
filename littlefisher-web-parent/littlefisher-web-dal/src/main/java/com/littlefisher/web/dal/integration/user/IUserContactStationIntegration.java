@@ -2,10 +2,10 @@ package com.littlefisher.web.dal.integration.user;
 
 import java.util.List;
 
-import com.littlefisher.user.model.UserContactStation4EmailBizDto;
-import com.littlefisher.user.model.UserContactStation4PhoneBizDto;
-import com.littlefisher.user.model.UserContactStation4SocialBizDto;
-import com.littlefisher.user.model.UserContactStation4WebsiteBizDto;
+import com.littlefisher.user.biz.model.UserContactStation4EmailBizDto;
+import com.littlefisher.user.biz.model.UserContactStation4PhoneBizDto;
+import com.littlefisher.user.biz.model.UserContactStation4SocialBizDto;
+import com.littlefisher.user.biz.model.UserContactStation4WebsiteBizDto;
 
 /**
  * Description: IUserContactStationIntegration.java

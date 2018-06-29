@@ -1,14 +1,14 @@
 package com.littlefisher.web.dal.integration.user.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
-import com.littlefisher.user.model.SystemParamBizDto;
-import com.littlefisher.user.request.AddSystemParamRequest;
-import com.littlefisher.user.request.GetSystemParamList4PageByCondRequest;
-import com.littlefisher.user.request.UpdateSystemParamRequest;
-import com.littlefisher.user.service.ISystemParamService;
+import com.littlefisher.user.biz.model.SystemParamBizDto;
+import com.littlefisher.user.biz.request.AddSystemParamRequest;
+import com.littlefisher.user.biz.request.GetSystemParamList4PageByCondRequest;
+import com.littlefisher.user.biz.request.UpdateSystemParamRequest;
+import com.littlefisher.user.biz.service.ISystemParamService;
 import com.littlefisher.web.dal.integration.user.ISystemParamIntegration;
 
 /**
@@ -23,7 +23,8 @@ import com.littlefisher.web.dal.integration.user.ISystemParamIntegration;
 @Repository
 public class SystemParamIntegrationImpl implements ISystemParamIntegration {
 
-    @Reference
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private ISystemParamService systemParamService;
 
     @Override

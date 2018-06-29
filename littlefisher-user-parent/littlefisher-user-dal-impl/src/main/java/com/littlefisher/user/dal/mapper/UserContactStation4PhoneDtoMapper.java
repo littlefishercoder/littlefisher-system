@@ -3,7 +3,6 @@ package com.littlefisher.user.dal.mapper;
 import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
 import com.littlefisher.user.dal.model.UserContactStation4PhoneDto;
 
-
 /**
  * Description: bfm_user_contact_station_4_phone Mapper 接口
  *

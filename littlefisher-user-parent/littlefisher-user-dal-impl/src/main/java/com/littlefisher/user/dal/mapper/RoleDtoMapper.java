@@ -3,7 +3,6 @@ package com.littlefisher.user.dal.mapper;
 import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
 import com.littlefisher.user.dal.model.RoleDto;
 
-
 /**
  * Description: bfm_role Mapper 接口
  *

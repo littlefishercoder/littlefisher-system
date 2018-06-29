@@ -19,6 +19,11 @@
     </dependency>
     <dependency>
       <groupId>com.littlefisher</groupId>
+      <artifactId>littlefisher-core-spring-cloud</artifactId>
+      <version>${littlefisher-core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.littlefisher</groupId>
       <artifactId>littlefisher-core-mybatis</artifactId>
       <version>${littlefisher-core.version}</version>
     </dependency>

@@ -3,10 +3,10 @@ package com.littlefisher.web.dal.integration.user;
 import java.util.List;
 
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
-import com.littlefisher.user.model.UserBizDto;
-import com.littlefisher.user.request.AddUserRequest;
-import com.littlefisher.user.request.GetUserList4PageByCondRequest;
-import com.littlefisher.user.request.UpdateUserRequest;
+import com.littlefisher.user.biz.model.UserBizDto;
+import com.littlefisher.user.biz.request.AddUserRequest;
+import com.littlefisher.user.biz.request.GetUserList4PageByCondRequest;
+import com.littlefisher.user.biz.request.UpdateUserRequest;
 
 /**
  * IUserIntegration.java

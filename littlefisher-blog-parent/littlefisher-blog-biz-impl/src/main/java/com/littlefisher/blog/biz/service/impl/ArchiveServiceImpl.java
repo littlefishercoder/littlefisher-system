@@ -1,8 +1,7 @@
 package com.littlefisher.blog.biz.service.impl;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.littlefisher.blog.biz.cmd.archive.AddArchiveCmd;
 import com.littlefisher.blog.biz.cmd.archive.GetArchiveByNameCmd;
 import com.littlefisher.blog.biz.model.ArchiveBizDto;
@@ -18,8 +17,7 @@ import com.littlefisher.core.datasource.interceptor.service.ServiceImpl;
  * @version 1.0
  * @since v1.0
  */
-@Component
-@Service(interfaceClass = IArchiveService.class)
+@Service
 public class ArchiveServiceImpl extends ServiceImpl implements IArchiveService {
 
     @Override

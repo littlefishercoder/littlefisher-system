@@ -2,14 +2,14 @@ package com.littlefisher.blog.dal.integration.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.littlefisher.blog.dal.integration.IUserIntegration;
-import com.littlefisher.user.model.UserBizDto;
-import com.littlefisher.user.model.UserContactStation4WebsiteBizDto;
-import com.littlefisher.user.service.IUserContactStationService;
-import com.littlefisher.user.service.IUserService;
+import com.littlefisher.user.biz.model.UserBizDto;
+import com.littlefisher.user.biz.model.UserContactStation4WebsiteBizDto;
+import com.littlefisher.user.biz.service.IUserContactStationService;
+import com.littlefisher.user.biz.service.IUserService;
 
 /**
  *
@@ -19,10 +19,12 @@ import com.littlefisher.user.service.IUserService;
 @Repository
 public class UserIntegrationImpl implements IUserIntegration {
 
-    @Reference(interfaceClass = IUserService.class)
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private IUserService userService;
 
-    @Reference(interfaceClass = IUserContactStationService.class)
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private IUserContactStationService userContactStationService;
 
     @Override

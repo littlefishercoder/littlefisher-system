@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.littlefisher.core.common.stereotype.constants.BaseConstants;
-import com.littlefisher.user.request.GetResourceRequest;
+import com.littlefisher.user.biz.request.GetResourceRequest;
 import com.littlefisher.web.dal.integration.user.ISystemIntegration;
 
 import io.swagger.annotations.Api;

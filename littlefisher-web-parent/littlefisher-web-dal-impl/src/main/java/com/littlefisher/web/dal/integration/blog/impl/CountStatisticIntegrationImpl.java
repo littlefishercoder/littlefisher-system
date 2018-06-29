@@ -1,8 +1,8 @@
 package com.littlefisher.web.dal.integration.blog.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.littlefisher.blog.biz.model.CountStatisticBizExtDto;
 import com.littlefisher.blog.biz.request.AddBlogCountTimesRequest;
 import com.littlefisher.blog.biz.request.AddPostCountTimesRequest;
@@ -21,7 +21,8 @@ import com.littlefisher.web.dal.integration.blog.ICountStatisticIntegration;
 @Repository
 public class CountStatisticIntegrationImpl implements ICountStatisticIntegration {
 
-    @Reference
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private ICountStatisticService countStatisticService;
 
     @Override

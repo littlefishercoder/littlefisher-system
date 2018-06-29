@@ -91,20 +91,22 @@ spring:
       # consumer
       # session超时时间
       session.timeout.ms: 15000
-  dubbo:
-    server: true
-    application:
-      name: user-deploy
-    consumer:
-      timeout: 10000
-      retries: 3
-      # 启动检查，避免依赖服务未启动导致Spring启动报差错
-      check: false
-    registry:
-      address: zookeeper://106.14.156.120:2181
-    protocol:
-      name: dubbo
-      port: 20882
+  application:
+    name: user
+#  dubbo:
+#    server: true
+#    application:
+#      name: user-deploy
+#    consumer:
+#      timeout: 10000
+#      retries: 3
+#      # 启动检查，避免依赖服务未启动导致Spring启动报差错
+#      check: false
+#    registry:
+#      address: zookeeper://106.14.156.120:2181
+#    protocol:
+#      name: dubbo
+#      port: 20882
 
 server:
   port: 8082
@@ -125,3 +127,7 @@ littlefisher:
   mybatis:
     # 配置Mybatis枚举扫描路径
     type-enums-package: classpath*:com/littlefisher/**/enums/**/Enum*
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

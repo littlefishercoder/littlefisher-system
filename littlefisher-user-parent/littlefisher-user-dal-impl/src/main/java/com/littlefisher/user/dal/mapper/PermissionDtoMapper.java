@@ -3,7 +3,6 @@ package com.littlefisher.user.dal.mapper;
 import com.littlefisher.core.mybatis.mapper.common.CommonMapper;
 import com.littlefisher.user.dal.model.PermissionDto;
 
-
 /**
  * Description: bfm_permission Mapper 接口
  *

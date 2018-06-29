@@ -21,8 +21,7 @@ import com.littlefisher.user.dal.param.SelectSystemParam4PageByCondParam;
  */
 @Repository
 public class SystemParamDtoDaoImpl extends AbstractBaseDaoImpl<SystemParamDto, SystemParamDtoMapper>
-        implements
-        ISystemParamDtoDao {
+        implements ISystemParamDtoDao {
 
     @Autowired
     private SystemParamDtoMapper systemParamDtoMapper;

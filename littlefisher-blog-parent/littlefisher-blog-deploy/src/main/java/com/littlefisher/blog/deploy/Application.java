@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
-
-import com.alibaba.dubbo.spring.boot.annotation.EnableDubboConfiguration;
 
 import tk.mybatis.spring.annotation.MapperScan;
 
@@ -20,10 +20,10 @@ import tk.mybatis.spring.annotation.MapperScan;
  * @since v1.0
  */
 @SpringBootApplication
-@EnableDubboConfiguration
 @MapperScan("com.littlefisher.**.dal.mapper")
 @ComponentScan(basePackages = {"com.littlefisher.**"})
-// @DubboComponentScan(basePackages = "com.littlefisher.**.service.impl")
+@EnableDiscoveryClient
+@EnableFeignClients(basePackages = "com.littlefisher.**.biz.service.**")
 public class Application extends SpringBootServletInitializer {
 
     public static void main(String[] args) {

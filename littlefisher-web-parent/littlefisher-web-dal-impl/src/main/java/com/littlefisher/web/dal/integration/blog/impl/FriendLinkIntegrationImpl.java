@@ -2,9 +2,9 @@ package com.littlefisher.web.dal.integration.blog.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.littlefisher.blog.biz.model.FriendLinkBizDto;
 import com.littlefisher.blog.biz.service.IFriendLinkService;
 import com.littlefisher.web.dal.integration.blog.IFriendLinkIntegration;
@@ -21,7 +21,8 @@ import com.littlefisher.web.dal.integration.blog.IFriendLinkIntegration;
 @Repository
 public class FriendLinkIntegrationImpl implements IFriendLinkIntegration {
 
-    @Reference
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private IFriendLinkService friendLinkService;
 
     @Override

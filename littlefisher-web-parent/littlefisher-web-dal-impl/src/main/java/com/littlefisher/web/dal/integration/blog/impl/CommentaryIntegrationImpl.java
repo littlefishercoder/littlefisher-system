@@ -1,8 +1,8 @@
 package com.littlefisher.web.dal.integration.blog.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.littlefisher.blog.biz.model.CommentaryBizDto;
 import com.littlefisher.blog.biz.model.CommentaryBizExtDto;
 import com.littlefisher.blog.biz.request.AddCommentaryRequest;
@@ -24,7 +24,8 @@ import com.littlefisher.web.dal.integration.blog.ICommentaryIntegration;
 @Repository
 public class CommentaryIntegrationImpl implements ICommentaryIntegration {
 
-    @Reference
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private ICommentaryService commentaryService;
 
     @Override

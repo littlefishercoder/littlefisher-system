@@ -13,7 +13,6 @@ import com.littlefisher.core.common.stereotype.enums.EnumBizBool;
 import com.littlefisher.user.common.enums.EnumUserContactStationState;
 import com.littlefisher.user.common.enums.EnumUserContactStationType;
 
-
 /**
  *
  * Description: bfm_user_contact_station 实体

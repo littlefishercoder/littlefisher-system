@@ -1,8 +1,7 @@
 package com.littlefisher.blog.biz.service.impl;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.littlefisher.blog.biz.cmd.commentary.AddCommentaryCmd;
 import com.littlefisher.blog.biz.cmd.commentary.DeleteCommentaryCmd;
 import com.littlefisher.blog.biz.cmd.commentary.GetCommentaryByIdCmd;
@@ -27,8 +26,7 @@ import com.littlefisher.core.mybatis.pagehelper.PageInfo;
  * @version 1.0
  * @since v1.0
  */
-@Component
-@Service(interfaceClass = ICommentaryService.class)
+@Service
 public class CommentaryServiceImpl extends ServiceImpl implements ICommentaryService {
 
     @Override

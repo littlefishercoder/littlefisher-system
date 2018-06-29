@@ -1,8 +1,8 @@
 package com.littlefisher.web.dal.integration.blog.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.littlefisher.blog.biz.model.PostTagBizDto;
 import com.littlefisher.blog.biz.model.TagBizDto;
 import com.littlefisher.blog.biz.request.GetTagList4PageByCondRequest;
@@ -22,7 +22,8 @@ import com.littlefisher.web.dal.integration.blog.ITagIntegration;
 @Repository
 public class TagIntegrationImpl implements ITagIntegration {
 
-    @Reference
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private ITagService tagService;
 
     @Override

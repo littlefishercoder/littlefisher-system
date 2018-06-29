@@ -2,10 +2,10 @@ package com.littlefisher.web.dal.integration.user.impl;
 
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.littlefisher.user.service.ISystemService;
+import com.littlefisher.user.biz.service.ISystemService;
 import com.littlefisher.web.dal.integration.user.ISystemIntegration;
 
 /**
@@ -20,7 +20,8 @@ import com.littlefisher.web.dal.integration.user.ISystemIntegration;
 @Repository
 public class SystemIntegrationImpl implements ISystemIntegration {
 
-    @Reference
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private ISystemService systemService;
 
     @Override

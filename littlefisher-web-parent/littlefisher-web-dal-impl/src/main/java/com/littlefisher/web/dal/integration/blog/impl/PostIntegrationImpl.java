@@ -1,8 +1,8 @@
 package com.littlefisher.web.dal.integration.blog.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.littlefisher.blog.biz.model.PostBizDto;
 import com.littlefisher.blog.biz.model.PostBizExtDto;
 import com.littlefisher.blog.biz.request.AddPostRequest;
@@ -24,7 +24,8 @@ import com.littlefisher.web.dal.integration.blog.IPostIntegration;
 @Repository
 public class PostIntegrationImpl implements IPostIntegration {
 
-    @Reference
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private IPostService postService;
 
     @Override

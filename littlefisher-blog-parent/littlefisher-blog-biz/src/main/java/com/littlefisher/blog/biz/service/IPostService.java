@@ -1,11 +1,20 @@
 package com.littlefisher.blog.biz.service;
 
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.littlefisher.blog.biz.model.PostBizDto;
 import com.littlefisher.blog.biz.model.PostBizExtDto;
 import com.littlefisher.blog.biz.request.AddPostRequest;
 import com.littlefisher.blog.biz.request.GetPostList4PageByCondRequest;
 import com.littlefisher.blog.biz.request.UpdatePostRequest;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
+import com.littlefisher.core.spring.cloud.feign.annotation.JsonArgument;
 
 /**
  * Description: 博文接口
@@ -16,6 +25,7 @@ import com.littlefisher.core.mybatis.pagehelper.PageInfo;
  * @version 1.0
  * @since v1.0
  */
+@FeignClient(value = "post-service", path = "/posts")
 public interface IPostService {
 
     /**
@@ -24,7 +34,8 @@ public interface IPostService {
      * @param req req
      * @return 博文列表
      */
-    PageInfo<PostBizExtDto> getPostList4PageByCond(GetPostList4PageByCondRequest req);
+    @GetMapping("/page")
+    PageInfo<PostBizExtDto> getPostList4PageByCond(@JsonArgument("request") GetPostList4PageByCondRequest req);
 
     /**
      * 根据id查询博文信息
@@ -32,7 +43,8 @@ public interface IPostService {
      * @param postId postId
      * @return PostDto
      */
-    PostBizDto getPostById(Long postId);
+    @GetMapping("/{postId}")
+    PostBizDto getPostById(@PathVariable("postId") Long postId);
 
     /**
      * 根据id查询博文，不带博文全文
@@ -40,14 +52,16 @@ public interface IPostService {
      * @param postId 博文id
      * @return 博文实体
      */
-    PostBizDto getPostWithoutBlobById(Long postId);
+    @GetMapping("/{postId}")
+    PostBizDto getPostWithoutBlobById(@PathVariable("postId") Long postId);
 
     /**
      * 新增博文
      *
      * @param request request
      */
-    void addPost(AddPostRequest request);
+    @PostMapping
+    void addPost(@RequestBody AddPostRequest request);
 
     /**
      * 修改博文
@@ -55,7 +69,8 @@ public interface IPostService {
      * @param request postDto
      * @return PostDto
      */
-    PostBizDto updatePost(UpdatePostRequest request);
+    @PatchMapping
+    PostBizDto updatePost(@RequestBody UpdatePostRequest request);
 
     /**
      * 删除博文
@@ -63,6 +78,7 @@ public interface IPostService {
      * @param postId postId
      * @return int
      */
-    int deletePostById(Long postId);
+    @DeleteMapping("/{postId}")
+    int deletePostById(@PathVariable("postId") Long postId);
 
 }

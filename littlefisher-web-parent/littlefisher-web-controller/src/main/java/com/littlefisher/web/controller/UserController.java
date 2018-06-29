@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.littlefisher.core.common.stereotype.constants.BaseConstants;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
-import com.littlefisher.user.model.UserBizDto;
-import com.littlefisher.user.request.AddUserRequest;
-import com.littlefisher.user.request.GetUserList4PageByCondRequest;
-import com.littlefisher.user.request.UpdateUserRequest;
+import com.littlefisher.user.biz.model.UserBizDto;
+import com.littlefisher.user.biz.request.AddUserRequest;
+import com.littlefisher.user.biz.request.GetUserList4PageByCondRequest;
+import com.littlefisher.user.biz.request.UpdateUserRequest;
 import com.littlefisher.web.dal.integration.user.IUserIntegration;
 
 import io.swagger.annotations.Api;

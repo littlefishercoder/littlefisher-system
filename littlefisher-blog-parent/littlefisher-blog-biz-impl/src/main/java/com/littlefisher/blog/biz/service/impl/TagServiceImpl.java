@@ -1,8 +1,7 @@
 package com.littlefisher.blog.biz.service.impl;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.alibaba.dubbo.config.annotation.Service;
 import com.littlefisher.blog.biz.cmd.tag.AddTagCmd;
 import com.littlefisher.blog.biz.cmd.tag.GetTagByNameCmd;
 import com.littlefisher.blog.biz.cmd.tag.GetTagList4PagerByCondCmd;
@@ -23,8 +22,7 @@ import com.littlefisher.core.mybatis.pagehelper.PageInfo;
  * @version 1.0
  * @since v1.0
  */
-@Component
-@Service(interfaceClass = ITagService.class)
+@Service
 public class TagServiceImpl extends ServiceImpl implements ITagService {
 
     @Override

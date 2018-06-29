@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.littlefisher.core.common.stereotype.constants.BaseConstants;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
-import com.littlefisher.user.model.SystemParamBizDto;
-import com.littlefisher.user.request.AddSystemParamRequest;
-import com.littlefisher.user.request.GetSystemParamList4PageByCondRequest;
-import com.littlefisher.user.request.UpdateSystemParamRequest;
+import com.littlefisher.user.biz.model.SystemParamBizDto;
+import com.littlefisher.user.biz.request.AddSystemParamRequest;
+import com.littlefisher.user.biz.request.GetSystemParamList4PageByCondRequest;
+import com.littlefisher.user.biz.request.UpdateSystemParamRequest;
 import com.littlefisher.web.dal.integration.user.ISystemParamIntegration;
 
 import io.swagger.annotations.Api;

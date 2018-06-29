@@ -1,5 +1,11 @@
 package com.littlefisher.blog.biz.service;
 
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import com.littlefisher.blog.biz.model.CountStatisticBizExtDto;
 import com.littlefisher.blog.biz.request.AddBlogCountTimesRequest;
 import com.littlefisher.blog.biz.request.AddPostCountTimesRequest;
@@ -13,31 +19,40 @@ import com.littlefisher.blog.biz.request.AddPostCountTimesRequest;
  * @version 1.0
  * @since v1.0
  */
+@FeignClient(value = "count-statistic-service", path = "/countStatistics")
 public interface ICountStatisticService {
 
     /**
      * 查询针对于博客的数量统计
+     * 
      * @param authorId 作者id
      * @return 数量统计
      */
-    CountStatisticBizExtDto getBlogCountStatistic(Long authorId);
+    @GetMapping("/blog/{authorId}")
+    CountStatisticBizExtDto getBlogCountStatistic(@PathVariable("authorId") Long authorId);
 
     /**
      * 查询针对于博文的数量统计
+     * 
      * @param postId 博文id
      * @return 数量统计
      */
-    CountStatisticBizExtDto getPostCountStatistic(Long postId);
+    @GetMapping("/post/{postId}")
+    CountStatisticBizExtDto getPostCountStatistic(@PathVariable("postId") Long postId);
 
     /**
      * 增加博客相关统计数据
+     * 
      * @param request 请求
      */
-    void addBlogCountTimes(AddBlogCountTimesRequest request);
+    @PostMapping("/blog")
+    void addBlogCountTimes(@RequestBody AddBlogCountTimesRequest request);
 
     /**
      * 增加博文相关统计数据
+     * 
      * @param request 请求
      */
-    void addPostCountTimes(AddPostCountTimesRequest request);
+    @PostMapping("/post")
+    void addPostCountTimes(@RequestBody AddPostCountTimesRequest request);
 }

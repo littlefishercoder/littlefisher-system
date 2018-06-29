@@ -2,15 +2,15 @@ package com.littlefisher.web.dal.integration.user.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.alibaba.dubbo.config.annotation.Reference;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
-import com.littlefisher.user.model.UserBizDto;
-import com.littlefisher.user.request.AddUserRequest;
-import com.littlefisher.user.request.GetUserList4PageByCondRequest;
-import com.littlefisher.user.request.UpdateUserRequest;
-import com.littlefisher.user.service.IUserService;
+import com.littlefisher.user.biz.model.UserBizDto;
+import com.littlefisher.user.biz.request.AddUserRequest;
+import com.littlefisher.user.biz.request.GetUserList4PageByCondRequest;
+import com.littlefisher.user.biz.request.UpdateUserRequest;
+import com.littlefisher.user.biz.service.IUserService;
 import com.littlefisher.web.dal.integration.user.IUserIntegration;
 
 /**
@@ -25,7 +25,8 @@ import com.littlefisher.web.dal.integration.user.IUserIntegration;
 @Repository
 public class UserIntegrationImpl implements IUserIntegration {
 
-    @Reference
+    @Autowired
+    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private IUserService userService;
 
     @Override
