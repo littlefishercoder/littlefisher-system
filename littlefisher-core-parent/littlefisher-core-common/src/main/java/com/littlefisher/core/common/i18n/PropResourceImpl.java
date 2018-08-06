@@ -4,9 +4,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.Arrays;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -38,10 +39,6 @@ public class PropResourceImpl implements PropResource, InitializingBean {
     /** logger */
     private static LittleFisherLogger logger = LittleFisherLogger.getLogger(PropResourceImpl.class);
 
-    private static final String WINDOWS = "windows";
-
-    private static final String UNIX = "unix";
-
     /**
      * 缓存资源文件 第一层Map是根据语言进行分类，第二层是Properties
      */
@@ -56,18 +53,27 @@ public class PropResourceImpl implements PropResource, InitializingBean {
     }
 
     /**
-     * 遍历SYSTEM_HOME/resource目录下所有文件名，筛选出一共有几种语言
+     * 遍历所有工程下properties-resources中所有文件名，筛选出一共有几种语言
      * 
      * @return 所有的文件
      */
     private List<File> findFileNameSuffix() {
-        String littleFisherHome = initHomePath();
-        String resourceDir = littleFisherHome + File.separator + BaseConstants.I18N_RESOURCE_PATH;
-        List<File> allFileList = getAllFileName(resourceDir);
+        List<String> pathList = Lists.newArrayList();
+        List<File> allFileList = Lists.newArrayList();
+        try {
+            // 加载所有jar中properties-resources目录下所有文件，参考ThreadContextClassLoader处理逻辑
+            Enumeration<URL> resources = this.getClass().getClassLoader().getResources(BaseConstants.RESOURCE_PATH);
+            if (resources.hasMoreElements()) {
+                pathList.add(resources.nextElement().getPath());
+            }
+        } catch (IOException e) {
+            logger.error("IOException", e);
+        }
+        pathList.forEach(path -> allFileList.addAll(getAllFileName(path)));
         allFileList.forEach(file -> {
             String name = file.getName().substring(0, file.getName().length() - BaseConstants.PROPERTIES_LENGTH);
             int index = name.lastIndexOf(".");
-            String local = name.substring(index + 1, name.length());
+            String local = name.substring(index + 1);
             resourceMap.put(local, new Properties());
         });
         return allFileList;
@@ -98,45 +104,6 @@ public class PropResourceImpl implements PropResource, InitializingBean {
             });
         }
         return list;
-    }
-
-    /**
-     * 查询SYSTEM_HOME目录地址
-     *
-     * @return String
-     */
-    private String initHomePath() {
-        Properties systemProperties = System.getProperties();
-        String systemHome = systemProperties.getProperty(BaseConstants.SYSTEM_HOME);
-        if (StringUtil.isNotEmpty(systemHome)) {
-            return systemHome;
-        } else {
-            String os = System.getProperties().getProperty("os.name").toLowerCase();
-            try {
-                InputStream inStream;
-                if (os.contains(WINDOWS)) {
-                    inStream = Runtime.getRuntime().exec("cmd   /C   set").getInputStream();
-                } else if (os.contains(UNIX)) {
-                    inStream = Runtime.getRuntime().exec("env").getInputStream();
-                } else {
-                    inStream = Runtime.getRuntime().exec("env").getInputStream();
-                }
-                BufferedReader br = new BufferedReader(new InputStreamReader(inStream, Charsets.ISO_8859_1));
-                String line;
-                while ((line = br.readLine()) != null) {
-
-                    if (line.contains(BaseConstants.SYSTEM_HOME)) {
-                        int idx = line.indexOf('=');
-                        return line.substring(idx + 1).trim();
-                    }
-
-                }
-            } catch (IOException e) {
-                logger.error("env loader error", e);
-            }
-        }
-
-        return null;
     }
 
     /**
