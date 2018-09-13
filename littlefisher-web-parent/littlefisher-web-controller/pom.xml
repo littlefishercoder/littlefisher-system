@@ -11,6 +11,20 @@
 
   <artifactId>littlefisher-web-controller</artifactId>
 
+  <properties>
+    <swagger2markup.version>1.2.0</swagger2markup.version>
+
+    <asciidoctor.input.directory>${project.basedir}/src/docs/asciidoc</asciidoctor.input.directory>
+
+    <swagger.output.dir>${project.build.directory}/swagger</swagger.output.dir>
+    <swagger.snippetOutput.dir>${project.build.directory}/asciidoc/snippets</swagger.snippetOutput.dir>
+    <generated.asciidoc.directory>${project.build.directory}/asciidoc/generated</generated.asciidoc.directory>
+    <asciidoctor.html.output.directory>${project.build.directory}/asciidoc/html</asciidoctor.html.output.directory>
+    <asciidoctor.pdf.output.directory>${project.build.directory}/asciidoc/pdf</asciidoctor.pdf.output.directory>
+
+    <swagger.input>${swagger.output.dir}/swagger.json</swagger.input>
+
+  </properties>
   <dependencies>
     <dependency>
       <groupId>com.littlefisher</groupId>
@@ -27,6 +41,19 @@
       <artifactId>littlefisher-core-mvc</artifactId>
       <version>${littlefisher-core.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>io.github.swagger2markup</groupId>
+      <artifactId>swagger2markup-spring-restdocs-ext</artifactId>
+      <version>${swagger2markup.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
+
+  <build>
+    <plugins>
+
+    </plugins>
+  </build>
 </project>
