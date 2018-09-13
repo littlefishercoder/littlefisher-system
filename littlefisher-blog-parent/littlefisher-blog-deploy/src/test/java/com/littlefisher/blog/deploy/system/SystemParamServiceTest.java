@@ -9,9 +9,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import com.littlefisher.blog.deploy.user.UserServiceTest;
 import com.littlefisher.core.common.utils.LittleFisherLogger;
 import com.littlefisher.core.mybatis.pagehelper.PageInfo;
-import com.littlefisher.user.model.SystemParamBizDto;
-import com.littlefisher.user.request.GetSystemParamList4PageByCondRequest;
-import com.littlefisher.user.service.ISystemParamService;
+import com.littlefisher.user.biz.model.SystemParamBizDto;
+import com.littlefisher.user.biz.request.GetSystemParamList4PageByCondRequest;
+import com.littlefisher.user.biz.service.ISystemParamService;
 
 /**
  * Description: SystemParamServiceTest.java

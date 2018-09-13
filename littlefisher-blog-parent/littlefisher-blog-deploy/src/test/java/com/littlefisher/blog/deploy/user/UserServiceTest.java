@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.littlefisher.core.common.utils.LittleFisherLogger;
-import com.littlefisher.user.model.UserBizDto;
-import com.littlefisher.user.service.IUserService;
+import com.littlefisher.user.biz.model.UserBizDto;
+import com.littlefisher.user.biz.service.IUserService;
 
 /**
  * Description: UserServiceTest.java
